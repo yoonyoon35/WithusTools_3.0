@@ -1,0 +1,325 @@
+WithusTools
+Copyright (c) 2024 WithusTools
+
+This product includes software developed by third parties. The following
+notices are required by the respective licenses.
+
+=============================================================================
+PRODUCTION DEPENDENCIES
+=============================================================================
+
+@lunapaint/tga-codec
+  Copyright (c) 2022 Daniel Imms (https://github.com/Tyriar)
+  License: MIT
+
+@sindresorhus/fnv1a
+  Copyright (c) Sindre Sorhus (https://sindresorhus.com)
+  License: MIT
+
+ag-psd
+  Copyright (c) 2016 Agamnentzar
+  License: MIT
+
+@fontsource/pretendard
+  Font: Pretendard
+  Copyright (c) 2021, Kil Hyung-jin (https://github.com/orioncactus/pretendard)
+  with Reserved Font Name 'Pretendard'.
+  Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+  Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter),
+  with Reserved Font Name 'Inter'.
+  Copyright 2021 The M+ FONTS Project Authors (https://github.com/coz-m/MPLUS_FONTS),
+  with Reserved Font Name 'M PLUS 1'.
+  Licensed under the SIL Open Font License, Version 1.1.
+  https://scripts.sil.org/OFL
+
+adler-32
+  Copyright (C) 2014-present SheetJS LLC
+  License: Apache-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
+
+argon2-browser
+  Copyright © 2021 Antelle
+  License: MIT
+
+bcryptjs
+  Copyright (c) 2012 Nevins Bartolomeo
+  Copyright (c) 2012 Shane Girish
+  Copyright (c) 2025 Daniel Wirtz
+  License: BSD-3-Clause
+
+blakejs
+  Copyright (c) 2016 DC Posch (https://github.com/dcposch/blakejs)
+  License: MIT
+
+crc-32
+  Copyright (C) 2014-present SheetJS LLC
+  License: Apache-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
+
+crypto-js
+  Copyright (c) 2009-2013 Jeff Mott
+  Copyright (c) 2013-2016 Evan Vosberg
+  License: MIT
+
+gif.js
+  Copyright (c) Johan Nordberg (https://github.com/jnordberg/gif.js)
+  License: MIT
+
+heic2any
+  Copyright (c) 2020 Alex Corvi
+  License: MIT
+
+iconv-lite
+  Copyright (c) 2011 Alexander Shtuchkin
+  License: MIT
+
+js-sha3
+  Copyright (c) Chen, Yi-Cyuan (emn178)
+  License: MIT
+
+@noble/ed25519
+  Copyright (c) 2019 Paul Miller (https://paulmillr.com)
+  License: MIT
+
+jsrsasign
+  Copyright (c) 2010-2023 Kenji Urushima
+  License: MIT
+  Bundled components:
+  - RSA and ECC (ext/jsbn, etc.): Copyright (c) 2003-2005 Tom Wu, BSD License
+  - CryptoJS: Copyright (c) 2009-2013 Jeff Mott, MIT License
+  - Bitcoin JS: Copyright (c) 2011 Stefan Thomas, MIT License
+
+jszip
+  Copyright (c) 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso
+  License: MIT (dual licensed: MIT or GPLv3; this project uses MIT)
+
+node-forge
+  Copyright (c) 2010, Digital Bazaar, Inc. All rights reserved.
+  License: BSD-3-Clause OR GPL-2.0
+  This project uses node-forge under the BSD-3-Clause license.
+
+scrypt-js
+  Copyright (c) 2016 Richard Moore
+  License: MIT
+
+utif
+  Copyright (c) 2017 Photopea
+  License: MIT
+
+whirlpool-hash
+  Copyright (c) 2015 nf404
+  License: MIT
+
+xxhashjs
+  Copyright (c) Pierre Curto
+  License: MIT
+
+html2pdf.js
+  Copyright (c) Erik Koopmans (https://github.com/eKoopmans/html2pdf.js)
+  License: MIT
+  Used in: Text Editor (PDF export)
+
+jspdf
+  Copyright (c) James Hall, Parallax (https://github.com/parallax/jsPDF)
+  License: MIT
+  Used in: QR Code Generator, Text Editor (via html2pdf.js)
+
+jsqr
+  Copyright (c) Cosmo Wolfe, Jeff Nelson
+  License: Apache-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
+  Used in: QR Code Reader
+
+pdf-lib
+  Copyright (c) Andrew Dillon (https://github.com/Hopding/pdf-lib)
+  License: MIT
+  Used in: Image to PDF Converter
+
+prettier
+  Copyright (c) James Long (https://prettier.io)
+  License: MIT
+  Used in: Code Formatter (prettier/standalone in browser)
+
+qrcode (node-qrcode)
+  Copyright (c) Ryan Day (https://github.com/soldair/node-qrcode)
+  License: MIT
+  Used in: QR Code Generator
+
+wanakana
+  Copyright (c) WaniKani / Tofugu (https://github.com/WaniKani/WanaKana)
+  License: MIT
+  Used in: Hiragana Study, Katakana Study, Hiragana Katakana Converter
+
+next
+  Copyright (c) 2024 Vercel, Inc.
+  License: MIT
+
+react
+  Copyright (c) Facebook, Inc. and its affiliates.
+  License: MIT
+
+react-dom
+  Copyright (c) Facebook, Inc. and its affiliates.
+  License: MIT
+
+=============================================================================
+CDN / EXTERNAL ASSETS (loaded at runtime)
+=============================================================================
+
+flag-icons (flagicons.lipis.dev)
+  Copyright (c) 2013 Panayiotis Lipiridis
+  License: MIT
+  Used in: World Clock (time zone flags)
+
+pdf.js (Mozilla)
+  Copyright (c) Mozilla Foundation
+  License: Apache-2.0
+  https://www.apache.org/licenses/LICENSE-2.0
+  Used in: JPG Converter (PDF, AI to JPG)
+  https://mozilla.github.io/pdf.js/
+
+Inter (Google Fonts, via next/font)
+  Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
+  Licensed under the SIL Open Font License, Version 1.1
+
+strokesvg (zhengkyl/strokesvg)
+  Hiragana/Katakana SVGs derived from Klee One (SIL OFL)
+  Other files: Copyright (c) 2024 Kyle, MIT License
+  https://github.com/zhengkyl/strokesvg
+  Used in: Hiragana Study, Katakana Study
+
+hangeul-stroke-order (MagisterAdamus/hangeul-stroke-order)
+  Copyright (c) Adam Stone
+  License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+  https://github.com/MagisterAdamus/hangeul-stroke-order
+  Used in: Hangul Study
+
+Mixkit (Sound Effects)
+  Free Sound Effects by Envato
+  License: Mixkit Free License (royalty-free, no attribution required)
+  https://mixkit.co/license/
+  Used in: Timer, Countdown Timer, Interval Timer, Pomodoro, Alarm Clock
+
+=============================================================================
+DEVELOPMENT DEPENDENCIES
+=============================================================================
+
+@types/node
+  TypeScript definitions for Node.js
+  License: MIT
+
+@types/node-forge
+  TypeScript definitions for node-forge
+  Copyright (c) Microsoft Corporation
+  License: MIT
+
+@types/react
+  TypeScript definitions for React
+  License: MIT
+
+@types/react-dom
+  TypeScript definitions for React DOM
+  License: MIT
+
+autoprefixer
+  Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>
+  License: MIT
+
+eslint
+  Copyright OpenJS Foundation and other contributors
+  License: MIT
+
+eslint-config-next
+  Part of Next.js (Vercel, Inc.)
+  License: MIT
+
+postcss
+  Copyright 2013 Andrey Sitnik <andrey@sitnik.ru>
+  License: MIT
+
+tailwindcss
+  Copyright (c) Tailwind Labs, Inc.
+  License: MIT
+
+typescript
+  Copyright (c) Microsoft Corporation
+  License: Apache-2.0
+  https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt
+
+=============================================================================
+LICENSE TEXTS
+=============================================================================
+
+---
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+BSD 3-Clause License (node-forge, bcryptjs)
+
+Copyright (c) 2010, Digital Bazaar, Inc. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+  * Neither the name of Digital Bazaar, Inc. nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL DIGITAL BAZAAR BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
+OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+---
+
+Apache License 2.0 (TypeScript, pdf.js, jsqr)
+
+Licensed under the Apache License, Version 2.0. Full text available at:
+http://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+CC BY-SA 4.0 (hangeul-stroke-order)
+
+Hangeul stroke order diagrams by Adam Stone. Full license text:
+https://creativecommons.org/licenses/by-sa/4.0/
+
+---
+
+SIL Open Font License 1.1 (Pretendard)
+
+The complete OFL-1.1 text is available at: https://scripts.sil.org/OFL
+
+The Font Software (Pretendard) is licensed under the SIL Open Font License,
+Version 1.1. This license is copied in the OFL.txt file accompanying the
+font distribution, or available at the URL above.

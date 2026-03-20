@@ -1,0 +1,86 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { createMetadata } from "@/lib/metadata";
+import ToolIcon from "@/components/ToolIcon";
+import SshKeyGenerator from "../SshKeyGenerator";
+import type { Algorithm } from "../SshKeyGenerator";
+
+const VALID_ALGORITHMS = ["ed25519", "rsa", "ecdsa"] as const;
+
+const ALGORITHM_META: Record<
+  string,
+  { title: string; description: string; displayName: string }
+> = {
+  ed25519: {
+    title: "Secure Ed25519 SSH Key Generator",
+    description:
+      "Generate Ed25519 SSH key pairs in your browser—keys run locally, never sent to any server. Free, secure, OpenSSH compatible.",
+    displayName: "Ed25519",
+  },
+  rsa: {
+    title: "Secure RSA SSH Key Generator",
+    description:
+      "Generate RSA SSH key pairs (1024–8192 bits) in your browser—keys run locally, never sent to any server. Free, secure, OpenSSH compatible.",
+    displayName: "RSA",
+  },
+  ecdsa: {
+    title: "Secure ECDSA SSH Key Generator",
+    description:
+      "Generate ECDSA SSH key pairs (P-256, P-384, P-521) in your browser—keys run locally, never sent to any server. Free, secure, OpenSSH compatible.",
+    displayName: "ECDSA",
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { algorithm: string };
+}): Promise<Metadata> {
+  const { algorithm } = params;
+  const meta = ALGORITHM_META[algorithm];
+
+  if (!meta) return createMetadata({ title: "Not Found", noIndex: true });
+
+  return createMetadata({
+    title: meta.title,
+    description: meta.description,
+    path: `/tools/ssh/${algorithm}`,
+    keywords: [
+      `${meta.displayName} SSH key generator`,
+      "SSH key generator",
+      "generate SSH key online",
+      "browser local",
+      "OpenSSH",
+      "withustools",
+    ],
+  });
+}
+
+export async function generateStaticParams() {
+  return VALID_ALGORITHMS.map((algorithm) => ({ algorithm }));
+}
+
+export default function SshAlgorithmPage({
+  params,
+}: {
+  params: { algorithm: string };
+}) {
+  const { algorithm } = params;
+
+  if (!VALID_ALGORITHMS.includes(algorithm as (typeof VALID_ALGORITHMS)[number])) {
+    notFound();
+  }
+
+  const defaultAlgorithm = algorithm as Algorithm;
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <SshKeyGenerator
+        defaultAlgorithm={defaultAlgorithm}
+        defaultRsaKeySize={algorithm === "rsa" ? 4096 : undefined}
+        showAlgorithmGuide={true}
+        showPageHeader={true}
+      />
+    </div>
+  );
+}

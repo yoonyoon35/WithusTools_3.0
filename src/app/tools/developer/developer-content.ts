@@ -1,0 +1,42 @@
+export const DEVELOPER_INDEX_GUIDE = {
+  usage: [
+    "Choose a tool from the grid above: ASCII Code Converter, Base64 Encoder/Decoder, Code Formatter, Color Picker, CSS Sprites Generator, Number System Converter, QR Code Generator, or QR Code Reader.",
+    "ASCII Code Converter: Convert text to ASCII codes (decimal, hex, binary) and view the ASCII table reference.",
+    "Base64 Encoder/Decoder: Encode and decode text or files to Base64 format with URL-safe option.",
+    "Code Formatter: Format and beautify HTML, CSS, JavaScript, and JSON code with proper indentation.",
+    "Color Picker: Select colors and get HEX, RGB, HSL values. Pick colors from screen with eyedropper.",
+    "CSS Sprites Generator: Combine multiple images into a single sprite sheet and generate CSS code.",
+    "Number System Converter: Convert between binary, octal, decimal, hexadecimal, and ASCII characters.",
+    "QR Code Generator: Create QR codes for URLs, text, email, phone, Wi-Fi, vCard, and more.",
+    "QR Code Reader: Scan QR codes from camera or uploaded images.",
+  ],
+  howItWorks: [
+    "All developer tools run entirely in your browser. No data is sent to any server—your data stays on your device.",
+    "ASCII and number system converters use standard JavaScript APIs for character and number conversion.",
+    "Base64 encoding uses the browser's built-in btoa/atob for text and FileReader for files.",
+    "Code Formatter uses Prettier for consistent code formatting across supported languages.",
+    "Color Picker uses the EyeDropper API when available for screen color picking.",
+    "CSS Sprites Generator uses Canvas API to combine images and generate positioning CSS.",
+    "QR Code tools use qrcode and jsQR libraries for generation and scanning.",
+  ],
+  about: [
+    "Free online developer tools for encoding, formatting, color selection, and QR code handling. All processing runs locally in your browser—your data never leaves your device.",
+    "Designed for developers, designers, and anyone working with code, colors, or QR codes. No signup, no installation required.",
+    "Works on desktop and mobile. Uses modern web APIs for clipboard, file handling, and camera access.",
+  ],
+  advantages: [
+    "Privacy: All data stays in your browser. No server storage, no tracking.",
+    "No signup: Use immediately without creating an account.",
+    "Cross-device: Responsive design works on phones, tablets, and desktops.",
+    "Multiple formats: Support for various encoding, color, and number system formats.",
+  ],
+  useCases: [
+    "Debugging: Convert between text and ASCII/number formats for debugging character encoding.",
+    "API development: Base64 encode/decode for data transmission and storage.",
+    "Code quality: Format code for consistent style and readability.",
+    "Design: Pick and convert colors for web and graphic design.",
+    "Performance: Generate CSS sprites to reduce HTTP requests.",
+    "Marketing: Create QR codes for URLs, contact info, and Wi-Fi sharing.",
+    "Scanning: Read QR codes from camera or images.",
+  ],
+};

@@ -1,0 +1,398 @@
+260302
+
+1854 - withustools.com 3.0버전 업데이트 시작
+       next.js를 사용한 웹사이트 제작 방식으로 변경(다른 이점도 있지만 seo관점에서 바닐라js보다 유리하다고 함.)
+       사이트 기초 구성과 첫 기능으로 ssh key 생성기 제작.(이거 만들다가 넘어온거..재미나이한테 질문하다가..)
+       이후에는 2.0 버전에서 사용하던 기능들 이관해야함.
+
+=================================================================================================================
+
+260303
+
+1910 - ssh key 생성기 분리, 한페이지에서 3가지 알고리즘을 한번에 제공하던 방식에서 ssh key gen 선택 후, 알고리즘 선택하는
+       방식으로 변경, 생성기 페이지는 사실 그대로 유지하지만, seo 점수 상승을 위한 분리,
+       같은 방식으로 hash 생성기도 제작. 기존 hash를 모두 유지하고 추가로 
+       Keccak-256, CRC32, xxHash, BLAKE2, Argon2, SHA-224, PBKDF2까지 추가했고, FNV-1a, Adler-32, scrypt, Whirlpool
+       추가예정
+
+=================================================================================================================
+
+260304
+
+1757 - FNV-1a, Adler-32, scrypt, Whirlpool hash 생성기 추가. 
+       salt값을 사용하는 생성기에 사용된 salt값 표기하도록 변경 > 을 하니 다른 파라미터도 포함시키고 싶어서 적용(모든 파라미터 표기)
+
+1916 - 새로 작업한 해시함수 관련 라이센스 정리.
+       모든 페이지에 규칙성 있는 가이드 텍스트 추가.
+
+       ==========================================================================================================
+
+       순위	  기능	          분류	 우선 이유
+       1	Keccak-256	암호학적	이더리움·Web3에서 많이 사용, SHA3-256과 구분 필요
+       2	CRC32	       비암호학적	ZIP, PNG, Git 등에서 가장 널리 쓰임
+       3	xxHash	       비암호학적	빠르고 실용적, 많은 개발 도구에서 사용
+       4	BLAKE2	       암호학적	SHA-3보다 빠른 대체, 패스워드·체크섬 용도
+       5	Argon2	       패스워드	최신 패스워드 해시 표준, bcrypt보다 권장되는 경우 많음
+       6	SHA-224	암호학적	SHA-2 계열, TLS 인증서 등에서 사용
+       7	PBKDF2	       패스워드	레거시 포함 널리 지원, 시스템 연동에 유리
+       8	FNV-1a	       비암호학적	구현 단순, 캐시/해시맵 등에 사용 
+       9	Adler-32	비암호학적	zlib, PNG 등 제한적이지만 특정 영역에서 표준
+       10	scrypt	       패스워드	라이트코인 등 암호화폐, 패스워드 KDF로 사용
+       11	Whirlpool	암호학적	학술·레거시 용도, 현업 요구는 상대적으로 적음
+
+       ===========================================================================================================
+       3.0 이관 작업에서 기존에 2.0버전에서 사용하던 해시함수 외에 11개를 추가했는데 커서가 추천해줌
+       추천은 사용용도별, 사용자수 많은 순서대로 줄세워서 11개를 추천 받은거.
+       2.0에서 시도했던거도 있는데 바닐라js여서 그랬던건지는 모르지만 그때는 계속 실패했던 것들이 netx.js에서 순조롭게 완성됨.
+
+2023 - 시간관련 카테고리 추가, 기존에 있던 타이머, 알람, 스탑워치, 달력 기능 이동
+       
+       다른기능 추가예정
+
+=================================================================================================================
+
+260305
+
+1527 - ssh key gen 알고리즘 선택하면 페이지 제목도 같이 바뀌게 변경
+       
+       시간 관련 카테고리에서 컨텐츠 자체가 많지 않다보니 width가 다른 페이지와 다르게 좁음.
+       그래서 페이지 타이틀이 컨텐츠와 정렬이 안이쁘게 나옴. 모든 페이지 타이틀을 가운데 정렬로 변경
+
+       포모도로 기반 타이머 추가, 인터벌타이머도 제작할거라 표준거의 그대로 유지, 
+       완료 알람이 2초만에 끝나는거만 10초로 변경하고 남은 시간을 표기해주도록 변경
+
+       인터벌타이머까지 추가 완료, 시각적 타이머 종류가 더 있으면 추가하고싶음. 그외 시간 페이지도 추가필요.
+
+1004 - 세계시간 페이지 제작. 
+       타임존 hover 이벤트로 세계지도 해당국가에 포커싱 효과 줬고, 최대한 지도 구석구석 타임존이 해당하도록 타임존 구성
+       여러 지역이 포함 된 국가가 포커싱이 더 세분화 됐음 했는데 맵핑이 쉽지않아서 일단 포기
+       의도치 않게 Time zone converter가 자동으로 따라와서 컨텐츠 하나 더 건짐.
+
+=================================================================================================================
+
+260306
+
+1439 - time 카테고리 페이지들이 time과 같은 경로에 있어서 ssh, hash랑 경로가 달랐는데, 하위 페이지들 time 폴더로 이동해서 통일
+
+1548 - Date Difference Calculator 기능 추가. 
+       기존 d-day calculator랑 비슷한 컨셉인데 기준이 오늘이 아니라 선택임. 계산기 카테고리 보다 time이 어울려보여서 옮김
+
+       footer에 메일 추가
+
+1755 - 기존 to-jpg 페이지랑 하위폴더 기능 페이지 이관, 
+       경로 형태 통일 위해 JPG Converter로 카테고리 지정.(사실 기존이랑 똑같음..)
+       기존부터 안된건지 모르겠는데, 다수 파일 변환 시 zip 다운기능, 업로드 미리보기, 업로드 상황 프로그래스 바 추가
+       차후 추가확장자 to jpg 추가 고려중
+
+       to jpg 변환기 9개 텍스트 컨텐츠 롱테일키워드 및 분량 추가.
+
+=================================================================================================================
+
+260309
+
+2204 - PSD, JFIF, ICO, AI, DNG, CR2, CR3, TGA 확장자 추가 (JPG CONVERTER)
+
+2414 - 이미지 카테고리 이관
+       image format converter는 JPG Converter 종류가 늘어난 것에 비해서 전문성이 너무 떨어지고
+       SEO 관점에서 개별페이지의 이점은 있지만 종합 페이지는 필요성이 떨어지는 것 같아서 폐지함.
+       paint board는 거의 그대로 옮겼고, image editor, image compressor는 새 기능도 추가함.
+
+       의존성 저작권 표기 점검함.
+
+=================================================================================================================
+
+260311
+
+1031 - text 카테고리 이전. 
+       hiragana-katakana-converter 페이지는 language로 이전 예정. < 제외 3가지 이전
+
+       이전 과정에서 cursor가 hash랑 JPGConv 참고했는데, 
+       "빌드 실패: JPGConverter.tsx의 기존 타입 오류로 보입니다. 새로 추가한 Text 도구 확인 중입니다."
+       문구가 있어서 해당 문제 확인했고 프로그램 수정함. 무슨 배열구조가 직접적인 선언이 안돼서 헷갈리는 듯한 늬앙스.
+       그거 바로 잡고 다시 JPGConverter 전체 페이지 동작확인. 샘플 파일 모두 4개씩 준비해서 한번에 다수 파일 변환하는
+       상황으로 테스트했고, 잘 변환되고 있음.
+
+=================================================================================================================
+
+260312
+
+1636 - String Comparison Tool 업데이트
+       # 비교 옵션
+       Ignore whitespace	공백, 탭, 줄바꿈 차이 무시	문서/코드 비교 시 자주 필요
+       Ignore case	       대소문자 차이 무시 (Hello vs hello)	코드·키워드 비교에 유용
+       Trim	              앞뒤 공백 자동 제거	공백만 다른 경우 구분에 유용 //
+       #차이 통계
+       Statistics - 글자 수, 단어 수, 줄 수, 차이 개수, 같은지 여부
+
+       입력 텍스트의 줄바꿈이 출력 텍스트에 적용 안되는 것 처리
+       한 단어 사이에 스페이스가 있으면 두단어로 인식되고 해당 문장의 해당 단어 뒤로는 모든 단어가 diff로 적용되는 것 조치
+       문장에 들어가는 포커스는 제거(단어 포커스 갯수가 많아 질수록 거의 모든 문장에 포커스가 들어감. 변별력 없음.)
+       스크롤 이쁘게 적용+++++++
+       파일 업로드 기능 : TXT만 지원
+
+1719 - Text Case Converter 업데이트
+       camelCase, PascalCas, snake_case, kebab-case, Title Case, tOGGLE cASE, Alternating Case 기능 추가
+       TXT 파일 불러오기, 스크롤 스타일(scrollbar-thin, max-h-[50vh]) 적용
+       버튼 배치: 변환 버튼(UPPERCASE, lowercase, Capitalize, ...)과 액션 버튼(Copy, Clear)을 그룹으로 나누고 컨테이너 추가해 감쌈
+
+       Text Editor 업데이트
+       TXT 파일 불러오기 String Comparison, Text Case Converter와 동일한 Load TXT 버튼 추가,
+       글자 수·단어 수 표시	Text Converter처럼 Characters, Words 카운트 표시, 스크롤 스타일
+       scrollbar-thin, max-h-[50vh] 적용, Clear 버튼, 편집 중인 제목·내용 초기화, Copy 버튼
+       현재 내용 클립보드 복사, TXT export 기능 추가
+
+       RandomGenerator 3.0프로젝트 이관
+
+       Password Generator 업데이트
+       암호 계산 방식을 수정해서 생성값이 특정 값에 편향되지 않도록 수정
+       접근성 – 메시지 중복 알림
+       copyPassword 안에서 setTimeout(() => setMessage(null), 3000)를 매번 호출해, 
+       여러 번 클릭 시 타이머가 중복 실행될 수 있습니다. 기존 메시지 타이머를 한 번에 관리하도록 useRef 등으로 정리하도록 수정
+
+       일관성 – 보안 안내 배너
+       HashCalculator에 있는 보안 안내를 여기도 추가
+       "All hashing runs in your browser. Data is never sent to any server."
+
+       Random Number Generator 업데이트
+       보안 – getSecureRandomInt 무한 루프 가능성 (긴급)
+       기존 페이지에서 사용하던 프로그램 방식이 무한루프 위험성이 있어 수정.
+       Password Generator처럼 useRef로 직전 타이머 ID를 저장하고, 새 메시지 표시 전에 clearTimeout으로 제거하는 방식 적용
+       일관성 – 보안 안내 배너
+       "All number generation runs in your browser. Data is never sent to any server." 배너 문구 적용
+       입력 검증 – 빈 값 처리
+       minValue, maxValue가 빈 문자열일 때 Number("")는 0이 됩니다.
+       onChange에서 Number(e.target.value) || 0로 처리하면, 사용자가 값을 지웠을 때 0으로 바뀌어 의도하지 않은 동작이 될 수 있습니다.
+       빈 값에 대한 별도 검증·처리 로직 적용
+
+=================================================================================================================
+
+260313
+
+1553 - PDF Converter 이관 작업
+       기존에 있던 jpg to pdf 페이지 이관 완료
+       2.0 버전에서 테스트 할 때 실제 이미지가 아닌 pdf를 이미지로 받은 jpg 파일을 샘플로 사용해서 몰랐던 버그가 있었음.
+        >> 이미지 파일이 pdf 파일과 크기가 같으면 정상 변환되는 것 처럼 나오지만 pdf보다 작은 크기의 이미지를 사용하면
+           정렬도 안맞고 여백도 생김. 여백을 없애기 위해서 기존 jsPDF에서 pdf-lib로 라이브러리 변경
+        >> 이미지가 너무 작은 경우에 pdf로 변환하고 pdf 페이지가 너무 작게 나와서 보기 안좋음.
+           타 사이트 확인해보니 그대로 제공하기고 하고 옵션으로 여백이 포함되는 a4 사이즈 기준으로 변환해주는게 있길래
+           방식을 fit과 a4 두 종류 중에서 선택하도록 변경. a4로 선택 시 Page orientation 선택 창을 표시해서 
+           Portrait, Landscape 중에 선택하도록 함.
+
+1623 - PNG to PDF 페이지 추가, 기존 jpgtopdfconverter.tsx 파일을 imagetopdfconverter로 변경하고, 다른 형식 파일도
+       여기 거쳐서 다른 페이지로 파생 시킬 수 있을 듯.
+
+2229 - SEO 카테고리 이관 작업
+       favicon generator - Preview grid key, Error handling, Non-image drop, downloadPackage deps 처리
+       미리보기 아이콘 크기 조정(실사이즈로 표시하고 싶었는데 너무 큰 이미지도 있어서 시각적으로 차별만 두고 실제 크기랑 다르다고 안내함)
+       그 외 스크롤 ui조절 및 제공코드 사이즈 확대 조치 
+
+       SEO 카테고리 이관 작업 중 다른 페이지 수정 사항 발견
+       RandomNumberGenerator, JPGConverter, PDFConverter 통일 된 스크롤 ui가 적용 안돼서 조치
+       JPGConverter, PDFConverter는 업로드 및 변환된 이미지 갯수가 10개 이상일 때만 적용
+
+       metatag generator - 
+       #필수 개선 (버그·누락)
+	Clipboard 복사 에러 처리
+	og:type 미포함	Open Graph 기본 태그로 og:type(website, article 등)가 빠져 있음. 페이스북 등에서 권장하는 필수 항목임.
+       #기능·태그 확장
+       Canonical URL	SEO를 위해 <link rel="canonical"> 지원. Basic 탭 또는 별도 입력 필드 추가 가능.
+	og:image 크기·alt	og:image:width, og:image:height, og:image:alt 옵션. 이미지 미리보기 품질과 접근성 개선에 유용.
+	og:site_name	사이트 브랜드명 입력 필드. SNS 공유 시 브랜드 표시에 도움.
+	OG/Twitter 글자 수	OG title, OG description, Twitter title, Twitter description에 권장 글자 수 표시·경고(예: OG title 60~95자 등).
+       #UX 개선
+	자동 동기화	“Basic 타이틀/설명을 OG·Twitter에 자동 적용” 같은 체크박스로 미입력 시 기본값 채우기.
+	미리보기	검색 결과 스니펫, SNS 카드 형태의 간단한 미리보기. 2.0 설명에서는 “Real-time Preview” 기능으로 언급됨.
+	코드 블록 폰트	Favicon Generator처럼 text-xs → text-sm으로 변경해 가독성 향상.
+       #코드 품질
+	robots 입력값 escape	robots는 select라 위험은 적지만, 다른 content들과 마찬가지로 escapeHtml 적용이 일관됨.
+	twitterCard escape	twitterCard 역시 select이지만, escapeHtml로 통일하는 편이 안전함.
+       #save 버튼 추가, copy말고 저장 할 일도 있을 거 같아서 추가함. 파일 형식이 긴가민가 했는데 커서가 html로 함.
+
+       Robots.txt generator - 
+       #필수 개선 (버그·누락)
+	Clipboard 복사 에러 처리	copyRobots의 navigator.clipboard.writeText()에 .catch()가 없음. 2.0에는 실패 시 에러 메시지 표시가 있음.
+	다운로드 시 DOM 처리	downloadRobots에서 <a>를 document.body에 append한 뒤 click하고 제거하는 과정이 없음. 2.0과 달라서 일부 브라우저에서 다운로드가 실패할 수 있음.
+	메시지 타입 구분	복사 실패 등 에러 시 다른 스타일로 표시할 수 있게 message에 타입(성공/실패)을 두는 것이 좋음.
+       #일관성·스타일
+	scrollbar-thin 미적용	코드 출력 영역 pre에 scrollbar-thin 클래스가 없음. Metatag, Favicon Generator에는 적용되어 있음.
+	코드 블록 폰트	text-xs → text-sm으로 변경하면 Metatag/Favicon과 일관되고 가독성이 좋아짐.
+       #기능·로직
+	빈 출력 시 Copy/Download	규칙이 없거나 모두 비어 있을 때 빈 내용을 복사/다운로드할 수 있음. 빈 경우 경고 메시지를 주는 것이 좋음.
+	Crawl-delay 안내	Crawl-delay는 Google이 무시하고, 일부 검색엔진에서만 사용됨. 사용자 안내 문구가 있으면 혼동을 줄일 수 있음.
+	규칙 순서	robots.txt에서는 같은 User-agent 내에서 Allow/Disallow 순서가 중요함. 규칙 추가/편집 UI에 순서 변경 기능이 있으면 유용함.
+
+       XML Sitemap Generator - 
+       #필수 개선 (버그·누락)
+	Clipboard 복사 에러 처리	copyXml에 navigator.clipboard.writeText()의 .catch()가 없음. 2.0에는 실패 시 에러 메시지가 있음.
+	다운로드 시 a 요소 DOM 처리	downloadXml에서 document.body.appendChild(a) → a.click() → removeChild(a) 없음. 2.0은 이 순서로 처리.
+	메시지 타입 구분	복사 실패 시 다른 스타일로 보여줄 수 있게 message에 타입(성공/실패) 추가 필요.
+       #일관성·스타일
+	scrollbar-thin 미적용	출력 영역 pre에 scrollbar-thin 없음. Metatag, Robots Generator에 적용되어 있음.
+	코드 블록 폰트	text-xs → text-sm으로 변경 시 가독성·다른 SEO 도구와의 일관성 확보.
+	max-h	max-h-[400px] → max-h-[50vh]로 통일하는 것이 좋음.
+       #기능·로직
+	빈/에러 출력 시 Copy·Download	"Please enter website URL"이 출력될 때 복사/다운로드 시 경고 메시지 표시 필요.
+	URL 개수 제한	Sitemap은 URL 50,000개 제한. 이에 가까워질 때 안내 또는 경고가 있으면 좋음.
+	Priority 범위 검증	0.0~1.0 밖의 값(예: 1.5, -0.1) 입력 시 검증 또는 clamp.
+	URL 순서 변경	Robots처럼 위/아래로 이동해 URL 순서를 바꾸는 기능이 있으면 유용.
+	일괄 입력	여러 URL을 한 번에 붙여넣기로 추가하는 기능.
+       #XML Sitemap 사양 관련
+	namespace	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 적용됨.
+	lastmod 형식	YYYY-MM-DD 형식 준수.
+	changefreq 값	always, hourly, daily, weekly, monthly, yearly, never 사용.
+	escapeXml	<, >, &, ', " 이스케이프 처리.
+
+=================================================================================================================
+
+260315
+
+1519 - Calculator 카테고리 이관
+       D-day는 time 카테고리 이전 할 때, 그쪽이 더 잘 어울리는 느낌이라 같이 보냄.(여기서는 삭제)
+       unit converter는 이관하려고 보니 뭔가 이쪽하고는 안어울리는 느낌이라 뺐고, 이 자체를 카테고리화 해서 각각의 유닛을 페이지 화 예정
+
+=================================================================================================================
+
+260316
+
+1549 - Average Calculator 개선사항 점검
+       #버그 / 엣지 케이스
+       빈 데이터셋-숫자 0개일 때 calculate를 호출하면 mean = sum/0 (Infinity)
+       Mode 처리-모든 값이 서로 다를 때(빈도 1)에도 한 값을 mode로 보여줌 → “No mode” 또는 “N/A”가 더 적절
+       소수 자리-소수점 고정 toFixed(2)만 사용 → Min/Max처럼 자릿수 옵션이 있으면 좋음
+       정렬 출력-입력 데이터 정렬 결과를 보여주지 않음 → 사용자가 확인·검증하기 어려움
+       3#추가하면 좋은 기능
+       통계 지표
+              Standard Deviation (표준편차)
+              Variance (분산)
+              Min / Max (현재는 Range만 표시)
+              Quartiles (1Q, 3Q, IQR)
+              Geometric Mean (기하평균)
+              Harmonic Mean (조화평균)
+       UX/기능
+              실시간 계산: 입력 시 자동으로 결과 갱신 (버튼 없이)
+              결과 복사: “Copy results”로 요약 텍스트 클립보드 복사
+              CSV 붙여넣기: 엑셀 등에서 복사한 데이터를 그대로 붙여넣어서 계산
+              입력 샘플: “Use sample data”로 예시 데이터 채우기 (예: 성적, 매출)
+              정렬된 데이터 표시: 계산에 사용된 정렬 배열을 보여주기
+       표시/설정
+              소수점 자리수: 0~6 선택
+              숫자 포맷: 천 단위 구분 기호 (1,234.56)
+              Min/Max 강조: Range와 함께 Min, Max 값을 별도로 표시
+       UX 개선
+       피드백-3.0에는 토스트 없음	계산 완료/리셋 시 간단한 토스트 메시지
+       빈 입력-Calculate 시에만 에러	포커스 아웃/입력 시점에 대한 유효성 안내
+       접근성	기본 수준-aria 속성, 결과 영역 role="region" 등
+       모바일	그리드 사용-결과 그리드/리스트가 작은 화면에서 더 잘 보이도록 조정
+
+       BMI Calculator 개선사항 점검
+       #버그 / 엣지 케이스
+              음수 입력-검증 없음	키·몸무게가 음수면 에러 처리
+              0 입력-!h || !w로 일부 처리	height=0, weight=0에 대한 명확한 에러 메시지
+              US 단위 feet=0-!feet로 체크	0ft만 입력한 경우 등에 적절한 에러 메시지
+              소수 입력-number input	지수 표기 등 특수 숫자 처리 확인 및 검증
+       #UX / 기능 (Average Calculator 대비)
+              실시간 계산-Calculate 버튼 클릭 시에만	입력 시 자동 계산(debounce)
+              토스트 피드백-계산 완료 / 리셋 시 토스트
+              결과 복사-BMI 결과 클립보드 복사 버튼
+              샘플 데이터-예시용 값(예: 170cm, 70kg) 채우기 버튼
+              접근성	기본 label 수준-aria-label, aria-invalid, role="region", aria-describedby 등
+              모바일	일반 버튼-touch-manipulation, min-h 등 터치 친화적 스타일
+       #표시 / 설정
+              이상체중 범위 - 권장 체중 구간 표시
+       #코드 / 구조
+              스타일 통일	BMICalculator만 별도 스타일	Average Calculator와 동일한 inputCls, btnPrimary, btnSecondary 등 사용
+              입력 공통 컴포넌트	반복되는 input 구조	필요 시 공통 input wrapper 사용
+              단위 전환 시 초기화	없음	Metric ↔ US 전환 시 관련 필드 초기화
+       #가이드(문서)
+              BMI 한계점	없음	“체성분·골격·나이 등은 반영하지 않음” 등 단순 주의 문구 추가
+
+       Calculator 개선사항 점검
+       #버그 / 엣지 케이스
+              천 단위 콤마 저장-formatNumber(result)로 결과 저장 시 콤마 포함
+              콤마 제거 후 저장 (parseFloat에서 "1,234" → 1 로 파싱되는 문제 방지)
+              sqrt/square/reciprocal 결과	.toString() 직접 사용-소수점 자릿수 제한 또는 formatNumber로 통일
+              percent 의미-현재 값 ÷ 100	일반 계산기와 동작으로 맞춤 (예: 200 + 10% = 220)
+              메모리 표시-MR 등에 값이 저장돼 있음을 표시 안 함	M 표시 LED/아이콘 추가 고려
+
+       GPA Calculator 개선사항 점검
+       #Calculator 카테고리 내 타 페이지와 공통 사항 모두 적용. scale 별 학점 테이블 추가.
+
+       Percentage Calculator 개선사항 점검
+       #Calculator 카테고리 내 타 페이지와 공통 사항 모두 적용. 
+       입력 값 증가, 감소 버튼 ui 우리 사이트 컨셉화, GPA Calc Credits에도 적용
+
+=================================================================================================================
+
+260317
+
+1656 - language 카테고리 이관 작업 완료
+       히라가나, 카타카나 변환기 language 카테고리오 이전
+       이관 과정에서 학습지 다운로드 기능에 잘못된 부분들 점검 및 수정, 
+       문자카드 크기 확대, 스트로크 자연스럽게 수정
+
+2026 - 알파벳 스터디에서 소문자가 없는 걸 이제야 알았다.. 추가하는데 스트로크가 아에 지원이 안되고 폴백으로 잘 그리지도 못함...
+       스트로크는 포기하고 학습지만 추가함. 이제 대문자, 소문자, 둘다 3가지 옵션으로 학습지 뽑을수 있음
+
+       Image Tools 에 있는 페이지들이 가이드가 다 빠져있었음. 새로 추가
+
+       Developer 카테고리 이관 진행 - 다음 작업 때 이관 후 점검 사항 체크하면 됨.
+
+=================================================================================================================
+
+260318
+
+1420 - ASCII Code Converter 이관 완료
+       #버그 / 누락
+       Toast 타이머 중복	setTimeout만 사용	Password/Random Generator처럼 useRef로 타이머 ID를 저장하고, 새 메시지 표시 전에 clearTimeout 호출
+       가이드와 기능 불일치	가이드: "Character count, word count, and size update in real time"	Text Converter처럼 문자 수·단어 수·바이트 크기 표시 추가
+       Clipboard 에러 스타일	실패 시에도 초록색 토스트	성공/실패 메시지 스타일 구분 (예: 실패 시 빨간색)
+       #기능 확장
+       ASCII → Text (역변환)	가이드·메타 설명에 "Reverse conversion"이 있지만 미구현. ASCII 코드(dec/hex/bin)를 입력하면 해당 문자로 변환하는 영역 추가
+       Load TXT 파일	Text Converter, String Comparison처럼 TXT 파일 불러오기 버튼 추가
+       Clear 버튼	입력·출력 초기화 버튼 추가
+       Extended ASCII 테이블	현재 32–126만 표시. 가이드에 "extended ASCII (128-255)"가 있으므로, 128–255 구간을 탭/접기 등으로 표시
+
+       Base64 Encoder & Decoder 이관완료
+       Code Formatter 이관 완료 - cursor의 개선 제안점 모두 적용하고, auto detect 기능이 잘 안먹혀서 제거함.
+       color picker 이관 완료 - hsv, cmyk 코드 추가, Contrast Ratio 색 7개더 추가, custom color 선택기능추가
+       CSS Sprites Generator 이관 완료
+       Number System Converter 이관 완료 - 변환 대상을 선택하는 방식을 없애고 모든 결과를 한번에 출력하게 변경
+       입력 방식에 맞게 입력값 형태 설명하는 플레이스 홀더 설정
+       QR Code Generator 이관 완료
+
+1806 - Unit Converter Tools 페이지 이관 완료
+       이 페이지를 카테고리로 지정하고, unit 별로 페이지를 만들어서 각각의 변환을 제공하는 방식으로 수정
+
+       사이트 내 모든 스핀버튼을 gpa calculator랑 동기화 시킴.
+
+       갑작스런 오류 발생으로 수정..그냥 시키는대로 함..
+       1.HangulStudy.tsx – SVGPathElement를 HTMLElement로 변환하던 부분을 제거했습니다. 
+       SVGElement에 이미 style이 있으므로 path.style로 바로 사용합니다.
+       2.kana-converter-utils.ts – ROWS 타입을 [string, string, string][]에서 [string[], string[], string[]][]로 
+       변경해 각 행이 5개 문자열 배열(로마자, 히라가나, 가타카나)을 갖도록 맞췄습니다.
+       3.IntervalTimer.tsx – repeatCount가 number | ""인데 NumberInputWithStepper는 string을 기대하므로, 
+       value와 onChange를 그에 맞게 수정했습니다.
+       4.CodeFormatter 컴포넌트를 next/dynamic으로 로드하도록 수정하고 ssr: false를 적용했습니다. 
+       Prettier 플러그인이 프리렌더링(SSR) 환경에서는 브라우저 전용 코드 때문에 undefined를 반환해 에러가 발생했고, 
+       ssr: false로 클라이언트에서만 로드되게 해서 문제를 해결했습니다.
+
+=================================================================================================================
+
+260319
+
+1422 - Unit Converter Tools 모든 페이지 점검완료.
+       변환기별 단위 추가. All Unit Conversions 컨테이너 추가로 변환단위 선택과 상관없이 모든 변환값 출력
+       기존 '1 Kilometers → Miles' 방식에서 숫자 빼고, 기호를 to로 바꾸고, 단위를 단수형으로 변경
+       'Kilometer to Mile' 이런 식으로 검색량이 많을 걸로 생각해서 바꿈
+
+1645 - Image Format Converter 이관 하기로 마음 바꿈. 작업 기간 중 유입이 생각보다 꽤 있음. 
+       좀 부족하긴 한데 일단 2.0 버전 그대로 이관함. 변환가능 포멧을 늘리고 싶었는데 구현이 어렵다함..
+
+       검색기능 활성화. 근데 딱히 필요없어 보임.
+
+1727 - Breadcrumb JSON-LD 전체 페이지 적용
+1755 - SNS 공유기능 추가. 플로팅 방식으로 우측하단에 위치함. facebook. X, LinkedIn, WhatsApp, Telegram 5개 적용
+       애드센스, 애널리틱스 코드 추가. layout.tsx 파일에 작성
+
+2132 - 최종 의존성 저작권 표기 확인
+       파비콘 및 사이트 대표사진 업데이트
