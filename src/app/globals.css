@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #020617;
+  --surface: #0f172a;
+  --border: #1e293b;
+}
+
+@keyframes timer-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-timer-flash {
+  animation: timer-flash 0.8s ease-in-out infinite;
+}
+
+body {
+  background-color: var(--background);
+  color: rgb(248 250 252);
+}
+
+/* Thin, minimal scrollbar - dark theme */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(71 85 105 / 0.5) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgb(71 85 105 / 0.5);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgb(71 85 105 / 0.8);
+}
+
+/* Language tools - stroke animations */
+@keyframes alphabet-stroke-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes hiragana-stroke-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes katakana-stroke-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes hangul-stroke-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.lang-stroke-svg path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  shape-rendering: geometricPrecision;
+}
+
+/* strokesvg CDN uses large viewBox - needs thick stroke to be visible */
+.lang-stroke-svg [data-strokesvg="strokes"] path {
+  stroke: #ffffff !important;
+  stroke-width: 80 !important;
+}
+
+.lang-stroke-svg.alphabet path {
+  animation: alphabet-stroke-draw 0.5s ease-out forwards;
+}
+
+.lang-stroke-svg.hiragana path,
+.lang-stroke-svg.katakana path {
+  animation: hiragana-stroke-draw 0.6s ease-out forwards;
+}
+
+/* Hangul fallback (template): 애니메이션 적용 */
+.lang-stroke-svg.hangul:not(.hangul-stroke-svg-real) path {
+  stroke-width: 20;
+  animation: hangul-stroke-draw 0.6s ease-out forwards;
+}
+
+/* hangeul-stroke-order CDN: 정적 표시 (숫자·화살표·자모) - 2.0 방식, 3.0 다크 테마 */
+.lang-stroke-svg.hangul-stroke-svg-real path {
+  animation: none !important;
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
+}
+.lang-stroke-svg.hangul-stroke-svg-real .jamo path {
+  fill: #f1f5f9;
+  stroke: none;
+}
+/* 획순 번호: 더 잘 보이게 확대·대비 강화 */
+.lang-stroke-svg.hangul-stroke-svg-real .stroke-number,
+.lang-stroke-svg.hangul-stroke-svg-real [id^="number-"] {
+  transform: scale(1.35);
+  transform-origin: center;
+}
+.lang-stroke-svg.hangul-stroke-svg-real .stroke-number path,
+.lang-stroke-svg.hangul-stroke-svg-real [id^="number-"] path {
+  fill: #38bdf8;
+  stroke: #0f172a;
+  stroke-width: 1.5;
+}
+.lang-stroke-svg.hangul-stroke-svg-real path.order-arrow,
+.lang-stroke-svg.hangul-stroke-svg-real [id^="arrow-"] {
+  fill: #60a5fa;
+}
+
