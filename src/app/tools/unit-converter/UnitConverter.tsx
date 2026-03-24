@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import NumberInputWithStepper from "@/components/NumberInputWithStepper";
+import { LENGTH_UNITS, WEIGHT_UNITS } from "@/utils/conversions";
 
 export type UnitCategory =
   | "length"
@@ -18,36 +19,13 @@ export type UnitCategory =
 
 interface UnitDef {
   name: string;
-  nameSg?: string; // singular form for Common Conversions
+  nameSg?: string; // singular unit label where helpful
   factor?: number; // base unit factor (for non-temperature)
 }
 
 const UNITS: Record<UnitCategory, Record<string, UnitDef>> = {
-  length: {
-    nmi: { name: "Nautical Miles", nameSg: "Nautical Mile", factor: 1852 },
-    mi: { name: "Miles", nameSg: "Mile", factor: 1609.344 },
-    km: { name: "Kilometers", nameSg: "Kilometer", factor: 1000 },
-    m: { name: "Meters", nameSg: "Meter", factor: 1 },
-    yd: { name: "Yards", nameSg: "Yard", factor: 0.9144 },
-    ft: { name: "Feet", nameSg: "Feet", factor: 0.3048 },
-    in: { name: "Inches", nameSg: "Inch", factor: 0.0254 },
-    cm: { name: "Centimeters", nameSg: "Centimeter", factor: 0.01 },
-    mm: { name: "Millimeters", nameSg: "Millimeter", factor: 0.001 },
-    um: { name: "Micrometers", nameSg: "Micrometer", factor: 0.000001 },
-    nm: { name: "Nanometers", nameSg: "Nanometer", factor: 0.000000001 },
-  },
-  weight: {
-    t: { name: "Metric Tons", nameSg: "Metric Ton", factor: 1000000 },
-    lton: { name: "Long Tons (UK)", nameSg: "Long Ton (UK)", factor: 1016046.9088 },
-    ust: { name: "US Tons (Short)", nameSg: "US Ton (Short)", factor: 907184.74 },
-    st: { name: "Stone", factor: 6350.29318 },
-    kg: { name: "Kilograms", nameSg: "Kilogram", factor: 1000 },
-    lb: { name: "Pounds", nameSg: "Pound", factor: 453.59237 },
-    g: { name: "Grams", nameSg: "Gram", factor: 1 },
-    oz: { name: "Ounces", nameSg: "Ounce", factor: 28.349523125 },
-    mg: { name: "Milligrams", nameSg: "Milligram", factor: 0.001 },
-    ug: { name: "Micrograms", nameSg: "Microgram", factor: 0.000001 },
-  },
+  length: LENGTH_UNITS as Record<string, UnitDef>,
+  weight: WEIGHT_UNITS as Record<string, UnitDef>,
   temperature: {
     k: { name: "Kelvin" },
     c: { name: "Celsius" },
@@ -156,137 +134,6 @@ const UNITS: Record<UnitCategory, Record<string, UnitDef>> = {
     arcmin: { name: "Arc Minutes", nameSg: "Arc Minute", factor: Math.PI / 10800 },
     arcsec: { name: "Arc Seconds", nameSg: "Arc Second", factor: Math.PI / 648000 },
   },
-};
-
-const COMMON_CONVERSIONS: Record<UnitCategory, { from: string; to: string; value: number }[]> = {
-  length: [
-    { from: "km", to: "mi", value: 1 },
-    { from: "mi", to: "km", value: 1 },
-    { from: "m", to: "ft", value: 1 },
-    { from: "ft", to: "m", value: 1 },
-    { from: "cm", to: "in", value: 1 },
-    { from: "in", to: "cm", value: 1 },
-    { from: "km", to: "m", value: 1 },
-    { from: "mi", to: "yd", value: 1 },
-    { from: "yd", to: "m", value: 1 },
-    { from: "mm", to: "in", value: 1 },
-  ],
-  weight: [
-    { from: "kg", to: "lb", value: 1 },
-    { from: "lb", to: "kg", value: 1 },
-    { from: "g", to: "oz", value: 1 },
-    { from: "oz", to: "g", value: 1 },
-    { from: "kg", to: "g", value: 1 },
-    { from: "g", to: "kg", value: 1 },
-    { from: "lb", to: "oz", value: 1 },
-    { from: "t", to: "kg", value: 1 },
-    { from: "kg", to: "t", value: 1 },
-    { from: "mg", to: "g", value: 1 },
-  ],
-  temperature: [
-    { from: "c", to: "f", value: 0 },
-    { from: "f", to: "c", value: 32 },
-    { from: "c", to: "k", value: 0 },
-    { from: "k", to: "c", value: 273.15 },
-    { from: "f", to: "k", value: 32 },
-    { from: "k", to: "f", value: 273.15 },
-  ],
-  area: [
-    { from: "m2", to: "ft2", value: 1 },
-    { from: "ft2", to: "m2", value: 1 },
-    { from: "ha", to: "ac", value: 1 },
-    { from: "ac", to: "ha", value: 1 },
-    { from: "km2", to: "mi2", value: 1 },
-    { from: "mi2", to: "km2", value: 1 },
-    { from: "m2", to: "yd2", value: 1 },
-    { from: "yd2", to: "m2", value: 1 },
-    { from: "ft2", to: "in2", value: 1 },
-    { from: "in2", to: "ft2", value: 1 },
-  ],
-  volume: [
-    { from: "l", to: "gal", value: 1 },
-    { from: "gal", to: "l", value: 1 },
-    { from: "l", to: "cup", value: 1 },
-    { from: "cup", to: "l", value: 1 },
-    { from: "gal", to: "qt", value: 1 },
-    { from: "qt", to: "gal", value: 1 },
-    { from: "floz", to: "cup", value: 1 },
-    { from: "cup", to: "floz", value: 1 },
-    { from: "qt", to: "l", value: 1 },
-    { from: "gal", to: "floz", value: 1 },
-  ],
-  speed: [
-    { from: "kph", to: "mph", value: 1 },
-    { from: "mph", to: "kph", value: 1 },
-    { from: "mps", to: "kph", value: 1 },
-    { from: "kph", to: "mps", value: 1 },
-    { from: "knots", to: "kph", value: 1 },
-    { from: "mph", to: "mps", value: 1 },
-    { from: "knots", to: "mph", value: 1 },
-    { from: "fps", to: "kph", value: 1 },
-    { from: "kph", to: "fps", value: 1 },
-    { from: "mps", to: "mph", value: 1 },
-  ],
-  time: [
-    { from: "h", to: "min", value: 1 },
-    { from: "min", to: "s", value: 1 },
-    { from: "d", to: "h", value: 1 },
-    { from: "wk", to: "d", value: 1 },
-    { from: "yr", to: "d", value: 1 },
-    { from: "min", to: "h", value: 1 },
-    { from: "s", to: "min", value: 1 },
-    { from: "h", to: "d", value: 1 },
-    { from: "d", to: "wk", value: 1 },
-    { from: "mo", to: "d", value: 1 },
-  ],
-  digital: [
-    { from: "gb", to: "mb", value: 1 },
-    { from: "mb", to: "gb", value: 1 },
-    { from: "tb", to: "gb", value: 1 },
-    { from: "mb", to: "kb", value: 1 },
-    { from: "kb", to: "mb", value: 1 },
-    { from: "gb", to: "tb", value: 1 },
-    { from: "tb", to: "mb", value: 1 },
-    { from: "kb", to: "gb", value: 1 },
-    { from: "gb", to: "kb", value: 1 },
-    { from: "mb", to: "tb", value: 1 },
-  ],
-  pressure: [
-    { from: "bar", to: "psi", value: 1 },
-    { from: "psi", to: "bar", value: 1 },
-    { from: "kpa", to: "psi", value: 1 },
-    { from: "atm", to: "bar", value: 1 },
-    { from: "kpa", to: "bar", value: 1 },
-    { from: "atm", to: "psi", value: 1 },
-    { from: "psi", to: "atm", value: 1 },
-    { from: "bar", to: "atm", value: 1 },
-    { from: "pa", to: "kpa", value: 1 },
-    { from: "torr", to: "atm", value: 1 },
-  ],
-  energy: [
-    { from: "kcal", to: "kj", value: 1 },
-    { from: "kj", to: "kcal", value: 1 },
-    { from: "kwh", to: "kj", value: 1 },
-    { from: "cal", to: "j", value: 1 },
-    { from: "btu", to: "kj", value: 1 },
-    { from: "kj", to: "btu", value: 1 },
-    { from: "wh", to: "kj", value: 1 },
-    { from: "j", to: "cal", value: 1 },
-    { from: "kwh", to: "btu", value: 1 },
-    { from: "btu", to: "kcal", value: 1 },
-  ],
-  angle: [
-    { from: "deg", to: "rad", value: 180 },
-    { from: "rad", to: "deg", value: 1 },
-    { from: "deg", to: "grad", value: 90 },
-    { from: "grad", to: "deg", value: 100 },
-    { from: "rad", to: "grad", value: 1 },
-    { from: "grad", to: "rad", value: 100 },
-    { from: "turn", to: "deg", value: 1 },
-    { from: "deg", to: "turn", value: 360 },
-    { from: "arcmin", to: "deg", value: 60 },
-    { from: "deg", to: "arcmin", value: 1 },
-  ],
 };
 
 interface UnitConverterProps {
@@ -446,8 +293,6 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
     }
   };
 
-  const commonConversions = COMMON_CONVERSIONS[category] || [];
-
   const allUnitConversions = (() => {
     const val = parseFloat(fromValue);
     const keys = Object.keys(units);
@@ -571,30 +416,6 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
             Copy Result
           </button>
         </div>
-
-        {commonConversions.length > 0 && (
-          <div className="mt-6 border-t border-slate-700 pt-6">
-            <p className="mb-3 text-sm font-medium text-slate-400">
-              Common Conversions
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {commonConversions.map((conv, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => {
-                    setFromValue(String(conv.value));
-                    setFromUnit(conv.from);
-                    setToUnit(conv.to);
-                  }}
-                  className="rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-400 transition-colors hover:border-slate-500 hover:bg-slate-700 hover:text-slate-200"
-                >
-                  {(units[conv.from]?.nameSg ?? units[conv.from]?.name ?? conv.from)} to {(units[conv.to]?.nameSg ?? units[conv.to]?.name ?? conv.to)}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
         </div>
 
         <div className="min-w-0 flex-1 rounded-xl border border-border bg-surface p-6">

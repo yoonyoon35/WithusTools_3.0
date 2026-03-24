@@ -36,7 +36,6 @@ const DIGITAL_GUIDE = {
     "Decimal and binary units (KB/KiB, MB/MiB, etc.).",
     "Bits and bytes conversion.",
     "All Unit Conversions panel shows value in every unit.",
-    "Common conversions for quick access.",
   ],
   useCases: [
     "Computing: File sizes, disk space, RAM.",

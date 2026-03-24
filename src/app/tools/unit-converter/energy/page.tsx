@@ -35,7 +35,6 @@ const ENERGY_GUIDE = {
     "Real-time conversion as you type.",
     "SI and imperial units supported.",
     "All Unit Conversions panel shows value in every unit.",
-    "Common conversions for quick access.",
   ],
   useCases: [
     "Physics: Energy in joules for calculations.",

@@ -36,7 +36,6 @@ const SPEED_GUIDE = {
     "Real-time conversion as you type.",
     "Metric and imperial units supported.",
     "All Unit Conversions panel shows value in every unit.",
-    "Common conversions for quick access.",
     "Copy result to clipboard.",
   ],
   useCases: [

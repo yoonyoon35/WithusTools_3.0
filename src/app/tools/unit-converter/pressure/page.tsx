@@ -35,7 +35,6 @@ const PRESSURE_GUIDE = {
     "Real-time conversion as you type.",
     "Supports metric (Pa, bar) and imperial (PSI) units.",
     "All Unit Conversions panel shows value in every unit.",
-    "Common conversions for quick access.",
   ],
   useCases: [
     "Engineering: Tire pressure, hydraulic systems.",

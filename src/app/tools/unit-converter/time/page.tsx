@@ -35,7 +35,6 @@ const TIME_GUIDE = {
     "Real-time conversion as you type.",
     "Seconds to years and all common units supported.",
     "All Unit Conversions panel shows value in every unit.",
-    "Common conversions for quick access.",
     "Copy result to clipboard.",
   ],
   useCases: [
