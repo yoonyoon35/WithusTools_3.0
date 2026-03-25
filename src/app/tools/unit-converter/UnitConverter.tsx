@@ -2,7 +2,23 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import NumberInputWithStepper from "@/components/NumberInputWithStepper";
-import { LENGTH_UNITS, WEIGHT_UNITS } from "@/utils/conversions";
+import {
+  AREA_UNITS,
+  DIGITAL_UNITS,
+  ENERGY_UNITS,
+  ANGLE_UNITS,
+  LENGTH_UNITS,
+  PRESSURE_UNITS,
+  SPEED_UNITS,
+  TEMPERATURE_UNITS,
+  TIME_UNITS,
+  VOLUME_UNITS,
+  WEIGHT_UNITS,
+  convertSpeed,
+  convertSpeedWithFormula,
+  convertTemperature,
+  convertTemperatureWithFormula,
+} from "@/utils/conversions";
 
 export type UnitCategory =
   | "length"
@@ -26,114 +42,15 @@ interface UnitDef {
 const UNITS: Record<UnitCategory, Record<string, UnitDef>> = {
   length: LENGTH_UNITS as Record<string, UnitDef>,
   weight: WEIGHT_UNITS as Record<string, UnitDef>,
-  temperature: {
-    k: { name: "Kelvin" },
-    c: { name: "Celsius" },
-    f: { name: "Fahrenheit" },
-  },
-  area: {
-    mi2: { name: "Square Miles", nameSg: "Square Mile", factor: 2589988.110336 },
-    km2: { name: "Square Kilometers", nameSg: "Square Kilometer", factor: 1000000 },
-    ha: { name: "Hectares", nameSg: "Hectare", factor: 10000 },
-    ac: { name: "Acres", nameSg: "Acre", factor: 4046.8564224 },
-    m2: { name: "Square Meters", nameSg: "Square Meter", factor: 1 },
-    yd2: { name: "Square Yards", nameSg: "Square Yard", factor: 0.83612736 },
-    ft2: { name: "Square Feet", nameSg: "Square Feet", factor: 0.09290304 },
-    cm2: { name: "Square Centimeters", nameSg: "Square Centimeter", factor: 0.0001 },
-    in2: { name: "Square Inches", nameSg: "Square Inch", factor: 0.00064516 },
-  },
-  volume: {
-    m3: { name: "Cubic Meters", nameSg: "Cubic Meter", factor: 1000 },
-    ukgal: { name: "Gallons (UK)", nameSg: "Gallon (UK)", factor: 4.54609 },
-    gal: { name: "Gallons (US)", nameSg: "Gallon (US)", factor: 3.78541178 },
-    ft3: { name: "Cubic Feet", nameSg: "Cubic Feet", factor: 28.316846592 },
-    l: { name: "Liters", nameSg: "Liter", factor: 1 },
-    ukqt: { name: "Quarts (UK)", nameSg: "Quart (UK)", factor: 1.1365225 },
-    ukpt: { name: "Pints (UK)", nameSg: "Pint (UK)", factor: 0.56826125 },
-    qt: { name: "Quarts (US)", nameSg: "Quart (US)", factor: 0.946352946 },
-    pt: { name: "Pints (US)", nameSg: "Pint (US)", factor: 0.473176473 },
-    ukcup: { name: "Cups (UK)", nameSg: "Cup (UK)", factor: 0.284130625 },
-    cup: { name: "Cups (US)", nameSg: "Cup (US)", factor: 0.2365882365 },
-    in3: { name: "Cubic Inches", nameSg: "Cubic Inch", factor: 0.016387064 },
-    floz: { name: "Fluid Ounces (US)", nameSg: "Fluid Ounce (US)", factor: 0.0295735295625 },
-    ukfloz: { name: "Fluid Ounces (UK)", nameSg: "Fluid Ounce (UK)", factor: 0.0284130625 },
-    tbsp: { name: "Tablespoons (US)", nameSg: "Tablespoon (US)", factor: 0.01478676478125 },
-    uktbsp: { name: "Tablespoons (UK)", nameSg: "Tablespoon (UK)", factor: 0.01420653125 },
-    tsp: { name: "Teaspoons (US)", nameSg: "Teaspoon (US)", factor: 0.00492892159375 },
-    uktsp: { name: "Teaspoons (UK)", nameSg: "Teaspoon (UK)", factor: 0.004735510416667 },
-  },
-  speed: {
-    mps: { name: "Meters per Second", nameSg: "Meter per Second", factor: 1 },
-    knots: { name: "Knots", nameSg: "Knot", factor: 1852 / 3600 },
-    mph: { name: "Miles per Hour", nameSg: "Mile per Hour", factor: 0.44704 },
-    fps: { name: "Feet per Second", nameSg: "Feet per Second", factor: 0.3048 },
-    kph: { name: "Kilometers per Hour", nameSg: "Kilometer per Hour", factor: 0.277777778 },
-  },
-  time: {
-    yr: { name: "Years", nameSg: "Year", factor: 31536000 },
-    mo: { name: "Months", nameSg: "Month", factor: 2592000 },
-    wk: { name: "Weeks", nameSg: "Week", factor: 604800 },
-    d: { name: "Days", nameSg: "Day", factor: 86400 },
-    h: { name: "Hours", nameSg: "Hour", factor: 3600 },
-    min: { name: "Minutes", nameSg: "Minute", factor: 60 },
-    s: { name: "Seconds", nameSg: "Second", factor: 1 },
-    ms: { name: "Milliseconds", nameSg: "Millisecond", factor: 0.001 },
-    us: { name: "Microseconds", nameSg: "Microsecond", factor: 0.000001 },
-    ns: { name: "Nanoseconds", nameSg: "Nanosecond", factor: 0.000000001 },
-  },
-  digital: {
-    pib: { name: "Pebibytes", nameSg: "Pebibyte", factor: 1125899906842624 },
-    pb: { name: "Petabytes", nameSg: "Petabyte", factor: 1e15 },
-    pibit: { name: "Pebibits", nameSg: "Pebibit", factor: 140737488355328 },
-    pbit: { name: "Petabits", nameSg: "Petabit", factor: 1.25e14 },
-    tib: { name: "Tebibytes", nameSg: "Tebibyte", factor: 1099511627776 },
-    tb: { name: "Terabytes", nameSg: "Terabyte", factor: 1e12 },
-    tibit: { name: "Tebibits", nameSg: "Tebibit", factor: 137438953472 },
-    tbit: { name: "Terabits", nameSg: "Terabit", factor: 1.25e11 },
-    gib: { name: "Gibibytes", nameSg: "Gibibyte", factor: 1073741824 },
-    gb: { name: "Gigabytes", nameSg: "Gigabyte", factor: 1e9 },
-    gibit: { name: "Gibibits", nameSg: "Gibibit", factor: 134217728 },
-    gbit: { name: "Gigabits", nameSg: "Gigabit", factor: 1.25e8 },
-    mib: { name: "Mebibytes", nameSg: "Mebibyte", factor: 1048576 },
-    mb: { name: "Megabytes", nameSg: "Megabyte", factor: 1e6 },
-    mibit: { name: "Mebibits", nameSg: "Mebibit", factor: 131072 },
-    mbit: { name: "Megabits", nameSg: "Megabit", factor: 125000 },
-    kib: { name: "Kibibytes", nameSg: "Kibibyte", factor: 1024 },
-    kb: { name: "Kilobytes", nameSg: "Kilobyte", factor: 1000 },
-    kibit: { name: "Kibibits", nameSg: "Kibibit", factor: 128 },
-    kbit: { name: "Kilobits", nameSg: "Kilobit", factor: 125 },
-    b: { name: "Bytes", nameSg: "Byte", factor: 1 },
-    bit: { name: "Bits", nameSg: "Bit", factor: 0.125 },
-  },
-  pressure: {
-    bar: { name: "Bar", factor: 100000 },
-    atm: { name: "Atmosphere", factor: 101325 },
-    psi: { name: "PSI", factor: 6894.757293168 },
-    kpa: { name: "Kilopascal", factor: 1000 },
-    torr: { name: "Torr", factor: 101325 / 760 },
-    pa: { name: "Pascal", factor: 1 },
-  },
-  energy: {
-    therm: { name: "Therm", factor: 105505585.262 },
-    kwh: { name: "Kilowatt Hours", nameSg: "Kilowatt Hour", factor: 3600000 },
-    kcal: { name: "Kilocalories", nameSg: "Kilocalorie", factor: 4184 },
-    wh: { name: "Watt Hours", nameSg: "Watt Hour", factor: 3600 },
-    kj: { name: "Kilojoules", nameSg: "Kilojoule", factor: 1000 },
-    btu: { name: "British Thermal Units", nameSg: "British Thermal Unit", factor: 1055.05585262 },
-    cal: { name: "Calories", nameSg: "Calorie", factor: 4.184 },
-    ftlb: { name: "Foot-Pounds", nameSg: "Foot-Pound", factor: 1.3558179483314004 },
-    j: { name: "Joules", nameSg: "Joule", factor: 1 },
-    ev: { name: "Electronvolts", nameSg: "Electronvolt", factor: 1.602176634e-19 },
-  },
-  angle: {
-    turn: { name: "Revolutions", nameSg: "Revolution", factor: 2 * Math.PI },
-    deg: { name: "Degrees", nameSg: "Degree", factor: Math.PI / 180 },
-    grad: { name: "Gradians", nameSg: "Gradian", factor: Math.PI / 200 },
-    rad: { name: "Radians", nameSg: "Radian", factor: 1 },
-    mrad: { name: "Milliradians", nameSg: "Milliradian", factor: 0.001 },
-    arcmin: { name: "Arc Minutes", nameSg: "Arc Minute", factor: Math.PI / 10800 },
-    arcsec: { name: "Arc Seconds", nameSg: "Arc Second", factor: Math.PI / 648000 },
-  },
+  temperature: TEMPERATURE_UNITS as Record<string, UnitDef>,
+  area: AREA_UNITS as Record<string, UnitDef>,
+  volume: VOLUME_UNITS as Record<string, UnitDef>,
+  speed: SPEED_UNITS as Record<string, UnitDef>,
+  time: TIME_UNITS as Record<string, UnitDef>,
+  digital: DIGITAL_UNITS as Record<string, UnitDef>,
+  pressure: PRESSURE_UNITS as Record<string, UnitDef>,
+  energy: ENERGY_UNITS as Record<string, UnitDef>,
+  angle: ANGLE_UNITS as Record<string, UnitDef>,
 };
 
 interface UnitConverterProps {
@@ -149,51 +66,6 @@ function formatWithThousands(value: number | string): string {
   const withCommas = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const result = decPart != null ? `${withCommas}.${decPart}` : withCommas;
   return isNeg ? `-${result}` : result;
-}
-
-function convertTemperature(
-  value: number,
-  from: string,
-  to: string
-): [number, string] {
-  let celsius: number;
-  let formula = "";
-
-  switch (from) {
-    case "c":
-      celsius = value;
-      break;
-    case "f":
-      celsius = (value - 32) * (5 / 9);
-      formula = `(${formatWithThousands(value)}°F - 32) × 5/9 = ${formatWithThousands(celsius.toFixed(6))}°C`;
-      break;
-    case "k":
-      celsius = value - 273.15;
-      formula = `${formatWithThousands(value)}K - 273.15 = ${formatWithThousands(celsius.toFixed(6))}°C`;
-      break;
-    default:
-      celsius = value;
-  }
-
-  let result: number;
-  switch (to) {
-    case "c":
-      result = celsius;
-      formula = `${formatWithThousands(value)}${from.toUpperCase()} = ${formatWithThousands(result.toFixed(6))}°C`;
-      break;
-    case "f":
-      result = celsius * (9 / 5) + 32;
-      formula = `(${formatWithThousands(celsius.toFixed(6))}°C × 9/5) + 32 = ${formatWithThousands(result.toFixed(6))}°F`;
-      break;
-    case "k":
-      result = celsius + 273.15;
-      formula = `${formatWithThousands(celsius.toFixed(6))}°C + 273.15 = ${formatWithThousands(result.toFixed(6))}K`;
-      break;
-    default:
-      result = celsius;
-  }
-
-  return [result, formula];
 }
 
 function convertStandard(
@@ -233,9 +105,16 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
   useEffect(() => {
     const keys = Object.keys(UNITS[category]);
     const first = keys[0];
-    const last = keys[keys.length - 1];
+    const defaultTo =
+      category === "temperature"
+        ? "f"
+        : category === "speed"
+          ? "kph"
+          : category === "angle"
+            ? "rad"
+            : keys[keys.length - 1];
     setFromUnit(first);
-    setToUnit(category === "temperature" ? "f" : last);
+    setToUnit(defaultTo);
   }, [category]);
 
   const convert = useCallback(() => {
@@ -248,13 +127,28 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
     }
 
     const from = fromUnit || keys[0];
-    const to = toUnit || keys[keys.length - 1];
+    const defaultTo =
+      category === "temperature"
+        ? "f"
+        : category === "speed"
+          ? "kph"
+          : category === "angle"
+            ? "rad"
+            : keys[keys.length - 1];
+    const to = toUnit || defaultTo;
 
     let result: number;
     let formula: string;
 
     if (category === "temperature") {
-      [result, formula] = convertTemperature(val, from, to);
+      [result, formula] = convertTemperatureWithFormula(val, from, to);
+    } else if (category === "speed") {
+      [result, formula] = convertSpeedWithFormula(val, from, to);
+      if (!Number.isFinite(result)) {
+        setToValue("");
+        setFormulaText(formula);
+        return;
+      }
     } else {
       [result, formula] = convertStandard(val, from, to, category);
     }
@@ -302,14 +196,16 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
       if (useZero) {
         result = 0;
       } else if (category === "temperature") {
-        [result] = convertTemperature(val, fromUnit, key);
+        result = convertTemperature(val, fromUnit, key);
+      } else if (category === "speed") {
+        result = convertSpeed(val, fromUnit, key);
       } else {
         [result] = convertStandard(val, fromUnit, key, category);
       }
       return {
         unitKey: key,
         name: units[key].name,
-        value: formatWithThousands(result.toFixed(6)),
+        value: Number.isFinite(result) ? formatWithThousands(result.toFixed(6)) : "—",
       };
     });
   })();
@@ -317,7 +213,7 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
   const inputCls =
     "rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
   const selectCls =
-    "rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
+    "w-full min-w-0 rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
 
   return (
     <div className="mx-auto max-w-6xl relative">
@@ -335,12 +231,12 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
         <h3 className="mb-4 text-lg font-semibold text-slate-200">{title}</h3>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="flex flex-1 flex-col gap-2">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <NumberInputWithStepper
               value={fromValue}
               onChange={(v) => setFromValue(v)}
               placeholder="Enter value"
-              className="flex-1"
+              className="min-w-0 flex-1"
               aria-label="From value"
             />
             <select
@@ -381,12 +277,12 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
             </svg>
           </button>
 
-          <div className="flex flex-1 flex-col gap-2">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <input
               type="text"
               value={toValue ? formatWithThousands(toValue) : ""}
               readOnly
-              className={`${inputCls} cursor-default bg-slate-800/70`}
+              className={`${inputCls} min-w-0 w-full cursor-default bg-slate-800/70`}
               aria-label="To value"
             />
             <select
@@ -404,8 +300,8 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3">
-          <span className="text-sm text-slate-400 font-mono break-all">
+        <div className="mt-4 flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3">
+          <span className="min-w-0 flex-1 text-sm font-mono text-slate-400 break-all">
             {formulaText}
           </span>
           <button

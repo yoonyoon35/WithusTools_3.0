@@ -9,6 +9,10 @@ const SITE_URL = "https://withustools.com";
 export const BREADCRUMB_NAMES: Record<string, string> = {
   search: "Tool Search",
   tools: "Tools",
+  licenses: "Licenses",
+  "privacy-policy": "Privacy Policy",
+  "terms-of-use": "Terms of Use",
+  "cookie-settings": "Cookie Settings",
   // Categories (from CATEGORIES)
   calculator: "Calculator",
   developer: "Developer",

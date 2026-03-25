@@ -41,12 +41,30 @@ export default async function LicensesPage() {
         </pre>
       </article>
 
-      <div className="mt-8">
+      <div className="mt-8 flex flex-wrap gap-4 text-sm">
         <Link
           href="/"
-          className="inline-block text-slate-400 underline transition-colors hover:text-slate-200"
+          className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
           ← Back to home
+        </Link>
+        <Link
+          href="/privacy-policy"
+          className="text-slate-400 underline transition-colors hover:text-slate-200"
+        >
+          Privacy Policy
+        </Link>
+        <Link
+          href="/terms-of-use"
+          className="text-slate-400 underline transition-colors hover:text-slate-200"
+        >
+          Terms of Use
+        </Link>
+        <Link
+          href="/cookie-settings"
+          className="text-slate-400 underline transition-colors hover:text-slate-200"
+        >
+          Cookie settings
         </Link>
       </div>
     </div>

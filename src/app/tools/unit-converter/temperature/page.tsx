@@ -2,56 +2,77 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import ToolIcon from "@/components/ToolIcon";
+import CommonConversionsTable from "@/components/CommonConversionsTable";
 import UnitConverter from "../UnitConverter";
+import { getCommonTemperatureConversionsFaqJsonLd } from "@/data/common-temperature-conversions";
+import { getFaqEntriesByCategory } from "@/data/faq-data";
+import {
+  getCanonicalTemperatureSlug,
+  TEMPERATURE_KEY_TO_SLUG,
+  TEMPERATURE_UNITS,
+  TEMPERATURE_HUB_KEYS,
+} from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
   title: "Temperature Converter | Celsius, Fahrenheit, Kelvin",
   description:
-    "Convert temperature: Celsius, Fahrenheit, Kelvin. Free online temperature converter. Perfect for weather, cooking, and scientific applications.",
+    "Convert temperature: Celsius, Fahrenheit, Kelvin. Offset-correct formulas. Free online converter for weather, cooking, and science.",
   path: "/tools/unit-converter/temperature",
   keywords: [
     "temperature converter",
     "celsius to fahrenheit",
     "fahrenheit to celsius",
     "kelvin converter",
-    "temperature conversion",
+    "rankine converter",
     "withustools",
   ],
 });
 
 const TEMPERATURE_GUIDE = {
-  usage: [
-    "Enter a value and select source unit (°C, °F, or K). Select target unit.",
-    "Result updates in real time. Temperature uses special conversion formulas (not linear scaling).",
+  quickStart: [
+    "Enter a value and pick source and target scales. The result updates as you type.",
+    "Use swap to reverse scales and copy to copy the result. Temperature uses offsets—not just multiplying by a ratio.",
+    "The All Unit Conversions panel lists your value in Celsius, Fahrenheit, and Kelvin at once.",
   ],
-  howItWorks: [
-    "Celsius to Fahrenheit: °F = (°C × 9/5) + 32.",
-    "Fahrenheit to Celsius: °C = (°F - 32) × 5/9.",
-    "Celsius to Kelvin: K = °C + 273.15. Kelvin is the SI base unit for temperature.",
+  deeper: [
+    "Need worked examples and tables for one direction (e.g. Celsius to Fahrenheit)? Open a dedicated converter from the list below.",
+    "Short answers to common questions are in the FAQ section. Celsius–Kelvin uses a 273.15 offset here.",
   ],
-  about: [
-    "Free online temperature converter for Celsius, Fahrenheit, and Kelvin. Perfect for weather, cooking, and scientific applications. All calculations run in your browser.",
-  ],
-  advantages: [
-    "Real-time conversion as you type.",
-    "Celsius, Fahrenheit, and Kelvin supported.",
-    "Special formulas for temperature (not linear scaling).",
-    "All Unit Conversions panel shows value in every unit.",
-    "Copy result to clipboard.",
-  ],
-  useCases: [
-    "Weather: Convert between °C and °F for forecasts.",
-    "Cooking: Oven and recipe temperatures.",
-    "Science: Kelvin for physics and chemistry calculations.",
+  exampleUses: [
+    "Weather: °C and °F forecasts.",
+    "Cooking: oven and recipe temperatures.",
+    "Science: kelvin for physics and chemistry.",
   ],
 };
+
+const TEMPERATURE_PAIR_LINKS: { from: string; to: string }[] = (() => {
+  const pairs: { from: string; to: string }[] = [];
+  for (const from of TEMPERATURE_HUB_KEYS) {
+    for (const to of TEMPERATURE_HUB_KEYS) {
+      if (from === to) continue;
+      pairs.push({ from, to });
+    }
+  }
+  return pairs;
+})();
+
+const TEMPERATURE_FAQ_LINKS = getFaqEntriesByCategory("temperature");
+
+const TEMPERATURE_COMMON_CONVERSIONS_FAQ_JSON_LD = getCommonTemperatureConversionsFaqJsonLd();
 
 export default function TemperatureConverterPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(TEMPERATURE_COMMON_CONVERSIONS_FAQ_JSON_LD),
+        }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
-          <ToolIcon name="ruler" />
+          <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Temperature Converter</h1>
             <p className="mt-1 text-sm text-slate-500">unit-converter</p>
@@ -60,50 +81,87 @@ export default function TemperatureConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between Celsius, Fahrenheit, and Kelvin. Perfect for weather,
-        cooking, and scientific applications. All Unit Conversions panel included.
+        Convert between Celsius, Fahrenheit, Kelvin, and Rankine. Offset-aware formulas. All Unit Conversions
+        panel included.
       </p>
 
       <UnitConverter category="temperature" title="Convert Temperature" />
 
+      <CommonConversionsTable />
+
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <div className="space-y-8 text-sm leading-relaxed text-slate-400">
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">
+          Dedicated converters (Celsius, Fahrenheit, Kelvin, Rankine — all 12 directed pairs)
+        </h2>
+        <p className="mb-6 text-sm text-slate-500">
+          {TEMPERATURE_PAIR_LINKS.length} pages — each pair with fixed input/output, formulas, examples, and
+          conversion tables.
+        </p>
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {TEMPERATURE_PAIR_LINKS.map(({ from, to }) => {
+            const href = `/tools/unit-converter/temperature/${getCanonicalTemperatureSlug(from, to)}`;
+            const fromName = TEMPERATURE_UNITS[from].nameSg ?? TEMPERATURE_UNITS[from].name;
+            const toName = TEMPERATURE_UNITS[to].nameSg ?? TEMPERATURE_UNITS[to].name;
+            const fromSlug = TEMPERATURE_KEY_TO_SLUG[from] ?? from;
+            const toSlug = TEMPERATURE_KEY_TO_SLUG[to] ?? to;
+            return (
+              <li key={`${from}-${to}`}>
+                <Link
+                  href={href}
+                  className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
+                >
+                  <span className="font-medium text-slate-200">
+                    {fromSlug} to {toSlug} ({fromName} to {toName})
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-10 border-t border-slate-700 pt-8">
+          <h3 className="mb-4 text-base font-semibold text-slate-200">Common questions (FAQ)</h3>
+          <p className="mb-4 text-sm text-slate-500">
+            {TEMPERATURE_FAQ_LINKS.length} quick answers with guides and links to the matching converter.
+          </p>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {TEMPERATURE_FAQ_LINKS.map((faq) => (
+              <li key={faq.slug}>
+                <Link
+                  href={`/faq/${faq.category}/${faq.slug}`}
+                  className="block rounded-lg border border-slate-600/80 bg-slate-800/30 px-4 py-2.5 text-sm text-slate-300 transition-colors hover:border-slate-500 hover:bg-slate-800/60 hover:text-slate-100"
+                >
+                  {faq.question}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
-            <ol className="list-decimal space-y-2 pl-5">
-              {TEMPERATURE_GUIDE.usage.map((step, i) => (
-                <li key={i}>{step}</li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
-            <div className="space-y-2">
-              {TEMPERATURE_GUIDE.howItWorks.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Temperature Converter</h3>
-            <div className="space-y-2">
-              {TEMPERATURE_GUIDE.about.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
             <ul className="list-disc space-y-2 pl-5">
-              {TEMPERATURE_GUIDE.advantages.map((item, i) => (
+              {TEMPERATURE_GUIDE.quickStart.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-2 font-semibold text-slate-200">Formulas &amp; deeper content</h3>
+            <div className="space-y-2">
+              {TEMPERATURE_GUIDE.deeper.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="mb-2 font-semibold text-slate-200">Example uses</h3>
             <ul className="list-disc space-y-2 pl-5">
-              {TEMPERATURE_GUIDE.useCases.map((item, i) => (
+              {TEMPERATURE_GUIDE.exampleUses.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>

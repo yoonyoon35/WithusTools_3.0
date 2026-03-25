@@ -38,6 +38,24 @@ export default function Footer() {
             >
               Licenses
             </Link>
+            <Link
+              href="/privacy-policy"
+              className="transition-colors hover:text-slate-200"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms-of-use"
+              className="transition-colors hover:text-slate-200"
+            >
+              Terms of Use
+            </Link>
+            <Link
+              href="/cookie-settings"
+              className="transition-colors hover:text-slate-200"
+            >
+              Cookie Settings
+            </Link>
             <a
               href="mailto:dbsghkwns553@gmail.com"
               className="transition-colors hover:text-slate-200"

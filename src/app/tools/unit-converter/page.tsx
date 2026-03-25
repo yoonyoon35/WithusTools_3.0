@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import ToolIcon from "@/components/ToolIcon";
+import UnitConverterHubGuide from "./UnitConverterHubGuide";
 
 export const metadata: Metadata = createMetadata({
   title: "Unit Converter Tools",
@@ -76,7 +77,8 @@ const UNIT_CONVERTER_TOOLS = [
   {
     slug: "pressure",
     name: "Pressure Converter",
-    description: "Convert Pascal, bar, atmosphere, PSI, torr. For engineering and meteorology.",
+    description:
+      "Convert Pascal, hPa, mmHg, bar, atmosphere, PSI, torr. Dedicated pair pages with formulas and tables. For engineering and meteorology.",
     path: "/tools/unit-converter/pressure",
   },
   {
@@ -88,41 +90,11 @@ const UNIT_CONVERTER_TOOLS = [
   {
     slug: "angle",
     name: "Angle Converter",
-    description: "Convert degrees, radians, gradians, arcminutes, arcseconds. For geometry, trigonometry, and surveying.",
+    description:
+      "Convert degrees, radians, NATO mils, arc minutes, gradians, arcseconds. Dedicated pair pages with formulas and tables.",
     path: "/tools/unit-converter/angle",
   },
 ] as const;
-
-const UNIT_INDEX_GUIDE = {
-  usage: [
-    "Choose a converter from the grid above: Length, Weight, Temperature, Area, Volume, Speed, Time, Digital Storage, Pressure, Energy, or Angle.",
-    "Enter a value and select source and target units. The result updates in real time as you type.",
-    "Use the swap button to quickly switch source and target units. Copy the result to clipboard with one click.",
-  ],
-  howItWorks: [
-    "Each converter uses internationally recognized conversion factors. Metric (SI) and imperial units are fully supported.",
-    "Temperature uses special formulas: Celsius ↔ Fahrenheit: (°F - 32) × 5/9 = °C; Celsius ↔ Kelvin: K = °C + 273.15.",
-    "All conversions run in your browser. No data is sent to any server. Your input and results stay on your device.",
-  ],
-  about: [
-    "Free online unit converters for everyday measurement needs. No signup required. Works on desktop and mobile.",
-    "Designed for students, professionals, travelers, and anyone who needs quick, accurate unit conversions.",
-  ],
-  advantages: [
-    "Real-time conversion: Results update instantly as you type.",
-    "Metric & imperial: Support for both measurement systems.",
-    "Accurate: Uses standard conversion factors and precise formulas.",
-    "Private: All calculations run locally. No server communication.",
-  ],
-  useCases: [
-    "Construction: Length (m, ft), area (m², ft²), volume for materials.",
-    "Cooking: Weight (g, oz), volume (ml, cups) for recipes.",
-    "Travel: Distance (km, miles), temperature (°C, °F) for weather.",
-    "Science: Temperature (K), pressure (Pa), energy (J) for experiments.",
-    "Engineering: Angle (degrees, radians) for surveying and CAD.",
-    "Computing: Digital storage (bytes, MB, GB) for file sizes.",
-  ],
-};
 
 export default function UnitConverterIndexPage() {
   return (
@@ -139,7 +111,8 @@ export default function UnitConverterIndexPage() {
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, and angle.
-        Metric and imperial units supported. All tools run in your browser—no signup required.
+        Metric and imperial units supported. See the quick guide below for how to use pair pages, FAQs, and
+        what to expect from results.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -158,50 +131,7 @@ export default function UnitConverterIndexPage() {
         ))}
       </div>
 
-      <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <div className="space-y-8 text-sm leading-relaxed text-slate-400">
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
-            <ol className="list-decimal space-y-2 pl-5">
-              {UNIT_INDEX_GUIDE.usage.map((step, i) => (
-                <li key={i}>{step}</li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
-            <div className="space-y-2">
-              {UNIT_INDEX_GUIDE.howItWorks.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Unit Converter Tools</h3>
-            <div className="space-y-2">
-              {UNIT_INDEX_GUIDE.about.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
-            <ul className="list-disc space-y-2 pl-5">
-              {UNIT_INDEX_GUIDE.advantages.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
-            <ul className="list-disc space-y-2 pl-5">
-              {UNIT_INDEX_GUIDE.useCases.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      <UnitConverterHubGuide />
 
       <Link
         href="/"
