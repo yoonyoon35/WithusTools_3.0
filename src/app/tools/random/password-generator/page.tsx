@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import PasswordGenerator from "./PasswordGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Password Generator | Strong & Secure Passwords",
+  title: "Generate Strong & Secure Passwords",
   description:
     "Create strong and secure passwords with customizable length and character types. Free online password generator. All processing runs in your browser.",
   path: "/tools/random/password-generator",

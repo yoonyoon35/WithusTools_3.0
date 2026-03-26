@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import RandomNumberGenerator from "./RandomNumberGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Random Number Generator | Generate Random Numbers Instantly",
+  title: "Generate Random Numbers Instantly",
   description:
     "Generate random numbers with customizable range, quantity, and formatting. Perfect for lotteries, games, and statistical sampling. Free online tool.",
   path: "/tools/random/random-number-generator",

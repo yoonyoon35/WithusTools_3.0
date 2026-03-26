@@ -498,3 +498,32 @@
        favicon generator - 배경색 없는 선택지가 없어서 기본 배경색이 흰색으로 들어가서 선택지 추가함.
        내가 배경이 나오는 게 커서나 뭐 어디 설정에서 잘못된 건지 알고 커서한테 배경 안보이게 수정하라고 해서 안 보이게 한거임.
        이게 문제가 될지 틈틈히 확인 필요
+
+1537 - BMI Calculator - 계산법과 테이블 및 추가 정보 추가
+
+1635 - Redirect 규칙 추가
+       SEOBility 사이트에서 아래 경고 나옴. 3.0버전에서 처음 나오는데 1.0때는 고대디에서 설정 했던거 같음.
+       "This website uses both www and non-www URLs. This can result in duplicate content and impact your rankings."
+       1. CloudFlare > Domain > SSL/TLS > Edge Certificates > Always Use HTTPS > 설정 "ON' 으로 변경
+       2. CloudFlare > Domain > Rules > Redirect from WWW to root > Wildcard pattern > https://www.withustools.com/* 
+              > https://withustools.com/${1} > Preserve query string (체크)
+       2가지 설정 정의 후 조치 완료.
+
+       title이 "| WithusTools| WithusTools" 중복 텍스트로 출력돼서 한 번만 출력되게 metadata.ts 에서 "| WithusTools"
+       붙이는 코드 삭제.
+       Calculator 카테고리 title은 "Title | Explain | WithusTools" 방식 구성으로 돼 있어서 Title 영역은 삭제함.
+       Page Title 수정(There are word repetitions in the page title. 경고 방지)
+        - "Password Generator | Strong & Secure Passwords" > "Generate Strong & Secure Passwords"
+        - "Random Number Generator | Generate Random Numbers Instantly" > "Generate Random Numbers Instantly"
+        - "Favicon Generator | Create All Platform Favicons" > "Create All Platform Favicons"
+        - "Meta Tag Generator | Create SEO Meta Tags" > "Create SEO Meta Tags"
+        - "Robots.txt Generator | SEO File Creator" > "Create SEO File for Robots.txt"
+        - "XML Sitemap Generator | Create Sitemaps for SEO" > "Create XML Sitemaps for SEO"
+        - "Hiragana Katakana Converter | Convert Text to Kana" > "Hiragana Katakana Converter | Text to Kana"
+        - "ASCII Code Converter | Text to ASCII & Reverse" > "Convert Text to ASCII Codes & Reverse"
+        - "Base64 Encoder & Decoder | Convert Text and Files" > "Convert Text and Files to Base64(Encoder & Decoder)"
+        - "Code Formatter | Format & Clean Code" > "Code Format & Clean"
+        - "CSS Sprites Generator | Combine Images into Sprites" > "Combine Images into CSS Sprites"
+        - "QR Code Generator | Create Custom QR Codes" > "Create Custom QR Codes"
+        - "QR Code Scanner | Read QR Codes Instantly" > "Read QR Codes Instantly"
+        - "Temperature Converter | Celsius, Fahrenheit, Kelvin" > "Temperature Converter | Celsius, Fahrenheit, Kelvin, Rankine"

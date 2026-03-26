@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import KanaConverter from "./KanaConverter";
 
 export const metadata: Metadata = createMetadata({
-  title: "Hiragana Katakana Converter | Convert Text to Kana",
+  title: "Hiragana Katakana Converter | Text to Kana",
   description:
     "Convert any text to Hiragana and Katakana. One input, two outputs. Supports romaji and multiple languages. Free online kana converter.",
   path: "/tools/language/hiragana-katakana-converter",

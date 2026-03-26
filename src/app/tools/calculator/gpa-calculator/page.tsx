@@ -5,7 +5,7 @@ import Link from "next/link";
 import GPACalculator from "./GPACalculator";
 
 export const metadata: Metadata = createMetadata({
-  title: "GPA Calculator | Calculate Your Grade Point Average",
+  title: "Calculate Your Grade Point Average",
   description:
     "Calculate your semester or cumulative GPA. Support for 4.0, 4.3, 4.5, and 5.0 grading scales and credit hours. Free online tool.",
   path: "/tools/calculator/gpa-calculator",

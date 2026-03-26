@@ -5,7 +5,7 @@ import Link from "next/link";
 import PercentageCalculator from "./PercentageCalculator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Percentage Calculator | Calculate Percentages Easily",
+  title: "Calculate Percentages Easily",
   description:
     "Calculate percentages easily. Find percentage of a number, percentage increase/decrease. Free online percentage calculator.",
   path: "/tools/calculator/percentage-calculator",

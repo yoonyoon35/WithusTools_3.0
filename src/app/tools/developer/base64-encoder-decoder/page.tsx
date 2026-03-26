@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import Base64Encoder from "./Base64Encoder";
 
 export const metadata: Metadata = createMetadata({
-  title: "Base64 Encoder & Decoder | Convert Text and Files",
+  title: "Convert Text and Files to Base64(Encoder & Decoder)",
   description:
     "Base64 Encoder & Decoder - Convert text and files to Base64 format and back. Support for URL-safe Base64 and file conversion. Free online tool.",
   path: "/tools/developer/base64-encoder-decoder",

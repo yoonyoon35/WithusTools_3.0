@@ -14,7 +14,7 @@ import {
 } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Temperature Converter | Celsius, Fahrenheit, Kelvin",
+  title: "Temperature Converter | Celsius, Fahrenheit, Kelvin, Rankine",
   description:
     "Convert temperature: Celsius, Fahrenheit, Kelvin. Offset-correct formulas. Free online converter for weather, cooking, and science.",
   path: "/tools/unit-converter/temperature",

@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import MetaTagGenerator from "./MetaTagGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Meta Tag Generator | Create SEO Meta Tags",
+  title: "Create SEO Meta Tags",
   description:
     "Generate meta tags for your website. Create SEO-friendly meta tags including Open Graph and Twitter Cards. Free online tool.",
   path: "/tools/seo/metatag-generator",

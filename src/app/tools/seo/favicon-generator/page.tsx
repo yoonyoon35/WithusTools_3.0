@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import FaviconGenerator from "./FaviconGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Favicon Generator | Create All Platform Favicons",
+  title: "Create All Platform Favicons",
   description:
     "Generate favicons for your website. Create favicons for all platforms including Apple, Android, Windows. Free online tool. Complete favicon package with HTML code.",
   path: "/tools/seo/favicon-generator",

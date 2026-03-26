@@ -5,7 +5,7 @@ import Link from "next/link";
 import Calculator from "./Calculator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Calculator | Simple & Scientific Calculator",
+  title: "Simple & Scientific Calculator",
   description:
     "Simple calculator for basic arithmetic operations. Free online calculator with memory functions, square root, percentage, and more. No installation required.",
   path: "/tools/calculator/calculator",

@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import RobotsGenerator from "./RobotsGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Robots.txt Generator | SEO File Creator",
+  title: "Create SEO File for Robots.txt",
   description:
     "Generate robots.txt for your website. Control search engine crawling with user-agent rules and sitemap URL. Free online tool.",
   path: "/tools/seo/robots-generator",

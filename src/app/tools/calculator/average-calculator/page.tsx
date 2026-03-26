@@ -4,7 +4,7 @@ import ToolIcon from "@/components/ToolIcon";
 import AverageCalculator from "./AverageCalculator";
 
 export const metadata: Metadata = createMetadata({
-  title: "Average Calculator | Calculate Mean, Median, Mode",
+  title: "Calculate Mean, Median, Mode",
   description:
     "Average Calculator - Calculate mean, median, mode, range, variance, standard deviation, quartiles, geometric and harmonic mean. Free online statistical analysis tool.",
   path: "/tools/calculator/average-calculator",

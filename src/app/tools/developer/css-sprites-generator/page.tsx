@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import CssSpritesGenerator from "./CssSpritesGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "CSS Sprites Generator | Combine Images into Sprites",
+  title: "Combine Images into CSS Sprites",
   description:
     "CSS Sprites Generator - Generate CSS sprites from images. Combine multiple images into a single sprite and generate CSS code automatically. Free online tool.",
   path: "/tools/developer/css-sprites-generator",

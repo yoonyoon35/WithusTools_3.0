@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import QRCodeGenerator from "./QRCodeGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "QR Code Generator | Create Custom QR Codes",
+  title: "Create Custom QR Codes",
   description:
     "QR Code Generator - Create QR codes for URLs, text, email, phone, SMS, WhatsApp, Wi-Fi, vCard, location, Bitcoin, image. Custom colors, logo support, error correction. Download as PNG, JPG, SVG, or PDF. Free online tool.",
   path: "/tools/developer/qr-code-generator",

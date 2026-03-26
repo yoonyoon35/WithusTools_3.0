@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import ASCIIConverter from "./ASCIIConverter";
 
 export const metadata: Metadata = createMetadata({
-  title: "ASCII Code Converter | Text to ASCII & Reverse",
+  title: "Convert Text to ASCII Codes & Reverse",
   description:
     "ASCII Code Converter - Transform between text and ASCII code values. Support for decimal, hexadecimal, and binary formats. Free online tool.",
   path: "/tools/developer/ascii-code-converter",

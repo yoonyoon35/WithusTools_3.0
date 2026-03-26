@@ -28,14 +28,18 @@ export function createMetadata({
     ? (ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`)
     : `${SITE_URL}/og-default.png`;
 
+  const ogTwitterTitle = title
+    ? `${title} | WithusTools`
+    : "WithusTools - Free Online Web Tools";
+
   return {
-    title: title ? `${title} | WithusTools` : "WithusTools - Free Online Web Tools",
+    ...(title ? { title } : {}),
     description:
       description ||
       "50+ free online web tools. No signup required.",
     keywords: keywords.length > 0 ? keywords : ["online tools", "web utilities", "free tools", "withustools"],
     openGraph: {
-      title: title || "WithusTools - Free Online Web Tools",
+      title: ogTwitterTitle,
       description: description || "50+ free online web tools",
       url,
       siteName: "WithusTools",
@@ -44,7 +48,7 @@ export function createMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: title || "WithusTools",
+      title: title ? `${title} | WithusTools` : "WithusTools",
       description: description || "50+ free online web tools",
     },
     alternates: {

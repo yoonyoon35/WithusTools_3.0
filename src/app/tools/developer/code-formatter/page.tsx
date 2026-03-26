@@ -7,7 +7,7 @@ import ToolIcon from "@/components/ToolIcon";
 const CodeFormatter = dynamic(() => import("./CodeFormatter"), { ssr: false });
 
 export const metadata: Metadata = createMetadata({
-  title: "Code Formatter | Format & Clean Code",
+  title: "Code Format & Clean",
   description:
     "Code Formatter - Format HTML, CSS, JavaScript, etc. code. Beautify and clean your code instantly. Free online tool.",
   path: "/tools/developer/code-formatter",

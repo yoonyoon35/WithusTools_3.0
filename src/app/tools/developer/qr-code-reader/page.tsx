@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import QRCodeReader from "./QRCodeReader";
 
 export const metadata: Metadata = createMetadata({
-  title: "QR Code Scanner | Read QR Codes Instantly",
+  title: "Read QR Codes Instantly",
   description:
     "QR Code Scanner - Scan QR codes from camera or upload images (PNG, JPG, WebP, GIF). Decode URLs, text, vCard, Wi-Fi. Free online tool.",
   path: "/tools/developer/qr-code-reader",

@@ -5,7 +5,7 @@ import ToolIcon from "@/components/ToolIcon";
 import SitemapGenerator from "./SitemapGenerator";
 
 export const metadata: Metadata = createMetadata({
-  title: "XML Sitemap Generator | Create Sitemaps for SEO",
+  title: "Create XML Sitemaps for SEO",
   description:
     "Generate sitemaps for your website. Create XML sitemaps to improve SEO. Free online tool with priority and change frequency settings.",
   path: "/tools/seo/sitemap-generator",
