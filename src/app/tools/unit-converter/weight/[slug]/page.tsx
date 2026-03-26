@@ -6,6 +6,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { WeightConversionTablesPair } from "@/components/WeightConversionTable";
 import WeightPairCalculator from "../WeightPairCalculator";
 import HowToConvertWeight from "../HowToConvertWeight";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalWeightSlug,
   getWeightKeys,
@@ -123,6 +124,8 @@ export default function WeightPairPage({ params }: { params: { slug: string } })
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <WeightConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="weight" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

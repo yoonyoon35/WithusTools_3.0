@@ -32,7 +32,7 @@ export function getUnitDescription(key: string): string {
 export type DigitalKind = "byteUnit" | "bitUnit";
 
 export function getDigitalKind(key: string): DigitalKind {
-  if (key === "bit" || key === "mbit") return "bitUnit";
+  if (key === "bit" || key.endsWith("bit")) return "bitUnit";
   return "byteUnit";
 }
 

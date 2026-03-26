@@ -6,9 +6,10 @@ import ToolIcon from "@/components/ToolIcon";
 import { DigitalConversionTablesPair } from "@/components/DigitalConversionTable";
 import DigitalPairCalculator from "../DigitalPairCalculator";
 import HowToConvertDigital from "../HowToConvertDigital";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalDigitalSlug,
-  DIGITAL_HUB_KEYS,
+  getDigitalKeys,
   DIGITAL_UNITS,
   parseDigitalPairSlug,
 } from "@/utils/conversions";
@@ -50,9 +51,10 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
+  const keys = getDigitalKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of DIGITAL_HUB_KEYS) {
-    for (const to of DIGITAL_HUB_KEYS) {
+  for (const from of keys) {
+    for (const to of keys) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalDigitalSlug(from, to) });
     }
@@ -121,6 +123,8 @@ export default function DigitalPairPage({ params }: { params: { slug: string } }
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <DigitalConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="digital" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

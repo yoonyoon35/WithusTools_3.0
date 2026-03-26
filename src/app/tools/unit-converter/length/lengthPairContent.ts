@@ -17,9 +17,9 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   yd:
     "The yard is an imperial and US customary unit equal to 0.9144 meters exactly. It appears in sports fields, fabric, and everyday imperial measurements.",
   ft:
-    "The foot is an imperial and US customary unit equal to exactly 0.3048 meters. Twelve inches make one foot; it is common in construction and human-scale dimensions.",
+    "Feet are imperial and US customary units of length; each is exactly 0.3048 meters. Twelve inches make one feet; feet are common in construction and human-scale dimensions.",
   in:
-    "The inch is an imperial and US customary unit equal to exactly 0.0254 meters. Twelve inches equal one foot; it is used for screen sizes, tools, and fine measurements.",
+    "The inch is an imperial and US customary unit equal to exactly 0.0254 meters. Twelve inches equal one feet; it is used for screen sizes, tools, and fine measurements.",
   cm:
     "The centimeter is a metric unit equal to one hundredth of a meter (0.01 m). It is convenient for everyday objects, paper sizes, and body measurements.",
   mm:
@@ -93,10 +93,10 @@ export function getExtraDerivation(fromKey: string, toKey: string): string | nul
     return `1 centimeter = 1/2.54 inch (international inch: 1 in = 2.54 cm).`;
   }
   if (fromKey === "in" && toKey === "ft") {
-    return `1 inch = 1/12 foot (12 inches per foot).`;
+    return `1 inch = 1/12 feet (12 inches per feet).`;
   }
   if (fromKey === "ft" && toKey === "in") {
-    return `1 foot = 12 inches (exactly).`;
+    return `1 feet = 12 inches (exactly).`;
   }
   if (fromKey === "cm" && toKey === "mm") {
     return `1 centimeter = 10 millimeters (metric).`;

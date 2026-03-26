@@ -7,6 +7,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { PressureConversionTablesPair } from "@/components/PressureConversionTable";
 import PressurePairCalculator from "../PressurePairCalculator";
 import HowToConvertPressure from "../HowToConvertPressure";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalPressureSlug,
   PRESSURE_HUB_KEYS,
@@ -130,6 +131,8 @@ export default function PressurePairPage({ params }: { params: { slug: string } 
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <PressureConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="pressure" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

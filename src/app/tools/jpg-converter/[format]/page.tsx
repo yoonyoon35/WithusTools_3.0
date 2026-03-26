@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { createMetadata } from "@/lib/metadata";
 import ToolIcon from "@/components/ToolIcon";
+import { JPG_CONVERTER_FORMATS } from "@/data/prerender-segments";
 import type { ImageFormat } from "../JPGConverter";
 import { FORMAT_GUIDE } from "../converter-content";
 
@@ -24,25 +25,7 @@ const JPGConverter = dynamic(() => import("../JPGConverter"), {
   ),
 });
 
-const VALID_FORMATS = [
-  "heic",
-  "heif",
-  "avif",
-  "bmp",
-  "png",
-  "svg",
-  "tiff",
-  "webp",
-  "psd",
-  "jfif",
-  "ico",
-  "ai",
-  "dng",
-  "cr2",
-  "cr3",
-  "tga",
-  "pdf",
-] as const;
+const VALID_FORMATS = JPG_CONVERTER_FORMATS;
 
 const FORMAT_META: Record<
   string,

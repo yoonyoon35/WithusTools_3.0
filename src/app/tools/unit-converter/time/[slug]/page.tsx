@@ -6,9 +6,10 @@ import ToolIcon from "@/components/ToolIcon";
 import { TimeConversionTablesPair } from "@/components/TimeConversionTable";
 import TimePairCalculator from "../TimePairCalculator";
 import HowToConvertTime from "../HowToConvertTime";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalTimeSlug,
-  TIME_HUB_KEYS,
+  getTimeKeys,
   TIME_UNITS,
   parseTimePairSlug,
 } from "@/utils/conversions";
@@ -50,9 +51,10 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
+  const keys = getTimeKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of TIME_HUB_KEYS) {
-    for (const to of TIME_HUB_KEYS) {
+  for (const from of keys) {
+    for (const to of keys) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalTimeSlug(from, to) });
     }
@@ -119,6 +121,8 @@ export default function TimePairPage({ params }: { params: { slug: string } }) {
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <TimeConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="time" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

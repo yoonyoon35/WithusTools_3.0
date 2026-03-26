@@ -6,9 +6,10 @@ import ToolIcon from "@/components/ToolIcon";
 import { EnergyConversionTablesPair } from "@/components/EnergyConversionTable";
 import EnergyPairCalculator from "../EnergyPairCalculator";
 import HowToConvertEnergy from "../HowToConvertEnergy";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalEnergySlug,
-  ENERGY_HUB_KEYS,
+  getEnergyKeys,
   ENERGY_UNITS,
   parseEnergyPairSlug,
 } from "@/utils/conversions";
@@ -50,9 +51,10 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
+  const keys = getEnergyKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of ENERGY_HUB_KEYS) {
-    for (const to of ENERGY_HUB_KEYS) {
+  for (const from of keys) {
+    for (const to of keys) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalEnergySlug(from, to) });
     }
@@ -85,7 +87,7 @@ export default function EnergyPairPage({ params }: { params: { slug: string } })
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with fixed input and output units, a step-by-step formula line, and
         reference tables. Factors are joule-based; food energy uses thermochemical calories. The full Energy
-        Converter also includes therm and foot-pounds.
+        Converter also includes therm and feet-pounds.
       </p>
 
       <EnergyPairCalculator fromKey={fromKey} toKey={toKey} />
@@ -121,6 +123,8 @@ export default function EnergyPairPage({ params }: { params: { slug: string } })
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <EnergyConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="energy" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

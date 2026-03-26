@@ -6,6 +6,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { AreaConversionTablesPair } from "@/components/AreaConversionTable";
 import AreaPairCalculator from "../AreaPairCalculator";
 import HowToConvertArea from "../HowToConvertArea";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalAreaSlug,
   getAreaKeys,
@@ -122,6 +123,8 @@ export default function AreaPairPage({ params }: { params: { slug: string } }) {
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <AreaConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="area" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

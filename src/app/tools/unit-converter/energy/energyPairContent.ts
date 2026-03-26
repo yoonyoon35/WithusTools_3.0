@@ -21,7 +21,7 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   ev:
     "The electronvolt is the energy change of one elementary charge across 1 V: 1 eV ≈ 1.602176634×10⁻¹⁹ J (exact by SI definition). Used in particle physics and chemistry.",
   therm: "A therm is a large US customary energy unit for natural gas (≈ 105.5 MJ here).",
-  ftlb: "The foot-pound is a mechanical work unit common in US torque and ballistics contexts.",
+  ftlb: "The feet-pound is a mechanical work unit common in US torque and ballistics contexts.",
 };
 
 export function getUnitDescription(key: string): string {

@@ -26,6 +26,7 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/time/calendar": "Calendar",
   "/tools/time/interval-timer": "Interval Timer",
   "/tools/image/image-compressor": "Image Compressor",
+  "/tools/image/image-editor": "Image Editor",
   "/tools/image/image-format-converter": "Image Format Converter",
   "/tools/image/paint-board": "Paint Board",
   "/tools/developer/ascii-code-converter": "ASCII Code Converter",

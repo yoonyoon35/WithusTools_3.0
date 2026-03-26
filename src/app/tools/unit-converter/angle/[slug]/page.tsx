@@ -7,6 +7,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { AngleConversionTablesPair } from "@/components/AngleConversionTable";
 import AnglePairCalculator from "../AnglePairCalculator";
 import HowToConvertAngle from "../HowToConvertAngle";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalAngleSlug,
   ANGLE_HUB_KEYS,
@@ -130,6 +131,8 @@ export default function AnglePairPage({ params }: { params: { slug: string } }) 
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <AngleConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="angle" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

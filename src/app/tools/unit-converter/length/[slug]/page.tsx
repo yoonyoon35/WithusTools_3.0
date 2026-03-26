@@ -6,6 +6,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { LengthConversionTablesPair } from "@/components/LengthConversionTable";
 import LengthPairCalculator from "../LengthPairCalculator";
 import HowToConvertLength from "../HowToConvertLength";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalLengthSlug,
   getLengthKeys,
@@ -122,6 +123,8 @@ export default function LengthPairPage({ params }: { params: { slug: string } })
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <LengthConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="length" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

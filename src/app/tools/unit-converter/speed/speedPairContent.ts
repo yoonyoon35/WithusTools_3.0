@@ -41,7 +41,7 @@ export function getRelationshipContext(fromKey: string, toKey: string): string {
     return `You are converting between ${fromName} and ${toName}. Mach is treated as multiples of Mach 1 = ${MACH_TO_MPS_ISA} m/s (ISA reference). Actual Mach depends on altitude and temperature; this tool uses one reference sound speed for reproducible numbers.`;
   }
 
-  return `Both ${fromName} and ${toName} are expressed as fixed multiples of meters per second in this tool. Converting multiplies by the ratio of m/s per ${fromKey} to m/s per ${toKey}, so results stay consistent with SI-based definitions (international mile, knot, foot, etc.).`;
+  return `Both ${fromName} and ${toName} are expressed as fixed multiples of meters per second in this tool. Converting multiplies by the ratio of m/s per ${fromKey} to m/s per ${toKey}, so results stay consistent with SI-based definitions (international mile, knot, feet, etc.).`;
 }
 
 export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {

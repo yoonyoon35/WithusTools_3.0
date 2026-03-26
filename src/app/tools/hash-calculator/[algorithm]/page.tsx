@@ -4,29 +4,10 @@ import { createMetadata } from "@/lib/metadata";
 import ToolIcon from "@/components/ToolIcon";
 import HashCalculator from "../HashCalculator";
 import type { HashAlgorithm } from "../HashCalculator";
+import { HASH_CALCULATOR_ALGORITHMS } from "@/data/prerender-segments";
 import { ALGORITHM_GUIDE } from "../algorithm-content";
 
-const VALID_ALGORITHMS = [
-  "md5",
-  "sha1",
-  "sha224",
-  "sha256",
-  "sha384",
-  "sha512",
-  "sha3",
-  "keccak256",
-  "crc32",
-  "adler32",
-  "xxhash",
-  "blake2",
-  "ripemd160",
-  "bcrypt",
-  "argon2",
-  "pbkdf2",
-  "scrypt",
-  "whirlpool",
-  "fnv1a",
-] as const;
+const VALID_ALGORITHMS = HASH_CALCULATOR_ALGORITHMS;
 
 const ALGORITHM_META: Record<
   string,

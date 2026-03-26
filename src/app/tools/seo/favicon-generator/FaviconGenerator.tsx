@@ -45,6 +45,7 @@ export default function FaviconGenerator() {
   const [windows, setWindows] = useState(true);
   const [safari, setSafari] = useState(true);
   const [bgColor, setBgColor] = useState("#ffffff");
+  const [transparentBg, setTransparentBg] = useState(false);
   const [siteName, setSiteName] = useState("");
   const [shortName, setShortName] = useState("");
   const [iconPath, setIconPath] = useState("");
@@ -93,8 +94,10 @@ export default function FaviconGenerator() {
       return new Promise<{ size: number; dataUrl: string }>((resolve) => {
         canvas.width = size;
         canvas.height = size;
-        ctx.fillStyle = bgColor;
-        ctx.fillRect(0, 0, size, size);
+        if (!transparentBg) {
+          ctx.fillStyle = bgColor;
+          ctx.fillRect(0, 0, size, size);
+        }
         const scale = Math.min(size / img.width, size / img.height);
         const x = (size - img.width * scale) / 2;
         const y = (size - img.height * scale) / 2;
@@ -102,7 +105,7 @@ export default function FaviconGenerator() {
         resolve({ size, dataUrl: canvas.toDataURL("image/png") });
       });
     },
-    [bgColor]
+    [bgColor, transparentBg]
   );
 
   const generate = useCallback(async () => {
@@ -205,7 +208,7 @@ export default function FaviconGenerator() {
     } catch (err) {
       showMessage("Failed to generate favicons", "error");
     }
-  }, [previewUrl, basic, apple, android, windows, safari, bgColor, siteName, shortName, iconPath, createFavicon, showMessage]);
+  }, [previewUrl, basic, apple, android, windows, safari, bgColor, transparentBg, siteName, shortName, iconPath, createFavicon, showMessage]);
 
   const downloadPackage = useCallback(async () => {
     if (!previewUrl) return;
@@ -317,7 +320,7 @@ export default function FaviconGenerator() {
     } catch (err) {
       showMessage("Failed to download package", "error");
     }
-  }, [previewUrl, basic, apple, android, windows, safari, bgColor, siteName, shortName, iconPath, createFavicon, showMessage]);
+  }, [previewUrl, basic, apple, android, windows, safari, bgColor, transparentBg, siteName, shortName, iconPath, createFavicon, showMessage]);
 
   const copyToClipboard = (id: string, text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -445,7 +448,23 @@ export default function FaviconGenerator() {
             </div>
           </div>
           <div>
-            <label className="block text-sm text-slate-400">Background Color (for transparent icons)</label>
+            <span className="block text-sm text-slate-400">Background (for transparent source images)</span>
+            <label className="mt-2 flex cursor-pointer items-center gap-2 text-sm text-slate-300">
+              <input
+                type="checkbox"
+                checked={transparentBg}
+                onChange={(e) => setTransparentBg(e.target.checked)}
+              />
+              No background (keep transparency)
+            </label>
+            <p className="mt-1 text-xs text-slate-500">
+              {transparentBg
+                ? "Icons are drawn on a transparent canvas. Opaque pixels in your image are unchanged."
+                : "Transparent areas in your image are filled with the color below."}
+            </p>
+            <label className="mt-3 block text-sm text-slate-400">
+              {transparentBg ? "Theme & manifest color (meta tags only)" : "Fill color"}
+            </label>
             <input
               type="color"
               value={bgColor}

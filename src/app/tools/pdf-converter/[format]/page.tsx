@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PDF_CONVERTER_FORMATS } from "@/data/prerender-segments";
 import { createMetadata } from "@/lib/metadata";
 import ToolIcon from "@/components/ToolIcon";
 import { PDF_FORMAT_GUIDE } from "../converter-content";
@@ -15,7 +16,7 @@ const ImageToPdfConverter = dynamic(() => import("../ImageToPdfConverter"), {
   ),
 });
 
-const VALID_FORMATS = ["jpg", "png"] as const;
+const VALID_FORMATS = PDF_CONVERTER_FORMATS;
 
 const FORMAT_META: Record<
   string,

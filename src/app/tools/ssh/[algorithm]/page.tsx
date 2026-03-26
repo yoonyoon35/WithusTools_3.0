@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import { createMetadata } from "@/lib/metadata";
 import ToolIcon from "@/components/ToolIcon";
 import SshKeyGenerator from "../SshKeyGenerator";
+import { SSH_KEY_ALGORITHMS } from "@/data/prerender-segments";
 import type { Algorithm } from "../SshKeyGenerator";
 
-const VALID_ALGORITHMS = ["ed25519", "rsa", "ecdsa"] as const;
+const VALID_ALGORITHMS = SSH_KEY_ALGORITHMS;
 
 const ALGORITHM_META: Record<
   string,

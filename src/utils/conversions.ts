@@ -1014,7 +1014,7 @@ export const ENERGY_UNITS: Record<string, EnergyUnitDef> = {
   kj: { name: "Kilojoules", nameSg: "Kilojoule", factor: 1000 },
   btu: { name: "British Thermal Units", nameSg: "British Thermal Unit", factor: 1055.05585262 },
   cal: { name: "Calories", nameSg: "Calorie", factor: 4.184 },
-  ftlb: { name: "Foot-Pounds", nameSg: "Foot-Pound", factor: 1.3558179483314004 },
+  ftlb: { name: "Feet-Pounds", nameSg: "Feet-Pound", factor: 1.3558179483314004 },
   j: { name: "Joules", nameSg: "Joule", factor: 1 },
   ev: { name: "Electronvolts", nameSg: "Electronvolt", factor: 1.602176634e-19 },
 };

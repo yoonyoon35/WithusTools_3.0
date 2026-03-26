@@ -7,6 +7,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { SpeedConversionTablesPair } from "@/components/SpeedConversionTable";
 import SpeedPairCalculator from "../SpeedPairCalculator";
 import HowToConvertSpeed from "../HowToConvertSpeed";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalSpeedSlug,
   SPEED_HUB_KEYS,
@@ -130,6 +131,8 @@ export default function SpeedPairPage({ params }: { params: { slug: string } }) 
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <SpeedConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="speed" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

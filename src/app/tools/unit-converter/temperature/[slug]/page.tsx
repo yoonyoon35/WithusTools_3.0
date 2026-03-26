@@ -7,6 +7,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { TemperatureConversionTablesPair } from "@/components/TemperatureConversionTable";
 import TemperaturePairCalculator from "../TemperaturePairCalculator";
 import HowToConvertTemperature from "../HowToConvertTemperature";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalTemperatureSlug,
   TEMPERATURE_HUB_KEYS,
@@ -132,6 +133,8 @@ export default function TemperaturePairPage({ params }: { params: { slug: string
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <TemperatureConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="temperature" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

@@ -1,5 +1,11 @@
 import type { MetadataRoute } from "next";
 import { ALL_TOOLS } from "@/data/all-tools";
+import {
+  HASH_CALCULATOR_ALGORITHMS,
+  JPG_CONVERTER_FORMATS,
+  PDF_CONVERTER_FORMATS,
+  SSH_KEY_ALGORITHMS,
+} from "@/data/prerender-segments";
 import { getAllFaqStaticParams } from "@/data/faq-data";
 import {
   ANGLE_HUB_KEYS,
@@ -28,14 +34,24 @@ import {
 
 const BASE_URL = "https://withustools.com";
 
-/** JPG Converter format pages */
-const JPG_CONVERTER_FORMATS = [
-  "heic", "heif", "avif", "bmp", "png", "svg", "tiff", "webp",
-  "psd", "jfif", "ico", "ai", "dng", "cr2", "cr3", "tga", "pdf",
-] as const;
-
-/** PDF Converter format pages */
-const PDF_CONVERTER_FORMATS = ["jpg", "png"] as const;
+/**
+ * Sitemap section order (oldest / core first → newest / long-tail last):
+ * 1. Site foundation (home, search, tools index)
+ * 2. Legal & settings
+ * 3. All registered tool URLs from ALL_TOOLS (sorted by path; includes unit-converter hubs)
+ * 4. Hash calculator algorithm sub-routes
+ * 5. SSH algorithm sub-routes
+ * 6. JPG converter format sub-routes
+ * 7. PDF converter format sub-routes
+ * 8. Unit converter dedicated pair pages (bulk programmatic URLs)
+ * 9. FAQ articles (content pages — keep last)
+ *
+ * Excluded on purpose:
+ * - `/tools/[id]` landing IDs (redirect to canonical paths; avoid duplicate URLs)
+ * - API routes, not-found
+ *
+ * Dynamic segments must match `prerender-segments.ts` and each route's `generateStaticParams`.
+ */
 
 function unitConverterPairSitemapEntries(
   now: Date,
@@ -61,11 +77,13 @@ function unitConverterPairSitemapEntries(
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  /** Static pages: home, search, tools */
-  const staticPages: MetadataRoute.Sitemap = [
+  const siteFoundation: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${BASE_URL}/search`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/tools`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+  ];
+
+  const legalAndMeta: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/privacy-policy`,
       lastModified: now,
@@ -92,15 +110,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  /** All tool pages from all-tools.ts */
-  const toolPages: MetadataRoute.Sitemap = ALL_TOOLS.map(({ path }) => ({
-    url: `${BASE_URL}${path}`,
+  const toolPagesSorted: MetadataRoute.Sitemap = [...ALL_TOOLS]
+    .sort((a, b) => a.path.localeCompare(b.path))
+    .map(({ path }) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+
+  const hashAlgorithmPages: MetadataRoute.Sitemap = HASH_CALCULATOR_ALGORITHMS.map((algorithm) => ({
+    url: `${BASE_URL}/tools/hash-calculator/${algorithm}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
+    changeFrequency: "monthly" as const,
+    priority: 0.72,
   }));
 
-  /** JPG Converter format pages */
+  const sshAlgorithmPages: MetadataRoute.Sitemap = SSH_KEY_ALGORITHMS.map((algorithm) => ({
+    url: `${BASE_URL}/tools/ssh/${algorithm}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.72,
+  }));
+
   const jpgConverterPages: MetadataRoute.Sitemap = JPG_CONVERTER_FORMATS.map((format) => ({
     url: `${BASE_URL}/tools/jpg-converter/${format}`,
     lastModified: now,
@@ -108,7 +140,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  /** PDF Converter format pages */
   const pdfConverterPages: MetadataRoute.Sitemap = PDF_CONVERTER_FORMATS.map((format) => ({
     url: `${BASE_URL}/tools/pdf-converter/${format}`,
     lastModified: now,
@@ -116,9 +147,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // ---------------------------------------------------------------------------
-  // Unit Converter — dedicated pair pages (matches each [slug]/generateStaticParams)
-  // ---------------------------------------------------------------------------
   const unitConverterPairPages: MetadataRoute.Sitemap = [
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/length", getLengthKeys(), getCanonicalLengthSlug),
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/weight", getWeightKeys(), getCanonicalWeightSlug),
@@ -143,9 +171,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/angle", [...ANGLE_HUB_KEYS], getCanonicalAngleSlug),
   ];
 
-  // ---------------------------------------------------------------------------
-  // FAQ — /faq/[category]/[slug] (same set as generateStaticParams)
-  // ---------------------------------------------------------------------------
   const faqPages: MetadataRoute.Sitemap = getAllFaqStaticParams().map(({ category, slug }) => ({
     url: `${BASE_URL}/faq/${category}/${slug}`,
     lastModified: now,
@@ -154,8 +179,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   return [
-    ...staticPages,
-    ...toolPages,
+    ...siteFoundation,
+    ...legalAndMeta,
+    ...toolPagesSorted,
+    ...hashAlgorithmPages,
+    ...sshAlgorithmPages,
     ...jpgConverterPages,
     ...pdfConverterPages,
     ...unitConverterPairPages,

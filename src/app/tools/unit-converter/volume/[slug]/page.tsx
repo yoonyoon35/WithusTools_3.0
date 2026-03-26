@@ -6,6 +6,7 @@ import ToolIcon from "@/components/ToolIcon";
 import { VolumeConversionTablesPair } from "@/components/VolumeConversionTable";
 import VolumePairCalculator from "../VolumePairCalculator";
 import HowToConvertVolume from "../HowToConvertVolume";
+import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalVolumeSlug,
   getVolumeKeys,
@@ -122,6 +123,8 @@ export default function VolumePairPage({ params }: { params: { slug: string } })
         <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
         <VolumeConversionTablesPair fromKey={fromKey} toKey={toKey} />
       </section>
+
+      <UnitConverterNonHubPairLinks category="volume" fromKey={fromKey} toKey={toKey} />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link

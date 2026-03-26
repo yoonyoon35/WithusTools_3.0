@@ -52,6 +52,7 @@ export default function ImageEditor() {
   const [drawSize, setDrawSize] = useState(3);
   const [textInput, setTextInput] = useState("");
   const [showTextInput, setShowTextInput] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
   const watermarkOverlayRef = useRef<HTMLCanvasElement>(null);
@@ -207,6 +208,13 @@ export default function ImageEditor() {
   ]);
 
   const loadImage = useCallback((file: File) => {
+    if (!file) return;
+    const isImage =
+      file.type.startsWith("image/") ||
+      /\.(heic|heif|tiff|tif)$/i.test(file.name);
+    if (!isImage) return;
+
+    setIsLoading(true);
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
@@ -214,11 +222,27 @@ export default function ImageEditor() {
         initialImageRef.current = img;
         setOriginalImage(img);
         setShowEditor(true);
+        setIsLoading(false);
+      };
+      img.onerror = () => {
+        setIsLoading(false);
       };
       img.src = e.target?.result as string;
     };
+    reader.onerror = () => {
+      setIsLoading(false);
+    };
     reader.readAsDataURL(file);
   }, []);
+
+  const onDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && !isLoading) loadImage(file);
+    },
+    [loadImage, isLoading]
+  );
 
   const applyFilters = useCallback(() => {
     if (!originalImage || !canvasRef.current) return;
@@ -697,59 +721,69 @@ export default function ImageEditor() {
           </div>
         </div>
       )}
-      {!showEditor ? (
-        <div
-          className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-600 bg-surface p-12 text-center transition-colors hover:border-blue-500/50"
-          onClick={() => fileInputRef.current?.click()}
-          onDragOver={(e) => {
-            e.preventDefault();
-            e.currentTarget.classList.add("border-blue-500");
-          }}
-          onDragLeave={(e) => {
-            e.preventDefault();
-            e.currentTarget.classList.remove("border-blue-500");
-          }}
-          onDrop={(e) => {
-            e.preventDefault();
-            e.currentTarget.classList.remove("border-blue-500");
-            const file = e.dataTransfer.files[0];
-            if (file?.type.startsWith("image/")) loadImage(file);
-          }}
-        >
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-3">
+        <p className="flex items-center gap-2 font-semibold text-amber-400">
           <svg
-            className="mb-4 h-12 w-12 text-slate-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
+            strokeWidth="2"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            />
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
           </svg>
-          <p className="mb-2 text-slate-400">Drag & Drop image or</p>
-          <button
-            type="button"
-            className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white hover:bg-blue-500"
-            onClick={(e) => {
-              e.stopPropagation();
-              fileInputRef.current?.click();
-            }}
+          All editing runs in your browser. Files never leave your device.
+        </p>
+      </div>
+
+      {!showEditor ? (
+        <div className="rounded-xl border border-border bg-surface p-6">
+          <h2 className="mb-4 text-lg font-semibold text-slate-100">Upload File</h2>
+          <div
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={onDrop}
+            onClick={() => !isLoading && fileInputRef.current?.click()}
+            className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border bg-slate-950/50 px-6 py-8 transition-colors hover:border-slate-600 ${isLoading ? "pointer-events-none opacity-60" : ""}`}
           >
-            Choose File
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) loadImage(file);
-            }}
-          />
+            {isLoading ? (
+              <div className="mb-4 flex h-12 w-12 items-center justify-center">
+                <svg
+                  className="h-10 w-10 animate-spin text-slate-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+              </div>
+            ) : (
+              <span className="mb-2 text-4xl text-slate-500">📁</span>
+            )}
+            <p className="mb-2 text-sm text-slate-400">
+              {isLoading ? "Loading..." : "Drop image here or click to upload"}
+            </p>
+            <p className="text-xs text-slate-500">
+              PNG, JPG, WebP, GIF, BMP, TIFF, AVIF, HEIC, HEIF
+            </p>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*,.heic,.heif,.tiff,.tif"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) loadImage(file);
+                e.target.value = "";
+              }}
+            />
+          </div>
         </div>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[1fr,320px]">

@@ -16,7 +16,7 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   gal:
     "The US liquid gallon is defined as 231 cubic inches (about 3.78541 liters). US recipes, fuel economy, and retail liquids typically use US gallons.",
   ft3:
-    "The cubic foot is the volume of a cube one foot on a side (about 28.3168 liters). HVAC, construction, and US freight sometimes use cubic feet.",
+    "The cubic feet is the volume of a cube one feet on a side (about 28.3168 liters). HVAC, construction, and US freight sometimes use cubic feet.",
   l:
     "The liter is a metric unit equal to one cubic decimeter (0.001 m³). Science, global food labeling, and most countries’ everyday volumes use liters.",
   ukqt:

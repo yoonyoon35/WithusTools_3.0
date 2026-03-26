@@ -84,7 +84,7 @@ const UNIT_CONVERTER_TOOLS = [
   {
     slug: "energy",
     name: "Energy Converter",
-    description: "Convert joules, calories, kWh, BTU, electronvolts, therm, foot-pounds. For physics and energy management.",
+    description: "Convert joules, calories, kWh, BTU, electronvolts, therm, feet-pounds. For physics and energy management.",
     path: "/tools/unit-converter/energy",
   },
   {
