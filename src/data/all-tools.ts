@@ -60,6 +60,7 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/unit-converter/digital": "Digital Storage Converter",
   "/tools/unit-converter/pressure": "Pressure Converter",
   "/tools/unit-converter/energy": "Energy Converter",
+  "/tools/unit-converter/power": "Power Converter",
   "/tools/unit-converter/angle": "Angle Converter",
   "/tools/unit-converter/time": "Time Converter",
   // Hash Calculator sub-pages

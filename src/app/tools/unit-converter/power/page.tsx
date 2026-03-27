@@ -1,0 +1,169 @@
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+import Link from "next/link";
+import ToolIcon from "@/components/ToolIcon";
+import UnitConverter from "../UnitConverter";
+import { getFaqEntriesByCategory } from "@/data/faq-data";
+import {
+  getCanonicalPowerSlug,
+  POWER_HUB_KEYS,
+  POWER_KEY_TO_SLUG,
+  POWER_UNITS,
+} from "@/utils/conversions";
+
+export const metadata: Metadata = createMetadata({
+  title: "Power Converter | Watts, Kilowatts, Horsepower, BTU/h, dBm, VA",
+  description:
+    "Convert power: watts, milliwatts, kilowatts, megawatts, mechanical horsepower, BTU/h, kcal/h, VA, dBm, ft·lb/s. Free online power converter with dedicated pair pages.",
+  path: "/tools/unit-converter/power",
+  keywords: [
+    "power converter",
+    "watts to kilowatts",
+    "hp to kw",
+    "BTU per hour to watts",
+    "dBm to watts",
+    "VA to watts",
+    "megawatt",
+    "withustools",
+  ],
+});
+
+const POWER_GUIDE = {
+  quickStart: [
+    "Enter a value and pick source and target units. The result updates as you type.",
+    "Use swap to reverse units and copy to copy the result. The All Unit Conversions panel lists your value across every supported power unit.",
+  ],
+  deeper: [
+    "Need formulas, worked examples, and tables for one pair (e.g. kilowatts to horsepower)? Use a dedicated converter from the list above.",
+    "Short answers to common questions are in the FAQ section above. Linear units use fixed watt factors; dBm maps through watts with a log₁₀ definition relative to 1 mW.",
+  ],
+  exampleUses: [
+    "Motors and HVAC: kW, hp, and BTU/h.",
+    "RF engineering: dBm, mW, and W.",
+    "Electrical ratings: VA at unity PF and watts.",
+  ],
+};
+
+const POWER_PAIR_LINKS: { from: string; to: string }[] = (() => {
+  const pairs: { from: string; to: string }[] = [];
+  for (const from of POWER_HUB_KEYS) {
+    for (const to of POWER_HUB_KEYS) {
+      if (from === to) continue;
+      pairs.push({ from, to });
+    }
+  }
+  return pairs;
+})();
+
+const POWER_FAQ_LINKS = getFaqEntriesByCategory("power");
+
+export default function PowerConverterPage() {
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mb-8 flex flex-col items-center justify-center gap-4">
+        <div className="flex items-center gap-4">
+          <ToolIcon name="ruler" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-slate-100">Power Converter</h1>
+            <p className="mt-1 text-sm text-slate-500">unit-converter</p>
+          </div>
+        </div>
+      </div>
+
+      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
+        Convert between watts, kilowatts, horsepower, BTU/h, kcal/h, VA, dBm, ft·lb/s, and more. All Unit
+        Conversions panel included.
+      </p>
+
+      <UnitConverter category="power" title="Convert Power" />
+
+      <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">
+          Dedicated converters (watt, milliwatt, kilowatt, megawatt, mechanical horsepower, BTU per hour,
+          kilocalorie per hour, volt-ampere)
+        </h2>
+        <p className="mb-6 text-sm text-slate-500">
+          {POWER_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,
+          examples, and conversion tables.
+        </p>
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {POWER_PAIR_LINKS.map(({ from, to }) => {
+            const href = `/tools/unit-converter/power/${getCanonicalPowerSlug(from, to)}`;
+            const fromName = POWER_UNITS[from].nameSg ?? POWER_UNITS[from].name;
+            const toName = POWER_UNITS[to].nameSg ?? POWER_UNITS[to].name;
+            const fromSlug = POWER_KEY_TO_SLUG[from] ?? from;
+            const toSlug = POWER_KEY_TO_SLUG[to] ?? to;
+            return (
+              <li key={`${from}-${to}`}>
+                <Link
+                  href={href}
+                  className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
+                >
+                  <span className="font-medium text-slate-200">
+                    {fromSlug} to {toSlug} ({fromName} to {toName})
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-10 border-t border-slate-700 pt-8">
+          <h3 className="mb-4 text-base font-semibold text-slate-200">Common questions (FAQ)</h3>
+          <p className="mb-4 text-sm text-slate-500">
+            {POWER_FAQ_LINKS.length} quick answers with guides and links to the matching converter.
+          </p>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {POWER_FAQ_LINKS.map((faq) => (
+              <li key={faq.slug}>
+                <Link
+                  href={`/faq/${faq.category}/${faq.slug}`}
+                  className="block rounded-lg border border-slate-600/80 bg-slate-800/30 px-4 py-2.5 text-sm text-slate-300 transition-colors hover:border-slate-500 hover:bg-slate-800/60 hover:text-slate-100"
+                >
+                  {faq.question}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <div className="space-y-6 text-sm leading-relaxed text-slate-400">
+          <div>
+            <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
+            <ul className="list-disc space-y-2 pl-5">
+              {POWER_GUIDE.quickStart.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-2 font-semibold text-slate-200">Formulas &amp; deeper content</h3>
+            <div className="space-y-2">
+              {POWER_GUIDE.deeper.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="mb-2 font-semibold text-slate-200">Example uses</h3>
+            <ul className="list-disc space-y-2 pl-5">
+              {POWER_GUIDE.exampleUses.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <Link
+        href="/tools/unit-converter"
+        className="mt-8 inline-block text-slate-400 underline transition-colors hover:text-slate-200"
+      >
+        ← Back to Unit Converter
+      </Link>
+    </div>
+  );
+}

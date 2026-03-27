@@ -1,4 +1,9 @@
-import { convertTemperature, formatTemperatureResult, TEMPERATURE_UNITS } from "@/utils/conversions";
+import {
+  convertTemperature,
+  formatConversionTableCell,
+  formatTemperatureResult,
+  TEMPERATURE_UNITS,
+} from "@/utils/conversions";
 
 /** Reference inputs spanning cold / room / body / boiling (°C-oriented). */
 export const TEMPERATURE_TABLE_COLD_STEPS = [-40, -20, -10, 0, 10, 20, 37, 100] as const;
@@ -46,8 +51,10 @@ export function TemperatureConversionTable({
             const out = convertTemperature(v, fromKey, toKey);
             return (
               <tr key={v} className="border-b border-slate-700/80">
-                <td className="py-2 pr-4 font-mono text-slate-300">{v}</td>
-                <td className="py-2 font-mono text-slate-100">{formatTemperatureResult(out)}</td>
+                <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
+                <td className="py-2 font-mono text-slate-100">
+                  {formatConversionTableCell(formatTemperatureResult(out))}
+                </td>
               </tr>
             );
           })}

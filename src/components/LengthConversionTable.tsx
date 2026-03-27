@@ -1,5 +1,6 @@
 import {
   convertLength,
+  formatConversionTableCell,
   formatLengthResult,
   LENGTH_UNITS,
 } from "@/utils/conversions";
@@ -40,8 +41,10 @@ export function LengthConversionTable({
             const out = convertLength(v, fromKey, toKey);
             return (
               <tr key={v} className="border-b border-slate-700/80">
-                <td className="py-2 pr-4 font-mono text-slate-300">{v}</td>
-                <td className="py-2 font-mono text-slate-100">{formatLengthResult(out)}</td>
+                <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
+                <td className="py-2 font-mono text-slate-100">
+                  {formatConversionTableCell(formatLengthResult(out))}
+                </td>
               </tr>
             );
           })}

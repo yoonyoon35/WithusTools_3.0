@@ -80,6 +80,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   digital: "Digital Storage Converter",
   pressure: "Pressure Converter",
   energy: "Energy Converter",
+  power: "Power Converter",
   angle: "Angle Converter",
   // Standalone tools (direct under /tools/)
   "hash-calculator": "Hash Calculator",

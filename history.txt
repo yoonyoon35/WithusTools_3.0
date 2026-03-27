@@ -527,3 +527,11 @@
         - "QR Code Generator | Create Custom QR Codes" > "Create Custom QR Codes"
         - "QR Code Scanner | Read QR Codes Instantly" > "Read QR Codes Instantly"
         - "Temperature Converter | Celsius, Fahrenheit, Kelvin" > "Temperature Converter | Celsius, Fahrenheit, Kelvin, Rankine"
+
+1800 - git push 함
+
+=================================================================================================================
+
+260327
+
+1442 - Unit Converter Tools 카테고리 Power Converter 페이지 추가.(sitemap에도 추가함)

@@ -1,14 +1,14 @@
 import {
-  convertTime,
+  convertPower,
   formatConversionTableCell,
-  formatTimeResult,
-  TIME_UNITS,
+  formatPowerResult,
+  POWER_UNITS,
 } from "@/utils/conversions";
 
-export const TIME_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
-export const TIME_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
+export const POWER_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
+export const POWER_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 
-export function TimeConversionTable({
+export function PowerConversionTable({
   fromKey,
   toKey,
   values,
@@ -17,8 +17,8 @@ export function TimeConversionTable({
   toKey: string;
   values: readonly number[] | number[];
 }) {
-  const fromName = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
-  const toName = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
+  const fromName = POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
+  const toName = POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -35,13 +35,12 @@ export function TimeConversionTable({
         </thead>
         <tbody>
           {values.map((v) => {
-            const out = convertTime(v, fromKey, toKey);
+            const out = convertPower(v, fromKey, toKey);
+            const cell = Number.isFinite(out) ? formatPowerResult(out, toKey) : "—";
             return (
               <tr key={v} className="border-b border-slate-700/80">
                 <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
-                <td className="py-2 font-mono text-slate-100">
-                  {formatConversionTableCell(formatTimeResult(out))}
-                </td>
+                <td className="py-2 font-mono text-slate-100">{formatConversionTableCell(cell)}</td>
               </tr>
             );
           })}
@@ -51,7 +50,7 @@ export function TimeConversionTable({
   );
 }
 
-export function TimeConversionTablesPair({
+export function PowerConversionTablesPair({
   fromKey,
   toKey,
 }: {
@@ -60,8 +59,8 @@ export function TimeConversionTablesPair({
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <TimeConversionTable fromKey={fromKey} toKey={toKey} values={TIME_TABLE_SMALL_STEPS} />
-      <TimeConversionTable fromKey={fromKey} toKey={toKey} values={TIME_TABLE_TENS_STEPS} />
+      <PowerConversionTable fromKey={fromKey} toKey={toKey} values={POWER_TABLE_SMALL_STEPS} />
+      <PowerConversionTable fromKey={fromKey} toKey={toKey} values={POWER_TABLE_TENS_STEPS} />
     </div>
   );
 }

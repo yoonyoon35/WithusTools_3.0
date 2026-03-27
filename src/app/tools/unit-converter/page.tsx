@@ -7,7 +7,7 @@ import UnitConverterHubGuide from "./UnitConverterHubGuide";
 export const metadata: Metadata = createMetadata({
   title: "Unit Converter Tools",
   description:
-    "Free online unit converters: length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, and angle. Convert between metric and imperial units instantly.",
+    "Free online unit converters: length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle. Convert between metric and imperial units instantly.",
   path: "/tools/unit-converter",
   keywords: [
     "unit converter",
@@ -17,6 +17,7 @@ export const metadata: Metadata = createMetadata({
     "area converter",
     "volume converter",
     "angle converter",
+    "power converter",
     "digital storage converter",
     "metric converter",
     "imperial converter",
@@ -88,6 +89,13 @@ const UNIT_CONVERTER_TOOLS = [
     path: "/tools/unit-converter/energy",
   },
   {
+    slug: "power",
+    name: "Power Converter",
+    description:
+      "Convert watts, kW, MW, mW, mechanical horsepower, BTU/h, kcal/h, VA, dBm, ft·lb/s. Dedicated pair pages with formulas and tables.",
+    path: "/tools/unit-converter/power",
+  },
+  {
     slug: "angle",
     name: "Angle Converter",
     description:
@@ -110,7 +118,7 @@ export default function UnitConverterIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, and angle.
+        Convert length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle.
         Metric and imperial units supported. See the quick guide below for how to use pair pages, FAQs, and
         what to expect from results.
       </p>

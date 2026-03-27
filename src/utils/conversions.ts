@@ -97,6 +97,19 @@ export function formatWithThousands(value: number | string): string {
   return isNeg ? `-${result}` : result;
 }
 
+/**
+ * Thousands separators for FAQ and dedicated pair “conversion tables”.
+ * Preserves em dash and empty strings (invalid / missing conversion).
+ */
+export function formatConversionTableCell(value: number | string): string {
+  if (typeof value === "number") {
+    if (!Number.isFinite(value)) return "—";
+    return formatWithThousands(value);
+  }
+  if (value === "—" || value === "") return value;
+  return formatWithThousands(value);
+}
+
 export function getLengthKeys(): string[] {
   return Object.keys(LENGTH_UNITS);
 }
@@ -1130,6 +1143,204 @@ export function getOutboundEnergyHubLinks(hubKey: string): { toKey: string; href
   return ENERGY_HUB_KEYS.filter((k) => k !== hubKey).map((toKey) => ({
     toKey,
     href: `/tools/unit-converter/energy/${getCanonicalEnergySlug(hubKey, toKey)}`,
+  }));
+}
+
+// --- Power (watt base; dBm is logarithmic relative to 1 mW) ---
+
+/** IT BTU (J) per second — used for BTU/h → W. */
+const POWER_BTU_IT_J = 1055.05585262;
+
+export interface PowerUnitDef {
+  name: string;
+  nameSg?: string;
+  /** Watts per one unit; omitted for dBm */
+  factor?: number;
+}
+
+export const POWER_UNITS: Record<string, PowerUnitDef> = {
+  w: { name: "Watts", nameSg: "Watt", factor: 1 },
+  mw: { name: "Milliwatts", nameSg: "Milliwatt", factor: 0.001 },
+  kw: { name: "Kilowatts", nameSg: "Kilowatt", factor: 1000 },
+  megaw: { name: "Megawatts", nameSg: "Megawatt", factor: 1_000_000 },
+  hp: {
+    name: "Horsepower (mechanical, 550 ft·lb/s)",
+    nameSg: "Horsepower (mechanical)",
+    factor: 745.69987158227022,
+  },
+  btu_hr: {
+    name: "BTU per Hour (IT)",
+    nameSg: "BTU per Hour (IT)",
+    factor: POWER_BTU_IT_J / 3600,
+  },
+  kcal_h: {
+    name: "Kilocalories per Hour (thermochemical)",
+    nameSg: "Kilocalorie per Hour (thermochemical)",
+    factor: 4184 / 3600,
+  },
+  va: {
+    name: "Volt-Amperes (VA, unity PF)",
+    nameSg: "Volt-Ampere (VA)",
+    factor: 1,
+  },
+  dbm: { name: "Decibels relative to 1 mW (dBm)", nameSg: "dBm" },
+  ft_lb_s: {
+    name: "Foot-pounds per Second",
+    nameSg: "Foot-pound per Second",
+    factor: 1.3558179483314004,
+  },
+};
+
+export const POWER_KEY_TO_SLUG: Record<string, string> = {
+  w: "w",
+  mw: "milliwatt",
+  kw: "kilowatt",
+  megaw: "megawatt",
+  hp: "hp",
+  btu_hr: "btu-hr",
+  kcal_h: "kcal-h",
+  va: "va",
+  dbm: "dbm",
+  ft_lb_s: "ft-lb-s",
+};
+
+const POWER_SLUG_TO_KEY: Record<string, string> = {
+  w: "w",
+  watt: "w",
+  watts: "w",
+  mw: "mw",
+  milliwatt: "mw",
+  milliwatts: "mw",
+  kw: "kw",
+  kilowatt: "kw",
+  kilowatts: "kw",
+  megaw: "megaw",
+  megawatt: "megaw",
+  megawatts: "megaw",
+  hp: "hp",
+  horsepower: "hp",
+  btu_hr: "btu_hr",
+  "btu-hr": "btu_hr",
+  "btu/hr": "btu_hr",
+  btuh: "btu_hr",
+  kcal_h: "kcal_h",
+  "kcal-h": "kcal_h",
+  "kcal/h": "kcal_h",
+  va: "va",
+  voltampere: "va",
+  "volt-ampere": "va",
+  dbm: "dbm",
+  ft_lb_s: "ft_lb_s",
+  "ft-lb-s": "ft_lb_s",
+  "ft-lb/sec": "ft_lb_s",
+  "foot-pound-per-second": "ft_lb_s",
+};
+
+export function isPowerDbmKey(key: string): boolean {
+  return key === "dbm";
+}
+
+export function getPowerKeys(): string[] {
+  return Object.keys(POWER_UNITS);
+}
+
+export function isValidPowerKey(key: string): boolean {
+  return key in POWER_UNITS;
+}
+
+export function getCanonicalPowerSlug(fromKey: string, toKey: string): string {
+  const a = POWER_KEY_TO_SLUG[fromKey] ?? fromKey;
+  const b = POWER_KEY_TO_SLUG[toKey] ?? toKey;
+  return `${a}-to-${b}`;
+}
+
+export function parsePowerPairSlug(slug: string): { from: string; to: string } | null {
+  const s = slug.trim().toLowerCase();
+  const sep = "-to-";
+  const i = s.indexOf(sep);
+  if (i === -1) return null;
+  const fromPart = s.slice(0, i);
+  const toPart = s.slice(i + sep.length);
+  if (!fromPart || !toPart) return null;
+
+  const from = POWER_SLUG_TO_KEY[fromPart];
+  const to = POWER_SLUG_TO_KEY[toPart];
+  if (!from || !to || !isValidPowerKey(from) || !isValidPowerKey(to)) return null;
+  if (from === to) return null;
+
+  return { from, to };
+}
+
+export function powerValueToWatts(value: number, key: string): number {
+  if (!Number.isFinite(value)) return NaN;
+  if (key === "dbm") {
+    return 10 ** ((value - 30) / 10);
+  }
+  const f = POWER_UNITS[key].factor;
+  if (f == null) return NaN;
+  return value * f;
+}
+
+export function wattsToPowerValue(watts: number, key: string): number {
+  if (!Number.isFinite(watts)) return NaN;
+  if (key === "dbm") {
+    if (watts <= 0) return NaN;
+    return 10 * Math.log10(watts * 1000);
+  }
+  const f = POWER_UNITS[key].factor;
+  if (f == null || f === 0) return NaN;
+  return watts / f;
+}
+
+export function convertPower(value: number, fromKey: string, toKey: string): number {
+  const w = powerValueToWatts(value, fromKey);
+  return wattsToPowerValue(w, toKey);
+}
+
+export function formatPowerResult(value: number, toKey?: string, maxDecimals = 10): string {
+  if (!Number.isFinite(value)) return "";
+  if (toKey && isPowerDbmKey(toKey)) {
+    const rounded = Number(value.toPrecision(12));
+    const str = rounded.toFixed(6).replace(/\.?0+$/, "");
+    return str === "-0" ? "0" : str;
+  }
+  const rounded = Number(value.toPrecision(12));
+  const str = rounded.toFixed(maxDecimals).replace(/\.?0+$/, "");
+  return str === "-0" ? "0" : str;
+}
+
+export function getPowerFormulaLine(value: number, fromKey: string, toKey: string): string {
+  const result = convertPower(value, fromKey, toKey);
+  const resStr = formatPowerResult(result, toKey);
+  if (!isPowerDbmKey(fromKey) && !isPowerDbmKey(toKey)) {
+    const Ff = POWER_UNITS[fromKey].factor!;
+    const Ft = POWER_UNITS[toKey].factor!;
+    return `${formatWithThousands(value)} ${fromKey} × (${formatWithThousands(Ff)} / ${formatWithThousands(Ft)}) = ${formatWithThousands(resStr)} ${toKey}`;
+  }
+  const w = powerValueToWatts(value, fromKey);
+  if (!Number.isFinite(w) || !Number.isFinite(result)) {
+    return `${formatWithThousands(value)} ${fromKey} → (via watts) → ${toKey}: invalid or non-positive for dBm`;
+  }
+  return `${formatWithThousands(value)} ${fromKey} → ${formatWithThousands(w)} W → ${formatWithThousands(resStr)} ${toKey}`;
+}
+
+export function convertPowerWithFormula(
+  value: number,
+  from: string,
+  to: string
+): [number, string] {
+  const result = convertPower(value, from, to);
+  return [result, getPowerFormulaLine(value, from, to)];
+}
+
+/** Hub: W, mW, kW, MW, HP, BTU/hr, kcal/h, VA (8×7 = 56 dedicated hub pages). */
+export const POWER_HUB_KEYS = ["w", "mw", "kw", "megaw", "hp", "btu_hr", "kcal_h", "va"] as const;
+
+export function getOutboundPowerHubLinks(hubKey: string): { toKey: string; href: string }[] {
+  if (!isValidPowerKey(hubKey)) return [];
+  return POWER_HUB_KEYS.filter((k) => k !== hubKey).map((toKey) => ({
+    toKey,
+    href: `/tools/unit-converter/power/${getCanonicalPowerSlug(hubKey, toKey)}`,
   }));
 }
 

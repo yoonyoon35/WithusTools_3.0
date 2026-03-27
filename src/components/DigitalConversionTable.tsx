@@ -1,4 +1,9 @@
-import { convertDigital, formatDigitalResult, DIGITAL_UNITS } from "@/utils/conversions";
+import {
+  convertDigital,
+  formatConversionTableCell,
+  formatDigitalResult,
+  DIGITAL_UNITS,
+} from "@/utils/conversions";
 
 export const DIGITAL_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const DIGITAL_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -33,8 +38,10 @@ export function DigitalConversionTable({
             const out = convertDigital(v, fromKey, toKey);
             return (
               <tr key={v} className="border-b border-slate-700/80">
-                <td className="py-2 pr-4 font-mono text-slate-300">{v}</td>
-                <td className="py-2 font-mono text-slate-100">{formatDigitalResult(out)}</td>
+                <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
+                <td className="py-2 font-mono text-slate-100">
+                  {formatConversionTableCell(formatDigitalResult(out))}
+                </td>
               </tr>
             );
           })}

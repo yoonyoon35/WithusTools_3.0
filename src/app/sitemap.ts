@@ -15,6 +15,7 @@ import {
   getCanonicalDigitalSlug,
   getCanonicalEnergySlug,
   getCanonicalLengthSlug,
+  getCanonicalPowerSlug,
   getCanonicalPressureSlug,
   getCanonicalSpeedSlug,
   getCanonicalTemperatureSlug,
@@ -23,6 +24,7 @@ import {
   getCanonicalWeightSlug,
   getDigitalKeys,
   getEnergyKeys,
+  getPowerKeys,
   getLengthKeys,
   getTimeKeys,
   getVolumeKeys,
@@ -43,8 +45,9 @@ const BASE_URL = "https://withustools.com";
  * 5. SSH algorithm sub-routes
  * 6. JPG converter format sub-routes
  * 7. PDF converter format sub-routes
- * 8. Unit converter dedicated pair pages (bulk programmatic URLs)
- * 9. FAQ articles (content pages — keep last)
+ * 8. Unit converter dedicated pair pages (bulk programmatic URLs; Power pairs are appended after FAQ — see below)
+ * 9. FAQ articles (content pages)
+ * 10. Power Converter dedicated pair pages (newest unit-converter bulk URLs — sitemap tail)
  *
  * Excluded on purpose:
  * - `/tools/[id]` landing IDs (redirect to canonical paths; avoid duplicate URLs)
@@ -178,6 +181,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  const powerConverterPairPages: MetadataRoute.Sitemap = unitConverterPairSitemapEntries(
+    now,
+    "/tools/unit-converter/power",
+    getPowerKeys(),
+    getCanonicalPowerSlug
+  );
+
   return [
     ...siteFoundation,
     ...legalAndMeta,
@@ -188,5 +198,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pdfConverterPages,
     ...unitConverterPairPages,
     ...faqPages,
+    ...powerConverterPairPages,
   ];
 }

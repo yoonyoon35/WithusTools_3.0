@@ -1,4 +1,9 @@
-import { convertAngle, formatAngleResult, ANGLE_UNITS } from "@/utils/conversions";
+import {
+  convertAngle,
+  formatAngleResult,
+  formatConversionTableCell,
+  ANGLE_UNITS,
+} from "@/utils/conversions";
 
 /** Same step pattern as speed/length dedicated pages: 0.1 and 1–9. */
 export const ANGLE_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
@@ -36,8 +41,10 @@ export function AngleConversionTable({
             const out = convertAngle(v, fromKey, toKey);
             return (
               <tr key={v} className="border-b border-slate-700/80">
-                <td className="py-2 pr-4 font-mono text-slate-300">{v}</td>
-                <td className="py-2 font-mono text-slate-100">{formatAngleResult(out)}</td>
+                <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
+                <td className="py-2 font-mono text-slate-100">
+                  {formatConversionTableCell(formatAngleResult(out))}
+                </td>
               </tr>
             );
           })}

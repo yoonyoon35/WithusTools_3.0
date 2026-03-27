@@ -11,6 +11,9 @@ import {
   ENERGY_HUB_KEYS,
   ENERGY_KEY_TO_SLUG,
   ENERGY_UNITS,
+  POWER_HUB_KEYS,
+  POWER_KEY_TO_SLUG,
+  POWER_UNITS,
   getAngleKeys,
   getAreaKeys,
   getCanonicalAngleSlug,
@@ -18,6 +21,7 @@ import {
   getCanonicalDigitalSlug,
   getCanonicalEnergySlug,
   getCanonicalLengthSlug,
+  getCanonicalPowerSlug,
   getCanonicalPressureSlug,
   getCanonicalSpeedSlug,
   getCanonicalTemperatureSlug,
@@ -26,6 +30,7 @@ import {
   getCanonicalWeightSlug,
   getDigitalKeys,
   getEnergyKeys,
+  getPowerKeys,
   getLengthKeys,
   getPressureKeys,
   getSpeedKeys,
@@ -64,6 +69,7 @@ export type UnitConverterNonHubCategory =
   | "time"
   | "digital"
   | "energy"
+  | "power"
   | "temperature"
   | "speed"
   | "pressure"
@@ -105,7 +111,9 @@ export function getNonHubDiscoveryLinks(
                 ? DIGITAL_HUB_KEYS
                 : category === "energy"
                   ? ENERGY_HUB_KEYS
-                  : category === "temperature"
+                  : category === "power"
+                    ? POWER_HUB_KEYS
+                    : category === "temperature"
                     ? TEMPERATURE_HUB_KEYS
                     : category === "speed"
                       ? SPEED_HUB_KEYS
@@ -128,7 +136,9 @@ export function getNonHubDiscoveryLinks(
                 ? getDigitalKeys()
                 : category === "energy"
                   ? getEnergyKeys()
-                  : category === "temperature"
+                  : category === "power"
+                    ? getPowerKeys()
+                    : category === "temperature"
                     ? getTemperatureKeys()
                     : category === "speed"
                       ? getSpeedKeys()
@@ -159,7 +169,9 @@ export function getNonHubDiscoveryLinks(
                 ? getCanonicalDigitalSlug
                 : category === "energy"
                   ? getCanonicalEnergySlug
-                  : category === "temperature"
+                  : category === "power"
+                    ? getCanonicalPowerSlug
+                    : category === "temperature"
                     ? getCanonicalTemperatureSlug
                     : category === "speed"
                       ? getCanonicalSpeedSlug
@@ -182,13 +194,15 @@ export function getNonHubDiscoveryLinks(
                 ? (k: string) => DIGITAL_KEY_TO_SLUG[k] ?? k
                 : category === "energy"
                   ? (k: string) => ENERGY_KEY_TO_SLUG[k] ?? k
-                  : category === "temperature"
-                    ? (k: string) => TEMPERATURE_KEY_TO_SLUG[k] ?? k
-                    : category === "speed"
-                      ? (k: string) => SPEED_KEY_TO_SLUG[k] ?? k
-                      : category === "pressure"
-                        ? (k: string) => PRESSURE_KEY_TO_SLUG[k] ?? k
-                        : (k: string) => ANGLE_KEY_TO_SLUG[k] ?? k;
+                  : category === "power"
+                    ? (k: string) => POWER_KEY_TO_SLUG[k] ?? k
+                    : category === "temperature"
+                      ? (k: string) => TEMPERATURE_KEY_TO_SLUG[k] ?? k
+                      : category === "speed"
+                        ? (k: string) => SPEED_KEY_TO_SLUG[k] ?? k
+                        : category === "pressure"
+                          ? (k: string) => PRESSURE_KEY_TO_SLUG[k] ?? k
+                          : (k: string) => ANGLE_KEY_TO_SLUG[k] ?? k;
 
   const unitName = (k: string): string => {
     const u =
@@ -206,7 +220,9 @@ export function getNonHubDiscoveryLinks(
                   ? DIGITAL_UNITS[k]
                   : category === "energy"
                     ? ENERGY_UNITS[k]
-                    : category === "temperature"
+                    : category === "power"
+                      ? POWER_UNITS[k]
+                      : category === "temperature"
                       ? TEMPERATURE_UNITS[k]
                       : category === "speed"
                         ? SPEED_UNITS[k]

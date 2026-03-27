@@ -1,5 +1,6 @@
 import {
   convertWeight,
+  formatConversionTableCell,
   formatWeightResult,
   WEIGHT_UNITS,
 } from "@/utils/conversions";
@@ -40,8 +41,10 @@ export function WeightConversionTable({
             const out = convertWeight(v, fromKey, toKey);
             return (
               <tr key={v} className="border-b border-slate-700/80">
-                <td className="py-2 pr-4 font-mono text-slate-300">{v}</td>
-                <td className="py-2 font-mono text-slate-100">{formatWeightResult(out)}</td>
+                <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
+                <td className="py-2 font-mono text-slate-100">
+                  {formatConversionTableCell(formatWeightResult(out))}
+                </td>
               </tr>
             );
           })}

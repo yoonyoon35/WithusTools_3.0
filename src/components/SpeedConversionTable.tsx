@@ -1,4 +1,9 @@
-import { convertSpeed, formatSpeedResult, SPEED_UNITS } from "@/utils/conversions";
+import {
+  convertSpeed,
+  formatConversionTableCell,
+  formatSpeedResult,
+  SPEED_UNITS,
+} from "@/utils/conversions";
 
 /** Same step pattern as dedicated length converter pages: 0.1 and 1–9. */
 export const SPEED_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
@@ -36,8 +41,10 @@ export function SpeedConversionTable({
             const out = convertSpeed(v, fromKey, toKey);
             return (
               <tr key={v} className="border-b border-slate-700/80">
-                <td className="py-2 pr-4 font-mono text-slate-300">{v}</td>
-                <td className="py-2 font-mono text-slate-100">{formatSpeedResult(out)}</td>
+                <td className="py-2 pr-4 font-mono text-slate-300">{formatConversionTableCell(v)}</td>
+                <td className="py-2 font-mono text-slate-100">
+                  {formatConversionTableCell(formatSpeedResult(out))}
+                </td>
               </tr>
             );
           })}

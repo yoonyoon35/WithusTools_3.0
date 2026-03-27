@@ -7,6 +7,7 @@ import { AreaConversionTablesPair } from "@/components/AreaConversionTable";
 import { DigitalConversionTablesPair } from "@/components/DigitalConversionTable";
 import { EnergyConversionTablesPair } from "@/components/EnergyConversionTable";
 import { LengthConversionTablesPair } from "@/components/LengthConversionTable";
+import { PowerConversionTablesPair } from "@/components/PowerConversionTable";
 import { PressureConversionTablesPair } from "@/components/PressureConversionTable";
 import { SpeedConversionTablesPair } from "@/components/SpeedConversionTable";
 import { TemperatureConversionTablesPair } from "@/components/TemperatureConversionTable";
@@ -19,6 +20,7 @@ import {
   getOutboundAreaHubLinks,
   getOutboundDigitalHubLinks,
   getOutboundEnergyHubLinks,
+  getOutboundPowerHubLinks,
   getOutboundLengthHubLinks,
   getOutboundPressureHubLinks,
   getOutboundSpeedHubLinks,
@@ -34,6 +36,8 @@ import {
   DIGITAL_UNITS,
   ENERGY_KEY_TO_SLUG,
   ENERGY_UNITS,
+  POWER_KEY_TO_SLUG,
+  POWER_UNITS,
   LENGTH_KEY_TO_SLUG,
   PRESSURE_KEY_TO_SLUG,
   PRESSURE_UNITS,
@@ -371,6 +375,44 @@ function EnergyHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
   );
 }
 
+function PowerHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
+  const hub = POWER_UNITS[hubUnitKey];
+  if (!hub) return null;
+  const hubName = hub.name;
+  const links = getOutboundPowerHubLinks(hubUnitKey);
+
+  return (
+    <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2 className="mb-4 text-lg font-semibold text-slate-200">More {hubName} converters</h2>
+      <p className="mb-6 text-sm text-slate-500">
+        Dedicated pages from {hub.nameSg ?? hub.name} to every other hub power unit (watt, milliwatt,
+        kilowatt, megawatt, mechanical horsepower, BTU per hour, kilocalorie per hour, volt-ampere).
+      </p>
+      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map(({ toKey, href }) => {
+          const toU = POWER_UNITS[toKey];
+          const fromSg = hub.nameSg ?? hub.name;
+          const toSg = toU.nameSg ?? toU.name;
+          const fromSlug = POWER_KEY_TO_SLUG[hubUnitKey] ?? hubUnitKey;
+          const toSlug = POWER_KEY_TO_SLUG[toKey] ?? toKey;
+          return (
+            <li key={toKey}>
+              <Link
+                href={href}
+                className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
+              >
+                <span className="font-medium text-slate-200">
+                  {fromSlug} to {toSlug} ({fromSg} to {toSg})
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
 function TemperatureHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
   const hub = TEMPERATURE_UNITS[hubUnitKey];
   if (!hub) return null;
@@ -541,7 +583,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
               ? "/tools/unit-converter/digital"
               : entry.category === "energy"
                 ? "/tools/unit-converter/energy"
-                : entry.category === "temperature"
+                : entry.category === "power"
+                  ? "/tools/unit-converter/power"
+                  : entry.category === "temperature"
                   ? "/tools/unit-converter/temperature"
                   : entry.category === "speed"
                     ? "/tools/unit-converter/speed"
@@ -563,7 +607,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
               ? "Digital Storage Converter"
               : entry.category === "energy"
                 ? "Energy Converter"
-                : entry.category === "temperature"
+                : entry.category === "power"
+                  ? "Power Converter"
+                  : entry.category === "temperature"
                   ? "Temperature Converter"
                   : entry.category === "speed"
                     ? "Speed Converter"
@@ -623,6 +669,8 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
             <DigitalConversionTablesPair fromKey={entry.tableFromKey} toKey={entry.tableToKey} />
           ) : entry.category === "energy" ? (
             <EnergyConversionTablesPair fromKey={entry.tableFromKey} toKey={entry.tableToKey} />
+          ) : entry.category === "power" ? (
+            <PowerConversionTablesPair fromKey={entry.tableFromKey} toKey={entry.tableToKey} />
           ) : entry.category === "temperature" ? (
             <TemperatureConversionTablesPair fromKey={entry.tableFromKey} toKey={entry.tableToKey} />
           ) : entry.category === "speed" ? (
@@ -648,6 +696,8 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           <DigitalHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "energy" ? (
           <EnergyHubLinkCards hubUnitKey={entry.hubUnitKey} />
+        ) : entry.category === "power" ? (
+          <PowerHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "temperature" ? (
           <TemperatureHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "speed" ? (

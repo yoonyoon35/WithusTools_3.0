@@ -11,6 +11,7 @@ export type FaqCategory =
   | "time"
   | "digital"
   | "energy"
+  | "power"
   | "temperature"
   | "speed"
   | "pressure"
@@ -1298,6 +1299,191 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     seoUnitA: "kilocalorie",
     seoUnitB: "kilojoule",
     keywords: ["kcal per kJ", "kJ to kilocalories", "food energy conversion"],
+  },
+  {
+    category: "power",
+    slug: "how-many-watts-in-a-kilowatt",
+    hubUnitKey: "kw",
+    question: "how many watts in a kilowatt",
+    directAnswer: "There are 1,000 watts (W) in 1 kilowatt (kW).",
+    detailedExplanation:
+      "The SI prefix kilo- means one thousand. Multiply kilowatts by 1,000 to get watts; divide watts by 1,000 to get kilowatts. This is exact in the SI system.",
+    relationshipContext:
+      "Kilowatts and watts are the same kind of quantity (power) at different decimal scales. Motor plates, utility demand, and heater ratings often switch between kW and W.",
+    relatedConverterPath: "/tools/unit-converter/power/kilowatt-to-w",
+    relatedConverterLabel: "Kilowatt to Watt",
+    tableFromKey: "kw",
+    tableToKey: "w",
+    seoUnitA: "watt",
+    seoUnitB: "kilowatt",
+    keywords: ["watts in a kilowatt", "kW to W", "1000 watts per kW"],
+  },
+  {
+    category: "power",
+    slug: "how-many-watts-is-a-1.5-hp-motor",
+    hubUnitKey: "hp",
+    question: "how many watts is a 1.5 hp motor",
+    directAnswer:
+      "About 1,119 W: 1.5 mechanical horsepower (550 ft·lbf/s each) is approximately 1,118.55 W using this tool’s definition (~745.70 W per hp).",
+    detailedExplanation:
+      "This converter uses US mechanical horsepower: 1 hp = 550 ft·lbf/s ≈ 745.69987 W. Multiply 1.5 by that factor for shaft power in watts. Actual motor electrical input will be higher because of efficiency losses.",
+    relationshipContext:
+      "Horsepower is common on motor nameplates; electrical design and breakers are often sized in watts or kilowatts. Metric horsepower (PS) differs slightly and is not used here.",
+    relatedConverterPath: "/tools/unit-converter/power/hp-to-w",
+    relatedConverterLabel: "Horsepower to Watt",
+    tableFromKey: "hp",
+    tableToKey: "w",
+    seoUnitA: "watt",
+    seoUnitB: "horsepower",
+    keywords: ["1.5 hp to watts", "motor watts", "hp to W"],
+  },
+  {
+    category: "power",
+    slug: "how-many-btu-hr-in-1-ton-of-air-conditioning",
+    hubUnitKey: "btu_hr",
+    question: "how many btu/hr in 1 ton of air conditioning",
+    directAnswer:
+      "In US HVAC, 1 refrigeration ton is defined as 12,000 BTU/h (a rate of cooling), not a mass ton.",
+    detailedExplanation:
+      "The “ton” in air conditioning refers to cooling capacity: 1 ton = 12,000 BTU per hour. That convention comes from historical ice-melting capacity; it is unrelated to the 2,000 lb short ton. Use BTU/h or kW for equipment comparisons; this site’s power converter does not include “tons” as a unit.",
+    relationshipContext:
+      "BTU/h and kilowatts both express thermal power. After knowing 12,000 BTU/h per ton, you can convert BTU/h to kW or W with the fixed IT BTU/h → watt factor in this tool.",
+    relatedConverterPath: "/tools/unit-converter/power/btu-hr-to-kilowatt",
+    relatedConverterLabel: "BTU per Hour to Kilowatt",
+    tableFromKey: "btu_hr",
+    tableToKey: "kw",
+    seoUnitA: "BTU per hour",
+    seoUnitB: "refrigeration ton",
+    keywords: ["ton to BTU/h", "12000 BTU per ton", "AC cooling capacity"],
+  },
+  {
+    category: "power",
+    slug: "convert-5-hp-to-kw-for-industrial-pump",
+    hubUnitKey: "hp",
+    question: "convert 5 hp to kw for industrial pump",
+    directAnswer: "About 3.728 kW: 5 mechanical hp × ~0.74570 kW/hp ≈ 3.7285 kW.",
+    detailedExplanation:
+      "Multiply horsepower by the watt factor (~745.70 W per hp), then divide by 1,000 for kilowatts. That gives shaft power; pump absorbed power and motor electrical draw include efficiency and service factor.",
+    relationshipContext:
+      "Pump curves and motors may be labeled in hp while VFDs, utilities, and IEC equipment favor kW. Converting with a fixed hp definition keeps specs comparable.",
+    relatedConverterPath: "/tools/unit-converter/power/hp-to-kilowatt",
+    relatedConverterLabel: "Horsepower to Kilowatt",
+    tableFromKey: "hp",
+    tableToKey: "kw",
+    seoUnitA: "kilowatt",
+    seoUnitB: "horsepower",
+    keywords: ["5 hp to kW", "pump power", "industrial motor kW"],
+  },
+  {
+    category: "power",
+    slug: "convert-1500-watts-to-btu-hr-for-space-heater",
+    hubUnitKey: "w",
+    question: "convert 1500 watts to btu/hr for space heater",
+    directAnswer: "About 5,118 BTU/h (IT): 1,500 W ÷ (watts per BTU/h in this tool) ≈ 5,118.2 BTU/h.",
+    detailedExplanation:
+      "This tool defines BTU/h using the IT British thermal unit rate: ≈0.293071 W per BTU/h. Divide watts by that value to get BTU/h. Ratings on packaging may round; always check whether the device is resistive (close to unity PF) before treating W as heat output.",
+    relationshipContext:
+      "Electric heaters are often sold with wattage; gas and mixed HVAC specs still use BTU/h. Converting helps compare electric models to fuel-based ratings.",
+    relatedConverterPath: "/tools/unit-converter/power/w-to-btu-hr",
+    relatedConverterLabel: "Watt to BTU per Hour",
+    tableFromKey: "w",
+    tableToKey: "btu_hr",
+    seoUnitA: "BTU per hour",
+    seoUnitB: "watt",
+    keywords: ["1500 W to BTU/h", "space heater", "electric heat BTU"],
+  },
+  {
+    category: "power",
+    slug: "how-many-mw-is-1-watt-of-power",
+    hubUnitKey: "w",
+    question: "how many mw is 1 watt of power",
+    directAnswer: "There are 1,000 milliwatts (mW) in 1 watt.",
+    detailedExplanation:
+      "The prefix milli- means one thousandth, so 1 W = 1,000 mW. Multiply watts by 1,000 for milliwatts; divide milliwatts by 1,000 for watts.",
+    relationshipContext:
+      "Milliwatts appear in RF, LEDs, and sensors; watts are typical for household loads. Both are linear SI-scaled units in this converter.",
+    relatedConverterPath: "/tools/unit-converter/power/w-to-milliwatt",
+    relatedConverterLabel: "Watt to Milliwatt",
+    tableFromKey: "w",
+    tableToKey: "mw",
+    seoUnitA: "milliwatt",
+    seoUnitB: "watt",
+    keywords: ["mW per watt", "watt to milliwatts", "1000 mW"],
+  },
+  {
+    category: "power",
+    slug: "what-is-the-difference-between-2000-va-and-2000-watts",
+    hubUnitKey: "va",
+    question: "what is the difference between 2000 va and 2000 watts",
+    directAnswer:
+      "VA is apparent power; W is real power. At unity power factor, 2,000 VA and 2,000 W are numerically the same in this tool; with reactive loads, real watts are lower than VA for the same current.",
+    detailedExplanation:
+      "Volt-amperes (VA) = voltage × current magnitude without accounting for phase. Watts account for power factor (cos φ for sinusoidal AC). UPS and transformer sizes are often given in VA; resistive heaters are ~1 W per VA. This converter assumes 1 VA = 1 W for numeric conversion between VA and watt units.",
+    relationshipContext:
+      "Sizing a UPS or generator requires VA for current limits; billing and heat output are closer to watts. Always read the equipment power factor when it matters.",
+    relatedConverterPath: "/tools/unit-converter/power/va-to-w",
+    relatedConverterLabel: "Volt-Ampere to Watt",
+    tableFromKey: "va",
+    tableToKey: "w",
+    seoUnitA: "watt",
+    seoUnitB: "volt-ampere",
+    keywords: ["VA vs watts", "apparent power", "2000 VA"],
+  },
+  {
+    category: "power",
+    slug: "how-many-kcal-h-is-a-1000w-electric-heater",
+    hubUnitKey: "w",
+    question: "how many kcal/h is a 1000w electric heater",
+    directAnswer:
+      "About 860 kcal/h (thermochemical): 1,000 W corresponds to roughly 859.5–860 kcal/h with this tool’s kcal/h factor (4,184 J per kcal over one hour).",
+    detailedExplanation:
+      "Convert watts to joules per second, then relate to kcal/h: this tool uses 1 kcal/h = 4,184/3,600 W. So kcal/h = W ÷ (4,184/3,600). A pure resistive heater converts essentially all electrical power to thermal power.",
+    relationshipContext:
+      "Some European thermal labels use kcal/h; electric ratings are often in W or kW. The conversion is linear once the thermochemical kcal definition is fixed.",
+    relatedConverterPath: "/tools/unit-converter/power/w-to-kcal-h",
+    relatedConverterLabel: "Watt to Kilocalorie per Hour",
+    tableFromKey: "w",
+    tableToKey: "kcal_h",
+    seoUnitA: "kilocalorie per hour",
+    seoUnitB: "watt",
+    keywords: ["1000 W to kcal/h", "heater", "thermal power"],
+  },
+  {
+    category: "power",
+    slug: "how-many-kilowatts-is-1-mw-of-power-plant",
+    hubUnitKey: "megaw",
+    question: "how many kilowatts is 1 mw of power plant",
+    directAnswer: "There are 1,000 kilowatts in 1 megawatt (MW).",
+    detailedExplanation:
+      "Mega- means one million and kilo- means one thousand watts, so 1 MW = 1,000,000 W = 1,000 kW. This is exact in SI usage for plant capacity ratings.",
+    relationshipContext:
+      "Utility-scale plants are quoted in MW; distribution feeders and large motors may be discussed in kW. Both are decimal multiples of the watt.",
+    relatedConverterPath: "/tools/unit-converter/power/megawatt-to-kilowatt",
+    relatedConverterLabel: "Megawatt to Kilowatt",
+    tableFromKey: "megaw",
+    tableToKey: "kw",
+    seoUnitA: "kilowatt",
+    seoUnitB: "megawatt",
+    keywords: ["MW to kW", "power plant capacity", "1000 kW per MW"],
+  },
+  {
+    category: "power",
+    slug: "how-many-watts-does-a-5000-btu-hr-ac-use",
+    hubUnitKey: "btu_hr",
+    question: "how many watts does a 5000 btu/hr ac use",
+    directAnswer:
+      "Cooling capacity 5,000 BTU/h is about 1,465 W of thermal power; electrical draw in watts depends on efficiency (EER/COP) and is usually higher than that cooling-equivalent rate.",
+    detailedExplanation:
+      "Convert BTU/h to watts with this tool’s IT BTU/h factor: 5,000 × (~0.293071 W per BTU/h) ≈ 1,465 W. That value describes cooling power, not plug power. Actual current draw (VA/W) comes from the nameplate amperage or SEER/EER; inverter mini-splits vary widely.",
+    relationshipContext:
+      "Window units list BTU/h for cooling; consumers often want equivalent watts for generators or solar. Always separate thermal cooling watts from electrical input watts.",
+    relatedConverterPath: "/tools/unit-converter/power/btu-hr-to-w",
+    relatedConverterLabel: "BTU per Hour to Watt",
+    tableFromKey: "btu_hr",
+    tableToKey: "w",
+    seoUnitA: "watt",
+    seoUnitB: "BTU per hour",
+    keywords: ["5000 BTU AC watts", "BTU/h to W", "window AC power"],
   },
   {
     category: "speed",

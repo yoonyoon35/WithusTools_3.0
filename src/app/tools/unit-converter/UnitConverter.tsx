@@ -6,6 +6,7 @@ import {
   AREA_UNITS,
   DIGITAL_UNITS,
   ENERGY_UNITS,
+  POWER_UNITS,
   ANGLE_UNITS,
   LENGTH_UNITS,
   PRESSURE_UNITS,
@@ -18,6 +19,9 @@ import {
   convertSpeedWithFormula,
   convertTemperature,
   convertTemperatureWithFormula,
+  convertPower,
+  convertPowerWithFormula,
+  formatPowerResult,
 } from "@/utils/conversions";
 
 export type UnitCategory =
@@ -31,6 +35,7 @@ export type UnitCategory =
   | "digital"
   | "pressure"
   | "energy"
+  | "power"
   | "angle";
 
 interface UnitDef {
@@ -50,12 +55,30 @@ const UNITS: Record<UnitCategory, Record<string, UnitDef>> = {
   digital: DIGITAL_UNITS as Record<string, UnitDef>,
   pressure: PRESSURE_UNITS as Record<string, UnitDef>,
   energy: ENERGY_UNITS as Record<string, UnitDef>,
+  power: POWER_UNITS as Record<string, UnitDef>,
   angle: ANGLE_UNITS as Record<string, UnitDef>,
 };
 
 interface UnitConverterProps {
   category: UnitCategory;
   title: string;
+}
+
+/** Valid initial select values on first paint (avoids controlled select with value "" before useEffect). */
+function defaultPairForCategory(category: UnitCategory): { from: string; to: string } {
+  const keys = Object.keys(UNITS[category]);
+  const first = keys[0] ?? "";
+  const defaultTo =
+    category === "temperature"
+      ? "f"
+      : category === "speed"
+        ? "kph"
+        : category === "angle"
+          ? "rad"
+          : category === "power"
+            ? "kw"
+            : keys[keys.length - 1] ?? first;
+  return { from: first, to: defaultTo };
 }
 
 function formatWithThousands(value: number | string): string {
@@ -74,8 +97,10 @@ function convertStandard(
   to: string,
   category: UnitCategory
 ): [number, string] {
-  const fromFactor = UNITS[category][from].factor!;
-  const toFactor = UNITS[category][to].factor!;
+  const fromU = UNITS[category][from];
+  const toU = UNITS[category][to];
+  const fromFactor = fromU.factor!;
+  const toFactor = toU.factor!;
   const result = (value * fromFactor) / toFactor;
   const formula = `${formatWithThousands(value)} ${from} × ${formatWithThousands(fromFactor)}/${formatWithThousands(toFactor)} = ${formatWithThousands(result.toFixed(6))} ${to}`;
   return [result, formula];
@@ -84,8 +109,8 @@ function convertStandard(
 export default function UnitConverter({ category, title }: UnitConverterProps) {
   const [fromValue, setFromValue] = useState("");
   const [toValue, setToValue] = useState("");
-  const [fromUnit, setFromUnit] = useState("");
-  const [toUnit, setToUnit] = useState("");
+  const [fromUnit, setFromUnit] = useState(() => defaultPairForCategory(category).from);
+  const [toUnit, setToUnit] = useState(() => defaultPairForCategory(category).to);
   const [formulaText, setFormulaText] = useState("Formula will appear here");
   const [toast, setToast] = useState<string | null>(null);
   const toastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -103,18 +128,9 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
   };
 
   useEffect(() => {
-    const keys = Object.keys(UNITS[category]);
-    const first = keys[0];
-    const defaultTo =
-      category === "temperature"
-        ? "f"
-        : category === "speed"
-          ? "kph"
-          : category === "angle"
-            ? "rad"
-            : keys[keys.length - 1];
-    setFromUnit(first);
-    setToUnit(defaultTo);
+    const p = defaultPairForCategory(category);
+    setFromUnit(p.from);
+    setToUnit(p.to);
   }, [category]);
 
   const convert = useCallback(() => {
@@ -134,7 +150,9 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
           ? "kph"
           : category === "angle"
             ? "rad"
-            : keys[keys.length - 1];
+            : category === "power"
+              ? "kw"
+              : keys[keys.length - 1];
     const to = toUnit || defaultTo;
 
     let result: number;
@@ -149,6 +167,16 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
         setFormulaText(formula);
         return;
       }
+    } else if (category === "power") {
+      [result, formula] = convertPowerWithFormula(val, from, to);
+      if (!Number.isFinite(result)) {
+        setToValue("");
+        setFormulaText(formula);
+        return;
+      }
+      setToValue(formatPowerResult(result, to));
+      setFormulaText(formula);
+      return;
     } else {
       [result, formula] = convertStandard(val, from, to, category);
     }
@@ -190,7 +218,7 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
   const allUnitConversions = (() => {
     const val = parseFloat(fromValue);
     const keys = Object.keys(units);
-    const useZero = isNaN(val) || !fromUnit || fromValue === "";
+    const useZero = isNaN(val) || String(fromValue).trim() === "";
     return keys.map((key) => {
       let result: number;
       if (useZero) {
@@ -199,13 +227,21 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
         result = convertTemperature(val, fromUnit, key);
       } else if (category === "speed") {
         result = convertSpeed(val, fromUnit, key);
+      } else if (category === "power") {
+        result = convertPower(val, fromUnit, key);
       } else {
         [result] = convertStandard(val, fromUnit, key, category);
       }
+      const display =
+        category === "power" && Number.isFinite(result)
+          ? formatWithThousands(formatPowerResult(result, key))
+          : Number.isFinite(result)
+            ? formatWithThousands(result.toFixed(6))
+            : "—";
       return {
         unitKey: key,
         name: units[key].name,
-        value: Number.isFinite(result) ? formatWithThousands(result.toFixed(6)) : "—",
+        value: display,
       };
     });
   })();
