@@ -14,7 +14,15 @@ import { TemperatureConversionTablesPair } from "@/components/TemperatureConvers
 import { TimeConversionTablesPair } from "@/components/TimeConversionTable";
 import { VolumeConversionTablesPair } from "@/components/VolumeConversionTable";
 import { WeightConversionTablesPair } from "@/components/WeightConversionTable";
+import { NumberSystemConversionTablesPair } from "@/components/NumberSystemConversionTable";
 import { getFaqEntry, getAllFaqStaticParams, type FaqEntry } from "@/data/faq-data";
+import {
+  getNumberSystemPairsFrom,
+  NUMBER_SYSTEM_PAIR_KEYS,
+  NUMBER_SYSTEM_PAIR_KEY_LABELS,
+  pairKeyToBase,
+  type NumberSystemPairKey,
+} from "@/utils/numberSystemConversion";
 import {
   getOutboundAngleHubLinks,
   getOutboundAreaHubLinks,
@@ -73,7 +81,11 @@ export async function generateMetadata({
     title,
     description,
     path: `/faq/${entry.category}/${entry.slug}`,
-    keywords: entry.keywords ?? ["FAQ", "unit conversion", "withustools"],
+    keywords:
+      entry.keywords ??
+      (entry.category === "number-system"
+        ? ["FAQ", "number system", "radix", "withustools"]
+        : ["FAQ", "unit conversion", "withustools"]),
   });
 }
 
@@ -526,6 +538,35 @@ function AngleHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
   );
 }
 
+function NumberSystemHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
+  if (!(NUMBER_SYSTEM_PAIR_KEYS as readonly string[]).includes(hubUnitKey)) return null;
+  const from = hubUnitKey as NumberSystemPairKey;
+  const hubName = NUMBER_SYSTEM_PAIR_KEY_LABELS[from];
+  const links = getNumberSystemPairsFrom(from);
+
+  return (
+    <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2 className="mb-4 text-lg font-semibold text-slate-200">More {hubName} converters</h2>
+      <p className="mb-6 text-sm text-slate-500">
+        Dedicated pages from {hubName} to every other format (binary, octal, decimal, hexadecimal, character), with the
+        same parsing rules as the main Number System Converter.
+      </p>
+      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map(({ href, line1 }) => (
+          <li key={href}>
+            <Link
+              href={href}
+              className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
+            >
+              <span className="font-medium text-slate-200">{line1}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function PressureHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
   const hub = PRESSURE_UNITS[hubUnitKey];
   if (!hub) return null;
@@ -593,7 +634,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
                       ? "/tools/unit-converter/pressure"
                       : entry.category === "angle"
                         ? "/tools/unit-converter/angle"
-                        : "/tools/unit-converter/length";
+                        : entry.category === "number-system"
+                          ? "/tools/developer/numbersystem-converter"
+                          : "/tools/unit-converter/length";
   const converterLabel =
     entry.category === "weight"
       ? "Weight Converter"
@@ -617,7 +660,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
                       ? "Pressure Converter"
                       : entry.category === "angle"
                         ? "Angle Converter"
-                        : "Length Converter";
+                        : entry.category === "number-system"
+                          ? "Number System Converter"
+                          : "Length Converter";
 
   return (
     <>
@@ -657,7 +702,12 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
 
         <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
           <h2 className="mb-6 text-lg font-semibold text-slate-200">Quick conversion table</h2>
-          {entry.category === "weight" ? (
+          {entry.category === "number-system" ? (
+            <NumberSystemConversionTablesPair
+              fromBase={pairKeyToBase(entry.tableFromKey as NumberSystemPairKey)}
+              toBase={pairKeyToBase(entry.tableToKey as NumberSystemPairKey)}
+            />
+          ) : entry.category === "weight" ? (
             <WeightConversionTablesPair fromKey={entry.tableFromKey} toKey={entry.tableToKey} />
           ) : entry.category === "area" ? (
             <AreaConversionTablesPair fromKey={entry.tableFromKey} toKey={entry.tableToKey} />
@@ -684,7 +734,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           )}
         </section>
 
-        {entry.category === "weight" ? (
+        {entry.category === "number-system" ? (
+          <NumberSystemHubLinkCards hubUnitKey={entry.hubUnitKey} />
+        ) : entry.category === "weight" ? (
           <WeightHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "area" ? (
           <AreaHubLinkCards hubUnitKey={entry.hubUnitKey} />
@@ -717,9 +769,15 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           >
             ← {converterLabel}
           </Link>
-          <Link href="/tools/unit-converter" className="text-slate-400 underline transition-colors hover:text-slate-200">
-            Unit Converter
-          </Link>
+          {entry.category === "number-system" ? (
+            <Link href="/tools/developer" className="text-slate-400 underline transition-colors hover:text-slate-200">
+              Developer Tools
+            </Link>
+          ) : (
+            <Link href="/tools/unit-converter" className="text-slate-400 underline transition-colors hover:text-slate-200">
+              Unit Converter
+            </Link>
+          )}
         </div>
       </div>
     </>

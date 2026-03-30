@@ -15,7 +15,8 @@ export type FaqCategory =
   | "temperature"
   | "speed"
   | "pressure"
-  | "angle";
+  | "angle"
+  | "number-system";
 
 export interface FaqEntry {
   category: FaqCategory;
@@ -2213,6 +2214,196 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     seoUnitA: "celsius",
     seoUnitB: "rankine",
     keywords: ["R to C", "rankine to celsius"],
+  },
+  {
+    category: "number-system",
+    slug: "how-to-convert-decimal-to-binary-with-steps",
+    hubUnitKey: "dec",
+    question: "How to convert decimal to binary with steps",
+    directAnswer:
+      "Repeatedly divide the integer by 2 and read the remainders from last to first, or subtract the largest power of two until you reach zero.",
+    detailedExplanation:
+      "For whole numbers: divide by 2, record each remainder (0 or 1), then read the remainders bottom-up. Example: 13 → 1101₂. Our Decimal to Binary converter applies the same integer rules as the hub: enter a decimal value and the tool shows the exact binary string (with optional 0b). For very large integers, use the same page—parsing is integer-only, so fractional decimals are not accepted as a single “decimal fraction” value.",
+    relationshipContext:
+      "Decimal and binary are two radices for the same integer; switching radix does not change the value, only how it is written. Binary aligns with bit positions, which is why hardware and bitwise logic prefer it.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/dec-to-bin",
+    relatedConverterLabel: "Decimal to Binary",
+    tableFromKey: "dec",
+    tableToKey: "bin",
+    seoUnitA: "decimal",
+    seoUnitB: "binary",
+    keywords: ["decimal to binary", "steps", "division by 2", "integer"],
+  },
+  {
+    category: "number-system",
+    slug: "decimal-to-hexadecimal-converter-for-rgb-colors",
+    hubUnitKey: "dec",
+    question: "Decimal to hexadecimal converter for rgb colors",
+    directAnswer:
+      "Convert each RGB channel (0–255) from decimal to hex and concatenate as #RRGGBB; our converter handles each channel as its own integer.",
+    detailedExplanation:
+      "RGB stores three bytes. For channel value 255, decimal-to-hex gives FF; 10 → 0A. Use the Decimal to Hexadecimal page three times (R, G, B) or the hub and pick hex output. This site’s tool treats each input as one integer in decimal and outputs hex with the usual 0–9A–F digits (optional 0x). It does not paste a full “rgb(r,g,b)” string in one field—split channels for predictable results.",
+    relationshipContext:
+      "Hex is compact for bytes: two hex digits cover exactly eight bits, which matches one RGB channel. Designers and CSS workflows routinely jump between decimal sliders and hex literals.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/dec-to-hex",
+    relatedConverterLabel: "Decimal to Hexadecimal",
+    tableFromKey: "dec",
+    tableToKey: "hex",
+    seoUnitA: "decimal",
+    seoUnitB: "hexadecimal",
+    keywords: ["RGB", "hex color", "decimal to hex", "CSS"],
+  },
+  {
+    category: "number-system",
+    slug: "binary-to-string-converter-for-text-messages",
+    hubUnitKey: "bin",
+    question: "Binary to string converter for text messages",
+    directAnswer:
+      "Interpret fixed-width chunks of bits as code units (often 8-bit bytes), map each value to a character, then concatenate—our Binary to Character page maps one numeric value to one character.",
+    detailedExplanation:
+      "Classic “binary to text” splits a bitstream into bytes (multiples of 8), converts each byte to a number, then to Unicode/ASCII. This tool’s **Binary to Character** mode is geared to a single integer: you enter one binary value (e.g. 0b01000001) and see the matching character when the value fits the supported range. For full messages, convert each byte’s binary or decimal value separately, or use a dedicated multi-byte / encoding tool if you need UTF-8 stream decoding.",
+    relationshipContext:
+      "Text in computers is numeric at the bottom: characters are code points or encoded bytes. Moving between raw bits and glyphs is the same idea as radix conversion plus encoding rules.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/bin-to-char",
+    relatedConverterLabel: "Binary to Character",
+    tableFromKey: "bin",
+    tableToKey: "char",
+    seoUnitA: "binary",
+    seoUnitB: "character",
+    keywords: ["binary to text", "ASCII", "UTF-16", "messages"],
+  },
+  {
+    category: "number-system",
+    slug: "hex-to-ascii-character-conversion-online",
+    hubUnitKey: "hex",
+    question: "Hex to ASCII character conversion online",
+    directAnswer:
+      "Parse the hex value as an integer, then look up the character with that code point—use Hexadecimal to Character for a single value.",
+    detailedExplanation:
+      "Enter hex like 41 or 0x41; the tool parses it as an integer and shows the corresponding character (and standard names for common control codes when applicable). For BMP Unicode, values stay within 0–FFFF. This matches strict hex parsing rules used elsewhere on the Number System Converter (digits 0–9, A–F, optional 0x).",
+    relationshipContext:
+      "Hex dumps and byte editors show memory as hex; viewing the ASCII/Unicode glyph for each code is a natural next step for debugging and reverse engineering.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/hex-to-char",
+    relatedConverterLabel: "Hexadecimal to Character",
+    tableFromKey: "hex",
+    tableToKey: "char",
+    seoUnitA: "hexadecimal",
+    seoUnitB: "ASCII",
+    keywords: ["hex to ASCII", "character", "code point"],
+  },
+  {
+    category: "number-system",
+    slug: "convert-decimal-fraction-to-binary-converter",
+    hubUnitKey: "dec",
+    question: "Convert decimal fraction to binary converter",
+    directAnswer:
+      "True fractional conversion multiplies the fractional part by 2 repeatedly; this site’s converters work on integers only, so split whole and fractional parts or use a specialized fractional tool.",
+    detailedExplanation:
+      "For the part after the radix point: multiply by 2, take the integer bit, repeat with the new fraction until it terminates or you stop. Our **Decimal to Binary** page accepts **integer** decimal input only (no decimal point in the value). Use it for the integer portion; for repeating binary fractions, expect to handle the algorithm by hand or with software that supports fixed-point math. Large integers are fine as long as they parse successfully.",
+    relationshipContext:
+      "Integer radix change is exact; fractional radix change can produce infinite repeating expansions, which is why APIs and calculators often separate integer and fractional handling.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/dec-to-bin",
+    relatedConverterLabel: "Decimal to Binary",
+    tableFromKey: "dec",
+    tableToKey: "bin",
+    seoUnitA: "decimal fraction",
+    seoUnitB: "binary",
+    keywords: ["fraction", "binary", "multiply by 2", "integer only"],
+  },
+  {
+    category: "number-system",
+    slug: "how-to-convert-8-bit-binary-to-decimal",
+    hubUnitKey: "bin",
+    question: "How to convert 8 bit binary to decimal",
+    directAnswer:
+      "Sum each bit times 2^position (rightmost is 2⁰); eight bits give 0–255 in decimal—enter the byte on Binary to Decimal for an instant check.",
+    detailedExplanation:
+      "Label bits b₇…b₀ from MSB to LSB. Value = b₇·128 + b₆·64 + … + b₀·1. Example: 00001101₂ = 8 + 4 + 1 = 13. You may use an optional 0b prefix. The dedicated **Binary to Decimal** page uses the same parser as the hub, so leading zeros are fine for an 8-bit pattern.",
+    relationshipContext:
+      "A byte is eight bits; unsigned interpretation is 0–255. This is the standard bridge between bit patterns in registers and human-readable decimal.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/bin-to-dec",
+    relatedConverterLabel: "Binary to Decimal",
+    tableFromKey: "bin",
+    tableToKey: "dec",
+    seoUnitA: "8-bit binary",
+    seoUnitB: "decimal",
+    keywords: ["byte", "binary to decimal", "positional value"],
+  },
+  {
+    category: "number-system",
+    slug: "excel-decimal-to-hex-function-dec2hex-guide",
+    hubUnitKey: "dec",
+    question: "Excel decimal to hex function dec2hex guide",
+    directAnswer:
+      "In Excel, =DEC2HEX(n[, places]) returns hex text for integer n; compare results with our Decimal to Hexadecimal converter for the same integer.",
+    detailedExplanation:
+      "DEC2HEX takes a signed 10-bit style range in older docs—practically, use it on integers Excel can represent. Optional `places` pads with leading zeros. Our web converter shows hex digits (optional 0x) for the parsed integer without Excel’s cell limits. If you need two-digit channel bytes, pad manually or match Excel’s `places` argument.",
+    relationshipContext:
+      "Spreadsheets expose DEC2HEX/HEX2DEC for quick engineering tasks; web calculators are useful when you want consistent radix rules outside the workbook.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/dec-to-hex",
+    relatedConverterLabel: "Decimal to Hexadecimal",
+    tableFromKey: "dec",
+    tableToKey: "hex",
+    seoUnitA: "Excel",
+    seoUnitB: "hex",
+    keywords: ["DEC2HEX", "Excel", "decimal to hex"],
+  },
+  {
+    category: "number-system",
+    slug: "convert-integer-to-character-in-base-10",
+    hubUnitKey: "dec",
+    question: "Convert integer to character in base 10",
+    directAnswer:
+      "Treat the decimal integer as a Unicode code unit (0–65535 for BMP) and map it to the character—use Decimal to Character.",
+    detailedExplanation:
+      "Enter the code point in decimal; the tool outputs the character (or a standard control label). Values outside the supported character range are rejected for character output, matching the hub behavior. This is not “base-10 digits of a string” but “one number → one glyph.”",
+    relationshipContext:
+      "Decimal code points appear in documentation and APIs; character output makes the symbol concrete for debugging and learning.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/dec-to-char",
+    relatedConverterLabel: "Decimal to Character",
+    tableFromKey: "dec",
+    tableToKey: "char",
+    seoUnitA: "decimal integer",
+    seoUnitB: "character",
+    keywords: ["code point", "Unicode", "decimal to char"],
+  },
+  {
+    category: "number-system",
+    slug: "binary-to-octal-converter-with-calculation-table",
+    hubUnitKey: "bin",
+    question: "Binary to octal converter with calculation table",
+    directAnswer:
+      "Group binary digits from the radix point in threes (pad with zeros) and replace each group with one octal digit 0–7—the pair page includes side-by-side sample tables.",
+    detailedExplanation:
+      "Because 8 = 2³, each octal digit maps to exactly three bits. Use the **Binary to Octal** dedicated page for fixed input/output plus the same quick conversion tables used across number-system FAQs. Enter binary with optional 0b; the tool converts via integer parsing, so the grouping idea matches what you see in the result.",
+    relationshipContext:
+      "Octal was historically popular for 12- and 24-bit words; today it persists in Unix permissions (three bits per rwx triad).",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/bin-to-oct",
+    relatedConverterLabel: "Binary to Octal",
+    tableFromKey: "bin",
+    tableToKey: "oct",
+    seoUnitA: "binary",
+    seoUnitB: "octal",
+    keywords: ["group by three", "octal", "conversion table"],
+  },
+  {
+    category: "number-system",
+    slug: "long-decimal-to-binary-converter-for-large-numbers",
+    hubUnitKey: "dec",
+    question: "Long decimal to binary converter for large numbers",
+    directAnswer:
+      "Paste a long integer in decimal on the Decimal to Binary page; the tool parses it as one integer and prints binary subject to browser and parser limits.",
+    detailedExplanation:
+      "For large magnitudes, correctness depends on big-int style handling. This converter uses JavaScript’s safe integer range where applicable; extremely long digit strings may fail parsing—if that happens, split the problem or use arbitrary-precision software. The workflow is unchanged: decimal in, binary out, same rules as the hub.",
+    relationshipContext:
+      "Large integers appear in cryptography and IDs; binary expansion length grows roughly with log₂ of the value, so UI-friendly tools still hit practical limits.",
+    relatedConverterPath: "/tools/developer/numbersystem-converter/dec-to-bin",
+    relatedConverterLabel: "Decimal to Binary",
+    tableFromKey: "dec",
+    tableToKey: "bin",
+    seoUnitA: "long decimal",
+    seoUnitB: "binary",
+    keywords: ["large numbers", "decimal to binary", "big integer"],
   },
 ];
 

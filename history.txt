@@ -535,3 +535,12 @@
 260327
 
 1442 - Unit Converter Tools 카테고리 Power Converter 페이지 추가.(sitemap에도 추가함)
+
+=================================================================================================================
+
+260330
+
+2018 - Number System Converter 페이지 UnitConverter 페이지처럼 쌍별 페이지 추가, faq 페이지 추가
+
+#### - 오늘 빙 웹마스터에서 IndexNow 기능 설정함. CloudFlare에서 호환해주는 기능이 있어서 거기서 활성화 시킴.
+       CloudFlare > Domain > Cashing > Configuration > Crawler Hints(활성화)
