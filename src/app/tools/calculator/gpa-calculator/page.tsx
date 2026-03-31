@@ -51,6 +51,49 @@ const GPA_GUIDE = {
   ],
 };
 
+const GPA_FAQ_LINKS: { href: string; question: string }[] = [
+  {
+    href: "/tools/calculator/gpa-calculator/target-gpa?goal=3.5",
+    question: "How much GPA do I need this term to reach a 3.5 cumulative?",
+  },
+  {
+    href: "/tools/calculator/gpa-calculator/target-gpa?goal=3.7",
+    question: "What semester GPA do I need for a 3.7 cumulative average?",
+  },
+  {
+    href: "/tools/calculator/gpa-calculator/target-gpa?goal=3.0",
+    question: "How can I raise my cumulative GPA to 3.0? (target planner)",
+  },
+  {
+    href: "/tools/calculator/gpa-calculator/target-gpa?reset=1",
+    question: "Target cumulative GPA calculator — plan any GPA goal (fresh form)",
+  },
+  {
+    href: "#gpa-conversion-table",
+    question: "Letter grade to GPA points chart (4.0, 4.3, 4.5 & 5.0 weighted)",
+  },
+  {
+    href: "/faq/gpa/what-is-weighted-gpa",
+    question: "What is weighted GPA? AP, honors & 5.0 scale vs unweighted",
+  },
+  {
+    href: "#gpa-guide-how-to-use",
+    question: "How do I use this GPA calculator? Step-by-step quick start",
+  },
+  {
+    href: "/tools/calculator/percentage-calculator",
+    question: "Free online percentage calculator for grades & everyday math",
+  },
+  {
+    href: "/tools/calculator",
+    question: "Browse all calculators: average, BMI, percentage & scientific",
+  },
+  {
+    href: "/tools/calculator/average-calculator",
+    question: "Average calculator (mean) for test scores, grades & numbers",
+  },
+];
+
 export default function GPACalculatorPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -66,8 +109,14 @@ export default function GPACalculatorPage() {
 
       <GPACalculator />
 
-      <section className="mt-8 rounded-xl border border-border bg-surface p-6 sm:p-8" aria-labelledby="gpa-conversion-table">
-        <h2 id="gpa-conversion-table" className="mb-4 text-lg font-semibold text-slate-200">GPA Conversion Table</h2>
+      <section
+        id="gpa-conversion-table"
+        className="mt-8 scroll-mt-24 rounded-xl border border-border bg-surface p-6 sm:p-8"
+        aria-labelledby="gpa-conversion-table-title"
+      >
+        <h2 id="gpa-conversion-table-title" className="mb-4 text-lg font-semibold text-slate-200">
+          GPA Conversion Table
+        </h2>
         <p className="mb-4 text-sm text-slate-400">
           Reference for converting letter grades to GPA points by scale. This table matches the values used in the calculator above.
         </p>
@@ -111,10 +160,40 @@ export default function GPACalculatorPage() {
         </div>
       </section>
 
+      <section className="mt-8 rounded-xl border border-border bg-surface p-6 sm:p-8" aria-labelledby="gpa-faq">
+        <h3 id="gpa-faq" className="mb-4 text-base font-semibold text-slate-200">
+          Common questions (FAQ)
+        </h3>
+        <p className="mb-4 text-sm text-slate-500">
+          {GPA_FAQ_LINKS.length} quick links to GPA planners, this page, and related calculators.
+        </p>
+        <ul className="grid gap-2 sm:grid-cols-2">
+          {GPA_FAQ_LINKS.map((faq) => {
+            const className =
+              "block rounded-lg border border-slate-600/80 bg-slate-800/30 px-4 py-2.5 text-sm text-slate-300 transition-colors hover:border-slate-500 hover:bg-slate-800/60 hover:text-slate-100";
+            return (
+              <li key={faq.href + faq.question}>
+                {faq.href.startsWith("#") ? (
+                  <a href={faq.href} className={className}>
+                    {faq.question}
+                  </a>
+                ) : (
+                  <Link href={faq.href} className={className}>
+                    {faq.question}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 id="gpa-guide-how-to-use" className="mb-3 font-semibold text-slate-200 scroll-mt-24">
+              1. How to Use
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {GPA_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -122,7 +201,9 @@ export default function GPACalculatorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 id="gpa-guide-how-it-works" className="mb-3 font-semibold text-slate-200 scroll-mt-24">
+              2. How It Works
+            </h3>
             <div className="space-y-2">
               {GPA_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -130,7 +211,9 @@ export default function GPACalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About GPA Calculator</h3>
+            <h3 id="gpa-guide-about" className="mb-3 font-semibold text-slate-200 scroll-mt-24">
+              3. About GPA Calculator
+            </h3>
             <div className="space-y-2">
               {GPA_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>

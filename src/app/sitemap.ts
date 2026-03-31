@@ -56,7 +56,22 @@ const BASE_URL = "https://withustools.com";
  * - API routes, not-found
  *
  * Dynamic segments must match `prerender-segments.ts` and each route's `generateStaticParams`.
+ *
+ * GPA-related URLs (calculator sub-page + FAQ) are included automatically:
+ * - `/tools/calculator/gpa-calculator/target-gpa` — `PATH_TITLES` in `all-tools.ts` → `ALL_TOOLS` → `toolPagesSorted`
+ * - `/faq/gpa/what-is-weighted-gpa` — `FAQ_ENTRIES` in `faq-data.ts` → `getAllFaqStaticParams` → `faqPages`
  */
+
+function dedupeSitemapByUrl(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
+  const seen = new Set<string>();
+  const out: MetadataRoute.Sitemap = [];
+  for (const e of entries) {
+    if (seen.has(e.url)) continue;
+    seen.add(e.url);
+    out.push(e);
+  }
+  return out;
+}
 
 function unitConverterPairSitemapEntries(
   now: Date,
@@ -197,7 +212,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [
+  return dedupeSitemapByUrl([
     ...siteFoundation,
     ...legalAndMeta,
     ...toolPagesSorted,
@@ -209,5 +224,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...faqPages,
     ...powerConverterPairPages,
     ...numberSystemPairPages,
-  ];
+  ]);
 }

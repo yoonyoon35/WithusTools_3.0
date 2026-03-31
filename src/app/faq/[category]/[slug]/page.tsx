@@ -76,7 +76,10 @@ export async function generateMetadata({
     return createMetadata({ title: "FAQ", noIndex: true });
   }
   const title = `${entry.question} - Quick Answer & Calculator`;
-  const description = `${entry.directAnswer} Learn more about ${entry.seoUnitA} to ${entry.seoUnitB} conversion with our detailed guide and easy-to-use calculator.`;
+  const description =
+    entry.category === "gpa"
+      ? `${entry.directAnswer} Covers the difference between weighted and unweighted GPA, how to calculate weighted GPA with AP classes, and how our GPA Calculator’s 5.0 Scale (Weighted) option fits in.`
+      : `${entry.directAnswer} Learn more about ${entry.seoUnitA} to ${entry.seoUnitB} conversion with our detailed guide and easy-to-use calculator.`;
   return createMetadata({
     title,
     description,
@@ -567,6 +570,65 @@ function NumberSystemHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
   );
 }
 
+function GpaFaqScaleTable() {
+  const rows: [string, string, string][] = [
+    ["A+", "4.0", "5.0"],
+    ["A", "4.0", "4.5"],
+    ["A-", "3.7", "4.2"],
+    ["B+", "3.3", "3.8"],
+    ["B", "3.0", "3.5"],
+    ["B-", "2.7", "3.2"],
+  ];
+  return (
+    <div className="scrollbar-thin overflow-x-auto">
+      <table className="w-full min-w-[320px] text-sm">
+        <thead>
+          <tr className="border-b border-slate-600">
+            <th className="px-3 py-2 text-left font-medium text-slate-300">Grade</th>
+            <th className="px-3 py-2 text-center font-medium text-slate-300">4.0 (unweighted style)</th>
+            <th className="px-3 py-2 text-center font-medium text-slate-300">5.0 Scale (Weighted)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([g, u, w]) => (
+            <tr key={g} className="border-b border-slate-700/50">
+              <td className="px-3 py-2 font-medium text-slate-200">{g}</td>
+              <td className="px-3 py-2 text-center text-slate-300">{u}</td>
+              <td className="px-3 py-2 text-center text-slate-300">{w}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="mt-3 text-xs text-slate-500">
+        Excerpt of the same mappings used in the GPA Calculator conversion table. Full tables include all letter
+        grades and additional scales (4.3, 4.5).
+      </p>
+    </div>
+  );
+}
+
+function GpaFaqRelatedTools() {
+  const linkCls =
+    "block rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-slate-500 hover:bg-slate-800";
+  return (
+    <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2 className="mb-4 text-lg font-semibold text-slate-200">Related GPA tools</h2>
+      <ul className="grid gap-2 sm:grid-cols-2">
+        <li>
+          <Link href="/tools/calculator/gpa-calculator" className={linkCls}>
+            GPA Calculator (4.0 / 5.0 weighted scale)
+          </Link>
+        </li>
+        <li>
+          <Link href="/tools/calculator/gpa-calculator/target-gpa?reset=1" className={linkCls}>
+            Target GPA Calculator
+          </Link>
+        </li>
+      </ul>
+    </section>
+  );
+}
+
 function PressureHubLinkCards({ hubUnitKey }: { hubUnitKey: string }) {
   const hub = PRESSURE_UNITS[hubUnitKey];
   if (!hub) return null;
@@ -612,7 +674,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
   const pageUrl = `https://withustools.com/faq/${entry.category}/${entry.slug}`;
   const jsonLd = buildFaqJsonLd(entry, pageUrl);
   const converterHome =
-    entry.category === "weight"
+    entry.category === "gpa"
+      ? "/tools/calculator/gpa-calculator"
+      : entry.category === "weight"
       ? "/tools/unit-converter/weight"
       : entry.category === "area"
         ? "/tools/unit-converter/area"
@@ -638,7 +702,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
                           ? "/tools/developer/numbersystem-converter"
                           : "/tools/unit-converter/length";
   const converterLabel =
-    entry.category === "weight"
+    entry.category === "gpa"
+      ? "GPA Calculator"
+      : entry.category === "weight"
       ? "Weight Converter"
       : entry.category === "area"
         ? "Area Converter"
@@ -691,7 +757,19 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
         <section className="mt-10">
           <h2 className="sr-only">Detailed answer</h2>
           <div className="space-y-4 text-sm leading-relaxed text-slate-400">
-            <p>{entry.detailedExplanation}</p>
+            {entry.category === "gpa" ? (
+              <>
+                {entry.detailedExplanation
+                  .split(/\n\n+/)
+                  .map((p) => p.trim())
+                  .filter(Boolean)
+                  .map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+              </>
+            ) : (
+              <p>{entry.detailedExplanation}</p>
+            )}
           </div>
         </section>
 
@@ -701,8 +779,14 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
         </section>
 
         <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-          <h2 className="mb-6 text-lg font-semibold text-slate-200">Quick conversion table</h2>
-          {entry.category === "number-system" ? (
+          <h2 className="mb-6 text-lg font-semibold text-slate-200">
+            {entry.category === "gpa"
+              ? "4.0 vs 5.0 Scale (Weighted) — excerpt"
+              : "Quick conversion table"}
+          </h2>
+          {entry.category === "gpa" ? (
+            <GpaFaqScaleTable />
+          ) : entry.category === "number-system" ? (
             <NumberSystemConversionTablesPair
               fromBase={pairKeyToBase(entry.tableFromKey as NumberSystemPairKey)}
               toBase={pairKeyToBase(entry.tableToKey as NumberSystemPairKey)}
@@ -734,7 +818,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           )}
         </section>
 
-        {entry.category === "number-system" ? (
+        {entry.category === "gpa" ? (
+          <GpaFaqRelatedTools />
+        ) : entry.category === "number-system" ? (
           <NumberSystemHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "weight" ? (
           <WeightHubLinkCards hubUnitKey={entry.hubUnitKey} />
@@ -769,7 +855,11 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           >
             ← {converterLabel}
           </Link>
-          {entry.category === "number-system" ? (
+          {entry.category === "gpa" ? (
+            <Link href="/tools/calculator" className="text-slate-400 underline transition-colors hover:text-slate-200">
+              All calculators
+            </Link>
+          ) : entry.category === "number-system" ? (
             <Link href="/tools/developer" className="text-slate-400 underline transition-colors hover:text-slate-200">
               Developer Tools
             </Link>

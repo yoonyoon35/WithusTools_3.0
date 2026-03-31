@@ -16,7 +16,8 @@ export type FaqCategory =
   | "speed"
   | "pressure"
   | "angle"
-  | "number-system";
+  | "number-system"
+  | "gpa";
 
 export interface FaqEntry {
   category: FaqCategory;
@@ -2404,6 +2405,33 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     seoUnitA: "long decimal",
     seoUnitB: "binary",
     keywords: ["large numbers", "decimal to binary", "big integer"],
+  },
+  {
+    category: "gpa",
+    slug: "what-is-weighted-gpa",
+    hubUnitKey: "gpa",
+    question: "What is a Weighted GPA?",
+    directAnswer:
+      "A weighted GPA gives extra grade points for harder courses—such as AP, IB, or honors—so an A in those classes can count above a standard 4.0 when your school uses a higher cap (often up to 5.0).",
+    detailedExplanation:
+      "Weighted GPA is still a credit-weighted average: you multiply each course’s grade points by its credit hours, add them up, and divide by total credits. The only difference is which point scale each course uses.\n\nThe difference between weighted and unweighted GPA: an unweighted GPA usually treats all classes on the same cap (commonly 4.0 for an A), no matter if the class was regular or AP. A weighted GPA bumps the point value for designated advanced courses so rigor is reflected in the number—exact rules, caps, and which courses qualify are set by your school or district, not by a single national standard.\n\nHow to calculate weighted GPA with AP classes: for each course, use the letter grade your school assigns, convert it to points on the scale that applies to that course (regular vs AP/honors), multiply by credits, then divide total quality points by total credits. Example using the same letter-to-point mapping as our GPA Calculator’s 4.0 and 5.0 options: suppose you earn a B in a 3-credit regular class and an A in a 3-credit AP class. On the 4.0 scale, B = 3.0 and (for illustration) A = 4.0, giving (3×3.0 + 3×4.0) / 6 = 3.50 unweighted-style. If the AP class is scored on the 5.0 weighted scale where A = 4.5, while the regular class stays on 4.0, you get (3×3.0 + 3×4.5) / 6 = 3.75. Real transcripts may mix policies, exclude non-academic courses, or cap boosts—always confirm with your registrar.\n\nThe WithUsTools GPA Calculator includes a 5.0 Scale (Weighted) column in its conversion table and a selectable 5.0 grading scale so you can model AP-style points consistently when it matches your handbook.",
+    relationshipContext:
+      "Weighted GPA is a school-specific policy layer on top of letter grades. Our tools implement fixed numeric tables for planning; they do not replace your official transcript calculation.",
+    relatedConverterPath: "/tools/calculator/gpa-calculator",
+    relatedConverterLabel: "GPA Calculator",
+    tableFromKey: "gpa",
+    tableToKey: "gpa",
+    seoUnitA: "weighted GPA",
+    seoUnitB: "unweighted GPA",
+    keywords: [
+      "weighted GPA",
+      "unweighted GPA",
+      "AP GPA",
+      "5.0 scale",
+      "Difference between weighted and unweighted GPA",
+      "How to calculate weighted GPA with AP classes",
+      "honors GPA",
+    ],
   },
 ];
 

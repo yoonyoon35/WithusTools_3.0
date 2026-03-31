@@ -9,6 +9,8 @@ const SITE_URL = "https://withustools.com";
 export const BREADCRUMB_NAMES: Record<string, string> = {
   search: "Tool Search",
   tools: "Tools",
+  faq: "FAQ",
+  gpa: "GPA",
   licenses: "Licenses",
   "privacy-policy": "Privacy Policy",
   "terms-of-use": "Terms of Use",
@@ -29,7 +31,9 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "average-calculator": "Average Calculator",
   "bmi-calculator": "BMI Calculator",
   "gpa-calculator": "GPA Calculator",
+  "target-gpa": "Target GPA Calculator",
   "percentage-calculator": "Percentage Calculator",
+  "programmer-calculator": "Programmer Calculator",
   // Time
   "alarm-clock": "Alarm Clock",
   stopwatch: "Stopwatch",
@@ -87,6 +91,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "jpg-converter": "JPG Converter",
   "pdf-converter": "PDF Converter",
   ssh: "SSH Key Generator",
+  "what-is-weighted-gpa": "What is a Weighted GPA?",
 };
 
 /** Full path -> last segment display name (for disambiguation) */

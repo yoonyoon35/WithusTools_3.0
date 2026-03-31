@@ -6,13 +6,16 @@ import ToolIcon from "@/components/ToolIcon";
 export const metadata: Metadata = createMetadata({
   title: "Calculator Tools",
   description:
-    "Free online calculators: average calculator, BMI calculator, GPA calculator, percentage calculator, and simple scientific calculator. Quick and accurate math tools.",
+    "Free online calculators: average calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator. Quick and accurate math tools.",
   path: "/tools/calculator",
   keywords: [
     "average calculator",
     "BMI calculator",
     "GPA calculator",
     "percentage calculator",
+    "programmer calculator",
+    "binary calculator",
+    "hex calculator",
     "calculator",
     "mean median mode",
     "body mass index",
@@ -52,16 +55,24 @@ const CALCULATOR_TOOLS = [
     description: "Calculate percentages, percentage change, and more. Perfect for discounts, growth rates, and conversions.",
     path: "/tools/calculator/percentage-calculator",
   },
+  {
+    slug: "programmer-calculator",
+    name: "Programmer Calculator",
+    description:
+      "Binary, hex, octal, and decimal in one view. 64-bit unsigned (QWORD), keypad or bit-toggle grid, bitwise shifts, and memory.",
+    path: "/tools/calculator/programmer-calculator",
+  },
 ] as const;
 
 const CALC_INDEX_GUIDE = {
   usage: [
-    "Choose a calculator from the grid above: Average, BMI, GPA, Percentage, or Simple Calculator.",
+    "Choose a calculator from the grid above: Average, BMI, GPA, Percentage, Programmer, or Simple Calculator.",
     "Average Calculator: Enter numbers separated by commas or spaces, then click Calculate for mean, median, mode, and range.",
     "BMI Calculator: Enter height and weight in metric (cm/kg) or US (ft/in, lbs). Switch units with the toggle button.",
     "Simple Calculator: Use on-screen buttons or keyboard for basic and scientific operations including memory functions.",
     "GPA Calculator: Add courses with grades and credits, select grading scale, then click Calculate GPA.",
     "Percentage Calculator: Use Basic tab for X% of a number, or Percentage Change tab for increase/decrease between two values.",
+    "Programmer Calculator: Pick HEX, DEC, OCT, or BIN; only valid digits for that base are enabled. All bases show the same 64-bit value. Use the dot-grid control for bit toggling.",
   ],
   howItWorks: [
     "All calculators run in your browser. No data is sent to any server. Your input and results stay on your device.",
@@ -69,6 +80,7 @@ const CALC_INDEX_GUIDE = {
     "BMI Calculator uses the standard formula: weight ÷ height². Metric uses kg/m²; US units use (lbs × 703) ÷ height(in)².",
     "GPA Calculator converts letter grades to points based on your selected scale, multiplies by credits, and divides by total credits.",
     "Percentage Calculator: Basic = (percentage × number) ÷ 100; Change = ((new − old) ÷ old) × 100.",
+    "Programmer Calculator: Parses input in the selected radix, masks to 64-bit unsigned, and syncs every base and the bit grid.",
   ],
   about: [
     "Free online calculators for everyday math. No signup required. Works on desktop and mobile.",
@@ -102,7 +114,7 @@ export default function CalculatorIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Average calculator, BMI calculator, GPA calculator, percentage calculator, and simple scientific calculator.
+        Average calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator.
         All tools run in your browser—no signup required.
       </p>
 
