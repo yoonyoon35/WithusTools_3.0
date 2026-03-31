@@ -6,11 +6,11 @@ import {
 } from "@/utils/numberSystemConversion";
 
 const FORMAT_DESCRIPTIONS: Record<NumberSystemPairKey, string> = {
-  bin: "Binary (base 2) uses digits 0 and 1. This tool accepts an optional 0b prefix. Each position is a power of two; it is the native representation for digital logic and bitwise operations.",
-  oct: "Octal (base 8) uses digits 0–7. A leading 0 denotes octal in this converter (e.g. 0777). Grouping binary digits in threes maps cleanly to octal, which is why Unix file permissions often use it.",
-  dec: "Decimal (base 10) is everyday positional notation using digits 0–9. No prefix is required. Internally, values are parsed to an integer and then re-encoded into any other selected format.",
-  hex: "Hexadecimal (base 16) uses 0–9 and A–F. This tool accepts an optional 0x prefix. Each hex digit covers four bits, so it is compact for memory addresses, colors, and byte dumps.",
-  char: "Character mode treats exactly one character as its Unicode (UTF-16 code unit) scalar value in the range 0–65535. Control and C1 characters are labeled by name in the output when relevant.",
+  bin: "Binary (base 2) uses digits 0 and 1. This tool accepts an optional 0b prefix. You may use one radix point; digits after it use negative powers of two (½, ¼, …). It is the native representation for digital logic and bitwise operations.",
+  oct: "Octal (base 8) uses digits 0–7. A leading 0 denotes octal in this converter (e.g. 0777). One radix point is allowed; fractional places use 8⁻¹, 8⁻², …. Grouping binary digits in threes maps cleanly to octal, which is why Unix file permissions often use it.",
+  dec: "Decimal (base 10) uses digits 0–9; no prefix is required. A single . may separate the fractional part (10⁻¹, 10⁻², …). Values are parsed to a number and re-encoded into the target format; very long fractions are limited by floating-point precision.",
+  hex: "Hexadecimal (base 16) uses 0–9 and A–F. This tool accepts an optional 0x prefix. One radix point is allowed; fractional digits use 16⁻¹, 16⁻², …. Each hex digit covers four bits, so it is compact for memory addresses, colors, and byte dumps.",
+  char: "Character mode treats exactly one character as its Unicode (UTF-16 code unit) scalar value in the range 0–65535. There is no fractional part in this mode. Control and C1 characters are labeled by name in the output when relevant.",
 };
 
 export function getNumberSystemFormatDescription(key: NumberSystemPairKey): string {
@@ -21,9 +21,10 @@ export function getNumberSystemSummary(from: NumberSystemPairKey, to: NumberSyst
   const fromName = NUMBER_SYSTEM_PAIR_KEY_LABELS[from];
   const toName = NUMBER_SYSTEM_PAIR_KEY_LABELS[to];
   return (
-    `To convert ${fromName} to ${toName}, the tool first parses your input strictly as ${fromName.toLowerCase()}, producing an integer in decimal. ` +
-    `That integer is then formatted as ${toName.toLowerCase()} using the same rules as the main Number System Converter (prefixes 0b, 0, 0x where applicable; character output uses symbolic names for common controls). ` +
-    `The transformation is exact for integers that fit the parser and character range; there is no separate rounding step.`
+    `To convert ${fromName} to ${toName}, the tool first parses your input strictly as ${fromName.toLowerCase()}, producing a decimal value. ` +
+    `For binary, octal, decimal, and hex, you may include one radix point and fractional digits; character input remains a single code unit with no dot. ` +
+    `That value is formatted as ${toName.toLowerCase()} using the same rules as the main Number System Converter (prefixes 0b, 0, 0x where applicable; character output uses symbolic names for common controls and requires a whole-number code point). ` +
+    `Long fractional expansions are truncated to a fixed digit cap; ordinary floating-point rounding may appear in extreme cases.`
   );
 }
 
@@ -35,7 +36,7 @@ export function getNumberSystemRelationshipContext(from: NumberSystemPairKey, to
   const fromIsNum = groupNumeric.includes(from as (typeof groupNumeric)[number]);
   const toIsNum = groupNumeric.includes(to as (typeof groupNumeric)[number]);
   if (fromIsNum && toIsNum) {
-    return `${fromName}, ${toName}, and the other numeric bases on this site all describe the same integer; only the radix changes. ` +
+    return `${fromName}, ${toName}, and the other numeric bases on this site all describe the same numeric value; only the radix changes (including optional fractional digits after one dot). ` +
       `Moving between them is equivalent to changing how the value is written, not to scaling or unit conversion. ` +
       `Binary, octal, and hex align with bit boundaries (powers of two), while decimal is optimized for human arithmetic.`;
   }

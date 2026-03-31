@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = createMetadata({
   title: "Number System Converter | Binary, Octal, Decimal, Hex",
   description:
-    "Number System Converter - Convert numbers between different number systems. Support for binary, octal, decimal, hexadecimal, and ASCII. Free online tool.",
+    "Number System Converter — binary, octal, decimal, hexadecimal, and character. Optional radix-point (fractional) conversion on numeric bases; same rules on every pair page. Free online tool.",
   path: "/tools/developer/numbersystem-converter",
   keywords: [
     "number system converter",
@@ -23,6 +23,7 @@ export const metadata: Metadata = createMetadata({
     "decimal converter",
     "hexadecimal converter",
     "octal converter",
+    "fractional radix converter",
     "withustools",
   ],
 });
@@ -31,7 +32,7 @@ export const metadata: Metadata = createMetadata({
 const NS_GUIDE = {
   quickStart: [
     "Select input format (Input as): Binary, Octal, Decimal, Hexadecimal, or Character.",
-    "Enter a number or single character. Binary: 0b1010, Hex: 0xFF, Octal: 0777, Decimal: 255, Character: A.",
+    "Enter a value. Numeric examples: 0b1010, 0xFF, 0777, 255 — you may add one dot for a fraction (e.g. 1010.101 in binary, 10.625 in decimal). Character: exactly one symbol, no dot.",
     "All conversions are shown at once. Copy All to copy. Clear to reset.",
   ],
   deeper: [
@@ -41,7 +42,7 @@ const NS_GUIDE = {
   exampleUses: [
     "Programming: convert between number bases.",
     "Debugging: inspect character codes.",
-    "Learning: understand number systems.",
+    "Learning: understand number systems and fractional radix (e.g. binary fractions).",
   ],
 };
 
@@ -75,8 +76,9 @@ export default function NumberSystemConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between binary, octal, decimal, hexadecimal, and ASCII
-        characters.
+        Convert between binary, octal, decimal, hexadecimal, and ASCII characters. Numeric bases accept one radix point
+        and fractional digits (e.g. <span className="font-mono text-slate-300">1010.101</span>₂ →{" "}
+        <span className="font-mono text-slate-300">10.625</span>₁₀); character mode stays a single symbol.
       </p>
 
       <NumberSystemConverter />
@@ -98,7 +100,7 @@ export default function NumberSystemConverterPage() {
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {NS_PAIR_LINKS.length} pages — every directed pair of formats below, with fixed input/output and the same
-          parsing rules as the main converter.
+          parsing rules as the main converter (including optional fractional input on numeric bases).
         </p>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {NS_PAIR_LINKS.map(({ from, to }) => {

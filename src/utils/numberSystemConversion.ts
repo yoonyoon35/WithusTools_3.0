@@ -143,54 +143,156 @@ export function formatCharForDisplay(code: number): string {
   return String.fromCharCode(code);
 }
 
+/** Max digits after the radix point when converting to another base (floating‑precision limit). */
+export const NUMBER_SYSTEM_MAX_FRACTION_DIGITS = 32;
+
+const VALID_REGEX: Record<Exclude<NumberSystemBase, "char">, RegExp> = {
+  "2": /^[01]+$/,
+  "8": /^[0-7]+$/,
+  "10": /^[0-9]+$/,
+  "16": /^[0-9a-f]+$/,
+};
+
+function stripNumericPrefix(intPart: string, base: Exclude<NumberSystemBase, "char">): string {
+  let s = intPart.toLowerCase();
+  if (base === "2" && s.startsWith("0b")) s = s.slice(2);
+  else if (base === "16" && s.startsWith("0x")) s = s.slice(2);
+  else if (base === "8" && s.length > 1 && s.startsWith("0")) s = s.slice(1);
+  return s;
+}
+
+function parseFractionalPart(frac: string, radix: number): number {
+  if (frac === "") return 0;
+  if (!VALID_REGEX[String(radix) as keyof typeof VALID_REGEX].test(frac)) {
+    throw new Error(`Invalid fractional digits for base ${radix}`);
+  }
+  let sum = 0;
+  let pow = 1 / radix;
+  for (let i = 0; i < frac.length; i++) {
+    const ch = frac[i]!;
+    const d = parseInt(ch, radix);
+    if (Number.isNaN(d) || d >= radix) throw new Error(`Invalid fractional digits for base ${radix}`);
+    sum += d * pow;
+    pow /= radix;
+  }
+  return sum;
+}
+
 export function parseNumberSystemInput(input: string, base: NumberSystemBase): number {
   const trimmed = input.trim().toLowerCase();
   if (base === "char") {
     if (trimmed.length !== 1) throw new Error("Please enter a single character");
+    if (trimmed.includes(".")) throw new Error("Character input cannot include a decimal point");
     return trimmed.charCodeAt(0);
   }
-  let cleaned = trimmed;
-  if (cleaned.startsWith("0b") && base === "2") cleaned = cleaned.slice(2);
-  else if (cleaned.startsWith("0x") && base === "16") cleaned = cleaned.slice(2);
-  else if (cleaned.startsWith("0") && base === "8") cleaned = cleaned.slice(1);
-  const validChars: Record<string, string> = {
-    "2": "01",
-    "8": "0-7",
-    "10": "0-9",
-    "16": "0-9a-f",
-  };
-  const re = new RegExp(`^[${validChars[base]}]+$`);
-  if (!cleaned.match(re)) throw new Error(`Invalid characters for base ${base}`);
-  return parseInt(cleaned, parseInt(base));
+
+  let s = trimmed;
+  let neg = false;
+  if (s.startsWith("-")) {
+    neg = true;
+    s = s.slice(1).trimStart();
+  } else if (s.startsWith("+")) {
+    s = s.slice(1).trimStart();
+  }
+
+  const dot = s.indexOf(".");
+  if (dot !== s.lastIndexOf(".")) throw new Error("Only one decimal point is allowed");
+
+  const rawInt = dot === -1 ? s : s.slice(0, dot);
+  const rawFrac = dot === -1 ? "" : s.slice(dot + 1);
+
+  if (rawInt === "" && rawFrac === "") throw new Error("Empty input");
+
+  const radix = parseInt(base, 10);
+  const intStripped = stripNumericPrefix(rawInt, base);
+  const intPartStr = intStripped === "" ? "0" : intStripped;
+
+  if (!VALID_REGEX[base].test(intPartStr)) {
+    throw new Error(`Invalid characters for base ${base}`);
+  }
+
+  const intVal = parseInt(intPartStr, radix);
+  if (!Number.isFinite(intVal)) throw new Error(`Invalid value for base ${base}`);
+
+  const fracVal = parseFractionalPart(rawFrac, radix);
+  const out = intVal + fracVal;
+  return neg ? -out : out;
 }
 
-export function convertNumberSystemFromDecimal(decimal: number, base: NumberSystemBase): string {
-  if (base === "char") {
-    if (decimal < 0 || decimal > 65535) throw new Error("Character code must be between 0 and 65535");
-    return formatCharForDisplay(decimal);
-  }
-  const b = parseInt(base);
-  if (decimal === 0) return "0";
-  const isNeg = decimal < 0;
-  decimal = Math.abs(decimal);
+function digitToChar(d: number): string {
+  return d < 10 ? String(d) : String.fromCharCode(87 + d);
+}
+
+function integerAbsToRadixString(n: number, b: number): string {
+  let x = Math.floor(n);
+  if (x === 0) return "0";
   let result = "";
-  while (decimal > 0) {
-    const rem = decimal % b;
-    result = (rem < 10 ? rem.toString() : String.fromCharCode(87 + rem)) + result;
-    decimal = Math.floor(decimal / b);
+  while (x > 0) {
+    const rem = x % b;
+    result = digitToChar(rem) + result;
+    x = Math.floor(x / b);
   }
-  if (base === "2") result = "0b" + result;
-  else if (base === "16") result = "0x" + result;
-  else if (base === "8") result = "0" + result;
-  return isNeg ? "-" + result : result;
+  return result;
+}
+
+function fractionalPartToRadixString(frac: number, b: number, maxDigits: number): string {
+  if (frac <= 1e-15) return "";
+  let f = frac;
+  let digits = "";
+  for (let i = 0; i < maxDigits; i++) {
+    if (f < 1e-15) break;
+    f *= b;
+    const d = Math.min(b - 1, Math.floor(f + 1e-10));
+    f -= d;
+    digits += digitToChar(d);
+    if (f < 1e-12) break;
+  }
+  return digits;
+}
+
+function applyNumericPrefix(integerAndRest: string, base: Exclude<NumberSystemBase, "char">): string {
+  if (base === "2") return "0b" + integerAndRest;
+  if (base === "16") return "0x" + integerAndRest;
+  if (base === "8") return "0" + integerAndRest;
+  return integerAndRest;
+}
+
+const CHAR_INT_EPS = 1e-9;
+
+export function convertNumberSystemFromDecimal(decimal: number, base: NumberSystemBase): string {
+  if (!Number.isFinite(decimal)) throw new Error("Value is not a finite number");
+
+  if (base === "char") {
+    const r = Math.round(decimal);
+    if (Math.abs(decimal - r) > CHAR_INT_EPS) {
+      throw new Error("Character output requires a whole number (0–65535)");
+    }
+    if (r < 0 || r > 65535) throw new Error("Character code must be between 0 and 65535");
+    return formatCharForDisplay(r);
+  }
+
+  const b = parseInt(base, 10);
+  const isNeg = decimal < 0;
+  const x = Math.abs(decimal);
+  if (x < 1e-15) return "0";
+
+  const intPart = Math.floor(x);
+  const frac = x - intPart;
+
+  const intStr = integerAbsToRadixString(intPart, b);
+  const fracStr = fractionalPartToRadixString(frac, b, NUMBER_SYSTEM_MAX_FRACTION_DIGITS);
+
+  const body = fracStr === "" ? intStr : `${intStr}.${fracStr}`;
+  const prefixed = applyNumericPrefix(body, base);
+  return isNeg ? "-" + prefixed : prefixed;
 }
 
 export const NUMBER_SYSTEM_INPUT_PLACEHOLDERS: Record<NumberSystemBase, string> = {
-  "2": "e.g. 0b1010 or 1010 (0 and 1 only)",
-  "8": "e.g. 0777 or 777 (0–7 only)",
-  "10": "e.g. 255 (0–9 only)",
-  "16": "e.g. 0xFF or FF (0–9, A–F)",
-  char: "e.g. A (single character)",
+  "2": "e.g. 0b1010, 1010.101 (0 and 1; optional .fraction)",
+  "8": "e.g. 0777, 12.4 (0–7; optional .fraction)",
+  "10": "e.g. 255, 0.625 (0–9; optional .fraction)",
+  "16": "e.g. 0xFF, A.F (0–9, A–F; optional .fraction)",
+  char: "e.g. A (single character, no fraction)",
 };
 
 export const NUMBER_SYSTEM_BASE_LABELS: Record<NumberSystemBase, string> = {

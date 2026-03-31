@@ -43,7 +43,7 @@ export async function generateMetadata({
   const fromName = NUMBER_SYSTEM_PAIR_KEY_LABELS[pair.from];
   const toName = NUMBER_SYSTEM_PAIR_KEY_LABELS[pair.to];
   const title = `${fromName} to ${toName} Converter | Number System`;
-  const description = `Easily convert ${fromName} to ${toName}. Fast, free converter with step-by-step notes, examples, and conversion tables.`;
+  const description = `Convert ${fromName} to ${toName} — step-by-step formulas, examples (including fractional radix on numeric bases), and tables. Same parsing as the main Number System Converter.`;
 
   return createMetadata({
     title,
@@ -83,9 +83,10 @@ export default function NumberSystemPairPage({ params }: { params: { slug: strin
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert {fromName} to {toName} with a fixed input and output format, a step-by-step formula line under the
-        result, and reference tables. Parsing uses the same rules as the main Number System Converter (0b, 0x,
-        leading 0 for octal; single character for character mode).
+        Convert {fromName} to {toName} with a fixed input and output format, step-by-step formulas under the result,
+        and reference tables. Parsing matches the main hub (0b, 0x, leading 0 for octal; one optional{" "}
+        <code className="text-slate-300">.</code> for fractional digits on numeric bases; single character for character
+        mode).
       </p>
 
       <NumberSystemPairCalculator fromBase={fromBase} toBase={toBase} />

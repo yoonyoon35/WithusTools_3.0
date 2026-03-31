@@ -13,6 +13,13 @@ import {
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 
+/** Matches `CHAR_INT_EPS` in numberSystemConversion — non-integers cannot map to a single character. */
+function hasNonIntegerValue(n: number): boolean {
+  return Number.isFinite(n) && Math.abs(n - Math.round(n)) > 1e-9;
+}
+
+const CHAR_FRACTION_MESSAGE = "integers only (no fractional part)";
+
 export default function NumberSystemConverter() {
   const [fromBase, setFromBase] = useState<NumberSystemBase>("10");
   const [input, setInput] = useState("");
@@ -44,7 +51,10 @@ export default function NumberSystemConverter() {
       const decimal = parseNumberSystemInput(trimmed, fromBase);
       return ALL_NUMBER_SYSTEM_BASES.map((base) => ({
         label: NUMBER_SYSTEM_BASE_LABELS[base],
-        value: convertNumberSystemFromDecimal(decimal, base),
+        value:
+          base === "char" && hasNonIntegerValue(decimal)
+            ? CHAR_FRACTION_MESSAGE
+            : convertNumberSystemFromDecimal(decimal, base),
       }));
     } catch (err) {
       return [{ label: "Error", value: err instanceof Error ? err.message : String(err) }];
