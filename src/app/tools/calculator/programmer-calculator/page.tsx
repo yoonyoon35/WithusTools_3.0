@@ -3,6 +3,10 @@ import { createMetadata } from "@/lib/metadata";
 import ToolIcon from "@/components/ToolIcon";
 import Link from "next/link";
 import ProgrammerCalculator from "./ProgrammerCalculator";
+import ProgrammerCalculatorTechnicalReference from "./ProgrammerCalculatorTechnicalReference";
+
+const PROGRAMMER_DOC_SECTION =
+  "w-full rounded-xl border border-border bg-surface p-6 sm:p-8";
 
 export const metadata: Metadata = createMetadata({
   title: "Programmer Calculator — Binary, Hex, Octal, Decimal",
@@ -24,31 +28,22 @@ export const metadata: Metadata = createMetadata({
 
 const PROGRAMMER_GUIDE = {
   usage: [
-    "Select HEX, DEC, OCT, or BIN on the left. The blue bar shows the active input radix.",
-    "Type digits using the keypad. Only digits valid for that radix are enabled (e.g. 0–1 in BIN, 0–7 in OCT, 0–9 in DEC, 0–9 and A–F in HEX).",
-    "All four bases update at once from the same 32-bit unsigned value. Switch radix anytime; the value is preserved.",
-    "Use << and >> for bitwise shift left/right on the current value. C clears; backspace deletes the last digit.",
-    "Use +, −, ×, ÷, and % for arithmetic. = completes the operation. MS stores the current value; open M▾ for MR, MC, and M+.",
-    "Tap the dot-grid icon to open Bit toggling: 64 bits in four rows of 16, grouped by nibbles with index labels. Click any 0/1 to flip that bit; HEX/DEC/OCT/BIN update immediately.",
-  ],
-  howItWorks: [
-    "Values are kept as a 64-bit unsigned integer (0 … 18,446,744,073,709,551,615). Arithmetic and shifts wrap like unsigned QWORD math.",
-    "Digit entry is parsed in the selected base and masked to 64 bits. The bit grid shows the same value and edits it in place.",
-    "Everything runs locally in your browser; nothing is sent to a server.",
+    "Select HEX / DEC / OCT / BIN (blue accent = active radix) and word size from QWORD▾. How each row displays the value is covered in the technical section above.",
+    "Enter digits on the keypad. Use the row above the keys for bitwise ops; use << and >> with the shift-mode dropdown. Open the 2×2 dot tab to toggle bits in the grid.",
+    "For two-operand functions: enter the first value, tap the operator, enter the second value, then =. NOT, ±, and shifts apply to the number currently shown.",
+    "C clears the calculator; Backspace removes one digit. MS stores the display; M▾ opens MR, MC, and M+. With focus inside the widget, you can also use the keyboard—see the technical section above.",
   ],
   about: [
-    "Programmer Calculator is for developers and students who work with binary, hex, octal, and decimal in one place.",
-    "It mirrors a familiar programmer-style layout: multi-base readout, keypad or bit grid, shifts, and optional memory keys.",
+    "Programmer Calculator targets developers and students who work with integers in multiple radices and bit patterns. Exact formulas, wrapping, shift semantics, and bitwise examples are in the technical section above.",
   ],
   advantages: [
-    "Instant conversion across HEX, DEC, OCT, and BIN while you type, plus a visual 64-bit editor.",
-    "Input limits match each base so invalid digits are never entered by mistake.",
-    "No install or account—open the page and use it on desktop or mobile.",
+    "One value drives every readout and the bit grid, so you do not jump between separate converters.",
+    "No install or account; everything runs locally in your browser.",
   ],
   useCases: [
-    "Embedded and low-level: inspect flags, masks, and register-sized values.",
-    "Networking and protocols: quick hex/binary conversions.",
-    "Learning: see the same number in every common radix at once.",
+    "Embedded: masks, flags, and register-sized values.",
+    "Protocols and file formats: quick hex/binary inspection.",
+    "Learning: compare radix views and bit patterns side by side.",
   ],
 };
 
@@ -65,9 +60,15 @@ export default function ProgrammerCalculatorPage() {
         </div>
       </div>
 
-      <ProgrammerCalculator />
+      <section aria-label="Programmer calculator" className="mx-auto w-full max-w-xl">
+        <ProgrammerCalculator />
+      </section>
 
-      <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <section aria-label="Technical reference" className={`mx-auto mt-10 ${PROGRAMMER_DOC_SECTION}`}>
+        <ProgrammerCalculatorTechnicalReference />
+      </section>
+
+      <section aria-label="User guide" className={`mx-auto mt-12 ${PROGRAMMER_DOC_SECTION}`}>
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
@@ -78,15 +79,7 @@ export default function ProgrammerCalculatorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
-            <div className="space-y-2">
-              {PROGRAMMER_GUIDE.howItWorks.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Programmer Calculator</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">2. About Programmer Calculator</h3>
             <div className="space-y-2">
               {PROGRAMMER_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -94,7 +87,7 @@ export default function ProgrammerCalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">3. Advantages</h3>
             <ul className="list-disc space-y-2 pl-5">
               {PROGRAMMER_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -102,7 +95,7 @@ export default function ProgrammerCalculatorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">4. Real-World Use Cases</h3>
             <ul className="list-disc space-y-2 pl-5">
               {PROGRAMMER_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

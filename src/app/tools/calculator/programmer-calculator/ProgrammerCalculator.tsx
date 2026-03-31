@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Base = "hex" | "dec" | "oct" | "bin";
 type PanelMode = "keypad" | "bits";
 type WordSize = "qword" | "dword" | "word" | "byte";
+type ShiftMode = "arithmetic" | "logical" | "rotate" | "rotateThroughCarry";
 
 const ACCENT = "#005A9E";
 const PANEL = "rgb(30 41 59 / 0.6)";
@@ -29,6 +30,23 @@ const WORD_LABEL: Record<WordSize, string> = {
   byte: "BYTE",
 };
 
+const SHIFT_MODE_MENU: Record<ShiftMode, string> = {
+  arithmetic: "Arithmetic shift",
+  logical: "Logical shift",
+  rotate: "Rotate",
+  rotateThroughCarry: "Rotate through carry",
+};
+
+/** Short label on the toolbar button (current mode + ▾). */
+const SHIFT_MODE_BTN: Record<ShiftMode, string> = {
+  arithmetic: "Arith",
+  logical: "Logic",
+  rotate: "Rot",
+  rotateThroughCarry: "RTC",
+};
+
+const SHIFT_MODES_ORDER: ShiftMode[] = ["arithmetic", "logical", "rotate", "rotateThroughCarry"];
+
 const RADIX: Record<Base, number> = {
   hex: 16,
   dec: 10,
@@ -45,6 +63,43 @@ function maskWord(n: bigint, ws: WordSize): bigint {
   const b = WORD_BITS[ws];
   if (b === 64) return maskQ(n);
   return n & ((B1 << BigInt(b)) - B1);
+}
+
+function shiftLeftOneImpl(v: bigint, mode: ShiftMode, carryIn: bigint, ws: WordSize): { out: bigint; carryOut: bigint } {
+  const bits = WORD_BITS[ws];
+  const vv = maskWord(v, ws);
+  const msb = (vv >> BigInt(bits - 1)) & B1;
+
+  switch (mode) {
+    case "arithmetic":
+    case "logical":
+      return { out: maskWord(vv << B1, ws), carryOut: msb };
+    case "rotate":
+      return { out: maskWord((vv << B1) | msb, ws), carryOut: msb };
+    case "rotateThroughCarry":
+      return { out: maskWord((vv << B1) | (carryIn & B1), ws), carryOut: msb };
+  }
+}
+
+function shiftRightOneImpl(v: bigint, mode: ShiftMode, carryIn: bigint, ws: WordSize): { out: bigint; carryOut: bigint } {
+  const bits = WORD_BITS[ws];
+  const vv = maskWord(v, ws);
+  const lsb = vv & B1;
+  const signBit = B1 << BigInt(bits - 1);
+
+  switch (mode) {
+    case "logical":
+      return { out: maskWord(vv >> B1, ws), carryOut: lsb };
+    case "arithmetic": {
+      const signed = vv >= signBit ? vv - (B1 << BigInt(bits)) : vv;
+      const shifted = signed >> B1;
+      return { out: maskWord(shifted, ws), carryOut: lsb };
+    }
+    case "rotate":
+      return { out: maskWord((vv >> B1) | (lsb << BigInt(bits - 1)), ws), carryOut: lsb };
+    case "rotateThroughCarry":
+      return { out: maskWord((vv >> B1) | ((carryIn & B1) << BigInt(bits - 1)), ws), carryOut: lsb };
+  }
 }
 
 function maxInputLens(ws: WordSize): { bin: number; hex: number; oct: number; dec: number } {
@@ -236,10 +291,58 @@ function applyOpMasked(a: bigint, b: bigint, op: string, ws: WordSize): bigint {
       if (ub === B0) return ua;
       r = ua % ub;
       break;
+    case "&":
+      r = ua & ub;
+      break;
+    case "|":
+      r = ua | ub;
+      break;
+    case "^":
+      r = ua ^ ub;
+      break;
+    case "nor":
+      r = maskWord(~(ua | ub), ws);
+      break;
+    case "nand":
+      r = maskWord(~(ua & ub), ws);
+      break;
     default:
       r = ub;
   }
   return maskWord(r, ws);
+}
+
+function opToExprLabel(op: string): string {
+  switch (op) {
+    case "&":
+      return "AND";
+    case "|":
+      return "OR";
+    case "^":
+      return "XOR";
+    case "nor":
+      return "NOR";
+    case "nand":
+      return "NAND";
+    case "+":
+      return "+";
+    case "-":
+      return "−";
+    case "*":
+      return "×";
+    case "/":
+      return "÷";
+    case "%":
+      return "%";
+    default:
+      return op;
+  }
+}
+
+/** Expression-line operands use the same radix/style as the main display (avoids e.g. HEX `12` showing as decimal `18`). */
+function formatExprOperandValue(n: bigint, b: Base, ws: WordSize): string {
+  if (b === "dec") return formatDecSigned(n, ws);
+  return formatGroupedUnsigned(n, b, ws);
 }
 
 function negateWord(v: bigint, ws: WordSize): bigint {
@@ -396,8 +499,18 @@ export default function ProgrammerCalculator() {
   const [memory, setMemory] = useState<bigint>(B0);
   const [memMenuOpen, setMemMenuOpen] = useState(false);
   const [wordMenuOpen, setWordMenuOpen] = useState(false);
+  const [shiftMenuOpen, setShiftMenuOpen] = useState(false);
+  const [shiftMode, setShiftMode] = useState<ShiftMode>("logical");
+  /** Single-bit carry for “Rotate through carry” (<< / >>). */
+  const [shiftCarry, setShiftCarry] = useState<bigint>(B0);
   const [panelMode, setPanelMode] = useState<PanelMode>("keypad");
   const [wordSize, setWordSize] = useState<WordSize>("qword");
+  /** In-progress formula without the right-hand operand being typed (e.g. `1 AND`, `1 AND 2 OR`). */
+  const [exprProgress, setExprProgress] = useState("");
+  /** Last completed line after `=`, until the user starts a new entry. */
+  const [exprCompleted, setExprCompleted] = useState<string | null>(null);
+
+  const calcRootRef = useRef<HTMLDivElement>(null);
 
   const radix = RADIX[base];
   const lens = maxInputLens(wordSize);
@@ -418,6 +531,18 @@ export default function ProgrammerCalculator() {
     return binMainRowsForWord(buf, value, wordSize);
   }, [base, buf, value, wordSize]);
 
+  const expressionLine = useMemo(() => {
+    if (exprCompleted) return exprCompleted;
+    if (!exprProgress) return "";
+    const rhs = buf !== "" ? formatGroupedEntry(buf, base) : "";
+    return rhs ? `${exprProgress} ${rhs}` : exprProgress;
+  }, [exprCompleted, exprProgress, buf, base]);
+
+  const clearExpr = useCallback(() => {
+    setExprProgress("");
+    setExprCompleted(null);
+  }, []);
+
   const commitBufToValue = useCallback(() => {
     const v = buf !== "" ? maskWord(qwordFromString(buf, radix), wordSize) : maskWord(value, wordSize);
     setValue(v);
@@ -433,9 +558,16 @@ export default function ProgrammerCalculator() {
       setBuf("");
       setBase(next);
       setFresh(true);
+      clearExpr();
     },
-    [base, buf, value, wordSize]
+    [base, buf, value, wordSize, clearExpr]
   );
+
+  const setShiftModePick = useCallback((m: ShiftMode) => {
+    setShiftMode(m);
+    setShiftCarry(B0);
+    setShiftMenuOpen(false);
+  }, []);
 
   const setWordSizeAndMask = useCallback((ws: WordSize) => {
     setWordSize(ws);
@@ -443,12 +575,15 @@ export default function ProgrammerCalculator() {
     setBuf("");
     setFresh(true);
     setWordMenuOpen(false);
-  }, []);
+    setShiftCarry(B0);
+    clearExpr();
+  }, [clearExpr]);
 
   const appendDigit = useCallback(
     (d: string) => {
       const ch = d.toUpperCase();
       if (!digitAllowed(ch, base)) return;
+      if (fresh) setExprCompleted(null);
       let next = fresh ? ch : buf + ch;
       if (base === "bin" && next.length > lens.bin) next = next.slice(-lens.bin);
       if (base === "hex" && next.length > lens.hex) next = next.slice(-lens.hex);
@@ -467,7 +602,9 @@ export default function ProgrammerCalculator() {
     setPendingAcc(null);
     setPendingOp(null);
     setFresh(true);
-  }, []);
+    setShiftCarry(B0);
+    clearExpr();
+  }, [clearExpr]);
 
   const backspace = useCallback(() => {
     if (buf.length > 0) {
@@ -486,25 +623,44 @@ export default function ProgrammerCalculator() {
     setValue(negateWord(v, wordSize));
     setBuf("");
     setFresh(true);
-  }, [buf, radix, value, wordSize]);
+    clearExpr();
+  }, [buf, radix, value, wordSize, clearExpr]);
 
   const shiftLeft = useCallback(() => {
     const v = buf !== "" ? maskWord(qwordFromString(buf, radix), wordSize) : maskWord(value, wordSize);
-    setValue(maskWord(v << B1, wordSize));
+    const { out, carryOut } = shiftLeftOneImpl(v, shiftMode, shiftCarry, wordSize);
+    setValue(out);
+    if (shiftMode === "rotateThroughCarry") setShiftCarry(carryOut);
     setBuf("");
     setFresh(true);
-  }, [buf, radix, value, wordSize]);
+    clearExpr();
+  }, [buf, clearExpr, radix, shiftCarry, shiftMode, value, wordSize]);
 
   const shiftRight = useCallback(() => {
     const v = buf !== "" ? maskWord(qwordFromString(buf, radix), wordSize) : maskWord(value, wordSize);
-    setValue(maskWord(v >> B1, wordSize));
+    const { out, carryOut } = shiftRightOneImpl(v, shiftMode, shiftCarry, wordSize);
+    setValue(out);
+    if (shiftMode === "rotateThroughCarry") setShiftCarry(carryOut);
     setBuf("");
     setFresh(true);
-  }, [buf, radix, value, wordSize]);
+    clearExpr();
+  }, [buf, clearExpr, radix, shiftCarry, shiftMode, value, wordSize]);
+
+  /** One’s complement within the current word (not two’s-complement negate). */
+  const bitNot = useCallback(() => {
+    const v = buf !== "" ? maskWord(qwordFromString(buf, radix), wordSize) : maskWord(value, wordSize);
+    setValue(maskWord(~v, wordSize));
+    setBuf("");
+    setPendingAcc(null);
+    setPendingOp(null);
+    setFresh(true);
+    clearExpr();
+  }, [buf, radix, value, wordSize, clearExpr]);
 
   const onBinaryOp = useCallback(
     (op: string) => {
       const v = commitBufToValue();
+      setExprCompleted(null);
       if (pendingAcc !== null && pendingOp && !fresh) {
         const res = applyOpMasked(pendingAcc, v, pendingOp, wordSize);
         setValue(res);
@@ -512,6 +668,7 @@ export default function ProgrammerCalculator() {
         setPendingOp(op);
         setBuf("");
         setFresh(true);
+        setExprProgress((p) => `${p} ${formatExprOperandValue(v, base, wordSize)} ${opToExprLabel(op)}`);
         return;
       }
       setPendingAcc(v);
@@ -519,8 +676,9 @@ export default function ProgrammerCalculator() {
       setValue(B0);
       setBuf("");
       setFresh(true);
+      setExprProgress(`${formatExprOperandValue(v, base, wordSize)} ${opToExprLabel(op)}`);
     },
-    [commitBufToValue, fresh, pendingAcc, pendingOp, wordSize]
+    [base, commitBufToValue, fresh, pendingAcc, pendingOp, wordSize]
   );
 
   const onEquals = useCallback(() => {
@@ -531,12 +689,18 @@ export default function ProgrammerCalculator() {
     }
     const b = buf !== "" ? maskWord(qwordFromString(buf, radix), wordSize) : maskWord(value, wordSize);
     const res = applyOpMasked(pendingAcc, b, pendingOp, wordSize);
+    const done =
+      (exprProgress
+        ? `${exprProgress} ${formatExprOperandValue(b, base, wordSize)}`
+        : `${formatExprOperandValue(pendingAcc, base, wordSize)} ${opToExprLabel(pendingOp)} ${formatExprOperandValue(b, base, wordSize)}`) + " =";
+    setExprCompleted(done);
+    setExprProgress("");
     setValue(res);
     setBuf("");
     setPendingAcc(null);
     setPendingOp(null);
     setFresh(true);
-  }, [buf, commitBufToValue, pendingAcc, pendingOp, radix, value, wordSize]);
+  }, [base, buf, commitBufToValue, exprProgress, pendingAcc, pendingOp, radix, value, wordSize]);
 
   const memStore = useCallback(() => {
     const v = buf !== "" ? maskWord(qwordFromString(buf, radix), wordSize) : maskWord(value, wordSize);
@@ -549,7 +713,8 @@ export default function ProgrammerCalculator() {
     setBuf("");
     setFresh(true);
     setMemMenuOpen(false);
-  }, [memory, wordSize]);
+    clearExpr();
+  }, [memory, wordSize, clearExpr]);
 
   const memClear = useCallback(() => {
     setMemory(B0);
@@ -569,8 +734,9 @@ export default function ProgrammerCalculator() {
       setValue(maskWord(current ^ (B1 << BigInt(bitIndex)), wordSize));
       setBuf("");
       setFresh(true);
+      clearExpr();
     },
-    [buf, radix, value, wordSize]
+    [buf, radix, value, wordSize, clearExpr]
   );
 
   const hexDecOctBin = useMemo(() => {
@@ -592,6 +758,204 @@ export default function ProgrammerCalculator() {
     });
   }, [displayValue, wordSize]);
 
+  useEffect(() => {
+    const focusInsideCalc = () => {
+      const root = calcRootRef.current;
+      if (!root) return false;
+      const ae = document.activeElement;
+      return !!(ae && root.contains(ae));
+    };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (!focusInsideCalc()) return;
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)) return;
+      if (e.ctrlKey || e.metaKey) return;
+
+      if (panelMode !== "keypad") {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          setWordMenuOpen(false);
+          setMemMenuOpen(false);
+          setShiftMenuOpen(false);
+        }
+        return;
+      }
+
+      if (e.altKey) return;
+
+      const { key, code } = e;
+
+      if (key === "Escape") {
+        e.preventDefault();
+        if (wordMenuOpen || memMenuOpen || shiftMenuOpen) {
+          setWordMenuOpen(false);
+          setMemMenuOpen(false);
+          setShiftMenuOpen(false);
+          return;
+        }
+        clearAll();
+        return;
+      }
+
+      if (key === "Backspace") {
+        e.preventDefault();
+        backspace();
+        return;
+      }
+
+      if (key === "Enter" || code === "NumpadEnter") {
+        e.preventDefault();
+        onEquals();
+        return;
+      }
+
+      if (code.startsWith("Numpad")) {
+        const tail = code.slice("Numpad".length);
+        if (/^[0-9]$/.test(tail)) {
+          e.preventDefault();
+          appendDigit(tail);
+          return;
+        }
+        if (code === "NumpadAdd") {
+          e.preventDefault();
+          onBinaryOp("+");
+          return;
+        }
+        if (code === "NumpadSubtract") {
+          e.preventDefault();
+          onBinaryOp("-");
+          return;
+        }
+        if (code === "NumpadMultiply") {
+          e.preventDefault();
+          onBinaryOp("*");
+          return;
+        }
+        if (code === "NumpadDivide") {
+          e.preventDefault();
+          onBinaryOp("/");
+          return;
+        }
+      }
+
+      if (key.length === 1 && /^[0-9]$/.test(key)) {
+        e.preventDefault();
+        appendDigit(key);
+        return;
+      }
+
+      if (key.length === 1 && /^[a-fA-F]$/.test(key) && base === "hex") {
+        e.preventDefault();
+        appendDigit(key.toUpperCase());
+        return;
+      }
+
+      if (key === "k" || key === "K") {
+        e.preventDefault();
+        setPanelMode("keypad");
+        return;
+      }
+      if (key === "i" || key === "I") {
+        e.preventDefault();
+        setPanelMode("bits");
+        return;
+      }
+
+      if (key === "+") {
+        e.preventDefault();
+        onBinaryOp("+");
+        return;
+      }
+      if (key === "-") {
+        e.preventDefault();
+        onBinaryOp("-");
+        return;
+      }
+      if (key === "*") {
+        e.preventDefault();
+        onBinaryOp("*");
+        return;
+      }
+      if (key === "/") {
+        e.preventDefault();
+        onBinaryOp("/");
+        return;
+      }
+      if (key === "%") {
+        e.preventDefault();
+        onBinaryOp("%");
+        return;
+      }
+      if (key === "&") {
+        e.preventDefault();
+        onBinaryOp("&");
+        return;
+      }
+      if (key === "|") {
+        e.preventDefault();
+        onBinaryOp("|");
+        return;
+      }
+      if (key === "^") {
+        e.preventDefault();
+        onBinaryOp("^");
+        return;
+      }
+
+      if ((key === "c" || key === "C") && base !== "hex") {
+        e.preventDefault();
+        clearAll();
+        return;
+      }
+      if (key === "Delete") {
+        e.preventDefault();
+        clearAll();
+        return;
+      }
+
+      if (key === "<") {
+        e.preventDefault();
+        shiftLeft();
+        return;
+      }
+      if (key === ">") {
+        e.preventDefault();
+        shiftRight();
+        return;
+      }
+
+      if (key === "~") {
+        e.preventDefault();
+        bitNot();
+        return;
+      }
+
+      if (key === "=") {
+        e.preventDefault();
+        onEquals();
+        return;
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [
+    appendDigit,
+    backspace,
+    base,
+    bitNot,
+    clearAll,
+    memMenuOpen,
+    onBinaryOp,
+    onEquals,
+    panelMode,
+    shiftLeft,
+    shiftMenuOpen,
+    shiftRight,
+    wordMenuOpen,
+  ]);
+
   const keyClass = (enabled: boolean, extra = "") =>
     `flex min-h-[44px] items-center justify-center rounded-md border text-base font-medium transition-colors sm:min-h-[48px] ${
       enabled
@@ -599,13 +963,15 @@ export default function ProgrammerCalculator() {
         : "cursor-not-allowed border-transparent text-slate-600"
     } ${extra}`;
 
-  /** Fixed height = QWORD BIN (4 rows at text-3xl / sm:text-4xl); all word sizes share this box. */
+  /** Fixed height = expression strip + QWORD BIN (4 rows at text-3xl / sm:text-4xl); all word sizes share this box. */
   const mainDisplayBoxClass =
-    "mb-4 flex h-[156px] shrink-0 items-end justify-end overflow-hidden rounded-lg border border-slate-600/60 bg-slate-900/40 px-3 py-3 font-mono sm:h-[200px]";
+    "mb-4 flex h-[176px] shrink-0 flex-col justify-between overflow-hidden rounded-lg border border-slate-600/60 bg-slate-900/40 px-3 py-2 font-mono sm:h-[224px] sm:py-3";
 
   return (
     <div
-      className="mx-auto max-w-xl rounded-xl border border-border shadow-lg"
+      ref={calcRootRef}
+      tabIndex={0}
+      className="w-full rounded-xl border border-border shadow-lg outline-none focus-visible:ring-2 focus-visible:ring-[#005A9E]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
       style={{ backgroundColor: PANEL }}
     >
       <div className="flex items-center gap-3 border-b border-slate-600/80 px-4 py-3">
@@ -625,22 +991,30 @@ export default function ProgrammerCalculator() {
 
       <div className="p-4">
         <div className={mainDisplayBoxClass}>
-          {base === "bin" && binMainRows ? (
-            <div className="flex flex-col items-end gap-1 text-right text-3xl font-light tracking-normal text-slate-50 sm:gap-1.5 sm:text-4xl">
-              {binMainRows.map((line, i) => (
-                <div
-                  key={i}
-                  className="min-h-[1.875rem] whitespace-pre tabular-nums leading-none sm:min-h-[2.25rem]"
-                >
-                  {line || "\u00a0"}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <span className="w-full break-all text-right text-3xl font-light tracking-tight text-slate-50 sm:text-4xl">
-              {mainDisplay}
-            </span>
-          )}
+          <div
+            className="line-clamp-2 w-full min-h-[2.75rem] shrink-0 break-all text-right text-sm leading-snug text-slate-400 sm:min-h-[3rem] sm:text-base"
+            title={expressionLine || undefined}
+          >
+            {expressionLine || "\u00a0"}
+          </div>
+          <div className="flex min-h-0 flex-1 flex-col justify-end overflow-hidden">
+            {base === "bin" && binMainRows ? (
+              <div className="flex flex-col items-end gap-1 text-right text-3xl font-light tracking-normal text-slate-50 sm:gap-1.5 sm:text-4xl">
+                {binMainRows.map((line, i) => (
+                  <div
+                    key={i}
+                    className="min-h-[1.875rem] whitespace-pre tabular-nums leading-none sm:min-h-[2.25rem]"
+                  >
+                    {line || "\u00a0"}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <span className="w-full break-all text-right text-3xl font-light tracking-tight text-slate-50 sm:text-4xl">
+                {mainDisplay}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-col gap-1">
@@ -677,7 +1051,7 @@ export default function ProgrammerCalculator() {
         </div>
       </div>
 
-      <div className="grid grid-cols-5 border-t border-slate-600/60 px-1 py-4 text-xs text-slate-400 sm:px-2">
+      <div className="grid grid-cols-6 border-t border-slate-600/60 px-1 py-4 text-xs text-slate-400 sm:px-2">
         <div className="relative flex min-h-[48px] items-center justify-center px-0.5">
           <button
             type="button"
@@ -697,20 +1071,18 @@ export default function ProgrammerCalculator() {
           <button
             type="button"
             onClick={() => setPanelMode("bits")}
-            className={`rounded px-3 py-2 text-sm font-medium sm:text-base ${
-              panelMode === "bits" ? "border-b-2 text-slate-200" : "text-slate-500 hover:bg-slate-700/60 hover:text-slate-300"
+            className={`flex min-h-[44px] w-full items-center justify-center rounded px-2 py-2 leading-none sm:min-h-[48px] sm:px-3 ${
+              panelMode === "bits" ? "border-b-2 text-slate-200" : "border-b-2 border-transparent text-slate-500 hover:bg-slate-700/60 hover:text-slate-300"
             }`}
             style={panelMode === "bits" ? { borderColor: ACCENT, borderBottomWidth: 2 } : undefined}
             aria-label="Bit toggling"
             aria-pressed={panelMode === "bits"}
           >
-            <span className="inline-flex gap-0.5" aria-hidden>
-              <span className="grid grid-cols-2 gap-0.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
-                <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
-                <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
-                <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
-              </span>
+            <span className="grid shrink-0 grid-cols-2 gap-0.5 place-content-center" aria-hidden>
+              <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
+              <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
+              <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
+              <span className="h-1.5 w-1.5 rounded-full bg-current sm:h-2 sm:w-2" />
             </span>
           </button>
         </div>
@@ -718,8 +1090,46 @@ export default function ProgrammerCalculator() {
           <button
             type="button"
             onClick={() => {
+              setShiftMenuOpen((o) => !o);
+              setWordMenuOpen(false);
+              setMemMenuOpen(false);
+            }}
+            className="rounded px-1 py-2 font-mono text-[11px] font-medium text-slate-300 hover:bg-slate-700/60 sm:px-2 sm:text-sm"
+            aria-expanded={shiftMenuOpen}
+            aria-haspopup="listbox"
+            aria-label={`Shift mode: ${SHIFT_MODE_MENU[shiftMode]}`}
+          >
+            {SHIFT_MODE_BTN[shiftMode]}▾
+          </button>
+          {shiftMenuOpen ? (
+            <div
+              className="absolute left-1/2 top-full z-20 mt-1 min-w-[200px] max-w-[min(100vw-2rem,280px)] -translate-x-1/2 rounded-md border border-slate-600 bg-slate-800 py-1 shadow-lg"
+              role="listbox"
+            >
+              {SHIFT_MODES_ORDER.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  role="option"
+                  aria-selected={shiftMode === m}
+                  className={`block w-full px-3 py-2 text-left text-sm hover:bg-slate-700 ${
+                    shiftMode === m ? "bg-slate-700/80 text-slate-100" : "text-slate-200"
+                  }`}
+                  onClick={() => setShiftModePick(m)}
+                >
+                  {SHIFT_MODE_MENU[m]}
+                </button>
+              ))}
+            </div>
+          ) : null}
+        </div>
+        <div className="relative flex min-h-[48px] items-center justify-center px-0.5">
+          <button
+            type="button"
+            onClick={() => {
               setWordMenuOpen((o) => !o);
               setMemMenuOpen(false);
+              setShiftMenuOpen(false);
             }}
             className="rounded px-2 py-2 font-mono text-sm font-medium text-slate-300 hover:bg-slate-700/60 sm:text-base"
             aria-expanded={wordMenuOpen}
@@ -764,6 +1174,7 @@ export default function ProgrammerCalculator() {
             onClick={() => {
               setMemMenuOpen((o) => !o);
               setWordMenuOpen(false);
+              setShiftMenuOpen(false);
             }}
             className="rounded px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-700/60 sm:text-base"
             aria-expanded={memMenuOpen}
@@ -789,6 +1200,37 @@ export default function ProgrammerCalculator() {
           ) : null}
         </div>
       </div>
+
+      {panelMode === "keypad" ? (
+        <div
+          className="grid grid-cols-6 gap-1.5 border-t border-slate-600/60 px-3 pb-1 pt-2 sm:gap-2 sm:pb-2 sm:pt-2.5"
+          style={{ backgroundColor: "rgb(15 23 42 / 0.5)" }}
+        >
+          {(
+            [
+              { label: "AND", op: "&" },
+              { label: "OR", op: "|" },
+              { label: "NOT" },
+              { label: "XOR", op: "^" },
+              { label: "NOR", op: "nor" },
+              { label: "NAND", op: "nand" },
+            ] as const
+          ).map((btn) => (
+            <button
+              key={btn.label}
+              type="button"
+              className={keyClass(true, "px-0.5 text-xs font-semibold sm:text-sm")}
+              style={{ backgroundColor: KEY_ACTIVE }}
+              onClick={() => {
+                if ("op" in btn) onBinaryOp(btn.op);
+                else bitNot();
+              }}
+            >
+              {btn.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
 
       {panelMode === "bits" ? (
         <div className="border-t border-slate-600/60" style={{ backgroundColor: "rgb(15 23 42 / 0.5)" }}>
@@ -946,10 +1388,6 @@ export default function ProgrammerCalculator() {
           })}
         </div>
       )}
-
-      <p className="border-t border-slate-600/60 px-4 py-2 text-center text-[11px] text-slate-500">
-        QWORD / DWORD / WORD / BYTE sets the active bit width. Out-of-range bits are read-only; DEC uses signed interpretation. Keypad input is limited to the current word size.
-      </p>
     </div>
   );
 }
