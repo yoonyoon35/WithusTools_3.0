@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import ToolIcon from "@/components/ToolIcon";
+import { getFaqEntriesByCategory } from "@/data/faq-data";
 import ColorPicker from "./ColorPicker";
 
 export const metadata: Metadata = createMetadata({
@@ -18,38 +19,24 @@ export const metadata: Metadata = createMetadata({
   ],
 });
 
+/** Hub-only: pair pages carry step-by-step conversion copy; CMYK caveats repeat on CMYK converters + FAQ. */
 const COLOR_PICKER_GUIDE = {
-  usage: [
-    "Use the color input or Eyedropper (main color) to select a color. Values update in real time.",
-    "Copy HEX, RGB, RGBA, HSL, HSV, or CMYK values with the Copy buttons.",
-    "Adjust alpha for transparency with the slider.",
-    "Color Palette: Click Original, Complementary, Analogous, Triadic, Lighter, or Darker to apply.",
-    "Contrast Ratio: Use Custom color picker or its Eyedropper to set a comparison color. Results show ratio and WCAG grade (Fail, AA Large, AA, AAA).",
-    "Saved Colors: Selected colors are auto-saved (up to 20). Click to reuse. Use Clear to remove all.",
+  quickStart: [
+    "Pick with the color input or main Eyedropper; HEX, RGB, RGBA, HSL, HSV, and CMYK update with Copy buttons. Use the alpha slider when you need transparency.",
+    "Use the palette row and contrast tools as needed; open a dedicated converter below Saved Colors for fixed input/output per format pair. Common questions are linked under that list.",
   ],
-  howItWorks: [
-    "Color picker uses native HTML5 color input and the EyeDropper API when available.",
-    "Two Eyedroppers: one for the main color, one for the Contrast Ratio comparison color.",
-    "All conversions (RGB, HSL, HSV, CMYK) are computed in the browser.",
-    "Saved colors are stored in localStorage.",
-    "Contrast ratios follow WCAG 2.1. Fail (<3), AA Large (≥3), AA (≥4.5), AAA (≥7).",
+  deeper: [
+    "Parsing rules, the sRGB pipeline, worked examples, and calculation lines for one pair (e.g. HEX → RGB) stay on that pair’s page—not repeated here.",
+    "CMYK is a simple on-screen preview here (not a printer ICC profile). The yellow note on CMYK pair pages and the Color Picker FAQ expand on non-unique CMYK↔RGB and app-to-app differences; use HEX/RGB for stable UI work.",
   ],
-  about: [
-    "Free online color picker for HEX, RGB, HSL, HSV, CMYK, and RGBA. Includes contrast ratio (vs 10 preset + custom), color palette (8 variants), and saved history.",
-  ],
-  advantages: [
-    "Multiple format support (HEX, RGB, HSL, HSV, CMYK, RGBA).",
-    "Two Eyedroppers: main color and contrast comparison.",
-    "Contrast ratio with WCAG badges (10 preset colors + custom).",
-    "Color palette (Complementary, Analogous, Triadic, Lighter, Darker).",
-    "Auto-saved color history (localStorage).",
-  ],
-  useCases: [
-    "Web design: Pick and copy color codes.",
-    "Accessibility: Check contrast ratios against common colors.",
-    "Design: Explore complementary, analogous, and triadic colors.",
+  exampleUses: [
+    "Web/CSS: copy HEX, rgb(), hsl(), or rgba().",
+    "Accessibility: WCAG contrast vs presets or a custom comparison color.",
+    "Design: complementary, analogous, and triadic variants from the palette.",
   ],
 };
+
+const COLOR_PICKER_FAQ_LINKS = getFaqEntriesByCategory("color-picker");
 
 export default function ColorPickerPage() {
   return (
@@ -69,46 +56,37 @@ export default function ColorPickerPage() {
         screen with eyedropper. Contrast ratio and color palette included.
       </p>
 
-      <ColorPicker />
+      <ColorPicker
+        dedicatedConvertersFaq={COLOR_PICKER_FAQ_LINKS.map((e) => ({
+          slug: e.slug,
+          question: e.question,
+          category: e.category,
+        }))}
+      />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <div className="space-y-8 text-sm leading-relaxed text-slate-400">
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
-            <ol className="list-decimal space-y-2 pl-5">
-              {COLOR_PICKER_GUIDE.usage.map((step, i) => (
-                <li key={i}>{step}</li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
-            <div className="space-y-2">
-              {COLOR_PICKER_GUIDE.howItWorks.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Color Picker</h3>
-            <div className="space-y-2">
-              {COLOR_PICKER_GUIDE.about.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
             <ul className="list-disc space-y-2 pl-5">
-              {COLOR_PICKER_GUIDE.advantages.map((item, i) => (
+              {COLOR_PICKER_GUIDE.quickStart.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-2 font-semibold text-slate-200">Formulas &amp; deeper content</h3>
+            <div className="space-y-2">
+              {COLOR_PICKER_GUIDE.deeper.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="mb-2 font-semibold text-slate-200">Example uses</h3>
             <ul className="list-disc space-y-2 pl-5">
-              {COLOR_PICKER_GUIDE.useCases.map((item, i) => (
+              {COLOR_PICKER_GUIDE.exampleUses.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>

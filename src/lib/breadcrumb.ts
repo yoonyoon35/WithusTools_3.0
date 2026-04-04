@@ -29,6 +29,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "unit-converter": "Unit Converter",
   // Calculator
   "average-calculator": "Average Calculator",
+  "standard-deviation-calculator": "Standard Deviation Calculator",
   "bmi-calculator": "BMI Calculator",
   "gpa-calculator": "GPA Calculator",
   "target-gpa": "Target GPA Calculator",
@@ -52,6 +53,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "base64-encoder-decoder": "Base64 Encoder/Decoder",
   "code-formatter": "Code Formatter",
   "color-picker": "Color Picker",
+  converter: "Color format converters",
   "css-sprites-generator": "CSS Sprites Generator",
   "numbersystem-converter": "Number System Converter",
   "qr-code-generator": "QR Code Generator",

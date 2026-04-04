@@ -17,7 +17,8 @@ export type FaqCategory =
   | "pressure"
   | "angle"
   | "number-system"
-  | "gpa";
+  | "gpa"
+  | "color-picker";
 
 export interface FaqEntry {
   category: FaqCategory;
@@ -38,6 +39,8 @@ export interface FaqEntry {
   seoUnitA: string;
   seoUnitB: string;
   keywords?: string[];
+  /** When set, used as the FAQ page meta description (e.g. color-picker long-tail SEO). */
+  metaDescription?: string;
 }
 
 export const FAQ_ENTRIES: FaqEntry[] = [
@@ -2405,6 +2408,187 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     seoUnitA: "long decimal",
     seoUnitB: "binary",
     keywords: ["large numbers", "decimal to binary", "big integer"],
+  },
+  {
+    category: "color-picker",
+    slug: "free-hex-to-rgb-converter-for-css-and-html-color-codes",
+    hubUnitKey: "m",
+    question:
+      "Free HEX to RGB converter for CSS and HTML — how do I turn #RRGGBB into rgb() values for stylesheets?",
+    directAnswer:
+      "Split the six hex digits into three pairs; each pair is one channel from 0–255. Example: #3498DB → R=0x34=52, G=0x98=152, B=0xDB=219 → rgb(52, 152, 219). Use our HEX to RGB page to type any #code and copy the result.",
+    detailedExplanation:
+      "Hexadecimal uses base 16, so two digits span 0–255 per channel. In CSS you can write #RGB shorthand when digits repeat (#abc = #aabbcc). Our dedicated converter parses your input, shows the same sRGB math the Color Picker uses, and includes a step-by-step breakdown under the calculator.",
+    relationshipContext:
+      "HEX and RGB describe the same sRGB color on screen; HEX is compact for palettes and APIs, while rgb() is explicit in CSS and design tokens.",
+    relatedConverterPath: "/tools/developer/color-picker/converter/hex-to-rgb",
+    relatedConverterLabel: "HEX to RGB",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "hex",
+    seoUnitB: "rgb",
+    keywords: [
+      "hex to rgb converter online",
+      "css hex to rgb",
+      "#RRGGBB to rgb",
+      "html color code converter",
+    ],
+    metaDescription:
+      "Free HEX to RGB converter for CSS and HTML. Turn #RRGGBB into rgb() values with formulas, examples, and a browser-based Color Picker.",
+  },
+  {
+    category: "color-picker",
+    slug: "rgb-to-hex-converter-online-paste-rgb-color-codes",
+    hubUnitKey: "m",
+    question:
+      "RGB to HEX converter online — how do I paste rgb(255, 87, 51) and get a #hex code for Figma, CSS, or Slack?",
+    directAnswer:
+      "Clamp each channel to 0–255, convert each to two hex digits, and join with #. Example: rgb(52, 152, 219) → #3498DB. Our RGB to HEX tool formats uppercase hex like many design apps.",
+    detailedExplanation:
+      "Enter rgb(r, g, b) or three comma-separated numbers. The tool rounds to integers, applies the same packing as the main Color Picker, and shows intermediate steps in the calculator panel. Copy the final string into any tool that expects #RRGGBB.",
+    relationshipContext:
+      "RGB lists channel strengths directly; HEX is the same information in base 16—use whichever your workflow prefers.",
+    relatedConverterPath: "/tools/developer/color-picker/converter/rgb-to-hex",
+    relatedConverterLabel: "RGB to HEX",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "rgb",
+    seoUnitB: "hex",
+    keywords: ["rgb to hex converter", "paste rgb get hex", "rgb to #color online"],
+    metaDescription:
+      "RGB to HEX converter online. Paste rgb() values and get #hex codes for Figma, CSS, and design handoffs—free, in your browser.",
+  },
+  {
+    category: "color-picker",
+    slug: "hsl-vs-hsv-color-picker-difference-saturation-brightness",
+    hubUnitKey: "m",
+    question:
+      "HSL vs HSV in color pickers — what is the difference between saturation, lightness, and value (brightness)?",
+    directAnswer:
+      "Both use hue 0–360°, but HSL’s third axis is lightness (mix with gray), while HSV’s third axis is value (max channel brightness). The same RGB can yield different HSL and HSV numbers; wheels that feel “brighter toward the edge” are usually HSV-style.",
+    detailedExplanation:
+      "HSL (hue, saturation, lightness) moves toward white/black by changing lightness while holding hue. HSV (hue, saturation, value) keeps “full color” at the edge of the wheel when value is high. Our Color Picker shows both so you can match CSS hsl() and tools that label HSB/HSV. Dedicated pages convert between every pair with visible math.",
+    relationshipContext:
+      "Neither HSL nor HSV is wrong—they are different cylindrical views of sRGB. Integer rounding can make reverse conversions differ by ±1 from a picked HEX.",
+    relatedConverterPath: "/tools/developer/color-picker/converter/hsl-to-hsv",
+    relatedConverterLabel: "HSL to HSV",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "hsl",
+    seoUnitB: "hsv",
+    keywords: ["hsl vs hsv difference", "color picker saturation lightness value", "hsb vs hsl"],
+    metaDescription:
+      "HSL vs HSV explained for color pickers: saturation, lightness, and brightness compared, plus free converters tied to our online Color Picker.",
+  },
+  {
+    category: "color-picker",
+    slug: "cmyk-to-hex-rgb-converter-print-colors-on-screen",
+    hubUnitKey: "m",
+    question:
+      "CMYK to HEX / RGB converter for print designers — how do I preview brochure ink colors on my monitor?",
+    directAnswer:
+      "Use a simple CMYK→sRGB formula for on-screen preview: each channel uses 255×(1−ink)×(1−black). This site applies the same model as the Color Picker and picks RGB that round-trip when you copy CMYK from the picker (integer CMYK can match more than one RGB).",
+    detailedExplanation:
+      "Real print depends on paper, ink, and ICC profiles; browser tools show an approximation. Enter cmyk(c%, m%, y%, k%) on CMYK to HEX or CMYK to RGB, read the breakdown lines, then compare with the main Color Picker if you started from a screen color.",
+    relationshipContext:
+      "CMYK is subtractive (ink); RGB is additive (light). They meet through math models, not a single universal “exact” pair without a profile.",
+    relatedConverterPath: "/tools/developer/color-picker/converter/cmyk-to-hex",
+    relatedConverterLabel: "CMYK to HEX",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "cmyk",
+    seoUnitB: "hex",
+    keywords: ["cmyk to rgb converter", "cmyk to hex for web", "print color preview online"],
+    metaDescription:
+      "CMYK to HEX and RGB converter for print design preview. Turn CMYK percentages into screen codes with our free Color Picker tools.",
+  },
+  {
+    category: "color-picker",
+    slug: "why-cmyk-numbers-differ-from-rgb-hex-same-color",
+    hubUnitKey: "m",
+    question:
+      "Why don’t CMYK percentages match my RGB / HEX in Illustrator, browser, and free color pickers?",
+    directAnswer:
+      "Apps use different profiles, black generation, and rounding. Here, CMYK is a plain 0–100% model for preview; integer CMYK can also correspond to several nearby RGB triples after rounding, so reversing CMYK to HEX may not match another app unless you share the same profile and rules.",
+    detailedExplanation:
+      "Treat HEX/RGB as the source of truth for UI work. Use CMYK as a communication hint to printers. Our guide on the Color Picker explains non-unique reverse mapping; dedicated converters align with the picker when you copy values from it.",
+    relationshipContext:
+      "Consistency matters more than a single “true” CMYK for a screen swatch—always confirm with print proofs.",
+    relatedConverterPath: "/tools/developer/color-picker",
+    relatedConverterLabel: "Color Picker",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "cmyk",
+    seoUnitB: "rgb",
+    keywords: ["why cmyk rgb different", "cmyk rgb mismatch", "screen vs print color"],
+    metaDescription:
+      "Why CMYK and RGB/HEX disagree between apps: profiles, rounding, and preview limits—explained with links to our Color Picker.",
+  },
+  {
+    category: "color-picker",
+    slug: "wcag-contrast-ratio-calculator-hex-text-background-accessibility",
+    hubUnitKey: "m",
+    question:
+      "WCAG contrast ratio calculator from HEX colors — how do I check text vs background for AA and AAA accessibility?",
+    directAnswer:
+      "Use relative luminance in sRGB, then contrast = (Llighter + 0.05) / (Ldarker + 0.05). Our Color Picker shows ratio and badges: Fail, AA Large, AA, AAA. Pick the text color, set a comparison swatch (preset or custom HEX), and read the ratio instantly.",
+    detailedExplanation:
+      "WCAG 2.1 uses the same luminance definition for normal text (AA 4.5:1, AAA 7:1) and large text (AA 3:1). Eyedropper support lets you sample UI pixels. For strict audits, verify with official docs; this tool is ideal for quick design iteration.",
+    relationshipContext:
+      "Accessibility is about perceptual contrast on real devices; calculators assume sRGB-encoded values as entered.",
+    relatedConverterPath: "/tools/developer/color-picker",
+    relatedConverterLabel: "Color Picker (contrast)",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "wcag",
+    seoUnitB: "contrast",
+    keywords: ["wcag contrast checker", "hex contrast ratio", "aa aaa text color"],
+    metaDescription:
+      "WCAG contrast ratio checker for HEX and RGB text/background pairs. Free Color Picker with AA/AAA badges and eyedropper support.",
+  },
+  {
+    category: "color-picker",
+    slug: "hex-to-rgba-converter-alpha-transparency-css-overlay",
+    hubUnitKey: "m",
+    question:
+      "HEX to RGBA converter for transparent UIs — how do I add alpha to solid #hex colors for overlays and glass effects?",
+    directAnswer:
+      "Start from opaque RGB, then set α in 0–1. CSS also allows #RRGGBBAA in modern browsers. Our HEX to RGBA page outputs rgba(r, g, b, a); 8-digit HEX is used when alpha < 1 on HEX output pages.",
+    detailedExplanation:
+      "Transparency does not change R, G, B—it scales how much background shows through. Paste #RRGGBB or use the Color Picker alpha slider, then copy rgba() into CSS or design specs.",
+    relationshipContext:
+      "RGBA extends sRGB with one extra channel; premultiplied formats are a separate topic for graphics pipelines.",
+    relatedConverterPath: "/tools/developer/color-picker/converter/hex-to-rgba",
+    relatedConverterLabel: "HEX to RGBA",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "hex",
+    seoUnitB: "rgba",
+    keywords: ["hex to rgba", "css rgba from hex", "transparent hex color"],
+    metaDescription:
+      "HEX to RGBA converter for CSS transparency. Add alpha to #hex colors for overlays—works with our online Color Picker.",
+  },
+  {
+    category: "color-picker",
+    slug: "browser-eyedropper-color-picker-screen-to-hex-rgb-online",
+    hubUnitKey: "m",
+    question:
+      "Browser eyedropper color picker — how do I grab any on-screen color to HEX and RGB without installing software?",
+    directAnswer:
+      "Use Chromium-based browsers with the EyeDropper API: open our Color Picker, click the eyedropper, then click a pixel. The tool fills #RRGGBB and updates RGB, HSL, HSV, CMYK, and contrast panels. A second eyedropper sets the comparison color for WCAG checks.",
+    detailedExplanation:
+      "If your browser does not support EyeDropper, use the native color input or paste codes manually. Everything runs locally—no uploads. Saved colors (up to 20) stay in localStorage for your next session.",
+    relationshipContext:
+      "Screen sampling reads displayed sRGB pixels; HDR or color-managed windows may still differ from another monitor.",
+    relatedConverterPath: "/tools/developer/color-picker",
+    relatedConverterLabel: "Color Picker",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "eyedropper",
+    seoUnitB: "hex",
+    keywords: ["eyedropper online", "pick color from screen browser", "chrome eyedropper hex"],
+    metaDescription:
+      "Free browser eyedropper color picker: sample any screen pixel to HEX and RGB online, no install—WithUsTools Color Picker.",
   },
   {
     category: "gpa",

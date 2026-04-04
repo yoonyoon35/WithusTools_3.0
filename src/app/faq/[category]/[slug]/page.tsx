@@ -75,11 +75,17 @@ export async function generateMetadata({
   if (!entry) {
     return createMetadata({ title: "FAQ", noIndex: true });
   }
-  const title = `${entry.question} - Quick Answer & Calculator`;
+  const title =
+    entry.category === "color-picker"
+      ? `${entry.question} | FAQ`
+      : `${entry.question} - Quick Answer & Calculator`;
   const description =
-    entry.category === "gpa"
+    entry.metaDescription ??
+    (entry.category === "gpa"
       ? `${entry.directAnswer} Covers the difference between weighted and unweighted GPA, how to calculate weighted GPA with AP classes, and how our GPA Calculator’s 5.0 Scale (Weighted) option fits in.`
-      : `${entry.directAnswer} Learn more about ${entry.seoUnitA} to ${entry.seoUnitB} conversion with our detailed guide and easy-to-use calculator.`;
+      : entry.category === "color-picker"
+        ? `${entry.directAnswer} Free online Color Picker and HEX, RGB, HSL, CMYK converters on WithUsTools.`
+        : `${entry.directAnswer} Learn more about ${entry.seoUnitA} to ${entry.seoUnitB} conversion with our detailed guide and easy-to-use calculator.`);
   return createMetadata({
     title,
     description,
@@ -88,7 +94,9 @@ export async function generateMetadata({
       entry.keywords ??
       (entry.category === "number-system"
         ? ["FAQ", "number system", "radix", "withustools"]
-        : ["FAQ", "unit conversion", "withustools"]),
+        : entry.category === "color-picker"
+          ? ["color picker", "hex rgb converter", "faq", "withustools"]
+          : ["FAQ", "unit conversion", "withustools"]),
   });
 }
 
@@ -607,6 +615,76 @@ function GpaFaqScaleTable() {
   );
 }
 
+function ColorPickerFaqExampleTable() {
+  const rows: [string, string, string][] = [
+    ["#3498DB", "rgb(52, 152, 219)", "hsl(204, 70%, 53%)"],
+    ["#E74C3C", "rgb(231, 76, 60)", "hsl(6, 78%, 57%)"],
+    ["#2ECC71", "rgb(46, 204, 113)", "hsl(145, 63%, 49%)"],
+    ["#FFFFFF", "rgb(255, 255, 255)", "hsl(0, 0%, 100%)"],
+  ];
+  return (
+    <div className="scrollbar-thin overflow-x-auto">
+      <table className="w-full min-w-[320px] text-sm">
+        <thead>
+          <tr className="border-b border-slate-600">
+            <th className="px-3 py-2 text-left font-medium text-slate-300">HEX</th>
+            <th className="px-3 py-2 text-left font-medium text-slate-300">RGB</th>
+            <th className="px-3 py-2 text-left font-medium text-slate-300">HSL (rounded)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([hex, rgb, hsl]) => (
+            <tr key={hex} className="border-b border-slate-700/50">
+              <td className="px-3 py-2 font-mono text-slate-200">{hex}</td>
+              <td className="px-3 py-2 font-mono text-slate-300">{rgb}</td>
+              <td className="px-3 py-2 font-mono text-slate-300">{hsl}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="mt-3 text-xs text-slate-500">
+        Illustrative sRGB examples; HSL matches integer rounding in the Color Picker UI.
+      </p>
+    </div>
+  );
+}
+
+function ColorPickerFaqMoreConverters() {
+  const items: { href: string; title: string; sub: string }[] = [
+    {
+      href: "/tools/developer/color-picker",
+      title: "Color Picker",
+      sub: "Eyedropper, WCAG contrast, palette, saved colors, all formats",
+    },
+    { href: "/tools/developer/color-picker/converter/hex-to-rgb", title: "HEX to RGB", sub: "Dedicated pair + calculation steps" },
+    { href: "/tools/developer/color-picker/converter/rgb-to-hex", title: "RGB to HEX", sub: "Paste rgb() → #hex" },
+    { href: "/tools/developer/color-picker/converter/cmyk-to-hex", title: "CMYK to HEX", sub: "Print-style preview to screen hex" },
+    { href: "/tools/developer/color-picker/converter/hsl-to-hsv", title: "HSL to HSV", sub: "Compare cylindrical models" },
+    { href: "/tools/developer/color-picker/converter/hsv-to-hex", title: "HSV to HEX", sub: "Wheel-style values to #hex" },
+  ];
+  return (
+    <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2 className="mb-4 text-lg font-semibold text-slate-200">More Color Picker tools</h2>
+      <p className="mb-6 text-sm text-slate-500">
+        Open the main picker or a fixed input/output converter—same math as the hub, with copy-ready strings.
+      </p>
+      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map(({ href, title, sub }) => (
+          <li key={href}>
+            <Link
+              href={href}
+              className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
+            >
+              <span className="font-medium text-slate-200">{title}</span>
+              <span className="mt-1 text-xs text-slate-500">{sub}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 function GpaFaqRelatedTools() {
   const linkCls =
     "block rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-slate-500 hover:bg-slate-800";
@@ -674,7 +752,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
   const pageUrl = `https://withustools.com/faq/${entry.category}/${entry.slug}`;
   const jsonLd = buildFaqJsonLd(entry, pageUrl);
   const converterHome =
-    entry.category === "gpa"
+    entry.category === "color-picker"
+      ? "/tools/developer/color-picker"
+      : entry.category === "gpa"
       ? "/tools/calculator/gpa-calculator"
       : entry.category === "weight"
       ? "/tools/unit-converter/weight"
@@ -702,7 +782,9 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
                           ? "/tools/developer/numbersystem-converter"
                           : "/tools/unit-converter/length";
   const converterLabel =
-    entry.category === "gpa"
+    entry.category === "color-picker"
+      ? "Color Picker"
+      : entry.category === "gpa"
       ? "GPA Calculator"
       : entry.category === "weight"
       ? "Weight Converter"
@@ -782,10 +864,14 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           <h2 className="mb-6 text-lg font-semibold text-slate-200">
             {entry.category === "gpa"
               ? "4.0 vs 5.0 Scale (Weighted) — excerpt"
-              : "Quick conversion table"}
+              : entry.category === "color-picker"
+                ? "Example sRGB codes (HEX · RGB · HSL)"
+                : "Quick conversion table"}
           </h2>
           {entry.category === "gpa" ? (
             <GpaFaqScaleTable />
+          ) : entry.category === "color-picker" ? (
+            <ColorPickerFaqExampleTable />
           ) : entry.category === "number-system" ? (
             <NumberSystemConversionTablesPair
               fromBase={pairKeyToBase(entry.tableFromKey as NumberSystemPairKey)}
@@ -820,6 +906,8 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
 
         {entry.category === "gpa" ? (
           <GpaFaqRelatedTools />
+        ) : entry.category === "color-picker" ? (
+          <ColorPickerFaqMoreConverters />
         ) : entry.category === "number-system" ? (
           <NumberSystemHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "weight" ? (
@@ -859,7 +947,7 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
             <Link href="/tools/calculator" className="text-slate-400 underline transition-colors hover:text-slate-200">
               All calculators
             </Link>
-          ) : entry.category === "number-system" ? (
+          ) : entry.category === "number-system" || entry.category === "color-picker" ? (
             <Link href="/tools/developer" className="text-slate-400 underline transition-colors hover:text-slate-200">
               Developer Tools
             </Link>

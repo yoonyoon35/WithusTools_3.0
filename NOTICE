@@ -1,5 +1,5 @@
 WithusTools
-Copyright (c) 2024 WithusTools
+Copyright (c) 2024–2026 WithusTools
 
 This product includes software developed by third parties. The following
 notices are required by the respective licenses.
@@ -115,12 +115,13 @@ xxhashjs
   License: MIT
 
 html2pdf.js
-  Copyright (c) Erik Koopmans (https://github.com/eKoopmans/html2pdf.js)
+  Copyright (c) 2017 Erik Koopmans (https://github.com/eKoopmans/html2pdf.js)
   License: MIT
   Used in: Text Editor (PDF export)
 
 jspdf
-  Copyright (c) James Hall, Parallax (https://github.com/parallax/jsPDF)
+  Copyright (c) 2010–2025 James Hall (https://github.com/MrRio/jsPDF)
+  Copyright (c) 2015–2025 yWorks GmbH (https://www.yworks.com/)
   License: MIT
   Used in: QR Code Generator, Text Editor (via html2pdf.js)
 
@@ -136,7 +137,7 @@ pdf-lib
   Used in: Image to PDF Converter
 
 prettier
-  Copyright (c) James Long (https://prettier.io)
+  Copyright © James Long and contributors (https://prettier.io)
   License: MIT
   Used in: Code Formatter (prettier/standalone in browser)
 
@@ -204,6 +205,10 @@ Mixkit (Sound Effects)
 DEVELOPMENT DEPENDENCIES
 =============================================================================
 
+@types/crypto-js
+  TypeScript definitions for crypto-js (DefinitelyTyped)
+  License: MIT
+
 @types/node
   TypeScript definitions for Node.js
   License: MIT
@@ -211,6 +216,10 @@ DEVELOPMENT DEPENDENCIES
 @types/node-forge
   TypeScript definitions for node-forge
   Copyright (c) Microsoft Corporation
+  License: MIT
+
+@types/qrcode
+  TypeScript definitions for qrcode (DefinitelyTyped)
   License: MIT
 
 @types/react

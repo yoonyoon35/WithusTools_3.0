@@ -14,6 +14,7 @@ export interface ToolEntry {
 const PATH_TITLES: Record<string, string> = {
   "/tools/calculator/calculator": "Scientific Calculator",
   "/tools/calculator/average-calculator": "Average Calculator",
+  "/tools/calculator/standard-deviation-calculator": "Standard Deviation Calculator",
   "/tools/calculator/bmi-calculator": "BMI Calculator",
   "/tools/calculator/gpa-calculator": "GPA Calculator",
   "/tools/calculator/gpa-calculator/target-gpa": "Target GPA Calculator",

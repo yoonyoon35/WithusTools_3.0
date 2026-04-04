@@ -34,6 +34,7 @@ import {
   TEMPERATURE_HUB_KEYS,
 } from "@/utils/conversions";
 import { getAllNumberSystemPairSlugs } from "@/utils/numberSystemConversion";
+import { getAllColorFormatPairs, getCanonicalColorPairSlug } from "@/utils/colorFormatConversions";
 
 const BASE_URL = "https://withustools.com";
 
@@ -49,7 +50,8 @@ const BASE_URL = "https://withustools.com";
  * 8. Unit converter dedicated pair pages (bulk programmatic URLs; Power pairs are appended after FAQ — see below)
  * 9. FAQ articles (content pages)
  * 10. Power Converter dedicated pair pages (newest unit-converter bulk URLs)
- * 11. Number System Converter dedicated pair pages (developer — sitemap tail)
+ * 11. Number System Converter dedicated pair pages (developer)
+ * 12. Color Picker format pair pages (HEX, RGB, RGBA, HSL, HSV, CMYK — 30 URLs)
  *
  * Excluded on purpose:
  * - `/tools/[id]` landing IDs (redirect to canonical paths; avoid duplicate URLs)
@@ -212,6 +214,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  const colorFormatPairPages: MetadataRoute.Sitemap = getAllColorFormatPairs().map(({ from, to }) => ({
+    url: `${BASE_URL}/tools/developer/color-picker/converter/${getCanonicalColorPairSlug(from, to)}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
   return dedupeSitemapByUrl([
     ...siteFoundation,
     ...legalAndMeta,
@@ -224,5 +233,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...faqPages,
     ...powerConverterPairPages,
     ...numberSystemPairPages,
+    ...colorFormatPairPages,
   ]);
 }

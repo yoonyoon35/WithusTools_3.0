@@ -1,6 +1,13 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import Link from "next/link";
+import {
+  COLOR_FORMAT_LABELS,
+  getAllColorFormatPairs,
+  getCanonicalColorPairSlug,
+  rgbToCmyk,
+} from "@/utils/colorFormatConversions";
 
 function rgbToHex(r: number, g: number, b: number): string {
   return (
@@ -110,18 +117,6 @@ function rgbToHsv(r: number, g: number, b: number): [number, number, number] {
   return [Math.round(h), Math.round(s), Math.round(v)];
 }
 
-function rgbToCmyk(r: number, g: number, b: number): [number, number, number, number] {
-  let rn = r / 255;
-  let gn = g / 255;
-  let bn = b / 255;
-  const k = 1 - Math.max(rn, gn, bn);
-  if (k === 1) return [0, 0, 0, 100];
-  const c = ((1 - rn - k) / (1 - k)) * 100;
-  const m = ((1 - gn - k) / (1 - k)) * 100;
-  const y = ((1 - bn - k) / (1 - k)) * 100;
-  return [Math.round(c), Math.round(m), Math.round(y), Math.round(k * 100)];
-}
-
 function getLuminance(r: number, g: number, b: number): number {
   const [rs, gs, bs] = [r, g, b].map((val) => {
     val = val / 255;
@@ -162,7 +157,17 @@ const COLOR_HISTORY_KEY = "colorHistory";
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 
-export default function ColorPicker() {
+export type DedicatedConvertersFaqLink = {
+  slug: string;
+  question: string;
+  category: string;
+};
+
+type ColorPickerProps = {
+  dedicatedConvertersFaq?: DedicatedConvertersFaqLink[];
+};
+
+export default function ColorPicker({ dedicatedConvertersFaq = [] }: ColorPickerProps) {
   const [hex, setHex] = useState("#000000");
   const [alpha, setAlpha] = useState(100);
   const [customCompareHex, setCustomCompareHex] = useState<string>("#6B7280");
@@ -300,6 +305,8 @@ export default function ColorPicker() {
       showToast("History cleared", "success");
     }
   }, [showToast]);
+
+  const colorFormatPairs = useMemo(() => getAllColorFormatPairs(), []);
 
   return (
     <div className="space-y-6" role="main" aria-label="Color Picker">
@@ -490,6 +497,57 @@ export default function ColorPicker() {
             <p className="text-sm text-slate-500">Select colors to save them here</p>
           )}
         </div>
+      </div>
+
+      <div className="rounded-xl border border-border bg-surface p-6">
+        <h3 className="mb-4 text-lg font-semibold text-slate-100">Dedicated converters</h3>
+        <p className="mb-6 text-sm text-slate-500">
+          {colorFormatPairs.length} pages — every pair of HEX, RGB, RGBA, HSL, HSV, and CMYK below, with fixed
+          input/output and copy-ready results.
+        </p>
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {colorFormatPairs.map(({ from, to }) => {
+            const href = `/tools/developer/color-picker/converter/${getCanonicalColorPairSlug(from, to)}`;
+            const a = COLOR_FORMAT_LABELS[from].short;
+            const b = COLOR_FORMAT_LABELS[to].short;
+            return (
+              <li key={`${from}-${to}`}>
+                <Link
+                  href={href}
+                  className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
+                >
+                  <span className="font-medium text-slate-200">
+                    {a} to {b} Converter
+                  </span>
+                  <span className="mt-1 text-xs text-slate-500">
+                    {a} to {b}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        {dedicatedConvertersFaq.length > 0 ? (
+          <div className="mt-10 border-t border-slate-700 pt-8">
+            <h3 className="mb-4 text-base font-semibold text-slate-200">Common questions (FAQ)</h3>
+            <p className="mb-4 text-sm text-slate-500">
+              {dedicatedConvertersFaq.length} quick answers with guides and links to the matching converter.
+            </p>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {dedicatedConvertersFaq.map((faq) => (
+                <li key={faq.slug}>
+                  <Link
+                    href={`/faq/${faq.category}/${faq.slug}`}
+                    className="block rounded-lg border border-slate-600/80 bg-slate-800/30 px-4 py-2.5 text-sm text-slate-300 transition-colors hover:border-slate-500 hover:bg-slate-800/60 hover:text-slate-100"
+                  >
+                    {faq.question}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       {toast && (
