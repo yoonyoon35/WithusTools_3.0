@@ -125,6 +125,11 @@ jspdf
   License: MIT
   Used in: QR Code Generator, Text Editor (via html2pdf.js)
 
+katex
+  Copyright (c) 2013-2020 Khan Academy and other contributors (https://katex.org)
+  License: MIT
+  Used in: Percentage Calculator (LaTeX math rendering in Guide)
+
 jsqr
   Copyright (c) Cosmo Wolfe, Jeff Nelson
   License: Apache-2.0

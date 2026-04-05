@@ -76,7 +76,7 @@ export async function generateMetadata({
     return createMetadata({ title: "FAQ", noIndex: true });
   }
   const title =
-    entry.category === "color-picker"
+    entry.category === "color-picker" || entry.category === "percentage-calculator"
       ? `${entry.question} | FAQ`
       : `${entry.question} - Quick Answer & Calculator`;
   const description =
@@ -85,7 +85,9 @@ export async function generateMetadata({
       ? `${entry.directAnswer} Covers the difference between weighted and unweighted GPA, how to calculate weighted GPA with AP classes, and how our GPA Calculator’s 5.0 Scale (Weighted) option fits in.`
       : entry.category === "color-picker"
         ? `${entry.directAnswer} Free online Color Picker and HEX, RGB, HSL, CMYK converters on WithUsTools.`
-        : `${entry.directAnswer} Learn more about ${entry.seoUnitA} to ${entry.seoUnitB} conversion with our detailed guide and easy-to-use calculator.`);
+        : entry.category === "percentage-calculator"
+          ? `${entry.directAnswer} Free Percentage Calculator: Basic, Percentage Change, Percentage Of, Value After Change—with examples on WithUsTools.`
+          : `${entry.directAnswer} Learn more about ${entry.seoUnitA} to ${entry.seoUnitB} conversion with our detailed guide and easy-to-use calculator.`);
   return createMetadata({
     title,
     description,
@@ -96,7 +98,9 @@ export async function generateMetadata({
         ? ["FAQ", "number system", "radix", "withustools"]
         : entry.category === "color-picker"
           ? ["color picker", "hex rgb converter", "faq", "withustools"]
-          : ["FAQ", "unit conversion", "withustools"]),
+          : entry.category === "percentage-calculator"
+            ? ["percentage calculator FAQ", "percent math", "discount tip calculator", "withustools"]
+            : ["FAQ", "unit conversion", "withustools"]),
   });
 }
 
@@ -120,6 +124,18 @@ function buildFaqJsonLd(entry: FaqEntry, pageUrl: string) {
 }
 
 function ConverterCta({ entry }: { entry: FaqEntry }) {
+  if (entry.category === "percentage-calculator") {
+    return (
+      <div className="flex flex-wrap justify-center sm:justify-start">
+        <Link
+          href={entry.relatedConverterPath}
+          className="inline-flex items-center justify-center rounded-lg border border-blue-500/60 bg-blue-600/20 px-5 py-3 text-sm font-medium text-slate-100 transition-colors hover:border-blue-400 hover:bg-blue-600/30"
+        >
+          Open Percentage Calculator (all four modes)
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-wrap justify-center sm:justify-start">
       <Link
@@ -129,6 +145,70 @@ function ConverterCta({ entry }: { entry: FaqEntry }) {
         Need a precise calculation? Go to {entry.relatedConverterLabel} Converter
       </Link>
     </div>
+  );
+}
+
+function PercentageCalculatorWorkedExampleTable({ entry }: { entry: FaqEntry }) {
+  const ex = entry.percentageWorkedExample;
+  if (!ex) {
+    return (
+      <p className="text-sm text-slate-400">
+        Use the Percentage Calculator tabs to plug in your own numbers; results update as you type with comma formatting
+        and optional history.
+      </p>
+    );
+  }
+  return (
+    <>
+      {ex.intro ? <p className="mb-4 text-sm text-slate-400">{ex.intro}</p> : null}
+      <div className="scrollbar-thin overflow-x-auto">
+        <table className="w-full min-w-[280px] text-sm">
+          <thead>
+            <tr className="border-b border-slate-600">
+              <th className="px-3 py-2 text-left font-medium text-slate-300">Step</th>
+              <th className="px-3 py-2 text-left font-medium text-slate-300">Calculation / result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ex.rows.map((row, i) => (
+              <tr key={i} className="border-b border-slate-700/50">
+                <td className="px-3 py-2 text-slate-300">{row.label}</td>
+                <td className="px-3 py-2 font-mono text-slate-200">{row.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-3 text-xs text-slate-500">
+        Same math as the live tool: Basic Percentage, Percentage Change, Percentage Of, and Value After Change.
+      </p>
+    </>
+  );
+}
+
+function PercentageCalculatorFaqMoreTools() {
+  const linkCls =
+    "block rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-slate-500 hover:bg-slate-800";
+  return (
+    <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2 className="mb-4 text-lg font-semibold text-slate-200">Percentage Calculator modes</h2>
+      <p className="mb-6 text-sm text-slate-500">
+        One page covers four patterns: percent of a total, part-to-whole percent, percent change between two values, and
+        final value after a percent increase or decrease—with recent history on your device.
+      </p>
+      <ul className="grid gap-2 sm:grid-cols-2">
+        <li>
+          <Link href="/tools/calculator/percentage-calculator" className={linkCls}>
+            Percentage Calculator (main tool)
+          </Link>
+        </li>
+        <li>
+          <Link href="/tools/calculator" className={linkCls}>
+            All calculators
+          </Link>
+        </li>
+      </ul>
+    </section>
   );
 }
 
@@ -756,6 +836,8 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
       ? "/tools/developer/color-picker"
       : entry.category === "gpa"
       ? "/tools/calculator/gpa-calculator"
+      : entry.category === "percentage-calculator"
+        ? "/tools/calculator/percentage-calculator"
       : entry.category === "weight"
       ? "/tools/unit-converter/weight"
       : entry.category === "area"
@@ -786,6 +868,8 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
       ? "Color Picker"
       : entry.category === "gpa"
       ? "GPA Calculator"
+      : entry.category === "percentage-calculator"
+        ? "Percentage Calculator"
       : entry.category === "weight"
       ? "Weight Converter"
       : entry.category === "area"
@@ -866,12 +950,16 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
               ? "4.0 vs 5.0 Scale (Weighted) — excerpt"
               : entry.category === "color-picker"
                 ? "Example sRGB codes (HEX · RGB · HSL)"
-                : "Quick conversion table"}
+                : entry.category === "percentage-calculator"
+                  ? "Worked example"
+                  : "Quick conversion table"}
           </h2>
           {entry.category === "gpa" ? (
             <GpaFaqScaleTable />
           ) : entry.category === "color-picker" ? (
             <ColorPickerFaqExampleTable />
+          ) : entry.category === "percentage-calculator" ? (
+            <PercentageCalculatorWorkedExampleTable entry={entry} />
           ) : entry.category === "number-system" ? (
             <NumberSystemConversionTablesPair
               fromBase={pairKeyToBase(entry.tableFromKey as NumberSystemPairKey)}
@@ -908,6 +996,8 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           <GpaFaqRelatedTools />
         ) : entry.category === "color-picker" ? (
           <ColorPickerFaqMoreConverters />
+        ) : entry.category === "percentage-calculator" ? (
+          <PercentageCalculatorFaqMoreTools />
         ) : entry.category === "number-system" ? (
           <NumberSystemHubLinkCards hubUnitKey={entry.hubUnitKey} />
         ) : entry.category === "weight" ? (
@@ -943,7 +1033,7 @@ export default function FaqPage({ params }: { params: { category: string; slug: 
           >
             ← {converterLabel}
           </Link>
-          {entry.category === "gpa" ? (
+          {entry.category === "gpa" || entry.category === "percentage-calculator" ? (
             <Link href="/tools/calculator" className="text-slate-400 underline transition-colors hover:text-slate-200">
               All calculators
             </Link>

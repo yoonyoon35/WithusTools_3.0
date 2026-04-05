@@ -18,7 +18,8 @@ export type FaqCategory =
   | "angle"
   | "number-system"
   | "gpa"
-  | "color-picker";
+  | "color-picker"
+  | "percentage-calculator";
 
 export interface FaqEntry {
   category: FaqCategory;
@@ -41,6 +42,11 @@ export interface FaqEntry {
   keywords?: string[];
   /** When set, used as the FAQ page meta description (e.g. color-picker long-tail SEO). */
   metaDescription?: string;
+  /** category === "percentage-calculator": short worked-example table on the FAQ page. */
+  percentageWorkedExample?: {
+    intro?: string;
+    rows: { label: string; value: string }[];
+  };
 }
 
 export const FAQ_ENTRIES: FaqEntry[] = [
@@ -2589,6 +2595,290 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     keywords: ["eyedropper online", "pick color from screen browser", "chrome eyedropper hex"],
     metaDescription:
       "Free browser eyedropper color picker: sample any screen pixel to HEX and RGB online, no install—WithUsTools Color Picker.",
+  },
+  {
+    category: "percentage-calculator",
+    slug: "how-much-is-10-percent-of-1000-for-tax-or-tips",
+    hubUnitKey: "basic",
+    question: "How much is 10% of 1,000 for tax or tips?",
+    directAnswer:
+      "10% of 1,000 is 100. Use (percentage ÷ 100) × amount: 0.10 × 1,000 = 100.",
+    detailedExplanation:
+      "Convert the percent to a decimal (divide by 100), then multiply by the base amount. That gives the tax amount, tip amount, or any “B% of A” slice. Enter 10 and 1,000 in the Basic Percentage tab to match this example; swap in your bill total or taxable base for real checks.",
+    relationshipContext:
+      "Same pattern for sales tax, VAT-style estimates, or pooled tips—only the base and rate change. For the total *after* adding a percent, use Value After Change with a positive percent.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "10 percent of 1000",
+    seoUnitB: "tax and tips",
+    keywords: [
+      "10% of 1000",
+      "how much is 10 percent of 1000",
+      "tax tip percentage calculator",
+      "percent of total",
+    ],
+    metaDescription:
+      "10% of 1,000 is 100. (percent ÷ 100) × amount—with WithUsTools Basic Percentage.",
+    percentageWorkedExample: {
+      intro: "Basic Percentage: 10%, Number = 1,000.",
+      rows: [
+        { label: "Multiplier", value: "10 ÷ 100 = 0.10" },
+        { label: "Result", value: "0.10 × 1,000 = 100" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "what-is-20-percent-off-a-50-item",
+    hubUnitKey: "basic",
+    question: "What is 20% off a $50 item?",
+    directAnswer:
+      "The discount is $10 (20% of $50). The sale price is $50 − $10 = $40, or in one step $50 × 0.80.",
+    detailedExplanation:
+      "“Percent off” the list price means the discount equals that percent times the original price. 20 ÷ 100 = 0.20; 0.20 × 50 = 10 saved. Subtract from 50 for the new price, or use Value After Change with −20% on 50 to read the final price directly.",
+    relationshipContext:
+      "Stores often show both “$10 off” and “20% off”; Basic Percentage isolates the dollar discount, while Value After Change emphasizes the checkout price.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "20 percent off 50",
+    seoUnitB: "sale price",
+    keywords: ["20% off $50", "discount on 50 dollars", "how much is 20 percent off", "sale calculator"],
+    metaDescription:
+      "20% off $50 is $10 off; you pay $40. Basic Percentage and Value After Change on WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Basic Percentage: 20%, Number = 50 (discount dollars).",
+      rows: [
+        { label: "Discount", value: "0.20 × 50 = 10" },
+        { label: "Sale price", value: "50 − 10 = 40" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "grade-percentage-18-out-of-25",
+    hubUnitKey: "of",
+    question: "What is my grade percentage if I got 18 out of 25?",
+    directAnswer: "72%. Compute (18 ÷ 25) × 100 = 0.72 × 100 = 72.",
+    detailedExplanation:
+      "Your score as a percent of the maximum is the points earned divided by points possible, times 100. Here 18/25 = 0.72 → 72%. Use the Percentage Of tab with Total (possible) = 25 and Part (earned) = 18. Letter grades still depend on your syllabus curve.",
+    relationshipContext:
+      "Quiz averages, rubric totals, and partial-credit exams all use this part-to-whole percentage; it is not the same as “curve to 100%” policies unless your instructor defines that separately.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "18 out of 25",
+    seoUnitB: "grade percent",
+    keywords: ["18 out of 25 grade percentage", "test score percent", "points earned out of total"],
+    metaDescription:
+      "18 out of 25 is 72%. (earned ÷ possible) × 100—Percentage Of on WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Percentage Of: Total = 25, Part = 18.",
+      rows: [
+        { label: "Fraction", value: "18 ÷ 25 = 0.72" },
+        { label: "Percent", value: "0.72 × 100 = 72%" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "what-percent-of-200-students-is-40-students",
+    hubUnitKey: "of",
+    question: "What percent of 200 students is 40 students?",
+    directAnswer: "20%, because (40 ÷ 200) × 100 = 20.",
+    detailedExplanation:
+      "The cohort of 200 is the whole; 40 is the part. Divide part by whole, then multiply by 100. 40/200 = 0.20 → 20%. Enter 200 and 40 under Percentage Of for the same result with comma-friendly inputs.",
+    relationshipContext:
+      "Useful for attendance rates, survey samples, or any “how big is this subgroup?” reporting where both headcount and percent matter.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "40 of 200",
+    seoUnitB: "percent of students",
+    keywords: ["40 out of 200 percent", "what percent of a group", "student percentage"],
+    metaDescription:
+      "40 of 200 students is 20%. Part ÷ whole × 100—with WithUsTools Percentage Of.",
+    percentageWorkedExample: {
+      intro: "Percentage Of: Total = 200, Part = 40.",
+      rows: [
+        { label: "Share", value: "40 ÷ 200 = 0.20" },
+        { label: "Percent", value: "20%" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "how-much-is-7-percent-salary-increase-from-60000",
+    hubUnitKey: "after",
+    question: "How much is a 7% salary increase from $60,000?",
+    directAnswer:
+      "The raise is $4,200 (7% of $60,000). The new salary is $64,200 ($60,000 × 1.07).",
+    detailedExplanation:
+      "“How much is the increase?” usually means the dollar bump: use Basic Percentage with 7 and 60,000 → 4,200. The *new* pay is old pay plus that bump, or Value After Change with +7% on 60,000 → 64,200. Payroll may annualize mid-year raises differently—this is the simple full-year model.",
+    relationshipContext:
+      "HR might quote percent raise, dollar raise, or new base; all three tie together through the same multiplier 1.07.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "7 percent raise",
+    seoUnitB: "60000 salary",
+    keywords: ["7% salary increase", "raise from 60000", "percent pay raise calculator", "new salary after raise"],
+    metaDescription:
+      "7% of $60,000 is $4,200; new salary $64,200. Basic % and Value After Change on WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Raise amount: Basic 7% of 60,000. New pay: Value After +7%.",
+      rows: [
+        { label: "Raise (Basic %)", value: "0.07 × 60,000 = 4,200" },
+        { label: "New salary (After +7%)", value: "60,000 × 1.07 = 64,200" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "stock-150-to-180-percent-increase",
+    hubUnitKey: "change",
+    question: "If my stock goes from $150 to $180, what is the % increase?",
+    directAnswer:
+      "20% increase: ((180 − 150) ÷ 150) × 100 = (30 ÷ 150) × 100 = 20.",
+    detailedExplanation:
+      "Percent change is always relative to the starting value. New minus old, divided by old, times 100. Here +30 on a $150 base is 20%. Use Percentage Change with Original = 150 and New = 180. This is return on the entry price, not on margin borrowed.",
+    relationshipContext:
+      "Investment apps may show dollar gain and percent gain; the percent matches this formula unless they annualize or use a different basis.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "150 to 180 stock",
+    seoUnitB: "percent gain",
+    keywords: ["stock percent increase", "150 to 180 percent change", "calculate gain percentage"],
+    metaDescription:
+      "$150 → $180 is a 20% increase. ((new − old) ÷ old) × 100—Percentage Change on WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Percentage Change: Original = 150, New = 180.",
+      rows: [
+        { label: "Δ", value: "180 − 150 = 30" },
+        { label: "÷ original", value: "30 ÷ 150 = 0.20" },
+        { label: "Percent", value: "20% increase" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "how-much-is-4-5-percent-interest-on-5000-deposit",
+    hubUnitKey: "basic",
+    question: "How much is 4.5% annual interest on a $5,000 deposit?",
+    directAnswer:
+      "Simple interest for one year on the principal: 4.5% × $5,000 = $225 (0.045 × 5,000).",
+    detailedExplanation:
+      "For a plain “interest on principal” snapshot, multiply rate (as a decimal) by the balance. 4.5 ÷ 100 = 0.045; 0.045 × 5,000 = 225. Compounding, tiered rates, or partial years need extra rules—banks quote APY separately. Basic Percentage with 4.5 and 5,000 reproduces the $225 figure.",
+    relationshipContext:
+      "This FAQ is the linear one-period slice; compound growth uses repeated application of (1 + r) per period, not just one Basic Percentage step.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "4.5 percent interest",
+    seoUnitB: "5000 deposit",
+    keywords: ["4.5% interest on 5000", "simple interest calculator", "annual interest amount"],
+    metaDescription:
+      "4.5% of $5,000 is $225 for one simple-interest year. Basic Percentage on WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Basic Percentage: 4.5%, Number = 5,000.",
+      rows: [
+        { label: "Rate as decimal", value: "4.5 ÷ 100 = 0.045" },
+        { label: "Interest (1 yr, simple)", value: "0.045 × 5,000 = 225" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "how-to-calculate-30-percent-profit-margin-on-cost",
+    hubUnitKey: "basic",
+    question: "How to calculate a 30% profit margin on cost?",
+    directAnswer:
+      "If “30% on cost” means profit equals 30% of cost, profit = 0.30 × cost and selling price = cost × 1.30. Example: $100 cost → $30 profit → $130 price.",
+    detailedExplanation:
+      "Clarify definitions: here margin *on cost* (markup on cost) means profit = 30% × cost. Basic Percentage finds the profit dollars; Value After Change with +30% on cost gives the selling price. Retail “margin % of selling price” is different—profit ÷ price—so always confirm which base your contract uses.",
+    relationshipContext:
+      "Accounting margin-on-sales vs markup-on-cost are both percents but with different denominators; mixing them changes break-even points.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "30% markup on cost",
+    seoUnitB: "profit margin",
+    keywords: ["30 percent profit on cost", "markup calculator", "selling price from cost and margin"],
+    metaDescription:
+      "30% on cost: profit = 30% × cost, price = 130% × cost. WithUsTools Basic % and Value After Change.",
+    percentageWorkedExample: {
+      intro: "Example cost = 100. Profit: Basic 30% of 100. Price: Value After +30%.",
+      rows: [
+        { label: "Profit (30% of cost)", value: "0.30 × 100 = 30" },
+        { label: "Selling price", value: "100 × 1.30 = 130" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "how-to-calculate-0-5-percent-real-estate-commission",
+    hubUnitKey: "basic",
+    question: "How to calculate a 0.5% real estate agent commission?",
+    directAnswer:
+      "Commission = 0.5% × sale price. As a decimal: 0.005 × price. Example: 0.5% of $500,000 = $2,500.",
+    detailedExplanation:
+      "Convert 0.5% to 0.005 (divide by 100), multiply by the home’s contract price. Splits between brokers, flat fees, or tiered schedules are contractual—this is the raw percentage slice. Basic Percentage with 0.5 and your sale price matches the tool.",
+    relationshipContext:
+      "List-side and buy-side splits apply after the gross commission is known; each side’s share is another percent or fraction of that gross.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "0.5 percent commission",
+    seoUnitB: "real estate",
+    keywords: ["0.5% realtor commission", "calculate agent commission", "half percent of home price"],
+    metaDescription:
+      "0.5% commission = sale price × 0.005. Example $500k → $2,500. Basic Percentage on WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Basic Percentage: 0.5%, Number = sale price (example 500,000).",
+      rows: [
+        { label: "0.5% as decimal", value: "0.5 ÷ 100 = 0.005" },
+        { label: "On $500,000", value: "0.005 × 500,000 = 2,500" },
+      ],
+    },
+  },
+  {
+    category: "percentage-calculator",
+    slug: "if-20-is-10-percent-what-is-original-number",
+    hubUnitKey: "basic",
+    question: "If 20 is 10% of a number, what is the original number?",
+    directAnswer: "200. Because 20 = 0.10 × whole → whole = 20 ÷ 0.10 = 200.",
+    detailedExplanation:
+      "Translate “10% of x is 20” into 0.10 × x = 20. Divide both sides by 0.10: x = 20 / 0.10 = 200. You can also think: if 20 is one-tenth, the whole is ten times 20. The calculator’s Basic tab outputs “10% of 200 = 20” as a cross-check.",
+    relationshipContext:
+      "Same algebra for any part-and-percent-known problem: whole = part ÷ (percent ÷ 100), as long as the percent is of that same whole.",
+    relatedConverterPath: "/tools/calculator/percentage-calculator",
+    relatedConverterLabel: "Percentage Calculator",
+    tableFromKey: "m",
+    tableToKey: "ft",
+    seoUnitA: "reverse percentage",
+    seoUnitB: "find whole from part",
+    keywords: ["20 is 10 percent of what number", "reverse percent calculator", "find original number from percent"],
+    metaDescription:
+      "If 20 is 10% of a number, the number is 200. whole = part ÷ (percent ÷ 100)—WithUsTools.",
+    percentageWorkedExample: {
+      intro: "Algebra: whole = 20 ÷ (10 ÷ 100).",
+      rows: [
+        { label: "10% as decimal", value: "0.10" },
+        { label: "Whole", value: "20 ÷ 0.10 = 200" },
+        { label: "Check (Basic %)", value: "10% of 200 = 20" },
+      ],
+    },
   },
   {
     category: "gpa",

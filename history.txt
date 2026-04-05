@@ -571,3 +571,14 @@
 1726 - Calculator Tools 페이지에 Standard Deviation Calculator 페이지 추가(기능추가)
 
 1814 - 의존성 저작권 페이지 최신화.
+
+=================================================================================================================
+
+260405
+
+1144 - Percentage Calculator 페이지 기능 개선
+        - Percentage Of, Value After Change 기능 추가(기능 별 간단한 설명 코멘트 작성)
+        - Recent calculations 섹션 추가, 제미나이가 추가 추천해줘서 넣음. Local Storage에 저장 기능
+        - Common questions (FAQ) 섹션과 링크 10개 추가
+        - 기능 별 계산식 추가
+        - latex 공식 라이브러리 Notice에 추가

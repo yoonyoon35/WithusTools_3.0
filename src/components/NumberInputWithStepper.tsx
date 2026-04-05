@@ -1,5 +1,13 @@
 "use client";
 
+import { useRef, useLayoutEffect } from "react";
+import {
+  sanitizeNumericInput,
+  formatWithCommas,
+  rawPrefixLengthFromDisplay,
+  displayCursorFromRawPrefix,
+} from "@/lib/numberFormat";
+
 interface NumberInputWithStepperProps {
   id?: string;
   value: string;
@@ -12,6 +20,8 @@ interface NumberInputWithStepperProps {
   className?: string;
   inputClassName?: string;
   disabled?: boolean;
+  /** When true, shows thousands separators while typing (text input + parsing). */
+  commaFormat?: boolean;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
@@ -28,10 +38,14 @@ export default function NumberInputWithStepper({
   className = "",
   inputClassName = "",
   disabled = false,
+  commaFormat = false,
   onKeyDown,
   onBlur,
 }: NumberInputWithStepperProps) {
-  const num = parseFloat(value) || 0;
+  const inputRef = useRef<HTMLInputElement>(null);
+  const pendingCursorRawPrefix = useRef<number | null>(null);
+
+  const num = parseFloat(value.replace(/,/g, "")) || 0;
   const stepVal = step;
 
   const adjust = (delta: number) => {
@@ -48,10 +62,34 @@ export default function NumberInputWithStepper({
         ? Math.round(clamped).toString()
         : clamped.toFixed(String(stepVal).split(".")[1]?.length ?? 1);
     onChange(formatted);
+    if (commaFormat && inputRef.current) {
+      pendingCursorRawPrefix.current = sanitizeNumericInput(formatted).length;
+    }
   };
 
   const atMin = min != null && num <= min;
   const atMax = max != null && num >= max;
+
+  const displayValue = commaFormat ? formatWithCommas(value) : value;
+
+  useLayoutEffect(() => {
+    if (!commaFormat || pendingCursorRawPrefix.current === null) return;
+    const el = inputRef.current;
+    if (!el) return;
+    const len = pendingCursorRawPrefix.current;
+    pendingCursorRawPrefix.current = null;
+    const pos = displayCursorFromRawPrefix(formatWithCommas(value), len);
+    el.setSelectionRange(pos, pos);
+  }, [commaFormat, value]);
+
+  const handleCommaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const el = e.target;
+    const cursor = el.selectionStart ?? 0;
+    const rawPrefix = rawPrefixLengthFromDisplay(el.value, cursor);
+    const raw = sanitizeNumericInput(el.value);
+    onChange(raw);
+    pendingCursorRawPrefix.current = rawPrefix;
+  };
 
   const baseInputCls =
     "w-full rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none";
@@ -62,10 +100,12 @@ export default function NumberInputWithStepper({
   return (
     <div className={`flex overflow-hidden rounded-lg border border-slate-600 bg-slate-800 shadow-sm ${disabled ? "opacity-60 pointer-events-none" : ""} ${className}`}>
       <input
-        type="number"
+        ref={inputRef}
+        type={commaFormat ? "text" : "number"}
         id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        inputMode={commaFormat ? "decimal" : undefined}
+        value={displayValue}
+        onChange={(e) => (commaFormat ? handleCommaChange(e) : onChange(e.target.value))}
         disabled={disabled}
         onBlur={onBlur}
         onKeyDown={(e) => {
@@ -80,9 +120,9 @@ export default function NumberInputWithStepper({
           }
         }}
         placeholder={placeholder}
-        min={min}
-        max={max}
-        step={step}
+        min={commaFormat ? undefined : min}
+        max={commaFormat ? undefined : max}
+        step={commaFormat ? undefined : step}
         aria-label={ariaLabel}
         className={`${baseInputCls} rounded-r-none border-r-0 ${inputClassName}`}
       />
