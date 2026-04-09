@@ -33,6 +33,8 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/image/image-editor": "Image Editor",
   "/tools/image/image-format-converter": "Image Format Converter",
   "/tools/image/paint-board": "Paint Board",
+  "/tools/pdf/image-to-pdf": "Image to PDF",
+  "/tools/pdf/merge-pdf": "Merge PDF",
   "/tools/developer/ascii-code-converter": "ASCII Code Converter",
   "/tools/developer/base64-encoder-decoder": "Base64 Encoder/Decoder",
   "/tools/developer/code-formatter": "Code Formatter",
@@ -97,6 +99,7 @@ const PATH_TITLES: Record<string, string> = {
 const PARENT_TO_CATEGORY: Record<string, string> = {
   "hash-calculator": "hash",
   ssh: "security",
+  "pdf-converter": "pdf",
 };
 
 /** Cross-category related tools: path -> paths of related tools */
@@ -114,7 +117,7 @@ export const RELATED_TOOLS: Record<string, string[]> = {
   "/tools/image/image-format-converter": [
     "/tools/image/image-compressor",
     "/tools/jpg-converter",
-    "/tools/pdf-converter",
+    "/tools/pdf/image-to-pdf",
   ],
   "/tools/image/image-compressor": [
     "/tools/image/image-format-converter",
@@ -123,11 +126,24 @@ export const RELATED_TOOLS: Record<string, string[]> = {
   "/tools/jpg-converter": [
     "/tools/image/image-format-converter",
     "/tools/image/image-compressor",
-    "/tools/pdf-converter",
+    "/tools/pdf/image-to-pdf",
   ],
   "/tools/pdf-converter": [
+    "/tools/pdf/image-to-pdf",
+    "/tools/pdf/merge-pdf",
     "/tools/image/image-format-converter",
     "/tools/jpg-converter",
+  ],
+  "/tools/pdf/image-to-pdf": [
+    "/tools/pdf-converter",
+    "/tools/pdf/merge-pdf",
+    "/tools/image/image-format-converter",
+    "/tools/jpg-converter",
+  ],
+  "/tools/pdf/merge-pdf": [
+    "/tools/pdf/image-to-pdf",
+    "/tools/pdf-converter",
+    "/tools/image/image-format-converter",
   ],
   "/tools/developer/base64-encoder-decoder": [
     "/tools/developer/ascii-code-converter",
@@ -216,7 +232,7 @@ export function getParentPath(path: string): string | null {
 
 /** Categories that have a dedicated category page (avoid 404 for security, hash) */
 const CATEGORIES_WITH_PAGE = new Set([
-  "calculator", "developer", "time", "image", "text", "random", "seo", "language", "unit-converter",
+  "calculator", "developer", "time", "image", "pdf", "text", "random", "seo", "language", "unit-converter",
 ]);
 
 /** Get related paths: use parent's if current path is sub-page (e.g. /tools/hash-calculator/md5) */

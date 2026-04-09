@@ -1,4 +1,16 @@
-export type ToolCategory = "developer" | "security" | "text" | "hash" | "image" | "random" | "seo" | "time" | "calculator" | "language" | "unit-converter";
+export type ToolCategory =
+  | "developer"
+  | "security"
+  | "text"
+  | "hash"
+  | "image"
+  | "pdf"
+  | "random"
+  | "seo"
+  | "time"
+  | "calculator"
+  | "language"
+  | "unit-converter";
 
 export interface Tool {
   id: string;
@@ -59,11 +71,21 @@ export const TOOLS: Tool[] = [
     path: "/tools/jpg-converter",
   },
   {
+    id: "pdf-tools",
+    title: "PDF Tools",
+    description:
+      "Image to PDF: combine JPG, PNG, HEIC, HEIF, WEBP, AVIF, BMP, TIFF, and other images into one PDF. Format-specific converters also available. Zero margins in fit mode, local processing.",
+    category: "pdf",
+    icon: "pdf",
+    path: "/tools/pdf",
+  },
+  {
     id: "pdf-converter",
     title: "PDF Converter",
-    description: "Convert JPG and images to PDF. Zero white margins, preserved aspect ratio. Combine multiple images into one PDF.",
-    category: "image",
-    icon: "image",
+    description:
+      "Convert JPG, HEIC, HEIF, PNG, WEBP, AVIF, BMP, TIFF, and images to PDF. Zero white margins, preserved aspect ratio. Combine multiple images into one PDF.",
+    category: "pdf",
+    icon: "pdf",
     path: "/tools/pdf-converter",
   },
   {
@@ -125,6 +147,7 @@ export const CATEGORIES: { value: ToolCategory | "all"; label: string }[] = [
   { value: "time", label: "Time" },
   { value: "text", label: "Text" },
   { value: "image", label: "Image" },
+  { value: "pdf", label: "PDF" },
   { value: "random", label: "Random" },
   { value: "seo", label: "SEO" },
   { value: "language", label: "Language" },

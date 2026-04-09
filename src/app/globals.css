@@ -22,26 +22,27 @@ body {
   color: rgb(248 250 252);
 }
 
-/* Thin, minimal scrollbar - dark theme */
-.scrollbar-thin {
+/* Global thin, minimal scrollbar - applies to all scroll containers */
+* {
   scrollbar-width: thin;
   scrollbar-color: rgb(71 85 105 / 0.5) transparent;
 }
 
-.scrollbar-thin::-webkit-scrollbar {
+:where(*, .scrollbar-thin)::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-track {
+:where(*, .scrollbar-thin)::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb {
+:where(*, .scrollbar-thin)::-webkit-scrollbar-thumb {
   background: rgb(71 85 105 / 0.5);
   border-radius: 3px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+:where(*, .scrollbar-thin)::-webkit-scrollbar-thumb:hover {
   background: rgb(71 85 105 / 0.8);
 }
 

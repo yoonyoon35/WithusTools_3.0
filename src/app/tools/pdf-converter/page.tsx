@@ -7,11 +7,17 @@ import { PDF_CONVERTER_INDEX_GUIDE } from "./converter-content";
 export const metadata: Metadata = createMetadata({
   title: "PDF Converter",
   description:
-    "Free online PDF converter. Convert JPG and other images to PDF. Combine multiple images into a single PDF with zero white margins and preserved aspect ratio. No upload—all processing runs in your browser.",
+    "Free online PDF converter. Convert JPG, HEIC, HEIF, PNG, WEBP, AVIF, BMP, TIFF, and other images to PDF. Combine multiple images into a single PDF with zero white margins and preserved aspect ratio. No upload—all processing runs in your browser.",
   path: "/tools/pdf-converter",
   keywords: [
     "PDF converter",
     "JPG to PDF",
+    "HEIC to PDF",
+    "HEIF to PDF",
+    "WEBP to PDF",
+    "AVIF to PDF",
+    "BMP to PDF",
+    "TIFF to PDF",
     "image to PDF",
     "combine images to PDF",
     "free PDF converter",
@@ -30,11 +36,53 @@ const PDF_CONVERTER_FORMATS = [
     path: "/tools/pdf-converter/jpg",
   },
   {
+    slug: "heic",
+    name: "HEIC to PDF",
+    description:
+      "Convert iPhone HEIC/HEIF photos to PDF. Each image becomes a page with its exact dimensions—no white margins, no aspect ratio distortion. Combine multiple HEIC files into one PDF.",
+    path: "/tools/pdf-converter/heic",
+  },
+  {
+    slug: "heif",
+    name: "HEIF to PDF",
+    description:
+      "Convert HEIF/HEIC images to PDF. Each image becomes a page with its exact dimensions—no white margins, no aspect ratio distortion. Same decode pipeline as HEIC to PDF; .heif and .heic are supported.",
+    path: "/tools/pdf-converter/heif",
+  },
+  {
     slug: "png",
     name: "PNG to PDF",
     description:
       "Convert PNG images to PDF. Each image becomes a page with its exact dimensions—transparency preserved. Combine multiple PNGs into one PDF.",
     path: "/tools/pdf-converter/png",
+  },
+  {
+    slug: "webp",
+    name: "WEBP to PDF",
+    description:
+      "Convert WEBP images to PDF. Each image becomes a page with its exact dimensions—no white margins, no aspect ratio distortion. Combine multiple WEBP files into one PDF.",
+    path: "/tools/pdf-converter/webp",
+  },
+  {
+    slug: "avif",
+    name: "AVIF to PDF",
+    description:
+      "Convert AVIF images to PDF. Each image becomes a page with its exact dimensions—no white margins, no aspect ratio distortion. Uses browser decode (createImageBitmap). Combine multiple AVIF files into one PDF.",
+    path: "/tools/pdf-converter/avif",
+  },
+  {
+    slug: "bmp",
+    name: "BMP to PDF",
+    description:
+      "Convert BMP images to PDF. Each image becomes a page with its exact dimensions—no white margins, no aspect ratio distortion. Combine multiple BMP files into one PDF.",
+    path: "/tools/pdf-converter/bmp",
+  },
+  {
+    slug: "tiff",
+    name: "TIFF to PDF",
+    description:
+      "Convert TIFF/TIF images to PDF. Each file becomes a page sized to the decoded image—ideal for scans and archival photos. Multi-page TIFFs use the primary (largest) frame. Combine multiple TIFFs into one PDF.",
+    path: "/tools/pdf-converter/tiff",
   },
 ] as const;
 
@@ -43,10 +91,10 @@ export default function PDFConverterIndexPage() {
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
-          <ToolIcon name="image" />
+          <ToolIcon name="pdf" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">PDF Converter</h1>
-            <p className="mt-1 text-sm text-slate-500">image</p>
+            <p className="mt-1 text-sm text-slate-500">pdf</p>
           </div>
         </div>
       </div>
@@ -73,6 +121,22 @@ export default function PDFConverterIndexPage() {
           </Link>
         ))}
       </div>
+
+      <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-2 text-sm font-semibold text-slate-200">
+          Prefer mixed formats?
+        </h2>
+        <p className="text-sm text-slate-400">
+          If you want <strong className="font-semibold text-slate-200">any image formats</strong> in one upload (mixed batch), use{" "}
+          <Link
+            href="/tools/pdf/image-to-pdf"
+            className="font-medium text-blue-400 underline hover:text-blue-300"
+          >
+            Image to PDF
+          </Link>
+          .
+        </p>
+      </section>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">

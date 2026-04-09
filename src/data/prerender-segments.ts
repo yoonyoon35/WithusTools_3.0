@@ -25,7 +25,16 @@ export const JPG_CONVERTER_FORMATS = [
 
 export type JpgConverterFormat = (typeof JPG_CONVERTER_FORMATS)[number];
 
-export const PDF_CONVERTER_FORMATS = ["jpg", "png"] as const;
+export const PDF_CONVERTER_FORMATS = [
+  "jpg",
+  "heic",
+  "heif",
+  "png",
+  "webp",
+  "avif",
+  "bmp",
+  "tiff",
+] as const;
 
 export type PdfConverterFormat = (typeof PDF_CONVERTER_FORMATS)[number];
 

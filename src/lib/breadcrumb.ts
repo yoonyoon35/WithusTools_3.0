@@ -23,6 +23,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   time: "Time",
   text: "Text",
   image: "Image",
+  pdf: "PDF",
   random: "Random",
   seo: "SEO",
   language: "Language",
@@ -92,6 +93,8 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "hash-calculator": "Hash Calculator",
   "jpg-converter": "JPG Converter",
   "pdf-converter": "PDF Converter",
+  "image-to-pdf": "Image to PDF",
+  "merge-pdf": "Merge PDF",
   ssh: "SSH Key Generator",
   "what-is-weighted-gpa": "What is a Weighted GPA?",
 };

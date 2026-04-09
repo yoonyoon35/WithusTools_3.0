@@ -40,6 +40,33 @@ const FORMAT_META: Record<
       "free JPG to PDF online",
     ],
   },
+  heic: {
+    title: "HEIC to PDF",
+    description:
+      "Free HEIC to PDF converter. Convert iPhone HEIC/HEIF photos to PDF with zero white margins and preserved aspect ratio. Combine multiple HEIC files into one PDF. Uses heic2any in your browser—no upload.",
+    displayName: "HEIC",
+    keywords: [
+      "HEIC to PDF",
+      "convert HEIC to PDF",
+      "iPhone HEIC to PDF",
+      "HEIC to PDF online",
+      "HEIF to PDF",
+      "free HEIC to PDF",
+    ],
+  },
+  heif: {
+    title: "HEIF to PDF",
+    description:
+      "Free HEIF to PDF converter. Convert HEIF/HEIC images to PDF with zero white margins and preserved aspect ratio. Combine multiple files into one PDF. Uses heic2any in your browser—no upload.",
+    displayName: "HEIF",
+    keywords: [
+      "HEIF to PDF",
+      "convert HEIF to PDF",
+      "HEIC to PDF",
+      "HEIF to PDF online",
+      "free HEIF to PDF",
+    ],
+  },
   png: {
     title: "PNG to PDF",
     description:
@@ -51,6 +78,59 @@ const FORMAT_META: Record<
       "PNG to PDF online",
       "combine PNG to PDF",
       "free PNG to PDF",
+    ],
+  },
+  webp: {
+    title: "WEBP to PDF",
+    description:
+      "Free WEBP to PDF converter. Convert WEBP images to PDF with zero white margins and preserved aspect ratio. Combine multiple WEBP files into one PDF. No upload—processing runs in your browser.",
+    displayName: "WEBP",
+    keywords: [
+      "WEBP to PDF",
+      "convert WEBP to PDF",
+      "WEBP to PDF online",
+      "combine WEBP to PDF",
+      "free WEBP to PDF",
+    ],
+  },
+  avif: {
+    title: "AVIF to PDF",
+    description:
+      "Free AVIF to PDF converter. Convert AVIF images to PDF with zero white margins and preserved aspect ratio. Combine multiple AVIF files into one PDF. Browser-native decode—no upload.",
+    displayName: "AVIF",
+    keywords: [
+      "AVIF to PDF",
+      "convert AVIF to PDF",
+      "AVIF to PDF online",
+      "combine AVIF to PDF",
+      "free AVIF to PDF",
+    ],
+  },
+  bmp: {
+    title: "BMP to PDF",
+    description:
+      "Free BMP to PDF converter. Convert BMP bitmap images to PDF with zero white margins and preserved aspect ratio. Combine multiple BMP files into one PDF. No upload—processing runs in your browser.",
+    displayName: "BMP",
+    keywords: [
+      "BMP to PDF",
+      "convert BMP to PDF",
+      "BMP to PDF online",
+      "combine BMP to PDF",
+      "free BMP to PDF",
+    ],
+  },
+  tiff: {
+    title: "TIFF to PDF",
+    description:
+      "Free TIFF to PDF converter. Convert TIFF/TIF scans and photos to PDF with zero white margins and preserved aspect ratio. Combine multiple TIFF files into one PDF. Uses UTIF in your browser—no upload.",
+    displayName: "TIFF",
+    keywords: [
+      "TIFF to PDF",
+      "convert TIFF to PDF",
+      "TIF to PDF",
+      "TIFF to PDF online",
+      "combine TIFF to PDF",
+      "free TIFF to PDF",
     ],
   },
 };
@@ -97,7 +177,7 @@ export default async function PDFConverterFormatPage({
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
-          <ToolIcon name="image" />
+          <ToolIcon name="pdf" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">
               {meta.displayName} to PDF
@@ -107,7 +187,19 @@ export default async function PDFConverterFormatPage({
         </div>
       </div>
 
-      <ImageToPdfConverter format={format as "jpg" | "png"} />
+      <ImageToPdfConverter
+        format={
+          format as
+            | "jpg"
+            | "heic"
+            | "heif"
+            | "png"
+            | "webp"
+            | "avif"
+            | "bmp"
+            | "tiff"
+        }
+      />
 
       {guide && (
         <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
