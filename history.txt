@@ -618,3 +618,5 @@
 
 1256 - 빙 웹마스터에서 "Some of your important new pages are missing from your sitemaps." 경고 떠서 조치함
        큰 의미는 아니고 canonical url과 sitemap.ts에서 생성하는 url이 다른 상황인데, 끝에 '/'가 붙냐 안붙냐 차이임.
+
+1516 - 기존 hira kata converter에서 분리해서 hangul to hira, kata, to hangul 총 4페이지 추가

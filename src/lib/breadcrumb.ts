@@ -65,6 +65,10 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "hangul-study": "Hangul",
   "alphabet-study": "English Alphabet",
   "hiragana-katakana-converter": "Hiragana Katakana Converter",
+  "hangul-to-hiragana": "Hangul to Hiragana (Pronunciation)",
+  "hangul-to-katakana": "Hangul to Katakana (Pronunciation)",
+  "hiragana-to-hangul": "Hiragana to Hangul (Pronunciation)",
+  "katakana-to-hangul": "Katakana to Hangul (Pronunciation)",
   // Text
   "string-comparison": "String Comparison",
   "text-converter": "Text Converter",

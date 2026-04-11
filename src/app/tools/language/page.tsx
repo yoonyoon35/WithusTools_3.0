@@ -7,7 +7,7 @@ import { LANGUAGE_INDEX_GUIDE } from "./language-content";
 export const metadata: Metadata = createMetadata({
   title: "Language Tools",
   description:
-    "Free online language learning tools: English Alphabet, Hiragana, Katakana, Hangul charts, and Hiragana Katakana converter. Learn stroke order and pronunciation.",
+    "Free online language learning tools: English Alphabet, Hiragana, Katakana, Hangul charts, Hiragana Katakana converter, Hangul↔kana pronunciation converters, and Hiragana/Katakana to Hangul (inverse). Learn stroke order and pronunciation.",
   path: "/tools/language",
   keywords: [
     "language tools",
@@ -16,6 +16,10 @@ export const metadata: Metadata = createMetadata({
     "katakana chart",
     "hangul chart",
     "kana converter",
+    "hangul to hiragana",
+    "hangul to katakana",
+    "hiragana to hangul",
+    "katakana to hangul",
     "language learning",
     "withustools",
   ],
@@ -57,6 +61,34 @@ const LANGUAGE_TOOLS = [
       "Convert text to Hiragana and Katakana from one input. Supports romaji, existing kana, and mixed input. Real-time conversion.",
     path: "/tools/language/hiragana-katakana-converter",
   },
+  {
+    slug: "hangul-to-hiragana",
+    name: "Hangul to Hiragana (Pronunciation)",
+    description:
+      "Map Korean Hangul syllables to hiragana by approximate pronunciation. Other characters pass through unchanged.",
+    path: "/tools/language/hangul-to-hiragana",
+  },
+  {
+    slug: "hangul-to-katakana",
+    name: "Hangul to Katakana (Pronunciation)",
+    description:
+      "Map Korean Hangul syllables to katakana by approximate pronunciation—the same rules as Hangul to Hiragana.",
+    path: "/tools/language/hangul-to-katakana",
+  },
+  {
+    slug: "hiragana-to-hangul",
+    name: "Hiragana to Hangul (Pronunciation)",
+    description:
+      "Inverse of Hangul to Hiragana: decode pronunciation-style hiragana (and basic katakana) back into Hangul.",
+    path: "/tools/language/hiragana-to-hangul",
+  },
+  {
+    slug: "katakana-to-hangul",
+    name: "Katakana to Hangul (Pronunciation)",
+    description:
+      "Same inverse as Hiragana to Hangul, tuned for katakana from Hangul to Katakana (normalize then decode).",
+    path: "/tools/language/katakana-to-hangul",
+  },
 ] as const;
 
 export default function LanguageToolsIndexPage() {
@@ -74,8 +106,9 @@ export default function LanguageToolsIndexPage() {
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         English Alphabet, Hiragana, Katakana, and Hangul charts with stroke order
-        and pronunciation. Hiragana Katakana converter for kana output. All
-        processing runs in your browser. No signup required.
+        and pronunciation. Hiragana Katakana converter, Hangul-to-kana tools, and
+        Hiragana/Katakana-to-Hangul (inverse). All processing runs in your browser.
+        No signup required.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

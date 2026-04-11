@@ -115,7 +115,8 @@ export const TOOLS: Tool[] = [
   {
     id: "language-tools",
     title: "Language Tools",
-    description: "English Alphabet, Hiragana, Katakana, Hangul charts and Hiragana-Katakana converter for language learning",
+    description:
+      "English Alphabet, Hiragana, Katakana, Hangul charts, Hiragana-Katakana converter, Hangul↔kana pronunciation tools, and Hiragana/Katakana-to-Hangul (inverse) for language learning",
     category: "language",
     icon: "language",
     path: "/tools/language",
