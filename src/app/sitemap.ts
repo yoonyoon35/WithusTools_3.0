@@ -39,6 +39,16 @@ import { getAllColorFormatPairs, getCanonicalColorPairSlug } from "@/utils/color
 const BASE_URL = "https://withustools.com";
 
 /**
+ * Align `<loc>` with Next.js `trailingSlash: true` (matches `alternates.canonical` / `og:url`).
+ * Without this, Bing compares e.g. `.../tools/foo/` (crawled) to `.../tools/foo` (sitemap) and reports missing URLs.
+ */
+function locUrl(path: string): string {
+  if (!path || path === "/") return `${BASE_URL}/`;
+  const normalized = path.endsWith("/") ? path.slice(0, -1) : path;
+  return `${BASE_URL}${normalized}/`;
+}
+
+/**
  * Sitemap section order (oldest / core first → newest / long-tail last):
  * 1. Site foundation (home, search, tools index)
  * 2. Legal & settings
@@ -86,7 +96,7 @@ function unitConverterPairSitemapEntries(
     for (const to of keys) {
       if (from === to) continue;
       entries.push({
-        url: `${BASE_URL}${basePath}/${getCanonicalSlug(from, to)}`,
+        url: locUrl(`${basePath}/${getCanonicalSlug(from, to)}`),
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.65,
@@ -100,32 +110,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const siteFoundation: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE_URL}/search`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/tools`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: locUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: locUrl("/search"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: locUrl("/tools"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
   ];
 
   const legalAndMeta: MetadataRoute.Sitemap = [
     {
-      url: `${BASE_URL}/privacy-policy`,
+      url: locUrl("/privacy-policy"),
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/terms-of-use`,
+      url: locUrl("/terms-of-use"),
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/cookie-settings`,
+      url: locUrl("/cookie-settings"),
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.55,
     },
     {
-      url: `${BASE_URL}/licenses`,
+      url: locUrl("/licenses"),
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.45,
@@ -135,35 +145,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const toolPagesSorted: MetadataRoute.Sitemap = [...ALL_TOOLS]
     .sort((a, b) => a.path.localeCompare(b.path))
     .map(({ path }) => ({
-      url: `${BASE_URL}${path}`,
+      url: locUrl(path),
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     }));
 
   const hashAlgorithmPages: MetadataRoute.Sitemap = HASH_CALCULATOR_ALGORITHMS.map((algorithm) => ({
-    url: `${BASE_URL}/tools/hash-calculator/${algorithm}`,
+    url: locUrl(`/tools/hash-calculator/${algorithm}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.72,
   }));
 
   const sshAlgorithmPages: MetadataRoute.Sitemap = SSH_KEY_ALGORITHMS.map((algorithm) => ({
-    url: `${BASE_URL}/tools/ssh/${algorithm}`,
+    url: locUrl(`/tools/ssh/${algorithm}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.72,
   }));
 
   const jpgConverterPages: MetadataRoute.Sitemap = JPG_CONVERTER_FORMATS.map((format) => ({
-    url: `${BASE_URL}/tools/jpg-converter/${format}`,
+    url: locUrl(`/tools/jpg-converter/${format}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   const pdfConverterPages: MetadataRoute.Sitemap = PDF_CONVERTER_FORMATS.map((format) => ({
-    url: `${BASE_URL}/tools/pdf-converter/${format}`,
+    url: locUrl(`/tools/pdf-converter/${format}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -194,7 +204,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const faqPages: MetadataRoute.Sitemap = getAllFaqStaticParams().map(({ category, slug }) => ({
-    url: `${BASE_URL}/faq/${category}/${slug}`,
+    url: locUrl(`/faq/${category}/${slug}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.65,
@@ -208,14 +218,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const numberSystemPairPages: MetadataRoute.Sitemap = getAllNumberSystemPairSlugs().map((slug) => ({
-    url: `${BASE_URL}/tools/developer/numbersystem-converter/${slug}`,
+    url: locUrl(`/tools/developer/numbersystem-converter/${slug}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
 
   const colorFormatPairPages: MetadataRoute.Sitemap = getAllColorFormatPairs().map(({ from, to }) => ({
-    url: `${BASE_URL}/tools/developer/color-picker/converter/${getCanonicalColorPairSlug(from, to)}`,
+    url: locUrl(`/tools/developer/color-picker/converter/${getCanonicalColorPairSlug(from, to)}`),
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.65,
