@@ -206,7 +206,7 @@ export default async function PDFConverterFormatPage({
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                1. How to Use
+                1. How can I use this {meta.displayName} to PDF converter on this page?
               </h3>
               <ol className="list-decimal space-y-2 pl-5">
                 {guide.usage.map((step, i) => (
@@ -216,7 +216,7 @@ export default async function PDFConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                2. How It Works
+                2. How does this tool convert {meta.displayName} to PDF in my browser?
               </h3>
               <div className="space-y-2">
                 {guide.howItWorks.map((p, i) => (
@@ -226,7 +226,7 @@ export default async function PDFConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                3. About {meta.displayName} to PDF
+                3. What should I know about {meta.displayName} to PDF, and when is it the right choice?
               </h3>
               <div className="space-y-2">
                 {guide.about.map((p, i) => (
@@ -236,7 +236,7 @@ export default async function PDFConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                4. Advantages
+                4. Why convert {meta.displayName} to PDF in the browser for privacy and speed?
               </h3>
               <ul className="list-disc space-y-2 pl-5">
                 {guide.advantages.map((item, i) => (
@@ -246,7 +246,7 @@ export default async function PDFConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                5. Real-World Use Cases
+                5. When do people convert {meta.displayName} files to PDF for sharing or archiving?
               </h3>
               <ul className="list-disc space-y-2 pl-5">
                 {guide.useCases.map((item, i) => (

@@ -74,7 +74,9 @@ export default function ImageCompressorPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I compress images and reduce file size with this tool?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {IMAGE_COMPRESSOR_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -82,7 +84,9 @@ export default function ImageCompressorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this image compressor process files locally in my browser?
+            </h3>
             <div className="space-y-2">
               {IMAGE_COMPRESSOR_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -90,7 +94,9 @@ export default function ImageCompressorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Image Compressor</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is this image compressor for, and what quality trade-offs exist?
+            </h3>
             <div className="space-y-2">
               {IMAGE_COMPRESSOR_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -98,7 +104,9 @@ export default function ImageCompressorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why compress images online instead of heavy desktop software?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_COMPRESSOR_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -106,7 +114,9 @@ export default function ImageCompressorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do smaller images matter for websites, email, or social posts?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_COMPRESSOR_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

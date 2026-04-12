@@ -253,7 +253,9 @@ export default function BMICalculatorPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I calculate BMI and read weight categories on this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {BMI_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -261,7 +263,9 @@ export default function BMICalculatorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this BMI calculator use height and weight in metric or imperial units?
+            </h3>
             <div className="space-y-2">
               {BMI_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -269,7 +273,9 @@ export default function BMICalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About BMI Calculator</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is BMI, and what are its limits for judging health?
+            </h3>
             <div className="space-y-2">
               {BMI_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -277,7 +283,9 @@ export default function BMICalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why check BMI with a private in-browser calculator?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {BMI_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -285,7 +293,9 @@ export default function BMICalculatorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When is BMI screening used alongside other health information?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {BMI_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

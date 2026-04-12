@@ -76,7 +76,9 @@ export default function ImageEditorPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I crop, resize, or adjust images with this editor?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {IMAGE_EDITOR_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -84,7 +86,9 @@ export default function ImageEditorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this image editor apply edits locally in my browser?
+            </h3>
             <div className="space-y-2">
               {IMAGE_EDITOR_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -100,7 +104,9 @@ export default function ImageEditorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a lightweight web image editor instead of desktop apps for quick fixes?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_EDITOR_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -108,7 +114,9 @@ export default function ImageEditorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When are quick browser edits enough for product photos or thumbnails?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_EDITOR_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

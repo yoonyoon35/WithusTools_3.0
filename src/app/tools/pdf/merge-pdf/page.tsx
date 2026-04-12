@@ -53,7 +53,9 @@ export default function MergePdfPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I merge multiple PDFs into one file on this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {MERGE_PDF_PAGE_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -62,7 +64,7 @@ export default function MergePdfPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              2. How It Works
+              2. How does this tool combine PDFs locally in my browser?
             </h3>
             <div className="space-y-2">
               {MERGE_PDF_PAGE_GUIDE.howItWorks.map((p, i) => (
@@ -72,7 +74,7 @@ export default function MergePdfPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              3. About Merge PDF
+              3. What is this merge PDF tool for, and what are its practical limits?
             </h3>
             <div className="space-y-2">
               {MERGE_PDF_PAGE_GUIDE.about.map((p, i) => (
@@ -81,7 +83,9 @@ export default function MergePdfPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why merge PDFs in the browser instead of installing desktop software?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {MERGE_PDF_PAGE_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -90,7 +94,7 @@ export default function MergePdfPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. Real-World Use Cases
+              5. When do people combine PDFs for work, school, or official filings?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {MERGE_PDF_PAGE_GUIDE.useCases.map((item, i) => (

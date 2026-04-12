@@ -203,7 +203,9 @@ export default function HashAlgorithmPage({
         <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
-              <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+              <h3 className="mb-3 font-semibold text-slate-200">
+                1. How can I use this {meta.displayName} hash calculator on this page?
+              </h3>
               <ol className="list-decimal space-y-2 pl-5">
                 {ALGORITHM_GUIDE[algorithm].usage.map((step, i) => (
                   <li key={i}>{step}</li>
@@ -211,7 +213,9 @@ export default function HashAlgorithmPage({
               </ol>
             </div>
             <div>
-              <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+              <h3 className="mb-3 font-semibold text-slate-200">
+                2. How does this calculator compute {meta.displayName} locally in my browser?
+              </h3>
               <div className="space-y-2">
                 {ALGORITHM_GUIDE[algorithm].howItWorks.map((p, i) => (
                   <p key={i}>{p}</p>
@@ -219,7 +223,9 @@ export default function HashAlgorithmPage({
               </div>
             </div>
             <div>
-              <h3 className="mb-3 font-semibold text-slate-200">3. About {meta.displayName}</h3>
+              <h3 className="mb-3 font-semibold text-slate-200">
+                3. What is {meta.displayName}, and when should I use it?
+              </h3>
               <div className="space-y-2">
                 {ALGORITHM_GUIDE[algorithm].about.map((p, i) => (
                   <p key={i}>{p}</p>
@@ -227,7 +233,9 @@ export default function HashAlgorithmPage({
               </div>
             </div>
             <div>
-              <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+              <h3 className="mb-3 font-semibold text-slate-200">
+                4. Why choose {meta.displayName} over other hash or checksum algorithms?
+              </h3>
               <ul className="list-disc space-y-2 pl-5">
                 {ALGORITHM_GUIDE[algorithm].advantages.map((item, i) => (
                   <li key={i}>{item}</li>
@@ -235,7 +243,9 @@ export default function HashAlgorithmPage({
               </ul>
             </div>
             <div>
-              <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+              <h3 className="mb-3 font-semibold text-slate-200">
+                5. Where is {meta.displayName} commonly used in apps and infrastructure?
+              </h3>
               <ul className="list-disc space-y-2 pl-5">
                 {ALGORITHM_GUIDE[algorithm].useCases.map((item, i) => (
                   <li key={i}>{item}</li>

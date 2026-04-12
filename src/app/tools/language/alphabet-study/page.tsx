@@ -69,7 +69,9 @@ export default function AlphabetStudyPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I explore English letters and sounds with this alphabet study view?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {ALPHABET_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -77,7 +79,9 @@ export default function AlphabetStudyPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this alphabet reference load in the browser for quick lookup?
+            </h3>
             <div className="space-y-2">
               {ALPHABET_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -85,7 +89,9 @@ export default function AlphabetStudyPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About English Alphabet</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What does this English alphabet tool cover for ESL learners and kids?
+            </h3>
             <div className="space-y-2">
               {ALPHABET_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -93,7 +99,9 @@ export default function AlphabetStudyPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why keep a simple web alphabet chart open during reading or spelling lessons?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {ALPHABET_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -101,7 +109,9 @@ export default function AlphabetStudyPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When is letter-sound practice the foundation before words and sentences?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {ALPHABET_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

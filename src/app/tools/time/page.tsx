@@ -169,7 +169,9 @@ export default function TimeToolsIndexPage() {
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How do I start using timers, clocks, or calendar tools here?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {TIME_INDEX_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -177,7 +179,9 @@ export default function TimeToolsIndexPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How do time tools stay accurate while running in the browser?
+            </h3>
             <div className="space-y-2">
               {TIME_INDEX_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -185,7 +189,9 @@ export default function TimeToolsIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Time Tools</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What time and productivity tools can I use from this category?
+            </h3>
             <div className="space-y-2">
               {TIME_INDEX_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -193,7 +199,9 @@ export default function TimeToolsIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use browser clocks and timers instead of installing separate apps?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {TIME_INDEX_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -201,7 +209,9 @@ export default function TimeToolsIndexPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When are Pomodoro timers, alarms, and world clocks most useful?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {TIME_INDEX_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

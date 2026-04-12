@@ -70,7 +70,9 @@ export default function CssSpritesGeneratorPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I pack images into one sprite sheet and export CSS from this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {SPRITES_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -78,7 +80,9 @@ export default function CssSpritesGeneratorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this sprite tool lay out tiles and emit background-position CSS?
+            </h3>
             <div className="space-y-2">
               {SPRITES_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -86,7 +90,9 @@ export default function CssSpritesGeneratorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is a CSS sprite sheet, and when is it still useful on the web?
+            </h3>
             <div className="space-y-2">
               {SPRITES_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -94,7 +100,9 @@ export default function CssSpritesGeneratorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why build sprites in the browser for fast iteration on front-end assets?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {SPRITES_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -102,7 +110,9 @@ export default function CssSpritesGeneratorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do teams prefer one sprite over dozens of separate icon requests?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {SPRITES_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

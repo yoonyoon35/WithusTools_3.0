@@ -71,7 +71,9 @@ export default function ProgrammerCalculatorPage() {
       <section aria-label="User guide" className={`mx-auto mt-12 ${PROGRAMMER_DOC_SECTION}`}>
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I use this programmer calculator for bases and bitwise operations?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {PROGRAMMER_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -79,7 +81,9 @@ export default function ProgrammerCalculatorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. About Programmer Calculator</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. What does the programmer calculator include, and how do number bases work here?
+            </h3>
             <div className="space-y-2">
               {PROGRAMMER_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -87,7 +91,9 @@ export default function ProgrammerCalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. Why use an in-browser programmer calculator while coding or debugging?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {PROGRAMMER_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -95,7 +101,9 @@ export default function ProgrammerCalculatorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Where do developers use base conversion and bitwise math in real projects?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {PROGRAMMER_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

@@ -68,7 +68,9 @@ export default function DateDifferencePage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I find the days or weeks between two dates with this tool?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {DATE_DIFF_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -76,7 +78,9 @@ export default function DateDifferencePage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this date calculator measure spans and handle calendars?
+            </h3>
             <div className="space-y-2">
               {DATE_DIFF_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -84,7 +88,9 @@ export default function DateDifferencePage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Date Difference</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What kinds of date gaps can I measure, and how should I read the results?
+            </h3>
             <div className="space-y-2">
               {DATE_DIFF_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -92,7 +98,9 @@ export default function DateDifferencePage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a browser date calculator for planning instead of mental math?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {DATE_DIFF_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -100,7 +108,9 @@ export default function DateDifferencePage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When are date differences used for projects, contracts, or travel?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {DATE_DIFF_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

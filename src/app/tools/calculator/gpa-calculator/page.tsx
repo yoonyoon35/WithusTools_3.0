@@ -192,7 +192,7 @@ export default function GPACalculatorPage() {
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 id="gpa-guide-how-to-use" className="mb-3 font-semibold text-slate-200 scroll-mt-24">
-              1. How to Use
+              1. How can I calculate GPA, course grades, or a target GPA with this tool?
             </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {GPA_GUIDE.usage.map((step, i) => (
@@ -202,7 +202,7 @@ export default function GPACalculatorPage() {
           </div>
           <div>
             <h3 id="gpa-guide-how-it-works" className="mb-3 font-semibold text-slate-200 scroll-mt-24">
-              2. How It Works
+              2. How does this GPA calculator handle weighted GPA and credit hours?
             </h3>
             <div className="space-y-2">
               {GPA_GUIDE.howItWorks.map((p, i) => (
@@ -212,7 +212,7 @@ export default function GPACalculatorPage() {
           </div>
           <div>
             <h3 id="gpa-guide-about" className="mb-3 font-semibold text-slate-200 scroll-mt-24">
-              3. About GPA Calculator
+              3. What grading scales and features does this GPA calculator support?
             </h3>
             <div className="space-y-2">
               {GPA_GUIDE.about.map((p, i) => (
@@ -221,7 +221,9 @@ export default function GPACalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why plan GPA and semester goals with a browser-based calculator?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {GPA_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -229,7 +231,9 @@ export default function GPACalculatorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do students use GPA tools for applications and degree planning?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {GPA_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

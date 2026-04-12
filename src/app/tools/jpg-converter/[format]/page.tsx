@@ -253,7 +253,7 @@ export default async function JPGConverterFormatPage({
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                1. How to Use
+                1. How can I use this {meta.displayName} to JPG converter on this page?
               </h3>
               <ol className="list-decimal space-y-2 pl-5">
                 {FORMAT_GUIDE[format].usage.map((step, i) => (
@@ -263,7 +263,7 @@ export default async function JPGConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                2. How It Works
+                2. How does this tool convert {meta.displayName} to JPEG in my browser?
               </h3>
               <div className="space-y-2">
                 {FORMAT_GUIDE[format].howItWorks.map((p, i) => (
@@ -273,7 +273,7 @@ export default async function JPGConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                3. About {meta.displayName} to JPG
+                3. What should I know about {meta.displayName} to JPG, and when is it the right choice?
               </h3>
               <div className="space-y-2">
                 {FORMAT_GUIDE[format].about.map((p, i) => (
@@ -283,7 +283,7 @@ export default async function JPGConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                4. Advantages
+                4. Why convert {meta.displayName} to JPG in the browser for privacy and speed?
               </h3>
               <ul className="list-disc space-y-2 pl-5">
                 {FORMAT_GUIDE[format].advantages.map((item, i) => (
@@ -293,7 +293,7 @@ export default async function JPGConverterFormatPage({
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">
-                5. Real-World Use Cases
+                5. When do people batch-convert {meta.displayName} files to JPEG for the web?
               </h3>
               <ul className="list-disc space-y-2 pl-5">
                 {FORMAT_GUIDE[format].useCases.map((item, i) => (

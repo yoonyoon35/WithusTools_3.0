@@ -73,7 +73,9 @@ export default function ImageFormatConverterPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I convert PNG, JPG, WebP, or other formats with this tool?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {IMAGE_FORMAT_CONVERTER_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -81,7 +83,9 @@ export default function ImageFormatConverterPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this format converter decode and encode images in my browser?
+            </h3>
             <div className="space-y-2">
               {IMAGE_FORMAT_CONVERTER_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -89,7 +93,9 @@ export default function ImageFormatConverterPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Image Format Converter</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What image formats are supported, and when should I pick each one?
+            </h3>
             <div className="space-y-2">
               {IMAGE_FORMAT_CONVERTER_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -97,7 +103,9 @@ export default function ImageFormatConverterPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why convert image formats in the browser for privacy and batch speed?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_FORMAT_CONVERTER_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -105,7 +113,9 @@ export default function ImageFormatConverterPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do teams batch-convert image assets for the web or apps?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_FORMAT_CONVERTER_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

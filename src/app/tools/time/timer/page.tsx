@@ -59,7 +59,9 @@ export default function TimerPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I set a countdown and get notified when the timer ends?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {TIMER_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -67,7 +69,9 @@ export default function TimerPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this countdown timer run locally in my browser?
+            </h3>
             <div className="space-y-2">
               {TIMER_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -75,7 +79,9 @@ export default function TimerPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Countdown Timer</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is a countdown timer best for compared to a stopwatch?
+            </h3>
             <div className="space-y-2">
               {TIMER_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -83,7 +89,9 @@ export default function TimerPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a browser countdown for cooking, workouts, or meetings?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {TIMER_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -91,7 +99,9 @@ export default function TimerPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When is a simple web countdown faster than a calendar or phone timer?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {TIMER_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

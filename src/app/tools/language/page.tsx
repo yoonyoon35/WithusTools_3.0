@@ -132,7 +132,9 @@ export default function LanguageToolsIndexPage() {
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How do I pick the right language or study tool from this list?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {LANGUAGE_INDEX_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -141,7 +143,7 @@ export default function LanguageToolsIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              2. How It Works
+              2. How do these language tools handle my text without uploading it?
             </h3>
             <div className="space-y-2">
               {LANGUAGE_INDEX_GUIDE.howItWorks.map((p, i) => (
@@ -151,7 +153,7 @@ export default function LanguageToolsIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              3. About Language Tools
+              3. What language and study tools are included, and who are they for?
             </h3>
             <div className="space-y-2">
               {LANGUAGE_INDEX_GUIDE.about.map((p, i) => (
@@ -160,7 +162,9 @@ export default function LanguageToolsIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why practice Japanese and Korean reading with lightweight web tools?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {LANGUAGE_INDEX_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -169,7 +173,7 @@ export default function LanguageToolsIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. Real-World Use Cases
+              5. Where do language tools help for travel, class, or self-study?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {LANGUAGE_INDEX_GUIDE.useCases.map((item, i) => (

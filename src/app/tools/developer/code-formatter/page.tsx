@@ -69,7 +69,9 @@ export default function CodeFormatterPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I format HTML, CSS, JavaScript, or JSON with this tool?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {CODE_FORMATTER_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -77,7 +79,9 @@ export default function CodeFormatterPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this formatter pretty-print code locally in my browser?
+            </h3>
             <div className="space-y-2">
               {CODE_FORMATTER_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -85,7 +89,9 @@ export default function CodeFormatterPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Code Formatter</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What does this code formatter change, and which languages does it support?
+            </h3>
             <div className="space-y-2">
               {CODE_FORMATTER_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -93,7 +99,9 @@ export default function CodeFormatterPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why format snippets in the browser before commits, docs, or chat?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {CODE_FORMATTER_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -101,7 +109,9 @@ export default function CodeFormatterPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do developers reach for a quick formatter during debugging or reviews?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {CODE_FORMATTER_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

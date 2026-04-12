@@ -1,5 +1,6 @@
 /**
  * PDF Tools content: usage, how it works, about, advantages, use cases.
+ * Merge PDF and Image to PDF guide titles (question-style) live in each tool page.tsx.
  */
 
 export type PdfGuideSection = {

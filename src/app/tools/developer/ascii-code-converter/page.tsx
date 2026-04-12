@@ -80,7 +80,9 @@ export default function ASCIIConverterPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I convert text to ASCII (decimal, hex, binary) and back on this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {ASCII_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -88,7 +90,9 @@ export default function ASCIIConverterPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this ASCII converter map characters locally in the browser?
+            </h3>
             <div className="space-y-2">
               {ASCII_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -96,7 +100,9 @@ export default function ASCIIConverterPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About ASCII Code Converter</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is the ASCII table, and how does this tool help students or engineers?
+            </h3>
             <div className="space-y-2">
               {ASCII_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -104,7 +110,9 @@ export default function ASCIIConverterPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use an in-browser ASCII reference for quick byte-level checks?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {ASCII_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -112,7 +120,9 @@ export default function ASCIIConverterPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do serial protocols, logs, or embedded work still hinge on ASCII values?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {ASCII_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

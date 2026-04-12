@@ -69,7 +69,9 @@ export default function HangulStudyPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I explore Korean Hangul letters and jamo order on this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {HANGUL_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -77,7 +79,9 @@ export default function HangulStudyPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this Hangul study view present syllables and tips in the browser?
+            </h3>
             <div className="space-y-2">
               {HANGUL_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -85,7 +89,9 @@ export default function HangulStudyPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Korean Hangul</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is Hangul, and how does this reference help first-time Korean learners?
+            </h3>
             <div className="space-y-2">
               {HANGUL_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -93,7 +99,9 @@ export default function HangulStudyPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a web Hangul chart for pronunciation and syllable-building practice?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {HANGUL_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -101,7 +109,9 @@ export default function HangulStudyPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When is Hangul literacy the first step before vocabulary and conversation?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {HANGUL_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

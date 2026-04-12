@@ -91,7 +91,9 @@ export default function KatakanaToHangulPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I convert Japanese Katakana to Hangul pronunciation on this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -99,7 +101,9 @@ export default function KatakanaToHangulPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does Katakana-to-Hangul mapping run locally in my browser?
+            </h3>
             <div className="space-y-2">
               {GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -107,7 +111,9 @@ export default function KatakanaToHangulPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About This Tool</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is this Katakana to Hangul converter for, and how accurate is it?
+            </h3>
             <div className="space-y-2">
               {GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -115,7 +121,9 @@ export default function KatakanaToHangulPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a browser Katakana to Hangul tool for study or quick reference?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -123,7 +131,9 @@ export default function KatakanaToHangulPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Common Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do learners use Katakana-to-Hangul output with textbooks or flashcards?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

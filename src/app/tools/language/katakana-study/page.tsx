@@ -70,7 +70,9 @@ export default function KatakanaStudyPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I browse katakana in gojūon order and open writing tips here?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {KATAKANA_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -78,7 +80,9 @@ export default function KatakanaStudyPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this katakana study view load reference content in the browser?
+            </h3>
             <div className="space-y-2">
               {KATAKANA_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -86,7 +90,9 @@ export default function KatakanaStudyPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Katakana</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is katakana, and how does this chart help beginners read loanwords?
+            </h3>
             <div className="space-y-2">
               {KATAKANA_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -94,7 +100,9 @@ export default function KatakanaStudyPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why keep an online katakana chart open while studying menus or names?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {KATAKANA_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -102,7 +110,9 @@ export default function KatakanaStudyPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When should learners pair katakana drills with hiragana and real reading?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {KATAKANA_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

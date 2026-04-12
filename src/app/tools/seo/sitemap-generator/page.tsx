@@ -72,7 +72,9 @@ export default function SitemapGeneratorPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I build an XML sitemap from URLs or a list on this page?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {SITEMAP_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -80,7 +82,9 @@ export default function SitemapGeneratorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this sitemap generator create XML locally in my browser?
+            </h3>
             <div className="space-y-2">
               {SITEMAP_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -88,7 +92,9 @@ export default function SitemapGeneratorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About XML Sitemap Generator</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is an XML sitemap, and when should I submit it to search engines?
+            </h3>
             <div className="space-y-2">
               {SITEMAP_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -96,7 +102,9 @@ export default function SitemapGeneratorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why generate sitemaps in the browser alongside CMS or static-site workflows?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {SITEMAP_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -104,7 +112,9 @@ export default function SitemapGeneratorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do launches, migrations, or large sites rely on updated sitemaps?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {SITEMAP_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

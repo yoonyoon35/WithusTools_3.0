@@ -68,7 +68,9 @@ export default function QRCodeReaderPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I scan QR codes from my camera or an uploaded image here?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {QR_READER_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -76,7 +78,9 @@ export default function QRCodeReaderPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this QR reader decode barcodes locally in my browser?
+            </h3>
             <div className="space-y-2">
               {QR_READER_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -92,7 +96,9 @@ export default function QRCodeReaderPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why scan QR codes in the browser instead of unknown mobile scanner apps?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {QR_READER_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -100,7 +106,9 @@ export default function QRCodeReaderPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When are web-based QR readers handy for tickets, Wi-Fi, or 2FA setup?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {QR_READER_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

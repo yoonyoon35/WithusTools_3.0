@@ -115,7 +115,9 @@ export default function AverageCalculatorPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I compute mean, median, mode, and other stats with this calculator?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {AVERAGE_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -123,7 +125,9 @@ export default function AverageCalculatorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this average calculator derive each statistic from my numbers?
+            </h3>
             <div className="space-y-2">
               {AVERAGE_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -131,7 +135,9 @@ export default function AverageCalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Average Calculator</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is this average calculator for, and which methods does it use?
+            </h3>
             <div className="space-y-2">
               {AVERAGE_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -139,7 +145,9 @@ export default function AverageCalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a dedicated average and statistics calculator in the browser?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {AVERAGE_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -147,7 +155,9 @@ export default function AverageCalculatorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. Where are averages and spread used in school, research, or business?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {AVERAGE_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

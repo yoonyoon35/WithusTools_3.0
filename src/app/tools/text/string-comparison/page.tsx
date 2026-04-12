@@ -72,7 +72,9 @@ export default function StringComparisonPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I compare two texts and highlight differences side by side?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {STRING_COMPARISON_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -80,7 +82,9 @@ export default function StringComparisonPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does string comparison run locally in my browser?
+            </h3>
             <div className="space-y-2">
               {STRING_COMPARISON_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -89,7 +93,7 @@ export default function StringComparisonPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              3. About String Comparison
+              3. What does this string comparison tool show, and how should I read the diff?
             </h3>
             <div className="space-y-2">
               {STRING_COMPARISON_GUIDE.about.map((p, i) => (
@@ -98,7 +102,9 @@ export default function StringComparisonPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why compare text in the browser instead of pasting into desktop diff apps?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {STRING_COMPARISON_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -107,7 +113,7 @@ export default function StringComparisonPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. Real-World Use Cases
+              5. When is side-by-side text comparison useful for code or content review?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {STRING_COMPARISON_GUIDE.useCases.map((item, i) => (

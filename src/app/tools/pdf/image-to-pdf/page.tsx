@@ -90,7 +90,9 @@ export default function ImageToPdfPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I turn images into a single or multi-page PDF here?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {IMAGE_TO_PDF_PAGE_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -98,7 +100,9 @@ export default function ImageToPdfPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does image-to-PDF conversion run locally in my browser?
+            </h3>
             <div className="space-y-2">
               {IMAGE_TO_PDF_PAGE_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -106,7 +110,9 @@ export default function ImageToPdfPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Image to PDF</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What image formats and page options does this Image to PDF tool support?
+            </h3>
             <div className="space-y-2">
               {IMAGE_TO_PDF_PAGE_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -114,7 +120,9 @@ export default function ImageToPdfPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why build a PDF from images online for privacy and quick batches?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_TO_PDF_PAGE_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -123,7 +131,7 @@ export default function ImageToPdfPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. Real-World Use Cases
+              5. When is converting photos or scans to PDF most useful?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {IMAGE_TO_PDF_PAGE_GUIDE.useCases.map((item, i) => (

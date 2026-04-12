@@ -112,7 +112,9 @@ export default function DeveloperToolsIndexPage() {
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How do I open and use a developer utility from this index?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {DEVELOPER_INDEX_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -120,7 +122,9 @@ export default function DeveloperToolsIndexPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How do developer tools on this site run locally in my browser?
+            </h3>
             <div className="space-y-2">
               {DEVELOPER_INDEX_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -128,7 +132,9 @@ export default function DeveloperToolsIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Developer Tools</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What developer tools are available and what problems do they solve?
+            </h3>
             <div className="space-y-2">
               {DEVELOPER_INDEX_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -136,7 +142,9 @@ export default function DeveloperToolsIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use browser-based encoders, formatters, and generators?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {DEVELOPER_INDEX_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -144,7 +152,9 @@ export default function DeveloperToolsIndexPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When are quick developer utilities faster than a full IDE or CLI?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {DEVELOPER_INDEX_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

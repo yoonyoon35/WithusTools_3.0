@@ -180,7 +180,9 @@ export default function JPGConverterIndexPage() {
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How do I convert PNG, WebP, or other formats to JPG from this hub?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {JPG_CONVERTER_INDEX_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -189,7 +191,7 @@ export default function JPGConverterIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              2. How It Works
+              2. How does client-side conversion to JPEG work on this site?
             </h3>
             <div className="space-y-2">
               {JPG_CONVERTER_INDEX_GUIDE.howItWorks.map((p, i) => (
@@ -199,7 +201,7 @@ export default function JPGConverterIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              3. About JPG Converter
+              3. What JPG conversion pages are linked, and when should I pick each?
             </h3>
             <div className="space-y-2">
               {JPG_CONVERTER_INDEX_GUIDE.about.map((p, i) => (
@@ -208,7 +210,9 @@ export default function JPGConverterIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why convert images to JPG in the browser for privacy and batch speed?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {JPG_CONVERTER_INDEX_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -217,7 +221,7 @@ export default function JPGConverterIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. Real-World Use Cases
+              5. When is a dedicated format-to-JPG page better than a generic converter?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {JPG_CONVERTER_INDEX_GUIDE.useCases.map((item, i) => (

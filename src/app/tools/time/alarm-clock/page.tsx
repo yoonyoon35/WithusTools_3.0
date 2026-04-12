@@ -61,7 +61,9 @@ export default function AlarmClockPage() {
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I set a one-time alarm with sound in this browser tool?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {ALARM_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -69,7 +71,9 @@ export default function AlarmClockPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this alarm clock notify me while the page or tab is open?
+            </h3>
             <div className="space-y-2">
               {ALARM_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -77,7 +81,9 @@ export default function AlarmClockPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Alarm Clock</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What is this online alarm for, and what are its practical limits?
+            </h3>
             <div className="space-y-2">
               {ALARM_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -85,7 +91,9 @@ export default function AlarmClockPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why set quick alarms in the browser for tasks or routines?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {ALARM_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -93,7 +101,9 @@ export default function AlarmClockPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When might a web alarm complement or replace a phone alarm?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {ALARM_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

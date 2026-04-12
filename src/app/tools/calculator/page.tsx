@@ -147,7 +147,9 @@ export default function CalculatorIndexPage() {
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How do I find and use the right calculator for my task?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {CALC_INDEX_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -155,7 +157,9 @@ export default function CalculatorIndexPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How do calculator tools compute results in the browser?
+            </h3>
             <div className="space-y-2">
               {CALC_INDEX_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -163,7 +167,9 @@ export default function CalculatorIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Calculator Tools</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What calculators are offered here, and what is each one for?
+            </h3>
             <div className="space-y-2">
               {CALC_INDEX_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -171,7 +177,9 @@ export default function CalculatorIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use dedicated online calculators for BMI, GPA, or percentages?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {CALC_INDEX_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -179,7 +187,9 @@ export default function CalculatorIndexPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When are these calculators useful for school, finance, or health?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {CALC_INDEX_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

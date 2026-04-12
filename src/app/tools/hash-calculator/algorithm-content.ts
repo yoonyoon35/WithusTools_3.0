@@ -1,6 +1,6 @@
 /**
  * Hash Calculator algorithm content: usage, how it works, about, advantages, use cases.
- * Structure: 1. How to use, 2. How it works, 3. About, 4. Advantages, 5. Use cases.
+ * Per-algorithm guide titles (question-style) live in [algorithm]/page.tsx.
  */
 
 export type AlgorithmGuideSection = {

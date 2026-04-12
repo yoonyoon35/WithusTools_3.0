@@ -1,6 +1,6 @@
 /**
  * Image Tools content: usage, how it works, about, advantages, use cases.
- * Structure: 1. How to use, 2. How it works, 3. About, 4. Advantages, 5. Use cases.
+ * Per-tool guide titles (question-style) live in each tool's page.tsx under image/.
  */
 
 export type ImageGuideSection = {

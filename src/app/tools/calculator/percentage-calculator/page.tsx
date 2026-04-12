@@ -114,7 +114,9 @@ export default function PercentageCalculatorPage() {
         <PercentageGuideFormulas />
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How can I use the percentage calculator tabs for discounts, tips, or grades?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {PERCENTAGE_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -122,7 +124,9 @@ export default function PercentageCalculatorPage() {
             </ol>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">2. How It Works</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              2. How does this percentage calculator apply formulas in each mode?
+            </h3>
             <div className="space-y-2">
               {PERCENTAGE_GUIDE.howItWorks.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -130,7 +134,9 @@ export default function PercentageCalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">3. About Percentage Calculator</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              3. What percentage problems does this tool solve, and how is it organized?
+            </h3>
             <div className="space-y-2">
               {PERCENTAGE_GUIDE.about.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -138,7 +144,9 @@ export default function PercentageCalculatorPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use a multi-tab percentage calculator in the browser?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {PERCENTAGE_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -146,7 +154,9 @@ export default function PercentageCalculatorPage() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">5. Real-World Use Cases</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              5. When do people rely on percentage math for finance, school, or shopping?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {PERCENTAGE_GUIDE.useCases.map((item, i) => (
                 <li key={i}>{item}</li>

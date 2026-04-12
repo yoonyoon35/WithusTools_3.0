@@ -1,6 +1,6 @@
 /**
  * SSH Key Generator content: usage, how it works, about, advantages, use cases.
- * Structure: 1. How to use, 2. How it works, 3. About, 4. Advantages, 5. Use cases.
+ * Section titles (question-style, per algorithm) live in SshKeyGenerator.tsx.
  */
 
 export type SshGuideSection = {

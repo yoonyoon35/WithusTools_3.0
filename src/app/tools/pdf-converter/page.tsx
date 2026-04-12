@@ -141,7 +141,9 @@ export default function PDFConverterIndexPage() {
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">1. How to Use</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              1. How do I convert Office or image files to PDF from this hub?
+            </h3>
             <ol className="list-decimal space-y-2 pl-5">
               {PDF_CONVERTER_INDEX_GUIDE.usage.map((step, i) => (
                 <li key={i}>{step}</li>
@@ -150,7 +152,7 @@ export default function PDFConverterIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              2. How It Works
+              2. How does client-side PDF conversion work on this site?
             </h3>
             <div className="space-y-2">
               {PDF_CONVERTER_INDEX_GUIDE.howItWorks.map((p, i) => (
@@ -160,7 +162,7 @@ export default function PDFConverterIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              3. About PDF Converter
+              3. What PDF conversion options are linked here, and how do I pick one?
             </h3>
             <div className="space-y-2">
               {PDF_CONVERTER_INDEX_GUIDE.about.map((p, i) => (
@@ -169,7 +171,9 @@ export default function PDFConverterIndexPage() {
             </div>
           </div>
           <div>
-            <h3 className="mb-3 font-semibold text-slate-200">4. Advantages</h3>
+            <h3 className="mb-3 font-semibold text-slate-200">
+              4. Why use browser-based PDF conversion for privacy and quick batches?
+            </h3>
             <ul className="list-disc space-y-2 pl-5">
               {PDF_CONVERTER_INDEX_GUIDE.advantages.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -178,7 +182,7 @@ export default function PDFConverterIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. Real-World Use Cases
+              5. When should I open a format-specific converter instead of a generic app?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {PDF_CONVERTER_INDEX_GUIDE.useCases.map((item, i) => (
