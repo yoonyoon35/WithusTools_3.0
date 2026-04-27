@@ -76,6 +76,34 @@ import {
   OfficetelResidentialVsBusinessTaxGuideBody,
   officetelResidentialVsBusinessTaxGuideMeta,
 } from "@/lib/guide/articles/officetel-residential-vs-business-tax-guide";
+import {
+  ApartmentBrokerageFeeGuideBody,
+  apartmentBrokerageFeeGuideMeta,
+} from "@/lib/guide/articles/apartment-brokerage-fee-guide";
+import {
+  BrokerageFeeRates2026GuideBody,
+  brokerageFeeRates2026GuideMeta,
+} from "@/lib/guide/articles/brokerage-fee-rates-2026-guide";
+import {
+  BrokerageFeePaymentTimingGuideBody,
+  brokerageFeePaymentTimingGuideMeta,
+} from "@/lib/guide/articles/brokerage-fee-payment-timing-guide";
+import {
+  DirectDealVsBrokeredDealGuideBody,
+  directDealVsBrokeredDealGuideMeta,
+} from "@/lib/guide/articles/direct-deal-vs-brokered-deal-guide";
+import {
+  JeonseRenewalBrokerageFeeGuideBody,
+  jeonseRenewalBrokerageFeeGuideMeta,
+} from "@/lib/guide/articles/jeonse-renewal-brokerage-fee-guide";
+import {
+  LeaseContractWithoutBrokerGuideBody,
+  leaseContractWithoutBrokerGuideMeta,
+} from "@/lib/guide/articles/lease-contract-without-broker-guide";
+import {
+  BrokerageAccidentCompensationGuideBody,
+  brokerageAccidentCompensationGuideMeta,
+} from "@/lib/guide/articles/brokerage-accident-compensation-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -205,6 +233,34 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...officetelResidentialVsBusinessTaxGuideMeta,
     Body: OfficetelResidentialVsBusinessTaxGuideBody,
+  },
+  {
+    ...apartmentBrokerageFeeGuideMeta,
+    Body: ApartmentBrokerageFeeGuideBody,
+  },
+  {
+    ...brokerageFeeRates2026GuideMeta,
+    Body: BrokerageFeeRates2026GuideBody,
+  },
+  {
+    ...brokerageFeePaymentTimingGuideMeta,
+    Body: BrokerageFeePaymentTimingGuideBody,
+  },
+  {
+    ...directDealVsBrokeredDealGuideMeta,
+    Body: DirectDealVsBrokeredDealGuideBody,
+  },
+  {
+    ...jeonseRenewalBrokerageFeeGuideMeta,
+    Body: JeonseRenewalBrokerageFeeGuideBody,
+  },
+  {
+    ...leaseContractWithoutBrokerGuideMeta,
+    Body: LeaseContractWithoutBrokerGuideBody,
+  },
+  {
+    ...brokerageAccidentCompensationGuideMeta,
+    Body: BrokerageAccidentCompensationGuideBody,
   },
 ];
 
