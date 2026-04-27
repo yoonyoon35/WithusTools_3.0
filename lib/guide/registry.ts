@@ -72,6 +72,10 @@ import {
   ApartmentVillaOfficetelAcquisitionTaxGuideBody,
   apartmentVillaOfficetelAcquisitionTaxGuideMeta,
 } from "@/lib/guide/articles/apartment-villa-officetel-acquisition-tax-guide";
+import {
+  OfficetelResidentialVsBusinessTaxGuideBody,
+  officetelResidentialVsBusinessTaxGuideMeta,
+} from "@/lib/guide/articles/officetel-residential-vs-business-tax-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -197,6 +201,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...apartmentVillaOfficetelAcquisitionTaxGuideMeta,
     Body: ApartmentVillaOfficetelAcquisitionTaxGuideBody,
+  },
+  {
+    ...officetelResidentialVsBusinessTaxGuideMeta,
+    Body: OfficetelResidentialVsBusinessTaxGuideBody,
   },
 ];
 
