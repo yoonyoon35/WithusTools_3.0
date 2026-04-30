@@ -7,7 +7,7 @@ import ASCIIConverter from "./ASCIIConverter";
 export const metadata: Metadata = createMetadata({
   title: "Convert Text to ASCII Codes & Reverse",
   description:
-    "ASCII Code Converter - Transform between text and ASCII code values. Support for decimal, hexadecimal, and binary formats. Free online tool.",
+    "Convert text to ASCII and back in decimal, hex, or binary. This online ASCII converter runs in your browser with quick copy support.",
   path: "/tools/developer/ascii-code-converter",
   keywords: [
     "ascii converter",
@@ -55,7 +55,37 @@ const ASCII_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I convert both text to ASCII and ASCII to text?",
+    answer:
+      "Yes. You can switch between both directions and choose decimal, hexadecimal, or binary format.",
+  },
+  {
+    question: "What separators are supported for ASCII input?",
+    answer:
+      "Use spaces or commas between ASCII codes when decoding back to text.",
+  },
+  {
+    question: "Does this ASCII converter run online or locally?",
+    answer: "It runs in your browser, so conversion happens locally.",
+  },
+];
+
 export default function ASCIIConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -71,13 +101,30 @@ export default function ASCIIConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between text and ASCII codes. Support for decimal, hexadecimal,
-        and binary formats with ASCII table reference.
+        Convert text and ASCII values quickly in decimal, hex, or binary with a built-in ASCII reference.
       </p>
 
       <ASCIIConverter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">ASCII Code Converter Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          If you are also working with encoded payloads, open the{" "}
+          <Link
+            href="/tools/developer/base64-encoder-decoder"
+            className="underline hover:text-slate-200"
+          >
+            Base64 Encoder &amp; Decoder
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/developer/numbersystem-converter"
+            className="underline hover:text-slate-200"
+          >
+            Number System Converter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -131,6 +178,11 @@ export default function ASCIIConverterPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

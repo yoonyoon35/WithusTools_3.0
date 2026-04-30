@@ -69,6 +69,36 @@ export default function TemperaturePairPage({ params }: { params: { slug: string
   const { from: fromKey, to: toKey } = pair;
   const fromSg = TEMPERATURE_UNITS[fromKey].nameSg ?? TEMPERATURE_UNITS[fromKey].name;
   const toSg = TEMPERATURE_UNITS[toKey].nameSg ?? TEMPERATURE_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg} here?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and the ${toSg} result is calculated with offset-aware formulas.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this page include temperature formula details?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. This page includes formula lines, explanatory notes, and conversion tables.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I switch to other temperature scale pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are listed near the bottom.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -150,6 +180,8 @@ export default function TemperaturePairPage({ params }: { params: { slug: string
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

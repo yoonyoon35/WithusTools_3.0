@@ -7,7 +7,7 @@ import ImageCompressor from "./ImageCompressor";
 export const metadata: Metadata = createMetadata({
   title: "Free Online Image Compressor",
   description:
-    "Compress and optimize images. Reduce file size with quality control. Support for JPG, PNG, WebP, GIF. Batch compress, remove EXIF metadata, compare before/after. Download as ZIP. All processing runs in your browser.",
+    "Free online image compressor for JPG, PNG, WebP, and GIF. Reduce file size with quality control and browser-side processing.",
   path: "/tools/image/image-compressor",
   keywords: [
     "image compressor",
@@ -26,45 +26,83 @@ export const metadata: Metadata = createMetadata({
 
 const IMAGE_COMPRESSOR_GUIDE = {
   usage: [
-    "Drag and drop images or click Choose Files to upload. Supports JPG, PNG, WebP, GIF. Multiple files can be added at once.",
-    "Set Compression Quality (0–100%). Higher values keep more detail; lower values reduce file size.",
-    "Optional: Set Max Width to resize large images. Maintain Aspect Ratio keeps proportions when you enter width or height.",
-    "Toggle Remove Exif Metadata to strip camera/location data from compressed output.",
-    "Click Compress All to process. Use the before/after slider to compare quality.",
-    "Download individually or Download All (ZIP) to get all compressed images in one folder.",
+    "Drop one or more images, then choose a quality level.",
+    "Set max width only when you want smaller dimensions too.",
+    "Turn on EXIF removal if you want to strip camera/location metadata.",
+    "Run compression and compare before/after quickly.",
+    "Download files one by one or as a ZIP batch.",
   ],
   howItWorks: [
-    "Uses the browser Canvas API to decode, resize, and re-encode images. Quality and max width control file size and dimensions.",
-    "PNG and GIF keep original format; JPEG and WebP use lossy compression. Output filenames include quality (e.g. photo_80%_optimized.jpg).",
-    "All processing runs locally in your browser. Your images never leave your device—no upload, no server.", 
+    "The browser decodes and re-encodes image data with your selected settings.",
+    "Quality and optional resize values control final size and visual detail.",
+    "Processing stays local to your device.",
   ],
   about: [
-    "Free online image compressor for reducing file size, optimizing for web, email, or storage. Batch compress multiple images and download as ZIP.",
-    "Includes quality comparison slider to compare original vs compressed side by side. Remove EXIF metadata for privacy when sharing.",
+    "Use this tool when images are too large for upload, email, or web pages.",
+    "It is built for fast size reduction without opening desktop software.",
   ],
   advantages: [
-    "Privacy-first: All processing runs in your browser. Images never leave your device.",
-    "Batch support: Compress multiple images at once. Download as ZIP.",
-    "Quality control: Adjustable quality slider and before/after comparison.",
-    "No signup: Use immediately. No file limits beyond your device.",
+    "Browser-local compression.",
+    "Batch workflow with ZIP output.",
+    "Quick quality tuning and visual comparison.",
+    "No signup required.",
   ],
   useCases: [
-    "Web optimization: Compress images for faster website loading, smaller email attachments.",
-    "Social media: Reduce image size for Instagram, Facebook, Twitter, LinkedIn.",
-    "Email: Shrink photos before sending to avoid attachment limits.",
-    "Storage: Free up space by compressing old photos and screenshots.",
+    "Prepare product images before website upload.",
+    "Shrink photos to fit email attachment limits.",
+    "Reduce file size for social media posting.",
+    "Archive screenshots with less storage usage.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I compress images and reduce file size with this tool?",
+    answer:
+      "Upload images, tune quality and size options, then export compressed files individually or as ZIP.",
+  },
+  {
+    question: "How does this image compressor process files locally in my browser?",
+    answer:
+      "It decodes and re-encodes images in browser memory with no server-side image upload.",
+  },
+  {
+    question: "What is this image compressor for, and what quality trade-offs exist?",
+    answer:
+      "It is for reducing file size quickly. Lower quality gives smaller files but may reduce detail.",
+  },
+  {
+    question: "When do smaller images matter for websites, email, or social posts?",
+    answer:
+      "Smaller images improve load speed, pass upload limits, and reduce storage and transfer costs.",
+  },
+];
+
 export default function ImageCompressorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="image" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Image Compressor</h1>
-            <p className="mt-1 text-sm text-slate-500">image</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online image compressor for smaller file sizes
+            </p>
           </div>
         </div>
       </div>
@@ -72,6 +110,9 @@ export default function ImageCompressorPage() {
       <ImageCompressor />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Image Compressor Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

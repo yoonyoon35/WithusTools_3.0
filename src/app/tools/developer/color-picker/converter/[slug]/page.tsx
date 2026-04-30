@@ -64,6 +64,36 @@ export default function ColorFormatPairPage({ params }: { params: { slug: string
   const { from: fromKey, to: toKey } = pair;
   const fromS = COLOR_FORMAT_LABELS[fromKey].short;
   const toS = COLOR_FORMAT_LABELS[toKey].short;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromS} to ${toS} on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromS} value in the input and the converter returns a copy-ready ${toS} result immediately.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this color conversion run locally?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. The conversion workflow runs in your browser.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I switch to other color format pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Cross-links below this page let you move to other dedicated color pair converters.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -128,6 +158,11 @@ export default function ColorFormatPairPage({ params }: { params: { slug: string
           Developer Tools home
         </Link>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import UnitConverterHubGuide from "./UnitConverterHubGuide";
 export const metadata: Metadata = createMetadata({
   title: "Unit Converter Tools",
   description:
-    "Free online unit converters: length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle. Convert between metric and imperial units instantly.",
+    "Free online unit converter tools for length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle.",
   path: "/tools/unit-converter",
   keywords: [
     "unit converter",
@@ -104,7 +104,38 @@ const UNIT_CONVERTER_TOOLS = [
   },
 ] as const;
 
+const FAQ_ITEMS = [
+  {
+    question: "What can I convert on the Unit Converter Tools page?",
+    answer:
+      "You can convert common measurement categories including length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle.",
+  },
+  {
+    question: "Do these unit converters support both metric and imperial units?",
+    answer:
+      "Yes. Most converters include both metric and imperial units where relevant.",
+  },
+  {
+    question: "Can I open detailed pair conversion pages from here?",
+    answer:
+      "Yes. Category tools link to dedicated pair pages with formulas, examples, and reference tables.",
+  },
+];
+
 export default function UnitConverterIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -118,9 +149,7 @@ export default function UnitConverterIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle.
-        Metric and imperial units supported. See the quick guide below for how to use pair pages, FAQs, and
-        what to expect from results.
+        Convert everyday units quickly across major categories, with metric and imperial support where applicable.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,6 +169,30 @@ export default function UnitConverterIndexPage() {
       </div>
 
       <UnitConverterHubGuide />
+
+      <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Unit Converter Tools Guide</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          Popular starting points are{" "}
+          <Link href="/tools/unit-converter/length" className="underline hover:text-slate-200">
+            Length Converter
+          </Link>
+          ,{" "}
+          <Link href="/tools/unit-converter/temperature" className="underline hover:text-slate-200">
+            Temperature Converter
+          </Link>
+          , and{" "}
+          <Link href="/tools/unit-converter/weight" className="underline hover:text-slate-200">
+            Weight Converter
+          </Link>
+          . For advanced cases, open category-specific pair pages and FAQs.
+        </p>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/"

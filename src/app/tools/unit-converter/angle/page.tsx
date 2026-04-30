@@ -58,8 +58,35 @@ const ANGLE_PAIR_LINKS: { from: string; to: string }[] = (() => {
 })();
 
 const ANGLE_FAQ_LINKS = getFaqEntriesByCategory("angle");
+const FAQ_ITEMS = [
+  {
+    question: "Which angle units are supported?",
+    answer:
+      "You can convert degrees, radians, gradians, arc minutes, arcseconds, milliradians, NATO mils, and turns.",
+  },
+  {
+    question: "Can I open dedicated angle pair converters?",
+    answer:
+      "Yes. Dedicated pair pages provide formulas, examples, and tables.",
+  },
+  {
+    question: "Is this useful for geometry and optics work?",
+    answer:
+      "Yes. It is useful for geometry, surveying, astronomy, and optics-related angle checks.",
+  },
+];
 
 export default function AngleConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -130,7 +157,7 @@ export default function AngleConverterPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Angle Converter Guide</h2>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
@@ -158,6 +185,8 @@ export default function AngleConverterPage() {
           </div>
         </div>
       </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <Link
         href="/tools/unit-converter"

@@ -57,8 +57,35 @@ const PRESSURE_PAIR_LINKS: { from: string; to: string }[] = (() => {
 })();
 
 const PRESSURE_FAQ_LINKS = getFaqEntriesByCategory("pressure");
+const FAQ_ITEMS = [
+  {
+    question: "Which pressure units are supported?",
+    answer:
+      "You can convert Pa, kPa, hPa, bar, atm, PSI, torr, and mmHg.",
+  },
+  {
+    question: "Can I open dedicated pressure pair pages?",
+    answer:
+      "Yes. Pair pages include formulas, examples, and conversion tables.",
+  },
+  {
+    question: "Is this pressure converter useful for engineering checks?",
+    answer:
+      "Yes. It is useful for quick pressure conversion checks in engineering and weather workflows.",
+  },
+];
 
 export default function PressureConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -129,7 +156,7 @@ export default function PressureConverterPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Pressure Converter Guide</h2>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
@@ -157,6 +184,8 @@ export default function PressureConverterPage() {
           </div>
         </div>
       </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <Link
         href="/tools/unit-converter"

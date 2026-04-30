@@ -8,17 +8,16 @@ export default function UnitConverterHubGuide() {
         <h2 className="mb-3 text-lg font-semibold text-slate-200">Quick guide</h2>
         <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-slate-400">
           <li>
-            Choose a converter above, enter a value, and pick source and target units. Use swap and copy on the
-            tool where available.
+            Pick a converter, enter a value, and choose source and target units.
           </li>
           <li>
-            For worked formulas, examples, and tables for one specific pair (e.g. meters to feet), open that
-            category and use its dedicated pair pages or FAQ links—those pages hold the detailed content.
+            Use swap and copy actions when available to speed up repeated checks.
           </li>
           <li>
-            Conversions use recognized factors (SI and related definitions). Temperature uses standard linear
-            formulas between scales. Everything runs in your browser; inputs and results are not sent to our
-            servers.
+            For one specific pair (for example meters to feet), open dedicated pair pages for formulas, examples, and tables.
+          </li>
+          <li>
+            Conversions use standard factors and formulas, and everything runs in your browser.
           </li>
         </ul>
       </div>
@@ -27,19 +26,15 @@ export default function UnitConverterHubGuide() {
         <h2 className="mb-3 text-lg font-semibold text-slate-200">Accuracy &amp; limitations</h2>
         <div className="space-y-3 rounded-lg border border-slate-700/80 bg-slate-900/40 p-4 text-xs leading-relaxed text-slate-400 sm:text-sm">
           <p>
-            Results follow the definitions and factors built into each tool. On-screen values may be rounded
-            for readability, and very large or very small numbers are still subject to ordinary floating-point
-            limits in the browser—typical for any online calculator.
+            Results follow built-in unit definitions. Displayed values may be rounded for readability, and very
+            large or very small values can be affected by normal floating-point limits.
           </p>
           <p>
-            These converters are for everyday reference and learning, not for professional, engineering,
-            medical, legal, or safety-critical decisions. If a mistake could cause harm, loss, or liability,
-            confirm with authoritative references and your own checks.
+            These tools are great for daily reference and study, but not for safety-critical or regulated work.
+            If precision is critical, verify with authoritative sources.
           </p>
           <p className="text-slate-500">
-            The tools are provided &quot;as is&quot; without warranties of merchantability, fitness for a
-            particular purpose, or accuracy for your specific use case. This text summarizes common technical
-            limits and is not legal advice.
+            Tools are provided &quot;as is&quot; for general use, and this note is technical guidance, not legal advice.
           </p>
         </div>
       </div>

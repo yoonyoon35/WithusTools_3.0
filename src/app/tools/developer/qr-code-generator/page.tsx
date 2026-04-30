@@ -7,7 +7,7 @@ import QRCodeGenerator from "./QRCodeGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Create Custom QR Codes",
   description:
-    "QR Code Generator - Create QR codes for URLs, text, email, phone, SMS, WhatsApp, Wi-Fi, vCard, location, Bitcoin, image. Custom colors, logo support, error correction. Download as PNG, JPG, SVG, or PDF. Free online tool.",
+    "Create custom QR codes for links, text, contact info, Wi-Fi, and more. Export PNG, JPG, SVG, or PDF with color and logo options.",
   path: "/tools/developer/qr-code-generator",
   keywords: [
     "qr code generator",
@@ -50,7 +50,37 @@ const QR_GEN_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "What content types can I encode in this QR generator?",
+    answer:
+      "You can create QR codes for URL, text, email, phone, SMS, WhatsApp, Wi-Fi, vCard, location, Bitcoin, and image URL.",
+  },
+  {
+    question: "Can I add a logo and custom colors?",
+    answer:
+      "Yes. You can customize foreground and background colors and place a center logo with size control.",
+  },
+  {
+    question: "Which file formats can I download?",
+    answer: "You can download QR output as PNG, JPG, SVG, or PDF.",
+  },
+];
+
 export default function QRCodeGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -64,12 +94,30 @@ export default function QRCodeGeneratorPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Create QR codes for URLs, text, email, phone, SMS, WhatsApp, Wi-Fi, vCard, location, Bitcoin, image, and more.
+        Create custom QR codes for URLs, Wi-Fi, contacts, and campaigns with quick export options.
       </p>
 
       <QRCodeGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">QR Code Generator Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Want to verify scans right away? Open the{" "}
+          <Link
+            href="/tools/developer/qr-code-reader"
+            className="underline hover:text-slate-200"
+          >
+            QR Code Reader
+          </Link>
+          . For sharing formatted payload text, use the{" "}
+          <Link
+            href="/tools/developer/code-formatter"
+            className="underline hover:text-slate-200"
+          >
+            Code Formatter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -123,6 +171,11 @@ export default function QRCodeGeneratorPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

@@ -59,8 +59,35 @@ const TEMPERATURE_PAIR_LINKS: { from: string; to: string }[] = (() => {
 const TEMPERATURE_FAQ_LINKS = getFaqEntriesByCategory("temperature");
 
 const TEMPERATURE_COMMON_CONVERSIONS_FAQ_JSON_LD = getCommonTemperatureConversionsFaqJsonLd();
+const FAQ_ITEMS = [
+  {
+    question: "Which temperature scales can I convert?",
+    answer:
+      "You can convert Celsius, Fahrenheit, Kelvin, and Rankine on this page.",
+  },
+  {
+    question: "Does this converter handle offsets correctly?",
+    answer:
+      "Yes. Temperature conversions use offset-aware formulas, not only ratio scaling.",
+  },
+  {
+    question: "Are dedicated pair pages available?",
+    answer:
+      "Yes. This page links to dedicated pair converters with formulas, examples, and tables.",
+  },
+];
 
 export default function TemperatureConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <script
@@ -70,6 +97,7 @@ export default function TemperatureConverterPage() {
           __html: JSON.stringify(TEMPERATURE_COMMON_CONVERSIONS_FAQ_JSON_LD),
         }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
@@ -140,7 +168,7 @@ export default function TemperatureConverterPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Temperature Converter Guide</h2>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>

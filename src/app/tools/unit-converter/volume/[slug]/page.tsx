@@ -71,6 +71,36 @@ export default function VolumePairPage({ params }: { params: { slug: string } })
   const { from: fromKey, to: toKey } = pair;
   const fromSg = VOLUME_UNITS[fromKey].nameSg ?? VOLUME_UNITS[fromKey].name;
   const toSg = VOLUME_UNITS[toKey].nameSg ?? VOLUME_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I convert ${fromSg} to ${toSg} here?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and the converter returns the ${toSg} output immediately.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this page show formulas and examples?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Formula guidance, explanation sections, and conversion tables are included below.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I navigate to other volume pair converters?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related volume pair links are shown at the bottom.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -140,6 +170,8 @@ export default function VolumePairPage({ params }: { params: { slug: string } })
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

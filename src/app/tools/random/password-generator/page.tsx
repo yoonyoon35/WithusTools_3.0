@@ -7,7 +7,7 @@ import PasswordGenerator from "./PasswordGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Generate Strong & Secure Passwords",
   description:
-    "Create strong and secure passwords with customizable length and character types. Free online password generator. All processing runs in your browser.",
+    "Free password generator for strong random passwords with customizable length and character sets in browser.",
   path: "/tools/random/password-generator",
   keywords: [
     "password generator",
@@ -20,35 +20,73 @@ export const metadata: Metadata = createMetadata({
 
 const PASSWORD_GENERATOR_GUIDE = {
   usage: [
-    "Set password length (8–32) using the slider and select character types: uppercase, lowercase, numbers, symbols.",
-    "Click Generate Password to create a new password. The strength meter shows Weak, Medium, or Strong.",
-    "Click Copy to copy the password to your clipboard. Store it securely in a password manager.",
+    "Choose length and character groups.",
+    "Generate a password and review the strength meter.",
+    "Copy the result and store it in a password manager.",
   ],
   howItWorks: [
-    "The generator uses cryptographically secure random number generation (crypto.getRandomValues) when available.",
-    "Strength is assessed by length (12+ preferred), character variety (upper+lower, numbers, symbols), and complexity.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "The generator uses browser randomness APIs to build password characters.",
+    "Strength feedback is based on length and character-set variety.",
+    "Generation runs locally in browser runtime.",
   ],
   about: [
-    "Free online password generator for creating strong, secure passwords. Customizable length and character types with real-time strength assessment.",
+    "Use this tool when you need a new password quickly.",
+    "It is built for practical account setup and credential refresh workflows.",
   ],
   advantages: [
-    "Secure: Uses cryptographic randomness when available.",
-    "Customizable: Length 8–32, uppercase, lowercase, numbers, symbols.",
-    "Strength indicator: Visual feedback on password security.",
-    "Privacy: All generation happens locally.",
+    "Local password generation.",
+    "Customizable character settings.",
+    "Strength feedback.",
+    "No signup required.",
   ],
   useCases: [
-    "Online accounts: Social media, email, e-commerce.",
-    "Work and VPN: Corporate systems, remote access.",
-    "Development: Test passwords, API keys.",
-    "Wi-Fi and devices: Network and device passwords.",
+    "Create passwords for new online accounts.",
+    "Rotate credentials for work or VPN access.",
+    "Generate strong Wi-Fi or device passwords.",
+    "Produce random credentials for testing.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I generate a secure password with custom length and character sets?",
+    answer:
+      "Select length and character options, generate a password, then copy and save it securely.",
+  },
+  {
+    question: "How does this password generator create randomness locally in my browser?",
+    answer:
+      "It uses browser-side random APIs and builds output without server-side processing.",
+  },
+  {
+    question: "What should I know about this password generator before using it for real accounts?",
+    answer:
+      "Use longer mixed-character passwords and store them in a trusted password manager.",
+  },
+  {
+    question: "Where are strong random passwords used for logins, Wi-Fi, and apps?",
+    answer:
+      "They are used for account login security, network credentials, and sensitive access systems.",
+  },
+];
+
 export default function PasswordGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="random" />
@@ -56,19 +94,23 @@ export default function PasswordGeneratorPage() {
             <h1 className="text-3xl font-bold text-slate-100">
               Password Generator
             </h1>
-            <p className="mt-1 text-sm text-slate-500">random</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online password generator in browser
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Create strong and secure passwords with customizable options. All
-        processing runs in your browser.
+        Generate strong passwords quickly with customizable options.
       </p>
 
       <PasswordGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Password Generator Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

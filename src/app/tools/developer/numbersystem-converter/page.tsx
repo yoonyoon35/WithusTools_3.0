@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = createMetadata({
   title: "Number System Converter | Binary, Octal, Decimal, Hex",
   description:
-    "Number System Converter — binary, octal, decimal, hexadecimal, and character. Optional radix-point (fractional) conversion on numeric bases; same rules on every pair page. Free online tool.",
+    "Convert binary, octal, decimal, hexadecimal, and character values online. Supports optional fractional radix input and dedicated pair converters.",
   path: "/tools/developer/numbersystem-converter",
   keywords: [
     "number system converter",
@@ -59,8 +59,38 @@ const NS_PAIR_LINKS: { from: NumberSystemPairKey; to: NumberSystemPairKey }[] = 
 })();
 
 const NS_FAQ_LINKS = getFaqEntriesByCategory("number-system");
+const FAQ_ITEMS = [
+  {
+    question: "Which number formats can I convert on this page?",
+    answer:
+      "You can convert between binary, octal, decimal, hexadecimal, and character formats.",
+  },
+  {
+    question: "Are fractional values supported?",
+    answer:
+      "Yes. Numeric bases support one radix point and fractional digits.",
+  },
+  {
+    question: "Can I open fixed pair converters like binary to hex?",
+    answer:
+      "Yes. Dedicated pair pages are listed below the main converter.",
+  },
+];
 
 export default function NumberSystemConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -76,9 +106,7 @@ export default function NumberSystemConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between binary, octal, decimal, hexadecimal, and ASCII characters. Numeric bases accept one radix point
-        and fractional digits (e.g. <span className="font-mono text-slate-300">1010.101</span>₂ →{" "}
-        <span className="font-mono text-slate-300">10.625</span>₁₀); character mode stays a single symbol.
+        Convert binary, octal, decimal, hexadecimal, and character values quickly, including fractional numeric input.
       </p>
 
       <NumberSystemConverter />
@@ -143,7 +171,26 @@ export default function NumberSystemConverterPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Number System Converter Guide
+        </h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          If you also need text encoding checks, open the{" "}
+          <Link
+            href="/tools/developer/ascii-code-converter"
+            className="underline hover:text-slate-200"
+          >
+            ASCII Code Converter
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/developer/base64-encoder-decoder"
+            className="underline hover:text-slate-200"
+          >
+            Base64 Encoder &amp; Decoder
+          </Link>
+          .
+        </p>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
@@ -171,6 +218,11 @@ export default function NumberSystemConverterPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

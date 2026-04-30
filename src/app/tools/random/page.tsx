@@ -36,21 +36,66 @@ const RANDOM_TOOLS = [
 ] as const;
 
 export default function RandomToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I generate passwords or random numbers from this page?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose the tool, set your options, generate output, then copy or download the result.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does randomness work in these browser-based generators?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Generators use browser-side random APIs and apply your selected range, length, and formatting settings.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What random generator tools are available, and how do they differ?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "One tool is for password creation and the other is for customizable random number output.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When should I use random values for games, testing, or account security?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Use them for secure credential creation, random picks, test data, and simulation workflows.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="random" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Random Generator</h1>
-            <p className="mt-1 text-sm text-slate-500">random</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online random generator tools in browser
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Create strong passwords and generate random numbers. All processing runs in
-        your browser. No signup required.
+        Generate strong passwords and random numbers quickly for daily security
+        and testing tasks.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -70,6 +115,9 @@ export default function RandomToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Random Generator Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

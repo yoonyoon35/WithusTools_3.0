@@ -221,9 +221,51 @@ export default async function JPGConverterFormatPage({
   }
 
   const meta = FORMAT_META[format];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I use this ${meta.displayName} to JPG converter on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Upload files, set quality or format-specific options, convert, and download results individually or as ZIP.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How does this tool convert ${meta.displayName} to JPEG in my browser?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The converter decodes source data and re-encodes JPG in browser runtime, so conversion stays local to your device.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `When should I use ${meta.displayName} to JPG conversion?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Use it when you need broad JPG compatibility for uploads, sharing, legacy tools, or web workflows.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `When do people batch-convert ${meta.displayName} files to JPEG for the web?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Batch conversion is useful for migration jobs, content publishing, and preparing many assets with consistent output settings.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="image" />
@@ -231,7 +273,9 @@ export default async function JPGConverterFormatPage({
             <h1 className="text-3xl font-bold text-slate-100">
               {meta.displayName} to JPG
             </h1>
-            <p className="mt-1 text-sm text-slate-500">JPG Converter</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online {meta.displayName} to JPG converter in browser
+            </p>
           </div>
         </div>
       </div>
@@ -250,6 +294,12 @@ export default async function JPGConverterFormatPage({
 
       {FORMAT_GUIDE[format] && (
         <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <h2 className="mb-3 text-xl font-semibold text-slate-200">
+            {meta.displayName} to JPG Guide
+          </h2>
+          <p className="mb-8 text-sm leading-relaxed text-slate-400">
+            Use this page when you need reliable JPG output from {meta.displayName} files with local, browser-based conversion.
+          </p>
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">

@@ -8,7 +8,7 @@ import HangulToHiraganaConverter from "./HangulToHiraganaConverter";
 export const metadata: Metadata = createMetadata({
   title: "Hangul to Hiragana (Pronunciation) | Korean to Kana",
   description:
-    "Convert Korean Hangul to Japanese hiragana by approximate pronunciation. Syllable-based mapping in your browser. Free online tool for learners and reference.",
+    "Convert Hangul to Hiragana by pronunciation with an online browser-based tool. Useful for quick Korean-to-kana study notes.",
   path: "/tools/language/hangul-to-hiragana",
   keywords: [
     "hangul to hiragana",
@@ -48,7 +48,38 @@ const GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Is this a direct translation tool?",
+    answer:
+      "No. It converts Hangul to Hiragana by approximate pronunciation, not full language translation.",
+  },
+  {
+    question: "What happens to non-Hangul characters?",
+    answer:
+      "Latin letters, numbers, spaces, and punctuation pass through unchanged.",
+  },
+  {
+    question: "Can I convert the result back to Hangul?",
+    answer:
+      "Yes. Use the Hiragana to Hangul page for inverse pronunciation-style decoding.",
+  },
+];
+
 export default function HangulToHiraganaPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -94,6 +125,20 @@ export default function HangulToHiraganaPage() {
       <HangulToHiraganaConverter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Hangul to Hiragana Guide
+        </h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Prefer katakana output? Open{" "}
+          <Link href="/tools/language/hangul-to-katakana" className="underline hover:text-slate-200">
+            Hangul to Katakana
+          </Link>
+          . Need reverse conversion? Use{" "}
+          <Link href="/tools/language/hiragana-to-hangul" className="underline hover:text-slate-200">
+            Hiragana to Hangul
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -147,6 +192,11 @@ export default function HangulToHiraganaPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="mt-8 flex flex-wrap gap-4">
         <Link

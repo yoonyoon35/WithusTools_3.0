@@ -71,6 +71,36 @@ export default function LengthPairPage({ params }: { params: { slug: string } })
   const { from: fromKey, to: toKey } = pair;
   const fromSg = LENGTH_UNITS[fromKey].nameSg ?? LENGTH_UNITS[fromKey].name;
   const toSg = LENGTH_UNITS[toKey].nameSg ?? LENGTH_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg} on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and this converter returns the ${toSg} result immediately using fixed pair rules.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this page include formulas and tables?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. You can review the conversion formula line, summary, and reference tables below the calculator.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I switch to other length unit pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are provided so you can move to other dedicated length conversions quickly.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -140,6 +170,8 @@ export default function LengthPairPage({ params }: { params: { slug: string } })
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

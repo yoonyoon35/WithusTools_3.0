@@ -7,7 +7,7 @@ import RandomNumberGenerator from "./RandomNumberGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Generate Random Numbers Instantly",
   description:
-    "Generate random numbers with customizable range, quantity, and formatting. Perfect for lotteries, games, and statistical sampling. Free online tool.",
+    "Free random number generator with customizable range, quantity, and output options in browser.",
   path: "/tools/random/random-number-generator",
   keywords: [
     "random number generator",
@@ -21,35 +21,73 @@ export const metadata: Metadata = createMetadata({
 
 const RANDOM_NUMBER_GUIDE = {
   usage: [
-    "Set the minimum and maximum values to define your number range (e.g., 1 to 100).",
-    "Choose the quantity of numbers to generate (1–1000). Enable or disable duplicates and sorting.",
-    "Click Generate Numbers. Use Copy or Download to save results.",
+    "Set min and max values for your number range.",
+    "Choose how many values to generate and adjust duplicate/sort options.",
+    "Generate output, then copy or download results.",
   ],
   howItWorks: [
-    "The tool uses cryptographically secure random number generation (crypto.getRandomValues) for true randomness.",
-    "When duplicates are disabled, numbers are generated using Fisher-Yates shuffle for uniform distribution.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "The generator uses browser-side randomness APIs for value creation.",
+    "Duplicate and ordering settings are applied after generation.",
+    "All processing runs locally in browser runtime.",
   ],
   about: [
-    "Free online random number generator for lotteries, games, statistical sampling, and simulations. Customizable range, quantity, separator, and duplicate/sort options.",
+    "Use this tool for quick random picks and number lists.",
+    "It is useful for games, sampling, and test-data style workflows.",
   ],
   advantages: [
-    "Cryptographic security: Uses crypto.getRandomValues for true randomness.",
-    "Flexible options: Range, quantity, separator, duplicates, and sorting.",
-    "No signup: Use immediately in any browser.",
-    "Privacy: All processing happens locally.",
+    "Local random generation.",
+    "Range and quantity controls.",
+    "Duplicate/sort formatting options.",
+    "No signup required.",
   ],
   useCases: [
-    "Lottery simulations: Generate lottery numbers (e.g., 1–49, 6 numbers, no duplicates, sorted).",
-    "Statistical sampling: Random sample selection for research.",
-    "Games: Dice rolls, random picks, contests.",
-    "Development: Test data, simulations, algorithm testing.",
+    "Generate random picks for lottery-style draws.",
+    "Create sampling lists for classroom or research tasks.",
+    "Produce random values for tests and simulations.",
+    "Run quick contest or game number selections.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I generate random numbers in a range or a whole list on this page?",
+    answer:
+      "Set min/max, choose quantity and options, generate the list, then copy or download output.",
+  },
+  {
+    question: "How does this random number generator produce values in my browser?",
+    answer:
+      "It uses browser random APIs and applies your range and formatting settings locally.",
+  },
+  {
+    question: "What is this random number tool for, and when is it not secure enough for crypto?",
+    answer:
+      "It is intended for general random tasks like picks and sampling, not full cryptographic key-management workflows.",
+  },
+  {
+    question: "When do teachers, developers, or analysts need random draws or samples?",
+    answer:
+      "They use random draws for exercises, simulations, testing, and fair selection tasks.",
+  },
+];
+
 export default function RandomNumberGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="random" />
@@ -57,19 +95,23 @@ export default function RandomNumberGeneratorPage() {
             <h1 className="text-3xl font-bold text-slate-100">
               Random Number Generator
             </h1>
-            <p className="mt-1 text-sm text-slate-500">random</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online random number generator in browser
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Generate random numbers with customizable range, quantity, and formatting.
-        Perfect for lotteries, games, and statistical sampling. Ctrl+Enter to generate.
+        Generate random numbers quickly with range, quantity, and output controls.
       </p>
 
       <RandomNumberGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Random Number Generator Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

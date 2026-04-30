@@ -53,8 +53,34 @@ const WEIGHT_PAIR_LINKS: { from: string; to: string }[] = (() => {
 })();
 
 const WEIGHT_FAQ_LINKS = getFaqEntriesByCategory("weight");
+const FAQ_ITEMS = [
+  {
+    question: "Which weight units are supported?",
+    answer:
+      "You can convert major weight units such as kilogram, gram, milligram, pound, and ounce.",
+  },
+  {
+    question: "Can I open dedicated unit-pair pages?",
+    answer:
+      "Yes. This page links to dedicated pair converters with formulas, examples, and tables.",
+  },
+  {
+    question: "Does this weight converter run locally?",
+    answer: "Yes. Calculations run in your browser.",
+  },
+];
 
 export default function WeightConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -125,7 +151,7 @@ export default function WeightConverterPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">Weight Converter Guide</h2>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
@@ -153,6 +179,8 @@ export default function WeightConverterPage() {
           </div>
         </div>
       </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <Link
         href="/tools/unit-converter"

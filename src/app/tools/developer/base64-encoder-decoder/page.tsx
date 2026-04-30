@@ -7,7 +7,7 @@ import Base64Encoder from "./Base64Encoder";
 export const metadata: Metadata = createMetadata({
   title: "Convert Text and Files to Base64(Encoder & Decoder)",
   description:
-    "Base64 Encoder & Decoder - Convert text and files to Base64 format and back. Support for URL-safe Base64 and file conversion. Free online tool.",
+    "Encode and decode Base64 for text and files in your browser. Supports URL-safe Base64 and quick copy or download workflows.",
   path: "/tools/developer/base64-encoder-decoder",
   keywords: [
     "base64 encoder decoder",
@@ -46,7 +46,37 @@ const BASE64_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I use this Base64 tool for files as well as text?",
+    answer:
+      "Yes. You can encode and decode both plain text and uploaded files.",
+  },
+  {
+    question: "What is URL-safe Base64?",
+    answer:
+      "It replaces `+` and `/` with `-` and `_` so encoded strings are safer in URLs.",
+  },
+  {
+    question: "Does this Base64 encoder upload my data?",
+    answer: "No. Processing runs in your browser.",
+  },
+];
+
 export default function Base64EncoderPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -62,13 +92,32 @@ export default function Base64EncoderPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert text and files to Base64 format and back. Support for URL-safe
-        Base64.
+        Encode or decode Base64 for text and files, including URL-safe Base64 output.
       </p>
 
       <Base64Encoder />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Base64 Encoder &amp; Decoder Guide
+        </h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          For related data checks, try the{" "}
+          <Link
+            href="/tools/developer/ascii-code-converter"
+            className="underline hover:text-slate-200"
+          >
+            ASCII Code Converter
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/developer/code-formatter"
+            className="underline hover:text-slate-200"
+          >
+            Code Formatter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -120,6 +169,11 @@ export default function Base64EncoderPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

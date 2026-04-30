@@ -7,7 +7,7 @@ import RobotsGenerator from "./RobotsGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Create SEO File for Robots.txt",
   description:
-    "Generate robots.txt for your website. Control search engine crawling with user-agent rules and sitemap URL. Free online tool.",
+    "Create a robots.txt file online in your browser. Set user-agent allow/disallow rules and add your sitemap URL for better crawl control.",
   path: "/tools/seo/robots-generator",
   keywords: [
     "robots.txt generator",
@@ -21,36 +21,66 @@ export const metadata: Metadata = createMetadata({
 
 const ROBOTS_GUIDE = {
   usage: [
-    "Enter your sitemap URL (e.g., https://example.com/sitemap.xml).",
-    "Add user-agent rules: specify User-agent (e.g., *, Googlebot), path (e.g., /, /private/), and Allow/Disallow.",
-    "Optionally set crawl delay in seconds to manage server load.",
-    "Copy or download the generated robots.txt. Place it in your site root.",
+    "Add your sitemap URL first, for example `https://example.com/sitemap.xml`.",
+    "Create rules for each user-agent and path with `Allow` or `Disallow`.",
+    "Set crawl-delay only if you need to limit crawler load on your server.",
+    "Copy or download the generated robots.txt and upload it to your domain root.",
   ],
   howItWorks: [
-    "The generator produces valid robots.txt following the Robots Exclusion Protocol.",
-    "Rules are grouped by user-agent. Each block can have Allow and Disallow directives.",
-    "Crawl-delay is supported for bots that honor it (e.g., Bing). Google ignores crawl-delay.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "The robots.txt generator formats directives using the Robots Exclusion Protocol.",
+    "Rules are grouped by user-agent so crawlers can read each block correctly.",
+    "The file is built locally in your browser.",
   ],
   about: [
-    "Free online robots.txt generator for controlling search engine crawlers. Create robots.txt files with user-agent rules and sitemap declaration.",
-    "Essential for SEO and protecting sensitive content. No signup required.",
+    "This online robots.txt generator helps you control crawl access without editing syntax manually.",
+    "It is useful during launches, migrations, and staging-site cleanup.",
+    "No signup is needed.",
   ],
   advantages: [
-    "Standard compliant: Follows Robots Exclusion Protocol.",
-    "Flexible: Add multiple user-agent rules and paths.",
-    "Privacy: All generation happens locally in your browser.",
-    "No signup: Use immediately without creating an account.",
+    "Creates valid robots.txt structure with user-agent blocks.",
+    "Supports multiple allow/disallow path rules.",
+    "Runs fully in-browser for private local generation.",
+    "Works instantly without account setup.",
   ],
   useCases: [
-    "Crawl optimization: Control which pages search engines index.",
-    "Content protection: Block admin, private, or development directories.",
-    "Server load: Use crawl-delay to reduce crawler frequency.",
-    "Sitemap: Declare sitemap URL for content discovery.",
+    "Blocking admin, test, or private folders from crawling.",
+    "Defining crawler behavior during site migration.",
+    "Adding sitemap location so bots find URLs faster.",
+    "Adjusting bot access for large or resource-heavy sites.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Where should I place the generated robots.txt file?",
+    answer:
+      "Upload it to your root domain path, usually `https://yourdomain.com/robots.txt`, so crawlers can discover it automatically.",
+  },
+  {
+    question: "Can I set different rules for Googlebot and other bots?",
+    answer:
+      "Yes. Add separate user-agent blocks and define allow/disallow rules for each crawler.",
+  },
+  {
+    question: "Does this robots.txt generator upload my site data?",
+    answer: "No. The file is generated directly in your browser.",
+  },
+];
+
 export default function RobotsGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -64,12 +94,24 @@ export default function RobotsGeneratorPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Create and customize robots.txt files for your website. Control search engine crawling with user-agent rules and sitemap URL.
+        Build and edit a robots.txt file quickly with clear user-agent rules, path directives, and sitemap support.
       </p>
 
       <RobotsGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Robots.txt Generator Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Use this with the{" "}
+          <Link href="/tools/seo/sitemap-generator" className="underline hover:text-slate-200">
+            XML Sitemap Generator
+          </Link>{" "}
+          and{" "}
+          <Link href="/tools/seo/metatag-generator" className="underline hover:text-slate-200">
+            Meta Tag Generator
+          </Link>{" "}
+          to complete core technical SEO setup.
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -123,6 +165,11 @@ export default function RobotsGeneratorPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/seo"

@@ -43,22 +43,66 @@ const TEXT_TOOLS = [
 ] as const;
 
 export default function TextToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I choose and open a text tool from this page?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pick the tool by task, open it, paste your text, and run the needed action.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do these text tools process my content in the browser?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Processing runs in browser runtime and local storage, without server-side text handling.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are text tools and which everyday tasks do they cover?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "They cover diff checks, case/format conversion, and lightweight note editing with export support.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When are browser-based text tools most helpful at work or school?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "They are helpful for revision checks, formatting cleanup, quick notes, and copy validation.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="text" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Text Tools</h1>
-            <p className="mt-1 text-sm text-slate-500">text</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online text tools for compare, convert, and notes
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        String comparison, text case converter, and text editor. Compare texts,
-        convert case, and write notes—all processing runs in your browser. No
-        signup required.
+        Compare text, convert case, and write quick notes in browser. Useful
+        for fast revision and formatting tasks.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -78,6 +122,9 @@ export default function TextToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Text Tools Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

@@ -6,7 +6,7 @@ import ToolIcon from "@/components/ToolIcon";
 export const metadata: Metadata = createMetadata({
   title: "Calculator Tools",
   description:
-    "Free online calculators: average calculator, standard deviation calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator. Quick and accurate math tools.",
+    "Free online calculator tools in one place: average calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and more.",
   path: "/tools/calculator",
   keywords: [
     "average calculator",
@@ -74,58 +74,95 @@ const CALCULATOR_TOOLS = [
 
 const CALC_INDEX_GUIDE = {
   usage: [
-    "Choose a calculator from the grid above: Average, Standard Deviation, BMI, GPA, Percentage, Programmer, or Simple Calculator.",
-    "Average Calculator: Enter numbers separated by commas or spaces, then click Calculate for mean, median, mode, and range.",
-    "Standard Deviation Calculator: Paste or type numbers with commas, spaces, or line breaks for population & sample variance, both standard deviations, and SEM (s/√n).",
-    "BMI Calculator: Enter height and weight in metric (cm/kg) or US (ft/in, lbs). Switch units with the toggle button.",
-    "Simple Calculator: Use on-screen buttons or keyboard for basic and scientific operations including memory functions.",
-    "GPA Calculator: Add courses with grades and credits, select grading scale, then click Calculate GPA.",
-    "Percentage Calculator: Use Basic tab for X% of a number, or Percentage Change tab for increase/decrease between two values.",
-    "Programmer Calculator: Pick HEX, DEC, OCT, or BIN; only valid digits for that base are enabled. All bases show the same 64-bit value. Use the dot-grid control for bit toggling.",
+    "Pick the calculator that fits your task: average, standard deviation, BMI, GPA, percentage, programmer, or simple calculator.",
+    "Enter your values and click Calculate to get results right away.",
+    "If you need repeated checks, change only the input values and recalculate.",
+    "Switch tools by use case: stats, grades, health, percentages, or number systems.",
   ],
   howItWorks: [
-    "All calculators run in your browser. No data is sent to any server. Your input and results stay on your device.",
-    "Average Calculator parses your input, validates numbers, and computes mean (average), median (middle value), mode (most frequent), and range.",
-    "Standard Deviation Calculator computes sum, mean, population (÷n) and sample (÷n−1) variance, both standard deviations, and the standard error of the mean using the sample SD.",
-    "BMI Calculator uses the standard formula: weight ÷ height². Metric uses kg/m²; US units use (lbs × 703) ÷ height(in)².",
-    "GPA Calculator converts letter grades to points based on your selected scale, multiplies by credits, and divides by total credits.",
-    "Percentage Calculator: Basic = (percentage × number) ÷ 100; Change = ((new − old) ÷ old) × 100.",
-    "Programmer Calculator: Parses input in the selected radix, masks to 64-bit unsigned, and syncs every base and the bit grid.",
+    "All calculations run in your browser, so your inputs and outputs stay on your device.",
+    "Each calculator applies formulas that match its specific task.",
+    "You can move between stats, GPA, percentage, and programmer tools from the same hub page.",
   ],
   about: [
-    "Free online calculators for everyday math. No signup required. Works on desktop and mobile.",
-    "Designed for students, professionals, and anyone who needs quick, accurate calculations.",
+    "This page is an online calculator hub for quick day-to-day math tasks.",
+    "It is useful for assignments, work checks, budgeting, and health-related calculations.",
   ],
   advantages: [
-    "Private: All calculations run locally in your browser.",
-    "No signup: Use immediately without creating an account.",
-    "Responsive: Works on phones, tablets, and desktops.",
-    "Accurate: Uses standard formulas and handles edge cases.",
+    "Runs directly in browser.",
+    "No signup required.",
+    "Works on mobile and desktop.",
+    "Task-focused calculator set.",
   ],
   useCases: [
-    "Academic: Grade analysis, GPA tracking, statistical assignments.",
-    "Health: BMI monitoring, fitness goals, body composition tracking.",
-    "Finance: Discounts, tax, percentage change, ROI calculations.",
-    "Daily: Recipe scaling, tips, budget planning, quick math.",
+    "Check GPA or averages before grading submissions.",
+    "Calculate discount rates and percentage changes for reports.",
+    "Estimate BMI for routine health tracking.",
+    "Verify base conversions and bit logic during coding.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How do I find and use the right calculator for my task?",
+    answer:
+      "Pick the calculator that matches your task, enter values, and run the calculation. Switch tools when the task changes.",
+  },
+  {
+    question: "How do calculator tools compute results in the browser?",
+    answer:
+      "Each tool applies its own formula in-browser, so inputs and outputs stay on your device.",
+  },
+  {
+    question: "What calculators are offered here, and what is each one for?",
+    answer:
+      "You can use average, standard deviation, BMI, GPA, percentage, programmer, and simple calculator tools for daily math tasks.",
+  },
+  {
+    question: "Why use dedicated online calculators for BMI, GPA, or percentages?",
+    answer:
+      "They reduce manual errors and return results quickly when you need repeated calculations.",
+  },
+  {
+    question: "When are these calculators useful for school, finance, or health?",
+    answer:
+      "They are useful for assignments, budgeting, reporting, and routine health checks.",
+  },
+];
+
 export default function CalculatorIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Calculator Tools</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online calculator tools for daily math
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Average calculator, standard deviation calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator.
-        All tools run in your browser—no signup required.
+        Average calculator, BMI calculator, GPA calculator, percentage
+        calculator, programmer calculator, and more. Run the math you need
+        directly in your browser.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
@@ -145,6 +182,21 @@ export default function CalculatorIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Calculator Tools Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Choose the tool that matches your goal first. If you also need
+          scheduling support, try{" "}
+          <Link href="/tools/time" className="text-slate-200 underline">
+            Time Tools
+          </Link>
+          . For measurement and unit changes, use{" "}
+          <Link href="/tools/unit-converter" className="text-slate-200 underline">
+            Unit Converter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

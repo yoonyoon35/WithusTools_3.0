@@ -11,7 +11,7 @@ const PROGRAMMER_DOC_SECTION =
 export const metadata: Metadata = createMetadata({
   title: "Programmer Calculator — Binary, Hex, Octal, Decimal",
   description:
-    "Free programmer calculator: binary, hexadecimal, octal, and decimal in one view. 64-bit unsigned (QWORD), bit toggle grid, bitwise shifts, arithmetic, and memory. Runs in your browser.",
+    "Free programmer calculator for binary, hex, octal, and decimal workflows. Includes bitwise ops, shifts, and bit-grid checks in browser.",
   path: "/tools/calculator/programmer-calculator",
   keywords: [
     "programmer calculator",
@@ -47,15 +47,54 @@ const PROGRAMMER_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I use this programmer calculator for bases and bitwise operations?",
+    answer:
+      "Pick a radix, enter values, then run arithmetic, shift, and bitwise actions from the same interface.",
+  },
+  {
+    question: "What does the programmer calculator include, and how do number bases work here?",
+    answer:
+      "It keeps one underlying integer and shows synchronized views across BIN, OCT, DEC, and HEX.",
+  },
+  {
+    question: "Why use an in-browser programmer calculator while coding or debugging?",
+    answer:
+      "It reduces context switching and makes quick base conversion and bit checks easier during development.",
+  },
+  {
+    question: "Where do developers use base conversion and bitwise math in real projects?",
+    answer:
+      "Developers use it for masks, protocol parsing, register checks, and debugging binary data paths.",
+  },
+];
+
 export default function ProgrammerCalculatorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Programmer Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online programmer calculator for base conversion
+            </p>
           </div>
         </div>
       </div>
@@ -69,6 +108,9 @@ export default function ProgrammerCalculatorPage() {
       </section>
 
       <section aria-label="User guide" className={`mx-auto mt-12 ${PROGRAMMER_DOC_SECTION}`}>
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Programmer Calculator Guide
+        </h2>
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

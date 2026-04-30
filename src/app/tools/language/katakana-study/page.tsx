@@ -7,7 +7,7 @@ import KatakanaStudy from "./KatakanaStudy";
 export const metadata: Metadata = createMetadata({
   title: "Katakana Chart | Characters, Romaji & Writing Reference",
   description:
-    "Free katakana chart with pronunciation and stroke order. Learn Japanese syllabary in gojūon order. Click each character for writing tips and audio.",
+    "Free Katakana chart in gojuon order. Practice pronunciation, stroke guidance, and printable writing sheets in your browser.",
   path: "/tools/language/katakana-study",
   keywords: [
     "katakana chart",
@@ -46,7 +46,37 @@ const KATAKANA_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I study Katakana row by row?",
+    answer:
+      "Yes. The chart is grouped for step-by-step study, with pronunciation and stroke guidance.",
+  },
+  {
+    question: "Can I print Katakana writing worksheets?",
+    answer:
+      "Yes. You can generate printable practice sheets for daily writing review.",
+  },
+  {
+    question: "Is this Katakana chart free to use?",
+    answer: "Yes. It works in your browser without signup.",
+  },
+];
+
 export default function KatakanaStudyPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -62,12 +92,27 @@ export default function KatakanaStudyPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        View all katakana in gojūon order; click for writing tips and pronunciation.
+        Learn Katakana with pronunciation and writing guidance, then print sheets for quick daily drills.
       </p>
 
       <KatakanaStudy />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Katakana Chart Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Pair this with the{" "}
+          <Link href="/tools/language/hiragana-study" className="underline hover:text-slate-200">
+            Hiragana Chart
+          </Link>{" "}
+          and test input with the{" "}
+          <Link
+            href="/tools/language/hiragana-katakana-converter"
+            className="underline hover:text-slate-200"
+          >
+            Hiragana Katakana Converter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -121,6 +166,11 @@ export default function KatakanaStudyPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="mt-8 flex gap-4">
         <Link

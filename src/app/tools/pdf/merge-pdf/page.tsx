@@ -31,26 +31,74 @@ export const metadata: Metadata = createMetadata({
 });
 
 export default function MergePdfPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How can I merge multiple PDFs into one file on this page?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Upload files, arrange order, run merge, and download the combined PDF.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does this tool combine PDFs locally in my browser?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It reads source PDFs in browser memory and copies their pages into one output file.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is this merge PDF tool for, and what are its practical limits?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It is for fast document bundling; encrypted or broken PDFs may fail and should be removed.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When do people combine PDFs for work, school, or official filings?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "People merge PDFs for submissions, invoice bundles, report packets, and archive handoff.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="pdf" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Merge PDF</h1>
-            <p className="mt-1 text-sm text-slate-500">PDF Tools</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online PDF merger in browser
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-6 max-w-2xl text-center text-slate-400">
-        Combine multiple PDFs into a single file. The merge runs entirely in your
-        browser.
+        Combine multiple PDFs into one file quickly with local browser
+        processing.
       </p>
 
       <MergePdfTool backHref="/tools/pdf" backLabel="Back to PDF Tools" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Merge PDF Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

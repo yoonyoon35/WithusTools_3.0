@@ -7,7 +7,7 @@ import QRCodeReader from "./QRCodeReader";
 export const metadata: Metadata = createMetadata({
   title: "Read QR Codes Instantly",
   description:
-    "QR Code Scanner - Scan QR codes from camera or upload images (PNG, JPG, WebP, GIF). Decode URLs, text, vCard, Wi-Fi. Free online tool.",
+    "Scan QR codes from camera or uploaded images in your browser. Decode links, text, Wi-Fi, and contact payloads instantly.",
   path: "/tools/developer/qr-code-reader",
   keywords: [
     "qr code scanner",
@@ -46,7 +46,37 @@ const QR_READER_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I scan QR codes from both camera and image files?",
+    answer:
+      "Yes. You can scan live camera input or upload PNG, JPG, WebP, and GIF images.",
+  },
+  {
+    question: "What can I do with the decoded result?",
+    answer:
+      "You can copy the decoded text or open URL-type results directly.",
+  },
+  {
+    question: "Does QR scanning happen on a server?",
+    answer: "No. Decoding runs locally in your browser.",
+  },
+];
+
 export default function QRCodeReaderPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -60,12 +90,23 @@ export default function QRCodeReaderPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Scan QR codes from camera or uploaded images.
+        Scan QR codes from camera or image uploads and get decoded content right away.
       </p>
 
       <QRCodeReader />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">QR Code Reader Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          To create new QR assets, use the{" "}
+          <Link
+            href="/tools/developer/qr-code-generator"
+            className="underline hover:text-slate-200"
+          >
+            QR Code Generator
+          </Link>
+          . You can then scan the output here for quick validation.
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -117,6 +158,11 @@ export default function QRCodeReaderPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

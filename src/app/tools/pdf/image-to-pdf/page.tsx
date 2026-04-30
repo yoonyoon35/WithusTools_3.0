@@ -45,21 +45,66 @@ const PDF_CONVERTER_LINKS = [
 ] as const;
 
 export default function ImageToPdfPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How can I turn images into a single or multi-page PDF here?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Upload one or more images, choose layout mode, convert, and download the PDF.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does image-to-PDF conversion run locally in my browser?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Images are decoded and embedded into a PDF in browser runtime without server-side file processing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What image formats and page options does this Image to PDF tool support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It supports mixed image formats and offers fit-to-image or A4 page layout options.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When is converting photos or scans to PDF most useful?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It is useful for document submission, report building, and sharing grouped image evidence.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="pdf" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Image to PDF</h1>
-            <p className="mt-1 text-sm text-slate-500">PDF Tools</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online image-to-PDF converter in browser
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-6 max-w-2xl text-center text-slate-400">
-        Add any supported images in one go—formats can differ file by file.
-        Processing stays in your browser.
+        Combine mixed image files into one PDF quickly, with local browser
+        processing.
       </p>
 
       <ImageToPdfConverter
@@ -88,6 +133,9 @@ export default function ImageToPdfPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Image to PDF Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

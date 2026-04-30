@@ -7,7 +7,7 @@ import CssSpritesGenerator from "./CssSpritesGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Combine Images into CSS Sprites",
   description:
-    "CSS Sprites Generator - Generate CSS sprites from images. Combine multiple images into a single sprite and generate CSS code automatically. Free online tool.",
+    "Generate a CSS sprite sheet from multiple images and copy ready-to-use CSS classes. Build and export sprites directly in your browser.",
   path: "/tools/developer/css-sprites-generator",
   keywords: [
     "css sprites generator",
@@ -45,7 +45,37 @@ const SPRITES_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I generate both sprite image and CSS together?",
+    answer:
+      "Yes. The tool exports a sprite PNG and matching CSS classes with positions.",
+  },
+  {
+    question: "Can I control spacing and layout?",
+    answer:
+      "Yes. You can set padding, max columns, and background color before generating.",
+  },
+  {
+    question: "Does this sprite generator require installation?",
+    answer: "No. It runs in your browser without setup.",
+  },
+];
+
 export default function CssSpritesGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -61,13 +91,32 @@ export default function CssSpritesGeneratorPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Combine multiple images into a single sprite sheet and generate CSS code
-        automatically.
+        Merge multiple images into one sprite sheet and get matching CSS classes instantly.
       </p>
 
       <CssSpritesGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          CSS Sprites Generator Guide
+        </h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          For related frontend utilities, use the{" "}
+          <Link
+            href="/tools/developer/color-picker"
+            className="underline hover:text-slate-200"
+          >
+            Color Picker
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/developer/code-formatter"
+            className="underline hover:text-slate-200"
+          >
+            Code Formatter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -121,6 +170,11 @@ export default function CssSpritesGeneratorPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

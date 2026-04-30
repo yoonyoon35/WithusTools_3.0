@@ -69,6 +69,36 @@ export default function EnergyPairPage({ params }: { params: { slug: string } })
   const { from: fromKey, to: toKey } = pair;
   const fromSg = ENERGY_UNITS[fromKey].nameSg ?? ENERGY_UNITS[fromKey].name;
   const toSg = ENERGY_UNITS[toKey].nameSg ?? ENERGY_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg} here?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and this converter outputs ${toSg} with fixed pair settings.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are formulas and examples included?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. This page includes formula guidance, summary notes, and conversion tables.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I browse other energy pair converters?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are provided at the bottom.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -140,6 +170,8 @@ export default function EnergyPairPage({ params }: { params: { slug: string } })
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

@@ -9,7 +9,7 @@ const CodeFormatter = dynamic(() => import("./CodeFormatter"), { ssr: false });
 export const metadata: Metadata = createMetadata({
   title: "Code Format & Clean",
   description:
-    "Code Formatter - Format HTML, CSS, JavaScript, etc. code. Beautify and clean your code instantly. Free online tool.",
+    "Format HTML, CSS, JavaScript, and JSON instantly in your browser. Clean indentation and spacing with a fast online code formatter.",
   path: "/tools/developer/code-formatter",
   keywords: [
     "code formatter",
@@ -46,7 +46,35 @@ const CODE_FORMATTER_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Which languages are supported in this code formatter?",
+    answer: "You can format JavaScript, HTML, CSS, and JSON.",
+  },
+  {
+    question: "Can I load code from a file?",
+    answer: "Yes. You can load a file, format it, then copy the result.",
+  },
+  {
+    question: "Is formatting done server-side?",
+    answer: "No. Formatting runs locally in your browser.",
+  },
+];
+
 export default function CodeFormatterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -60,13 +88,30 @@ export default function CodeFormatterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Format and beautify HTML, CSS, JavaScript, and JSON code with proper
-        indentation.
+        Format HTML, CSS, JavaScript, and JSON quickly for cleaner reviews, docs, and commits.
       </p>
 
       <CodeFormatter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Code Formatter Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          You can pair this with{" "}
+          <Link
+            href="/tools/developer/base64-encoder-decoder"
+            className="underline hover:text-slate-200"
+          >
+            Base64 Encoder &amp; Decoder
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/developer/ascii-code-converter"
+            className="underline hover:text-slate-200"
+          >
+            ASCII Code Converter
+          </Link>{" "}
+          during API and payload debugging.
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -120,6 +165,11 @@ export default function CodeFormatterPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

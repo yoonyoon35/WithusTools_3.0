@@ -12,7 +12,7 @@ const PERCENTAGE_FAQ_LINKS = getFaqEntriesByCategory("percentage-calculator");
 export const metadata: Metadata = createMetadata({
   title: "Calculate Percentages Easily",
   description:
-    "Calculate percentages easily: part of a number, change between values, what percent one value is of another, and value after a percent increase or decrease—with history and comma-formatted numbers.",
+    "Free percentage calculator with tabs for percent of value, percent change, part-to-whole, and value after increase or decrease.",
   path: "/tools/calculator/percentage-calculator",
   keywords: [
     "percentage calculator",
@@ -58,6 +58,34 @@ const PERCENTAGE_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I use the percentage calculator tabs for discounts, tips, or grades?",
+    answer:
+      "Choose the matching tab, enter values, and read the result instantly with context text.",
+  },
+  {
+    question: "How does this percentage calculator apply formulas in each mode?",
+    answer:
+      "Each tab applies a dedicated percentage formula for that specific question type.",
+  },
+  {
+    question: "What percentage problems does this tool solve, and how is it organized?",
+    answer:
+      "It covers percent-of, percent-change, part-of-whole, and value-after-change workflows.",
+  },
+  {
+    question: "Why use a multi-tab percentage calculator in the browser?",
+    answer:
+      "It avoids formula switching mistakes and keeps common percentage tasks in one place.",
+  },
+  {
+    question: "When do people rely on percentage math for finance, school, or shopping?",
+    answer:
+      "They use it for discounts, grade checks, growth tracking, taxes, and reporting.",
+  },
+];
+
 function CalculatorFallback() {
   return (
     <div
@@ -70,14 +98,30 @@ function CalculatorFallback() {
 }
 
 export default function PercentageCalculatorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Percentage Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online percentage calculator for daily math
+            </p>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ import StandardDeviationFigures from "./StandardDeviationFigures";
 export const metadata: Metadata = createMetadata({
   title: "Standard Deviation Calculator | Population vs Sample",
   description:
-    "Free standard deviation calculator: count, sum, mean, range, min, max, MAD, degrees of freedom (n−1), population & sample variance and standard deviation, coefficient of variation (CV), sum of squares (SS), and SEM (s/√n). Paste comma-, space-, or line-separated numbers; sort, reset, copy. Step-by-step guide and FAQ.",
+    "Free standard deviation calculator with population vs sample metrics, variance, CV, SS, and SEM. Paste numbers and calculate instantly in browser.",
   path: "/tools/calculator/standard-deviation-calculator",
   keywords: [
     "standard deviation calculator",
@@ -55,14 +55,30 @@ const FAQ_ITEMS = [
 ];
 
 export default function StandardDeviationCalculatorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Standard Deviation Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online standard deviation calculator
+            </p>
           </div>
         </div>
       </div>

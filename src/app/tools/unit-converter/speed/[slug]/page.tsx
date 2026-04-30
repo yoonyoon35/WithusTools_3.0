@@ -69,6 +69,36 @@ export default function SpeedPairPage({ params }: { params: { slug: string } }) 
   const { from: fromKey, to: toKey } = pair;
   const fromSg = SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
   const toSg = SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I convert ${fromSg} to ${toSg}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Type a ${fromSg} value and this page calculates the ${toSg} result immediately.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this speed pair page show formulas and examples?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Formula lines, explanatory sections, and conversion tables are included below.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I move to other speed conversion pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related speed pair links are provided at the bottom.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -148,6 +178,8 @@ export default function SpeedPairPage({ params }: { params: { slug: string } }) 
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

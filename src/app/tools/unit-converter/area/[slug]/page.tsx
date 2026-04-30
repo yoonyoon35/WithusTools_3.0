@@ -71,6 +71,36 @@ export default function AreaPairPage({ params }: { params: { slug: string } }) {
   const { from: fromKey, to: toKey } = pair;
   const fromSg = AREA_UNITS[fromKey].nameSg ?? AREA_UNITS[fromKey].name;
   const toSg = AREA_UNITS[toKey].nameSg ?? AREA_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Type a ${fromSg} value and this page returns the ${toSg} result with fixed pair settings.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are formulas and conversion tables included?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. This page includes formula lines, explanation sections, and area conversion tables.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I move to other area pair pages?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Cross-links to related area unit pairs are provided below.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -140,6 +170,8 @@ export default function AreaPairPage({ params }: { params: { slug: string } }) {
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

@@ -72,6 +72,36 @@ export default function WeightPairPage({ params }: { params: { slug: string } })
   const { from: fromKey, to: toKey } = pair;
   const fromSg = WEIGHT_UNITS[fromKey].nameSg ?? WEIGHT_UNITS[fromKey].name;
   const toSg = WEIGHT_UNITS[toKey].nameSg ?? WEIGHT_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg} on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and the ${toSg} result is calculated automatically.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this pair page include formula guidance?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. You can review formulas, summary notes, and conversion tables under the calculator.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I jump to other weight unit pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are listed near the bottom of the page.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -141,6 +171,8 @@ export default function WeightPairPage({ params }: { params: { slug: string } })
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

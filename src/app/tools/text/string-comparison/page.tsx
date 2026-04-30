@@ -7,7 +7,7 @@ import StringComparison from "./StringComparison";
 export const metadata: Metadata = createMetadata({
   title: "String Comparison Tool | Compare Text Differences",
   description:
-    "Compare two texts and highlight differences. Side-by-side string comparison with added and removed parts highlighted. Free online tool.",
+    "Free string comparison tool for side-by-side text diff checks in browser with local processing.",
   path: "/tools/text/string-comparison",
   keywords: [
     "string comparison",
@@ -21,35 +21,73 @@ export const metadata: Metadata = createMetadata({
 
 const STRING_COMPARISON_GUIDE = {
   usage: [
-    "Enter the first text in the left input field and the second text in the right input field.",
-    "Click Compare Texts to analyze and highlight differences. Additions appear in green, removals in red.",
-    "Use Copy buttons to copy either text to your clipboard. Click Reset to clear all inputs.",
+    "Paste the original text on the left and the updated text on the right.",
+    "Run comparison to highlight changed parts.",
+    "Copy either side or reset both inputs as needed.",
   ],
   howItWorks: [
-    "The tool uses a diff algorithm that splits text by sentences (using ., !, ?, and newlines) and then compares word by word.",
-    "Additions (text in the second input but not the first) are highlighted in green. Removals (text in the first but not the second) are highlighted in red.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "A diff routine compares text blocks and marks additions/removals.",
+    "Changed segments are highlighted to help quick review.",
+    "All comparison logic runs locally in browser runtime.",
   ],
   about: [
-    "Free online string comparison tool for comparing two texts and visualizing differences. Ideal for code review, document revision, and content verification.",
+    "Use this tool to quickly spot what changed between two versions of text.",
+    "It works well for copy edits, docs, snippets, and review notes.",
   ],
   advantages: [
-    "Side-by-side comparison: View both texts and differences at a glance.",
-    "Word-level highlighting: See exactly which words changed.",
-    "No signup: Use immediately in any browser.",
-    "Privacy: All processing happens locally. Your text never leaves your device.",
+    "Side-by-side diff view.",
+    "Highlight-based change detection.",
+    "Fast copy/reset workflow.",
+    "No signup required.",
   ],
   useCases: [
-    "Code review: Compare two code versions and spot changes quickly.",
-    "Document revision: Track edits between document versions.",
-    "Translation verification: Compare original and translated texts.",
-    "Data validation: Verify accuracy between datasets.",
+    "Check revisions before publishing a document.",
+    "Compare two policy or contract drafts.",
+    "Validate generated text against a source version.",
+    "Review code snippets in plain text form.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I compare two texts and highlight differences side by side?",
+    answer:
+      "Paste the two versions, run comparison, and review highlighted additions and removals.",
+  },
+  {
+    question: "How does string comparison run locally in my browser?",
+    answer:
+      "The diff logic executes in browser runtime, so content is processed locally on your device.",
+  },
+  {
+    question: "What does this string comparison tool show, and how should I read the diff?",
+    answer:
+      "It shows changed segments between two texts; use highlights to focus only on edits.",
+  },
+  {
+    question: "When is side-by-side text comparison useful for code or content review?",
+    answer:
+      "It is useful for revision checks, QA comparisons, and final review before publishing.",
+  },
+];
+
 export default function StringComparisonPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="text" />
@@ -57,19 +95,23 @@ export default function StringComparisonPage() {
             <h1 className="text-3xl font-bold text-slate-100">
               String Comparison Tool
             </h1>
-            <p className="mt-1 text-sm text-slate-500">text</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online string comparison for quick diffs
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Compare two texts and highlight differences. Side-by-side diff with added
-        and removed parts for easy review. All processing runs in your browser.
+        Compare two text versions side by side and spot edits fast in browser.
       </p>
 
       <StringComparison />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          String Comparison Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

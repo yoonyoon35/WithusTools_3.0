@@ -67,6 +67,36 @@ export default function NumberSystemPairPage({ params }: { params: { slug: strin
   const toBase = pairKeyToBase(pair.to);
   const fromName = NUMBER_SYSTEM_PAIR_KEY_LABELS[pair.from];
   const toName = NUMBER_SYSTEM_PAIR_KEY_LABELS[pair.to];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromName} to ${toName} on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromName} value in the converter input and the ${toName} result is generated automatically with matching pair rules.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are fractional values supported here?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes for numeric bases. You can enter one radix point and fractional digits when the selected format is numeric.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I move to other base-pair converters quickly?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are listed below the converter for fast switching.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -140,6 +170,11 @@ export default function NumberSystemPairPage({ params }: { params: { slug: strin
           Developer Tools home
         </Link>
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </div>
   );
 }

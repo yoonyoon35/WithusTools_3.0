@@ -7,7 +7,7 @@ import ImageFormatConverter from "./ImageFormatConverter";
 export const metadata: Metadata = createMetadata({
   title: "Image Format Converter",
   description:
-    "Convert images between PNG, JPG, WebP, GIF, BMP, TIFF, AVIF. Supports HEIC and HEIF. Adjust quality for lossy formats. All processing runs in your browser.",
+    "Free image format converter for PNG, JPG, WebP, GIF, BMP, TIFF, and AVIF with browser-side processing.",
   path: "/tools/image/image-format-converter",
   keywords: [
     "image format converter",
@@ -25,45 +25,83 @@ export const metadata: Metadata = createMetadata({
 
 const IMAGE_FORMAT_CONVERTER_GUIDE = {
   usage: [
-    "Drag and drop an image or click Choose File to upload. Supports PNG, JPG, WebP, GIF, BMP, TIFF, AVIF, HEIC, HEIF.",
-    "Select the target format from the dropdown: PNG, JPG, WebP, GIF, BMP, TIFF, or AVIF.",
-    "For JPG, WebP, and AVIF: adjust the Quality slider (0-100%). Higher values preserve more detail.",
-    "Click Convert to process. The preview updates to show the converted image.",
-    "Click Download to save the converted file. Click Reset to start over.",
+    "Upload an image and choose the target format.",
+    "Set quality when converting to lossy formats.",
+    "Convert, preview the result, then download.",
+    "Reset and repeat for the next file.",
   ],
   howItWorks: [
-    "Uses the browser Canvas API to decode the source image and re-encode it in the target format.",
-    "HEIC and HEIF files are converted to JPEG first via heic2any, then can be converted to any supported format.",
-    "All processing runs locally in your browser. Your images never leave your device.",
+    "The converter decodes the source and re-encodes it in your selected format.",
+    "HEIC/HEIF inputs are normalized first, then exported to the target type.",
+    "Processing happens locally in browser memory.",
   ],
   about: [
-    "Free online image format converter for transforming images between different file formats.",
-    "Supports PNG, JPEG, WebP, GIF, BMP, TIFF, AVIF, and input from HEIC/HEIF. Quality control for lossy formats.",
+    "Use this tool when apps require a different image format.",
+    "It is useful for web uploads, cross-device sharing, and workflow compatibility.",
   ],
   advantages: [
-    "Privacy-first: All processing runs in your browser. Images never leave your device.",
-    "Multiple formats: Convert between 7+ formats including next-gen AVIF.",
-    "Quality control: Adjust compression quality for JPG, WebP, and AVIF.",
-    "HEIC/HEIF support: Convert Apple device photos to common formats.",
-    "No signup: Use immediately. No file limits beyond your device.",
+    "Browser-local conversion.",
+    "Support for common modern formats.",
+    "Quality control for lossy outputs.",
+    "HEIC/HEIF input compatibility.",
+    "No signup needed.",
   ],
   useCases: [
-    "Web optimization: Convert to WebP or AVIF for faster page loads.",
-    "Compatibility: Convert HEIC from iPhone to JPG for sharing.",
-    "Design workflows: Convert between formats for different tools.",
-    "Storage: Convert to space-efficient formats like WebP or JPEG.",
+    "Convert HEIC photos to JPG for easier sharing.",
+    "Export to WebP or AVIF for web performance.",
+    "Match required format for design or CMS tools.",
+    "Reduce storage with more efficient image types.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I convert PNG, JPG, WebP, or other formats with this tool?",
+    answer:
+      "Upload a file, select target format, set optional quality, then convert and download.",
+  },
+  {
+    question: "How does this format converter decode and encode images in my browser?",
+    answer:
+      "It processes source image data and exports the target format directly in browser runtime.",
+  },
+  {
+    question: "What image formats are supported, and when should I pick each one?",
+    answer:
+      "Use JPG/WebP/AVIF for smaller files, PNG for lossless graphics, and format-specific choices for workflow compatibility.",
+  },
+  {
+    question: "When do teams batch-convert image assets for the web or apps?",
+    answer:
+      "Teams convert assets during uploads, migration between systems, and performance optimization passes.",
+  },
+];
+
 export default function ImageFormatConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="image" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Image Format Converter</h1>
-            <p className="mt-1 text-sm text-slate-500">image</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online image format converter in browser
+            </p>
           </div>
         </div>
       </div>
@@ -71,6 +109,9 @@ export default function ImageFormatConverterPage() {
       <ImageFormatConverter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Image Format Converter Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

@@ -73,9 +73,49 @@ export default function SshAlgorithmPage({
   }
 
   const defaultAlgorithm = algorithm as Algorithm;
+  const displayName = ALGORITHM_META[algorithm].displayName;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I generate ${displayName} SSH keys with this tool?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose the algorithm, set any optional parameters, generate the key pair, and save the private key securely.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How does this generator create ${displayName} keys in my browser?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The page uses browser-side cryptography, so key generation runs locally without server-side key handling.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `When should I use ${displayName} SSH keys?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text:
+            algorithm === "ed25519"
+              ? "Use Ed25519 for most modern SSH setups."
+              : algorithm === "rsa"
+                ? "Use RSA when broad legacy compatibility is required."
+                : "Use ECDSA when your environment requires NIST-curve SSH keys.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SshKeyGenerator
         defaultAlgorithm={defaultAlgorithm}
         defaultRsaKeySize={algorithm === "rsa" ? 4096 : undefined}

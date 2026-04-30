@@ -42,21 +42,66 @@ const ALGORITHMS = [
 ] as const;
 
 export default function SshKeyIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I generate RSA, ED25519, or other SSH keys from this page?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose an algorithm, set optional parameters, generate the pair, and store the private key securely.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does the SSH key generator create keys without sending them to a server?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Key creation runs in browser runtime and does not require server-side key processing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What SSH key types are available, and which should I pick for my server?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Use Ed25519 by default, RSA for broad legacy compatibility, and ECDSA when curve-based compatibility is needed.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When should I create a new SSH key pair for servers or Git hosting?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Create a new pair during device setup, key rotation, account separation, or when credentials are exposed.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="key" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">SSH Key Generator</h1>
-            <p className="mt-1 text-sm text-slate-500">security</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online SSH key generator for server access
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Generate SSH key pairs in your browser. All key generation runs locally—your
-        private key never leaves your device.
+        Generate SSH key pairs in browser for server login, Git access, and key
+        rotation workflows.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -76,6 +121,13 @@ export default function SshKeyIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          SSH Key Generator Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Pick Ed25519 for most new setups, RSA for older environments, and
+          ECDSA when your stack expects NIST curves.
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

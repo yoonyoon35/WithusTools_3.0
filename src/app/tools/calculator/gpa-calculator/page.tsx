@@ -7,7 +7,7 @@ import GPACalculator from "./GPACalculator";
 export const metadata: Metadata = createMetadata({
   title: "Calculate Your Grade Point Average",
   description:
-    "Calculate your semester or cumulative GPA. Support for 4.0, 4.3, 4.5, and 5.0 grading scales and credit hours. Free online tool.",
+    "Free GPA calculator for semester and cumulative GPA planning. Supports 4.0, 4.3, 4.5, and 5.0 grading scales.",
   path: "/tools/calculator/gpa-calculator",
   keywords: [
     "gpa calculator",
@@ -94,15 +94,59 @@ const GPA_FAQ_LINKS: { href: string; question: string }[] = [
   },
 ];
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I calculate GPA, course grades, or a target GPA with this tool?",
+    answer:
+      "Select a grading scale, add courses with credits and grades, then review the live GPA result as you edit.",
+  },
+  {
+    question: "How does this GPA calculator handle weighted GPA and credit hours?",
+    answer:
+      "It converts grades to points by your selected scale and computes a credit-weighted average.",
+  },
+  {
+    question: "What grading scales and features does this GPA calculator support?",
+    answer:
+      "It supports 4.0, 4.3, 4.5, and 5.0 scales with add/remove course rows and instant updates.",
+  },
+  {
+    question: "Why plan GPA and semester goals with a browser-based calculator?",
+    answer:
+      "It helps you test grade scenarios quickly while keeping planning in one place.",
+  },
+  {
+    question: "When do students use GPA tools for applications and degree planning?",
+    answer:
+      "Students use them for scholarship checks, graduation planning, and term-by-term goal setting.",
+  },
+];
+
 export default function GPACalculatorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">GPA Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online GPA calculator for semester planning
+            </p>
           </div>
         </div>
       </div>
@@ -189,6 +233,7 @@ export default function GPACalculatorPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">GPA Guide</h2>
         <div className="scrollbar-thin space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 id="gpa-guide-how-to-use" className="mb-3 font-semibold text-slate-200 scroll-mt-24">

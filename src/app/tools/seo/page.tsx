@@ -48,22 +48,66 @@ const SEO_TOOLS = [
 ] as const;
 
 export default function SEOToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I build sitemaps, robots.txt, favicons, or meta tags from here?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Open the target SEO tool, enter inputs, generate output, then copy or download the result.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do SEO tools generate files locally without uploading my whole site?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Each tool builds output snippets/files from local form inputs in browser runtime without site-upload processing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What SEO utilities are bundled here, and what does each one output?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "This hub includes favicon, meta tag, robots.txt, and sitemap generators with copy/download output flows.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When are sitemap and meta tag generators most useful for developers?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "They are most useful during launches, SEO refreshes, and structured metadata updates for new pages.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="seo" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">SEO Tools</h1>
-            <p className="mt-1 text-sm text-slate-500">seo</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online SEO tools for launch essentials
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Favicon Generator, Meta Tag Generator, Robots.txt Generator, and Sitemap
-        Generator. Improve search engine visibility and social sharing. All
-        processing runs in your browser.
+        Generate favicon assets, meta tags, robots.txt, and sitemaps quickly in
+        browser for practical SEO workflows.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
@@ -83,6 +127,9 @@ export default function SEOToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          SEO Tools Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

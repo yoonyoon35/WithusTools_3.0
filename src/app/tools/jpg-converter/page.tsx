@@ -141,24 +141,70 @@ const JPG_CONVERTER_FORMATS = [
 ] as const;
 
 export default function JPGConverterIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I convert PNG, WebP, or other formats to JPG from this hub?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Open the matching format page, upload files, configure options, run conversion, and download results.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does client-side conversion to JPEG work on this site?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Files are decoded and re-encoded as JPG in browser runtime, so conversion happens locally on your device.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What JPG conversion pages are linked, and when should I pick each?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose by input format such as HEIC, PNG, WEBP, TIFF, PDF, or RAW-related formats to get format-specific options.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When is a dedicated format-to-JPG page better than a generic converter?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Dedicated pages are better when your source type needs extra handling, like transparency, RAW previews, or PDF page extraction.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="image" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">JPG Converter</h1>
-            <p className="mt-1 text-sm text-slate-500">image</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online JPG converter for many source formats
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-4 max-w-2xl text-center text-slate-400">
-        Free online JPG converter for HEIC, HEIF, AVIF, BMP, PNG, SVG, TIFF, WEBP, PSD, JFIF, ICO, AI, DNG, CR2, CR3, TGA, and PDF.
-        Batch convert multiple images at once. All processing runs locally in your browser—your data never leaves your device.
+        Convert many formats to JPG in browser, including HEIC, PNG, WEBP, TIFF,
+        PDF, and RAW-related files.
       </p>
       <p className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-500">
-        No sign-up, no file limits, no server upload. Convert iPhone HEIC to JPG, PNG with transparency to JPG with background, PDF pages to images—all with one tool.
+        Batch-friendly workflow, quality control, and local processing with no
+        server upload.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -178,6 +224,13 @@ export default function JPGConverterIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          JPG Converter Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Use the format-specific page for better defaults and options (for
+          example transparency handling, RAW preview extraction, or PDF pages).
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

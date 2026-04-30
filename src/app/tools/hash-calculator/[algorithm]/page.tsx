@@ -169,9 +169,62 @@ export default function HashAlgorithmPage({
   }
 
   const meta = ALGORITHM_META[algorithm];
+  const isPasswordHasher =
+    algorithm === "bcrypt" ||
+    algorithm === "argon2" ||
+    algorithm === "pbkdf2" ||
+    algorithm === "scrypt";
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I use this ${meta.displayName} hash calculator on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: isPasswordHasher
+            ? `Enter text input, configure parameters, generate the ${meta.displayName} output, then use Verify to test matches.`
+            : `Paste text or upload a file, generate ${meta.displayName}, then compare with expected values using Verify.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How does this calculator compute ${meta.displayName} locally in my browser?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `The ${meta.displayName} algorithm runs in your browser runtime, so inputs are processed client-side on your device.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What is ${meta.displayName}, and when should I use it?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: isPasswordHasher
+            ? `${meta.displayName} is used for password hashing or key derivation where brute-force resistance matters.`
+            : `${meta.displayName} is used for integrity checks, compatibility workflows, or algorithm-specific development tasks.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Where is ${meta.displayName} commonly used in apps and infrastructure?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: isPasswordHasher
+            ? `Common use cases include auth systems, account security, and password verification workflows.`
+            : `Common use cases include file verification, release checks, protocol debugging, and data processing pipelines.`,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="hash" />
@@ -179,7 +232,9 @@ export default function HashAlgorithmPage({
             <h1 className="text-3xl font-bold text-slate-100">
               {meta.displayName} Hash Calculator
             </h1>
-            <p className="mt-1 text-sm text-slate-500">hash</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online {meta.displayName} hash tool in browser
+            </p>
           </div>
         </div>
       </div>
@@ -201,6 +256,14 @@ export default function HashAlgorithmPage({
 
       {ALGORITHM_GUIDE[algorithm] && (
         <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <h2 className="mb-3 text-xl font-semibold text-slate-200">
+            {meta.displayName} Guide
+          </h2>
+          <p className="mb-8 text-sm leading-relaxed text-slate-400">
+            {isPasswordHasher
+              ? `Use ${meta.displayName} when you need password-oriented hashing with verification support.`
+              : `Use ${meta.displayName} when you need a quick digest for integrity checks and development workflows.`}
+          </p>
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">

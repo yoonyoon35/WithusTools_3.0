@@ -70,6 +70,36 @@ export default function PowerPairPage({ params }: { params: { slug: string } }) 
   const { from: fromKey, to: toKey } = pair;
   const fromSg = POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
   const toSg = POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I convert ${fromSg} to ${toSg}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Input a ${fromSg} value and the ${toSg} result is calculated immediately.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this page include power conversion formulas?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Formula lines, explanation sections, and conversion tables are included.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I switch to other power pair pages?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Cross-links to related power conversions are provided below.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -139,6 +169,8 @@ export default function PowerPairPage({ params }: { params: { slug: string } }) 
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

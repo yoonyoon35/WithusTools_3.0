@@ -7,7 +7,7 @@ import MetaTagGenerator from "./MetaTagGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Create SEO Meta Tags",
   description:
-    "Generate meta tags for your website. Create SEO-friendly meta tags including Open Graph and Twitter Cards. Free online tool.",
+    "Generate SEO meta tags online in your browser. Create title, description, Open Graph, and Twitter Card tags you can paste into your site head.",
   path: "/tools/seo/metatag-generator",
   keywords: [
     "meta tag generator",
@@ -21,36 +21,66 @@ export const metadata: Metadata = createMetadata({
 
 const METATAG_GUIDE = {
   usage: [
-    "Enter title (50–60 characters recommended) and meta description (150–160 characters).",
-    "Add keywords and select robots directive (index/noindex, follow/nofollow).",
-    "In Open Graph tab: Enter OG title, description, URL, and image URL for social sharing.",
-    "In Twitter tab: Choose card type, enter title, description, and image URL. Copy the generated HTML to your site head.",
+    "Write your page title and meta description first.",
+    "Set robots directives like `index`/`noindex` and `follow`/`nofollow` when needed.",
+    "Fill Open Graph fields for social previews on Facebook or LinkedIn.",
+    "Fill Twitter Card fields, then copy the generated meta tags into your HTML head.",
   ],
   howItWorks: [
-    "The generator builds HTML meta tags from your input. Title and description character limits follow SEO best practices.",
-    "Open Graph tags control how your content appears when shared on Facebook, LinkedIn, and other platforms.",
-    "Twitter Card tags optimize how your links appear on Twitter/X. All processing runs in your browser.",
+    "The meta tag generator converts your input into ready-to-use HTML meta tags.",
+    "It outputs standard SEO tags plus Open Graph and Twitter Card markup.",
+    "Everything runs locally in your browser.",
   ],
   about: [
-    "Free online meta tag generator for creating SEO-friendly meta tags. Supports basic SEO, Open Graph, and Twitter Cards.",
-    "Essential for search engine optimization and social media sharing. No signup required.",
-    "Copy the generated code into your HTML head section.",
+    "This online meta tag generator is handy when publishing landing pages, blog posts, and product pages.",
+    "You can quickly preview and copy tags without opening a CMS plugin.",
+    "No signup is needed.",
   ],
   advantages: [
-    "SEO optimized: Follows best practices for title and description length.",
-    "Social ready: Open Graph and Twitter Card support.",
-    "Privacy: All generation happens locally in your browser.",
-    "No signup: Use immediately without creating an account.",
+    "Creates core SEO meta tags with social sharing tags in one place.",
+    "Helps keep title and description fields within practical ranges.",
+    "Runs in-browser so draft metadata stays local.",
+    "Starts instantly without account setup.",
   ],
   useCases: [
-    "Search engine optimization: Improve rankings with optimized meta tags.",
-    "Social sharing: Optimize appearance when shared on Facebook, Twitter, LinkedIn.",
-    "E-commerce: Optimize product page meta tags for better CTR.",
-    "Content marketing: Improve blog post discoverability.",
+    "Updating metadata before publishing a new page.",
+    "Improving social previews for campaign links.",
+    "Fixing missing or duplicate tags after a migration.",
+    "Testing alternate titles for better click-through rate.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Which meta tags should I create first?",
+    answer:
+      "Start with title, meta description, and canonical basics. Then add Open Graph and Twitter Card tags for social sharing previews.",
+  },
+  {
+    question: "Can I generate Open Graph and Twitter tags together?",
+    answer:
+      "Yes. This tool outputs both sets so you can paste one complete block into the head section.",
+  },
+  {
+    question: "Does this meta tag generator send my content anywhere?",
+    answer: "No. All generation runs in your browser.",
+  },
+];
+
 export default function MetaTagGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -64,12 +94,24 @@ export default function MetaTagGeneratorPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Generate SEO-friendly meta tags for your website. Support for Open Graph and Twitter Cards.
+        Create SEO meta tags in one place, including Open Graph and Twitter Card markup for link previews.
       </p>
 
       <MetaTagGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Meta Tag Generator Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          After creating tags, pair them with a clean{" "}
+          <Link href="/tools/seo/robots-generator" className="underline hover:text-slate-200">
+            robots.txt file
+          </Link>{" "}
+          and an updated{" "}
+          <Link href="/tools/seo/sitemap-generator" className="underline hover:text-slate-200">
+            XML sitemap
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -123,6 +165,11 @@ export default function MetaTagGeneratorPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/seo"

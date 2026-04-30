@@ -87,23 +87,69 @@ const PDF_CONVERTER_FORMATS = [
 ] as const;
 
 export default function PDFConverterIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I convert Office or image files to PDF from this hub?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose the matching format page, upload files, convert, and download the generated PDF.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does client-side PDF conversion work on this site?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Source files are decoded and assembled into PDF pages in browser runtime without server-side processing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What PDF conversion options are linked here, and how do I pick one?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pick by input format such as JPG, HEIC, PNG, WEBP, AVIF, BMP, or TIFF to get the correct upload filter and options.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When should I open a format-specific converter instead of a generic app?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Use format-specific pages when your source files need dedicated decoding behavior and predictable conversion defaults.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="pdf" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">PDF Converter</h1>
-            <p className="mt-1 text-sm text-slate-500">pdf</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online PDF converter for image formats
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-4 max-w-2xl text-center text-slate-400">
-        Convert images to PDF with zero white margins and preserved aspect ratio. Each image becomes a page sized exactly to its dimensions—no stretching, no distortion.
+        Convert format-specific image batches into one PDF in browser with a
+        quick upload-to-download flow.
       </p>
       <p className="mx-auto mb-8 max-w-2xl text-center text-sm text-slate-500">
-        All processing runs locally in your browser. No sign-up, no server upload. Your data never leaves your device.
+        Local processing, no signup, and no server-side conversion upload.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -139,6 +185,9 @@ export default function PDFConverterIndexPage() {
       </section>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          PDF Converter Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

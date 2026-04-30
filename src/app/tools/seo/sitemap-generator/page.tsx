@@ -7,7 +7,7 @@ import SitemapGenerator from "./SitemapGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Create XML Sitemaps for SEO",
   description:
-    "Generate sitemaps for your website. Create XML sitemaps to improve SEO. Free online tool with priority and change frequency settings.",
+    "Generate an XML sitemap online in your browser. Add URLs, set change frequency and priority, then download sitemap.xml for search engines.",
   path: "/tools/seo/sitemap-generator",
   keywords: [
     "sitemap generator",
@@ -21,36 +21,67 @@ export const metadata: Metadata = createMetadata({
 
 const SITEMAP_GUIDE = {
   usage: [
-    "Enter your website URL as the base URL. It will be added as the first entry with priority 1.0.",
-    "Add page URLs with change frequency (always, hourly, daily, weekly, monthly, yearly, never) and priority (0.0–1.0).",
-    "Click Add URL to include more pages. Remove entries as needed.",
-    "Copy or download the generated XML sitemap. Submit to Google Search Console and Bing Webmaster Tools.",
+    "Enter your site URL, then add each page you want in the XML sitemap.",
+    "Set `changefreq` and `priority` for each URL based on how often content changes.",
+    "Add or remove URLs until the list matches your current site structure.",
+    "Copy or download `sitemap.xml`, then submit it to search engines.",
   ],
   howItWorks: [
-    "The generator produces XML sitemaps compliant with the Sitemap Protocol.",
-    "Each URL includes loc, lastmod, changefreq, and priority. lastmod is set to today by default.",
-    "Submit sitemaps to search engines to improve content discovery and indexing.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "The sitemap generator creates XML that follows the Sitemap Protocol.",
+    "Each URL entry includes `loc`, `lastmod`, `changefreq`, and `priority` fields.",
+    "Everything runs locally in your browser.",
   ],
   about: [
-    "Free online XML sitemap generator for SEO. Create sitemaps with customizable priority and change frequency.",
-    "Essential for search engine indexing. No signup required.",
+    "This online sitemap generator helps search engines discover important URLs faster.",
+    "It is useful for new launches, large content updates, and site migrations.",
+    "No signup is needed.",
   ],
   advantages: [
-    "Standard compliant: Follows Sitemap Protocol.",
-    "Customizable: Set priority and change frequency per URL.",
-    "Privacy: All generation happens locally in your browser.",
-    "No signup: Use immediately without creating an account.",
+    "Builds valid XML sitemap output with required fields.",
+    "Lets you customize priority and change frequency per page.",
+    "Runs in-browser so URLs are processed locally.",
+    "Starts instantly without account setup.",
   ],
   useCases: [
-    "Search engine discovery: Help search engines find all your pages.",
-    "Indexing optimization: Improve coverage and crawl efficiency.",
-    "E-commerce: Ensure product and category pages are indexed.",
-    "Content sites: Include blog posts and articles in sitemaps.",
+    "Submitting a fresh sitemap after launching a site.",
+    "Updating crawl targets after URL structure changes.",
+    "Managing indexing for large ecommerce category and product pages.",
+    "Keeping blog and documentation URLs visible to crawlers.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Do I need to include every page in my XML sitemap?",
+    answer:
+      "Include the canonical pages you want indexed. You can skip duplicate, thin, or blocked URLs.",
+  },
+  {
+    question: "How often should I update sitemap.xml?",
+    answer:
+      "Update it whenever you add, remove, or move important pages, especially after launches or migrations.",
+  },
+  {
+    question: "Is this sitemap generator server-side?",
+    answer:
+      "No. It runs in your browser, and the sitemap file is generated locally.",
+  },
+];
+
 export default function SitemapGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -64,12 +95,24 @@ export default function SitemapGeneratorPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Generate XML sitemaps for your website. Set priority and change frequency for better SEO and indexing.
+        Create a clean XML sitemap quickly, tune URL priority and update frequency, then download it for indexing.
       </p>
 
       <SitemapGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">XML Sitemap Generator Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          For a complete technical SEO setup, use this page with the{" "}
+          <Link href="/tools/seo/robots-generator" className="underline hover:text-slate-200">
+            Robots.txt Generator
+          </Link>{" "}
+          and{" "}
+          <Link href="/tools/seo/metatag-generator" className="underline hover:text-slate-200">
+            Meta Tag Generator
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -123,6 +166,11 @@ export default function SitemapGeneratorPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/seo"

@@ -69,6 +69,36 @@ export default function DigitalPairPage({ params }: { params: { slug: string } }
   const { from: fromKey, to: toKey } = pair;
   const fromSg = DIGITAL_UNITS[fromKey].nameSg ?? DIGITAL_UNITS[fromKey].name;
   const toSg = DIGITAL_UNITS[toKey].nameSg ?? DIGITAL_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I convert ${fromSg} to ${toSg} on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and the ${toSg} result is generated automatically.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this page include digital conversion formulas?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Formula details, relationship context, and conversion tables are provided.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I move to other digital storage pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are available below the converter.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -140,6 +170,8 @@ export default function DigitalPairPage({ params }: { params: { slug: string } }
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

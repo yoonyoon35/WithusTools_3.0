@@ -7,7 +7,7 @@ import FaviconGenerator from "./FaviconGenerator";
 export const metadata: Metadata = createMetadata({
   title: "Create All Platform Favicons",
   description:
-    "Generate favicons for your website. Create favicons for all platforms including Apple, Android, Windows. Free online tool. Complete favicon package with HTML code.",
+    "Create a full favicon package online in your browser. Export favicon files, manifest, and HTML tags for web, iOS, Android, and Windows.",
   path: "/tools/seo/favicon-generator",
   keywords: [
     "favicon generator",
@@ -23,37 +23,67 @@ export const metadata: Metadata = createMetadata({
 
 const FAVICON_GUIDE = {
   usage: [
-    "Upload a square image (minimum 260x260 pixels). Drag & drop or click to select.",
-    "Choose platforms: Basic favicon, Apple Touch Icons, Android/Chrome, Windows Tiles, Safari Pinned Tab.",
-    "Set background color for transparent icons, site name, short name, and favicon output path.",
-    "Click Generate Favicons. Copy HTML, manifest, and browserconfig code, or download the complete package.",
+    "Upload a square logo image (260x260 or larger).",
+    "Pick the icon sets you need: browser favicon, Apple, Android, Windows, or Safari pinned tab.",
+    "Add site name and icon path settings, then click Generate Favicons.",
+    "Copy the HTML tags or download the full favicon package.",
   ],
   howItWorks: [
-    "The generator uses the Canvas API to resize your image and create favicons in required sizes.",
-    "Each platform has specific size requirements: browsers (16–48px), Apple (57–180px), Android (36–512px), Windows (70–310px), Safari (16–192px).",
-    "The complete package includes PNG files, site.webmanifest, browserconfig.xml, and HTML link tags.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "The favicon generator resizes your image into the icon sizes each platform expects.",
+    "You get favicon PNG files plus `site.webmanifest`, `browserconfig.xml`, and ready-to-paste link tags.",
+    "Everything runs locally as a browser favicon workflow, so files stay on your device.",
   ],
   about: [
-    "Free online favicon generator for creating favicons for all platforms. Generates complete favicon packages with implementation code.",
-    "Supports multi-platform output including web browsers, iOS, Android, and Windows. No signup required.",
-    "Ensures your website displays properly across all devices and bookmarks.",
+    "This online favicon generator helps you ship one consistent icon set across major platforms.",
+    "It is useful when launching a new site, redesigning branding, or fixing missing app icons.",
+    "No signup is needed.",
   ],
   advantages: [
-    "Multi-platform: Create favicons for browsers, Apple, Android, Windows, Safari.",
-    "Complete package: HTML, manifest, and browserconfig included.",
-    "Privacy: All generation happens locally in your browser.",
-    "No signup: Use immediately without creating an account.",
+    "Supports browser favicon, Apple touch icon, Android icon, and Windows tile exports.",
+    "Provides implementation files and HTML tags in one download.",
+    "Runs fully in your browser for private local processing.",
+    "Works instantly without account setup.",
   ],
   useCases: [
-    "Website launch: Create favicons for new website projects.",
-    "Brand update: Update favicons to match new brand identities.",
-    "Multi-platform sites: Ensure favicon compatibility across devices.",
-    "Progressive web apps: Generate icons for PWA manifests.",
+    "Preparing favicon assets right before a website launch.",
+    "Refreshing icons during a brand update.",
+    "Creating install icons for PWA and mobile home screens.",
+    "Fixing inconsistent favicon display across browsers.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "What image size works best in this favicon generator?",
+    answer:
+      "Use a square image at least 260x260 pixels. Larger source images usually produce cleaner results across all favicon sizes.",
+  },
+  {
+    question: "Does this online favicon generator work for Apple and Android?",
+    answer:
+      "Yes. You can generate Apple touch icons, Android icons, browser favicon files, and related manifest files in one run.",
+  },
+  {
+    question: "Is my image uploaded to a server?",
+    answer:
+      "No. Processing happens in your browser, so your files stay local on your device.",
+  },
+];
+
 export default function FaviconGeneratorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -67,13 +97,25 @@ export default function FaviconGeneratorPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Create favicons for all platforms and devices. Generate complete favicon
-        packages with HTML, manifest, and browserconfig code.
+        Build a complete favicon package online in minutes. Generate browser favicon files
+        and platform icons with copy-ready HTML tags.
       </p>
 
       <FaviconGenerator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Favicon Generator Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          If you are setting up other technical SEO files, try the{" "}
+          <Link href="/tools/seo/metatag-generator" className="underline hover:text-slate-200">
+            Meta Tag Generator
+          </Link>{" "}
+          and{" "}
+          <Link href="/tools/seo/sitemap-generator" className="underline hover:text-slate-200">
+            XML Sitemap Generator
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -125,6 +167,11 @@ export default function FaviconGeneratorPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/seo"

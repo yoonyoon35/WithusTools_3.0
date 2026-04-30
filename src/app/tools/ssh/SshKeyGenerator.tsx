@@ -17,9 +17,9 @@ const ALGORITHM_DISPLAY_NAMES: Record<Algorithm, string> = {
 };
 
 const ALGORITHM_PAGE_TITLES: Record<Algorithm, string> = {
-  ed25519: "Secure Ed25519 SSH Key Generator",
-  rsa: "Secure RSA SSH Key Generator",
-  ecdsa: "Secure ECDSA SSH Key Generator",
+  ed25519: "Ed25519 SSH Key Generator",
+  rsa: "RSA SSH Key Generator",
+  ecdsa: "ECDSA SSH Key Generator",
 };
 
 const RSA_KEY_SIZES = [1024, 2048, 3072, 4096, 8192] as const;
@@ -192,7 +192,9 @@ export default function SshKeyGenerator({
               <h1 className="text-3xl font-bold text-slate-100">
                 {ALGORITHM_DISPLAY_NAMES[algorithm]} SSH Key Generator
               </h1>
-              <p className="mt-1 text-sm text-slate-500">security</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Online SSH key generator in browser
+              </p>
             </div>
           </div>
         </div>
@@ -360,6 +362,17 @@ export default function SshKeyGenerator({
 
       {showAlgorithmGuide && SSH_ALGORITHM_GUIDE[algorithm] && (
         <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <h2 className="mb-3 text-xl font-semibold text-slate-200">
+            {ALGORITHM_DISPLAY_NAMES[algorithm]} Guide
+          </h2>
+          <p className="mb-8 text-sm leading-relaxed text-slate-400">
+            {algorithm === "ed25519" &&
+              "Use Ed25519 for most new setups. It is fast, compact, and widely supported."}
+            {algorithm === "rsa" &&
+              "Use RSA when you need compatibility with older SSH environments."}
+            {algorithm === "ecdsa" &&
+              "Use ECDSA when your environment expects NIST curves and compact keys."}
+          </p>
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">

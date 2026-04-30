@@ -8,7 +8,7 @@ import KatakanaToHangulConverter from "./KatakanaToHangulConverter";
 export const metadata: Metadata = createMetadata({
   title: "Katakana to Hangul (Pronunciation) | Kana to Korean",
   description:
-    "Convert Japanese katakana into Korean Hangul using the same inverse mapping as Hiragana to Hangul (katakana is normalized first). Free in-browser tool.",
+    "Convert Katakana to Hangul with inverse pronunciation mapping. This online browser tool helps decode Korean-style output from kana notes.",
   path: "/tools/language/katakana-to-hangul",
   keywords: [
     "katakana to hangul",
@@ -44,7 +44,38 @@ const GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Is this converter for translation or pronunciation mapping?",
+    answer:
+      "It is for inverse pronunciation mapping, not full sentence translation.",
+  },
+  {
+    question: "Can I use this with mixed Hiragana and Katakana?",
+    answer:
+      "Yes. Mixed kana input works because Katakana is normalized during processing.",
+  },
+  {
+    question: "When is this most accurate?",
+    answer:
+      "It is most accurate when decoding text created from the paired Hangul-to-Katakana tool.",
+  },
+];
+
 export default function KatakanaToHangulPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -89,6 +120,20 @@ export default function KatakanaToHangulPage() {
       <KatakanaToHangulConverter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Katakana to Hangul Guide
+        </h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          For paired forward conversion, use{" "}
+          <Link href="/tools/language/hangul-to-katakana" className="underline hover:text-slate-200">
+            Hangul to Katakana
+          </Link>
+          . Need hiragana input support first? Open{" "}
+          <Link href="/tools/language/hiragana-to-hangul" className="underline hover:text-slate-200">
+            Hiragana to Hangul
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -142,6 +187,11 @@ export default function KatakanaToHangulPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="mt-8 flex flex-wrap gap-4">
         <Link

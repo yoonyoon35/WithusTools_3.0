@@ -7,7 +7,7 @@ import TextConverter from "./TextConverter";
 export const metadata: Metadata = createMetadata({
   title: "Text Case Converter | Uppercase, Lowercase, Capitalize",
   description:
-    "Convert text case: uppercase, lowercase, capitalize sentences. Free online text case converter with character and word count.",
+    "Free text case converter for uppercase, lowercase, and sentence formatting with browser-side processing.",
   path: "/tools/text/text-converter",
   keywords: [
     "text converter",
@@ -21,36 +21,73 @@ export const metadata: Metadata = createMetadata({
 
 const TEXT_CONVERTER_GUIDE = {
   usage: [
-    "Enter your text in the input field. Character count, word count, and size update in real time.",
-    "Click UPPERCASE, lowercase, or Capitalize Sentences to convert the text. The result appears in the output area.",
-    "Use Copy to copy the converted text. Use Clear to reset both input and output.",
+    "Paste or type text into the input field.",
+    "Choose the case action you need and review output instantly.",
+    "Copy results or clear both fields to restart.",
   ],
   howItWorks: [
-    "Uppercase and lowercase use standard JavaScript string methods. Capitalize Sentences preserves line breaks and applies rules for proper nouns (days, months, countries, languages).",
-    "Character count can include or exclude spaces. Size is calculated using UTF-8 encoding.",
-    "All processing runs in your browser. No data is sent to any server.",
+    "Case conversion rules are applied directly in browser runtime.",
+    "Stats like character and word count update from current text input.",
+    "No text content is sent to a server for conversion.",
   ],
   about: [
-    "Free online text case converter for transforming text between uppercase, lowercase, and sentence case. Ideal for content formatting, variable naming, and data cleaning.",
+    "Use this tool when capitalization style needs quick cleanup.",
+    "It is practical for content formatting and naming-style normalization.",
   ],
   advantages: [
-    "Multiple conversions: Uppercase, lowercase, and capitalize sentences.",
-    "Real-time stats: Character count, word count, and byte size.",
-    "No signup: Use immediately in any browser.",
-    "Privacy: All processing happens locally.",
+    "Fast case conversion actions.",
+    "Real-time text stats.",
+    "Copy/clear workflow.",
+    "No signup required.",
   ],
   useCases: [
-    "Variable naming: Convert between camelCase, PascalCase, snake_case, and kebab-case for programming.",
-    "Class/component naming: Use PascalCase for TypeScript/React classes, components, and type names.",
-    "Content formatting: Format titles and headings for articles and blog posts.",
-    "Data cleaning: Standardize text case for CSV or database imports.",
-    "Social media: Optimize text for different platforms.",
+    "Fix inconsistent capitalization in docs.",
+    "Normalize labels for datasets and CSV fields.",
+    "Clean up headings before publishing content.",
+    "Prepare consistent naming text for code notes.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I change text case (upper, lower, title, and more) on this page?",
+    answer:
+      "Paste text, click a case action, and copy the converted result.",
+  },
+  {
+    question: "How does this case converter transform text locally in my browser?",
+    answer:
+      "The converter applies case transformations directly in browser runtime without server-side processing.",
+  },
+  {
+    question: "What is this text case converter for, and which styles does it support?",
+    answer:
+      "It supports common case transformations for quick writing, formatting, and data-cleanup tasks.",
+  },
+  {
+    question: "When do writers and developers fix capitalization with a case tool?",
+    answer:
+      "They use it during editing, data prep, UI copy cleanup, and naming consistency checks.",
+  },
+];
+
 export default function TextConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="text" />
@@ -58,19 +95,23 @@ export default function TextConverterPage() {
             <h1 className="text-3xl font-bold text-slate-100">
               Text Case Converter
             </h1>
-            <p className="mt-1 text-sm text-slate-500">text</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online text case converter in browser
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Transform your text to uppercase, lowercase, or capitalize sentences with
-        ease. Character and word count displayed in real time.
+        Convert text case quickly and clean up capitalization in one step.
       </p>
 
       <TextConverter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Text Converter Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

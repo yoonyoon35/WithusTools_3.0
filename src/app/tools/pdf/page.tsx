@@ -47,21 +47,66 @@ const PDF_TOOLS = [
 ] as const;
 
 export default function PDFToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I merge PDFs or turn images into PDFs from this page?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose the right PDF tool, upload files, set options, then generate and download the result.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do PDF tools handle files entirely in the browser?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Files are parsed and processed in browser runtime, so conversion and merging happen locally on your device.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What PDF utilities are included, and what are their practical limits?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You can convert images to PDF, merge PDF files, and use format-specific converters, but very large files depend on local device memory.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When is merging or converting PDFs online faster than desktop software?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It is faster for one-off document tasks when you need immediate output without installing additional tools.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="pdf" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">PDF Tools</h1>
-            <p className="mt-1 text-sm text-slate-500">pdf</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online PDF tools for conversion and merging
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Build PDFs from images in your browser. Mixed formats in one upload are
-        supported—no server upload, no sign-up.
+        Create PDFs from images or merge existing PDFs in browser. Good for
+        quick document assembly without extra software.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -81,6 +126,13 @@ export default function PDFToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          PDF Tools Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Use Image to PDF for mixed photos/screenshots, Merge PDF for joining
+          existing documents, and PDF Converter for format-focused flows.
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

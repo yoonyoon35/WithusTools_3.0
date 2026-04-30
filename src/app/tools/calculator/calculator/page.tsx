@@ -7,7 +7,7 @@ import Calculator from "./Calculator";
 export const metadata: Metadata = createMetadata({
   title: "Simple & Scientific Calculator",
   description:
-    "Simple calculator for basic arithmetic operations. Free online calculator with memory functions, square root, percentage, and more. No installation required.",
+    "Free online calculator for quick arithmetic and scientific basics. Use keyboard input, memory keys, and common math functions in your browser.",
   path: "/tools/calculator/calculator",
   keywords: [
     "calculator",
@@ -50,15 +50,59 @@ const CALC_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I use this online calculator on the page (keyboard, memory, history)?",
+    answer:
+      "Use on-screen keys or your keyboard, then apply memory and function keys for multi-step calculations.",
+  },
+  {
+    question: "How does this calculator evaluate expressions locally in my browser?",
+    answer:
+      "It evaluates operations in browser runtime using local floating-point arithmetic without server processing.",
+  },
+  {
+    question: "What can this calculator do, and what are its practical limits?",
+    answer:
+      "It handles daily arithmetic and common scientific functions, but it is not a full symbolic or graphing system.",
+  },
+  {
+    question: "Why use a browser calculator instead of a phone or desktop app?",
+    answer:
+      "It opens instantly in the same workspace and works well while you are reading docs or filling forms.",
+  },
+  {
+    question: "When is a quick web calculator most helpful for homework or work?",
+    answer:
+      "It is useful for quick checks, expense math, grade work, and repeated percentage calculations.",
+  },
+];
+
 export default function CalculatorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online calculator for everyday math
+            </p>
           </div>
         </div>
       </div>
@@ -66,6 +110,20 @@ export default function CalculatorPage() {
       <Calculator />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Calculator Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Best for fast arithmetic while working in a browser tab. Need
+          percentage-focused workflows? Try{" "}
+          <Link
+            href="/tools/calculator/percentage-calculator"
+            className="text-slate-200 underline"
+          >
+            Percentage Calculator
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

@@ -69,6 +69,36 @@ export default function TimePairPage({ params }: { params: { slug: string } }) {
   const { from: fromKey, to: toKey } = pair;
   const fromSg = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
   const toSg = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and the converter returns the ${toSg} output instantly.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does this page include formulas and conversion tables?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Formula guidance, summary explanations, and tables are included below the calculator.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I switch to other time unit pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are listed below for quick navigation.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -138,6 +168,8 @@ export default function TimePairPage({ params }: { params: { slug: string } }) {
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

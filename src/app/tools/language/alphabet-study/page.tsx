@@ -7,7 +7,7 @@ import AlphabetStudy from "./AlphabetStudy";
 export const metadata: Metadata = createMetadata({
   title: "English Alphabet | Letters, Sounds & Writing Reference",
   description:
-    "Free English alphabet chart with letter names and pronunciation. Learn A–Z letters and sounds. Click each letter for writing tips and audio.",
+    "Free English alphabet chart for A-Z letter practice. Check pronunciation, stroke guidance, and printable writing sheets in your browser.",
   path: "/tools/language/alphabet-study",
   keywords: [
     "English alphabet",
@@ -45,7 +45,37 @@ const ALPHABET_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I practice all 26 English letters here?",
+    answer:
+      "Yes. You can review A-Z letters, play pronunciation, and use writing guidance for each letter.",
+  },
+  {
+    question: "Is there a printable worksheet option?",
+    answer:
+      "Yes. You can generate and print handwriting practice sheets for offline study.",
+  },
+  {
+    question: "Do I need to sign up?",
+    answer: "No. This alphabet study tool works without account registration.",
+  },
+];
+
 export default function AlphabetStudyPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -61,12 +91,24 @@ export default function AlphabetStudyPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        View all letters A–Z; click for writing tips and pronunciation.
+        Study A-Z letters with pronunciation and writing guidance, then print worksheets for daily practice.
       </p>
 
       <AlphabetStudy />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">English Alphabet Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          If you are also learning Japanese or Korean scripts, try the{" "}
+          <Link href="/tools/language/hiragana-study" className="underline hover:text-slate-200">
+            Hiragana Chart
+          </Link>{" "}
+          and{" "}
+          <Link href="/tools/language/hangul-study" className="underline hover:text-slate-200">
+            Hangul Chart
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -120,6 +162,11 @@ export default function AlphabetStudyPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="mt-8 flex gap-4">
         <Link

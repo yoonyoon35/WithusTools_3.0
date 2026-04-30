@@ -151,21 +151,74 @@ const HASH_ALGORITHMS = [
 ] as const;
 
 export default function HashCalculatorIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How do I compute MD5, SHA, or other hashes from this index?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Choose an algorithm, paste text or upload a file, and generate the digest. Then use Verify to compare known hashes.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do hash calculators derive digests entirely in my browser?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The tool runs algorithm implementations in browser runtime so input data stays on your device.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What hash algorithms are supported here, and how do I choose one?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Use SHA-256 or SHA-3 for integrity, Bcrypt or Argon2 for passwords, and CRC32 or xxHash for fast non-cryptographic checks.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why generate checksums online when files never leave your device?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You can verify downloads and file consistency quickly without installing extra software or uploading sensitive files.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "When do developers and IT teams rely on quick hash utilities?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "They use them for release verification, password-hash checks, protocol debugging, and data-integrity workflows.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="hash" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Hash Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">hash</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online hash calculator for files and text
+            </p>
           </div>
         </div>
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Generate cryptographic hashes from text or files. All processing runs
-        locally in your browser—your data never leaves your device.
+        Generate hash values for files or text in your browser. Good for
+        checksum checks, password-hash testing, and quick dev verification.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -185,6 +238,13 @@ export default function HashCalculatorIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Hash Calculator Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Pick the algorithm by purpose: SHA-256 for file integrity, Argon2 or
+          Bcrypt for passwords, CRC32 or xxHash for fast checks.
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

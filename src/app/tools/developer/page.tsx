@@ -7,7 +7,7 @@ import { DEVELOPER_INDEX_GUIDE } from "./developer-content";
 export const metadata: Metadata = createMetadata({
   title: "Developer Tools",
   description:
-    "Free online developer tools: ASCII converter, Base64 encoder/decoder, code formatter, color picker, CSS sprites generator, number system converter, QR code generator and reader.",
+    "Free online developer tools for conversion, formatting, color picking, sprites, and QR workflows. Run everything directly in your browser.",
   path: "/tools/developer",
   keywords: [
     "developer tools",
@@ -74,7 +74,38 @@ const DEVELOPER_TOOLS = [
   },
 ] as const;
 
+const FAQ_ITEMS = [
+  {
+    question: "What can I do in Developer Tools?",
+    answer:
+      "You can convert text and number formats, encode or decode Base64, format code, pick colors, generate CSS sprites, and work with QR codes.",
+  },
+  {
+    question: "Are these online developer tools free to use?",
+    answer:
+      "Yes. All tools on this page are available without signup.",
+  },
+  {
+    question: "Does data leave my browser while using these tools?",
+    answer:
+      "No. Processing runs locally in your browser for most workflows on this page.",
+  },
+];
+
 export default function DeveloperToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -88,9 +119,8 @@ export default function DeveloperToolsIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        ASCII converter, Base64 encoder/decoder, code formatter, color picker,
-        CSS sprites, number system converter, QR code generator and reader. All
-        processing runs in your browser. No signup required.
+        Use fast browser-based developer tools for encoding, formatting, color work, and QR tasks.
+        No signup required.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -110,6 +140,22 @@ export default function DeveloperToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Developer Tools Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Popular starting points are{" "}
+          <Link href="/tools/developer/base64-encoder-decoder" className="underline hover:text-slate-200">
+            Base64 Encoder &amp; Decoder
+          </Link>
+          ,{" "}
+          <Link href="/tools/developer/code-formatter" className="underline hover:text-slate-200">
+            Code Formatter
+          </Link>
+          , and{" "}
+          <Link href="/tools/developer/qr-code-generator" className="underline hover:text-slate-200">
+            QR Code Generator
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -163,6 +209,11 @@ export default function DeveloperToolsIndexPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/"

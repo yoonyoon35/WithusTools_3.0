@@ -7,7 +7,7 @@ import KanaConverter from "./KanaConverter";
 export const metadata: Metadata = createMetadata({
   title: "Hiragana Katakana Converter | Text to Kana",
   description:
-    "Convert any text to Hiragana and Katakana. One input, two outputs. Supports romaji and multiple languages. Free online kana converter.",
+    "Convert text to Hiragana and Katakana at the same time. This online kana converter runs in your browser and supports mixed input.",
   path: "/tools/language/hiragana-katakana-converter",
   keywords: [
     "hiragana converter",
@@ -48,7 +48,37 @@ const KANA_CONVERTER_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I get both Hiragana and Katakana from one input?",
+    answer:
+      "Yes. Enter text once and the tool outputs Hiragana and Katakana side by side.",
+  },
+  {
+    question: "Does this kana converter support romaji input?",
+    answer:
+      "Yes. Romaji input is converted in real time, and mixed text is also handled.",
+  },
+  {
+    question: "Is this converter private?",
+    answer: "Yes. Conversion runs locally in your browser.",
+  },
+];
+
 export default function HiraganaKatakanaConverterPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -64,13 +94,26 @@ export default function HiraganaKatakanaConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Type or paste any text and get both Hiragana (ひらがな) and Katakana (カタカナ)
-        at once. No kanji—kana only. Supports romaji, English, and Korean input.
+        Convert input text into Hiragana and Katakana instantly for study notes, chat, and worksheet prep.
       </p>
 
       <KanaConverter />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Hiragana Katakana Converter Guide
+        </h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Need Korean pronunciation mapping too? Check{" "}
+          <Link href="/tools/language/hangul-to-hiragana" className="underline hover:text-slate-200">
+            Hangul to Hiragana
+          </Link>{" "}
+          and{" "}
+          <Link href="/tools/language/hangul-to-katakana" className="underline hover:text-slate-200">
+            Hangul to Katakana
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -124,6 +167,11 @@ export default function HiraganaKatakanaConverterPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="mt-8 flex gap-4">
         <Link

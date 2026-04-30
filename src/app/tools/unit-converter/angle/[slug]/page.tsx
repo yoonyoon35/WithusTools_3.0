@@ -69,6 +69,36 @@ export default function AnglePairPage({ params }: { params: { slug: string } }) 
   const { from: fromKey, to: toKey } = pair;
   const fromSg = ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
   const toSg = ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How do I convert ${fromSg} to ${toSg} on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and this converter returns ${toSg} using fixed pair rules.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are formula steps and tables included?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. This page includes formula guidance, summary notes, and angle conversion tables.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I navigate to other angle pairs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pair links are shown below for quick switching.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -148,6 +178,8 @@ export default function AnglePairPage({ params }: { params: { slug: string } }) 
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

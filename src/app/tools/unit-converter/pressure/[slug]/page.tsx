@@ -69,6 +69,36 @@ export default function PressurePairPage({ params }: { params: { slug: string } 
   const { from: fromKey, to: toKey } = pair;
   const fromSg = PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
   const toSg = PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I convert ${fromSg} to ${toSg}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Enter a ${fromSg} value and this page calculates the ${toSg} output immediately.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are formulas and conversion tables available?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Formula guidance, summary sections, and pressure conversion tables are included.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I open other pressure pair converters?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Related pressure pair links are available below.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -148,6 +178,8 @@ export default function PressurePairPage({ params }: { params: { slug: string } 
           Unit Converter home
         </Link>
       </div>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

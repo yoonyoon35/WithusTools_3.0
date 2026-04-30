@@ -8,7 +8,7 @@ import ColorPicker from "./ColorPicker";
 export const metadata: Metadata = createMetadata({
   title: "Color Picker | HEX, RGB, HSL, HSV, CMYK Code",
   description:
-    "Color Picker - Pick colors from screen with eyedropper. Get HEX, RGB, HSL, HSV, CMYK values. Contrast ratio, palette, saved history. Free online tool.",
+    "Pick colors online and copy HEX, RGB, HSL, HSV, or CMYK values. Includes eyedropper, contrast checks, palette, and saved history.",
   path: "/tools/developer/color-picker",
   keywords: [
     "color picker",
@@ -37,8 +37,38 @@ const COLOR_PICKER_GUIDE = {
 };
 
 const COLOR_PICKER_FAQ_LINKS = getFaqEntriesByCategory("color-picker");
+const FAQ_ITEMS = [
+  {
+    question: "Which color formats can I copy from this color picker?",
+    answer:
+      "You can copy HEX, RGB, RGBA, HSL, HSV, and CMYK values from the same selected color.",
+  },
+  {
+    question: "Can I pick colors directly from the screen?",
+    answer:
+      "Yes. Use the eyedropper when your browser supports the API.",
+  },
+  {
+    question: "Does this tool keep a history of picked colors?",
+    answer:
+      "Yes. You can review saved colors and reopen dedicated converter pages from there.",
+  },
+];
 
 export default function ColorPickerPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -52,8 +82,7 @@ export default function ColorPickerPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Select colors and get HEX, RGB, HSL, HSV, CMYK values. Pick colors from
-        screen with eyedropper. Contrast ratio and color palette included.
+        Pick a color once and copy all major formats with contrast checks and palette helpers.
       </p>
 
       <ColorPicker
@@ -65,7 +94,25 @@ export default function ColorPickerPage() {
       />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Guide</h2>
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Color Picker Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Need precise pair conversion pages? Open the dedicated format converters in this section,
+          or jump to the{" "}
+          <Link
+            href="/tools/developer/code-formatter"
+            className="underline hover:text-slate-200"
+          >
+            Code Formatter
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/developer/css-sprites-generator"
+            className="underline hover:text-slate-200"
+          >
+            CSS Sprites Generator
+          </Link>{" "}
+          for frontend workflows.
+        </p>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
@@ -93,6 +140,11 @@ export default function ColorPickerPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/tools/developer"

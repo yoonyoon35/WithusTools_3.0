@@ -172,9 +172,51 @@ export default async function PDFConverterFormatPage({
 
   const meta = FORMAT_META[format];
   const guide = PDF_FORMAT_GUIDE[format];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I use this ${meta.displayName} to PDF converter on this page?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Upload source files, review order, convert, and download the generated PDF.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How does this tool convert ${meta.displayName} to PDF in my browser?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The file is decoded and assembled into PDF pages in browser runtime without server-side conversion.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What should I know about ${meta.displayName} to PDF, and when is it the right choice?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Use it when your input format is fixed and you want predictable format-specific conversion behavior.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: `When do people convert ${meta.displayName} files to PDF for sharing or archiving?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "It is common for submissions, documentation bundles, and long-term file packaging workflows.",
+        },
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="pdf" />
@@ -182,7 +224,9 @@ export default async function PDFConverterFormatPage({
             <h1 className="text-3xl font-bold text-slate-100">
               {meta.displayName} to PDF
             </h1>
-            <p className="mt-1 text-sm text-slate-500">PDF Converter</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online {meta.displayName} to PDF converter in browser
+            </p>
           </div>
         </div>
       </div>
@@ -203,6 +247,13 @@ export default async function PDFConverterFormatPage({
 
       {guide && (
         <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <h2 className="mb-3 text-xl font-semibold text-slate-200">
+            {meta.displayName} to PDF Guide
+          </h2>
+          <p className="mb-8 text-sm leading-relaxed text-slate-400">
+            Use this page when your files are already in {meta.displayName} and
+            you want a quick PDF output with local processing.
+          </p>
           <div className="space-y-8 text-sm leading-relaxed text-slate-400">
             <div>
               <h3 className="mb-3 font-semibold text-slate-200">

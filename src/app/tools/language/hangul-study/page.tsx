@@ -7,7 +7,7 @@ import HangulStudy from "./HangulStudy";
 export const metadata: Metadata = createMetadata({
   title: "Korean Hangul | Jamo Chart, Pronunciation & Writing Reference",
   description:
-    "Free Korean hangul chart with jamo (consonants and vowels). Learn stroke order and pronunciation. Click each letter for writing tips and audio.",
+    "Free Hangul chart for Korean jamo practice. Learn pronunciation, stroke guidance, and printable writing sheets in your browser.",
   path: "/tools/language/hangul-study",
   keywords: [
     "hangul chart",
@@ -45,7 +45,37 @@ const HANGUL_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "Can I study Hangul consonants and vowels separately?",
+    answer:
+      "Yes. You can review jamo groups and practice each set step by step.",
+  },
+  {
+    question: "Does this Hangul page include printable worksheets?",
+    answer:
+      "Yes. You can generate printable writing sheets for consonants, vowels, and mixed sets.",
+  },
+  {
+    question: "Do these Hangul tools run locally?",
+    answer: "Yes. The study workflow runs in your browser.",
+  },
+];
+
 export default function HangulStudyPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -61,12 +91,24 @@ export default function HangulStudyPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        View basic consonants and vowels in order; click for stroke tips and pronunciation.
+        Learn Hangul jamo with pronunciation and stroke guidance, then print sheets for handwriting practice.
       </p>
 
       <HangulStudy />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Hangul Chart Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          If you also study Japanese pronunciation mapping, try{" "}
+          <Link href="/tools/language/hangul-to-hiragana" className="underline hover:text-slate-200">
+            Hangul to Hiragana
+          </Link>{" "}
+          and{" "}
+          <Link href="/tools/language/hangul-to-katakana" className="underline hover:text-slate-200">
+            Hangul to Katakana
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -120,6 +162,11 @@ export default function HangulStudyPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <div className="mt-8 flex gap-4">
         <Link

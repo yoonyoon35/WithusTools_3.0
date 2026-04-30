@@ -7,7 +7,7 @@ import { LANGUAGE_INDEX_GUIDE } from "./language-content";
 export const metadata: Metadata = createMetadata({
   title: "Language Tools",
   description:
-    "Free online language learning tools: English Alphabet, Hiragana, Katakana, Hangul charts, Hiragana Katakana converter, Hangul↔kana pronunciation converters, and Hiragana/Katakana to Hangul (inverse). Learn stroke order and pronunciation.",
+    "Free online language tools for alphabet and script study. Practice English, Hiragana, Katakana, Hangul, and use Hangul-kana pronunciation converters in your browser.",
   path: "/tools/language",
   keywords: [
     "language tools",
@@ -91,7 +91,38 @@ const LANGUAGE_TOOLS = [
   },
 ] as const;
 
+const FAQ_ITEMS = [
+  {
+    question: "What can I do on the Language Tools page?",
+    answer:
+      "You can study English, Hiragana, Katakana, and Hangul charts, then use pronunciation-based converters between Hangul and kana.",
+  },
+  {
+    question: "Do these language tools work without signup?",
+    answer:
+      "Yes. All tools are available right away without creating an account.",
+  },
+  {
+    question: "Is my text processed on a server?",
+    answer:
+      "No. Processing runs in your browser, so your input stays on your device.",
+  },
+];
+
 export default function LanguageToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -105,10 +136,8 @@ export default function LanguageToolsIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        English Alphabet, Hiragana, Katakana, and Hangul charts with stroke order
-        and pronunciation. Hiragana Katakana converter, Hangul-to-kana tools, and
-        Hiragana/Katakana-to-Hangul (inverse). All processing runs in your browser.
-        No signup required.
+        Study alphabet and scripts in one place, then convert text between Hangul and
+        kana by pronunciation. Everything runs in your browser.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -130,6 +159,22 @@ export default function LanguageToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Language Tools Guide</h2>
+        <p className="mb-6 text-sm leading-relaxed text-slate-400">
+          Start with script study pages, then move to converters for practical text work.
+          Popular choices are{" "}
+          <Link href="/tools/language/hiragana-study" className="underline hover:text-slate-200">
+            Hiragana Chart
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/tools/language/hiragana-katakana-converter"
+            className="underline hover:text-slate-200"
+          >
+            Hiragana Katakana Converter
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
@@ -183,6 +228,11 @@ export default function LanguageToolsIndexPage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       <Link
         href="/"

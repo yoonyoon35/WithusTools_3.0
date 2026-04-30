@@ -6,7 +6,7 @@ import BMICalculator from "./BMICalculator";
 export const metadata: Metadata = createMetadata({
   title: "Calculate Body Mass Index",
   description:
-    "BMI Calculator - Calculate BMI (Body Mass Index) easily. Support for metric or US units. Get instant results with health category. Free online tool.",
+    "Free BMI calculator with metric and US units. Check body mass index and category ranges instantly in your browser.",
   path: "/tools/calculator/bmi-calculator",
   keywords: [
     "bmi calculator",
@@ -51,15 +51,59 @@ const BMI_GUIDE = {
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I calculate BMI and read weight categories on this page?",
+    answer:
+      "Choose unit mode, enter height and weight, and run the calculation to see BMI and category.",
+  },
+  {
+    question: "How does this BMI calculator use height and weight in metric or imperial units?",
+    answer:
+      "It applies the standard BMI formulas for metric and US unit systems and converts values consistently.",
+  },
+  {
+    question: "What is BMI, and what are its limits for judging health?",
+    answer:
+      "BMI is a screening ratio of weight to height squared. It is useful for trends but does not replace full health assessment.",
+  },
+  {
+    question: "Why check BMI with a private in-browser calculator?",
+    answer:
+      "It gives quick results while keeping your values local to your browser session.",
+  },
+  {
+    question: "When is BMI screening used alongside other health information?",
+    answer:
+      "It is commonly used in routine tracking, fitness planning, and population-level health checks.",
+  },
+];
+
 export default function BMICalculatorPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">BMI Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">calculator</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online BMI calculator with metric and US units
+            </p>
           </div>
         </div>
       </div>
@@ -251,6 +295,9 @@ export default function BMICalculatorPage() {
       </section>
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          BMI Calculator Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
