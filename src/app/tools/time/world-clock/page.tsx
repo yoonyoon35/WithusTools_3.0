@@ -1,51 +1,98 @@
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
+import Link from "next/link";
 import ToolIcon from "@/components/ToolIcon";
 import WorldClock from "./WorldClock";
 
 export const metadata: Metadata = createMetadata({
   title: "World Clock & Time Zone Converter",
   description:
-    "View current time in major cities worldwide. Convert times between time zones for meetings, travel, or remote work. Free online world clock and time zone converter.",
+    "Free online world clock and time zone converter for global meetings and travel planning. Compare city times in your browser.",
   path: "/tools/time/world-clock",
   keywords: ["world clock", "time zone", "timezone converter", "international time", "withustools"],
 });
 
 const WORLD_CLOCK_GUIDE = {
   usage: [
-    "World clocks: See the current time in 10 major cities (UTC, New York, LA, London, Tokyo, Seoul, etc.). Updates every second.",
-    "Time zone converter: Enter a date, time (24h), and the timezone it's in. Instantly see the equivalent time in all listed zones.",
-    "Use the 'Now' button to quickly fill in your current local time and timezone for conversion.",
+    "Check live time across major cities in one view.",
+    "Enter a date, time, and source timezone to convert globally.",
+    "Use the Now button to fill your current local time fast.",
   ],
   howItWorks: [
-    "Uses the browser's Intl.DateTimeFormat API with IANA time zone IDs. All calculations run locally—no server requests.",
-    "World clocks refresh every second. The converter finds the UTC moment that corresponds to your specified local time in the chosen zone.",
+    "The world clock uses browser timezone APIs with IANA zone data.",
+    "City clocks refresh continuously to show current local time.",
+    "The converter maps your input to equivalent times in other zones.",
   ],
   about: [
-    "Free online world clock and time zone converter. Ideal for remote work, international meetings, travel planning, and staying in sync with global team members.",
-    "Flag icons from flagicons.lipis.dev (MIT License).",
+    "Use it when scheduling calls across countries or checking travel arrivals.",
+    "No signup or install needed.",
   ],
   advantages: [
-    "No signup: Use immediately in your browser.",
-    "Privacy: All calculations run locally.",
-    "Accurate: Uses system time zone database (DST-aware).",
+    "Live multi-city clock view.",
+    "Timezone conversion in one step.",
+    "Browser-local calculations.",
+    "DST-aware timezone data.",
   ],
   useCases: [
-    "Remote work: Schedule calls across time zones.",
-    "Travel: Convert flight times and plan arrival.",
-    "Family: Keep track of relatives abroad.",
+    "Plan meetings across US, EU, and Asia teams.",
+    "Convert departure and arrival times before flights.",
+    "Check local time for friends or family abroad.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I compare time zones and cities with this world clock?",
+    answer:
+      "View live city clocks, then use the converter with your source timezone to see matching times elsewhere.",
+  },
+  {
+    question: "How does this world clock show multiple zones in my browser?",
+    answer:
+      "It relies on browser timezone formatting APIs and updates each city clock from the same current moment.",
+  },
+  {
+    question: "What is this world clock for, and who uses it most often?",
+    answer:
+      "It is commonly used by remote teams, travelers, and anyone coordinating schedules across regions.",
+  },
+  {
+    question: "Why use an online world clock instead of searching each city?",
+    answer:
+      "You can compare all needed zones at once without repeated searches.",
+  },
+  {
+    question: "When do teams rely on world clocks for meetings and travel?",
+    answer:
+      "Teams use them when planning cross-timezone calls, launch windows, and international travel schedules.",
+  },
+];
+
 export default function WorldClockPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="clock" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">World Clock</h1>
-            <p className="mt-1 text-sm text-slate-500">time</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online world clock and timezone converter
+            </p>
           </div>
         </div>
       </div>
@@ -53,6 +100,17 @@ export default function WorldClockPage() {
       <WorldClock />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          World Clock Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Useful for remote teams and international travel planning. Need a
+          simple timer for local tasks? Open{" "}
+          <Link href="/tools/time/timer" className="text-slate-200 underline">
+            Countdown Timer
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

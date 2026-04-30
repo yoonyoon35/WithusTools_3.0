@@ -7,51 +7,95 @@ import IntervalTimer from "./IntervalTimer";
 export const metadata: Metadata = createMetadata({
   title: "Custom Interval Timer for Workouts & Routines",
   description:
-    "Create custom interval timers with your own actions. Set duration and optional names, add rest between actions, and repeat your routine. Free online interval timer.",
+    "Free online interval timer for workouts and routines. Build custom rounds, add rest, and repeat cycles in your browser.",
   path: "/tools/time/interval-timer",
   keywords: ["interval timer", "workout timer", "routine timer", "HIIT", "withustools"],
 });
 
 const INTERVAL_GUIDE = {
   usage: [
-    "Add one or more actions. Each action requires a duration (seconds). The action name is optional.",
-    "Choose a color for each action. The timer ring uses the current action's color.",
-    "Check 'Rest between actions' to insert a rest period between every action. Set the rest duration in seconds.",
-    "Check 'Repeat routine' to loop your routine. Enter a number for limited repeats, or leave empty for infinite.",
-    "Click Start to begin. The timer cycles through your actions (and rests if enabled) in order.",
+    "Add your actions with duration in seconds.",
+    "Turn on rest between actions if you need recovery time.",
+    "Set repeat count, or leave it open for continuous rounds.",
+    "Press Start and the routine runs in sequence.",
   ],
   howItWorks: [
-    "Each action has a required duration and optional name. You can add unlimited actions.",
-    "When rest is enabled, the sequence becomes: Action1, Rest, Action2, Rest, ...",
-    "When repeat is enabled with a count, the routine runs that many times. With no count, it runs until you stop.",
-    "The current phase (action or rest) is shown with a countdown. A sound and notification play when each phase ends.",
+    "The interval timer builds a phase list from your actions and optional rest steps.",
+    "Each phase counts down in order, then moves to the next.",
+    "When repeat is enabled, the list starts again after one full cycle.",
+    "Phase changes trigger sound and optional browser notifications.",
   ],
   about: [
-    "The Interval Timer lets you define custom workflows—workout circuits, study blocks, focus sessions, or any timed routine. Unlike fixed templates, you design the sequence.",
+    "This browser interval timer is useful for HIIT, study rounds, and repeat task routines.",
+    "You control the sequence instead of forcing a fixed template.",
   ],
   advantages: [
-    "Fully customizable: Define your own actions and durations.",
-    "Color-coded: Each action has a color; the timer reflects the current phase.",
-    "Optional rest: Insert rest between actions for recovery.",
-    "Repeat: Run your routine once, a set number of times, or indefinitely.",
+    "Custom action list.",
+    "Optional rest phases.",
+    "Repeat controls.",
+    "Color-based phase view.",
   ],
   useCases: [
-    "Workouts: Circuit training with timed exercises and rest.",
-    "Study: Alternating subjects with break intervals.",
-    "Cooking: Timed steps with rest for prep.",
-    "Presentations: Time-boxed sections with pause between.",
+    "Run a 40s work / 20s rest circuit at home.",
+    "Alternate study subjects with fixed break slots.",
+    "Time multi-step drills for coaching sessions.",
+    "Keep rehearsals paced section by section.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I set work and rest rounds with this interval timer?",
+    answer:
+      "Add actions with durations, enable rest if needed, choose repeat settings, and start the routine.",
+  },
+  {
+    question: "How does this HIIT-style timer chain rounds in the browser?",
+    answer:
+      "It runs phases in order and automatically advances through action and rest blocks, then repeats by your setting.",
+  },
+  {
+    question: "What is interval training, and how does this timer support it?",
+    answer:
+      "Interval training alternates effort and recovery. This tool supports it with custom phase durations and repeats.",
+  },
+  {
+    question: "Why use a browser interval timer for workouts or focus blocks?",
+    answer:
+      "You can launch it instantly on desktop and keep timing beside your workout notes or task list.",
+  },
+  {
+    question: "When do athletes and coaches use repeating interval timers?",
+    answer:
+      "They use them for circuits, conditioning rounds, drill blocks, and recovery pacing.",
+  },
+];
+
 export default function IntervalTimerPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="clock" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Interval Timer</h1>
-            <p className="mt-1 text-sm text-slate-500">time</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online interval timer for custom rounds
+            </p>
           </div>
         </div>
       </div>
@@ -59,6 +103,17 @@ export default function IntervalTimerPage() {
       <IntervalTimer />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Interval Timer Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Build your own round flow with action and rest steps. For simple
+          single-duration countdowns, use{" "}
+          <Link href="/tools/time/timer" className="text-slate-200 underline">
+            Countdown Timer
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

@@ -7,49 +7,94 @@ import Calendar from "./Calendar";
 export const metadata: Metadata = createMetadata({
   title: "Free Online Calendar & Event Planner",
   description:
-    "Create and manage events with an easy-to-use calendar. Track important dates and organize your schedule. Free online calendar tool.",
+    "Free online calendar for quick event planning in your browser. Add, edit, and manage date-based reminders with no signup.",
   path: "/tools/time/calendar",
   keywords: ["calendar", "event planner", "schedule", "withustools"],
 });
 
 const CALENDAR_GUIDE = {
   usage: [
-    "Use the arrows to navigate between months. Click any date to select it and view its events.",
-    "Click '+ Add' in the events panel to create a new event for the selected date. Enter title and optional description.",
-    "Click 'Edit' on an event to update it. Click 'Delete' to remove an event.",
-    "Events are stored in your browser's localStorage and persist across sessions.",
+    "Move month to month with the arrows and pick a date.",
+    "Add events from the side panel with title and optional note.",
+    "Edit or delete events anytime from the list.",
+    "Your events stay saved in the same browser.",
   ],
   howItWorks: [
-    "The calendar renders a 7×6 grid. The first row is padded with days from the previous month, then the current month's days, then next month's to fill 42 cells.",
-    "Events are stored as an object keyed by date (YYYY-MM-DD). Each date maps to an array of { id, title, description }.",
-    "Selecting a date updates the events panel. The calendar highlights today and the selected date.",
+    "The calendar renders a monthly grid and keeps selected-date details in the side panel.",
+    "Events are saved by date key in browser local storage.",
+    "Today and the selected date are highlighted for quick scanning.",
   ],
   about: [
-    "Free online calendar with event management. Create, edit, and delete events. All data stays in your browser.",
+    "This browser calendar is built for lightweight planning without opening a full scheduling suite.",
+    "Use it for personal reminders, deadlines, and weekly check-ins.",
   ],
   advantages: [
-    "Simple: No signup, no complex setup.",
-    "Private: Data never leaves your device.",
-    "Persistent: Events saved in localStorage.",
-    "Responsive: Works on desktop and mobile.",
+    "Quick add/edit/delete flow.",
+    "No signup required.",
+    "Local browser storage.",
+    "Works on mobile and desktop.",
   ],
   useCases: [
-    "Personal scheduling: Track appointments and reminders.",
-    "Work: Meeting and deadline management.",
-    "Study: Exam dates and assignment due dates.",
-    "Family: Birthdays and events.",
+    "Track class deadlines and exam dates.",
+    "Keep personal appointments visible this month.",
+    "Plan team check-ins and milestone dates.",
+    "Store family events and reminders.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I browse months, pick dates, and use this calendar on the page?",
+    answer:
+      "Navigate months with arrows, select a date, then add or manage events from the panel.",
+  },
+  {
+    question: "How does this calendar widget work in the browser?",
+    answer:
+      "It renders a month grid and stores events in local browser data keyed by date.",
+  },
+  {
+    question: "What does this online calendar offer for quick planning and reference?",
+    answer:
+      "It offers lightweight date-based event tracking with fast add, edit, and delete actions.",
+  },
+  {
+    question: "Why keep a lightweight web calendar open while scheduling?",
+    answer:
+      "It is useful for fast checks and edits without switching to heavier calendar apps.",
+  },
+  {
+    question: "When is a quick calendar view enough without a full scheduling app?",
+    answer:
+      "It is enough for personal reminders, weekly planning, and small team schedules.",
+  },
+];
+
 export default function CalendarPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="clock" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Calendar</h1>
-            <p className="mt-1 text-sm text-slate-500">time</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online calendar for quick event planning
+            </p>
           </div>
         </div>
       </div>
@@ -57,6 +102,20 @@ export default function CalendarPage() {
       <Calendar />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Calendar Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Good for day-to-day reminders and lightweight schedule tracking. If
+          you need day-gap math, use{" "}
+          <Link
+            href="/tools/time/date-difference"
+            className="text-slate-200 underline"
+          >
+            Date Difference Calculator
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

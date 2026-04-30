@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
+import Link from "next/link";
 import ToolIcon from "@/components/ToolIcon";
 import DateDifference from "./DateDifference";
 
 export const metadata: Metadata = createMetadata({
   title: "Date Difference Calculator | Days, Weeks, Months",
   description:
-    "Calculate the difference between two dates in days, weeks, and months. D-day countdown for project deadlines, travel, and exam dates. Free online date calculator.",
+    "Free online date difference calculator for days between dates and D-day planning. Compare past or future dates in your browser.",
   path: "/tools/time/date-difference",
   keywords: [
     "date difference",
@@ -21,44 +22,87 @@ export const metadata: Metadata = createMetadata({
 
 const DATE_DIFF_GUIDE = {
   usage: [
-    "Enter the start date and end date (target date). Use 'Use today' to quickly set today as the start date.",
-    "For D-day countdown: Set start date to today and end date to your target (exam, trip, deadline).",
-    "Results show: total days, weeks, months (with extra days), and direction (future/past).",
-    "When the end date is in the future, a live D-day countdown updates every second.",
+    "Set a start date and an end date.",
+    "Use 'today' for quick D-day checks.",
+    "Read total days, weeks, months, and whether the date is upcoming or passed.",
+    "Future targets also show a live countdown.",
   ],
   howItWorks: [
-    "Date difference is calculated in calendar days. Weeks = days ÷ 7. Months count full calendar months plus remaining days.",
-    "D-day uses the local timezone. The live countdown shows time remaining until midnight of the target date.",
-    "All calculations run in your browser. No data is sent to any server.",
+    "The tool calculates calendar-day gaps between two dates.",
+    "Weeks and months are derived from the same span for quick reading.",
+    "All date calculations run locally in your browser.",
   ],
   about: [
-    "Free online date difference calculator. Compare any two dates to see days, weeks, and months between them.",
-    "Supports D-day style countdown for future targets: project deadlines, trip dates, exam days, and more.",
+    "Use this date calculator for deadline planning, trip countdowns, or contract checks.",
+    "It is quick when you just need days between dates without opening a full planner app.",
   ],
   advantages: [
-    "Simple: Two date inputs, instant results.",
-    "D-day mode: Live countdown when the target is in the future.",
-    "Flexible: Compare any two dates, past or future.",
-    "Private: All calculations run locally in your browser.",
+    "Simple two-date input.",
+    "Live D-day style countdown.",
+    "Works for past and future ranges.",
+    "Browser-local processing.",
   ],
   useCases: [
-    "Project deadlines: Days left until release or submission.",
-    "Travel: Countdown to vacation or return date.",
-    "Exams: D-day for test dates and application deadlines.",
-    "Events: Weeks and months until weddings, anniversaries.",
-    "Contracts: Days elapsed since start or until end.",
+    "Check days left before a launch deadline.",
+    "Count down to flights or event dates.",
+    "Track exam timelines and application windows.",
+    "Measure elapsed time in contracts and projects.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I find the days or weeks between two dates with this tool?",
+    answer:
+      "Pick start and end dates. The tool returns total days, weeks, and month-based breakdowns instantly.",
+  },
+  {
+    question: "How does this date calculator measure spans and handle calendars?",
+    answer:
+      "It computes date spans in calendar days and derives weekly and monthly summaries from that span.",
+  },
+  {
+    question: "What kinds of date gaps can I measure, and how should I read the results?",
+    answer:
+      "You can measure both future and past ranges for deadlines, anniversaries, schedules, and elapsed periods.",
+  },
+  {
+    question: "Why use a browser date calculator for planning instead of mental math?",
+    answer:
+      "It avoids calendar mistakes and gives immediate totals when plans shift.",
+  },
+  {
+    question: "When are date differences used for projects, contracts, or travel?",
+    answer:
+      "They are used for deadline tracking, trip prep, exam planning, and contract date checks.",
+  },
+];
+
 export default function DateDifferencePage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calendar" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Date Difference Calculator</h1>
-            <p className="mt-1 text-sm text-slate-500">time</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Days between dates and D-day calculator
+            </p>
           </div>
         </div>
       </div>
@@ -66,6 +110,17 @@ export default function DateDifferencePage() {
       <DateDifference />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Date Difference Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Great for release dates, exam prep, and trip planning. Need event
+          tracking too? Pair it with{" "}
+          <Link href="/tools/time/calendar" className="text-slate-200 underline">
+            Calendar
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

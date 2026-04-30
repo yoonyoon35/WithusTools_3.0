@@ -6,7 +6,7 @@ import ToolIcon from "@/components/ToolIcon";
 export const metadata: Metadata = createMetadata({
   title: "Time Tools",
   description:
-    "Free online time management tools: alarm clock, stopwatch, countdown timer, Pomodoro timer, date difference calculator, and calendar. Set reminders, track time, and manage your schedule.",
+    "Free online time tools in one place: alarm clock, online timer, stopwatch, Pomodoro, calendar, and world clock. Runs in your browser with no signup.",
   path: "/tools/time",
   keywords: [
     "alarm clock",
@@ -86,55 +86,85 @@ const TIME_TOOLS = [
 
 const TIME_INDEX_GUIDE = {
   usage: [
-    "Choose a tool from the grid above: Alarm Clock, Stopwatch, Countdown Timer, Pomodoro Timer, Interval Timer, Date Difference Calculator, Calendar, or World Clock.",
-    "Alarm Clock: Set time using AM/PM format, add alarm name, and enable browser notifications for reliable alerts.",
-    "Stopwatch: Click Start to begin timing. Use Lap to record split times. Export laps as Word or Text for records.",
-    "Countdown Timer: Enter hours, minutes, seconds or use preset buttons (5–60 min). Enable sound for completion alerts.",
-    "Pomodoro Timer: 25-minute focus sessions with 5-min short breaks and 15-min long breaks. Auto-cycles work and break phases.",
-    "Interval Timer: Define custom actions with duration and optional names. Add rest between actions and repeat your routine.",
-    "Date Difference: Enter two dates to see days, weeks, and months between them. Use 'Use today' for D-day countdown.",
-    "Calendar: Click any date to add events. Edit or delete events from the event panel. Data is stored locally in your browser.",
-    "World Clock: View current time in major cities. Use the time zone converter to convert a specific time from one zone to others.",
+    "Pick a tool from the grid: alarm clock, stopwatch, countdown timer, Pomodoro, interval timer, date difference, calendar, or world clock.",
+    "Set the values you need, start it, and keep the tab open while you work.",
+    "Allow browser notifications if you want alerts when the tab is in the background.",
+    "Use the right tool for the moment: meeting reminder, focus sprint, workout set, or timezone check.",
   ],
   howItWorks: [
-    "All time tools run entirely in your browser using JavaScript timing APIs. No data is sent to any server—alarms, lap times, and calendar events stay on your device.",
-    "Alarm Clock checks the current time every second against your set alarms. When a match occurs, it triggers browser notifications, visual popups, and audio alerts.",
-    "Stopwatch uses high-precision Date.now() and setInterval for millisecond-accurate elapsed time. Lap times are calculated from the difference between total and lap-start timestamps.",
-    "Countdown Timer computes end-time as Date.now() + duration. It updates the display every 100ms and triggers notifications when remaining time reaches zero.",
-    "Pomodoro Timer alternates 25-min focus, 5-min short break, and 15-min long break (after 4 focus sessions). When a phase ends, it auto-starts the next and plays a notification.",
-    "Interval Timer builds a sequence from user-defined actions. Each action has duration (required) and optional name. Rest can be inserted between actions; the routine can repeat a set number of times or infinitely.",
-    "Date Difference computes the span between two dates in calendar days, weeks, and months. When the end date is in the future, a live D-day countdown updates every second.",
-    "Calendar stores events in localStorage by date (YYYY-MM-DD). The monthly grid is rendered from the current month, and events are displayed both on the calendar and in the side panel.",
-    "World Clock uses Intl.DateTimeFormat with IANA time zones. It displays live times and converts any local time to equivalent times in other zones.",
+    "These tools run in your browser, so alarms, lap times, and calendar entries stay on your device.",
+    "Alarms and timers check time continuously and trigger popup, sound, and optional browser notifications.",
+    "Stopwatch tracks elapsed time and laps, date difference calculates day spans, and world clock converts across time zones.",
+    "Calendar events are saved locally, so your schedule is still there when you come back in the same browser.",
   ],
   about: [
-    "These free online time tools provide alarm clock, stopwatch, countdown timer, and calendar functionality. All processing runs locally in your browser—your schedule and timing data never leave your device.",
-    "Designed for daily use: wake-up alarms, workout timing, cooking timers, Pomodoro focus sessions, and event scheduling. No signup, no installation required.",
-    "Works on desktop and mobile. Enable browser notifications for alarms and timers to receive alerts even when the tab is not focused.",
+    "This page bundles practical online time tools for day-to-day work: alarm clock, online timer, stopwatch, Pomodoro, calendar, and world clock.",
+    "Use them for quick desk reminders, meeting pacing, study blocks, cooking, or deadline tracking.",
+    "No signup, no install. Open and use.",
   ],
   advantages: [
-    "Privacy: All data stays in your browser. No server storage, no tracking.",
-    "No signup: Use immediately without creating an account.",
-    "Cross-device: Responsive design works on phones, tablets, and desktops.",
-    "Notifications: Browser notifications for alarms and timer completion.",
-    "Export: Stopwatch lap times can be exported to Word or text files.",
+    "Data stays in your browser.",
+    "No signup needed.",
+    "Works on desktop and mobile.",
+    "Optional browser notifications.",
+    "Stopwatch lap export support.",
   ],
   useCases: [
-    "Morning routine: Set multiple wake-up alarms and exercise reminders.",
-    "Cooking: Use the countdown timer for recipe steps and baking.",
-    "Workouts: Track lap times with the stopwatch for interval training.",
-    "Pomodoro: 25-minute focus timer with 5-minute breaks.",
-    "Meetings: Set timer to keep discussions on schedule.",
-    "Study sessions: Time study blocks and break intervals.",
-    "Deadlines: Use Date Difference for D-day countdown to project due dates, exams, or trips.",
-    "Events: Use the calendar for appointments, deadlines, and reminders.",
-    "Remote work: Use World Clock to schedule calls across time zones.",
+    "Start an alarm clock before a meeting so you do not miss handoff time.",
+    "Run an online timer for cooking, breaks, or short focused tasks.",
+    "Use Pomodoro for study sprints and the stopwatch for workout sets.",
+    "Check date difference for D-day planning and world clock for remote calls.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How do I start using timers, clocks, or calendar tools here?",
+    answer:
+      "Pick a tool from the grid, set your values, and start. Allow notifications if you want alerts while working in other tabs.",
+  },
+  {
+    question: "How do time tools stay accurate while running in the browser?",
+    answer:
+      "They rely on browser timing and date APIs to track elapsed time, trigger alarms, and update countdowns in real time.",
+  },
+  {
+    question: "What time and productivity tools can I use from this category?",
+    answer:
+      "You can use alarm clock, stopwatch, countdown timer, Pomodoro timer, interval timer, date difference calculator, calendar, and world clock.",
+  },
+  {
+    question: "Why use browser clocks and timers instead of installing separate apps?",
+    answer:
+      "They open instantly, need no signup, and keep your data in the same browser for quick repeat use.",
+  },
+  {
+    question: "When are Pomodoro timers, alarms, and world clocks most useful?",
+    answer:
+      "They are useful for focus sessions, meeting reminders, deadline planning, and scheduling across time zones.",
+  },
+];
+
 export default function TimeToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="clock" />
@@ -146,8 +176,9 @@ export default function TimeToolsIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Alarm clock, stopwatch, countdown timer, Pomodoro timer, interval timer, date difference calculator, calendar, and world clock. Manage your time
-        with tools that run entirely in your browser—no signup required.
+        Alarm clock, stopwatch, online timer, Pomodoro, calendar, and world
+        clock in one place. Good for meeting reminders, focus sessions, and
+        daily planning.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
@@ -167,6 +198,9 @@ export default function TimeToolsIndexPage() {
       </div>
 
       <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Time Tools Guide
+        </h2>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">

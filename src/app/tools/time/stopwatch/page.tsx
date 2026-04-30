@@ -7,49 +7,94 @@ import Stopwatch from "./Stopwatch";
 export const metadata: Metadata = createMetadata({
   title: "Precise Online Stopwatch",
   description:
-    "Track elapsed time with millisecond precision. Record lap times and export to Word or Text. Free online stopwatch.",
+    "Free online stopwatch for lap timing and quick elapsed tracking in your browser. Start, lap, reset, and export records.",
   path: "/tools/time/stopwatch",
   keywords: ["stopwatch", "lap timer", "time tracking", "chronometer", "withustools"],
 });
 
 const STOPWATCH_GUIDE = {
   usage: [
-    "Click the green play button to start the stopwatch. Elapsed time updates every 10ms for millisecond precision.",
-    "Click the Lap button while running to record a split time. Each lap shows its duration and total elapsed time.",
-    "Click the Reset button (when stopped) to clear the time and lap list.",
-    "Export lap times to Word or Text for records, analysis, or sharing.",
+    "Hit Start and the stopwatch begins right away.",
+    "Press Lap anytime to save split points while it keeps running.",
+    "Pause when needed, then Reset to clear everything.",
+    "Export laps to Word or Text if you want a saved log.",
   ],
   howItWorks: [
-    "The stopwatch uses Date.now() and setInterval(10ms) for high-precision timing. Elapsed = now - startTime.",
-    "Lap times are recorded by storing the current timestamp; each lap's duration = currentTime - previousLapTime.",
-    "Export creates a blob and triggers a download. Data is formatted as plain text with lap numbers and times.",
+    "The browser stopwatch updates elapsed time from the current timestamp while running.",
+    "Each lap stores a split point, so you can compare sections without stopping.",
+    "Export generates a simple file with lap numbers and times.",
   ],
   about: [
-    "Free online stopwatch with lap recording and export. Ideal for sports, fitness, study sessions, and any activity requiring precise time measurement.",
+    "This online stopwatch is for quick timing at your desk: workouts, practice drills, presentations, or focused study blocks.",
+    "No signup and no install. Open the page and run it in your browser.",
   ],
   advantages: [
-    "Millisecond precision: Accurate to 10ms.",
-    "Unlimited laps: Record as many splits as needed.",
-    "Export: Save lap data to Word or text files.",
-    "No signup: Use immediately in any browser.",
+    "Fast Start/Lap/Reset controls.",
+    "Unlimited lap recording.",
+    "Word and Text export.",
+    "Works instantly in browser.",
   ],
   useCases: [
-    "Sports training: Track interval times and rest periods.",
-    "Workouts: Time exercise sets and circuit stations.",
-    "Study sessions: Monitor focus time and breaks.",
-    "Cooking: Time recipe steps and processes.",
+    "Track set rest times during gym circuits.",
+    "Time speaking drills before a meeting.",
+    "Measure short study sprints between classes.",
+    "Run quick kitchen prep checkpoints.",
   ],
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How can I start, lap, and reset the stopwatch on this page?",
+    answer:
+      "Press Start to begin, Lap to mark splits, Pause when needed, and Reset to clear the timer and lap list.",
+  },
+  {
+    question: "How does this stopwatch measure elapsed time in the browser?",
+    answer:
+      "It uses browser time updates while running and calculates elapsed and lap values from timestamps.",
+  },
+  {
+    question: "What can this online stopwatch do, and how accurate is it?",
+    answer:
+      "It provides real-time elapsed tracking with lap recording and export for practical day-to-day timing tasks.",
+  },
+  {
+    question: "Why use a web stopwatch instead of switching to a phone app?",
+    answer:
+      "It is faster when you are already on your laptop and want timing beside your docs, sheets, or slides.",
+  },
+  {
+    question: "When is a stopwatch useful for sports, labs, or presentations?",
+    answer:
+      "Use it for workout intervals, rehearsal timing, classroom exercises, and quick process checks.",
+  },
+];
+
 export default function StopwatchPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="clock" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">Stopwatch</h1>
-            <p className="mt-1 text-sm text-slate-500">time</p>
+            <p className="mt-1 text-sm text-slate-500">
+              Online stopwatch with lap timer in browser
+            </p>
           </div>
         </div>
       </div>
@@ -57,6 +102,21 @@ export default function StopwatchPage() {
       <Stopwatch />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">
+          Stopwatch Guide
+        </h2>
+        <p className="mb-8 text-sm leading-relaxed text-slate-400">
+          Good for workouts, speaking practice, and short work sprints. Need a
+          reverse timer instead? Try{" "}
+          <Link href="/tools/time/timer" className="text-slate-200 underline">
+            Countdown Timer
+          </Link>{" "}
+          or{" "}
+          <Link href="/tools/time/pomodoro" className="text-slate-200 underline">
+            Pomodoro Timer
+          </Link>
+          .
+        </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
