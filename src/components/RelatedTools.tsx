@@ -7,6 +7,7 @@ import ToolIcon from "@/components/ToolIcon";
 
 const CATEGORY_LABELS: Record<string, string> = {
   calculator: "Calculator",
+  health: "Health",
   developer: "Developer",
   security: "Security",
   hash: "Hash",
@@ -23,6 +24,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 /** Only categories with dedicated pages (security, hash are standalone) */
 const CATEGORY_PATHS: Record<string, string> = {
   calculator: "/tools/calculator",
+  health: "/tools/health",
   developer: "/tools/developer",
   image: "/tools/image",
   pdf: "/tools/pdf",
@@ -37,6 +39,7 @@ const CATEGORY_PATHS: Record<string, string> = {
 function getIconForCategory(category: string): string {
   const map: Record<string, string> = {
     calculator: "calculator",
+    health: "heart",
     developer: "code",
     security: "key",
     hash: "hash",

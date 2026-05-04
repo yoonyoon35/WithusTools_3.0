@@ -9,6 +9,7 @@ export type ToolCategory =
   | "seo"
   | "time"
   | "calculator"
+  | "health"
   | "language"
   | "unit-converter";
 
@@ -41,10 +42,19 @@ export const TOOLS: Tool[] = [
   {
     id: "calculator-tools",
     title: "Calculator",
-    description: "Average calculator, standard deviation calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator for everyday math",
+    description: "Average calculator, standard deviation calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator for everyday math",
     category: "calculator",
     icon: "calculator",
     path: "/tools/calculator",
+  },
+  {
+    id: "health-tools",
+    title: "Health Tools",
+    description:
+      "BMI calculator, skeletal muscle index calculator, waist-to-hip ratio calculator, BMR and TDEE calculator, and body fat (tape estimate) calculator for body metrics and energy estimates",
+    category: "health",
+    icon: "heart",
+    path: "/tools/health",
   },
   {
     id: "time-tools",
@@ -142,6 +152,7 @@ export const TOOLS: Tool[] = [
 export const CATEGORIES: { value: ToolCategory | "all"; label: string }[] = [
   { value: "all", label: "All" },
   { value: "calculator", label: "Calculator" },
+  { value: "health", label: "Health" },
   { value: "developer", label: "Developer" },
   { value: "security", label: "Security" },
   { value: "hash", label: "Hash" },

@@ -17,6 +17,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "cookie-settings": "Cookie Settings",
   // Categories (from CATEGORIES)
   calculator: "Calculator",
+  health: "Health",
   developer: "Developer",
   security: "Security",
   hash: "Hash",
@@ -32,6 +33,10 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   "average-calculator": "Average Calculator",
   "standard-deviation-calculator": "Standard Deviation Calculator",
   "bmi-calculator": "BMI Calculator",
+  "skeletal-muscle-index-calculator": "Skeletal Muscle Index Calculator",
+  "waist-hip-ratio-calculator": "Waist-to-Hip Ratio Calculator",
+  "bmr-tdee-calculator": "BMR and TDEE Calculator",
+  "body-fat-calculator": "Body Fat Calculator (Tape Estimate)",
   "gpa-calculator": "GPA Calculator",
   "target-gpa": "Target GPA Calculator",
   "percentage-calculator": "Percentage Calculator",

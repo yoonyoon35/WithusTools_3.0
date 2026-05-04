@@ -12,7 +12,13 @@
 /tools/percentage-calculator.html    /tools/calculator/percentage-calculator/    301
 /tools/gpa-calculator.html    /tools/calculator/gpa-calculator/    301
 /tools/average-calculator.html    /tools/calculator/average-calculator/    301
-/tools/bmi-calculator.html    /tools/calculator/bmi-calculator/    301
+/tools/bmi-calculator.html    /tools/health/bmi-calculator/    301
+/tools/calculator/bmi-calculator/    /tools/health/bmi-calculator/    301
+/tools/calculator/skeletal-muscle-index-calculator/    /tools/health/skeletal-muscle-index-calculator/    301
+/tools/calculator/waist-hip-ratio-calculator/    /tools/health/waist-hip-ratio-calculator/    301
+/tools/calculator/bmr-tdee-calculator/    /tools/health/bmr-tdee-calculator/    301
+/tools/calculator/body-fat-calculator/    /tools/health/body-fat-calculator/    301
+/tools/health-tools/    /tools/health/    301
 /tools/image-compressor.html    /tools/image/image-compressor/    301
 /tools/image-format-converter.html    /tools/image/image-format-converter/    301
 /tools/paint-board.html    /tools/image/paint-board/    301

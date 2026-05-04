@@ -6,12 +6,11 @@ import ToolIcon from "@/components/ToolIcon";
 export const metadata: Metadata = createMetadata({
   title: "Calculator Tools",
   description:
-    "Free online calculator tools in one place: average calculator, BMI calculator, GPA calculator, percentage calculator, programmer calculator, and more.",
+    "Free online calculator tools in one place: average calculator, standard deviation calculator, GPA calculator, percentage calculator, programmer calculator, scientific calculator, and more.",
   path: "/tools/calculator",
   keywords: [
     "average calculator",
     "standard deviation calculator",
-    "BMI calculator",
     "GPA calculator",
     "percentage calculator",
     "programmer calculator",
@@ -19,7 +18,6 @@ export const metadata: Metadata = createMetadata({
     "hex calculator",
     "calculator",
     "mean median mode",
-    "body mass index",
     "grade point average",
     "withustools",
   ],
@@ -38,12 +36,6 @@ const CALCULATOR_TOOLS = [
     description:
       "Population and sample variance & standard deviation, mean, sum, count, and standard error of the mean. Paste comma-, space-, or line-separated values.",
     path: "/tools/calculator/standard-deviation-calculator",
-  },
-  {
-    slug: "bmi-calculator",
-    name: "BMI Calculator",
-    description: "Calculate your Body Mass Index with metric or US units. Get health category and recommendations instantly.",
-    path: "/tools/calculator/bmi-calculator",
   },
   {
     slug: "calculator",
@@ -74,10 +66,10 @@ const CALCULATOR_TOOLS = [
 
 const CALC_INDEX_GUIDE = {
   usage: [
-    "Pick the calculator that fits your task: average, standard deviation, BMI, GPA, percentage, programmer, or simple calculator.",
+    "Pick the calculator that fits your task: average, standard deviation, GPA, percentage, programmer, or simple calculator.",
     "Enter your values and click Calculate to get results right away.",
     "If you need repeated checks, change only the input values and recalculate.",
-    "Switch tools by use case: stats, grades, health, percentages, or number systems.",
+    "Switch tools by use case: stats, grades, percentages, or number systems.",
   ],
   howItWorks: [
     "All calculations run in your browser, so your inputs and outputs stay on your device.",
@@ -86,7 +78,7 @@ const CALC_INDEX_GUIDE = {
   ],
   about: [
     "This page is an online calculator hub for quick day-to-day math tasks.",
-    "It is useful for assignments, work checks, budgeting, and health-related calculations.",
+    "It is useful for assignments, work checks, budgeting, and general numeric work.",
   ],
   advantages: [
     "Runs directly in browser.",
@@ -97,7 +89,6 @@ const CALC_INDEX_GUIDE = {
   useCases: [
     "Check GPA or averages before grading submissions.",
     "Calculate discount rates and percentage changes for reports.",
-    "Estimate BMI for routine health tracking.",
     "Verify base conversions and bit logic during coding.",
   ],
 };
@@ -116,17 +107,17 @@ const FAQ_ITEMS = [
   {
     question: "What calculators are offered here, and what is each one for?",
     answer:
-      "You can use average, standard deviation, BMI, GPA, percentage, programmer, and simple calculator tools for daily math tasks.",
+      "You can use average, standard deviation, GPA, percentage, programmer, and simple calculator tools for daily math tasks.",
   },
   {
-    question: "Why use dedicated online calculators for BMI, GPA, or percentages?",
+    question: "Why use dedicated online calculators for GPA or percentages?",
     answer:
-      "They reduce manual errors and return results quickly when you need repeated calculations.",
+      "They cut transcription mistakes and give you the same formula every time you re-run the numbers.",
   },
   {
-    question: "When are these calculators useful for school, finance, or health?",
+    question: "When are these calculators useful for school or finance?",
     answer:
-      "They are useful for assignments, budgeting, reporting, and routine health checks.",
+      "They are useful for assignments, budgeting, reporting, and quick numeric checks at work.",
   },
 ];
 
@@ -160,9 +151,13 @@ export default function CalculatorIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Average calculator, BMI calculator, GPA calculator, percentage
-        calculator, programmer calculator, and more. Run the math you need
-        directly in your browser.
+        Average calculator, standard deviation calculator, GPA calculator, percentage
+        calculator, programmer calculator, scientific calculator, and more. For BMI,
+        body fat, waist-to-hip, BMR, and TDEE, use{" "}
+        <Link href="/tools/health" className="text-slate-200 underline">
+          Health Tools
+        </Link>
+        .
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2">
@@ -194,6 +189,10 @@ export default function CalculatorIndexPage() {
           . For measurement and unit changes, use{" "}
           <Link href="/tools/unit-converter" className="text-slate-200 underline">
             Unit Converter
+          </Link>
+          . For BMI, tape body fat, waist-to-hip ratio, muscle index, and calorie estimates, use{" "}
+          <Link href="/tools/health" className="text-slate-200 underline">
+            Health Tools
           </Link>
           .
         </p>
@@ -230,7 +229,7 @@ export default function CalculatorIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              4. Why use dedicated online calculators for BMI, GPA, or percentages?
+              4. Why use dedicated online calculators for GPA or percentages?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {CALC_INDEX_GUIDE.advantages.map((item, i) => (
@@ -240,7 +239,7 @@ export default function CalculatorIndexPage() {
           </div>
           <div>
             <h3 className="mb-3 font-semibold text-slate-200">
-              5. When are these calculators useful for school, finance, or health?
+              5. When are these calculators useful for school or finance?
             </h3>
             <ul className="list-disc space-y-2 pl-5">
               {CALC_INDEX_GUIDE.useCases.map((item, i) => (

@@ -652,3 +652,17 @@
         - Language Tools
         - Developer Tools
         - Unit Converter Tools
+
+=================================================================================================================
+
+260504
+
+1144 - Skeletal muscle index 페이지 추가
+        - 그냥 추가 요청만 던졌는데 꽤 잘 나와서 따로 수정 안함.
+       Waist-to-hip ratio 페이지 추가
+       BMR and TDEE 페이지 추가
+       Body fat (tape estimate) 페이지 추가
+
+1415 - Health Tools 카테고리 추가
+        - 금일 추가한 4가지 페이지 이동
+        - BMI Calculator 페이지 이동

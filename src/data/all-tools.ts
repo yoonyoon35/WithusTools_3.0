@@ -1,7 +1,7 @@
 /**
  * All tool pages for internal linking.
  * path → { title, category }
- * Category pages (e.g. /tools/calculator) and sub-tools (e.g. /tools/calculator/bmi-calculator)
+ * Category pages (e.g. /tools/calculator) and sub-tools (e.g. /tools/health/bmi-calculator)
  */
 import { TOOLS } from "./tools";
 
@@ -15,7 +15,11 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/calculator/calculator": "Scientific Calculator",
   "/tools/calculator/average-calculator": "Average Calculator",
   "/tools/calculator/standard-deviation-calculator": "Standard Deviation Calculator",
-  "/tools/calculator/bmi-calculator": "BMI Calculator",
+  "/tools/health/bmi-calculator": "BMI Calculator",
+  "/tools/health/skeletal-muscle-index-calculator": "Skeletal Muscle Index Calculator",
+  "/tools/health/waist-hip-ratio-calculator": "Waist-to-Hip Ratio Calculator",
+  "/tools/health/bmr-tdee-calculator": "BMR and TDEE Calculator",
+  "/tools/health/body-fat-calculator": "Body Fat Calculator (Tape Estimate)",
   "/tools/calculator/gpa-calculator": "GPA Calculator",
   "/tools/calculator/gpa-calculator/target-gpa": "Target GPA Calculator",
   "/faq/gpa/what-is-weighted-gpa": "What is a Weighted GPA?",
@@ -236,7 +240,7 @@ export function getParentPath(path: string): string | null {
 
 /** Categories that have a dedicated category page (avoid 404 for security, hash) */
 const CATEGORIES_WITH_PAGE = new Set([
-  "calculator", "developer", "time", "image", "pdf", "text", "random", "seo", "language", "unit-converter",
+  "calculator", "health", "developer", "time", "image", "pdf", "text", "random", "seo", "language", "unit-converter",
 ]);
 
 /** Get related paths: use parent's if current path is sub-page (e.g. /tools/hash-calculator/md5) */

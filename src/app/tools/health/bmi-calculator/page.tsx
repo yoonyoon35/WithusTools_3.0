@@ -7,7 +7,7 @@ export const metadata: Metadata = createMetadata({
   title: "Calculate Body Mass Index",
   description:
     "Free BMI calculator with metric and US units. Check body mass index and category ranges instantly in your browser.",
-  path: "/tools/calculator/bmi-calculator",
+  path: "/tools/health/bmi-calculator",
   keywords: [
     "bmi calculator",
     "body mass index",
@@ -98,7 +98,7 @@ export default function BMICalculatorPage() {
       />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
-          <ToolIcon name="calculator" />
+          <ToolIcon name="heart" />
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-100">BMI Calculator</h1>
             <p className="mt-1 text-sm text-slate-500">
