@@ -101,6 +101,7 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
   // Standalone tools (direct under /tools/)
   "hash-calculator": "Hash Calculator",
   "jpg-converter": "JPG Converter",
+  "gif-converter": "GIF Converter",
   "pdf-converter": "PDF Converter",
   "image-to-pdf": "Image to PDF",
   "merge-pdf": "Merge PDF",
@@ -111,6 +112,8 @@ export const BREADCRUMB_NAMES: Record<string, string> = {
 /** Full path -> last segment display name (for disambiguation) */
 const PATH_LAST_OVERRIDES: Record<string, string> = {
   "/tools/calculator/calculator": "Scientific Calculator",
+  "/tools/gif-converter/jpg": "JPG to GIF",
+  "/tools/pdf-converter/jpg": "JPG to PDF",
 };
 
 function slugToTitle(slug: string): string {
@@ -129,9 +132,10 @@ export function buildBreadcrumb(pathname: string): { name: string; item: string 
     const segment = segments[i];
     currentPath += `/${segment}`;
 
-    // Use TOOLS for exact path match
+    // Use TOOLS for exact path match; optional full-path override for ambiguous last segments (e.g. /jpg)
     const tool = TOOLS.find((t) => t.path === currentPath);
-    const name = tool ? tool.title : slugToTitle(segment);
+    const name =
+      PATH_LAST_OVERRIDES[currentPath] ?? (tool ? tool.title : slugToTitle(segment));
     const item = `${SITE_URL}${currentPath}`;
     items.push({ name, item });
   }

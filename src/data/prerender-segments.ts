@@ -25,6 +25,33 @@ export const JPG_CONVERTER_FORMATS = [
 
 export type JpgConverterFormat = (typeof JPG_CONVERTER_FORMATS)[number];
 
+/**
+ * GIF Converter format segments (`/tools/gif-converter/[format]`).
+ * Order aligned with JPG Converter hub; `jpg` is multi-JPEG frames; `pdf` uses `PdfToAnimatedGif`.
+ */
+export const GIF_CONVERTER_FORMATS = [
+  "heic",
+  "heif",
+  "avif",
+  "bmp",
+  "png",
+  "svg",
+  "tiff",
+  "webp",
+  "psd",
+  "jfif",
+  "ico",
+  "ai",
+  "dng",
+  "cr2",
+  "cr3",
+  "tga",
+  "jpg",
+  "pdf",
+] as const;
+
+export type GifConverterFormat = (typeof GIF_CONVERTER_FORMATS)[number];
+
 export const PDF_CONVERTER_FORMATS = [
   "jpg",
   "heic",

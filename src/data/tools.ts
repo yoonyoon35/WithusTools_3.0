@@ -68,7 +68,7 @@ export const TOOLS: Tool[] = [
     id: "image-tools",
     title: "Image Tools",
     description:
-      "Image Compressor, Format Converter, Images to Animated GIF, Image Editor, and Paint Board for compressing, converting, merging frames to GIF, editing, and drawing",
+      "Image Compressor, Format Converter, Images to Animated GIF, Image Editor, Paint Board, JPG Converter, and GIF Converter hub for compressing, converting, merging frames to GIF, editing, and drawing",
     category: "image",
     icon: "image",
     path: "/tools/image",
@@ -80,6 +80,15 @@ export const TOOLS: Tool[] = [
     category: "image",
     icon: "image",
     path: "/tools/jpg-converter",
+  },
+  {
+    id: "gif-converter",
+    title: "GIF Converter",
+    description:
+      "GIF Converter hub—JPG to GIF (multiple JPEGs → one animated GIF) and more format routes over time. Browser-only gif.js encoding; use Image Tools for mixed image types.",
+    category: "image",
+    icon: "image",
+    path: "/tools/gif-converter",
   },
   {
     id: "pdf-tools",

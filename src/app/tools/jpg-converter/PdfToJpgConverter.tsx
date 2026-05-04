@@ -3,18 +3,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 
-declare global {
-  interface Window {
-    pdfjsLib?: {
-      getDocument: (src: ArrayBuffer | { data: ArrayBuffer; length?: number }) => {
-        promise: Promise<PDFDocumentProxy>;
-        onProgress?: (p: { loaded: number; total: number }) => void;
-      };
-      GlobalWorkerOptions?: { workerSrc?: string };
-    };
-  }
-}
-
 interface PDFDocumentProxy {
   numPages: number;
   getPage: (n: number) => Promise<PDFPageProxy>;

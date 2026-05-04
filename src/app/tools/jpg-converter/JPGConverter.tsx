@@ -131,6 +131,8 @@ export default function JPGConverter({
   const [filePreviewUrls, setFilePreviewUrls] = useState<string[]>([]);
   const [failedPreviews, setFailedPreviews] = useState<Set<number>>(new Set());
   const [pdfReady, setPdfReady] = useState(false);
+  const [uploadDropActive, setUploadDropActive] = useState(false);
+  const uploadDragDepth = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -808,48 +810,96 @@ export default function JPGConverter({
   const onDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
+      uploadDragDepth.current = 0;
+      setUploadDropActive(false);
       addFiles(e.dataTransfer.files);
     },
     [addFiles]
   );
 
+  const onUploadDragEnter = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    uploadDragDepth.current += 1;
+    setUploadDropActive(true);
+  }, []);
+
+  const onUploadDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    uploadDragDepth.current -= 1;
+    if (uploadDragDepth.current <= 0) {
+      uploadDragDepth.current = 0;
+      setUploadDropActive(false);
+    }
+  }, []);
+
+  const onUploadDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "copy";
+  }, []);
+
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-3">
-        <p className="flex items-center gap-2 font-semibold text-amber-400">
+      <div className="rounded-xl border border-amber-500/45 bg-slate-950 px-5 py-4">
+        <p className="flex flex-wrap items-center gap-3 text-sm font-semibold leading-snug text-amber-300 sm:text-[0.95rem]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="shrink-0 text-amber-400"
+            aria-hidden
           >
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
           </svg>
-          All conversion runs in your browser. Files never leave your device.
+          <span>All conversion runs in your browser. Files never leave your device.</span>
         </p>
         {format === "ai" && (
-          <p className="mt-2 text-sm text-amber-400/90">
+          <p className="mt-3 text-sm font-normal leading-relaxed text-amber-200/85">
             Not all AI files can be converted. Only files saved with PDF compatibility are supported (enabled by default in modern Illustrator).
           </p>
         )}
       </div>
 
-      <div className="rounded-xl border border-border bg-surface p-6">
-        <h2 className="mb-4 text-lg font-semibold text-slate-100">Upload Files</h2>
+      <div className="rounded-xl border border-slate-700/90 bg-slate-900 p-6 shadow-lg shadow-black/25 sm:p-8">
+        <h2 className="mb-6 text-lg font-bold tracking-tight text-white sm:text-xl">Upload Files</h2>
         <div
-          onDragOver={(e) => e.preventDefault()}
+          role="button"
+          tabIndex={0}
+          aria-label={`Upload ${displayName} files`}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              fileInputRef.current?.click();
+            }
+          }}
+          onDragEnter={onUploadDragEnter}
+          onDragLeave={onUploadDragLeave}
+          onDragOver={onUploadDragOver}
           onDrop={onDrop}
           onClick={() => fileInputRef.current?.click()}
-          className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border bg-slate-950/50 px-6 py-8 transition-colors hover:border-slate-600"
+          className={`flex min-h-[200px] cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed px-8 py-14 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 sm:min-h-[240px] ${
+            uploadDropActive
+              ? "border-amber-500/80 bg-slate-950/90 ring-1 ring-amber-500/30"
+              : "border-slate-500/45 bg-slate-950/70 hover:border-amber-500/45 hover:bg-slate-950/85"
+          }`}
         >
-          <span className="mb-2 text-4xl text-slate-500">📁</span>
-          <p className="mb-2 text-sm text-slate-400">
+          <svg
+            className="mb-4 h-12 w-12 text-amber-400 sm:h-14 sm:w-14"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden
+          >
+            <path d="M10 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z" />
+          </svg>
+          <p className="mb-2 text-center text-base font-medium text-slate-300">
             Drop {displayName} files here or click to upload
           </p>
-          <p className="text-xs text-slate-500">Supports multiple files</p>
+          <p className="text-center text-sm text-slate-500">Supports multiple files</p>
           <input
             ref={fileInputRef}
             type="file"

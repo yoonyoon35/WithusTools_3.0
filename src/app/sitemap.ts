@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { ALL_TOOLS } from "@/data/all-tools";
 import {
+  GIF_CONVERTER_FORMATS,
   HASH_CALCULATOR_ALGORITHMS,
   JPG_CONVERTER_FORMATS,
   PDF_CONVERTER_FORMATS,
@@ -172,6 +173,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const gifConverterPages: MetadataRoute.Sitemap = GIF_CONVERTER_FORMATS.map((format) => ({
+    url: locUrl(`/tools/gif-converter/${format}`),
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const pdfConverterPages: MetadataRoute.Sitemap = PDF_CONVERTER_FORMATS.map((format) => ({
     url: locUrl(`/tools/pdf-converter/${format}`),
     lastModified: now,
@@ -238,6 +246,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...hashAlgorithmPages,
     ...sshAlgorithmPages,
     ...jpgConverterPages,
+    ...gifConverterPages,
     ...pdfConverterPages,
     ...unitConverterPairPages,
     ...faqPages,

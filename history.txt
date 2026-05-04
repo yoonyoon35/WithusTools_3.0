@@ -668,3 +668,9 @@
         - BMI Calculator 페이지 이동
 
 1631 - Images to Animated GIF 페이지 추가
+
+1747 - GIF Converter 페이지 추가 및 하위 페이지 구성 완료
+       
+       저작권 의존성 표기 누락 확인
+        - html2pdf.js - npm에서 같이 묶이는 dompurify, html2canvas, jspdf 안내 문구 추가.
+        - jspdf - 번들에 포함되는 @babel/runtime, fflate, fast-png 안내 및 하위 항목 참조 문구 추가.

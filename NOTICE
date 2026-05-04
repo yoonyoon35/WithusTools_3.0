@@ -118,12 +118,53 @@ html2pdf.js
   Copyright (c) 2017 Erik Koopmans (https://github.com/eKoopmans/html2pdf.js)
   License: MIT
   Used in: Text Editor (PDF export)
+  npm dependency chain (bundled with html2pdf.js): dompurify, html2canvas, jspdf
+  (see separate entries for dompurify, html2canvas; jspdf below)
+
+dompurify
+  Copyright (c) 2015 Mario Heiderich / Cure53 and contributors
+  (https://github.com/cure53/DOMPurify)
+  License: (MPL-2.0 OR Apache-2.0)
+  https://www.apache.org/licenses/LICENSE-2.0
+  https://www.mozilla.org/MPL/2.0/
+  Used in: Text Editor (PDF export via html2pdf.js)
+
+html2canvas
+  Copyright (c) Niklas von Hertzen (https://github.com/niklasvh/html2canvas)
+  License: MIT
+  Used in: Text Editor (PDF export via html2pdf.js)
+  Transitive (MIT): css-line-break, text-segmentation, utrie, base64-arraybuffer
 
 jspdf
   Copyright (c) 2010–2025 James Hall (https://github.com/MrRio/jsPDF)
   Copyright (c) 2015–2025 yWorks GmbH (https://www.yworks.com/)
   License: MIT
   Used in: QR Code Generator, Text Editor (via html2pdf.js)
+  npm dependency chain (bundled with jsPDF): @babel/runtime, fflate, fast-png
+  (see separate entries below; fast-png bundles pako and iobuffer)
+
+@babel/runtime
+  Copyright (c) 2014-present Sebastian McKenzie and other contributors
+  License: MIT
+  Used in: Client bundle with jsPDF
+
+fflate
+  Copyright (c) 2020 Arjun Barrett (https://github.com/101arrowz/fflate)
+  License: MIT
+  Used in: Client bundle with jsPDF
+
+fast-png
+  Copyright (c) Michaël Zasso and contributors (https://github.com/image-js/fast-png)
+  License: MIT
+  Used in: Client bundle with jsPDF
+
+pako (via fast-png)
+  Copyright (c) 2014-2017 Vitaly Puzrin and Andrey Tupitsin
+  License: (MIT AND Zlib)
+
+iobuffer (via fast-png)
+  Copyright (c) image-js contributors (https://github.com/image-js/iobuffer)
+  License: MIT
 
 katex
   Copyright (c) 2013-2020 Khan Academy and other contributors (https://katex.org)
@@ -316,10 +357,17 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
 
-Apache License 2.0 (TypeScript, pdf.js, jsqr)
+Apache License 2.0 (TypeScript, pdf.js, jsqr, DOMPurify — Apache-2.0 option)
 
 Licensed under the Apache License, Version 2.0. Full text available at:
 http://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+Mozilla Public License 2.0 (DOMPurify — MPL-2.0 option)
+
+DOMPurify is dual-licensed (MPL-2.0 OR Apache-2.0). Recipients may comply with
+either license. Full MPL-2.0 text: https://www.mozilla.org/MPL/2.0/
 
 ---
 
