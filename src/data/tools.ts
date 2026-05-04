@@ -67,7 +67,8 @@ export const TOOLS: Tool[] = [
   {
     id: "image-tools",
     title: "Image Tools",
-    description: "Image Compressor, Image Editor, and Paint Board for editing, compressing, and creating images",
+    description:
+      "Image Compressor, Format Converter, Images to Animated GIF, Image Editor, and Paint Board for compressing, converting, merging frames to GIF, editing, and drawing",
     category: "image",
     icon: "image",
     path: "/tools/image",

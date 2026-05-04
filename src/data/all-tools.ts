@@ -36,6 +36,7 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/image/image-compressor": "Image Compressor",
   "/tools/image/image-editor": "Image Editor",
   "/tools/image/image-format-converter": "Image Format Converter",
+  "/tools/image/images-to-animated-gif": "Images to Animated GIF",
   "/tools/image/paint-board": "Paint Board",
   "/tools/pdf/image-to-pdf": "Image to PDF",
   "/tools/pdf/merge-pdf": "Merge PDF",
@@ -124,11 +125,18 @@ export const RELATED_TOOLS: Record<string, string[]> = {
   ],
   "/tools/image/image-format-converter": [
     "/tools/image/image-compressor",
+    "/tools/image/images-to-animated-gif",
     "/tools/jpg-converter",
     "/tools/pdf/image-to-pdf",
   ],
   "/tools/image/image-compressor": [
     "/tools/image/image-format-converter",
+    "/tools/image/images-to-animated-gif",
+    "/tools/jpg-converter",
+  ],
+  "/tools/image/images-to-animated-gif": [
+    "/tools/image/image-format-converter",
+    "/tools/image/image-compressor",
     "/tools/jpg-converter",
   ],
   "/tools/jpg-converter": [

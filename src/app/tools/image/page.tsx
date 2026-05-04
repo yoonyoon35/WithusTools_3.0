@@ -7,7 +7,7 @@ import { IMAGE_INDEX_GUIDE } from "./image-content";
 export const metadata: Metadata = createMetadata({
   title: "Image Tools",
   description:
-    "Image Compressor, Image Format Converter, Image Editor, and Paint Board. Compress, convert formats, edit photos, and create digital art. All processing runs in your browser—your data never leaves your device.",
+    "Image Compressor, Image Format Converter, Images to Animated GIF, Image Editor, and Paint Board. Compress, convert formats, merge frames into GIF, edit photos, and create digital art. All processing runs in your browser—your data never leaves your device.",
   path: "/tools/image",
   keywords: [
     "image compressor",
@@ -20,6 +20,7 @@ export const metadata: Metadata = createMetadata({
     "edit image",
     "free online image tools",
     "compress edit create images in browser",
+    "images to animated gif",
     "withustools",
   ],
 });
@@ -36,6 +37,13 @@ const IMAGE_TOOLS = [
     name: "Image Format Converter",
     description: "Convert images between PNG, JPG, WebP, GIF, BMP, TIFF, AVIF. HEIC/HEIF input supported.",
     path: "/tools/image/image-format-converter",
+  },
+  {
+    slug: "images-to-animated-gif",
+    name: "Images to Animated GIF",
+    description:
+      "Combine multiple images into one animated GIF. Reorder frames, set delay and canvas size. All processing in your browser.",
+    path: "/tools/image/images-to-animated-gif",
   },
   {
     slug: "image-editor",
@@ -110,8 +118,8 @@ export default function ImageToolsIndexPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Compress, convert, edit, and draw images in browser. Good for fast
-        image prep without installing desktop software.
+        Compress, convert, build animated GIFs from stills, edit, and draw in
+        browser. Good for fast image prep without installing desktop software.
       </p>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -135,8 +143,9 @@ export default function ImageToolsIndexPage() {
           Image Tools Guide
         </h2>
         <p className="mb-8 text-sm leading-relaxed text-slate-400">
-          Use compressor for file size, converter for compatibility, editor for
-          quick fixes, and paint board for simple drawing tasks.
+          Use compressor for file size, converter for compatibility, animated
+          GIF tool to merge frames, editor for quick fixes, and paint board for
+          simple drawing tasks.
         </p>
         <div className="space-y-8 text-sm leading-relaxed text-slate-400">
           <div>
