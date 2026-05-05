@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { CircleHelp } from "lucide-react";
 
 type HouseCount = "1" | "2" | "3" | "4+";
 type AcquisitionType = "paid" | "gift" | "inheritance" | "original";
@@ -15,21 +16,24 @@ type PropertyCategory = "house" | "non-house" | "farmland";
 type FarmlandSaleType = "new" | "self-cultivation";
 type NonHouseDetailType = "general" | "office-business";
 
+/** 생애최초 등 확대 감면(한도 300만 원) vs 일반 감면(한도 200만 원) — 행정 해석·개정 시 조정 */
+type LifetimeFirstReliefTier = "general" | "extended";
+
+/** 지방세특례제한법 시행령 등에 따른 생애최초 주택 취득세 감면(운영기준) 단순화 모델. 참고용. */
+const LIFETIME_FIRST_DEDUCTION_CAP_GENERAL_WON = 2_000_000;
+const LIFETIME_FIRST_DEDUCTION_CAP_EXTENDED_WON = 3_000_000;
+
 interface TaxResult {
   taxableBase: number;
   acquisitionTaxRate: number;
   acquisitionTax: number;
+  acquisitionTaxGross?: number;
+  lifetimeFirstReliefDeduction?: number;
   localEducationTaxRate: number;
   localEducationTax: number;
   ruralSpecialTaxRate: number;
   ruralSpecialTax: number;
   totalTax: number;
-}
-
-function addCommas(value: string): string {
-  const numValue = removeCommas(value);
-  if (!numValue) return "";
-  return new Intl.NumberFormat("ko-KR").format(parseInt(numValue, 10));
 }
 
 function getGeneralAcquisitionTaxRate(price: number): number {
@@ -40,10 +44,7 @@ function getGeneralAcquisitionTaxRate(price: number): number {
   return 0.03;
 }
 
-function clampRate(rate: number): number {
-  return Math.min(1, Math.max(0, rate));
-}
-
+/** 주택·매매 기준 산출 취득세율 (생애최초 감면 전 단계) */
 function calculateAcquisitionTaxRate(price: number, houseCount: HouseCount, isAdjustedArea: boolean): number {
   const generalRate = getGeneralAcquisitionTaxRate(price);
 
@@ -53,15 +54,36 @@ function calculateAcquisitionTaxRate(price: number, houseCount: HouseCount, isAd
   return 0.12;
 }
 
+function getLifetimeFirstDeductionCapWon(tier: LifetimeFirstReliefTier): number {
+  return tier === "extended" ? LIFETIME_FIRST_DEDUCTION_CAP_EXTENDED_WON : LIFETIME_FIRST_DEDUCTION_CAP_GENERAL_WON;
+}
+
+/** 산출 취득세에서 감면 한도만큼 공제(산출세액이 한도 이하면 전액 면제). */
+function applyLifetimeFirstAcquisitionTaxDeduction(
+  grossAcquisitionTaxWon: number,
+  tier: LifetimeFirstReliefTier,
+): { netWon: number; deductionWon: number } {
+  const cap = getLifetimeFirstDeductionCapWon(tier);
+  if (grossAcquisitionTaxWon <= 0) return { netWon: 0, deductionWon: 0 };
+  if (grossAcquisitionTaxWon <= cap) return { netWon: 0, deductionWon: grossAcquisitionTaxWon };
+  return { netWon: grossAcquisitionTaxWon - cap, deductionWon: cap };
+}
+
+function addCommas(value: string): string {
+  const numValue = removeCommas(value);
+  if (!numValue) return "";
+  return new Intl.NumberFormat("ko-KR").format(parseInt(numValue, 10));
+}
+
+function clampRate(rate: number): number {
+  return Math.min(1, Math.max(0, rate));
+}
+
 function getNonPaidAcquisitionTaxRate(type: AcquisitionType): number {
   if (type === "gift") return 0.035;
   if (type === "inheritance") return 0.028;
   if (type === "original") return 0.028;
   return 0;
-}
-
-function calculateLocalEducationTaxRate(acquisitionTaxRate: number): number {
-  return acquisitionTaxRate >= 0.08 ? 0.004 : acquisitionTaxRate * 0.1;
 }
 
 function getHouseNonPaidLocalEducationTaxRate(type: AcquisitionType): number {
@@ -149,6 +171,8 @@ export function AcquisitionTaxCalculator() {
   const [houseCount, setHouseCount] = React.useState<HouseCount>("1");
   const [isAdjustedArea, setIsAdjustedArea] = React.useState(false);
   const [isOver85, setIsOver85] = React.useState(false);
+  const [applyLifetimeFirstRelief, setApplyLifetimeFirstRelief] = React.useState(false);
+  const [lifetimeFirstTier, setLifetimeFirstTier] = React.useState<LifetimeFirstReliefTier>("general");
   const [result, setResult] = React.useState<TaxResult | null>(null);
 
   const isHouseCategory = propertyCategory === "house";
@@ -161,11 +185,19 @@ export function AcquisitionTaxCalculator() {
   const usesOfficialValueOnly = isGiftType || isInheritanceType || isOriginalType;
   const isAdjustedToggleEnabled = isHouseCategory && isPaidType && houseCount !== "1";
   const showHouseInputs = isHouseCategory && isPaidType;
+  const showLifetimeFirstInputs = showHouseInputs && houseCount === "1";
   const showAreaOver85Input = isHouseCategory;
 
   React.useEffect(() => {
     if (!isAdjustedToggleEnabled) setIsAdjustedArea(false);
   }, [isAdjustedToggleEnabled]);
+
+  React.useEffect(() => {
+    if (!showLifetimeFirstInputs) {
+      setApplyLifetimeFirstRelief(false);
+      setLifetimeFirstTier("general");
+    }
+  }, [showLifetimeFirstInputs]);
 
   React.useEffect(() => {
     if (isHouseCategory) {
@@ -223,7 +255,7 @@ export function AcquisitionTaxCalculator() {
         isPaidType ? calculateAcquisitionTaxRate(taxableBase, houseCount, isAdjustedArea) : getNonPaidAcquisitionTaxRate(acquisitionType),
       );
       localEducationTaxRate = clampRate(
-        isPaidType ? calculateLocalEducationTaxRate(acquisitionTaxRate) : getHouseNonPaidLocalEducationTaxRate(acquisitionType),
+        isPaidType ? 0 : getHouseNonPaidLocalEducationTaxRate(acquisitionType),
       );
       ruralSpecialTaxRate = clampRate(
         isPaidType ? calculateRuralSpecialTaxRate(houseCount, isAdjustedArea, isOver85) : isOver85 ? 0.002 : 0,
@@ -244,14 +276,41 @@ export function AcquisitionTaxCalculator() {
       localEducationTaxRate = rates.education;
     }
 
-    const acquisitionTax = taxableBase * acquisitionTaxRate;
-    const localEducationTax = taxableBase * localEducationTaxRate;
+    let acquisitionTax = taxableBase * acquisitionTaxRate;
+    let acquisitionTaxGross: number | undefined;
+    let lifetimeFirstReliefDeduction: number | undefined;
+
+    const applyLifetimeFirstModel =
+      applyLifetimeFirstRelief && isHouseCategory && isPaidType && houseCount === "1";
+
+    if (applyLifetimeFirstModel) {
+      acquisitionTaxGross = acquisitionTax;
+      const applied = applyLifetimeFirstAcquisitionTaxDeduction(acquisitionTax, lifetimeFirstTier);
+      acquisitionTax = applied.netWon;
+      lifetimeFirstReliefDeduction = applied.deductionWon;
+    }
+
+    let localEducationTax: number;
+    if (isHouseCategory && isPaidType) {
+      if (acquisitionTaxRate >= 0.08) {
+        localEducationTaxRate = 0.004;
+        localEducationTax = taxableBase * localEducationTaxRate;
+      } else {
+        localEducationTax = acquisitionTax * 0.1;
+        localEducationTaxRate = taxableBase > 0 ? clampRate(localEducationTax / taxableBase) : 0;
+      }
+    } else {
+      localEducationTax = taxableBase * localEducationTaxRate;
+    }
+
     const ruralSpecialTax = taxableBase * ruralSpecialTaxRate;
 
     setResult({
       taxableBase,
       acquisitionTaxRate,
       acquisitionTax,
+      acquisitionTaxGross,
+      lifetimeFirstReliefDeduction,
       localEducationTaxRate,
       localEducationTax,
       ruralSpecialTaxRate,
@@ -389,6 +448,53 @@ export function AcquisitionTaxCalculator() {
             </div>
           ) : null}
 
+          {showLifetimeFirstInputs ? (
+            <div className="bg-muted/30 space-y-3 rounded-lg border p-3">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <Checkbox
+                  id="lifetimeFirstRelief"
+                  checked={applyLifetimeFirstRelief}
+                  onCheckedChange={(checked) => setApplyLifetimeFirstRelief(checked === true)}
+                />
+                <Label htmlFor="lifetimeFirstRelief" className="cursor-pointer font-medium">
+                  생애최초 주택 취득세 감면 적용
+                </Label>
+                <span className="group relative inline-flex shrink-0 items-center">
+                  <button
+                    type="button"
+                    className="text-muted-foreground hover:text-foreground focus-visible:ring-ring rounded-full p-0.5 outline-none transition-colors focus-visible:ring-2"
+                    aria-label="생애최초 감면 적용 안내"
+                  >
+                    <CircleHelp className="size-4" strokeWidth={2} aria-hidden />
+                  </button>
+                  <span
+                    role="tooltip"
+                    className="border-border bg-background text-foreground pointer-events-none invisible absolute bottom-[calc(100%+8px)] left-1/2 z-50 w-[min(calc(100vw-2rem),20rem)] -translate-x-1/2 rounded-md border px-3 py-2 text-left text-xs leading-relaxed shadow-md opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                  >
+                    참고용 예상 금액입니다. 체크 시 산출 취득세에서 감면 한도(일반 200만 원 · 소형·인구감소지역 등 300만 원)만큼 공제한 결과를 보여 줍니다.
+                    무주택·거주 목적·취득가액 12억 원 이하 등 실제 적격 요건은 확인하지 않습니다. 취득세율 8% 미만인 1주택 매매에서는 지방교육세를 감면 후 취득세의
+                    10분의 1로 산출하고, 농어촌특별세는 변함없이 산출합니다. 적용 기한·추징·세부
+                    유형은 관할 지자체에 확인하세요.
+                  </span>
+                </span>
+              </div>
+              {applyLifetimeFirstRelief ? (
+                <div className="space-y-2">
+                  <Label htmlFor="lifetimeFirstTier">감면 한도 유형</Label>
+                  <select
+                    id="lifetimeFirstTier"
+                    className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
+                    value={lifetimeFirstTier}
+                    onChange={(e) => setLifetimeFirstTier(e.target.value as LifetimeFirstReliefTier)}
+                  >
+                    <option value="general">일반주택 등 (감면 한도 200만 원)</option>
+                    <option value="extended">소형주택·인구감소지역 등 (감면 한도 300만 원)</option>
+                  </select>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
           {showHouseInputs ? (
             <div className="flex items-center gap-2">
               <Checkbox
@@ -434,13 +540,44 @@ export function AcquisitionTaxCalculator() {
                 <span className="text-muted-foreground text-sm">과세표준 (입력값 중 큰 금액)</span>
                 <ResultAmountBlock amount={result.taxableBase} className="text-lg font-semibold tabular-nums" />
               </div>
+              {result.acquisitionTaxGross != null && result.lifetimeFirstReliefDeduction != null ? (
+                <div className="flex flex-col gap-0.5 rounded-lg border border-dashed p-3" role="listitem">
+                  <span className="text-muted-foreground text-sm">취득세 (생애최초 감면 전 산출세액)</span>
+                  <ResultAmountBlock amount={result.acquisitionTaxGross} className="text-base font-semibold tabular-nums" />
+                </div>
+              ) : null}
+              {result.lifetimeFirstReliefDeduction != null && result.lifetimeFirstReliefDeduction > 0 ? (
+                <div className="flex flex-col gap-0.5 rounded-lg border border-dashed p-3" role="listitem">
+                  <span className="text-muted-foreground text-sm">생애최초 감면 (취득세 공제액)</span>
+                  <span className="text-lg font-semibold tabular-nums text-emerald-700 dark:text-emerald-400">
+                    −{formatNumber(result.lifetimeFirstReliefDeduction)}원
+                  </span>
+                  <span className="text-muted-foreground text-xs font-normal leading-relaxed">
+                    한도 내 공제이며, 실제 신고 시 관할 지자체 기준이 우선합니다.
+                  </span>
+                </div>
+              ) : null}
               <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
-                <span className="text-muted-foreground text-sm">취득세</span>
+                <span className="text-muted-foreground text-sm">{result.acquisitionTaxGross != null ? "취득세 (감면 후)" : "취득세"}</span>
                 <ResultTaxWithRate amount={result.acquisitionTax} rate={result.acquisitionTaxRate} />
               </div>
               <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
                 <span className="text-muted-foreground text-sm">지방교육세</span>
-                <ResultTaxWithRate amount={result.localEducationTax} rate={result.localEducationTaxRate} />
+                {result.acquisitionTaxGross != null ? (
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-lg font-semibold tabular-nums">
+                      {formatNumber(result.localEducationTax)}원 (취득세의 10%)
+                    </span>
+                    <span
+                      className="text-muted-foreground text-xs font-normal leading-relaxed"
+                      aria-label={`한글 금액 ${formatAmountKoreanWon(result.localEducationTax)}`}
+                    >
+                      {formatAmountKoreanWon(result.localEducationTax)}
+                    </span>
+                  </div>
+                ) : (
+                  <ResultTaxWithRate amount={result.localEducationTax} rate={result.localEducationTaxRate} />
+                )}
               </div>
               <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
                 <span className="text-muted-foreground text-sm">농어촌특별세</span>
@@ -728,8 +865,10 @@ export function AcquisitionTaxCalculator() {
             </p>
             <p className="text-foreground mt-3 font-medium">제외조건</p>
             <p className="text-muted-foreground mt-1">
-              생애최초·신혼·지방 이전 등 감면특례, 법인 취득, 공유지분 취득, 분양권·입주권 주택 수 포함 판단, 일시적 2주택 예외, 정책 변경
-              시행일, 관할 지자체 해석에 따른 예외는 본 표에 반영되지 않습니다. 실제 신고 전에는 관할 시군구 또는 세무전문가 확인이 필요합니다.
+              생애최초 감면은 취득세 산출액에 한해 단순 공제 모형으로 반영합니다. 주택 매매이면서 취득세율 8% 미만인 경우 지방교육세는 감면 후 취득세의 10분의 1로
+              산출하고, 농어촌특별세는 과세표준×세율로 산출합니다.
+              신혼·지방 이전 등 기타 감면, 법인 취득, 공유지분, 분양권·입주권 포함, 일시적 2주택 예외, 시행일·해석 차이는 별도입니다. 실제 신고 전에는 관할
+              시군구 또는 세무전문가 확인이 필요합니다.
             </p>
           </div>
           <p className="text-muted-foreground text-xs leading-relaxed">

@@ -104,6 +104,26 @@ import {
   BrokerageAccidentCompensationGuideBody,
   brokerageAccidentCompensationGuideMeta,
 } from "@/lib/guide/articles/brokerage-accident-compensation-guide";
+import {
+  FirstHomeAcquisitionTaxReliefGuideBody,
+  firstHomeAcquisitionTaxReliefGuideMeta,
+} from "@/lib/guide/articles/first-home-acquisition-tax-relief-guide";
+import {
+  AcquisitionTaxDeadlineAndPenaltyGuideBody,
+  acquisitionTaxDeadlineAndPenaltyGuideMeta,
+} from "@/lib/guide/articles/acquisition-tax-deadline-and-penalty-guide";
+import {
+  PresaleRightResaleBrokerageFeeGuideBody,
+  presaleRightResaleBrokerageFeeGuideMeta,
+} from "@/lib/guide/articles/presale-right-resale-brokerage-fee-guide";
+import {
+  BrokerageFeeIncomeDeductionGuideBody,
+  brokerageFeeIncomeDeductionGuideMeta,
+} from "@/lib/guide/articles/brokerage-fee-income-deduction-guide";
+import {
+  AcquisitionTaxReliefPrograms2026GuideBody,
+  acquisitionTaxReliefPrograms2026GuideMeta,
+} from "@/lib/guide/articles/acquisition-tax-relief-programs-2026-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -261,6 +281,26 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...brokerageAccidentCompensationGuideMeta,
     Body: BrokerageAccidentCompensationGuideBody,
+  },
+  {
+    ...firstHomeAcquisitionTaxReliefGuideMeta,
+    Body: FirstHomeAcquisitionTaxReliefGuideBody,
+  },
+  {
+    ...acquisitionTaxDeadlineAndPenaltyGuideMeta,
+    Body: AcquisitionTaxDeadlineAndPenaltyGuideBody,
+  },
+  {
+    ...presaleRightResaleBrokerageFeeGuideMeta,
+    Body: PresaleRightResaleBrokerageFeeGuideBody,
+  },
+  {
+    ...brokerageFeeIncomeDeductionGuideMeta,
+    Body: BrokerageFeeIncomeDeductionGuideBody,
+  },
+  {
+    ...acquisitionTaxReliefPrograms2026GuideMeta,
+    Body: AcquisitionTaxReliefPrograms2026GuideBody,
   },
 ];
 
