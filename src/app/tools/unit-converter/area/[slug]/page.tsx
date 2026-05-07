@@ -119,7 +119,7 @@ export default function AreaPairPage({ params }: { params: { slug: string } }) {
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
         reference tables. All calculations use square-meter-based definitions (international feet / yard
-        standards, acre, hectare, etc.).
+        standards, acre, hectare, and regional units like pyeong/tsubo).
       </p>
 
       <AreaPairCalculator fromKey={fromKey} toKey={toKey} />

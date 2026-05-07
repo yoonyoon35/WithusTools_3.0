@@ -117,7 +117,8 @@ export default function SpeedPairPage({ params }: { params: { slug: string } }) 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
         reference tables. All calculations bridge through meters per second with fixed definitions (knot,
-        international mile, Mach 1 = ISA sea level, Beaufort WMO bands at 10 m, vacuum c).
+        international mile, Mach 1 = ISA sea level, Beaufort WMO bands at 10 m, vacuum c, plus linear SI and
+        imperial rate units like km/s, fpm, ips, cm/s, and mm/s).
       </p>
 
       <Suspense

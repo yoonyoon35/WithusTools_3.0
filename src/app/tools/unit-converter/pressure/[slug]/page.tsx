@@ -117,7 +117,8 @@ export default function PressurePairPage({ params }: { params: { slug: string } 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
         reference tables. All calculations bridge through pascal with fixed definitions (standard atmosphere =
-        101,325 Pa; torr and mmHg = atm/760; international PSI factor).
+        101,325 Pa; torr and mmHg = atm/760; plus industrial/manometer units like kgf/cm², inHg, inH2O, and
+        mmH2O).
       </p>
 
       <Suspense

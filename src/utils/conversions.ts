@@ -13,30 +13,38 @@ export interface LengthUnitDef {
 export const LENGTH_UNITS: Record<string, LengthUnitDef> = {
   nmi: { name: "Nautical Miles", nameSg: "Nautical Mile", factor: 1852 },
   mi: { name: "Miles", nameSg: "Mile", factor: 1609.344 },
+  chain: { name: "Chains", nameSg: "Chain", factor: 20.1168 },
   km: { name: "Kilometers", nameSg: "Kilometer", factor: 1000 },
   m: { name: "Meters", nameSg: "Meter", factor: 1 },
   yd: { name: "Yards", nameSg: "Yard", factor: 0.9144 },
+  fathom: { name: "Fathoms", nameSg: "Fathom", factor: 1.8288 },
   ft: { name: "Feet", nameSg: "Feet", factor: 0.3048 },
   in: { name: "Inches", nameSg: "Inch", factor: 0.0254 },
   cm: { name: "Centimeters", nameSg: "Centimeter", factor: 0.01 },
   mm: { name: "Millimeters", nameSg: "Millimeter", factor: 0.001 },
   um: { name: "Micrometers", nameSg: "Micrometer", factor: 0.000001 },
   nm: { name: "Nanometers", nameSg: "Nanometer", factor: 0.000000001 },
+  angstrom: { name: "Angstroms", nameSg: "Angstrom", factor: 1e-10 },
+  pm: { name: "Picometers", nameSg: "Picometer", factor: 1e-12 },
 };
 
 /** Preferred URL segment per unit key (readable slugs) */
 export const LENGTH_KEY_TO_SLUG: Record<string, string> = {
   nmi: "nmi",
   mi: "mile",
+  chain: "chain",
   km: "km",
   m: "m",
   yd: "yard",
+  fathom: "fathom",
   ft: "feet",
   in: "inch",
   cm: "cm",
   mm: "mm",
   um: "um",
   nm: "nm",
+  angstrom: "angstrom",
+  pm: "pm",
 };
 
 /** Map URL slug fragments (lowercase) to unit keys */
@@ -46,6 +54,8 @@ const SLUG_TO_KEY: Record<string, string> = {
   mi: "mi",
   mile: "mi",
   miles: "mi",
+  chain: "chain",
+  chains: "chain",
   km: "km",
   kilometer: "km",
   kilometers: "km",
@@ -59,6 +69,8 @@ const SLUG_TO_KEY: Record<string, string> = {
   yd: "yd",
   yard: "yd",
   yards: "yd",
+  fathom: "fathom",
+  fathoms: "fathom",
   ft: "ft",
   foot: "ft",
   feet: "ft",
@@ -85,6 +97,13 @@ const SLUG_TO_KEY: Record<string, string> = {
   nanometers: "nm",
   nanometre: "nm",
   nanometres: "nm",
+  angstrom: "angstrom",
+  angstroms: "angstrom",
+  pm: "pm",
+  picometer: "pm",
+  picometers: "pm",
+  picometre: "pm",
+  picometres: "pm",
 };
 
 export function formatWithThousands(value: number | string): string {
@@ -176,7 +195,9 @@ export type LengthSystem = "metric" | "imperial" | "nautical";
 
 export function getLengthSystem(key: string): LengthSystem {
   if (key === "nmi") return "nautical";
-  if (key === "mi" || key === "yd" || key === "ft" || key === "in") return "imperial";
+  if (key === "mi" || key === "chain" || key === "yd" || key === "fathom" || key === "ft" || key === "in") {
+    return "imperial";
+  }
   return "metric";
 }
 
@@ -202,11 +223,15 @@ export interface WeightUnitDef {
 
 export const WEIGHT_UNITS: Record<string, WeightUnitDef> = {
   t: { name: "Metric Tons", nameSg: "Metric Ton", factor: 1_000_000 },
+  cwt_uk: { name: "Hundredweight (UK)", nameSg: "Hundredweight (UK)", factor: 50802.34544 },
+  cwt_us: { name: "Hundredweight (US)", nameSg: "Hundredweight (US)", factor: 45359.237 },
   lton: { name: "Long Tons (UK)", nameSg: "Long Ton (UK)", factor: 1016046.9088 },
   ust: { name: "US Tons (Short)", nameSg: "US Ton (Short)", factor: 907184.74 },
   st: { name: "Stone", factor: 6350.29318 },
   kg: { name: "Kilograms", nameSg: "Kilogram", factor: 1000 },
   lb: { name: "Pounds", nameSg: "Pound", factor: 453.59237 },
+  gr: { name: "Grains", nameSg: "Grain", factor: 0.06479891 },
+  ct: { name: "Carats", nameSg: "Carat", factor: 0.2 },
   g: { name: "Grams", nameSg: "Gram", factor: 1 },
   oz: { name: "Ounces", nameSg: "Ounce", factor: 28.349523125 },
   mg: { name: "Milligrams", nameSg: "Milligram", factor: 0.001 },
@@ -216,11 +241,15 @@ export const WEIGHT_UNITS: Record<string, WeightUnitDef> = {
 /** Preferred URL segment per unit key */
 export const WEIGHT_KEY_TO_SLUG: Record<string, string> = {
   t: "metric-ton",
+  cwt_uk: "uk-hundredweight",
+  cwt_us: "us-hundredweight",
   lton: "long-ton",
   ust: "us-ton",
   st: "stone",
   kg: "kg",
   lb: "lb",
+  gr: "grain",
+  ct: "carat",
   g: "g",
   oz: "oz",
   mg: "mg",
@@ -231,6 +260,14 @@ const WEIGHT_SLUG_TO_KEY: Record<string, string> = {
   t: "t",
   "metric-ton": "t",
   tonne: "t",
+  cwt_uk: "cwt_uk",
+  cwtuk: "cwt_uk",
+  "uk-hundredweight": "cwt_uk",
+  "imperial-hundredweight": "cwt_uk",
+  cwt_us: "cwt_us",
+  cwtus: "cwt_us",
+  "us-hundredweight": "cwt_us",
+  "short-hundredweight": "cwt_us",
   lton: "lton",
   "long-ton": "lton",
   "uk-ton": "lton",
@@ -247,6 +284,12 @@ const WEIGHT_SLUG_TO_KEY: Record<string, string> = {
   lbs: "lb",
   pound: "lb",
   pounds: "lb",
+  gr: "gr",
+  grain: "gr",
+  grains: "gr",
+  ct: "ct",
+  carat: "ct",
+  carats: "ct",
   g: "g",
   gram: "g",
   grams: "g",
@@ -323,13 +366,30 @@ export function getWeightFormulaLine(
 export type WeightSystem = "metric" | "imperial" | "us_mass";
 
 export function getWeightSystem(key: string): WeightSystem {
-  if (key === "lb" || key === "oz" || key === "st" || key === "lton") return "imperial";
-  if (key === "ust") return "us_mass";
+  if (key === "lb" || key === "oz" || key === "st" || key === "lton" || key === "cwt_uk" || key === "gr") {
+    return "imperial";
+  }
+  if (key === "ust" || key === "cwt_us") return "us_mass";
   return "metric";
 }
 
-/** Hub list: common cooking, shipping, and body-weight units (excludes µg, long ton). */
-export const WEIGHT_HUB_KEYS = ["kg", "g", "mg", "lb", "oz", "t", "st", "ust"] as const;
+/** Hub keys for the Weight category dedicated pair links. */
+export const WEIGHT_HUB_KEYS = [
+  "kg",
+  "g",
+  "mg",
+  "ug",
+  "lb",
+  "oz",
+  "gr",
+  "ct",
+  "st",
+  "cwt_uk",
+  "cwt_us",
+  "t",
+  "lton",
+  "ust",
+] as const;
 
 export function getOutboundWeightHubLinks(hubKey: string): { toKey: string; href: string }[] {
   if (!isValidWeightKey(hubKey)) return [];
@@ -351,7 +411,11 @@ export const AREA_UNITS: Record<string, AreaUnitDef> = {
   mi2: { name: "Square Miles", nameSg: "Square Mile", factor: 2589988.110336 },
   km2: { name: "Square Kilometers", nameSg: "Square Kilometer", factor: 1_000_000 },
   ha: { name: "Hectares", nameSg: "Hectare", factor: 10000 },
+  daa: { name: "Decares", nameSg: "Decare", factor: 1000 },
+  a: { name: "Ares", nameSg: "Are", factor: 100 },
   ac: { name: "Acres", nameSg: "Acre", factor: 4046.8564224 },
+  pyeong: { name: "Pyeong", nameSg: "Pyeong", factor: 3.3057851239669422 },
+  tsubo: { name: "Tsubo", nameSg: "Tsubo", factor: 3.3057851239669422 },
   m2: { name: "Square Meters", nameSg: "Square Meter", factor: 1 },
   yd2: { name: "Square Yards", nameSg: "Square Yard", factor: 0.83612736 },
   ft2: { name: "Square Feet", nameSg: "Square Feet", factor: 0.09290304 },
@@ -363,7 +427,11 @@ export const AREA_KEY_TO_SLUG: Record<string, string> = {
   mi2: "sq-mile",
   km2: "sq-km",
   ha: "hectare",
+  daa: "decare",
+  a: "are",
   ac: "acre",
+  pyeong: "pyeong",
+  tsubo: "tsubo",
   m2: "sq-m",
   yd2: "sq-yard",
   ft2: "sq-ft",
@@ -382,9 +450,18 @@ const AREA_SLUG_TO_KEY: Record<string, string> = {
   ha: "ha",
   hectare: "ha",
   hectares: "ha",
+  daa: "daa",
+  decare: "daa",
+  decares: "daa",
+  a: "a",
+  are: "a",
+  ares: "a",
   ac: "ac",
   acre: "ac",
   acres: "ac",
+  pyeong: "pyeong",
+  pyeongs: "pyeong",
+  tsubo: "tsubo",
   m2: "m2",
   "sq-m": "m2",
   "square-m": "m2",
@@ -471,14 +548,36 @@ export function getAreaFormulaLine(
 export type AreaSystem = "metric" | "imperial";
 
 export function getAreaSystem(key: string): AreaSystem {
-  if (key === "mi2" || key === "yd2" || key === "ft2" || key === "in2" || key === "ac") {
+  if (
+    key === "mi2" ||
+    key === "yd2" ||
+    key === "ft2" ||
+    key === "in2" ||
+    key === "ac" ||
+    key === "pyeong" ||
+    key === "tsubo"
+  ) {
     return "imperial";
   }
   return "metric";
 }
 
-/** Hub list: common land and floor-area units (excludes cm²). */
-export const AREA_HUB_KEYS = ["m2", "km2", "ha", "ac", "ft2", "yd2", "in2", "mi2"] as const;
+/** Hub keys for the Area category dedicated pair links. */
+export const AREA_HUB_KEYS = [
+  "m2",
+  "cm2",
+  "km2",
+  "ha",
+  "daa",
+  "a",
+  "ac",
+  "pyeong",
+  "tsubo",
+  "ft2",
+  "yd2",
+  "in2",
+  "mi2",
+] as const;
 
 export function getOutboundAreaHubLinks(hubKey: string): { toKey: string; href: string }[] {
   if (!isValidAreaKey(hubKey)) return [];
@@ -1020,8 +1119,13 @@ export interface EnergyUnitDef {
 }
 
 export const ENERGY_UNITS: Record<string, EnergyUnitDef> = {
+  toe: { name: "Tons of Oil Equivalent", nameSg: "Ton of Oil Equivalent", factor: 41_868_000_000 },
+  gj: { name: "Gigajoules", nameSg: "Gigajoule", factor: 1_000_000_000 },
+  mmbtu: { name: "Million BTU (MMBtu, IT)", nameSg: "Million BTU (MMBtu, IT)", factor: 1_055_055_852.62 },
   therm: { name: "Therm", factor: 105505585.262 },
   kwh: { name: "Kilowatt Hours", nameSg: "Kilowatt Hour", factor: 3600000 },
+  kwh_th: { name: "Kilowatt-hour (thermal)", nameSg: "Kilowatt-hour (thermal)", factor: 3_600_000 },
+  mj: { name: "Megajoules", nameSg: "Megajoule", factor: 1_000_000 },
   kcal: { name: "Kilocalories", nameSg: "Kilocalorie", factor: 4184 },
   wh: { name: "Watt Hours", nameSg: "Watt Hour", factor: 3600 },
   kj: { name: "Kilojoules", nameSg: "Kilojoule", factor: 1000 },
@@ -1029,12 +1133,19 @@ export const ENERGY_UNITS: Record<string, EnergyUnitDef> = {
   cal: { name: "Calories", nameSg: "Calorie", factor: 4.184 },
   ftlb: { name: "Feet-Pounds", nameSg: "Feet-Pound", factor: 1.3558179483314004 },
   j: { name: "Joules", nameSg: "Joule", factor: 1 },
+  gev: { name: "Gigaelectronvolts", nameSg: "Gigaelectronvolt", factor: 1.602176634e-10 },
+  mev: { name: "Megaelectronvolts", nameSg: "Megaelectronvolt", factor: 1.602176634e-13 },
   ev: { name: "Electronvolts", nameSg: "Electronvolt", factor: 1.602176634e-19 },
 };
 
 export const ENERGY_KEY_TO_SLUG: Record<string, string> = {
+  toe: "toe",
+  gj: "gigajoule",
+  mmbtu: "mmbtu",
   therm: "therm",
   kwh: "kilowatt-hour",
+  kwh_th: "kilowatt-hour-thermal",
+  mj: "megajoule",
   kcal: "kilocalorie",
   wh: "watt-hour",
   kj: "kilojoule",
@@ -1042,10 +1153,19 @@ export const ENERGY_KEY_TO_SLUG: Record<string, string> = {
   cal: "calorie",
   ftlb: "foot-pound",
   j: "joule",
+  gev: "gigaelectronvolt",
+  mev: "megaelectronvolt",
   ev: "electronvolt",
 };
 
 const ENERGY_SLUG_TO_KEY: Record<string, string> = {
+  toe: "toe",
+  "ton-of-oil-equivalent": "toe",
+  "tons-of-oil-equivalent": "toe",
+  gj: "gj",
+  gigajoule: "gj",
+  gigajoules: "gj",
+  mmbtu: "mmbtu",
   therm: "therm",
   therms: "therm",
   kwh: "kwh",
@@ -1053,6 +1173,12 @@ const ENERGY_SLUG_TO_KEY: Record<string, string> = {
   "kilowatt-hour": "kwh",
   "kilowatt-hours": "kwh",
   kilowatthour: "kwh",
+  kwh_th: "kwh_th",
+  "kilowatt-hour-thermal": "kwh_th",
+  "kwh-thermal": "kwh_th",
+  mj: "mj",
+  megajoule: "mj",
+  megajoules: "mj",
   kcal: "kcal",
   kilocalorie: "kcal",
   kilocalories: "kcal",
@@ -1075,6 +1201,12 @@ const ENERGY_SLUG_TO_KEY: Record<string, string> = {
   j: "j",
   joule: "j",
   joules: "j",
+  gev: "gev",
+  gigaelectronvolt: "gev",
+  gigaelectronvolts: "gev",
+  mev: "mev",
+  megaelectronvolt: "mev",
+  megaelectronvolts: "mev",
   ev: "ev",
   electronvolt: "ev",
   electronvolts: "ev",
@@ -1135,8 +1267,26 @@ export function getEnergyFormulaLine(value: number, fromKey: string, toKey: stri
   return `${formatWithThousands(value)} ${fromKey} × (${formatWithThousands(fromFactor)} / ${formatWithThousands(toFactor)}) = ${formatWithThousands(formatEnergyResult(result))} ${toKey}`;
 }
 
-/** Hub: kcal, kWh, cal, J, kJ, Wh, BTU, eV (8×7 = 56). */
-export const ENERGY_HUB_KEYS = ["kcal", "kwh", "cal", "j", "kj", "wh", "btu", "ev"] as const;
+/** Hub keys for the Energy category dedicated pair links. */
+export const ENERGY_HUB_KEYS = [
+  "toe",
+  "gj",
+  "mmbtu",
+  "therm",
+  "kwh",
+  "kwh_th",
+  "mj",
+  "kcal",
+  "wh",
+  "kj",
+  "btu",
+  "cal",
+  "ftlb",
+  "j",
+  "gev",
+  "mev",
+  "ev",
+] as const;
 
 export function getOutboundEnergyHubLinks(hubKey: string): { toKey: string; href: string }[] {
   if (!isValidEnergyKey(hubKey)) return [];
@@ -1163,10 +1313,21 @@ export const POWER_UNITS: Record<string, PowerUnitDef> = {
   mw: { name: "Milliwatts", nameSg: "Milliwatt", factor: 0.001 },
   kw: { name: "Kilowatts", nameSg: "Kilowatt", factor: 1000 },
   megaw: { name: "Megawatts", nameSg: "Megawatt", factor: 1_000_000 },
+  gw: { name: "Gigawatts", nameSg: "Gigawatt", factor: 1_000_000_000 },
   hp: {
     name: "Horsepower (mechanical, 550 ft·lb/s)",
     nameSg: "Horsepower (mechanical)",
     factor: 745.69987158227022,
+  },
+  ps: {
+    name: "Metric Horsepower (PS/CV)",
+    nameSg: "Metric Horsepower (PS/CV)",
+    factor: 735.49875,
+  },
+  cv: {
+    name: "Metric Horsepower (CV)",
+    nameSg: "Metric Horsepower (CV)",
+    factor: 735.49875,
   },
   btu_hr: {
     name: "BTU per Hour (IT)",
@@ -1183,7 +1344,23 @@ export const POWER_UNITS: Record<string, PowerUnitDef> = {
     nameSg: "Volt-Ampere (VA)",
     factor: 1,
   },
+  kva: {
+    name: "Kilovolt-Amperes (kVA, unity PF)",
+    nameSg: "Kilovolt-Ampere (kVA)",
+    factor: 1000,
+  },
+  mva: {
+    name: "Megavolt-Amperes (MVA, unity PF)",
+    nameSg: "Megavolt-Ampere (MVA)",
+    factor: 1_000_000,
+  },
+  tr: {
+    name: "Tons of Refrigeration (TR)",
+    nameSg: "Ton of Refrigeration (TR)",
+    factor: (12_000 * POWER_BTU_IT_J) / 3600,
+  },
   dbm: { name: "Decibels relative to 1 mW (dBm)", nameSg: "dBm" },
+  dbw: { name: "Decibels relative to 1 W (dBW)", nameSg: "dBW" },
   ft_lb_s: {
     name: "Foot-pounds per Second",
     nameSg: "Foot-pound per Second",
@@ -1196,11 +1373,18 @@ export const POWER_KEY_TO_SLUG: Record<string, string> = {
   mw: "milliwatt",
   kw: "kilowatt",
   megaw: "megawatt",
+  gw: "gigawatt",
   hp: "hp",
+  ps: "ps",
+  cv: "cv",
   btu_hr: "btu-hr",
   kcal_h: "kcal-h",
   va: "va",
+  kva: "kva",
+  mva: "mva",
+  tr: "tr",
   dbm: "dbm",
+  dbw: "dbw",
   ft_lb_s: "ft-lb-s",
 };
 
@@ -1217,8 +1401,15 @@ const POWER_SLUG_TO_KEY: Record<string, string> = {
   megaw: "megaw",
   megawatt: "megaw",
   megawatts: "megaw",
+  gw: "gw",
+  gigawatt: "gw",
+  gigawatts: "gw",
   hp: "hp",
   horsepower: "hp",
+  ps: "ps",
+  cv: "cv",
+  "metric-horsepower": "ps",
+  "metric-hp": "ps",
   btu_hr: "btu_hr",
   "btu-hr": "btu_hr",
   "btu/hr": "btu_hr",
@@ -1229,7 +1420,16 @@ const POWER_SLUG_TO_KEY: Record<string, string> = {
   va: "va",
   voltampere: "va",
   "volt-ampere": "va",
+  kva: "kva",
+  "k-volt-ampere": "kva",
+  "kilo-volt-ampere": "kva",
+  mva: "mva",
+  "mega-volt-ampere": "mva",
+  tr: "tr",
+  tonrefrigeration: "tr",
+  "ton-of-refrigeration": "tr",
   dbm: "dbm",
+  dbw: "dbw",
   ft_lb_s: "ft_lb_s",
   "ft-lb-s": "ft_lb_s",
   "ft-lb/sec": "ft_lb_s",
@@ -1237,7 +1437,7 @@ const POWER_SLUG_TO_KEY: Record<string, string> = {
 };
 
 export function isPowerDbmKey(key: string): boolean {
-  return key === "dbm";
+  return key === "dbm" || key === "dbw";
 }
 
 export function getPowerKeys(): string[] {
@@ -1276,6 +1476,9 @@ export function powerValueToWatts(value: number, key: string): number {
   if (key === "dbm") {
     return 10 ** ((value - 30) / 10);
   }
+  if (key === "dbw") {
+    return 10 ** (value / 10);
+  }
   const f = POWER_UNITS[key].factor;
   if (f == null) return NaN;
   return value * f;
@@ -1286,6 +1489,10 @@ export function wattsToPowerValue(watts: number, key: string): number {
   if (key === "dbm") {
     if (watts <= 0) return NaN;
     return 10 * Math.log10(watts * 1000);
+  }
+  if (key === "dbw") {
+    if (watts <= 0) return NaN;
+    return 10 * Math.log10(watts);
   }
   const f = POWER_UNITS[key].factor;
   if (f == null || f === 0) return NaN;
@@ -1333,8 +1540,26 @@ export function convertPowerWithFormula(
   return [result, getPowerFormulaLine(value, from, to)];
 }
 
-/** Hub: W, mW, kW, MW, HP, BTU/hr, kcal/h, VA (8×7 = 56 dedicated hub pages). */
-export const POWER_HUB_KEYS = ["w", "mw", "kw", "megaw", "hp", "btu_hr", "kcal_h", "va"] as const;
+/** Hub keys for the Power category dedicated pair links. */
+export const POWER_HUB_KEYS = [
+  "w",
+  "mw",
+  "kw",
+  "megaw",
+  "gw",
+  "hp",
+  "ps",
+  "cv",
+  "btu_hr",
+  "kcal_h",
+  "va",
+  "kva",
+  "mva",
+  "tr",
+  "dbm",
+  "dbw",
+  "ft_lb_s",
+] as const;
 
 export function getOutboundPowerHubLinks(hubKey: string): { toKey: string; href: string }[] {
   if (!isValidPowerKey(hubKey)) return [];
@@ -1362,10 +1587,15 @@ export const BEAUFORT_MID_MS: readonly number[] = [
 
 const LINEAR_SPEED_MPS_PER_UNIT: Record<string, number> = {
   mps: 1,
+  kmps: 1000,
   kph: 1000 / 3600,
   mph: 0.44704,
   knots: 1852 / 3600,
+  fpm: 0.3048 / 60,
   fps: 0.3048,
+  ips: 0.0254,
+  cms: 0.01,
+  mms: 0.001,
   mach: MACH_TO_MPS_ISA,
   c: SPEED_OF_LIGHT_MPS,
 };
@@ -1380,10 +1610,15 @@ export interface SpeedUnitDef {
 /** Speed units aligned with the Speed Converter hub and dedicated pair pages. */
 export const SPEED_UNITS: Record<string, SpeedUnitDef> = {
   mps: { name: "Meters per Second", nameSg: "Meter per Second", factor: LINEAR_SPEED_MPS_PER_UNIT.mps },
+  kmps: { name: "Kilometers per Second", nameSg: "Kilometer per Second", factor: LINEAR_SPEED_MPS_PER_UNIT.kmps },
   kph: { name: "Kilometers per Hour", nameSg: "Kilometer per Hour", factor: LINEAR_SPEED_MPS_PER_UNIT.kph },
   mph: { name: "Miles per Hour", nameSg: "Mile per Hour", factor: LINEAR_SPEED_MPS_PER_UNIT.mph },
   knots: { name: "Knots", nameSg: "Knot", factor: LINEAR_SPEED_MPS_PER_UNIT.knots },
+  fpm: { name: "Feet per Minute", nameSg: "Foot per Minute", factor: LINEAR_SPEED_MPS_PER_UNIT.fpm },
   fps: { name: "Feet per Second", nameSg: "Feet per Second", factor: LINEAR_SPEED_MPS_PER_UNIT.fps },
+  ips: { name: "Inches per Second", nameSg: "Inch per Second", factor: LINEAR_SPEED_MPS_PER_UNIT.ips },
+  cms: { name: "Centimeters per Second", nameSg: "Centimeter per Second", factor: LINEAR_SPEED_MPS_PER_UNIT.cms },
+  mms: { name: "Millimeters per Second", nameSg: "Millimeter per Second", factor: LINEAR_SPEED_MPS_PER_UNIT.mms },
   mach: { name: "Mach (ISA sea level)", nameSg: "Mach", factor: LINEAR_SPEED_MPS_PER_UNIT.mach },
   beaufort: { name: "Beaufort wind force", nameSg: "Beaufort" },
   c: { name: "Speed of light (c)", nameSg: "Speed of light (c)", factor: LINEAR_SPEED_MPS_PER_UNIT.c },
@@ -1391,10 +1626,15 @@ export const SPEED_UNITS: Record<string, SpeedUnitDef> = {
 
 export const SPEED_KEY_TO_SLUG: Record<string, string> = {
   mps: "mps",
+  kmps: "kmps",
   kph: "kph",
   mph: "mph",
   knots: "knots",
+  fpm: "fpm",
   fps: "fps",
+  ips: "ips",
+  cms: "cms",
+  mms: "mms",
   mach: "mach",
   beaufort: "beaufort",
   c: "c",
@@ -1402,20 +1642,40 @@ export const SPEED_KEY_TO_SLUG: Record<string, string> = {
 
 const SPEED_SLUG_TO_KEY: Record<string, string> = {
   mps: "mps",
+  kmps: "kmps",
+  "km-s": "kmps",
   kph: "kph",
   "km-h": "kph",
   kmh: "kph",
   mph: "mph",
   knots: "knots",
   knot: "knots",
+  fpm: "fpm",
   fps: "fps",
+  ips: "ips",
+  cms: "cms",
+  mms: "mms",
   mach: "mach",
   beaufort: "beaufort",
   c: "c",
 };
 
-/** Hub keys for dedicated speed pair pages (8×7 = 56). */
-export const SPEED_HUB_KEYS = ["mps", "kph", "mph", "knots", "fps", "mach", "beaufort", "c"] as const;
+/** Hub keys for dedicated speed pair pages. */
+export const SPEED_HUB_KEYS = [
+  "mps",
+  "kmps",
+  "kph",
+  "mph",
+  "knots",
+  "fpm",
+  "fps",
+  "ips",
+  "cms",
+  "mms",
+  "mach",
+  "beaufort",
+  "c",
+] as const;
 
 export function getSpeedKeys(): string[] {
   return Object.keys(SPEED_UNITS);
@@ -1557,8 +1817,13 @@ export const PRESSURE_UNITS: Record<string, PressureUnitDef> = {
   bar: { name: "Bar", nameSg: "Bar", factor: 100_000 },
   atm: { name: "Atmosphere", nameSg: "Atmosphere", factor: 101_325 },
   psi: { name: "PSI", nameSg: "PSI", factor: 6894.757293168 },
+  kgf_cm2: { name: "Kilogram-force per Square Centimeter", nameSg: "kgf/cm²", factor: 98_066.5 },
+  inhg: { name: "Inch of Mercury (inHg)", nameSg: "inHg", factor: 3386.38815789 },
+  inh2o: { name: "Inch of Water (inH2O, 4 °C)", nameSg: "inH2O", factor: 249.08891 },
+  mmh2o: { name: "Millimeter of Water (mmH2O, 4 °C)", nameSg: "mmH2O", factor: 9.80665 },
   kpa: { name: "Kilopascal", nameSg: "Kilopascal", factor: 1000 },
   hpa: { name: "Hectopascal (hPa)", nameSg: "Hectopascal", factor: 100 },
+  mbar: { name: "Millibar (mbar)", nameSg: "Millibar", factor: 100 },
   torr: { name: "Torr", nameSg: "Torr", factor: PA_PER_TORR },
   mmhg: { name: "Millimeter of Mercury (mmHg)", nameSg: "mmHg", factor: PA_PER_TORR },
   pa: { name: "Pascal", nameSg: "Pascal", factor: 1 },
@@ -1568,8 +1833,13 @@ export const PRESSURE_KEY_TO_SLUG: Record<string, string> = {
   bar: "bar",
   atm: "atm",
   psi: "psi",
+  kgf_cm2: "kgf-cm2",
+  inhg: "inhg",
+  inh2o: "inh2o",
+  mmh2o: "mmh2o",
   kpa: "kpa",
   hpa: "hpa",
+  mbar: "mbar",
   torr: "torr",
   mmhg: "mmhg",
   pa: "pa",
@@ -1579,15 +1849,35 @@ const PRESSURE_SLUG_TO_KEY: Record<string, string> = {
   bar: "bar",
   atm: "atm",
   psi: "psi",
+  kgf_cm2: "kgf_cm2",
+  "kgf-cm2": "kgf_cm2",
+  inhg: "inhg",
+  inh2o: "inh2o",
+  mmh2o: "mmh2o",
   kpa: "kpa",
   hpa: "hpa",
+  mbar: "mbar",
   torr: "torr",
   mmhg: "mmhg",
   pa: "pa",
 };
 
-/** Hub keys for dedicated pressure pair pages (8×7 = 56). Order matches UnitConverter. */
-export const PRESSURE_HUB_KEYS = ["bar", "atm", "psi", "kpa", "hpa", "torr", "mmhg", "pa"] as const;
+/** Hub keys for dedicated pressure pair pages. */
+export const PRESSURE_HUB_KEYS = [
+  "bar",
+  "atm",
+  "psi",
+  "kgf_cm2",
+  "inhg",
+  "inh2o",
+  "mmh2o",
+  "kpa",
+  "hpa",
+  "mbar",
+  "torr",
+  "mmhg",
+  "pa",
+] as const;
 
 export function getPressureKeys(): string[] {
   return Object.keys(PRESSURE_UNITS);
@@ -1668,23 +1958,31 @@ export interface AngleUnitDef {
 
 export const ANGLE_UNITS: Record<string, AngleUnitDef> = {
   turn: { name: "Revolutions", nameSg: "Revolution", factor: 2 * Math.PI },
+  quadrant: { name: "Quadrants", nameSg: "Quadrant", factor: Math.PI / 2 },
+  sextant: { name: "Sextants", nameSg: "Sextant", factor: Math.PI / 3 },
   deg: { name: "Degrees", nameSg: "Degree", factor: Math.PI / 180 },
   arcmin: { name: "Arc Minutes", nameSg: "Arc Minute", factor: Math.PI / 10800 },
+  moa: { name: "Minutes of Angle (MOA)", nameSg: "Minute of Angle (MOA)", factor: Math.PI / 10800 },
   arcsec: { name: "Arc Seconds", nameSg: "Arc Second", factor: Math.PI / 648000 },
   grad: { name: "Gradians", nameSg: "Gradian", factor: Math.PI / 200 },
   rad: { name: "Radians", nameSg: "Radian", factor: 1 },
   mrad: { name: "Milliradians", nameSg: "Milliradian", factor: 0.001 },
+  urad: { name: "Microradians", nameSg: "Microradian", factor: 0.000001 },
   mil: { name: "Mils (NATO, 6400)", nameSg: "Mil", factor: (2 * Math.PI) / 6400 },
 };
 
 export const ANGLE_KEY_TO_SLUG: Record<string, string> = {
   turn: "turn",
+  quadrant: "quadrant",
+  sextant: "sextant",
   deg: "deg",
   arcmin: "arcmin",
+  moa: "moa",
   arcsec: "arcsec",
   grad: "grad",
   rad: "rad",
   mrad: "mrad",
+  urad: "urad",
   mil: "mil",
 };
 
@@ -1692,12 +1990,17 @@ const ANGLE_SLUG_TO_KEY: Record<string, string> = {
   turn: "turn",
   revolution: "turn",
   revolutions: "turn",
+  quadrant: "quadrant",
+  quadrants: "quadrant",
+  sextant: "sextant",
+  sextants: "sextant",
   deg: "deg",
   degree: "deg",
   degrees: "deg",
   arcmin: "arcmin",
   arcminute: "arcmin",
   arcminutes: "arcmin",
+  moa: "moa",
   arcsec: "arcsec",
   arcsecond: "arcsec",
   arcseconds: "arcsec",
@@ -1711,12 +2014,28 @@ const ANGLE_SLUG_TO_KEY: Record<string, string> = {
   mrad: "mrad",
   milliradian: "mrad",
   milliradians: "mrad",
+  urad: "urad",
+  microradian: "urad",
+  microradians: "urad",
   mil: "mil",
   mils: "mil",
 };
 
-/** Hub keys for dedicated angle pair pages (8×7 = 56). Order matches UnitConverter. */
-export const ANGLE_HUB_KEYS = ["turn", "deg", "arcmin", "arcsec", "grad", "rad", "mrad", "mil"] as const;
+/** Hub keys for dedicated angle pair pages. */
+export const ANGLE_HUB_KEYS = [
+  "turn",
+  "quadrant",
+  "sextant",
+  "deg",
+  "arcmin",
+  "moa",
+  "arcsec",
+  "grad",
+  "rad",
+  "mrad",
+  "urad",
+  "mil",
+] as const;
 
 export function getAngleKeys(): string[] {
   return Object.keys(ANGLE_UNITS);

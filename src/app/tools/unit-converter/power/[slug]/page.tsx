@@ -118,7 +118,8 @@ export default function PowerPairPage({ params }: { params: { slug: string } }) 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
         reference tables. Linear units use SI watt definitions; mechanical hp uses 550 ft·lbf/s; BTU/h uses
-        the IT BTU; dBm is logarithmic relative to 1 mW. The full Power Converter also includes ft·lb/s.
+        the IT BTU; dBm/dBW are logarithmic relative to 1 mW and 1 W. The full Power Converter also includes
+        PS/CV, TR, kVA/MVA, and ft·lb/s.
       </p>
 
       <PowerPairCalculator fromKey={fromKey} toKey={toKey} />

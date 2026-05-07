@@ -12,15 +12,17 @@ import {
 } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Energy Converter | Joules, Calories, kWh, BTU, Electronvolts",
+  title: "Energy Converter | J, kJ, MJ, GJ, kWh, MMBtu, toe, eV",
   description:
-    "Convert energy: joules, kilojoules, calories, kilocalories, kilowatt-hours, watt-hours, BTU, electronvolts. Free online energy converter for physics and nutrition.",
+    "Convert energy: J, kJ, MJ, GJ, Wh, kWh, thermal kWh, cal, kcal, BTU, MMBtu, therm, toe, ft·lb, eV/MeV/GeV. Free online energy converter for engineering, utility, and science.",
   path: "/tools/unit-converter/energy",
   keywords: [
     "energy converter",
     "joules to calories",
     "kWh to joules",
     "BTU to joules",
+    "mmbtu to kwh",
+    "toe to gj",
     "kilocalorie",
     "electronvolt",
     "withustools",
@@ -59,7 +61,7 @@ const FAQ_ITEMS = [
   {
     question: "Which energy units are supported?",
     answer:
-      "You can convert joule, kilojoule, calorie, kilocalorie, watt-hour, kilowatt-hour, BTU, and electronvolt.",
+      "You can convert J/kJ/MJ/GJ, Wh/kWh/kWh(th), cal/kcal, BTU/MMBtu/therm/toe, ft·lb, and eV/MeV/GeV.",
   },
   {
     question: "Are dedicated pair pages available for energy conversion?",
@@ -97,15 +99,15 @@ export default function EnergyConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between joules, calories, kWh, BTU, and more. All Unit Conversions panel included.
+        Convert between SI, electrical, thermal/fuel, mechanical, and atomic energy units. All Unit
+        Conversions panel included.
       </p>
 
       <UnitConverter category="energy" title="Convert Energy" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (kilocalorie, kilowatt-hour, calorie, joule, kilojoule, watt-hour, BTU,
-          electronvolt)
+          Dedicated converters (SI, electrical, thermal/fuel, nutrition, mechanical, and atomic energy units)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {ENERGY_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,

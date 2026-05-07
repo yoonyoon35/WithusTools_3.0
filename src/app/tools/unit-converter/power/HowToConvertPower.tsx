@@ -43,9 +43,10 @@ export default function HowToConvertPower({
         </h2>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
           <p>
-            <span className="font-medium text-slate-200">dBm</span> is logarithmic: power relative to 1 mW.{" "}
-            <span className="font-mono text-slate-300">P_W = 10^((dBm − 30) / 10)</span> and{" "}
-            <span className="font-mono text-slate-300">dBm = 10 × log₁₀(P_W × 1000)</span> for{" "}
+            <span className="font-medium text-slate-200">dBm/dBW</span> are logarithmic power levels.{" "}
+            <span className="font-mono text-slate-300">P_W = 10^((dBm − 30) / 10)</span>,{" "}
+            <span className="font-mono text-slate-300">P_W = 10^(dBW / 10)</span>, and inverse mappings use{" "}
+            <span className="font-mono text-slate-300">10 × log₁₀(·)</span> with{" "}
             <span className="font-medium text-slate-200">P_W &gt; 0</span>.
           </p>
           {isPowerDbmKey(fromKey) && !isPowerDbmKey(toKey) && (

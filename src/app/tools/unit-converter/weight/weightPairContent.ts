@@ -11,6 +11,10 @@ export { formatRatioDisplay };
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   t:
     "The metric ton (tonne) is 1,000 kilograms or one million grams. It is standard for freight, agriculture, and industrial mass in most metric countries.",
+  cwt_uk:
+    "The UK hundredweight (long hundredweight) is 112 lb, about 50.802 kg. It appears in legacy UK trade and agriculture references.",
+  cwt_us:
+    "The US hundredweight (short hundredweight) is 100 lb, exactly 45.359237 kg from the international pound definition.",
   lton:
     "The long ton (UK ton) is 2,240 pounds avoirdupois (about 1.016 metric tons). It appears in UK shipping and some historical contexts.",
   ust:
@@ -21,6 +25,8 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The kilogram is the SI base unit of mass (defined via fundamental constants). Everyday metric weights and science use kilograms and grams.",
   lb:
     "The international avoirdupois pound is exactly 0.45359237 kg. It is the standard pound for weight in the US and for many trade weights.",
+  gr: "The grain is 1/7000 of a pound (exactly 64.79891 mg). It is used in ballistics, pharmacy, and precious-metal contexts.",
+  ct: "The metric carat is exactly 0.2 grams (200 mg), commonly used for gemstones and jewelry.",
   g:
     "The gram is one thousandth of a kilogram. Recipes, lab work, and small masses typically use grams.",
   oz:
@@ -97,6 +103,12 @@ export function getExtraDerivation(fromKey: string, toKey: string): string | nul
   }
   if (fromKey === "t" && toKey === "kg") {
     return `1 metric ton = 1,000 kilograms by definition.`;
+  }
+  if (fromKey === "ct" && toKey === "g") {
+    return `1 carat = 0.2 grams exactly (200 mg).`;
+  }
+  if (fromKey === "gr" && toKey === "mg") {
+    return `1 grain = 64.79891 milligrams (1/7000 lb via the international pound).`;
   }
   return null;
 }

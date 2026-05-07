@@ -7,8 +7,13 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   bar: "The bar is 100,000 Pa. It is convenient for industrial and approximate atmospheric pressures (1 bar ≈ 1 atm).",
   atm: "The standard atmosphere (atm) is defined as exactly 101,325 Pa. It links legacy chemistry and physics problems to SI.",
   psi: "Pounds-force per square inch (PSI) is common for tires, hydraulics, and US industrial equipment.",
+  kgf_cm2: "Kilogram-force per square centimeter (kgf/cm²) is common in pump/compressor and older industrial gauge specifications.",
+  inhg: "Inches of mercury (inHg) is used in aviation altimetry and vacuum readings in some US contexts.",
+  inh2o: "Inches of water column (inH2O) is common in low-pressure HVAC and duct static-pressure measurements.",
+  mmh2o: "Millimeters of water column (mmH2O) is used for very low differential pressure in instrumentation and ventilation.",
   torr: `The torr is defined as 1/760 of a standard atmosphere (≈${PA_PER_TORR} Pa). It is widely used in vacuum science alongside pascal.`,
   mmhg: `Millimeters of mercury (mmHg) is common in medicine (e.g. blood pressure). Here it uses the same Pa per unit as torr (${PA_PER_TORR} Pa).`,
+  mbar: "Millibar (mbar) equals 100 Pa and is numerically identical to hPa. It appears in weather and legacy instrument labels.",
 };
 
 export function getUnitDescription(key: string): string {

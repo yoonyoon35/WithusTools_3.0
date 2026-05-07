@@ -117,7 +117,7 @@ export default function EnergyPairPage({ params }: { params: { slug: string } })
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with fixed input and output units, a step-by-step formula line, and
         reference tables. Factors are joule-based; food energy uses thermochemical calories. The full Energy
-        Converter also includes therm and feet-pounds.
+        Converter also includes MMBtu, toe, thermal kWh, and MeV/GeV.
       </p>
 
       <EnergyPairCalculator fromKey={fromKey} toKey={toKey} />

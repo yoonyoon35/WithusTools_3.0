@@ -7,15 +7,16 @@ import { getFaqEntriesByCategory } from "@/data/faq-data";
 import { getCanonicalSpeedSlug, SPEED_KEY_TO_SLUG, SPEED_UNITS, SPEED_HUB_KEYS } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Speed Converter | km/h, mph, Mach, Beaufort, c",
+  title: "Speed Converter | m/s, km/s, km/h, mph, knots, Mach, Beaufort, c",
   description:
-    "Convert speed: km/h, mph, m/s, ft/s, knots, Mach (ISA), Beaufort wind force, and speed of light c. Dedicated pair pages, formulas, and tables.",
+    "Convert speed: m/s, km/s, km/h, mph, knots, fpm, fps, ips, cm/s, mm/s, Mach (ISA), Beaufort wind force, and speed of light c. Dedicated pair pages, formulas, and tables.",
   path: "/tools/unit-converter/speed",
   keywords: [
     "speed converter",
     "km/h to mph",
     "mph to km/h",
     "meters per second",
+    "km/s to m/s",
     "mach to mph",
     "beaufort scale",
     "speed of light converter",
@@ -59,7 +60,7 @@ const FAQ_ITEMS = [
   {
     question: "Which speed units can I convert?",
     answer:
-      "You can convert speed units such as km/h, mph, m/s, and ft/s.",
+      "You can convert m/s, km/s, km/h, mph, knots, fpm, fps, ips, cm/s, mm/s, Mach, Beaufort, and c.",
   },
   {
     question: "Does this page include fixed speed pair converters?",
@@ -97,15 +98,16 @@ export default function SpeedConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between km/h, mph, m/s, ft/s, knots, Mach (ISA), Beaufort wind force, and speed of light c.
-        Metric, imperial, and specialized scales. All Unit Conversions panel included.
+        Convert between m/s, km/s, km/h, mph, knots, fpm, fps, ips, cm/s, mm/s, Mach (ISA), Beaufort wind
+        force, and speed of light c. Metric, imperial, and specialized scales. All Unit Conversions panel
+        included.
       </p>
 
       <UnitConverter category="speed" title="Convert Speed" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (m/s, km/h, mph, knots, ft/s, Mach, Beaufort, c)
+          Dedicated converters (SI, imperial, navigation, aviation, wind scale, and relativistic units)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {SPEED_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,

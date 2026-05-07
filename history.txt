@@ -674,3 +674,66 @@
        저작권 의존성 표기 누락 확인
         - html2pdf.js - npm에서 같이 묶이는 dompurify, html2canvas, jspdf 안내 문구 추가.
         - jspdf - 번들에 포함되는 @babel/runtime, fflate, fast-png 안내 및 하위 항목 참조 문구 추가.
+
+=================================================================================================================
+
+260507
+
+1943 - BMI Calculator 때문이었나? 카테고리 옮기면서 그랬던 거 같은데, 터미널로 서버 돌릴 때 캐시 관련 이슈가 있어서
+       캐시 관리하는 .next 폴더 삭제함.(초기화 느낌. 서버 다시 돌리면서 새로 생김.)이슈는 해결 됨.
+
+       Power Converter 페이지 지원 단위 추가
+        - gw
+        - ps
+        - cv
+        - kva
+        - mva
+        - tr
+        - dbw
+
+       Energy Converter 페이지 지원 단위 추가
+        - mj (Megajoule)
+        - gj (Gigajoule)
+        - mmbtu (Million BTU)
+        - kwh_th (Kilowatt-hour thermal)
+        - toe (Ton of Oil Equivalent)
+        - mev (Megaelectronvolt)
+        - gev (Gigaelectronvolt)
+
+       Length Converter 페이지 지원 단위 추가
+        - chain (체인)
+        - fathom (패덤)
+        - angstrom (옹스트롬)
+        - pm (피코미터)
+
+       Weight Converter 페이지 지원 단위 추가
+        - ct (carat)
+        - gr (grain)
+        - cwt_us (US hundredweight)
+        - cwt_uk (UK hundredweight)
+
+       Area Converter 페이지 지원 단위 추가
+        - daa (decare)
+        - a (are)
+        - pyeong (평)
+        - tsubo (츠보)
+
+       Speed Converter 페이지 지원 단위 추가
+        - kmps (km/s)
+        - fpm (ft/min)
+        - ips (in/s)
+        - cms (cm/s)
+        - mms (mm/s)
+
+       Pressure Converter 페이지 지원 단위 추가
+        - kgf_cm2 (kgf/cm²)
+        - inhg (inHg)
+        - inh2o (inH2O)
+        - mmh2o (mmH2O)
+        - mbar (millibar)
+
+       Angle Converter 페이지 지원 단위 추가
+        - quadrant (사분원, 90°)
+        - sextant (육분원, 60°)
+        - moa (Minute of Angle)
+        - urad (Microradian)

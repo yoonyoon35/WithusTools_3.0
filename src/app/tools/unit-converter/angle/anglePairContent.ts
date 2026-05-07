@@ -2,12 +2,16 @@ import { ANGLE_UNITS } from "@/utils/conversions";
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   turn: "One revolution (turn) is a full circle: 2π radians or 360°. Used in rotation rates, motors, and astronomy (e.g. revolutions per minute).",
+  quadrant: "A quadrant is one quarter-turn: 90° or π/2 radians. It is useful in geometric and directional notation.",
+  sextant: "A sextant is one sixth of a full turn: 60° or π/3 radians. It appears in geometry and some traditional angular partitioning.",
   deg: "Degrees divide a circle into 360 parts. Common in everyday angles, maps, and many engineering drawings.",
   arcmin: "An arc minute is 1/60 of a degree (π/10,800 rad). Used in astronomy, navigation, and precision optics (MOA).",
+  moa: "Minute of angle (MOA) equals one arc minute (1/60 degree). It is widely used in firearms optics and precision aiming.",
   arcsec: "An arc second is 1/60 of an arc minute or 1/3600 of a degree. Common in astronomy and very fine angular resolution.",
   grad: "Gradians (gon) divide a right angle into 100 parts; 400 gradians make a full turn. Used in some surveying and European contexts.",
   rad: "The radian is the SI unit of plane angle. One radian is the angle subtended by an arc equal to the radius; 2π rad = one full circle.",
   mrad: "A milliradian is 1/1000 radian. Used in ballistics, long-range shooting, and engineering for small angles.",
+  urad: "A microradian is 1/1,000,000 radian. It is used for very small angular deviations in optics and precision metrology.",
   mil: "NATO mils split a full circle into 6,400 parts for artillery and tactical optics; 1 mil = 2π/6400 rad.",
 };
 

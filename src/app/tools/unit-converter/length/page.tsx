@@ -7,9 +7,9 @@ import { getFaqEntriesByCategory } from "@/data/faq-data";
 import { getCanonicalLengthSlug, LENGTH_KEY_TO_SLUG, LENGTH_UNITS } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Length Converter | Meters, Feet, Inches, Kilometers, Miles",
+  title: "Length Converter | Meters, Feet, Inches, Miles, Nautical Mile, Angstrom",
   description:
-    "Convert length units: kilometers, meters, feet, inches, miles, yards, centimeters, millimeters. Free online length converter. Metric and imperial support.",
+    "Convert length units: kilometers, meters, feet, inches, miles, yards, nautical miles, chains, fathoms, micrometers, nanometers, angstroms, picometers. Free online length converter.",
   path: "/tools/unit-converter/length",
   keywords: [
     "length converter",
@@ -17,6 +17,8 @@ export const metadata: Metadata = createMetadata({
     "feet to meters",
     "km to miles",
     "inches to cm",
+    "nautical miles to km",
+    "angstrom to nm",
     "metric length",
     "imperial length",
     "distance converter",
@@ -60,7 +62,7 @@ const FAQ_ITEMS = [
   {
     question: "Which length units can I convert here?",
     answer:
-      "You can convert major metric and imperial length units including meter, kilometer, centimeter, millimeter, inch, foot, yard, and mile.",
+      "You can convert metric, imperial, nautical, and micro-scale units including meter, kilometer, mile, nautical mile, chain, fathom, micrometer, nanometer, angstrom, and picometer.",
   },
   {
     question: "Can I open a dedicated meter-to-feet style page?",
@@ -97,8 +99,8 @@ export default function LengthConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between kilometers, meters, feet, inches, miles, yards, and more.
-        Metric and imperial support. All Unit Conversions panel included.
+        Convert between metric, imperial, nautical, and micro-scale length units. All Unit Conversions panel
+        included.
       </p>
 
       <UnitConverter category="length" title="Convert Length" />

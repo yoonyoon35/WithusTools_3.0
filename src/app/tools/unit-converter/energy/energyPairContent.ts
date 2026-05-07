@@ -4,6 +4,10 @@ import { formatRatioDisplay } from "../length/lengthPairContent";
 export { formatRatioDisplay };
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
+  toe: "A ton of oil equivalent (toe) is a large industrial energy unit standardized at 41.868 GJ. It is common in energy policy and fuel-balance reporting.",
+  gj: "One gigajoule is 1,000,000,000 J. Utility-scale and fuel-system reporting commonly use GJ.",
+  mmbtu:
+    "MMBtu means one million IT BTU: 1,000,000 × 1,055.05585262 J. It is widely used in gas and thermal energy markets.",
   kcal:
     "The kilocalorie (kcal) is 1,000 calories in the nutrition sense—often labeled “Calorie” on food packaging. Here 1 kcal = 4,184 J (thermochemical calorie definition used in this tool).",
   kwh:
@@ -21,7 +25,12 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   ev:
     "The electronvolt is the energy change of one elementary charge across 1 V: 1 eV ≈ 1.602176634×10⁻¹⁹ J (exact by SI definition). Used in particle physics and chemistry.",
   therm: "A therm is a large US customary energy unit for natural gas (≈ 105.5 MJ here).",
+  kwh_th:
+    "Kilowatt-hour (thermal) is shown as a thermal-energy label and uses the same joule definition as kWh (3.6 MJ).",
+  mj: "One megajoule is 1,000,000 J. It is common in fuel-content and engineering thermal calculations.",
   ftlb: "The feet-pound is a mechanical work unit common in US torque and ballistics contexts.",
+  gev: "A gigaelectronvolt is 10^9 eV and is used in high-energy physics scales.",
+  mev: "A megaelectronvolt is 10^6 eV and appears in nuclear and particle physics contexts.",
 };
 
 export function getUnitDescription(key: string): string {
@@ -35,9 +44,9 @@ export type EnergyKind = "nutrition" | "electric" | "si" | "imperial" | "atomic"
 
 export function getEnergyKind(key: string): EnergyKind {
   if (key === "kcal" || key === "cal") return "nutrition";
-  if (key === "kwh" || key === "wh") return "electric";
-  if (key === "j" || key === "kj") return "si";
-  if (key === "btu" || key === "therm" || key === "ftlb") return "imperial";
+  if (key === "kwh" || key === "kwh_th" || key === "wh") return "electric";
+  if (key === "j" || key === "kj" || key === "mj" || key === "gj") return "si";
+  if (key === "btu" || key === "mmbtu" || key === "therm" || key === "toe" || key === "ftlb") return "imperial";
   return "atomic";
 }
 
@@ -89,11 +98,20 @@ export function getExtraDerivation(fromKey: string, toKey: string): string | nul
   if (fromKey === "kj" && toKey === "j") {
     return `SI prefix: 1 kJ = 1,000 J.`;
   }
+  if (fromKey === "mj" && toKey === "j") {
+    return `SI prefix: 1 MJ = 1,000,000 J.`;
+  }
+  if (fromKey === "gj" && toKey === "j") {
+    return `SI prefix: 1 GJ = 1,000,000,000 J.`;
+  }
   if (fromKey === "wh" && toKey === "j") {
     return `1 Wh = 1 W × 3,600 s / 1,000 = 3,600 J (one watt for one hour).`;
   }
   if (fromKey === "btu" && toKey === "j") {
     return `IT British thermal unit: 1 BTU ≈ 1,055.05585262 J here.`;
+  }
+  if (fromKey === "mmbtu" && toKey === "j") {
+    return `1 MMBtu = 1,000,000 BTU (IT) ≈ 1.05505585262 × 10^9 J.`;
   }
   if (fromKey === "ev" && toKey === "j") {
     return `1 eV = 1.602176634×10⁻¹⁹ J by the SI definition of the elementary charge.`;

@@ -117,7 +117,8 @@ export default function AnglePairPage({ params }: { params: { slug: string } }) 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
         reference tables. All calculations bridge through radians with fixed definitions (360° per turn, 400
-        grad per turn, 60′ per degree, 60″ per minute, NATO 6400 mils per turn).
+        grad per turn, 60′ per degree, 60″ per minute, plus practical units like MOA, urad, and NATO 6400
+        mils per turn).
       </p>
 
       <Suspense

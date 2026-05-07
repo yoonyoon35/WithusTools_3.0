@@ -12,16 +12,19 @@ import {
 } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Power Converter | Watts, Kilowatts, Horsepower, BTU/h, dBm, VA",
+  title: "Power Converter | W, kW, GW, hp, PS, BTU/h, TR, dBm, dBW, kVA",
   description:
-    "Convert power: watts, milliwatts, kilowatts, megawatts, mechanical horsepower, BTU/h, kcal/h, VA, dBm, ft·lb/s. Free online power converter with dedicated pair pages.",
+    "Convert power: W, mW, kW, MW, GW, hp, PS/CV, BTU/h, TR, kcal/h, VA/kVA/MVA, dBm, dBW, ft·lb/s. Free online power converter with dedicated pair pages.",
   path: "/tools/unit-converter/power",
   keywords: [
     "power converter",
     "watts to kilowatts",
     "hp to kw",
+    "ps to kw",
     "BTU per hour to watts",
+    "tr to kw",
     "dBm to watts",
+    "dBW to watts",
     "VA to watts",
     "megawatt",
     "withustools",
@@ -60,7 +63,7 @@ const FAQ_ITEMS = [
   {
     question: "What power units can I convert here?",
     answer:
-      "You can convert watts, kilowatts, megawatts, horsepower, BTU/h, kcal/h, VA, and related units.",
+      "You can convert W/mW/kW/MW/GW, hp and PS/CV, BTU/h and TR, kcal/h, VA/kVA/MVA, dBm/dBW, and related units.",
   },
   {
     question: "Does this include dedicated pair conversion pages?",
@@ -70,7 +73,7 @@ const FAQ_ITEMS = [
   {
     question: "Is dBm conversion supported?",
     answer:
-      "Yes. dBm conversions are handled through watt-based definitions in this tool.",
+      "Yes. dBm and dBW conversions are handled through watt-based logarithmic definitions in this tool.",
   },
 ];
 
@@ -98,16 +101,16 @@ export default function PowerConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between watts, kilowatts, horsepower, BTU/h, kcal/h, VA, dBm, ft·lb/s, and more. All Unit
-        Conversions panel included.
+        Convert between W/mW/kW/MW/GW, hp/PS/CV, BTU/h, TR, kcal/h, VA/kVA/MVA, dBm/dBW, ft·lb/s, and more.
+        All Unit Conversions panel included.
       </p>
 
       <UnitConverter category="power" title="Convert Power" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (watt, milliwatt, kilowatt, megawatt, mechanical horsepower, BTU per hour,
-          kilocalorie per hour, volt-ampere)
+          Dedicated converters (SI power, horsepower variants, thermal/HVAC, electrical apparent power,
+          logarithmic RF levels, mechanical rates)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {POWER_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,

@@ -120,7 +120,7 @@ export default function WeightPairPage({ params }: { params: { slug: string } })
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
         Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
         reference tables. All calculations use gram-based factors (international avoirdupois pound and
-        metric definitions).
+        metric definitions). The full Weight Converter also includes carat, grain, and US/UK hundredweight.
       </p>
 
       <WeightPairCalculator fromKey={fromKey} toKey={toKey} />

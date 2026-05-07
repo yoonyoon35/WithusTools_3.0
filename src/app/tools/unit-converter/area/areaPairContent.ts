@@ -15,8 +15,14 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The square kilometer is a metric unit equal to one million square meters. It is standard for city sizes, large properties, and regional planning in metric countries.",
   ha:
     "The hectare is 10,000 square meters (100 m × 100 m). It is widely used for farmland, forests, and land registration outside the US.",
+  daa: "The decare equals 1,000 m² (10 ares). It is used in agriculture and land records in parts of Europe and the Middle East.",
+  a: "The are is 100 m². It is a metric land-area unit that sits between square meters and hectares.",
   ac:
     "The international acre is 4,046.8564224 m² by definition. Acres are standard for rural and suburban land in the US and still appear in UK property contexts.",
+  pyeong:
+    "Pyeong is a Korean traditional area unit used in real estate practice; 1 pyeong is about 3.305785 m².",
+  tsubo:
+    "Tsubo is a Japanese traditional area unit used in architecture and property contexts; 1 tsubo is about 3.305785 m².",
   m2:
     "The square meter is the SI derived unit of area. Floor plans, building codes, and science typically use square meters.",
   yd2:
@@ -85,6 +91,18 @@ export function getExtraDerivation(fromKey: string, toKey: string): string | nul
   }
   if (fromKey === "ha" && toKey === "m2") {
     return `1 hectare = 100 m × 100 m = 10,000 m² exactly.`;
+  }
+  if (fromKey === "a" && toKey === "m2") {
+    return `1 are = 100 m² exactly.`;
+  }
+  if (fromKey === "daa" && toKey === "m2") {
+    return `1 decare = 1,000 m² exactly (10 ares).`;
+  }
+  if (fromKey === "pyeong" && toKey === "m2") {
+    return `1 pyeong ≈ 3.305785 m² (used in Korean property listings).`;
+  }
+  if (fromKey === "tsubo" && toKey === "m2") {
+    return `1 tsubo ≈ 3.305785 m² (Japanese traditional area unit).`;
   }
   if (fromKey === "km2" && toKey === "m2") {
     return `1 km² = 1,000 m × 1,000 m = 1,000,000 m² exactly.`;

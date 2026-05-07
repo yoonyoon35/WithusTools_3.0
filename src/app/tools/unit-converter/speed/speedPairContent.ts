@@ -3,14 +3,19 @@ import { MACH_TO_MPS_ISA, SPEED_OF_LIGHT_MPS, SPEED_UNITS } from "@/utils/conver
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   mps:
     "Meters per second is the SI derived unit for speed. It is the standard in physics and engineering for expressing velocity.",
+  kmps: "Kilometers per second is used for very high speeds in space, astronomy, and physics contexts.",
   kph:
     "Kilometers per hour is common for road speeds, weather reports, and everyday travel outside countries that use miles per hour.",
   mph:
     "Miles per hour is used for road speeds primarily in the United States, the United Kingdom, and some other countries.",
   knots:
     "The knot is one nautical mile per hour (1852 m/h). It is standard in maritime and aviation navigation.",
+  fpm: "Feet per minute is common for vertical speed in aviation and some HVAC airflow/velocity contexts.",
   fps:
     "Feet per second appears in ballistics, engineering, and some US sports contexts; it relates to imperial length per second.",
+  ips: "Inches per second is used for small mechanical motion, machining feed rates, and vibration specs.",
+  cms: "Centimeters per second is a fine-grained metric unit often used in labs and material testing.",
+  mms: "Millimeters per second is common in machinery, 3D printer settings, and vibration measurements.",
   mach:
     `Mach number is the ratio of speed to the local speed of sound. Here Mach 1 is fixed at ${MACH_TO_MPS_ISA} m/s (ISA sea level, ~15 °C) for consistent numeric conversion.`,
   beaufort:

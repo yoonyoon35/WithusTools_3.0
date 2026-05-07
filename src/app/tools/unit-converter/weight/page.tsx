@@ -7,15 +7,17 @@ import { getFaqEntriesByCategory } from "@/data/faq-data";
 import { getCanonicalWeightSlug, WEIGHT_KEY_TO_SLUG, WEIGHT_UNITS, WEIGHT_HUB_KEYS } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Weight Converter | Kilograms, Pounds, Ounces, Grams",
+  title: "Weight Converter | kg, lb, oz, carat, grain, hundredweight",
   description:
-    "Convert weight units: kilograms, pounds, ounces, grams, milligrams. Free online weight converter. Metric and imperial support for cooking, shipping, and health.",
+    "Convert weight units: kg, g, mg, ug, lb, oz, grain, carat, stone, US/UK hundredweight, metric ton, US/UK ton. Free online weight converter for cooking, shipping, health, and trade.",
   path: "/tools/unit-converter/weight",
   keywords: [
     "weight converter",
     "kg to pounds",
     "pounds to kg",
     "grams to ounces",
+    "carat to gram",
+    "hundredweight to kg",
     "mass converter",
     "metric weight",
     "imperial weight",
@@ -57,7 +59,7 @@ const FAQ_ITEMS = [
   {
     question: "Which weight units are supported?",
     answer:
-      "You can convert major weight units such as kilogram, gram, milligram, pound, and ounce.",
+      "You can convert metric, imperial, and trade units including kg/g/mg/ug, lb/oz/grain/carat, stone, US/UK hundredweight, and metric/US/UK tons.",
   },
   {
     question: "Can I open dedicated unit-pair pages?",
@@ -94,15 +96,15 @@ export default function WeightConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between kilograms, pounds, ounces, grams, metric tons, and more.
-        Metric and imperial support. All Unit Conversions panel included.
+        Convert between metric, imperial, and trade mass units including carat, grain, and hundredweight.
+        All Unit Conversions panel included.
       </p>
 
       <UnitConverter category="weight" title="Convert Weight" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (kilogram, gram, milligram, pound, ounce, metric ton, stone, US short ton)
+          Dedicated converters (metric, imperial, and trade mass units)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {WEIGHT_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,

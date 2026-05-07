@@ -12,15 +12,17 @@ import {
 } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Area Converter | Square Meters, Square Feet, Acres, Hectares",
+  title: "Area Converter | m², ft², acre, hectare, pyeong, tsubo",
   description:
-    "Convert area units: square meters, square feet, acres, hectares, square kilometers. Free online area converter for real estate and construction.",
+    "Convert area units: m², cm², km², hectare, decare, are, acre, pyeong, tsubo, ft², yd², in², mi². Free online area converter for real estate, land, and construction.",
   path: "/tools/unit-converter/area",
   keywords: [
     "area converter",
     "square meters to square feet",
     "acres to hectares",
     "m2 to ft2",
+    "pyeong to m2",
+    "tsubo to m2",
     "land area",
     "real estate area",
     "withustools",
@@ -59,7 +61,7 @@ const FAQ_ITEMS = [
   {
     question: "Which area units can I convert on this page?",
     answer:
-      "You can convert common area units such as square meter, square foot, acre, and hectare.",
+      "You can convert metric, imperial, and regional area units including m², hectare, acre, pyeong, tsubo, and related units.",
   },
   {
     question: "Are pair converters with formulas available?",
@@ -96,16 +98,15 @@ export default function AreaConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between square meters, square feet, acres, hectares, square miles,
-        square yards, and more. All Unit Conversions panel included.
+        Convert between metric, imperial, and regional area units including pyeong and tsubo. All Unit
+        Conversions panel included.
       </p>
 
       <UnitConverter category="area" title="Convert Area" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (square meter, square kilometer, hectare, acre, square feet, square yard,
-          square inch, square mile)
+          Dedicated converters (metric, imperial, and regional area units)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {AREA_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,

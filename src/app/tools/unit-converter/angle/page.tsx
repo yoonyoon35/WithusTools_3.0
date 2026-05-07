@@ -12,15 +12,17 @@ import {
 } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Angle Converter | Degrees, Radians, Mils, Arc Minutes",
+  title: "Angle Converter | Degrees, Radians, MOA, Mil, Quadrant",
   description:
-    "Convert angle: degrees, radians, gradians, revolutions, arc minutes, arcseconds, milliradians, NATO mils. Dedicated pair pages, formulas, and tables.",
+    "Convert angle: revolutions, quadrants, sextants, degrees, arc minutes, MOA, arcseconds, gradians, radians, milliradians, microradians, and NATO mils. Dedicated pair pages, formulas, and tables.",
   path: "/tools/unit-converter/angle",
   keywords: [
     "angle converter",
     "degrees to radians",
     "radians to degrees",
     "NATO mil",
+    "MOA to mil",
+    "quadrant to degree",
     "gradians",
     "arc minutes",
     "milliradians",
@@ -62,7 +64,7 @@ const FAQ_ITEMS = [
   {
     question: "Which angle units are supported?",
     answer:
-      "You can convert degrees, radians, gradians, arc minutes, arcseconds, milliradians, NATO mils, and turns.",
+      "You can convert turns, quadrants, sextants, degrees, arc minutes, MOA, arcseconds, gradians, radians, milliradians, microradians, and NATO mils.",
   },
   {
     question: "Can I open dedicated angle pair converters?",
@@ -100,15 +102,16 @@ export default function AngleConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between revolutions, degrees, arc minutes, arcseconds, gradians, radians, milliradians, and NATO
-        mils (6400). For geometry, astronomy, surveying, and optics. All Unit Conversions panel included.
+        Convert between turns, quadrants, sextants, degrees, arc minutes, MOA, arcseconds, gradians, radians,
+        mrad, urad, and NATO mils (6400). For geometry, astronomy, surveying, and optics. All Unit
+        Conversions panel included.
       </p>
 
       <UnitConverter category="angle" title="Convert Angle" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (turn, deg, arcmin, arcsec, grad, rad, mrad, mil)
+          Dedicated converters (geometric, surveying, optics, and ballistics angle units)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {ANGLE_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,

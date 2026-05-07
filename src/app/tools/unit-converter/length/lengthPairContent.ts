@@ -10,12 +10,16 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The nautical mile is a non-SI unit of length used in air and sea navigation. It is defined as exactly 1,852 meters (about 1.15078 statute miles).",
   mi:
     "The statute mile is a US customary and imperial unit equal to exactly 1,609.344 meters. It is widely used for road distances in the United States and the United Kingdom.",
+  chain:
+    "The chain is a surveying unit equal to 66 feet (20.1168 meters) exactly. It appears in land measurement and legacy civil engineering records.",
   km:
     "The kilometer is an SI unit equal to 1,000 meters. It is the standard unit for longer distances in most countries that use the metric system.",
   m:
     "The meter is the SI base unit of length, defined using the speed of light. It is the foundation for centimeters, millimeters, and kilometers.",
   yd:
     "The yard is an imperial and US customary unit equal to 0.9144 meters exactly. It appears in sports fields, fabric, and everyday imperial measurements.",
+  fathom:
+    "The fathom is an imperial/nautical depth unit equal to 6 feet (1.8288 meters). It is common in marine contexts and charted water depths.",
   ft:
     "Feet are imperial and US customary units of length; each is exactly 0.3048 meters. Twelve inches make one feet; feet are common in construction and human-scale dimensions.",
   in:
@@ -28,6 +32,9 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The micrometer (micron) is one millionth of a meter. It is used in microscopy, manufacturing tolerances, and fiber optics.",
   nm:
     "The nanometer is one billionth of a meter. It describes wavelengths of light, semiconductor features, and molecular scales.",
+  angstrom:
+    "The angstrom is 10⁻¹⁰ meters (0.1 nanometer). It is commonly used in chemistry, crystallography, and atomic-scale measurements.",
+  pm: "The picometer is one trillionth of a meter (10⁻¹² m). It is used for atomic radii and very small structural scales.",
 };
 
 export function getUnitDescription(key: string): string {

@@ -12,9 +12,9 @@ import {
 } from "@/utils/conversions";
 
 export const metadata: Metadata = createMetadata({
-  title: "Pressure Converter | Pascal, hPa, mmHg, Bar, PSI, Atmosphere",
+  title: "Pressure Converter | Pa, bar, PSI, kgf/cm², inHg, inH2O, mmHg",
   description:
-    "Convert pressure: Pa, kPa, hPa, bar, atm, PSI, torr, mmHg. Dedicated pair pages, formulas, and tables. For engineering and meteorology.",
+    "Convert pressure: Pa, kPa, hPa, mbar, bar, atm, PSI, kgf/cm², inHg, inH2O, mmH2O, torr, mmHg. Dedicated pair pages, formulas, and tables.",
   path: "/tools/unit-converter/pressure",
   keywords: [
     "pressure converter",
@@ -22,6 +22,8 @@ export const metadata: Metadata = createMetadata({
     "bar to pascal",
     "hPa to mmHg",
     "mmHg to kPa",
+    "inhg to psi",
+    "kgf cm2 to bar",
     "atmosphere pressure",
     "pressure conversion",
     "withustools",
@@ -61,7 +63,7 @@ const FAQ_ITEMS = [
   {
     question: "Which pressure units are supported?",
     answer:
-      "You can convert Pa, kPa, hPa, bar, atm, PSI, torr, and mmHg.",
+      "You can convert Pa, kPa, hPa, mbar, bar, atm, PSI, kgf/cm², inHg, inH2O, mmH2O, torr, and mmHg.",
   },
   {
     question: "Can I open dedicated pressure pair pages?",
@@ -99,15 +101,15 @@ export default function PressureConverterPage() {
       </div>
 
       <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between pascal, kilopascal, hectopascal (hPa), bar, atmosphere, PSI, torr, and millimeter of
-        mercury (mmHg). For engineering and meteorology. All Unit Conversions panel included.
+        Convert between SI, meteorology, industrial, and column-based pressure units including kgf/cm², inHg,
+        inH2O, mmH2O, torr, and mmHg. All Unit Conversions panel included.
       </p>
 
       <UnitConverter category="pressure" title="Convert Pressure" />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (bar, atm, PSI, kPa, hPa, torr, mmHg, Pa)
+          Dedicated converters (SI, meteorology, industrial gauge, and manometric pressure units)
         </h2>
         <p className="mb-6 text-sm text-slate-500">
           {PRESSURE_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,
