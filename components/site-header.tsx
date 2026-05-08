@@ -136,6 +136,13 @@ export function SiteHeader() {
                   >
                     중개보수 계산기
                   </Link>
+                  <Link
+                    role="menuitem"
+                    className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
+                    href="/dsr-calculator"
+                  >
+                    DSR 계산기
+                  </Link>
                 </div>
               </div>
             </div>

@@ -360,6 +360,12 @@ export function AnnualSalaryMortgageLimitDsrBody() {
             내 연봉과 금리 조건에 맞는 월 상환액은 대출 이자 계산기에서 직접 확인할 수 있습니다.
           </Link>
         </p>
+        <p>
+          <Link href="/dsr-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            DSR 계산기
+          </Link>
+          에서 연 소득·기존 부채·상환 방식에 따른 DSR을 함께 확인해 보세요.
+        </p>
       </aside>
     </>
   );

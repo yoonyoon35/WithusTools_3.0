@@ -290,9 +290,16 @@ export function DsrCalculationMethodBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            DSR 조건에 따른 대출 한도와 월 상환액은 대출 이자 계산기에서 확인할 수 있습니다.
+          <Link href="/dsr-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            DSR 계산기
           </Link>
+          에서 간이 계산을 해 볼 수 있습니다.
+        </p>
+        <p>
+          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            대출 이자 계산기
+          </Link>
+          에서 대출 한도·월 상환액을 시뮬레이션할 수 있습니다.
         </p>
       </aside>
     </>

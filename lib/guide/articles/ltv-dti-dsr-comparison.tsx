@@ -324,6 +324,12 @@ export function LtvDtiDsrComparisonBody() {
             LTV·DSR 조건을 반영한 월 상환액은 대출 이자 계산기에서 확인할 수 있습니다.
           </Link>
         </p>
+        <p>
+          <Link href="/dsr-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            DSR 계산기
+          </Link>
+          에서 소득·기존 부채를 넣고 일반/스트레스 DSR을 비교해 볼 수 있습니다.
+        </p>
       </aside>
     </>
   );

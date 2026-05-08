@@ -4,8 +4,8 @@ export const stressDsrExplainedMeta = {
   slug: "stress-dsr-explained",
   title: "스트레스 DSR이란 무엇인가",
   description:
-    "스트레스 DSR의 의미, 일반 DSR과의 차이, 단계별 시행·지역별 기준, 대출 유형별 적용 비율과 한도 변화 예시를 표로 정리했습니다.",
-  updated: "2026년 4월 14일",
+    "스트레스 DSR의 의미, 일반 DSR과의 차이, 단계별 시행·지역별 기준, 10·15 대책 명목 하한(3.0%p), 대출 유형별 적용 비율과 한도 변화 예시를 표로 정리했습니다.",
+  updated: "2026년 5월 8일",
 } as const;
 
 export function StressDsrExplainedBody() {
@@ -159,8 +159,15 @@ export function StressDsrExplainedBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   수도권(서울·경기·인천)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">1.50%</td>
-                <td className="border-border border-b px-3 py-2.5">3단계 전면 적용</td>
+                <td className="border-border border-b px-3 py-2.5">1.50%(명목), 주담대는 하한 3.00%p 별도</td>
+                <td className="border-border border-b px-3 py-2.5">3단계·10·15 대책 하한(주담대)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  규제지역 주담대
+                </th>
+                <td className="border-border border-b px-3 py-2.5">명목 하한 3.00%p(참고)</td>
+                <td className="border-border border-b px-3 py-2.5">10·15 대책(지정·시점은 당국 기준)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -182,6 +189,30 @@ export function StressDsrExplainedBody() {
         <p>
           비수도권 주담대는 2025년 12월 금융위원회 결정으로 2026년 6월 30일까지 2단계 스트레스 금리가 유예 적용 중이며, 유예
           종료 후 적용 기준은 금융당국 정책에 따라 결정됩니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-stress-dsr-1015">
+        <h2 id="guide-stress-dsr-1015" className="text-foreground text-xl font-semibold tracking-tight">
+          2025년 10·15 주택금융 대책: 스트레스 가산금리 하한
+        </h2>
+        <p>
+          2025년 10월 15일 발표된 주택금융 대책에 따라, <strong>수도권</strong>(서울·경기·인천)과 <strong>규제지역</strong>에서
+          취급하는 <strong>주택담보대출</strong>에 적용하는 스트레스 DSR 산정용 <strong>명목 가산금리에 3.0%p 하한</strong>이
+          설정되었습니다. 즉, 지역·대출 유형 등 요건에 해당하면 기존에 쓰이던 명목 스트레스 수준(예: 1.50%p)보다 낮게 잡히지
+          않고, <strong>최소 3.0%p</strong>를 명목 가산에 반영하는 방향으로 한도 산정이 보수적으로 이루어질 수 있습니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          세부 적용 대상(규제지역 지정 범위, 취급 시점, 금리 유형별 반영 방식 등)은 금융당국 및 해당 금융기관 기준으로 달라질 수
+          있으므로, 실제 심사·한도는 반드시 대출 기관의 안내를 따르시기 바랍니다.{" "}
+          <a
+            href="https://www.fsc.go.kr"
+            className="text-primary underline-offset-4 hover:underline"
+            rel="noopener noreferrer"
+          >
+            금융위원회(fsc.go.kr)
+          </a>
+          등에서 최신 자료를 확인할 것을 권장합니다.
         </p>
       </section>
 
@@ -319,9 +350,16 @@ export function StressDsrExplainedBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            스트레스 DSR 적용 후 월 상환액은 대출 이자 계산기에서 확인할 수 있습니다.
+          <Link href="/dsr-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            DSR 계산기
           </Link>
+          에서 일반·스트레스 DSR을 함께 비교해 볼 수 있습니다.
+        </p>
+        <p>
+          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            대출 이자 계산기
+          </Link>
+          로 가산 금리를 반영한 월 상환액만 따로 확인할 수도 있습니다.
         </p>
       </aside>
     </>

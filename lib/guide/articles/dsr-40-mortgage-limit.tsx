@@ -117,6 +117,12 @@ export function Dsr40MortgageLimitBody() {
           </Link>
           은 홈의 대출 이자 계산기에서 직접 조건을 바꿔가며 확인해 보세요.
         </p>
+        <p>
+          <Link href="/dsr-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            DSR 계산기
+          </Link>
+          에서 연 소득·기존 부채를 입력해 DSR을 간이 계산해 볼 수 있습니다.
+        </p>
       </aside>
     </>
   );
