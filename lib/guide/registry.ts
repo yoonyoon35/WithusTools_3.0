@@ -69,6 +69,18 @@ import {
   temporaryTwoHomeAcquisitionTaxExceptionGuideMeta,
 } from "@/lib/guide/articles/temporary-two-home-acquisition-tax-exception-guide";
 import {
+  SecondHomeAcquisitionTaxSurcharge2026GuideBody,
+  secondHomeAcquisitionTaxSurcharge2026GuideMeta,
+} from "@/lib/guide/articles/second-home-acquisition-tax-surcharge-2026-guide";
+import {
+  InheritedHousingAcquisitionTax2026GuideBody,
+  inheritedHousingAcquisitionTax2026GuideMeta,
+} from "@/lib/guide/articles/inherited-housing-acquisition-tax-2026-guide";
+import {
+  LocalEducationRuralSpecialTaxAcquisition2026GuideBody,
+  localEducationRuralSpecialTaxAcquisition2026GuideMeta,
+} from "@/lib/guide/articles/local-education-rural-special-tax-acquisition-2026-guide";
+import {
   ApartmentVillaOfficetelAcquisitionTaxGuideBody,
   apartmentVillaOfficetelAcquisitionTaxGuideMeta,
 } from "@/lib/guide/articles/apartment-villa-officetel-acquisition-tax-guide";
@@ -85,6 +97,14 @@ import {
   brokerageFeeRates2026GuideMeta,
 } from "@/lib/guide/articles/brokerage-fee-rates-2026-guide";
 import {
+  JeonseBrokerageFeeCalculation2026GuideBody,
+  jeonseBrokerageFeeCalculation2026GuideMeta,
+} from "@/lib/guide/articles/jeonse-brokerage-fee-calculation-2026-guide";
+import {
+  WolseBrokerageFeeCalculation2026GuideBody,
+  wolseBrokerageFeeCalculation2026GuideMeta,
+} from "@/lib/guide/articles/wolse-brokerage-fee-calculation-2026-guide";
+import {
   BrokerageFeePaymentTimingGuideBody,
   brokerageFeePaymentTimingGuideMeta,
 } from "@/lib/guide/articles/brokerage-fee-payment-timing-guide";
@@ -92,6 +112,10 @@ import {
   DirectDealVsBrokeredDealGuideBody,
   directDealVsBrokeredDealGuideMeta,
 } from "@/lib/guide/articles/direct-deal-vs-brokered-deal-guide";
+import {
+  OnlineDirectTradePlatformPrecautions2026GuideBody,
+  onlineDirectTradePlatformPrecautions2026GuideMeta,
+} from "@/lib/guide/articles/online-direct-trade-platform-precautions-2026-guide";
 import {
   JeonseRenewalBrokerageFeeGuideBody,
   jeonseRenewalBrokerageFeeGuideMeta,
@@ -124,6 +148,10 @@ import {
   AcquisitionTaxReliefPrograms2026GuideBody,
   acquisitionTaxReliefPrograms2026GuideMeta,
 } from "@/lib/guide/articles/acquisition-tax-relief-programs-2026-guide";
+import {
+  CapitalGainsSurchargeRevival2026GuideBody,
+  capitalGainsSurchargeRevival2026GuideMeta,
+} from "@/lib/guide/articles/capital-gains-surcharge-revival-2026-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -247,6 +275,18 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: TemporaryTwoHomeAcquisitionTaxExceptionGuideBody,
   },
   {
+    ...secondHomeAcquisitionTaxSurcharge2026GuideMeta,
+    Body: SecondHomeAcquisitionTaxSurcharge2026GuideBody,
+  },
+  {
+    ...inheritedHousingAcquisitionTax2026GuideMeta,
+    Body: InheritedHousingAcquisitionTax2026GuideBody,
+  },
+  {
+    ...localEducationRuralSpecialTaxAcquisition2026GuideMeta,
+    Body: LocalEducationRuralSpecialTaxAcquisition2026GuideBody,
+  },
+  {
     ...apartmentVillaOfficetelAcquisitionTaxGuideMeta,
     Body: ApartmentVillaOfficetelAcquisitionTaxGuideBody,
   },
@@ -263,12 +303,24 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: BrokerageFeeRates2026GuideBody,
   },
   {
+    ...jeonseBrokerageFeeCalculation2026GuideMeta,
+    Body: JeonseBrokerageFeeCalculation2026GuideBody,
+  },
+  {
+    ...wolseBrokerageFeeCalculation2026GuideMeta,
+    Body: WolseBrokerageFeeCalculation2026GuideBody,
+  },
+  {
     ...brokerageFeePaymentTimingGuideMeta,
     Body: BrokerageFeePaymentTimingGuideBody,
   },
   {
     ...directDealVsBrokeredDealGuideMeta,
     Body: DirectDealVsBrokeredDealGuideBody,
+  },
+  {
+    ...onlineDirectTradePlatformPrecautions2026GuideMeta,
+    Body: OnlineDirectTradePlatformPrecautions2026GuideBody,
   },
   {
     ...jeonseRenewalBrokerageFeeGuideMeta,
@@ -301,6 +353,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...acquisitionTaxReliefPrograms2026GuideMeta,
     Body: AcquisitionTaxReliefPrograms2026GuideBody,
+  },
+  {
+    ...capitalGainsSurchargeRevival2026GuideMeta,
+    Body: CapitalGainsSurchargeRevival2026GuideBody,
   },
 ];
 

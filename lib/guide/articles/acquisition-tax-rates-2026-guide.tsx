@@ -365,11 +365,22 @@ export function AcquisitionTaxRates2026GuideBody() {
 
       <section className="space-y-3" aria-labelledby="guide-at-officetel">
         <h2 id="guide-at-officetel" className="text-foreground text-xl font-semibold tracking-tight">
-          오피스텔 취득세
+          오피스텔 취득세: 업무시설(공부상) 분류 시
         </h2>
         <p>
-          오피스텔은 취득 시점에 업무시설로 분류되어 주택 수나 지역에 관계없이 4%의 고정 취득세율이 적용됩니다. 실제 주거용으로
-          사용하더라도 취득 시점의 공부상 용도를 기준으로 세금이 부과됩니다.
+          이 절에서는 취득 시점에 건축물대장 등 공부상 업무시설로 분류된 오피스텔을 기준으로 합니다. 이 경우 주택 수나 조정대상지역
+          여부와 관계없이 4%의 고정 취득세율이 적용되며, 실제로 주거에 사용하더라도 과세는 취득 시점의 공부상 용도를 따릅니다.
+        </p>
+        <p>
+          주택으로 보는 오피스텔(주거용 판정 등)이면 요건·취득 시점에 따라 위와 다른 취득세율이 적용될 수 있습니다. 주거용과
+          업무용의 차이는{" "}
+          <Link
+            href="/guide/officetel-residential-vs-business-tax-guide"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            오피스텔 취득세: 주거용 vs 업무용 차이
+          </Link>{" "}
+          가이드에서 정리했습니다.
         </p>
       </section>
 
