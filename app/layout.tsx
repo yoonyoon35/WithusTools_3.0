@@ -7,7 +7,9 @@ import { WebApplicationJsonLd } from "@/components/json-ld";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { defaultDescription, defaultTitle, ogImagePath, SITE_URL } from "@/lib/site";
+import { AdfitLeaderboard728 } from "@/components/adfit-leaderboard-728";
+import { AdfitPcSkyscraperRail } from "@/components/adfit-pc-skyscraper-rail";
+import { defaultDescription, defaultTitle, kakaoAdfitBaScriptSrc, ogImagePath, SITE_URL } from "@/lib/site";
 
 const googleAdsenseClient = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT?.trim();
 const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
@@ -121,11 +123,21 @@ export default function RootLayout({
             />
           </>
         ) : null}
+        <Script
+          id="kakao-adfit-ba"
+          async
+          src={kakaoAdfitBaScriptSrc}
+          strategy="afterInteractive"
+        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <KakaoSdkLoader />
           <WebApplicationJsonLd />
           <SiteHeader />
-          {children}
+          <AdfitLeaderboard728 />
+          <div className="mx-auto w-full max-w-6xl px-4 lg:flex lg:max-w-[calc(72rem+1.5rem+160px)] lg:gap-6">
+            <div className="min-w-0 flex-1">{children}</div>
+            <AdfitPcSkyscraperRail />
+          </div>
           <SiteFooter />
         </ThemeProvider>
       </body>

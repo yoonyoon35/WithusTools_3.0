@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { DsrCalculatorSection } from "@/components/dsr-calculator-section";
 import { SITE_URL } from "@/lib/site";
 
@@ -46,6 +47,7 @@ export default function DsrCalculatorPage() {
         </div>
       </section>
 
+      <AdfitInlineLeader320 className="bg-muted/15 py-4" />
       <DsrCalculatorSection />
     </main>
   );

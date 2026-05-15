@@ -27,3 +27,25 @@ export const defaultDescription =
   "대출 이자 계산기 - 원리금균등상환, 원금균등상환, 만기일시상환 계산. 주택담보대출, 신용대출, 전세자금대출 이자 계산";
 
 export const ogImagePath = "/favicon/apple-touch-icon-152x152.png";
+
+/** 카카오 애드핏 PC 세로형(160×600) 광고단위 */
+export const kakaoAdfitPcSkyscraperUnit = "DAN-BNkWYYZ7sfTPst4Y" as const;
+
+/** 카카오 애드핏 리더보드(728×90) 광고단위 */
+export const kakaoAdfitLeaderboard728Unit = "DAN-02MWZxUTMY4UIt2J" as const;
+
+/**
+ * 카카오 애드핏 320×100 — **데스크탑(lg 이상)** 인라인용.
+ * `kakaoAdfitInlineLeader320FromFile` 또는 `.env`의 `NEXT_PUBLIC_KAKAO_ADFIT_320x100_UNIT`. 비우면 데스크탑 슬롯만 숨김.
+ */
+const kakaoAdfitInlineLeader320FromFile = "";
+
+export const kakaoAdfitInlineLeader320Unit: string =
+  kakaoAdfitInlineLeader320FromFile.trim() ||
+  (typeof process !== "undefined" ? process.env.NEXT_PUBLIC_KAKAO_ADFIT_320x100_UNIT?.trim() : "") ||
+  "";
+
+/** 카카오 애드핏 320×100 — **모바일(lg 미만)** 전용 */
+export const kakaoAdfitInlineLeader320MobileUnit = "DAN-66MSaiUJ1Wmnqfy4" as const;
+
+export const kakaoAdfitBaScriptSrc = "https://t1.kakaocdn.net/kas/static/ba.min.js" as const;

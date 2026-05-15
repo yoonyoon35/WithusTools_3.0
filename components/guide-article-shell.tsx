@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
+import { GuideArticleBodyWithMidAd } from "@/components/guide-article-body-with-mid-ad";
 
 export function GuideArticleShell({
   title,
@@ -35,7 +37,9 @@ export function GuideArticleShell({
           </h1>
           <p className="text-muted-foreground mt-3 text-sm">게시·수정: {updated}</p>
         </header>
-        <div className="mt-10 space-y-8 text-sm leading-relaxed sm:text-base">{children}</div>
+        <AdfitInlineLeader320 className="mt-8" />
+        <GuideArticleBodyWithMidAd>{children}</GuideArticleBodyWithMidAd>
+        <AdfitInlineLeader320 className="mt-12 border-border border-t pt-10" />
       </article>
     </main>
   );

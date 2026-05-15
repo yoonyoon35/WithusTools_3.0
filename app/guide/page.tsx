@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { guideArticles } from "@/lib/guide/registry";
 import { SITE_URL } from "@/lib/site";
 
@@ -74,6 +75,7 @@ export function GuideIndexContent({ initialPage }: { initialPage: number }) {
           참고용 설명 글입니다. 약관·개인정보 처리 방침과 달리 법적 효력을 주장하지 않으며, 실제 심사 결과와 다를 수 있습니다.
         </p>
       </header>
+      <AdfitInlineLeader320 className="mt-8" />
       <ul className="mt-10 space-y-6">
         {paginatedGuideArticles.map((article) => (
           <li key={article.slug}>
