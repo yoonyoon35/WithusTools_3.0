@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 
 export const annualSalaryMortgageLimitDsrMeta = {
   slug: "annual-salary-mortgage-limit-dsr",
@@ -349,6 +350,8 @@ export function AnnualSalaryMortgageLimitDsrBody() {
           있습니다.
         </p>
       </section>
+
+      <AllCreditAffiliateCta description="한도·DSR 심사 전, 신용등급과 대출·카드 이용 현황을 무료로 확인해 보세요." />
 
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"

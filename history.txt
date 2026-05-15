@@ -266,3 +266,12 @@
         - 피씨 전용 세로형, 가로형
         - 모바일 전용 가로형
         - 가로형은 상단, 중단, 하단 이렇게 3개 등록한 상태로 승인요청 시도 할 거임.
+1708      > 중단과 하단이 공간이 생기고 미리보기가 안 보여서 실제 접속하면 보일 줄 알았는데 그냥 공간만 만들어 놓은듯
+           일단 이대로 승인 받았고 향후 추가 예정
+
+1742 - 올크레딧(app.ac/wtGD0GM43) 사이트 제휴 연결
+        - 홈, 
+        - /guide/mortgage-rate-status-2026, 
+        - /guide/annual-salary-mortgage-limit-dsr,
+        - /dsr-calculator,
+        - /guide/credit-score-loan-rate-guide

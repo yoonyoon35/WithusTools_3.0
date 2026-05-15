@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { DsrCalculatorSection } from "@/components/dsr-calculator-section";
 import { SITE_URL } from "@/lib/site";
@@ -49,6 +50,14 @@ export default function DsrCalculatorPage() {
 
       <AdfitInlineLeader320 className="bg-muted/15 py-4" />
       <DsrCalculatorSection />
+      <section className="pb-10 sm:pb-14" aria-label="신용등급 조회 안내">
+        <div className="mx-auto max-w-6xl px-4">
+          <AllCreditAffiliateCta
+            className="max-w-2xl"
+            description="DSR·한도 심사 전, 신용등급과 연체·이용 현황을 무료로 확인해 보세요."
+          />
+        </div>
+      </section>
     </main>
   );
 }
