@@ -152,6 +152,14 @@ import {
   CapitalGainsSurchargeRevival2026GuideBody,
   capitalGainsSurchargeRevival2026GuideMeta,
 } from "@/lib/guide/articles/capital-gains-surcharge-revival-2026-guide";
+import {
+  EqualPayment150MillionMortgageInterestGuideBody,
+  equalPayment150MillionMortgageInterestGuideMeta,
+} from "@/lib/guide/articles/equal-payment-150-million-mortgage-interest-guide";
+import {
+  CreditScoreMortgageInterestRelationGuideBody,
+  creditScoreMortgageInterestRelationGuideMeta,
+} from "@/lib/guide/articles/credit-score-mortgage-interest-relation-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -357,6 +365,14 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...capitalGainsSurchargeRevival2026GuideMeta,
     Body: CapitalGainsSurchargeRevival2026GuideBody,
+  },
+  {
+    ...equalPayment150MillionMortgageInterestGuideMeta,
+    Body: EqualPayment150MillionMortgageInterestGuideBody,
+  },
+  {
+    ...creditScoreMortgageInterestRelationGuideMeta,
+    Body: CreditScoreMortgageInterestRelationGuideBody,
   },
 ];
 

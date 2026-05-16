@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { DsrCalculator } from "@/components/calculator/dsr-calculator";
+import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 
 function CalculatorFallback() {
   return (
@@ -19,6 +20,10 @@ export function DsrCalculatorSection() {
         <Suspense fallback={<CalculatorFallback />}>
           <DsrCalculator />
         </Suspense>
+        <AllCreditAffiliateCta
+          className="mt-8 w-full"
+          description="DSR·한도 심사 전, 신용등급과 연체·이용 현황을 무료로 확인해 보세요."
+        />
       </div>
     </section>
   );
