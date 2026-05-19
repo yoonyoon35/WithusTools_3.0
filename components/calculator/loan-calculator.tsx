@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LoanCalculatorReference } from "@/components/calculator/loan-calculator-reference";
 import type { ScheduleExportData } from "@/lib/download-schedule";
 import {
   formatNumber,
@@ -548,6 +549,8 @@ export function LoanCalculator() {
           </div>
         </CardContent>
       </Card>
+
+      <LoanCalculatorReference />
     </div>
   );
 }

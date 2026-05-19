@@ -39,10 +39,9 @@ export default function DsrCalculatorPage() {
           </nav>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{pageTitle}</h1>
           <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-            DSR(%)는 「연간 신규·기존 부채 상환액」÷ 연소득 × 100을 적용한 참고용 계산입니다. 원금균등인 경우 연간
-            상환액을 세 가지 방식 중 선택할 수 있어 타사 결과와 정의가 다를 수 있습니다. 만기일시는 기간 중 이자만
-            반영합니다(만기 원금 제외). 소득 인정·스트레스·기존 부채 재산정은 금융기관 심사와 다를 수 있으며, 승인은 신청
-            기관에서 확인해야 합니다.
+            DSR(%)는 「연간 신규·기존 부채 상환액」÷ 연소득 × 100을 적용한 참고용 계산입니다. 하단에 한도·포함 부채·스트레스
+            가산 등 기준표를 함께 두었습니다. 원금균등·만기일시는 산출 방식 선택에 따라 결과가 달라질 수 있으며, 실제
+            심사는 신청 금융기관에서 확인해야 합니다.
           </p>
         </div>
       </section>

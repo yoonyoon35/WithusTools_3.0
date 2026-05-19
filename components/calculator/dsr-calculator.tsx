@@ -587,17 +587,192 @@ export function DsrCalculator() {
               마이너스통장·은행별 규정·제2금융 DSR 한도 등은 반영하지 않습니다.
             </p>
 
-            <p className="flex flex-wrap gap-x-3 gap-y-1">
-              <Link href="/guide/dsr-calculation-method" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-                DSR 계산 방법
-              </Link>
-              <Link href="/guide/stress-dsr-explained" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-                스트레스 DSR 설명
-              </Link>
-            </p>
           </>
         </CardContent>
       </Card>
+
+      <DsrCalculatorReferenceCard />
     </div>
+  );
+}
+
+function DsrReferenceTable({
+  caption,
+  headers,
+  rows,
+  minWidth,
+}: {
+  caption: string;
+  headers: string[];
+  rows: readonly (readonly string[])[];
+  minWidth: string;
+}) {
+  return (
+    <div className="overflow-auto rounded-md border">
+      <table className={`w-full ${minWidth} border-collapse text-sm`}>
+        <caption className="sr-only">{caption}</caption>
+        <thead className="bg-muted/50 border-b">
+          <tr>
+            {headers.map((h, i) => (
+              <th
+                key={h}
+                scope="col"
+                className={`p-2 font-medium ${i === headers.length - 1 && headers.length === 3 ? "text-right" : "text-left"}`}
+              >
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr
+              key={row[0]}
+              className="border-b transition-colors duration-150 ease-out last:border-0 hover:bg-primary/10 dark:hover:bg-primary/20"
+            >
+              {row.map((cell, i) => (
+                <td
+                  key={`${row[0]}-${i}`}
+                  className={`p-2 ${i === 0 ? "font-medium" : "text-muted-foreground"} ${i === 1 && headers.length === 3 ? "text-right font-medium text-foreground" : ""}`}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function DsrCalculatorReferenceCard() {
+  const epRows = (Object.keys(equalPrincipalDsrBasisLabels) as EqualPrincipalDsrBasis[]).map((k) => [
+    equalPrincipalDsrBasisLabels[k],
+    equalPrincipalDsrBasisHints[k],
+  ]);
+  const bulletRows = (Object.keys(bulletDsrBasisLabels) as BulletDsrBasis[]).map((k) => [
+    bulletDsrBasisLabels[k],
+    bulletDsrBasisHints[k],
+  ]);
+  const stressRows = stressDsrPresets
+    .filter((p) => p.id !== "custom")
+    .map((p) => [p.label, p.nominalPercent != null ? `${p.nominalPercent}%p` : "—"]);
+
+  return (
+    <Card className="lg:col-span-2">
+      <CardHeader>
+        <CardTitle className="text-lg">DSR 기준표 및 산정 참고</CardTitle>
+        <p className="text-muted-foreground text-sm font-normal">
+          DSR(%) = 연간 원리금 상환 합계 ÷ 연소득 × 100. 아래 표는 일반적인 기준을 요약한 것이며, 금융기관·상품별 심사와 다를 수
+          있습니다.
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <section className="space-y-2">
+          <p className="text-sm font-semibold">1. 업권별 DSR 한도 (참고)</p>
+          <DsrReferenceTable
+            caption="업권별 DSR 한도"
+            headers={["구분", "DSR 한도", "비고"]}
+            rows={[
+              ["은행권", "40%", "주택담보·가계대출 일반 기준"],
+              ["제2금융권", "50%", "저축은행·카드·캐피탈 등(상품별 상이)"],
+              ["서민금융", "별도", "햇살론 등 정책상품은 별도 규정"],
+            ]}
+            minWidth="min-w-[480px]"
+          />
+        </section>
+
+        <section className="space-y-2">
+          <p className="text-sm font-semibold">2. DSR에 포함되는 부채 (일반)</p>
+          <DsrReferenceTable
+            caption="대출 종류별 DSR 포함 항목"
+            headers={["대출 종류", "포함 항목"]}
+            rows={[
+              ["주택담보대출", "연간 원금 + 이자"],
+              ["신용대출·카드론", "연간 원금 + 이자"],
+              ["자동차 할부", "연간 원금 + 이자"],
+              ["전세자금대출", "연간 원금 + 이자(기관별 이자만 인정 등 상이)"],
+              ["마이너스통장", "한도액 기준 연간 이자(미사용 한도도 반영될 수 있음)"],
+            ]}
+            minWidth="min-w-[560px]"
+          />
+        </section>
+
+        <section className="space-y-2">
+          <p className="text-sm font-semibold">3. 원금균등 — 연간 상환액 산출 방식</p>
+          <DsrReferenceTable
+            caption="원금균등 DSR 연간 상환 산출 방식"
+            headers={["방식", "산출 개요"]}
+            rows={epRows}
+            minWidth="min-w-[640px]"
+          />
+        </section>
+
+        <section className="space-y-2">
+          <p className="text-sm font-semibold">4. 만기일시 — DSR 산정 기준</p>
+          <DsrReferenceTable
+            caption="만기일시 DSR 산정 기준"
+            headers={["기준", "설명"]}
+            rows={bulletRows}
+            minWidth="min-w-[560px]"
+          />
+        </section>
+
+        <section className="space-y-2">
+          <p className="text-sm font-semibold">5. 스트레스 DSR — 명목 가산금리 참고</p>
+          <DsrReferenceTable
+            caption="스트레스 DSR 명목 가산금리 프리셋"
+            headers={["구분", "명목 가산(%p)"]}
+            rows={stressRows}
+            minWidth="min-w-[720px]"
+          />
+          <p className="text-muted-foreground text-xs leading-relaxed">
+            신규 대출 금리 유형별 실제 가산 = 명목 × 가중(변동 100%, 혼합 80%, 주기형 40%, 순수 고정 0%). 계산기 입력과 동일한 간이
+            모델입니다.
+          </p>
+        </section>
+
+        <div className="relative overflow-hidden rounded-xl border bg-card shadow-sm">
+          <div className="from-primary/15 via-primary/8 bg-gradient-to-r to-transparent px-4 py-3 sm:px-5">
+            <h3 className="text-primary text-base font-semibold tracking-tight">DSR 산정 시 참고사항</h3>
+            <p className="text-muted-foreground mt-1 text-xs">본 계산기에 반영된 범위와 한계를 요약했습니다.</p>
+          </div>
+          <ol className="list-none space-y-3 p-4 sm:p-5">
+            {[
+              "연소득은 근로소득 기준 세전 연소득(만 원)을 가정하며, 사업·임대·연금 등은 금융기관별 인정 방식이 다릅니다.",
+              "기존 대출은 월 상환액 합계를 직접 입력합니다. 스트레스 DSR에서도 기존 부채는 입력값을 그대로 쓰며, 실제 심사에서는 기존 부채에도 스트레스가 붙을 수 있습니다.",
+              "원금균등·만기일시는 선택한 연간 상환 산출 방식에 따라 DSR이 달라집니다. 타사 계산기와 정의가 다를 수 있습니다.",
+              "마이너스통장·신용카드 리볼빙·보증채무 등은 본 화면에 포함되지 않을 수 있습니다.",
+              "LTV·DTI·규제지역·다주택·스트레스 DSR 단계별 시행 등은 별도 규정이며, 승인 한도는 신청 금융기관에서 확인해야 합니다.",
+            ].map((text, i) => (
+              <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                <span className="border-amber-800/25 bg-amber-100 text-amber-950 dark:bg-amber-950/45 dark:border-amber-700/40 dark:text-amber-50 mt-0.5 flex size-6 shrink-0 items-center justify-center rounded border text-xs font-semibold">
+                  {i + 1}
+                </span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <p className="text-muted-foreground text-xs leading-relaxed">
+          기준표는 가이드·정책 공지를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 소득 인정·부채 재산정·스트레스 적용
+          범위는 금융기관 심사와 다를 수 있습니다.
+        </p>
+
+        <p className="flex flex-wrap gap-x-3 gap-y-1">
+          <Link href="/guide/dsr-calculation-method" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            DSR 계산 방법 (상세 가이드)
+          </Link>
+          <Link href="/guide/stress-dsr-explained" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            스트레스 DSR 설명
+          </Link>
+          <Link href="/guide/ltv-dti-dsr-comparison" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            LTV·DTI·DSR 비교
+          </Link>
+        </p>
+      </CardContent>
+    </Card>
   );
 }

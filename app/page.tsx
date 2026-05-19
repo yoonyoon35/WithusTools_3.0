@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { LoanCalculatorSection } from "@/components/loan-calculator-section";
-import {
-  HomeAdBandAfterCalculator,
-  HomeAdBandAfterGuide,
-  HomeAdBandAfterHero,
-} from "@/components/marketing/home-in-flow-ad-slots";
+import { HomeAdBandAfterCalculator, HomeAdBandAfterHero } from "@/components/marketing/home-in-flow-ad-slots";
 import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
-import { GuideSection, HeroSection, LoanInfoSection } from "@/components/marketing/home-sections";
+import { HeroSection } from "@/components/marketing/home-sections";
 import { defaultDescription, defaultTitle, SITE_URL } from "@/lib/site";
 import { faqItems } from "@/lib/faq-data";
 
@@ -31,9 +27,6 @@ export default function HomePage() {
       <HomeAdBandAfterHero />
       <LoanCalculatorSection />
       <HomeAdBandAfterCalculator />
-      <GuideSection />
-      <HomeAdBandAfterGuide />
-      <LoanInfoSection />
       <AdfitInlineLeader320 className="bg-muted/15 border-border border-y py-5" />
       <section id="faq" className="scroll-mt-24 py-10 sm:py-14" aria-labelledby="faq-title">
         <div className="mx-auto max-w-3xl px-4">
