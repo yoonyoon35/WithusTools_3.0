@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
+// import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 
 export const mortgageRateStatus2026Meta = {
   slug: "mortgage-rate-status-2026",
@@ -181,10 +181,10 @@ export function MortgageRateStatus2026Body() {
         </p>
       </section>
 
-      <AllCreditAffiliateCta
+      {/* <AllCreditAffiliateCta
         className="w-full"
         description="표에 나온 금리는 신용등급·심사에 따라 달라집니다. 신청 전 KCB 신용등급을 무료로 확인해 보세요."
-      />
+      /> */}
 
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"

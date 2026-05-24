@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
+// import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 
 export const creditScoreMortgageInterestRelationGuideMeta = {
   slug: "credit-score-mortgage-interest-relation-guide",
@@ -456,10 +456,10 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
         </p>
       </section>
 
-      <AllCreditAffiliateCta
+      {/* <AllCreditAffiliateCta
         className="w-full"
         description="본인이 어느 신용점수 구간에 속하는지 먼저 확인하면, 위 표의 금리·이자 차이를 실제 조건과 연결해 보기 쉽습니다. KCB 신용등급 무료 조회입니다."
-      />
+      /> */}
 
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"

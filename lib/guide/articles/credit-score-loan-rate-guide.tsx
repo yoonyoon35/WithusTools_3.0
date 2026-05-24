@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
+// import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 
 export const creditScoreLoanRateGuideMeta = {
   slug: "credit-score-loan-rate-guide",
@@ -393,7 +393,7 @@ export function CreditScoreLoanRateGuideBody() {
         <p>
           금융기관마다 KCB 또는 NICE 중 다른 기준을 사용할 수 있으므로 두 곳 모두 확인하는 것이 좋습니다.
         </p>
-        <AllCreditAffiliateCta description="표에 소개한 올크레딧에서 KCB 신용등급을 무료(월 1회)로 확인할 수 있습니다." />
+        {/* <AllCreditAffiliateCta description="표에 소개한 올크레딧에서 KCB 신용등급을 무료(월 1회)로 확인할 수 있습니다." /> */}
       </section>
 
       <section className="space-y-3" aria-labelledby="guide-credit-strategy">

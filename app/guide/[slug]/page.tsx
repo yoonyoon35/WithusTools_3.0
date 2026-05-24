@@ -36,9 +36,9 @@ export default async function GuideArticlePage({ params }: PageProps) {
   if (!article) {
     notFound();
   }
-  const { Body, title, updated } = article;
+  const { Body, title, updated, slug: articleSlug } = article;
   return (
-    <GuideArticleShell title={title} updated={updated}>
+    <GuideArticleShell slug={articleSlug} title={title} updated={updated}>
       <Body />
     </GuideArticleShell>
   );

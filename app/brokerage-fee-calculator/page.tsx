@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
+// import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { BrokerageFeeCalculatorSection } from "@/components/brokerage-fee-calculator-section";
 import { SITE_URL } from "@/lib/site";
 
@@ -45,7 +45,7 @@ export default function BrokerageFeeCalculatorPage() {
         </div>
       </section>
 
-      <AdfitInlineLeader320 className="bg-muted/15 py-4" />
+      {/* <AdfitInlineLeader320 className="bg-muted/15 py-4" /> */}
       <BrokerageFeeCalculatorSection />
     </main>
   );

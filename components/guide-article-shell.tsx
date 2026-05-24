@@ -1,12 +1,15 @@
 import Link from "next/link";
-import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
+// import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { GuideArticleBodyWithMidAd } from "@/components/guide-article-body-with-mid-ad";
+import { GuideRelatedArticles } from "@/components/guide-related-articles";
 
 export function GuideArticleShell({
+  slug,
   title,
   updated,
   children,
 }: {
+  slug: string;
   title: string;
   updated: string;
   children: React.ReactNode;
@@ -37,9 +40,10 @@ export function GuideArticleShell({
           </h1>
           <p className="text-muted-foreground mt-3 text-sm">게시·수정: {updated}</p>
         </header>
-        <AdfitInlineLeader320 className="mt-8" />
+        {/* <AdfitInlineLeader320 className="mt-8" /> */}
         <GuideArticleBodyWithMidAd>{children}</GuideArticleBodyWithMidAd>
-        <AdfitInlineLeader320 className="mt-12 border-border border-t pt-10" />
+        <GuideRelatedArticles slug={slug} />
+        {/* <AdfitInlineLeader320 className="mt-12 border-border border-t pt-10" /> */}
       </article>
     </main>
   );

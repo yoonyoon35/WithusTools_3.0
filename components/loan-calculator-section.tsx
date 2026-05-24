@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
+// import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 import { LoanCalculator } from "@/components/calculator/loan-calculator";
 
 function CalculatorFallback() {
@@ -23,7 +23,7 @@ export function LoanCalculatorSection() {
         <Suspense fallback={<CalculatorFallback />}>
           <LoanCalculator />
         </Suspense>
-        <AllCreditAffiliateCta className="mt-8 w-full" />
+        {/* <AllCreditAffiliateCta className="mt-8 w-full" /> */}
       </div>
     </section>
   );

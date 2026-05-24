@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Children, Fragment, type ReactNode } from "react";
-import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
-import { leaderAdIndicesAfterWhichToInsert } from "@/lib/ads/in-flow-leader";
+// import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
+// import { leaderAdIndicesAfterWhichToInsert } from "@/lib/ads/in-flow-leader";
 
 export function LegalPageShell({
   title,
@@ -13,7 +13,7 @@ export function LegalPageShell({
   children: ReactNode;
 }) {
   const blocks = Children.toArray(children);
-  const leaderAfter = new Set(leaderAdIndicesAfterWhichToInsert(blocks.length));
+  // const leaderAfter = new Set(leaderAdIndicesAfterWhichToInsert(blocks.length));
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 sm:py-14" role="main">
@@ -38,13 +38,13 @@ export function LegalPageShell({
                 {block}
               </Fragment>,
             ];
-            if (leaderAfter.has(i)) {
+            {/* if (leaderAfter.has(i)) {
               nodes.push(
                 <div key={`legal-ad-${i}`} className="py-2">
                   <AdfitInlineLeader320 />
                 </div>,
               );
-            }
+            } */}
             return nodes;
           })}
         </div>
