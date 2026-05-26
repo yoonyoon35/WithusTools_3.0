@@ -4,7 +4,7 @@ export const ltvDtiDsrComparisonMeta = {
   slug: "ltv-dti-dsr-comparison",
   title: "LTV·DTI·DSR 차이 한눈에 정리",
   description:
-    "주택담보대출 심사에 쓰이는 LTV·DTI·DSR의 의미, 계산식, 포함 부채 범위 차이와 한도 산출 예시를 표로 정리했습니다.",
+    "LTV·DTI·DSR의 차이, 실제 한도를 가르는 규제 판단, 연봉·담보·기존 부채가 겹칠 때 시나리오와 흔한 오해를 정리했습니다.",
   updated: "2026년 4월 14일",
 } as const;
 
@@ -14,8 +14,19 @@ export function LtvDtiDsrComparisonBody() {
       <p>
         주택담보대출 심사 시 <abbr title="담보인정비율">LTV</abbr>, <abbr title="총부채상환비율">DTI</abbr>,{" "}
         <abbr title="총부채원리금상환비율">DSR</abbr> 세 가지 규제가 동시에 적용됩니다. 세 규제 중{" "}
-        <strong>가장 낮은 금액</strong>이 실제 대출 한도로 결정됩니다.
+        <strong>가장 낮은 금액</strong>이 실제 대출 한도로 결정됩니다. 2023년 이후 은행권에서는 실무상 <strong>DSR과 LTV</strong>
+        중 어느 쪽이 먼저 한도를 막는지가 더 자주 문제가 됩니다.
       </p>
+
+      <section className="space-y-3" aria-labelledby="guide-ltd-which-binds">
+        <h2 id="guide-ltd-which-binds" className="text-foreground text-xl font-semibold tracking-tight">
+          내 경우엔 어느 규제가 먼저 걸릴까
+        </h2>
+        <p>
+          담보가 비싼 수도권 아파트·규제지역·다주택이면 LTV가 먼저 낮아집니다. 반면 저가 주택·기존 신용·할부가 많으면 DSR이
+          먼저 걸립니다. DTI는 DSR보다 느슨한 편이라, 요즘은 “DTI는 통과했는데 DSR에서 막힌다”는 경우가 훨씬 많습니다.
+        </p>
+      </section>
 
       <section className="space-y-4" aria-labelledby="guide-ltd-core-compare">
         <h2 id="guide-ltd-core-compare" className="text-foreground text-xl font-semibold tracking-tight">
@@ -301,13 +312,22 @@ export function LtvDtiDsrComparisonBody() {
         </div>
       </section>
 
-      <section className="space-y-3" aria-labelledby="guide-ltd-increase-limit">
-        <h2 id="guide-ltd-increase-limit" className="text-foreground text-xl font-semibold tracking-tight">
-          대출 한도를 높이는 방법
+      <section className="space-y-3" aria-labelledby="guide-ltd-mistakes">
+        <h2 id="guide-ltd-mistakes" className="text-foreground text-xl font-semibold tracking-tight">
+          흔한 오해
         </h2>
         <p>
-          세 규제 중 실질적 병목은 대부분 DSR입니다. DSR 한도를 높이려면 기존 부채를 줄이거나 소득을 높이는 방법 외에 선택지가
-          없습니다. 대출 신청 전 신용대출·자동차 할부·카드론 등 불필요한 부채를 정리하는 것이 한도 확보에 가장 효과적입니다.
+          “LTV 70%니까 집값의 70%까지 빌릴 수 있다”만 기억하고 DSR·스트레스 DSR을 안 보는 경우, DTI만 통과했다고 안심하는
+          경우가 있습니다. 또 신용대출 원금은 DTI에는 덜 반영되지만 DSR에는 들어가므로, 소액 대출 여러 개가 합쳐 한도를
+          깎아 먹기도 합니다. 한도를 올리려면{" "}
+          <Link href="/guide/dsr-40-mortgage-limit" className="text-primary underline-offset-4 hover:underline">
+            DSR 40% 산정
+          </Link>
+          과{" "}
+          <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">
+            스트레스 DSR
+          </Link>
+          을 함께 확인하세요.
         </p>
         <p className="text-muted-foreground text-sm">
           ※ 규제 기준은 정부 정책에 따라 변동될 수 있으며, 실제 적용 기준은 금융기관 및 대출 상품에 따라 상이합니다.

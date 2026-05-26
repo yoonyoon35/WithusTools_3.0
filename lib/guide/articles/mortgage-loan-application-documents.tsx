@@ -4,7 +4,7 @@ export const mortgageLoanApplicationDocumentsMeta = {
   slug: "mortgage-loan-application-documents",
   title: "주택담보대출 신청 절차 및 필요 서류",
   description:
-    "주택담보대출 신청 단계·소요 기간, 공통·소득·담보 서류, 비대면·대면·정책 모기지 신청 방법과 서류 발급 주의사항을 표로 정리했습니다.",
+    "주담대 신청 절차·필수 서류, 잔금일 역산 준비 일정, 소득 유형별 제출물, 심사 지연·반려 흔한 원인과 대응 방법을 정리했습니다.",
   updated: "2026년 4월 14일",
 } as const;
 
@@ -13,8 +13,72 @@ export function MortgageLoanApplicationDocumentsBody() {
     <>
       <p>
         주택담보대출은 신청부터 대출 실행까지 통상 1~2주가 소요됩니다. 서류 미비로 인한 지연이 가장 흔한 문제이므로 잔금일 최소
-        3주 전에 준비를 시작하는 것이 안전합니다.
+        3주 전에 준비를 시작하는 것이 안전합니다. 표는 <strong>무엇을 준비해야 하는지</strong>를 정리한 것이고, 이 글은{" "}
+        <strong>언제·어떤 순서로 준비하면 지연을 줄일 수 있는지</strong>에 초점을 맞췄습니다.
       </p>
+
+      <section className="space-y-4" aria-labelledby="guide-mla-timeline">
+        <h2 id="guide-mla-timeline" className="text-foreground text-xl font-semibold tracking-tight">
+          잔금일 역산 준비 일정(예: 잔금 D-21)
+        </h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              잔금 3주 전부터 역산한 준비 순서(참고)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  시점
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  할 일
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  D-21~18
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  2~3곳 사전 한도 조회, 소득·주택 요건 확인, 은행별 서류 목록 받기
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  D-17~14
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  등본·초본·가족관계·소득 서류·등기부등본 발급(유효기간 확인)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  D-13~10
+                </th>
+                <td className="border-border border-b px-3 py-2.5">대출 신청·서류 제출, 감정 평가 일정 잡기</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  D-9~5
+                </th>
+                <td className="border-border border-b px-3 py-2.5">심사·승인, 인감증명·근저당 설정 서류 진행</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  D-4~잔금일
+                </th>
+                <td className="px-3 py-2.5">실행 확정, 잔금 당일 송금·등기 연계 확인</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          공동명의·세입자 있는 매물·자영업 소득 증빙은 통상 1~2주 더 걸릴 수 있어, D-21은 <strong>최소</strong> 기준으로
+          보는 것이 좋습니다.
+        </p>
+      </section>
 
       <section className="space-y-4" aria-labelledby="guide-mla-procedure">
         <h2 id="guide-mla-procedure" className="text-foreground text-xl font-semibold tracking-tight">
@@ -397,6 +461,42 @@ export function MortgageLoanApplicationDocumentsBody() {
         </div>
         <p className="text-muted-foreground text-sm">
           ※ 금융기관별로 추가 서류를 요구할 수 있으므로 신청 전 해당 은행에 서류 목록을 확인하는 것이 필수입니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-mla-delay-reasons">
+        <h2 id="guide-mla-delay-reasons" className="text-foreground text-xl font-semibold tracking-tight">
+          심사 지연·보완 요청이 잦은 이유
+        </h2>
+        <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
+          <li>
+            <strong>소득 서류 기간 불일치</strong> — 전년도만 제출했는데 전전년도도 요구하는 경우. 근로자는 원천징수·재직증명
+            발급일도 확인.
+          </li>
+          <li>
+            <strong>등기부등본·인감증명 유효기간 경과</strong> — 등본 1개월, 인감 3개월 등 은행별 기준이 다릅니다.
+          </li>
+          <li>
+            <strong>담보 특이사항 미공개</strong> — 전입세대·임대차·가압류 등은 감정·법무 검토에서 추가 서류를 요구합니다.
+          </li>
+          <li>
+            <strong>DSR·LTV 재산정</strong> — 타행 대출·카드론이 신용조회에 잡히면 한도가 줄어 실행일 전 재심사가 필요할 수
+            있습니다.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-mla-self-employed">
+        <h2 id="guide-mla-self-employed" className="text-foreground text-xl font-semibold tracking-tight">
+          자영업·프리랜서는 더 여유 있게
+        </h2>
+        <p>
+          사업소득·프리랜서는 소득금액증명·신고서 등 발급·확정 시점에 따라 2~4주 더 걸리는 경우가 많습니다. 잔금일이
+          정해져 있다면 <strong>매매계약 전</strong>에 소득 인정 가능 여부를 1곳 이상 사전 상담하는 것이 안전합니다.{" "}
+          <Link href="/guide/income-type-loan-limit-difference-guide" className="text-primary underline-offset-4 hover:underline">
+            소득 유형별 대출 한도
+          </Link>
+          도 함께 참고하세요.
         </p>
       </section>
 

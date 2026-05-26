@@ -4,7 +4,7 @@ export const housingSubscriptionSavingsGuideMeta = {
   slug: "housing-subscription-savings-guide",
   title: "주택청약종합저축 완전 정리",
   description:
-    "2026년 4월 기준 주택청약종합저축 개요, 기본 상품 정보, 1순위·예치금·가점·당첨 선정 방식, 해지 유의사항과 납입 전략을 표로 정리했습니다.",
+    "주택청약종합저축 가입 시점·납입 전략, 1순위 요건과 가점의 관계, 해지 시 잃는 것과 청약 전에 확인할 순서를 정리했습니다.",
   updated: "2026년 4월 20일",
 } as const;
 
@@ -17,7 +17,23 @@ export function HousingSubscriptionSavingsGuideBody() {
         </h2>
         <p>
           주택청약종합저축은 국민주택과 민영주택 모두 청약할 수 있는 만능 청약통장입니다. 1인 1계좌만 보유 가능하며, 연령에 관계없이
-          누구나 가입할 수 있습니다.
+          누구나 가입할 수 있습니다. “언제든 가입” 가능하지만, <strong>1순위 자격(납입 기간·예치금)</strong>은 시간이
+          필요하므로 내집마련 시기보다 1~2년 앞서 시작하는 편이 유리합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-hss-when-start">
+        <h2 id="guide-hss-when-start" className="text-foreground text-xl font-semibold tracking-tight">
+          지금 가입해야 할까
+        </h2>
+        <p>
+          5~10년 안에 청약을 염두에 두고 있다면 월 25만 원(가점·1순위 인정 상한)까지 꾸준히 넣는 그림을 그려 보세요. 당장
+          청약 계획이 없어도 세액공제 혜택만큼은 받을 수 있지만, 중도 해지 시 청약 가점·순위가 초기화될 수 있어 목적 없이
+          오래 묶어 두기만 하는 것도 손해일 수 있습니다.{" "}
+          <Link href="/guide/first-time-homebuyer-benefits-2026" className="text-primary underline-offset-4 hover:underline">
+            생애최초 혜택
+          </Link>
+          과 특별공급 일정을 함께 보면 납입 속도를 정하기 쉽습니다.
         </p>
       </section>
 

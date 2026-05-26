@@ -4,7 +4,7 @@ export const prepaymentFeeCalculationMeta = {
   slug: "prepayment-fee-calculation",
   title: "중도상환 수수료 계산 방식",
   description:
-    "중도상환 수수료 계산식, 금융기관별 수수료율 범위, 면제 조건, 이자 절감액 비교를 표 중심으로 정리한 안내입니다.",
+    "중도상환 수수료 계산과 이자 절감 비교, 갈아타기·만기 대기 중 어느 쪽이 나은지 판단하는 방법을 정리했습니다.",
   updated: "2026년 4월 13일",
 } as const;
 
@@ -13,8 +13,23 @@ export function PrepaymentFeeCalculationBody() {
     <>
       <p>
         중도상환 수수료는 대출 만기 전 원금 일부 또는 전액을 상환할 때 금융기관에 납부하는 수수료입니다. 대출 초기 자금 조달
-        비용을 보전하기 위해 부과되며, 통상 대출 실행일로부터 3년 이내 상환 시 적용됩니다.
+        비용을 보전하기 위해 부과되며, 통상 대출 실행일로부터 3년 이내 상환 시 적용됩니다. 수수료를 내더라도 이자 절감이
+        더 크면 상환이 유리하지만, <strong>반드시 그런 것은 아닙니다</strong>.
       </p>
+
+      <section className="space-y-3" aria-labelledby="guide-prepayment-when-not">
+        <h2 id="guide-prepayment-when-not" className="text-foreground text-xl font-semibold tracking-tight">
+          굳이 지금 상환하지 않아도 되는 경우
+        </h2>
+        <p>
+          금리가 이미 낮고 잔여 기간이 1~2년뿐이면 절감 이자가 수수료를 못 넘길 수 있습니다. 곧{" "}
+          <Link href="/guide/loan-refinancing-guide" className="text-primary underline-offset-4 hover:underline">
+            갈아타기
+          </Link>
+          로 더 낮은 금리를 받을 수 있다면, 기존 대출 중도상환 수수료와 새 대출 비용을 합쳐 비교하는 편이 낫습니다. 디딤돌
+          등 기간 한정 면제가 있는 경우에는 면제 종료일 전후로 타이밍을 맞추는 것도 방법입니다.
+        </p>
+      </section>
 
       <section className="space-y-3" aria-labelledby="guide-prepayment-formula">
         <h2 id="guide-prepayment-formula" className="text-foreground text-xl font-semibold tracking-tight">

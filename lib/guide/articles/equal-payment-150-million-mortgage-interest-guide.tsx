@@ -4,7 +4,7 @@ export const equalPayment150MillionMortgageInterestGuideMeta = {
   slug: "equal-payment-150-million-mortgage-interest-guide",
   title: "원리금균등상환 주택담보대출 1억 5천만원 이자 계산 방식",
   description:
-    "원리금균등상환 월 상환액 공식, 금리·기간별 비교, 총 이자, 원금·이자 변화, 거치기간·상환기간·중도상환·DSR 참고를 표로 정리했습니다.",
+    "1억 5천만 원 원리금균등 상환의 월·총 이자 구조, 금리·기간 선택 시 DSR과의 관계, 계산기로 확인할 때와 이 글에서 볼 내용을 구분해 정리했습니다.",
   updated: "2026년 5월 15일",
 } as const;
 
@@ -14,7 +14,27 @@ export function EqualPayment150MillionMortgageInterestGuideBody() {
       <section className="space-y-3" aria-labelledby="guide-ep15-intro">
         <p>
           원리금균등상환은 매월 납부하는 원금과 이자의 합계액이 동일한 상환 방식입니다. 대출 초기에는 이자 비중이 높고 원금 비중이
-          낮지만, 시간이 지날수록 원금 비중이 늘어나고 이자 비중이 줄어듭니다.
+          낮지만, 시간이 지날수록 원금 비중이 늘어나고 이자 비중이 줄어듭니다. 홈{" "}
+          <Link href="/#calculator" className="text-primary underline-offset-4 hover:underline">
+            대출 이자 계산기
+          </Link>
+          에 조건을 넣으면 숫자를 바로 볼 수 있고, 이 글은 <strong>1억 5천만 원 규모에서 기간·금리 선택이 월 부담에 어떻게
+          연결되는지</strong> 정리합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-ep15-dsr">
+        <h2 id="guide-ep15-dsr" className="text-foreground text-xl font-semibold tracking-tight">
+          30년 vs 20년: DSR 관점
+        </h2>
+        <p>
+          같은 1억 5천만 원·금리 4%라도 30년이면 월 약 72만 원, 20년이면 약 91만 원 수준입니다. 기간을 줄이면 총 이자는
+          줄지만 월 부담이 커져 DSR 한도에 더 빨리 닿습니다. 연봉 4,500만 원·기존 부채 없음이면 30년은 여유 있지만 20년은
+          다른 대출과 합쳐 보면 빠듯해질 수 있습니다.{" "}
+          <Link href="/guide/equal-payment-vs-equal-principal" className="text-primary underline-offset-4 hover:underline">
+            원리금 vs 원금균등
+          </Link>
+          과 함께 상환 방식도 비교해 보세요.
         </p>
       </section>
 

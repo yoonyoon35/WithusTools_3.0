@@ -5,7 +5,7 @@ export const annualSalaryMortgageLimitDsrMeta = {
   slug: "annual-salary-mortgage-limit-dsr",
   title: "연봉별 주택담보대출 한도 기준",
   description:
-    "DSR 40%를 기준으로 한 연봉별 월 상환 가능액·대출 한도 추산, 기존 부채 반영, 금리·LTV와의 관계를 표로 정리한 참고 안내입니다.",
+    "연봉별 DSR 40% 월 상환 한도, 기존 부채·금리·LTV 반영 시나리오, 실제 매수 가능 금액 추산과 신청 전 체크리스트를 정리했습니다.",
   updated: "2026년 4월 14일",
 } as const;
 
@@ -14,8 +14,29 @@ export function AnnualSalaryMortgageLimitDsrBody() {
     <>
       <p>
         연봉에 따른 주택담보대출 한도는 <strong>DSR 40%</strong> 규제를 기준으로 산출됩니다. DSR 40%란 연간 원리금 상환액이 연소득의
-        40%를 초과할 수 없다는 규제입니다.
+        40%를 초과할 수 없다는 규제입니다. 아래 표는 <strong>기존 부채 없음·금리 4%·30년</strong> 같은 단순 가정 하의
+        참고값이며, 실제로는 소득 산정 방식·스트레스 DSR·LTV가 한도를 더 줄입니다.
       </p>
+
+      <section className="space-y-4" aria-labelledby="guide-salary-scenario-5500">
+        <h2 id="guide-salary-scenario-5500" className="text-foreground text-xl font-semibold tracking-tight">
+          시나리오: 연봉 5,500만 원, 신용대출 월 40만 원
+        </h2>
+        <p>
+          DSR 40% 기준 월 상환 가능액은 약 183만 원입니다. 기존 신용대출 40만 원을 빼면 주담대에 쓸 수 있는 금액은 약{" "}
+          <strong>143만 원</strong>입니다. 금리 4%·30년·원리금균등이면 대출 가능액은 약 <strong>2억 5,000만 원</strong>
+          수준으로 줄어듭니다. 같은 연봉이라도 부채 유무에 따라 “살 수 있는 집값”이 크게 달라집니다.
+        </p>
+        <p>
+          매매가 4억 주택을 70% LTV로 보면 대출 필요액은 2.8억인데, 위 DSR 산출액(약 2.5억)보다 크면{" "}
+          <strong>추가 자기자금 또는 LTV·DSR 중 하나를 맞추는 조정</strong>이 필요합니다. 자영업·프리랜서는 소득
+          인정액이 더 낮게 잡혀 같은 연봉 표와 결과가 다를 수 있습니다 —{" "}
+          <Link href="/guide/income-type-loan-limit-difference-guide" className="text-primary underline-offset-4 hover:underline">
+            소득 유형별 대출 한도
+          </Link>
+          을 참고하세요.
+        </p>
+      </section>
 
       <section className="space-y-4" aria-labelledby="guide-salary-dsr-monthly">
         <h2 id="guide-salary-dsr-monthly" className="text-foreground text-xl font-semibold tracking-tight">
@@ -349,6 +370,33 @@ export function AnnualSalaryMortgageLimitDsrBody() {
           ※ 정확한 한도는 금융기관 심사를 통해 확인해야 하며, 소득 산정 방식(근로소득·사업소득·기타소득)에 따라 결과가 달라질 수
           있습니다.
         </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-salary-ltv-example">
+        <h2 id="guide-salary-ltv-example" className="text-foreground text-xl font-semibold tracking-tight">
+          DSR vs LTV: 어느 쪽이 먼저 걸리나
+        </h2>
+        <p>
+          연봉 6,000만 원·기존 부채 없음·금리 4%·30년이면 DSR 기준 대출 가능액은 표상 약 4억 1,800만 원입니다. 그러나
+          담보 주택 5억·LTV 70%면 LTV 한도는 <strong>3억 5,000만 원</strong>입니다. 이 경우 실제 한도는 DSR이 아니라 LTV
+          쪽입니다. 반대로 저가 주택·높은 LTV 구간에서는 DSR이 먼저 한도를 제한합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-salary-checklist">
+        <h2 id="guide-salary-checklist" className="text-foreground text-xl font-semibold tracking-tight">
+          표를 보기 전 체크리스트
+        </h2>
+        <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
+          <li>부부합산 소득·기존 대출(신용·할부·전세자금) 월 상환액 정리</li>
+          <li>담보 예정 주택 감정가·지역(규제지역·생애최초) 확인</li>
+          <li>스트레스 DSR 적용 시 한도 감소분 —{" "}
+            <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">
+              스트레스 DSR
+            </Link>
+          </li>
+          <li>2곳 이상 사전 한도 조회로 표와 실제 승인액 비교</li>
+        </ul>
       </section>
 
       {/* <AllCreditAffiliateCta description="한도·DSR 심사 전, 신용등급과 대출·카드 이용 현황을 무료로 확인해 보세요." /> */}

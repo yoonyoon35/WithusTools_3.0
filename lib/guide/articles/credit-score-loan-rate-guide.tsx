@@ -5,7 +5,7 @@ export const creditScoreLoanRateGuideMeta = {
   slug: "credit-score-loan-rate-guide",
   title: "신용점수 관리 방법과 대출 금리의 관계",
   description:
-    "2026년 4월 시중은행 기준 신용점수 구간별 금리 영향, 산정 요소, 점수 올리기·떨어뜨리는 행동, 절감 효과 예시와 확인 방법을 표로 정리했습니다.",
+    "신용점수가 대출 금리·한도에 미치는 방식, 구간별 차이, 대출 3~6개월 전부터 할 수 있는 관리와 점수만으로는 닿지 않는 영역을 정리했습니다.",
   updated: "2026년 4월 14일",
 } as const;
 
@@ -18,7 +18,19 @@ export function CreditScoreLoanRateGuideBody() {
         </h2>
         <p>
           신용점수는 금융기관이 대출 심사 시 금리와 한도를 결정하는 핵심 기준입니다. 같은 조건의 대출이라도 신용점수에 따라 금리가
-          최대 1~2%p 이상 차이 날 수 있습니다.
+          최대 1~2%p 이상 차이 날 수 있습니다. 다만 디딤돌·보금자리론·버팀목처럼 <strong>신용과 무관하게 금리가 정해지는
+          상품</strong>에는 영향이 거의 없습니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-credit-timeline">
+        <h2 id="guide-credit-timeline" className="text-foreground text-xl font-semibold tracking-tight">
+          대출 3~6개월 전부터 할 일
+        </h2>
+        <p>
+          연체 이력은 회복에 오래 걸립니다. 우선 연체·체납을 없애고, 불필요한 카드론·현금서비스를 정리합니다. 대출 조회는
+          짧은 기간에 여러 번 몰아 하면 점수가 일시 하락할 수 있으므로, “한도 조회”는 필요한 2~3곳으로 줄이는 것이 좋습니다.
+          통신·공공요금 납부 이력을 신용평가사에 제출하는 방법도 단기 개선에 도움이 될 수 있습니다.
         </p>
       </section>
 

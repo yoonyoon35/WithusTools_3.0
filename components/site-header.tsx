@@ -146,12 +146,6 @@ export function SiteHeader() {
                 </div>
               </div>
             </div>
-            <Link className="hover:text-foreground rounded-md px-2 py-1" href="/#guide">
-              이용가이드
-            </Link>
-            <Link className="hover:text-foreground rounded-md px-2 py-1" href="/#loan-info">
-              대출정보
-            </Link>
             <Link className="hover:text-foreground rounded-md px-2 py-1" href="/#faq">
               자주묻는질문
             </Link>

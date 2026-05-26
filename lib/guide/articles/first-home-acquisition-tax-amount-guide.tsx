@@ -4,7 +4,7 @@ export const firstHomeAcquisitionTaxAmountGuideMeta = {
   slug: "first-home-acquisition-tax-amount-guide",
   title: "1주택자 취득세 얼마나 나올까",
   description:
-    "무주택·1주택 교체 시 취득세·지방교육세·농특 구조, 구간별 세율, 매매가별 납부액 예시, 생애최초 감면과 납부 방법을 표로 정리했습니다.",
+    "1주택자·무주택자 취득세 구조, 매매가 구간별 세액, 1주택 교체·생애최초 감면 시나리오와 계산기와의 역할 구분을 정리했습니다.",
   updated: "2026년 4월 23일",
 } as const;
 
@@ -17,7 +17,26 @@ export function FirstHomeAcquisitionTaxAmountGuideBody() {
         </h2>
         <p>
           무주택자가 처음으로 주택을 구입하거나, 1주택자가 기존 주택을 팔고 새 주택을 구입하는 경우 취득세율은 매매가에 따라 1% ~
-          3%가 적용됩니다. 여기에 지방교육세와 농어촌특별세가 추가로 부과됩니다.
+          3%가 적용됩니다. 여기에 지방교육세와 농어촌특별세가 추가로 부과됩니다.{" "}
+          <Link href="/acquisition-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            취득세 계산기
+          </Link>
+          로 금액을 빠르게 확인한 뒤, 이 글에서는 <strong>구간별 세율이 왜 달라지는지·1주택 교체 때 주의할 점</strong>을
+          다룹니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-fhat-replace">
+        <h2 id="guide-fhat-replace" className="text-foreground text-xl font-semibold tracking-tight">
+          1주택 교체: 기존 집 팔고 새 집 살 때
+        </h2>
+        <p>
+          취득세는 <strong>새 집을 살 때</strong> 납부합니다. 기존 주택 처분 시점과 무관하게, 취득 시점에 세대 전체
+          보유 주택 수로 1주택·2주택이 갈립니다. 매도 전 새 집을 먼저 취득하면 2주택 중과가 적용될 수 있으므로,{" "}
+          <Link href="/guide/temporary-two-home-acquisition-tax-exception-guide" className="text-primary underline-offset-4 hover:underline">
+            일시적 2주택 예외
+          </Link>
+          요건을 미리 확인하는 것이 중요합니다.
         </p>
       </section>
 

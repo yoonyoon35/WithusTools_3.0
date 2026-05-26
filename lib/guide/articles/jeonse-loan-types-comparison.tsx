@@ -4,7 +4,7 @@ export const jeonseLoanTypesComparisonMeta = {
   slug: "jeonse-loan-types-comparison",
   title: "전세자금대출 종류 및 조건 비교",
   description:
-    "2026년 4월 기준 정책(버팀목) 전세자금대출과 시중은행 대출 비교, 유형별 한도·금리, 청년전용 소득별 금리, 자격·우대 조건을 표로 정리했습니다.",
+    "버팀목·시중은행 전세자금대출 조건 비교, 보증금·소득·나이별 선택 시나리오, 신청 순서와 자주 놓치는 제한 사항을 정리했습니다.",
   updated: "2026년 4월 14일",
 } as const;
 
@@ -17,7 +17,37 @@ export function JeonseLoanTypesComparisonBody() {
         </h2>
         <p>
           전세자금대출은 크게 정책 대출(주택도시기금)과 시중은행 대출로 나뉩니다. 소득 조건을 충족하는 경우 정책 대출이 금리 면에서
-          유리합니다.
+          유리합니다. 다만 <strong>면적·보증금 한도·중복 대출 제한</strong> 때문에 “금리만 낮다”고 골라서는 안 되고, 내가
+          계약하려는 전세 조건과 맞는지부터 확인해야 합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-jeonse-decision">
+        <h2 id="guide-jeonse-decision" className="text-foreground text-xl font-semibold tracking-tight">
+          어디부터 확인할까
+        </h2>
+        <p>
+          먼저 대상 주택이 버팀목 요건(전용 85㎡ 이하, 수도권 보증금 3억 이하 등)에 들어오는지 봅니다. 조건을 충족하면 연령·혼인·
+          자녀 여부로 청년·신혼·신생아 유형 중 어디에 해당하는지 따집니다. 한도가 부족하면 시중은행으로 넘어가거나, 정책+시중
+          조합을 검토합니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-jeonse-scenario">
+        <h2 id="guide-jeonse-scenario" className="text-foreground text-xl font-semibold tracking-tight">
+          시나리오: 만 29세, 전세 2억 8천, 연소득 4,200만
+        </h2>
+        <p>
+          수도권 59㎡ 아파트 전세 2억 8천만 원, 무주택 세대주, 순자산 3억 이하라면 청년전용 버팀목 후보입니다. 한도 2억까지
+          가능하므로 <strong>2억은 버팀목, 나머지 8천만 원은 자기자금 또는 시중은행</strong>으로 채우는 그림이 됩니다. 이때
+          시중은행분까지 합쳐{" "}
+          <Link href="/dsr-calculator" className="text-primary underline-offset-4 hover:underline">
+            DSR
+          </Link>
+          이 40%를 넘지 않는지 확인하세요.
+        </p>
+        <p>
+          반대로 전용 95㎡ 오피스텔 전세라면 면적 제한에 걸려 버팀목은 불가하고, 시중은행(보증금의 80% 이내)만 검토하게 됩니다.
         </p>
       </section>
 
@@ -352,6 +382,20 @@ export function JeonseLoanTypesComparisonBody() {
             myhome.go.kr
           </a>
           )에서 확인할 것을 권장합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-jeonse-mistakes">
+        <h2 id="guide-jeonse-mistakes" className="text-foreground text-xl font-semibold tracking-tight">
+          신청 전 자주 놓치는 점
+        </h2>
+        <p>
+          기존 전세자금대출이나 주담대를 이용 중이면 버팀목 신규가 막힙니다. 계약 전에{" "}
+          <Link href="/guide/jeonse-guarantee-insurance-guide" className="text-primary underline-offset-4 hover:underline">
+            전세보증보험
+          </Link>
+          가입 가능 여부도 함께 봐야 합니다. 우대금리는 중복 적용되지만 최종 금리는 연 1.0% 아래로 내려가지 않으므로, “최저
+          1.0%”만 보고 한도·기간을 간과하기 쉽습니다.
         </p>
       </section>
 

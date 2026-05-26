@@ -4,7 +4,7 @@ export const rateReductionRequestRightMeta = {
   slug: "rate-reduction-request-right",
   title: "금리인하요구권이란",
   description:
-    "금리인하요구권의 법적 근거, 신청 사유·대상·절차, 비대면 신청 경로와 대출 유형별 활용 팁을 표로 정리한 안내입니다.",
+    "금리인하요구권 신청 사유·절차, 갈아타기와 비교했을 때 의미 있는 경우, 거절 시 대응과 신청 전 확인 사항을 정리했습니다.",
   updated: "2026년 4월 14일",
 } as const;
 
@@ -13,8 +13,24 @@ export function RateReductionRequestRightBody() {
     <>
       <p>
         금리인하요구권은 대출받은 시점보다 신용 상태 및 상환 능력이 크게 개선된 경우, 이용 중인 대출의 금리를 낮춰 달라고 요구할 수
-        있는 법적 권리입니다. 은행법 제30조의2에 근거하며 모든 금융기관에 적용됩니다.
+        있는 법적 권리입니다. 은행법 제30조의2에 근거하며 모든 금융기관에 적용됩니다. 다만 <strong>무조건 인하</strong>가
+        아니며, 정책 모기지·연체 중 대출 등은 대상에서 빠집니다.
       </p>
+
+      <section className="space-y-3" aria-labelledby="guide-rrr-when-worth">
+        <h2 id="guide-rrr-when-worth" className="text-foreground text-xl font-semibold tracking-tight">
+          신청해볼 만한 때와 아닐 때
+        </h2>
+        <p>
+          승진·연봉 인상 후 소득증빙이 명확해졌거나, 신용점수가 한 등급 이상 올랐을 때 시도해볼 가치가 있습니다. 반면 이미
+          우대금리가 거의 다 적용된 상태이거나, 타행 갈아타기 견적이 더 유리한 경우에는 인하요구권보다{" "}
+          <Link href="/guide/loan-refinancing-guide" className="text-primary underline-offset-4 hover:underline">
+            대환대출
+          </Link>
+          비교가 먼저입니다. 중도상환 수수료와 새 대출 취급 비용을 합쳐 보면 “0.1~0.2%p 인하”만으로는 갈아타기가 손해일 수
+          있습니다.
+        </p>
+      </section>
 
       <section className="space-y-4" aria-labelledby="guide-rrr-reasons">
         <h2 id="guide-rrr-reasons" className="text-foreground text-xl font-semibold tracking-tight">
@@ -291,6 +307,20 @@ export function RateReductionRequestRightBody() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-rrr-rejected">
+        <h2 id="guide-rrr-rejected" className="text-foreground text-xl font-semibold tracking-tight">
+          거절됐을 때
+        </h2>
+        <p>
+          거절 사유를 문자·서면으로 받아 두세요. “이미 최저 구간”인지, “개선 폭 부족”인지에 따라 다음 행동이 달라집니다. 소득·
+          신용이 더 좋아진 뒤 재신청하거나, 다른 은행 한도 조회 후 갈아타기를 검토하면 됩니다.{" "}
+          <Link href="/guide/credit-score-loan-rate-guide" className="text-primary underline-offset-4 hover:underline">
+            신용점수와 금리
+          </Link>
+          관리를 병행하면 재신청 때 도움이 됩니다.
+        </p>
         <p className="text-muted-foreground text-sm">
           ※ 금리인하요구권은 법적 권리이나 수용 여부는 금융기관 심사에 따라 결정됩니다. 거절된 경우 사유를 확인 후 재신청이
           가능합니다.

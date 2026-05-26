@@ -4,7 +4,7 @@ export const officetelResidentialVsBusinessTaxGuideMeta = {
   slug: "officetel-residential-vs-business-tax-guide",
   title: "오피스텔 취득세: 주거용 vs 업무용 차이",
   description:
-    "2026년 4월 기준 오피스텔 주거용·업무용 판정 기준, 세율 차이, 주택 수 포함 여부, 용도 변경 리스크와 부가세 환급을 표로 정리했습니다.",
+    "오피스텔 주거·업무용 판정 기준, 취득세·주택 수·재산세에 미치는 차이, 매수 전 확인 순서와 판정 착오 시 리스크를 정리했습니다.",
   updated: "2026년 4월 27일",
 } as const;
 
@@ -17,7 +17,41 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
         </h2>
         <p>
           오피스텔은 건축법상 업무시설이지만 실제 사용 방식에 따라 주거용과 업무용으로 구분됩니다. 업무용이면 4.6%, 주거용으로
-          판정되면 주택 세율(1~12%)이 적용되므로 판정 결과에 따라 세금 차이가 수천만 원에 이르기도 합니다.
+          판정되면 주택 세율(1~12%)이 적용되므로 판정 결과에 따라 세금 차이가 수천만 원에 이르기도 합니다.{" "}
+          <Link href="/acquisition-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            취득세 계산기
+          </Link>
+          로 금액을 확인한 뒤, <strong>왜 주거·업무 판정이 갈리는지</strong>를 이 글에서 정리합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-orb-before-buy">
+        <h2 id="guide-orb-before-buy" className="text-foreground text-xl font-semibold tracking-tight">
+          계약 전 확인 순서
+        </h2>
+        <p>
+          건축물대장 용도, 전입 가능 여부, 관리규약·입주자 명부, 실제 거주·사무 사용 계획을 순서대로 봅니다. “전입만 하면
+          주택”이 아니라 <strong>실제 사용</strong>이 함께 봅니다. 주거용으로 취득세를 낮게 신고했다가 업무용으로 바뀌면
+          추징·주택 수 판정이 뒤바뀔 수 있습니다.{" "}
+          <Link href="/guide/apartment-villa-officetel-acquisition-tax-guide" className="text-primary underline-offset-4 hover:underline">
+            아파트·빌라·오피스텔 취득세
+          </Link>
+          와{" "}
+          <Link href="/guide/acquisition-tax-rates-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            2026년 취득세율
+          </Link>
+          도 함께 참고하세요.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-orb-scenario">
+        <h2 id="guide-orb-scenario" className="text-foreground text-xl font-semibold tracking-tight">
+          시나리오: 매매 3억 오피스텔, 실거주 vs 사무실
+        </h2>
+        <p>
+          업무용 4.6%면 취득세 약 1,380만 원(지방교육세 별도) 수준이고, 주거용 1%대면 300만 원대로 크게 달라질 수 있습니다.
+          다만 주거용으로 판정되면 <strong>주택 수에 포함</strong>되어 이후 아파트 취득 시 1주택·2주택 규제가 달라집니다.
+          “세금만 싸게”가 아니라 이후 매매·대출 계획까지 묶어서 봐야 합니다.
         </p>
       </section>
 

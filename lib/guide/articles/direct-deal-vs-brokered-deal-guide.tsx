@@ -4,7 +4,7 @@ export const directDealVsBrokeredDealGuideMeta = {
   slug: "direct-deal-vs-brokered-deal-guide",
   title: "직거래 vs 중개거래 비용 비교",
   description:
-    "매매·전세 비용 표, 직거래 리스크·계약 전 확인 체크리스트, 플랫폼 주의, 중개·직거래가 유리한 경우, 거래 신고 요약을 정리했습니다.",
+    "직거래·중개거래 비용 차이, 절감액 대비 리스크, 매매·전세 상황별 어느 쪽이 합리적인지 판단하는 기준을 정리했습니다.",
   updated: "2026년 4월 28일",
 } as const;
 
@@ -14,7 +14,23 @@ export function DirectDealVsBrokeredDealGuideBody() {
       <section className="space-y-3" aria-labelledby="guide-ddvb-intro">
         <p>
           부동산 직거래는 공인중개사 없이 매도인과 매수인(또는 임대인과 임차인)이 직접 거래하는 방식입니다. 중개수수료를 절약할 수
-          있지만 권리 관계 확인·계약서 작성·분쟁 발생 시 보호 등에서 중개거래와 차이가 있습니다.
+          있지만 권리 관계 확인·계약서 작성·분쟁 발생 시 보호 등에서 중개거래와 차이가 있습니다. 절약액이 크더라도{" "}
+          <strong>리스크 대비 실익</strong>이 있는지 먼저 따져 보는 것이 좋습니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-ddvb-breakeven">
+        <h2 id="guide-ddvb-breakeven" className="text-foreground text-xl font-semibold tracking-tight">
+          절감액만으로 결정하면 안 되는 이유
+        </h2>
+        <p>
+          매매 5억 기준 중개수수료 상한은 약 200만 원입니다. 등기부등본·계약서·거래 신고를 직접 하면 비용은 줄지만, 가압류·
+          근저당·임차권을 놓치면 손실이 수천만 원까지 커질 수 있습니다. 법무사에게 계약·등기를 맡기면 30~50만 원 수준이
+          드는 경우도 있어, “200만 원 절약”이 순절감 150만 원이 될 수 있습니다. 전세는{" "}
+          <Link href="/guide/jeonse-guarantee-insurance-guide" className="text-primary underline-offset-4 hover:underline">
+            전세보증보험
+          </Link>
+          가입 가능 여부가 더 중요한 변수입니다.
         </p>
       </section>
 
