@@ -11,6 +11,10 @@ import {
   equalPaymentVsEqualPrincipalMeta,
 } from "@/lib/guide/articles/equal-payment-vs-equal-principal";
 import { PrepaymentFeeCalculationBody, prepaymentFeeCalculationMeta } from "@/lib/guide/articles/prepayment-fee-calculation";
+import {
+  PrepaymentVsInterest600MillionGuideBody,
+  prepaymentVsInterest600MillionGuideMeta,
+} from "@/lib/guide/articles/600-million-prepayment-vs-interest-guide";
 import { VariableVsFixedRate2026Body, variableVsFixedRate2026Meta } from "@/lib/guide/articles/variable-vs-fixed-rate-2026";
 import {
   AnnualSalaryMortgageLimitDsrBody,
@@ -197,6 +201,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...prepaymentFeeCalculationMeta,
     Body: PrepaymentFeeCalculationBody,
+  },
+  {
+    ...prepaymentVsInterest600MillionGuideMeta,
+    Body: PrepaymentVsInterest600MillionGuideBody,
   },
   {
     ...variableVsFixedRate2026Meta,

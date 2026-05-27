@@ -266,6 +266,13 @@ export function PrepaymentFeeCalculationBody() {
           </table>
         </div>
         <p>이 경우 수수료를 납부하더라도 조기 상환이 유리합니다.</p>
+        <p>
+          6억 원 규모 대출의 상환 시점별 비교는{" "}
+          <Link href="/guide/600-million-prepayment-vs-interest-guide" className="text-primary underline-offset-4 hover:underline">
+            6억 대출 후 중도상환 vs 이자납입 비교
+          </Link>
+          글에서 자세히 다룹니다.
+        </p>
         <p className="text-muted-foreground text-sm">
           ※ 실제 수수료율과 계산 방식은 금융기관 및 대출 상품에 따라 상이합니다. 정확한 수수료는 대출 계약서 또는 해당 금융기관에서
           확인해야 합니다.
@@ -278,6 +285,9 @@ export function PrepaymentFeeCalculationBody() {
         aria-label="계산기 이동"
       >
         <p>
+          <Link href="/prepayment-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            중도상환 수수료는 중도상환 수수료 계산기에서 바로 계산할 수 있다.
+          </Link>{" "}
           <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             상환 시점별 이자 절감액은 대출 이자 계산기에서 확인할 수 있다.
           </Link>

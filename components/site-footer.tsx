@@ -15,6 +15,9 @@ export function SiteFooter() {
           <Link href="/dsr-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             DSR 계산기
           </Link>
+          <Link href="/prepayment-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
+            중도상환 수수료 계산기
+          </Link>
           <Link href="/guide" className="hover:text-foreground underline-offset-4 hover:underline">
             가이드
           </Link>

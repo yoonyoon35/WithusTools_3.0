@@ -37,6 +37,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "grace-period-explained",
       "variable-vs-fixed-rate-2026",
       "prepayment-fee-calculation",
+      "600-million-prepayment-vs-interest-guide",
       "loan-refinancing-guide",
       "rate-reduction-request-right",
       "mortgage-maturity-extension-guide",

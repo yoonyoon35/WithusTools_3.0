@@ -143,6 +143,13 @@ export function SiteHeader() {
                   >
                     DSR 계산기
                   </Link>
+                  <Link
+                    role="menuitem"
+                    className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
+                    href="/prepayment-fee-calculator"
+                  >
+                    중도상환 수수료 계산기
+                  </Link>
                 </div>
               </div>
             </div>
