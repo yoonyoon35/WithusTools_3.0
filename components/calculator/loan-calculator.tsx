@@ -11,10 +11,12 @@ import { Label } from "@/components/ui/label";
 import { LoanCalculatorReference } from "@/components/calculator/loan-calculator-reference";
 import type { ScheduleExportData } from "@/lib/download-schedule";
 import {
+  DEFAULT_GRADUATED_ANNUAL_INCREASE_PERCENT,
   formatNumber,
   removeCommas,
   repaymentTypeLabels,
   runCalculation,
+  type CalculationOptions,
   type CalculationResult,
   type RepaymentType,
 } from "@/lib/loan-calculations";
@@ -41,7 +43,7 @@ function addCommas(value: string): string {
 }
 
 function parseRepaymentType(v: string | null): RepaymentType | null {
-  if (v === "equal-payment" || v === "equal-principal" || v === "bullet") return v;
+  if (v === "equal-payment" || v === "equal-principal" || v === "graduated" || v === "bullet") return v;
   return null;
 }
 
@@ -52,6 +54,7 @@ function buildSearchParams(args: {
   period: number;
   unit: "year" | "month";
   type: RepaymentType;
+  graduatedRate: number;
   compare: boolean;
   compareType: RepaymentType | "";
 }) {
@@ -62,6 +65,9 @@ function buildSearchParams(args: {
   p.set("period", String(args.period));
   p.set("unit", args.unit);
   p.set("type", args.type);
+  if (args.type === "graduated" || args.compareType === "graduated") {
+    p.set("graduatedRate", String(args.graduatedRate));
+  }
   if (args.compare && args.compareType) {
     p.set("compare", "1");
     p.set("compareType", args.compareType);
@@ -80,6 +86,9 @@ export function LoanCalculator() {
   const [loanPeriod, setLoanPeriod] = React.useState("");
   const [periodUnit, setPeriodUnit] = React.useState<"year" | "month">("year");
   const [repaymentType, setRepaymentType] = React.useState<RepaymentType>("equal-payment");
+  const [graduatedIncreaseRate, setGraduatedIncreaseRate] = React.useState(
+    String(DEFAULT_GRADUATED_ANNUAL_INCREASE_PERCENT),
+  );
   const [compareMode, setCompareMode] = React.useState(false);
   const [compareType, setCompareType] = React.useState<RepaymentType | "">("");
 
@@ -99,6 +108,7 @@ export function LoanCalculator() {
     const type = searchParams.get("type");
     const compare = searchParams.get("compare");
     const compareT = searchParams.get("compareType");
+    const graduatedRate = searchParams.get("graduatedRate");
 
     if (amount) setLoanAmountDisplay(addCommas(amount.replace(/\D/g, "")));
     if (rate != null && rate !== "") setInterestRate(rate);
@@ -107,6 +117,7 @@ export function LoanCalculator() {
     if (unit === "month" || unit === "year") setPeriodUnit(unit);
     const pt = parseRepaymentType(type);
     if (pt) setRepaymentType(pt);
+    if (graduatedRate != null && graduatedRate !== "") setGraduatedIncreaseRate(graduatedRate);
     setCompareMode(compare === "1" || compare === "true");
     const ct = parseRepaymentType(compareT);
     setCompareType(ct ?? "");
@@ -174,11 +185,28 @@ export function LoanCalculator() {
     }
     const finalGraceYears = graceDisabled ? 0 : adjustedGrace;
 
-    const primary = runCalculation(repaymentType, loanAmount, rate, loanPeriodMonths, finalGraceYears);
+    let parsedGraduatedRate = parseFloat(graduatedIncreaseRate);
+    if (Number.isNaN(parsedGraduatedRate) || parsedGraduatedRate < 0 || parsedGraduatedRate > 20) {
+      window.alert("체증률을 올바르게 입력해주세요 (0-20%).");
+      return;
+    }
+
+    const calcOptions: CalculationOptions = {
+      graduatedAnnualIncreasePercent: parsedGraduatedRate,
+    };
+
+    const primary = runCalculation(
+      repaymentType,
+      loanAmount,
+      rate,
+      loanPeriodMonths,
+      finalGraceYears,
+      calcOptions,
+    );
 
     let second: CalculationResult | null = null;
     if (compareMode && compareType && compareType !== repaymentType) {
-      second = runCalculation(compareType, loanAmount, rate, loanPeriodMonths, finalGraceYears);
+      second = runCalculation(compareType, loanAmount, rate, loanPeriodMonths, finalGraceYears, calcOptions);
     }
 
     setResult(primary);
@@ -206,6 +234,7 @@ export function LoanCalculator() {
       period: periodVal,
       unit: periodUnit,
       type: repaymentType,
+      graduatedRate: parsedGraduatedRate,
       compare: Boolean(compareMode && second),
       compareType: compareMode && second ? (compareType as RepaymentType) : "",
     });
@@ -223,6 +252,7 @@ export function LoanCalculator() {
     repaymentType,
     compareMode,
     compareType,
+    graduatedIncreaseRate,
     graceDisabled,
     pathname,
     router,
@@ -388,9 +418,28 @@ export function LoanCalculator() {
             >
               <option value="equal-payment">원리금균등상환</option>
               <option value="equal-principal">원금균등상환</option>
+              <option value="graduated">체증식상환</option>
               <option value="bullet">만기일시상환</option>
             </select>
           </div>
+
+          {repaymentType === "graduated" ? (
+            <div className="space-y-2">
+              <Label htmlFor="graduatedIncreaseRate">체증률 (연 %)</Label>
+              <Input
+                id="graduatedIncreaseRate"
+                type="number"
+                min={0}
+                max={20}
+                step="0.1"
+                placeholder="예: 5"
+                value={graduatedIncreaseRate}
+                onChange={(e) => setGraduatedIncreaseRate(e.target.value)}
+                aria-describedby="hint-graduated"
+              />
+              <GraduatedRepaymentGuide id="hint-graduated" />
+            </div>
+          ) : null}
 
           <div className="flex items-center gap-2">
             <Checkbox
@@ -421,6 +470,9 @@ export function LoanCalculator() {
                 </option>
                 <option value="equal-principal" disabled={repaymentType === "equal-principal"}>
                   원금균등상환
+                </option>
+                <option value="graduated" disabled={repaymentType === "graduated"}>
+                  체증식상환
                 </option>
                 <option value="bullet" disabled={repaymentType === "bullet"}>
                   만기일시상환
@@ -480,11 +532,12 @@ export function LoanCalculator() {
                   파란색 실선은 선택한 상환 방식, 주황색 점선은 비교 방식의 월상환액입니다. 빨간색 괄호는 더 많이 상환(불리), 초록색은 더 적게
                   상환(유리)을 뜻합니다.
                 </p>
-              ) : (
+              ) : repaymentType !== "graduated" ? (
                 <p>
                   월상환액은 상환원금과 이자의 합입니다. 원리금균등상환은 월상환액이 일정하고, 원금균등상환은 초기에 높고 점차 줄어듭니다.
                 </p>
-              )}
+              ) : null}
+              {repaymentType === "graduated" ? <GraduatedRepaymentGuide compact /> : null}
               {!result.schedule.length ? (
                 <p>아직 계산 전입니다. 입력값을 채우고 계산하기를 누르면 결과와 차트가 갱신됩니다.</p>
               ) : null}
@@ -551,6 +604,28 @@ export function LoanCalculator() {
       </Card>
 
       <LoanCalculatorReference />
+    </div>
+  );
+}
+
+function GraduatedRepaymentGuide({ id, compact = false }: { id?: string; compact?: boolean }) {
+  return (
+    <div
+      id={id}
+      className={
+        compact
+          ? "text-muted-foreground space-y-1.5 text-xs leading-relaxed"
+          : "border-border bg-muted/30 text-muted-foreground space-y-1.5 rounded-md border px-3 py-2.5 text-xs leading-relaxed"
+      }
+    >
+      {!compact ? <p className="text-foreground font-medium">체증식 계산 방식 (본 계산기 기준)</p> : null}
+      <ul className="list-disc space-y-1 pl-4">
+        <li>
+          같은 해 12개월은 월 상환액이 같고, 매년 체증률만큼 증가하는 계단식입니다. 매월 조금씩 복리로 오르는 방식은 아닙니다.
+        </li>
+        <li>월 상환액은 상환 시작 첫 달 기준입니다. 이후 회차는 상환 일정표에서 확인하세요.</li>
+        <li>은행·타 계산기마다 체증 정의가 다를 수 있어 참고용으로 활용해 주세요.</li>
+      </ul>
     </div>
   );
 }

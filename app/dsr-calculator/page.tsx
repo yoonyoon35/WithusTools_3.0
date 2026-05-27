@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/site";
 
 const pageTitle = "DSR 계산기";
 const pageDescription =
-  "연 소득과 기존·신규 대출로 DSR을 간이 산출합니다. 일반·스트레스 DSR, 원금균등 시 연간 상환 산출 방식(첫 회차·1년차 합산·전체 평균)을 선택할 수 있습니다.";
+  "연 소득과 기존·신규 대출(여러 건)로 DSR을 간이 산출합니다. 총액·잔액·잔여 기간·거치 등 대출 조건으로 월 상환을 자동 계산합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -39,9 +39,8 @@ export default function DsrCalculatorPage() {
           </nav>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{pageTitle}</h1>
           <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-            DSR(%)는 「연간 신규·기존 부채 상환액」÷ 연소득 × 100을 적용한 참고용 계산입니다. 하단에 한도·포함 부채·스트레스
-            가산 등 기준표를 함께 두었습니다. 원금균등·만기일시는 산출 방식 선택에 따라 결과가 달라질 수 있으며, 실제
-            심사는 신청 금융기관에서 확인해야 합니다.
+            DSR(%)는 「연간 신규·기존 부채 상환액」÷ 연소득 × 100을 적용한 참고용 계산입니다. 기존·신규 대출을 여러 건 추가할 수
+            있으며, 원금·금리·기간을 입력하면 월 상환을 자동 계산합니다. 실제 심사는 신청 금융기관에서 확인해야 합니다.
           </p>
         </div>
       </section>

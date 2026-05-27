@@ -74,6 +74,15 @@ const repaymentCompareRows = [
     "장기 이자 절감에 유리",
   ],
   [
+    repaymentTypeLabels.graduated,
+    "매년 월 상환액 일정 비율 증가",
+    "초기 낮고 점차 증가",
+    "초기 적고 점차 증가",
+    "초기 부담 낮음",
+    "총 이자 상대적으로 많음",
+    "소득 증가 예상·보금자리론 등",
+  ],
+  [
     repaymentTypeLabels.bullet,
     "기간 중 이자만, 만기 원금 일시",
     "이자만(만기 전)",
@@ -96,6 +105,12 @@ const formulaRows = [
     "월 원금 = 대출원금 ÷ 상환개월",
     "월 이자 = 잔액 × (연이율 ÷ 12)",
     "월 상환 = 월 원금 + 월 이자(매월 감소)",
+  ],
+  [
+    repaymentTypeLabels.graduated,
+    "월 이자 = 잔액 × (연이율 ÷ 12)",
+    "같은 해 월 상환액 동일, 매년 체증률만큼 증가",
+    "거치기간 중에는 이자만 납부",
   ],
   [
     repaymentTypeLabels.bullet,
@@ -140,7 +155,7 @@ const excludedCostRows = [
 ] as const;
 
 const notes = [
-  "원리금균등·원금균등·만기일시를 선택해 월 상환액·총 이자·상환 일정표를 확인할 수 있습니다.",
+  "원리금균등·원금균등·체증식·만기일시를 선택해 월 상환액·총 이자·상환 일정표를 확인할 수 있습니다.",
   "비교 모드를 켜면 두 상환 방식의 월 상환·총 이자·그래프를 한 화면에서 대조할 수 있습니다.",
   "거치기간은 원금 상환을 미루고 이자만 납부하는 구조로, 총 이자가 늘고 거치 종료 후 상환액이 커질 수 있습니다.",
   "만기일시는 DSR 산정 시 금융기관별로 연간 원금 상환액을 다르게 반영할 수 있습니다.",
@@ -176,6 +191,10 @@ export function LoanCalculatorReference() {
               원금균등
             </Link>
             ·
+            <Link href="/?type=graduated#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
+              체증식
+            </Link>
+            ·
             <Link href="/?type=bullet#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
               만기일시
             </Link>
@@ -206,7 +225,7 @@ export function LoanCalculatorReference() {
             minWidth="min-w-[720px]"
           />
           <p className="text-muted-foreground text-xs leading-relaxed">
-            거치기간은 원리금균등·원금균등에만 적용됩니다. 만기일시는 거치기간 입력이 비활성화됩니다.
+            거치기간은 원리금균등·원금균등·체증식에 적용됩니다. 만기일시는 거치기간 입력이 비활성화됩니다.
           </p>
         </section>
 
