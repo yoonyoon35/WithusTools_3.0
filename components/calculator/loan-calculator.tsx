@@ -185,7 +185,7 @@ export function LoanCalculator() {
     }
     const finalGraceYears = graceDisabled ? 0 : adjustedGrace;
 
-    let parsedGraduatedRate = parseFloat(graduatedIncreaseRate);
+    const parsedGraduatedRate = parseFloat(graduatedIncreaseRate);
     if (Number.isNaN(parsedGraduatedRate) || parsedGraduatedRate < 0 || parsedGraduatedRate > 20) {
       window.alert("체증률을 올바르게 입력해주세요 (0-20%).");
       return;
