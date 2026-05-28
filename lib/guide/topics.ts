@@ -22,6 +22,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "credit-score-loan-rate-guide",
       "credit-score-mortgage-interest-relation-guide",
       "credit-loan-vs-mortgage-loan",
+      "car-installment-dsr-mortgage-limit-impact-guide",
       "income-type-loan-limit-difference-guide",
       "multi-homeowner-loan-regulations-guide",
       "mortgage-rate-status-2026",

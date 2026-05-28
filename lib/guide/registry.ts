@@ -164,6 +164,10 @@ import {
   CreditScoreMortgageInterestRelationGuideBody,
   creditScoreMortgageInterestRelationGuideMeta,
 } from "@/lib/guide/articles/credit-score-mortgage-interest-relation-guide";
+import {
+  CarInstallmentDsrMortgageLimitImpactGuideBody,
+  carInstallmentDsrMortgageLimitImpactGuideMeta,
+} from "@/lib/guide/articles/car-installment-dsr-mortgage-limit-impact-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -381,6 +385,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...creditScoreMortgageInterestRelationGuideMeta,
     Body: CreditScoreMortgageInterestRelationGuideBody,
+  },
+  {
+    ...carInstallmentDsrMortgageLimitImpactGuideMeta,
+    Body: CarInstallmentDsrMortgageLimitImpactGuideBody,
   },
 ];
 
