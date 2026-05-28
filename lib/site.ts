@@ -24,7 +24,7 @@ export const referenceDisclaimerLine =
   "본 서비스는 표준 계산식 기반 참고용이며, 실제 조건은 금융기관에 문의하시기 바랍니다.";
 
 export const defaultDescription =
-  "대출 이자 계산기 - 원리금균등상환, 원금균등상환, 만기일시상환 계산. 주택담보대출, 신용대출, 전세자금대출 이자 계산";
+  "대출 이자 계산기 Daechulija.com에서 원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산해 보세요. 주택담보대출, 신용대출, 전세자금대출 조건별 상환 계획을 비교하고 대출 전 예상 부담을 참고용으로 확인할 수 있는 무료 온라인 계산기입니다.";
 
 export const ogImagePath = "/favicon/apple-touch-icon-152x152.png";
 

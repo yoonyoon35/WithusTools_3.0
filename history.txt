@@ -366,3 +366,23 @@
 
 1131 - 가이드 내용 1개 추가
         - 자동차 할부가 DSR·주담대 한도에 미치는 영향,
+
+1558 - 빙 웹마스터 권장사항 조치
+        - Meta descriptions on many of your pages are too short.(길이 150~160자로 맞춤)(12 페이지)
+         > https://daechulija.com/guide/acquisition-tax-relief-programs-2026-guide
+         > https://daechulija.com/guide/brokerage-fee-rates-2026-guide
+         > https://daechulija.com/guide/acquisition-tax-rates-2026-guide
+         > https://daechulija.com/brokerage-fee-calculator
+         > https://daechulija.com/
+         > https://daechulija.com/guide
+         > https://daechulija.com/guide/presale-right-resale-brokerage-fee-guide
+         > https://daechulija.com/guide/home-purchase-additional-costs-guide
+         > https://daechulija.com/guide/annual-salary-mortgage-limit-dsr
+         > https://daechulija.com/guide/prepayment-fee-calculation
+         > https://daechulija.com/guide/brokerage-accident-compensation-guide
+         > https://daechulija.com/guide/direct-deal-vs-brokered-deal-guide
+        - 최근에 게시된 중요 페이지가 IndexNow를 통해 제출되지 않음
+         > cloudflare에서 트리거를 발생해도 해당 페이지에 최초 접속이 발생 해야하는데 아직 아무도 접속을 안해서
+         발생한 듯. 일단 내가 둘 다 접속시도 했으니 일단 경과 봐야할 듯.
+          > https://daechulija.com/guide/brokerage-accident-compensation-guide
+          > https://daechulija.com/guide/acquisition-tax-rates-2026-guide

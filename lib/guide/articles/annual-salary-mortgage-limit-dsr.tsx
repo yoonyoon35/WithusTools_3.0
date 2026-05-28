@@ -5,7 +5,7 @@ export const annualSalaryMortgageLimitDsrMeta = {
   slug: "annual-salary-mortgage-limit-dsr",
   title: "연봉별 주택담보대출 한도 기준",
   description:
-    "연봉별 DSR 40% 월 상환 한도, 기존 부채·금리·LTV 반영 시나리오, 실제 매수 가능 금액 추산과 신청 전 체크리스트를 정리했습니다.",
+    "연봉별 DSR 40% 월 상환 한도와 기존 부채·금리·LTV를 반영한 시나리오를 표로 정리했습니다. 실제 매수 가능 금액 추산 방법, 대출 신청 전 체크리스트, DSR 계산 개념을 참고용으로 확인할 수 있는 가이드입니다. 실제 한도는 금융기관 심사 결과에 따라 달라질 수 있습니다.",
   updated: "2026년 4월 14일",
 } as const;
 

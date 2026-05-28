@@ -9,7 +9,7 @@ const pageTitle = "대출·금융 가이드";
 
 export async function generateMetadata(): Promise<Metadata> {
   const description =
-    "DSR, 주택담보대출 한도, 취득세, 중개보수 등 대출·금융·부동산 거래를 이해하는 데 도움이 되는 참고 글을 주제별로 모았습니다.";
+    "DSR, 주택담보대출 한도, 취득세, 중개보수 등 대출·금융·부동산 거래 가이드를 주제별로 모았습니다. 2026년 기준 세율·요율·신청 절차와 계산 방법을 표와 예시로 정리한 참고 글입니다. 각 글은 실제 심사·신고·협의 결과와 다를 수 있으니 개별 확인이 필요합니다.";
   return {
     title: pageTitle,
     description,

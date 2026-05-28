@@ -4,7 +4,7 @@ export const acquisitionTaxReliefPrograms2026GuideMeta = {
   slug: "acquisition-tax-relief-programs-2026-guide",
   title: "취득세 세액공제·감면 제도 총정리",
   description:
-    "2026년 4월 기준 생애최초·출산양육·인구감소지역·세컨드홈·미분양·일시적 2주택 특례와 신청·추징 유의사항을 표로 정리했습니다.",
+    "2026년 기준 생애최초, 출산·양육, 인구감소지역, 세컨드홈, 미분양, 일시적 2주택 등 취득세 감면·공제 제도를 표로 정리했습니다. 적용 요건, 신청 절차, 추징 유의사항과 세액공제 한도를 참고용으로 확인하세요. 실제 신고·심사 결과는 개별 사안마다 달라질 수 있습니다.",
   updated: "2026년 5월 5일",
 } as const;
 

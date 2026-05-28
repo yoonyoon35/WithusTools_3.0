@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/site";
 
 const pageTitle = "중개보수 계산기";
 const pageDescription =
-  "서울특별시 고시 부동산 중개보수 상한 요율에 따라 주택·오피스텔·기타 부동산의 법정 최대 중개보수를 계산합니다.";
+  "서울시 고시 부동산 중개보수 상한 요율로 매매·전세·월세·오피스텔 법정 최대 중개수수료를 계산합니다. 거래금액·유형별 요율표, VAT 적용 기준, 절약 팁을 함께 확인할 수 있는 무료 중개보수 계산기입니다. 계산 결과와 요율표는 참고용이며 관할 고시는 개별 확인이 필요합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

@@ -4,7 +4,7 @@ export const brokerageAccidentCompensationGuideMeta = {
   slug: "brokerage-accident-compensation-guide",
   title: "부동산 중개사고 발생 시 보상받는 방법",
   description:
-    "2026년 4월 기준 중개사고 유형, 공제·보험·공탁 보상 청구 절차, 손해액 확정 방법, 필요 서류·예방 체크리스트를 표로 정리했습니다.",
+    "2026년 기준 중개사고 유형, 공제·보험·공탁 보상 청구 절차, 손해액 확정 방법을 표로 정리했습니다. 필요 서류, 예방 체크리스트, 분쟁 대응 순서를 참고용으로 확인할 수 있는 가이드입니다. 실제 보상 범위·금액·처리 기간은 사안별 심사 결과에 따라 달라질 수 있습니다.",
   updated: "2026년 4월 28일",
 } as const;
 
