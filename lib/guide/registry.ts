@@ -168,6 +168,22 @@ import {
   CarInstallmentDsrMortgageLimitImpactGuideBody,
   carInstallmentDsrMortgageLimitImpactGuideMeta,
 } from "@/lib/guide/articles/car-installment-dsr-mortgage-limit-impact-guide";
+import {
+  SecondHomeAcquisitionTaxExceptionGuideBody,
+  secondHomeAcquisitionTaxExceptionGuideMeta,
+} from "@/lib/guide/articles/second-home-acquisition-tax-exception-guide";
+import {
+  NationalHousingBondPurchaseCriteriaGuideBody,
+  nationalHousingBondPurchaseCriteriaGuideMeta,
+} from "@/lib/guide/articles/national-housing-bond-purchase-criteria-guide";
+import {
+  BrokerageFeeVatSeparateGuideBody,
+  brokerageFeeVatSeparateGuideMeta,
+} from "@/lib/guide/articles/brokerage-fee-vat-separate-guide";
+import {
+  NewApartment600MillionAcquisitionTaxGuideBody,
+  newApartment600MillionAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/new-apartment-600-million-acquisition-tax-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -389,6 +405,22 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...carInstallmentDsrMortgageLimitImpactGuideMeta,
     Body: CarInstallmentDsrMortgageLimitImpactGuideBody,
+  },
+  {
+    ...secondHomeAcquisitionTaxExceptionGuideMeta,
+    Body: SecondHomeAcquisitionTaxExceptionGuideBody,
+  },
+  {
+    ...nationalHousingBondPurchaseCriteriaGuideMeta,
+    Body: NationalHousingBondPurchaseCriteriaGuideBody,
+  },
+  {
+    ...newApartment600MillionAcquisitionTaxGuideMeta,
+    Body: NewApartment600MillionAcquisitionTaxGuideBody,
+  },
+  {
+    ...brokerageFeeVatSeparateGuideMeta,
+    Body: BrokerageFeeVatSeparateGuideBody,
   },
 ];
 

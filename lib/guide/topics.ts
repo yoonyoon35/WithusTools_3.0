@@ -56,6 +56,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "jeonse-guarantee-insurance-guide",
       "mortgage-loan-application-documents",
       "home-purchase-additional-costs-guide",
+      "national-housing-bond-purchase-criteria-guide",
     ],
   },
   {
@@ -65,9 +66,11 @@ export const guideTopics: readonly GuideTopic[] = [
     slugs: [
       "acquisition-tax-rates-2026-guide",
       "first-home-acquisition-tax-amount-guide",
+      "new-apartment-600-million-acquisition-tax-guide",
       "first-home-acquisition-tax-relief-guide",
       "acquisition-tax-relief-programs-2026-guide",
       "second-home-acquisition-tax-surcharge-2026-guide",
+      "second-home-acquisition-tax-exception-guide",
       "temporary-two-home-acquisition-tax-exception-guide",
       "inherited-housing-acquisition-tax-2026-guide",
       "local-education-rural-special-tax-acquisition-2026-guide",
@@ -83,6 +86,7 @@ export const guideTopics: readonly GuideTopic[] = [
     description: "중개수수료 요율, 전·월세, 직거래, 분양권·재계약",
     slugs: [
       "brokerage-fee-rates-2026-guide",
+      "brokerage-fee-vat-separate-guide",
       "apartment-brokerage-fee-guide",
       "jeonse-brokerage-fee-calculation-2026-guide",
       "wolse-brokerage-fee-calculation-2026-guide",
