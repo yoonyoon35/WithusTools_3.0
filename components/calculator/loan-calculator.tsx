@@ -1,14 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LoanCalculatorReference } from "@/components/calculator/loan-calculator-reference";
 import type { ScheduleExportData } from "@/lib/download-schedule";
 import {
   DEFAULT_GRADUATED_ANNUAL_INCREASE_PERCENT,
@@ -75,10 +74,43 @@ function buildSearchParams(args: {
   return p.toString();
 }
 
+function hydrateFromSearchParams(searchParams: URLSearchParams, setters: {
+  setLoanAmountDisplay: (v: string) => void;
+  setInterestRate: (v: string) => void;
+  setGracePeriod: (v: string) => void;
+  setLoanPeriod: (v: string) => void;
+  setPeriodUnit: (v: "year" | "month") => void;
+  setRepaymentType: (v: RepaymentType) => void;
+  setGraduatedIncreaseRate: (v: string) => void;
+  setCompareMode: (v: boolean) => void;
+  setCompareType: (v: RepaymentType | "") => void;
+}) {
+  const amount = searchParams.get("amount");
+  const rate = searchParams.get("rate");
+  const grace = searchParams.get("grace");
+  const period = searchParams.get("period");
+  const unit = searchParams.get("unit");
+  const type = searchParams.get("type");
+  const compare = searchParams.get("compare");
+  const compareT = searchParams.get("compareType");
+  const graduatedRate = searchParams.get("graduatedRate");
+
+  if (amount) setters.setLoanAmountDisplay(addCommas(amount.replace(/\D/g, "")));
+  if (rate != null && rate !== "") setters.setInterestRate(rate);
+  if (grace != null && grace !== "") setters.setGracePeriod(grace);
+  if (period != null && period !== "") setters.setLoanPeriod(period);
+  if (unit === "month" || unit === "year") setters.setPeriodUnit(unit);
+  const pt = parseRepaymentType(type);
+  if (pt) setters.setRepaymentType(pt);
+  if (graduatedRate != null && graduatedRate !== "") setters.setGraduatedIncreaseRate(graduatedRate);
+  setters.setCompareMode(compare === "1" || compare === "true");
+  const ct = parseRepaymentType(compareT);
+  setters.setCompareType(ct ?? "");
+}
+
 export function LoanCalculator() {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const [loanAmountDisplay, setLoanAmountDisplay] = React.useState("");
   const [interestRate, setInterestRate] = React.useState("");
@@ -100,28 +132,23 @@ export function LoanCalculator() {
   const resultRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
-    const amount = searchParams.get("amount");
-    const rate = searchParams.get("rate");
-    const grace = searchParams.get("grace");
-    const period = searchParams.get("period");
-    const unit = searchParams.get("unit");
-    const type = searchParams.get("type");
-    const compare = searchParams.get("compare");
-    const compareT = searchParams.get("compareType");
-    const graduatedRate = searchParams.get("graduatedRate");
-
-    if (amount) setLoanAmountDisplay(addCommas(amount.replace(/\D/g, "")));
-    if (rate != null && rate !== "") setInterestRate(rate);
-    if (grace != null && grace !== "") setGracePeriod(grace);
-    if (period != null && period !== "") setLoanPeriod(period);
-    if (unit === "month" || unit === "year") setPeriodUnit(unit);
-    const pt = parseRepaymentType(type);
-    if (pt) setRepaymentType(pt);
-    if (graduatedRate != null && graduatedRate !== "") setGraduatedIncreaseRate(graduatedRate);
-    setCompareMode(compare === "1" || compare === "true");
-    const ct = parseRepaymentType(compareT);
-    setCompareType(ct ?? "");
-  }, [searchParams]);
+    function syncFromUrl() {
+      hydrateFromSearchParams(new URLSearchParams(window.location.search), {
+        setLoanAmountDisplay,
+        setInterestRate,
+        setGracePeriod,
+        setLoanPeriod,
+        setPeriodUnit,
+        setRepaymentType,
+        setGraduatedIncreaseRate,
+        setCompareMode,
+        setCompareType,
+      });
+    }
+    syncFromUrl();
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
+  }, []);
 
   const graceDisabled = repaymentType === "bullet";
 
@@ -602,8 +629,6 @@ export function LoanCalculator() {
           </div>
         </CardContent>
       </Card>
-
-      <LoanCalculatorReference />
     </div>
   );
 }

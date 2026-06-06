@@ -165,7 +165,7 @@ const notes = [
 
 export function LoanCalculatorReference() {
   return (
-    <Card className="lg:col-span-2">
+    <Card>
       <CardHeader>
         <CardTitle className="text-lg">대출 상환 기준표 및 산정 참고</CardTitle>
         <p className="text-muted-foreground text-sm font-normal">

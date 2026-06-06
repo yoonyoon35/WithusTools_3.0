@@ -1,12 +1,8 @@
 "use client";
 
 import * as React from "react";
+import type { FaqItem } from "@/lib/faq-data";
 import { cn } from "@/lib/utils";
-
-export interface FaqItem {
-  question: string;
-  answer: string;
-}
 
 export function FaqAccordion({ items }: { items: readonly FaqItem[] }) {
   const [open, setOpen] = React.useState<number | null>(0);

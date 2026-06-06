@@ -1,14 +1,6 @@
-import { Suspense } from "react";
 // import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 import { LoanCalculator } from "@/components/calculator/loan-calculator";
-
-function CalculatorFallback() {
-  return (
-    <div className="text-muted-foreground py-12 text-center text-sm" role="status" aria-live="polite">
-      계산기를 불러오는 중입니다…
-    </div>
-  );
-}
+import { LoanCalculatorReference } from "@/components/calculator/loan-calculator-reference";
 
 export function LoanCalculatorSection() {
   return (
@@ -20,9 +12,10 @@ export function LoanCalculatorSection() {
         >
           대출 이자 계산기
         </h2>
-        <Suspense fallback={<CalculatorFallback />}>
+        <div className="space-y-6">
           <LoanCalculator />
-        </Suspense>
+          <LoanCalculatorReference />
+        </div>
         {/* <AllCreditAffiliateCta className="mt-8 w-full" /> */}
       </div>
     </section>

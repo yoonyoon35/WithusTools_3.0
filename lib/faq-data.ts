@@ -1,3 +1,8 @@
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 /** 홈(대출 이자 계산기) FAQ — 상환 방식·금리·한도 등 개념은 하단 기준표·가이드에서 다룹니다. */
 export const faqItems = [
   {

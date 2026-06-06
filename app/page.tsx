@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FaqAccordion } from "@/components/faq-accordion";
+import { FaqSection } from "@/components/faq-section";
 import { LoanCalculatorSection } from "@/components/loan-calculator-section";
 // import { HomeAdBandAfterCalculator, HomeAdBandAfterHero } from "@/components/marketing/home-in-flow-ad-slots";
 // import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
@@ -34,7 +34,7 @@ export default function HomePage() {
             자주 묻는 질문
           </h2>
           <div className="mt-8">
-            <FaqAccordion items={faqItems} />
+            <FaqSection items={faqItems} />
           </div>
         </div>
       </section>
