@@ -42,7 +42,7 @@ export const TOOLS: Tool[] = [
   {
     id: "calculator-tools",
     title: "Calculator",
-    description: "Average calculator, standard deviation calculator, GPA calculator, percentage calculator, programmer calculator, and simple scientific calculator for everyday math",
+    description: "Average calculator, standard deviation calculator, GPA calculator, percentage calculator, programmer calculator, and calculator for everyday math",
     category: "calculator",
     icon: "calculator",
     path: "/tools/calculator",

@@ -40,14 +40,22 @@ export function NumberSystemConversionTable({
   toBase,
   decimals,
   mode = "decimal-rows",
+  fromLabel,
+  toLabel,
+  inputSuffix = "(input)",
+  outputSuffix = "(output)",
 }: {
   fromBase: NumberSystemBase;
   toBase: NumberSystemBase;
   decimals: readonly number[];
   mode?: "decimal-rows" | "char-rows";
+  fromLabel?: string;
+  toLabel?: string;
+  inputSuffix?: string;
+  outputSuffix?: string;
 }) {
-  const fromName = NUMBER_SYSTEM_BASE_LABELS[fromBase];
-  const toName = NUMBER_SYSTEM_BASE_LABELS[toBase];
+  const fromName = fromLabel ?? NUMBER_SYSTEM_BASE_LABELS[fromBase];
+  const toName = toLabel ?? NUMBER_SYSTEM_BASE_LABELS[toBase];
 
   const rows: { left: string; right: string }[] = [];
   for (const d of decimals) {
@@ -78,10 +86,10 @@ export function NumberSystemConversionTable({
         <thead>
           <tr className="border-b border-slate-600">
             <th scope="col" className="py-2 pr-4 text-left font-semibold text-slate-200">
-              {fromName} (input)
+              {fromName} {inputSuffix}
             </th>
             <th scope="col" className="py-2 text-left font-semibold text-slate-200">
-              {toName} (output)
+              {toName} {outputSuffix}
             </th>
           </tr>
         </thead>
@@ -101,25 +109,32 @@ export function NumberSystemConversionTable({
 export function NumberSystemConversionTablesPair({
   fromBase,
   toBase,
+  fromLabel,
+  toLabel,
+  inputSuffix = "(input)",
+  outputSuffix = "(output)",
 }: {
   fromBase: NumberSystemBase;
   toBase: NumberSystemBase;
+  fromLabel?: string;
+  toLabel?: string;
+  inputSuffix?: string;
+  outputSuffix?: string;
 }) {
   const charMode = fromBase === "char";
   const small = charMode ? NS_TABLE_CHAR_CODES_SMALL : NS_TABLE_SMALL_DECIMALS;
   const large = charMode ? NS_TABLE_CHAR_CODES_LARGE : NS_TABLE_LARGER_DECIMALS;
+  const tableProps = { fromBase, toBase, fromLabel, toLabel, inputSuffix, outputSuffix };
 
   return (
     <div className="grid gap-10 md:grid-cols-2">
       <NumberSystemConversionTable
-        fromBase={fromBase}
-        toBase={toBase}
+        {...tableProps}
         decimals={small}
         mode={charMode ? "char-rows" : "decimal-rows"}
       />
       <NumberSystemConversionTable
-        fromBase={fromBase}
-        toBase={toBase}
+        {...tableProps}
         decimals={large}
         mode={charMode ? "char-rows" : "decimal-rows"}
       />

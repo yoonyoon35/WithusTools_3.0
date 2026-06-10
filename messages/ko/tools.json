@@ -1,0 +1,66 @@
+{
+  "ssh-key-gen": {
+    "title": "SSH 키 생성기",
+    "description": "RSA, Ed25519, ECDSA SSH 키 쌍을 생성해 안전한 인증에 사용합니다"
+  },
+  "hash-calculator": {
+    "title": "해시 계산기",
+    "description": "텍스트와 파일에 대해 MD5, SHA-1, SHA-256, SHA-512, SHA3, RIPEMD, Bcrypt 해시를 계산합니다"
+  },
+  "calculator-tools": {
+    "title": "계산기",
+    "description": "평균, 표준편차, GPA, 백분율, 프로그래머 계산기 및 일상용 일반 계산기"
+  },
+  "health-tools": {
+    "title": "건강 도구",
+    "description": "BMI, 골격근 지수, 허리·엉덩이 비율, BMR·TDEE, 체지방(줄자 추정) 계산기"
+  },
+  "time-tools": {
+    "title": "시간 도구",
+    "description": "알람 시계, 스톱워치, 카운트다운 타이머, 캘린더로 시간을 관리합니다"
+  },
+  "image-tools": {
+    "title": "이미지 도구",
+    "description": "이미지 압축, 형식 변환, GIF 합성, 편집, 페인트 보드, JPG·GIF 변환 허브"
+  },
+  "jpg-converter": {
+    "title": "JPG 변환기",
+    "description": "HEIC, HEIF, AVIF, BMP, PNG, SVG, TIFF, WEBP, PSD, JFIF, ICO, AI, DNG, CR2, CR3, TGA, PDF를 JPG로 변환"
+  },
+  "gif-converter": {
+    "title": "GIF 변환기",
+    "description": "GIF 변환 허브—JPG→GIF(여러 JPEG을 하나의 애니 GIF로) 등. 브라우저에서 gif.js로 인코딩"
+  },
+  "pdf-tools": {
+    "title": "PDF 도구",
+    "description": "이미지를 PDF로 합치기. JPG, PNG, HEIC 등 다양한 형식 지원. 로컬 처리"
+  },
+  "pdf-converter": {
+    "title": "PDF 변환기",
+    "description": "JPG, HEIC, HEIF, PNG, WEBP, AVIF, BMP, TIFF 및 이미지를 PDF로 변환. 여러 장을 하나의 PDF로"
+  },
+  "text-tools": {
+    "title": "텍스트 도구",
+    "description": "문자열 비교, 대소문자 변환, 텍스트 편집기"
+  },
+  "random-tools": {
+    "title": "랜덤 도구",
+    "description": "비밀번호 생성기와 난수 생성기"
+  },
+  "seo-tools": {
+    "title": "SEO 도구",
+    "description": "파비콘, 메타 태그, robots.txt, 사이트맵 생성기"
+  },
+  "language-tools": {
+    "title": "언어 도구",
+    "description": "영문 알파벳, 히라가나, 가타카나, 한글 차트, 가나 변환, 한글↔가나 발음 변환"
+  },
+  "developer-tools": {
+    "title": "개발자 도구",
+    "description": "ASCII, Base64, 코드 포맷터, 색상 선택기, CSS 스프라이트, 진수 변환, QR 코드 생성·읽기"
+  },
+  "unit-converter-tools": {
+    "title": "단위 변환기",
+    "description": "길이, 무게, 온도, 넓이, 부피, 속도, 시간, 디지털 용량, 압력, 에너지, 각도 변환"
+  }
+}

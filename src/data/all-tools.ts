@@ -1,9 +1,12 @@
 /**
  * All tool pages for internal linking.
  * path → { title, category }
- * Category pages (e.g. /tools/calculator) and sub-tools (e.g. /tools/health/bmi-calculator)
  */
 import { TOOLS } from "./tools";
+import {
+  resolvePathTitle,
+  type CatalogMessages,
+} from "@/lib/i18n-catalog";
 
 export interface ToolEntry {
   path: string;
@@ -12,7 +15,7 @@ export interface ToolEntry {
 }
 
 const PATH_TITLES: Record<string, string> = {
-  "/tools/calculator/calculator": "Scientific Calculator",
+  "/tools/calculator/calculator": "Calculator",
   "/tools/calculator/average-calculator": "Average Calculator",
   "/tools/calculator/standard-deviation-calculator": "Standard Deviation Calculator",
   "/tools/health/bmi-calculator": "BMI Calculator",
@@ -96,7 +99,6 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/unit-converter/power": "Power Converter",
   "/tools/unit-converter/angle": "Angle Converter",
   "/tools/unit-converter/time": "Time Converter",
-  // Hash Calculator sub-pages
   "/tools/hash-calculator/md5": "MD5 Hash",
   "/tools/hash-calculator/sha1": "SHA-1 Hash",
   "/tools/hash-calculator/sha224": "SHA-224 Hash",
@@ -116,7 +118,6 @@ const PATH_TITLES: Record<string, string> = {
   "/tools/hash-calculator/scrypt": "Scrypt",
   "/tools/hash-calculator/whirlpool": "Whirlpool",
   "/tools/hash-calculator/fnv1a": "FNV-1a",
-  // SSH sub-pages
   "/tools/ssh/ed25519": "Ed25519 SSH Key",
   "/tools/ssh/rsa": "RSA SSH Key",
   "/tools/ssh/ecdsa": "ECDSA SSH Key",
@@ -218,7 +219,10 @@ function getCategoryFromPath(path: string): string {
   return "tools";
 }
 
-function getTitleFromPath(path: string): string {
+function getTitleFromPath(path: string, messages?: CatalogMessages): string {
+  if (messages?.pathTitles || messages?.tools || messages?.breadcrumb) {
+    return resolvePathTitle(path, messages);
+  }
   if (PATH_TITLES[path]) return PATH_TITLES[path];
   const fromTools = TOOLS.find((t) => t.path === path);
   if (fromTools) return fromTools.title;
@@ -234,57 +238,55 @@ function getTitleFromPath(path: string): string {
 
 const BUILT_PATHS = new Set<string>();
 
-// Add from TOOLS
 TOOLS.forEach((t) => {
   BUILT_PATHS.add(t.path);
 });
 
-// Add from PATH_TITLES
 Object.keys(PATH_TITLES).forEach((p) => BUILT_PATHS.add(p));
 
-export const ALL_TOOLS: ToolEntry[] = Array.from(BUILT_PATHS)
-  .filter((p) => p.startsWith("/tools/"))
-  .map((path) => ({
-    path,
-    title: getTitleFromPath(path),
-    category: getCategoryFromPath(path),
-  }));
-
-/** Get same-category tools excluding current path */
-export function getSameCategoryTools(path: string, limit = 6): ToolEntry[] {
-  const entry = ALL_TOOLS.find((t) => t.path === path);
-  if (!entry) return [];
-
-  return ALL_TOOLS.filter(
-    (t) => t.path !== path && t.category === entry.category
-  ).slice(0, limit);
+export function buildAllTools(messages?: CatalogMessages): ToolEntry[] {
+  return Array.from(BUILT_PATHS)
+    .filter((p) => p.startsWith("/tools/"))
+    .map((path) => ({
+      path,
+      title: getTitleFromPath(path, messages),
+      category: getCategoryFromPath(path),
+    }));
 }
 
-/** Get category page path for a category slug (e.g. "calculator" -> "/tools/calculator") */
+/** English defaults for sitemap and static references */
+export const ALL_TOOLS: ToolEntry[] = buildAllTools();
+
+export function getSameCategoryTools(
+  path: string,
+  limit = 6,
+  messages?: CatalogMessages
+): ToolEntry[] {
+  const catalog = buildAllTools(messages);
+  const entry = catalog.find((t) => t.path === path);
+  if (!entry) return [];
+
+  return catalog
+    .filter((t) => t.path !== path && t.category === entry.category)
+    .slice(0, limit);
+}
+
 export function getCategoryPagePath(category: string): string {
   if (category === "unit-converter") return "/tools/unit-converter";
   return `/tools/${category}`;
 }
 
-/** Get category for a path */
 export function getCategoryForPath(path: string): string | null {
   const entry = ALL_TOOLS.find((t) => t.path === path);
   return entry?.category ?? null;
 }
 
-/** Get parent path for sub-pages (e.g. /tools/hash-calculator/md5 -> /tools/hash-calculator) */
 export function getParentPath(path: string): string | null {
   const segments = path.split("/").filter(Boolean);
   if (segments.length >= 3) return "/" + segments.slice(0, 2).join("/");
   return null;
 }
 
-/** Categories that have a dedicated category page (avoid 404 for security, hash) */
-const CATEGORIES_WITH_PAGE = new Set([
-  "calculator", "health", "developer", "time", "image", "pdf", "text", "random", "seo", "language", "unit-converter",
-]);
-
-/** Get related paths: use parent's if current path is sub-page (e.g. /tools/hash-calculator/md5) */
 function getRelatedPathsForPath(path: string): string[] {
   if (RELATED_TOOLS[path]) return RELATED_TOOLS[path];
   const segments = path.split("/").filter(Boolean);
@@ -295,13 +297,17 @@ function getRelatedPathsForPath(path: string): string[] {
   return [];
 }
 
-/** Get related tools (cross-category + same-category) */
-export function getRelatedTools(path: string, limit = 6): ToolEntry[] {
+export function getRelatedTools(
+  path: string,
+  limit = 6,
+  messages?: CatalogMessages
+): ToolEntry[] {
+  const catalog = buildAllTools(messages);
   const relatedPaths = getRelatedPathsForPath(path);
-  const sameCategory = getSameCategoryTools(path, limit);
+  const sameCategory = getSameCategoryTools(path, limit, messages);
 
   const related = relatedPaths
-    .map((p) => ALL_TOOLS.find((t) => t.path === p))
+    .map((p) => catalog.find((t) => t.path === p))
     .filter((t): t is ToolEntry => !!t);
 
   const combined = [
@@ -310,9 +316,11 @@ export function getRelatedTools(path: string, limit = 6): ToolEntry[] {
   ];
 
   const seen = new Set<string>();
-  return combined.filter((t) => {
-    if (seen.has(t.path) || t.path === path) return false;
-    seen.add(t.path);
-    return true;
-  }).slice(0, limit);
+  return combined
+    .filter((t) => {
+      if (seen.has(t.path) || t.path === path) return false;
+      seen.add(t.path);
+      return true;
+    })
+    .slice(0, limit);
 }

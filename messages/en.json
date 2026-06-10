@@ -1,0 +1,113 @@
+{
+  "common": {
+    "siteName": "WithusTools"
+  },
+  "site": {
+    "title": "WithusTools - Free Online Web Tools",
+    "description": "50+ free online web tools. Calculator, developer tools, hash, image, random generator, SEO, text, time tools and more. No signup required.",
+    "keywords": ["online tools", "web utilities", "free tools", "withustools"]
+  },
+  "legal": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "How WithusTools collects, uses, and protects information when you use our free online tools.",
+      "h1": "Privacy Policy",
+      "lastUpdated": "Last updated: March 25, 2026"
+    },
+    "termsOfUse": {
+      "title": "Terms of Use",
+      "description": "Terms and conditions for using WithusTools free online web tools.",
+      "h1": "Terms of Use",
+      "lastUpdated": "Last updated: March 25, 2026"
+    },
+    "licenses": {
+      "title": "Licenses & Attributions",
+      "description": "Third-party software licenses and copyright attributions used by WithusTools.",
+      "h1": "Licenses & Attributions",
+      "subtitle": "Third-party software licenses and copyright attributions"
+    },
+    "cookieSettings": {
+      "title": "Cookie Settings",
+      "description": "Manage cookie preferences for WithusTools. Control analytics and advertising cookies.",
+      "h1": "Cookie Settings",
+      "subtitle": "Manage your cookie preferences"
+    }
+  },
+  "hub": {
+    "openTool": "Open {name} →",
+    "cardDescription": "Free {name} in your browser. No signup required."
+  },
+  "home": {
+    "title": "Modern Toolbox",
+    "subtitle": "Simple and fast free online tools. No signup required.",
+    "tryIt": "Try it →",
+    "noTools": "No tools in this category yet."
+  },
+  "header": {
+    "searchPlaceholder": "Quick Search... Search tools",
+    "searchAria": "Quick Search",
+    "submitSearchAria": "Search"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "en": "EN",
+    "ko": "KO"
+  },
+  "footer": {
+    "home": "Home",
+    "tools": "Tools",
+    "search": "Search",
+    "licenses": "Licenses",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "cookieSettings": "Cookie Settings",
+    "feedback": "Feedback",
+    "feedbackTitle": "Send feedback & requests",
+    "tagline": "Free online web tools. No signup required.",
+    "feedbackLabel": "Feedback & requests:"
+  },
+  "categories": {
+    "all": "All",
+    "calculator": "Calculator",
+    "health": "Health",
+    "developer": "Developer",
+    "security": "Security",
+    "hash": "Hash",
+    "time": "Time",
+    "text": "Text",
+    "image": "Image",
+    "pdf": "PDF",
+    "random": "Random",
+    "seo": "SEO",
+    "language": "Language",
+    "unit-converter": "Unit Converter"
+  },
+  "search": {
+    "title": "Tool Search",
+    "titleWithQuery": "\"{query}\" search results",
+    "hint": "Use the search bar above to find tools.",
+    "foundOne": "Found 1 tool.",
+    "foundMany": "Found {count} tools.",
+    "noResults": "No tools found for \"{query}\"."
+  },
+  "relatedTools": {
+    "moreCategory": "More {category} Tools",
+    "allCategory": "← All {category} tools",
+    "allTools": "← All tools"
+  },
+  "toolsPage": {
+    "title": "Tools",
+    "subtitle": "All free online tools provided by WithusTools."
+  },
+  "cookie": {
+    "regionAria": "Cookie consent",
+    "banner": "Are our free conversion tools helpful? 😊 If you allow personalized ads and usage analytics, it helps us improve accuracy and convenience. You can change this anytime in settings.",
+    "preferencesAria": "Detailed cookie preferences",
+    "analytics": "Usage analytics (Google Analytics)",
+    "ads": "Personalized ads (Google ads and cookies)",
+    "saveChoices": "Save choices",
+    "acceptAll": "Accept all",
+    "essentialOnly": "Essential only",
+    "customize": "Customize"
+  }
+}

@@ -3,6 +3,8 @@
  * Add entries here; they are picked up by generateStaticParams.
  */
 
+import { FAQ_KO_OVERRIDES } from "./faq-ko-overrides";
+
 export type FaqCategory =
   | "length"
   | "weight"
@@ -2909,12 +2911,20 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   },
 ];
 
-export function getFaqEntry(category: string, slug: string): FaqEntry | undefined {
-  return FAQ_ENTRIES.find((e) => e.category === category && e.slug === slug);
+function applyFaqLocale(entry: FaqEntry, locale?: string): FaqEntry {
+  if (locale !== "ko") return entry;
+  const override = FAQ_KO_OVERRIDES[`${entry.category}/${entry.slug}`];
+  return override ? { ...entry, ...override } : entry;
 }
 
-export function getFaqEntriesByCategory(category: FaqCategory): FaqEntry[] {
-  return FAQ_ENTRIES.filter((e) => e.category === category);
+export function getFaqEntry(category: string, slug: string, locale?: string): FaqEntry | undefined {
+  const entry = FAQ_ENTRIES.find((e) => e.category === category && e.slug === slug);
+  if (!entry) return undefined;
+  return applyFaqLocale(entry, locale);
+}
+
+export function getFaqEntriesByCategory(category: FaqCategory, locale?: string): FaqEntry[] {
+  return FAQ_ENTRIES.filter((e) => e.category === category).map((e) => applyFaqLocale(e, locale));
 }
 
 export function getAllFaqStaticParams(): { category: string; slug: string }[] {

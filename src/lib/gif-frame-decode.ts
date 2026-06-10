@@ -3,7 +3,7 @@
  * Mirrors JPG Converter decoding paths where applicable.
  */
 
-import type { MultiFileGifFormat } from "@/app/tools/gif-converter/gif-format-config";
+import type { MultiFileGifFormat } from "@/app/[locale]/tools/gif-converter/gif-format-config";
 
 function loadImageFromUrl(url: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {

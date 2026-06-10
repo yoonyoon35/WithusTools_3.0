@@ -1,27 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { getRelatedTools, getParentPath, ALL_TOOLS, type ToolEntry } from "@/data/all-tools";
+import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import {
+  buildAllTools,
+  getParentPath,
+  getRelatedTools,
+  type ToolEntry,
+} from "@/data/all-tools";
+import { useCatalogMessages } from "@/hooks/useCatalogMessages";
 import ToolIcon from "@/components/ToolIcon";
 
-const CATEGORY_LABELS: Record<string, string> = {
-  calculator: "Calculator",
-  health: "Health",
-  developer: "Developer",
-  security: "Security",
-  hash: "Hash",
-  image: "Image",
-  pdf: "PDF",
-  random: "Random",
-  seo: "SEO",
-  time: "Time",
-  text: "Text",
-  language: "Language",
-  "unit-converter": "Unit Converter",
-};
-
-/** Only categories with dedicated pages (security, hash are standalone) */
 const CATEGORY_PATHS: Record<string, string> = {
   calculator: "/tools/calculator",
   health: "/tools/health",
@@ -71,23 +60,30 @@ function ToolCard({ tool }: { tool: ToolEntry }) {
 
 export default function RelatedTools() {
   const pathname = usePathname();
+  const messages = useCatalogMessages();
+  const t = useTranslations("relatedTools");
+  const tCategories = useTranslations("categories");
+
   if (!pathname?.startsWith("/tools")) return null;
 
-  const currentEntry = ALL_TOOLS.find((t) => t.path === pathname);
-  const related = getRelatedTools(pathname, 6);
+  const catalog = buildAllTools(messages);
+  const currentEntry = catalog.find((entry) => entry.path === pathname);
+  const related = getRelatedTools(pathname, 6, messages);
   if (related.length === 0) return null;
 
   const categoryLabel = currentEntry
-    ? CATEGORY_LABELS[currentEntry.category] ?? currentEntry.category
-    : related[0].category;
+    ? tCategories(currentEntry.category)
+    : tCategories(related[0].category);
   const categoryPath = currentEntry && CATEGORY_PATHS[currentEntry.category];
   const parentPath = getParentPath(pathname);
-  const parentEntry = parentPath ? ALL_TOOLS.find((t) => t.path === parentPath) : null;
+  const parentEntry = parentPath
+    ? catalog.find((entry) => entry.path === parentPath)
+    : null;
 
   return (
     <section className="mt-12 rounded-xl border border-border bg-surface/50 p-6 sm:p-8">
       <h2 className="mb-4 text-lg font-semibold text-slate-200">
-        More {categoryLabel} Tools
+        {t("moreCategory", { category: categoryLabel })}
       </h2>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         {related.map((tool) => (
@@ -100,7 +96,7 @@ export default function RelatedTools() {
             href={categoryPath}
             className="text-slate-500 transition-colors hover:text-slate-300"
           >
-            ← All {categoryLabel} tools
+            {t("allCategory", { category: categoryLabel })}
           </Link>
         )}
         {!categoryPath && parentPath && parentEntry && (
@@ -115,7 +111,7 @@ export default function RelatedTools() {
           href="/"
           className="text-slate-500 transition-colors hover:text-slate-300"
         >
-          ← All tools
+          {t("allTools")}
         </Link>
       </div>
     </section>

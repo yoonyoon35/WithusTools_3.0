@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { routing } from "@/i18n/routing";
+import { localizedPath } from "@/lib/metadata";
 import { ALL_TOOLS } from "@/data/all-tools";
 import {
   GIF_CONVERTER_FORMATS,
@@ -49,6 +51,24 @@ function locUrl(path: string): string {
   return `${BASE_URL}${normalized}/`;
 }
 
+type SitemapEntryInput = Omit<MetadataRoute.Sitemap[number], "url"> & {
+  path: string;
+};
+
+/** localePrefix: always — 각 경로를 /en/..., /ko/... 로 확장 */
+function expandLocales(entries: SitemapEntryInput[]): MetadataRoute.Sitemap {
+  const out: MetadataRoute.Sitemap = [];
+  for (const locale of routing.locales) {
+    for (const { path, ...rest } of entries) {
+      out.push({
+        ...rest,
+        url: locUrl(localizedPath(locale, path)),
+      });
+    }
+  }
+  return out;
+}
+
 /**
  * Sitemap section order (oldest / core first → newest / long-tail last):
  * 1. Site foundation (home, search, tools index)
@@ -91,13 +111,13 @@ function unitConverterPairSitemapEntries(
   basePath: string,
   keys: readonly string[],
   getCanonicalSlug: (fromKey: string, toKey: string) => string
-): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = [];
+): SitemapEntryInput[] {
+  const entries: SitemapEntryInput[] = [];
   for (const from of keys) {
     for (const to of keys) {
       if (from === to) continue;
       entries.push({
-        url: locUrl(`${basePath}/${getCanonicalSlug(from, to)}`),
+        path: `${basePath}/${getCanonicalSlug(from, to)}`,
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.65,
@@ -110,84 +130,64 @@ function unitConverterPairSitemapEntries(
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const siteFoundation: MetadataRoute.Sitemap = [
-    { url: locUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: locUrl("/search"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: locUrl("/tools"), lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+  const siteFoundation: SitemapEntryInput[] = [
+    { path: "/", lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { path: "/search", lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { path: "/tools", lastModified: now, changeFrequency: "weekly", priority: 0.9 },
   ];
 
-  const legalAndMeta: MetadataRoute.Sitemap = [
-    {
-      url: locUrl("/privacy-policy"),
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
-    {
-      url: locUrl("/terms-of-use"),
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
-    {
-      url: locUrl("/cookie-settings"),
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.55,
-    },
-    {
-      url: locUrl("/licenses"),
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.45,
-    },
+  const legalAndMeta: SitemapEntryInput[] = [
+    { path: "/privacy-policy", lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+    { path: "/terms-of-use", lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+    { path: "/cookie-settings", lastModified: now, changeFrequency: "yearly", priority: 0.55 },
+    { path: "/licenses", lastModified: now, changeFrequency: "yearly", priority: 0.45 },
   ];
 
-  const toolPagesSorted: MetadataRoute.Sitemap = [...ALL_TOOLS]
+  const toolPagesSorted: SitemapEntryInput[] = [...ALL_TOOLS]
     .sort((a, b) => a.path.localeCompare(b.path))
     .map(({ path }) => ({
-      url: locUrl(path),
+      path,
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     }));
 
-  const hashAlgorithmPages: MetadataRoute.Sitemap = HASH_CALCULATOR_ALGORITHMS.map((algorithm) => ({
-    url: locUrl(`/tools/hash-calculator/${algorithm}`),
+  const hashAlgorithmPages: SitemapEntryInput[] = HASH_CALCULATOR_ALGORITHMS.map((algorithm) => ({
+    path: `/tools/hash-calculator/${algorithm}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.72,
   }));
 
-  const sshAlgorithmPages: MetadataRoute.Sitemap = SSH_KEY_ALGORITHMS.map((algorithm) => ({
-    url: locUrl(`/tools/ssh/${algorithm}`),
+  const sshAlgorithmPages: SitemapEntryInput[] = SSH_KEY_ALGORITHMS.map((algorithm) => ({
+    path: `/tools/ssh/${algorithm}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.72,
   }));
 
-  const jpgConverterPages: MetadataRoute.Sitemap = JPG_CONVERTER_FORMATS.map((format) => ({
-    url: locUrl(`/tools/jpg-converter/${format}`),
+  const jpgConverterPages: SitemapEntryInput[] = JPG_CONVERTER_FORMATS.map((format) => ({
+    path: `/tools/jpg-converter/${format}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const gifConverterPages: MetadataRoute.Sitemap = GIF_CONVERTER_FORMATS.map((format) => ({
-    url: locUrl(`/tools/gif-converter/${format}`),
+  const gifConverterPages: SitemapEntryInput[] = GIF_CONVERTER_FORMATS.map((format) => ({
+    path: `/tools/gif-converter/${format}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const pdfConverterPages: MetadataRoute.Sitemap = PDF_CONVERTER_FORMATS.map((format) => ({
-    url: locUrl(`/tools/pdf-converter/${format}`),
+  const pdfConverterPages: SitemapEntryInput[] = PDF_CONVERTER_FORMATS.map((format) => ({
+    path: `/tools/pdf-converter/${format}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const unitConverterPairPages: MetadataRoute.Sitemap = [
+  const unitConverterPairPages: SitemapEntryInput[] = [
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/length", getLengthKeys(), getCanonicalLengthSlug),
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/weight", getWeightKeys(), getCanonicalWeightSlug),
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/area", getAreaKeys(), getCanonicalAreaSlug),
@@ -211,47 +211,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...unitConverterPairSitemapEntries(now, "/tools/unit-converter/angle", [...ANGLE_HUB_KEYS], getCanonicalAngleSlug),
   ];
 
-  const faqPages: MetadataRoute.Sitemap = getAllFaqStaticParams().map(({ category, slug }) => ({
-    url: locUrl(`/faq/${category}/${slug}`),
+  const faqPages: SitemapEntryInput[] = getAllFaqStaticParams().map(({ category, slug }) => ({
+    path: `/faq/${category}/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
 
-  const powerConverterPairPages: MetadataRoute.Sitemap = unitConverterPairSitemapEntries(
+  const powerConverterPairPages: SitemapEntryInput[] = unitConverterPairSitemapEntries(
     now,
     "/tools/unit-converter/power",
     getPowerKeys(),
     getCanonicalPowerSlug
   );
 
-  const numberSystemPairPages: MetadataRoute.Sitemap = getAllNumberSystemPairSlugs().map((slug) => ({
-    url: locUrl(`/tools/developer/numbersystem-converter/${slug}`),
+  const numberSystemPairPages: SitemapEntryInput[] = getAllNumberSystemPairSlugs().map((slug) => ({
+    path: `/tools/developer/numbersystem-converter/${slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
 
-  const colorFormatPairPages: MetadataRoute.Sitemap = getAllColorFormatPairs().map(({ from, to }) => ({
-    url: locUrl(`/tools/developer/color-picker/converter/${getCanonicalColorPairSlug(from, to)}`),
+  const colorFormatPairPages: SitemapEntryInput[] = getAllColorFormatPairs().map(({ from, to }) => ({
+    path: `/tools/developer/color-picker/converter/${getCanonicalColorPairSlug(from, to)}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));
 
-  return dedupeSitemapByUrl([
-    ...siteFoundation,
-    ...legalAndMeta,
-    ...toolPagesSorted,
-    ...hashAlgorithmPages,
-    ...sshAlgorithmPages,
-    ...jpgConverterPages,
-    ...gifConverterPages,
-    ...pdfConverterPages,
-    ...unitConverterPairPages,
-    ...faqPages,
-    ...powerConverterPairPages,
-    ...numberSystemPairPages,
-    ...colorFormatPairPages,
-  ]);
+  return dedupeSitemapByUrl(
+    expandLocales([
+      ...siteFoundation,
+      ...legalAndMeta,
+      ...toolPagesSorted,
+      ...hashAlgorithmPages,
+      ...sshAlgorithmPages,
+      ...jpgConverterPages,
+      ...gifConverterPages,
+      ...pdfConverterPages,
+      ...unitConverterPairPages,
+      ...faqPages,
+      ...powerConverterPairPages,
+      ...numberSystemPairPages,
+      ...colorFormatPairPages,
+    ])
+  );
 }

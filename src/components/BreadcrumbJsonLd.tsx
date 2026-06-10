@@ -2,10 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import { buildBreadcrumb } from "@/lib/breadcrumb";
+import { useCatalogMessages } from "@/hooks/useCatalogMessages";
 
 export default function BreadcrumbJsonLd() {
   const pathname = usePathname();
-  const items = buildBreadcrumb(pathname);
+  const messages = useCatalogMessages();
+  const items = buildBreadcrumb(pathname, messages);
 
   const jsonLd = {
     "@context": "https://schema.org",

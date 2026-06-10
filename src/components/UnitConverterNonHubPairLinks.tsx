@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/I18nLink";
 import {
   getNonHubDiscoveryLinks,
   type UnitConverterNonHubCategory,

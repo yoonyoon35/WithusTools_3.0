@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
+import { generatePageMetadata } from "@/lib/page-metadata";
+import { routing, type Locale } from "@/i18n/routing";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, getToolContentEntry } from "@/lib/tool-content";
+import { Link } from "@/components/I18nLink";
+import ToolIcon from "@/components/ToolIcon";
+import HubToolGrid from "@/components/HubToolGrid";
+import ToolPageGuide from "@/components/ToolPageGuide";
+
+const META_PATH = "/tools/developer";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return generatePageMetadata(params.locale, META_PATH);
+}
+
+const DEVELOPER_PATHS = [
+  "/tools/developer/ascii-code-converter",
+  "/tools/developer/base64-encoder-decoder",
+  "/tools/developer/code-formatter",
+  "/tools/developer/color-picker",
+  "/tools/developer/css-sprites-generator",
+  "/tools/developer/numbersystem-converter",
+  "/tools/developer/qr-code-generator",
+  "/tools/developer/qr-code-reader",
+] as const;
+
+export default async function DeveloperToolsIndexPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
+
+  const content = getToolContentEntry(await loadToolContent(locale), META_PATH);
+  if (!content) {
+    throw new Error(`Missing toolContent for ${META_PATH}`);
+  }
+
+  const faqJsonLd = buildFaqJsonLd(content.faq);
+
+  const guideIntroNode =
+    content.guideIntroBefore && content.guideIntroLink1 ? (
+      <p className="mb-6 text-sm leading-relaxed text-slate-400">
+        {content.guideIntroBefore}{" "}
+        <Link href="/tools/developer/base64-encoder-decoder" className="underline hover:text-slate-200">
+          {content.guideIntroLink1}
+        </Link>{" "}
+        {content.guideIntroBetween}{" "}
+        <Link href="/tools/developer/code-formatter" className="underline hover:text-slate-200">
+          {content.guideIntroLink2}
+        </Link>{" "}
+        {content.guideIntroBetween}{" "}
+        <Link href="/tools/developer/qr-code-generator" className="underline hover:text-slate-200">
+          {content.guideIntroLink3}
+        </Link>
+        {content.guideIntroAfter}
+      </p>
+    ) : undefined;
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <div className="mb-8 flex flex-col items-center justify-center gap-4">
+        <div className="flex items-center gap-4">
+          <ToolIcon name="code" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
+          </div>
+        </div>
+      </div>
+
+      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+
+      <HubToolGrid paths={DEVELOPER_PATHS} />
+
+      <ToolPageGuide
+        title={content.guideTitle}
+        introNode={guideIntroNode}
+        sections={content.sections}
+        className="mb-8"
+      />
+
+      <Link
+        href="/"
+        className="inline-block text-slate-400 underline transition-colors hover:text-slate-200"
+      >
+        {content.backToHome}
+      </Link>
+    </div>
+  );
+}

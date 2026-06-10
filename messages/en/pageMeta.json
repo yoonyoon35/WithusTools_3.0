@@ -1,0 +1,1407 @@
+{
+  "byPath": {
+    "search": {
+      "title": "Tool Search",
+      "description": "Search tools - WithusTools",
+      "keywords": [
+        "search",
+        "withustools"
+      ]
+    },
+    "tools.calculator.average-calculator": {
+      "title": "Calculate Mean, Median, Mode",
+      "description": "Free average calculator for mean, median, mode, range, variance, and standard deviation. Paste numbers and get instant stats in your browser.",
+      "keywords": [
+        "average calculator",
+        "mean calculator",
+        "median calculator",
+        "mode calculator",
+        "standard deviation",
+        "variance",
+        "quartile",
+        "geometric mean",
+        "harmonic mean",
+        "statistical calculator",
+        "data analysis",
+        "withustools"
+      ]
+    },
+    "tools.calculator.calculator": {
+      "title": "Calculator",
+      "description": "Free online calculator for everyday math. Use keyboard input, memory keys, and common math functions in your browser.",
+      "keywords": [
+        "calculator",
+        "online calculator",
+        "scientific calculator",
+        "math calculator",
+        "basic calculator",
+        "percentage calculator",
+        "withustools"
+      ]
+    },
+    "tools.calculator.gpa-calculator": {
+      "title": "Calculate Your Grade Point Average",
+      "description": "Free GPA calculator for semester and cumulative GPA planning. Supports 4.0, 4.3, 4.5, and 5.0 grading scales.",
+      "keywords": [
+        "gpa calculator",
+        "grade point average",
+        "college gpa",
+        "semester gpa",
+        "cumulative gpa",
+        "grading scale",
+        "credit hours",
+        "withustools"
+      ]
+    },
+    "tools.calculator.gpa-calculator.target-gpa": {
+      "title": "Target GPA Calculator — What GPA Do I Need?",
+      "description": "Plan toward a cumulative GPA goal: enter your current credits, GPA, target GPA, and this term’s credit load to see the required term GPA. Optional credits-needed estimate at an expected term GPA.",
+      "keywords": [
+        "target gpa",
+        "gpa needed",
+        "3.5 gpa",
+        "cumulative gpa goal",
+        "required semester gpa",
+        "gpa planner",
+        "withustools"
+      ]
+    },
+    "tools.calculator": {
+      "title": "Calculator Tools",
+      "description": "Free online calculator tools in one place: average calculator, standard deviation calculator, GPA calculator, percentage calculator, programmer calculator, calculator for everyday math, and more.",
+      "keywords": [
+        "average calculator",
+        "standard deviation calculator",
+        "GPA calculator",
+        "percentage calculator",
+        "programmer calculator",
+        "binary calculator",
+        "hex calculator",
+        "calculator",
+        "mean median mode",
+        "grade point average",
+        "withustools"
+      ]
+    },
+    "tools.calculator.percentage-calculator": {
+      "title": "Calculate Percentages Easily",
+      "description": "Free percentage calculator with tabs for percent of value, percent change, part-to-whole, and value after increase or decrease.",
+      "keywords": [
+        "percentage calculator",
+        "percent calculator",
+        "percentage increase",
+        "percentage decrease",
+        "discount calculator",
+        "percentage change",
+        "withustools"
+      ]
+    },
+    "tools.calculator.programmer-calculator": {
+      "title": "Programmer Calculator — Binary, Hex, Octal, Decimal",
+      "description": "Free programmer calculator for binary, hex, octal, and decimal workflows. Includes bitwise ops, shifts, and bit-grid checks in browser.",
+      "keywords": [
+        "programmer calculator",
+        "binary calculator",
+        "hex calculator",
+        "octal calculator",
+        "bitwise calculator",
+        "QWORD calculator",
+        "bit toggle calculator",
+        "radix calculator",
+        "withustools"
+      ]
+    },
+    "tools.calculator.standard-deviation-calculator": {
+      "title": "Standard Deviation Calculator | Population vs Sample",
+      "description": "Free standard deviation calculator with population vs sample metrics, variance, CV, SS, and SEM. Paste numbers and calculate instantly in browser.",
+      "keywords": [
+        "standard deviation calculator",
+        "standard deviation formula",
+        "population vs sample standard deviation",
+        "sum of squares calculator",
+        "coefficient of variation",
+        "mean absolute deviation",
+        "standard error of the mean",
+        "sample standard deviation",
+        "population standard deviation",
+        "variance calculator",
+        "how to calculate standard deviation step by step",
+        "statistics calculator",
+        "withustools"
+      ]
+    },
+    "tools.developer.ascii-code-converter": {
+      "title": "Convert Text to ASCII Codes & Reverse",
+      "description": "Convert text to ASCII and back in decimal, hex, or binary. This online ASCII converter runs in your browser with quick copy support.",
+      "keywords": [
+        "ascii converter",
+        "text to ascii",
+        "ascii to text",
+        "ascii code",
+        "ascii table",
+        "hex converter",
+        "binary converter",
+        "decimal converter",
+        "character converter",
+        "text encoder",
+        "withustools"
+      ]
+    },
+    "tools.developer.base64-encoder-decoder": {
+      "title": "Convert Text and Files to Base64(Encoder & Decoder)",
+      "description": "Encode and decode Base64 for text and files in your browser. Supports URL-safe Base64 and quick copy or download workflows.",
+      "keywords": [
+        "base64 encoder decoder",
+        "base64 converter",
+        "text to base64",
+        "base64 to text",
+        "file to base64",
+        "base64 to file",
+        "withustools"
+      ]
+    },
+    "tools.developer.code-formatter": {
+      "title": "Code Format & Clean",
+      "description": "Format HTML, CSS, JavaScript, and JSON instantly in your browser. Clean indentation and spacing with a fast online code formatter.",
+      "keywords": [
+        "code formatter",
+        "code beautifier",
+        "code indentation",
+        "format code",
+        "beautify code",
+        "withustools"
+      ]
+    },
+    "tools.developer.color-picker": {
+      "title": "Color Picker | HEX, RGB, HSL, HSV, CMYK Code",
+      "description": "Pick colors online and copy HEX, RGB, HSL, HSV, or CMYK values. Includes eyedropper, contrast checks, palette, and saved history.",
+      "keywords": [
+        "color picker",
+        "hex color picker",
+        "rgb color picker",
+        "color code generator",
+        "withustools"
+      ]
+    },
+    "tools.developer.css-sprites-generator": {
+      "title": "Combine Images into CSS Sprites",
+      "description": "Generate a CSS sprite sheet from multiple images and copy ready-to-use CSS classes. Build and export sprites directly in your browser.",
+      "keywords": [
+        "css sprites generator",
+        "sprite sheet maker",
+        "image sprites",
+        "withustools"
+      ]
+    },
+    "tools.developer.numbersystem-converter": {
+      "title": "Number System Converter | Binary, Octal, Decimal, Hex",
+      "description": "Convert binary, octal, decimal, hexadecimal, and character values online. Supports optional fractional radix input and dedicated pair converters.",
+      "keywords": [
+        "number system converter",
+        "binary converter",
+        "decimal converter",
+        "hexadecimal converter",
+        "octal converter",
+        "fractional radix converter",
+        "withustools"
+      ]
+    },
+    "tools.developer": {
+      "title": "Developer Tools",
+      "description": "Free online developer tools for conversion, formatting, color picking, sprites, and QR workflows. Run everything directly in your browser.",
+      "keywords": [
+        "developer tools",
+        "ascii converter",
+        "base64 encoder",
+        "code formatter",
+        "color picker",
+        "css sprites",
+        "number system converter",
+        "qr code generator",
+        "qr code reader",
+        "withustools"
+      ]
+    },
+    "tools.developer.qr-code-generator": {
+      "title": "Create Custom QR Codes",
+      "description": "Create custom QR codes for links, text, contact info, Wi-Fi, and more. Export PNG, JPG, SVG, or PDF with color and logo options.",
+      "keywords": [
+        "qr code generator",
+        "qr code maker",
+        "create qr code",
+        "qr code with logo",
+        "custom qr code",
+        "free qr code",
+        "withustools"
+      ]
+    },
+    "tools.developer.qr-code-reader": {
+      "title": "Read QR Codes Instantly",
+      "description": "Scan QR codes from camera or uploaded images in your browser. Decode links, text, Wi-Fi, and contact payloads instantly.",
+      "keywords": [
+        "qr code scanner",
+        "qr code reader",
+        "scan qr code",
+        "qr scanner online",
+        "qr code decoder",
+        "withustools"
+      ]
+    },
+    "tools.gif-converter": {
+      "title": "GIF Converter",
+      "description": "GIF Converter hub on WithusTools—HEIC, PNG, WEBP, TIFF, PDF, JPG, and more to animated GIF. Browser-only gif.js encoding; no upload.",
+      "keywords": [
+        "GIF converter",
+        "HEIC to GIF",
+        "PNG to GIF",
+        "PDF to GIF",
+        "JPG to GIF",
+        "free online gif converter",
+        "GIF no upload",
+        "animated GIF tools",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator": {
+      "title": "Hash Calculator",
+      "description": "Calculate MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3, RIPEMD-160, and Bcrypt hashes for text and files. All processing runs in your browser—data never leaves your device.",
+      "keywords": [
+        "hash calculator",
+        "MD5",
+        "SHA1",
+        "SHA224",
+        "SHA256",
+        "SHA512",
+        "SHA3",
+        "Keccak",
+        "CRC32",
+        "Adler32",
+        "xxHash",
+        "BLAKE2",
+        "RIPEMD",
+        "Bcrypt",
+        "Argon2",
+        "PBKDF2",
+        "Scrypt",
+        "Whirlpool",
+        "FNV-1a",
+        "withustools"
+      ]
+    },
+    "tools.health.bmi-calculator": {
+      "title": "Calculate Body Mass Index",
+      "description": "Free BMI calculator with metric and US units. Check body mass index and category ranges instantly in your browser.",
+      "keywords": [
+        "bmi calculator",
+        "body mass index",
+        "calculate bmi",
+        "weight calculator",
+        "health calculator",
+        "bmi chart",
+        "ideal weight calculator",
+        "bmi metric",
+        "bmi us units",
+        "bmi health categories",
+        "withustools"
+      ]
+    },
+    "tools.health.bmr-tdee-calculator": {
+      "title": "BMR and TDEE Calculator",
+      "description": "Estimate basal metabolic rate with the Mifflin–St Jeor equation, then multiply by an activity factor for total daily energy expenditure. Metric or US units, runs locally.",
+      "keywords": [
+        "BMR calculator",
+        "TDEE calculator",
+        "Mifflin St Jeor",
+        "basal metabolic rate",
+        "total daily energy expenditure",
+        "maintenance calories",
+        "calorie calculator",
+        "activity factor",
+        "withustools"
+      ]
+    },
+    "tools.health.body-fat-calculator": {
+      "title": "Body Fat Calculator (Tape Estimate)",
+      "description": "Estimate body fat percentage with the U.S. Navy circumference method (neck, waist, height; hip for women). Metric or US units. Not a substitute for DXA or BIA—runs locally in your browser.",
+      "keywords": [
+        "body fat calculator",
+        "navy body fat formula",
+        "tape measure body fat",
+        "body fat percentage estimate",
+        "circumference body composition",
+        "neck waist body fat",
+        "withustools"
+      ]
+    },
+    "tools.health": {
+      "title": "Health Tools",
+      "description": "Body metrics and energy estimates in one place: BMI, skeletal muscle index, waist-to-hip ratio, BMR and TDEE, and Navy tape body fat—all in your browser.",
+      "keywords": [
+        "BMI calculator",
+        "skeletal muscle index",
+        "waist to hip ratio",
+        "BMR calculator",
+        "TDEE calculator",
+        "body fat calculator",
+        "health tools",
+        "withustools"
+      ]
+    },
+    "tools.health.skeletal-muscle-index-calculator": {
+      "title": "Skeletal Muscle Index Calculator",
+      "description": "Work out appendicular skeletal muscle mass divided by height squared (kg/m²). Metric or US height, optional EWGSOP2-style cut-offs for men and women—all in the browser.",
+      "keywords": [
+        "skeletal muscle index",
+        "appendicular muscle mass",
+        "SMI calculator",
+        "muscle mass index",
+        "kg per m2 muscle",
+        "BIA muscle index",
+        "sarcopenia screening",
+        "EWGSOP2",
+        "ASM height squared",
+        "withustools"
+      ]
+    },
+    "tools.health.waist-hip-ratio-calculator": {
+      "title": "Waist-to-Hip Ratio Calculator",
+      "description": "Measure waist and hip, get waist-to-hip ratio (WHR) in your browser. Optional WHO-style WHR lines plus Europid waist bands for men and women.",
+      "keywords": [
+        "waist to hip ratio",
+        "WHR calculator",
+        "waist hip ratio",
+        "waist circumference",
+        "hip circumference",
+        "central obesity",
+        "body shape calculator",
+        "WHO waist hip",
+        "withustools"
+      ]
+    },
+    "tools.image.image-compressor": {
+      "title": "Free Online Image Compressor",
+      "description": "Free online image compressor for JPG, PNG, WebP, and GIF. Reduce file size with quality control and browser-side processing.",
+      "keywords": [
+        "image compressor",
+        "compress image",
+        "reduce image size",
+        "image optimizer",
+        "batch compress",
+        "free online image compressor",
+        "compress images for web",
+        "reduce image file size without losing quality",
+        "remove EXIF metadata from images",
+        "compress JPG PNG WebP for email",
+        "withustools"
+      ]
+    },
+    "tools.image.image-editor": {
+      "title": "Free Online Image Editor",
+      "description": "Free online image editor for crop, resize, rotate, filters, watermark, and annotations with browser-side processing.",
+      "keywords": [
+        "image editor",
+        "photo editor",
+        "online editor",
+        "resize image",
+        "rotate image",
+        "brightness contrast",
+        "free online photo editor",
+        "adjust brightness contrast saturation online",
+        "rotate image 90 degrees",
+        "crop image online",
+        "add watermark to image",
+        "compare original and edited image",
+        "withustools"
+      ]
+    },
+    "tools.image.image-format-converter": {
+      "title": "Image Format Converter",
+      "description": "Free image format converter for PNG, JPG, WebP, GIF, BMP, TIFF, and AVIF with browser-side processing.",
+      "keywords": [
+        "image format converter",
+        "convert image format",
+        "png to jpg",
+        "jpg to png",
+        "webp converter",
+        "heic to jpg",
+        "image conversion online",
+        "convert pictures",
+        "format conversion tool",
+        "withustools"
+      ]
+    },
+    "tools.image.images-to-animated-gif": {
+      "title": "Images to Animated GIF",
+      "description": "Combine multiple images into one animated GIF in your browser. Set frame order, delay, canvas size, and quality. No upload—gif.js runs locally on your device.",
+      "keywords": [
+        "images to gif",
+        "animated gif from images",
+        "merge images to gif",
+        "create gif from photos",
+        "multi image gif maker",
+        "online animated gif",
+        "browser gif maker",
+        "gif frame delay",
+        "withustools"
+      ]
+    },
+    "tools.image": {
+      "title": "Image Tools",
+      "description": "Image Compressor, Image Format Converter, Images to Animated GIF, Image Editor, and Paint Board. Compress, convert formats, merge frames into GIF, edit photos, and create digital art. All processing runs in your browser—your data never leaves your device.",
+      "keywords": [
+        "image compressor",
+        "image editor",
+        "paint board",
+        "online drawing tool",
+        "compress image",
+        "image format converter",
+        "convert image format",
+        "edit image",
+        "free online image tools",
+        "compress edit create images in browser",
+        "images to animated gif",
+        "withustools"
+      ]
+    },
+    "tools.image.paint-board": {
+      "title": "Free Online Paint Board",
+      "description": "Free online paint board for drawing, sketching, and annotation in browser with brush, shapes, and undo/redo.",
+      "keywords": [
+        "paint board",
+        "drawing tool",
+        "online paint",
+        "digital art",
+        "sketch tool",
+        "free online drawing tool",
+        "draw with brush online",
+        "create digital art in browser",
+        "sketch tool for diagrams",
+        "online whiteboard",
+        "withustools"
+      ]
+    },
+    "tools.jpg-converter": {
+      "title": "JPG Converter",
+      "description": "Free online JPG converter. Convert HEIC, HEIF, AVIF, BMP, PNG, SVG, TIFF, WEBP, PSD, JFIF, ICO, AI, DNG, CR2, CR3, TGA, and PDF to JPG. Batch convert multiple images at once. No upload—all processing runs in your browser.",
+      "keywords": [
+        "JPG converter",
+        "free online jpg converter",
+        "HEIC to JPG",
+        "HEIF to JPG",
+        "WEBP to JPG",
+        "PNG to JPG",
+        "PDF to JPG",
+        "PSD to JPG",
+        "JFIF to JPG",
+        "ICO to JPG",
+        "AI to JPG",
+        "DNG to JPG",
+        "CR2 to JPG",
+        "CR3 to JPG",
+        "TGA to JPG",
+        "AVIF to JPG",
+        "TIFF to JPG",
+        "SVG to JPG",
+        "BMP to JPG",
+        "batch convert to JPG",
+        "convert images to JPG no upload",
+        "withustools"
+      ]
+    },
+    "tools.language.alphabet-study": {
+      "title": "English Alphabet | Letters, Sounds & Writing Reference",
+      "description": "Free English alphabet chart for A-Z letter practice. Check pronunciation, stroke guidance, and printable writing sheets in your browser.",
+      "keywords": [
+        "English alphabet",
+        "learn alphabet",
+        "letter names",
+        "ABC",
+        "pronunciation",
+        "writing tips",
+        "withustools"
+      ]
+    },
+    "tools.language.hangul-study": {
+      "title": "Korean Hangul | Jamo Chart, Pronunciation & Writing Reference",
+      "description": "Free Hangul chart for Korean jamo practice. Learn pronunciation, stroke guidance, and printable writing sheets in your browser.",
+      "keywords": [
+        "hangul chart",
+        "Korean hangul",
+        "learn hangul",
+        "jamo",
+        "Korean alphabet",
+        "stroke order",
+        "withustools"
+      ]
+    },
+    "tools.language.hangul-to-hiragana": {
+      "title": "Hangul to Hiragana (Pronunciation) | Korean to Kana",
+      "description": "Convert Hangul to Hiragana by pronunciation with an online browser-based tool. Useful for quick Korean-to-kana study notes.",
+      "keywords": [
+        "hangul to hiragana",
+        "korean hiragana",
+        "hangul pronunciation hiragana",
+        "korean to kana",
+        "hangul converter",
+        "withustools"
+      ]
+    },
+    "tools.language.hangul-to-katakana": {
+      "title": "Hangul to Katakana (Pronunciation) | Korean to Kana",
+      "description": "Convert Hangul to Katakana by pronunciation with an online browser-based tool. Useful for Korean-to-kana study and quick notation.",
+      "keywords": [
+        "hangul to katakana",
+        "korean katakana",
+        "hangul pronunciation katakana",
+        "korean to katakana",
+        "hangul converter",
+        "withustools"
+      ]
+    },
+    "tools.language.hiragana-katakana-converter": {
+      "title": "Hiragana Katakana Converter | Text to Kana",
+      "description": "Convert text to Hiragana and Katakana at the same time. This online kana converter runs in your browser and supports mixed input.",
+      "keywords": [
+        "hiragana converter",
+        "katakana converter",
+        "kana converter",
+        "romaji to hiragana",
+        "romaji to katakana",
+        "Japanese kana",
+        "withustools"
+      ]
+    },
+    "tools.language.hiragana-study": {
+      "title": "Hiragana Chart | Japanese Syllabary & Writing Reference",
+      "description": "Free Hiragana chart in gojuon order. Practice pronunciation, stroke guidance, and printable writing sheets in your browser.",
+      "keywords": [
+        "hiragana chart",
+        "Japanese hiragana",
+        "learn hiragana",
+        "hiragana pronunciation",
+        "stroke order",
+        "gojūon",
+        "withustools"
+      ]
+    },
+    "tools.language.hiragana-to-hangul": {
+      "title": "Hiragana to Hangul (Pronunciation) | Kana to Korean",
+      "description": "Convert Hiragana to Hangul with inverse pronunciation mapping. This online browser tool helps recover Korean-style output from kana notes.",
+      "keywords": [
+        "hiragana to hangul",
+        "kana to korean",
+        "hiragana hangul converter",
+        "japanese kana korean",
+        "withustools"
+      ]
+    },
+    "tools.language.katakana-study": {
+      "title": "Katakana Chart | Characters, Romaji & Writing Reference",
+      "description": "Free Katakana chart in gojuon order. Practice pronunciation, stroke guidance, and printable writing sheets in your browser.",
+      "keywords": [
+        "katakana chart",
+        "Japanese katakana",
+        "learn katakana",
+        "katakana pronunciation",
+        "stroke order",
+        "withustools"
+      ]
+    },
+    "tools.language.katakana-to-hangul": {
+      "title": "Katakana to Hangul (Pronunciation) | Kana to Korean",
+      "description": "Convert Katakana to Hangul with inverse pronunciation mapping. This online browser tool helps decode Korean-style output from kana notes.",
+      "keywords": [
+        "katakana to hangul",
+        "katakana hangul converter",
+        "kana to korean",
+        "japanese katakana korean",
+        "withustools"
+      ]
+    },
+    "tools.language": {
+      "title": "Language Tools",
+      "description": "Free online language tools for alphabet and script study. Practice English, Hiragana, Katakana, Hangul, and use Hangul-kana pronunciation converters in your browser.",
+      "keywords": [
+        "language tools",
+        "English alphabet",
+        "hiragana chart",
+        "katakana chart",
+        "hangul chart",
+        "kana converter",
+        "hangul to hiragana",
+        "hangul to katakana",
+        "hiragana to hangul",
+        "katakana to hangul",
+        "language learning",
+        "withustools"
+      ]
+    },
+    "tools": {
+      "title": "Tools",
+      "description": "All free online tools provided by WithusTools",
+      "keywords": [
+        "tools",
+        "online tools",
+        "withustools"
+      ]
+    },
+    "tools.pdf.image-to-pdf": {
+      "title": "Image to PDF",
+      "description": "Free online Image to PDF: combine JPG, PNG, HEIC, HEIF, WEBP, AVIF, BMP, TIFF, GIF, and other images into one PDF. Mixed formats in one batch. Fit-to-image pages or A4. No upload—processing runs in your browser.",
+      "keywords": [
+        "image to PDF",
+        "combine images PDF",
+        "mixed format PDF",
+        "HEIC PNG JPG PDF",
+        "browser PDF",
+        "free image to PDF",
+        "withustools"
+      ]
+    },
+    "tools.pdf.merge-pdf": {
+      "title": "Merge PDF",
+      "description": "Free online PDF merger: combine multiple PDF files into one in seconds. No upload—everything runs locally in your browser for maximum privacy.",
+      "keywords": [
+        "merge PDF",
+        "PDF merger",
+        "combine PDF",
+        "join PDF",
+        "browser PDF merge",
+        "free PDF merge",
+        "withustools"
+      ]
+    },
+    "tools.pdf": {
+      "title": "PDF Tools",
+      "description": "Free PDF tools: combine JPG, PNG, HEIC, HEIF, WEBP, AVIF, BMP, TIFF, and other images into one PDF. Mixed formats supported. Format-specific converters available. All processing runs in your browser.",
+      "keywords": [
+        "PDF tools",
+        "image to PDF",
+        "combine images PDF",
+        "HEIC to PDF",
+        "PNG to PDF",
+        "JPG to PDF",
+        "mixed images PDF",
+        "browser PDF",
+        "withustools"
+      ]
+    },
+    "tools.pdf-converter": {
+      "title": "PDF Converter",
+      "description": "Free online PDF converter. Convert JPG, HEIC, HEIF, PNG, WEBP, AVIF, BMP, TIFF, and other images to PDF. Combine multiple images into a single PDF with zero white margins and preserved aspect ratio. No upload—all processing runs in your browser.",
+      "keywords": [
+        "PDF converter",
+        "JPG to PDF",
+        "HEIC to PDF",
+        "HEIF to PDF",
+        "WEBP to PDF",
+        "AVIF to PDF",
+        "BMP to PDF",
+        "TIFF to PDF",
+        "image to PDF",
+        "combine images to PDF",
+        "free PDF converter",
+        "no white margin PDF",
+        "preserve aspect ratio",
+        "withustools"
+      ]
+    },
+    "tools.random": {
+      "title": "Random Generator Tools",
+      "description": "Password Generator and Random Number Generator. Create strong passwords and random numbers with customizable options. All processing runs in your browser.",
+      "keywords": [
+        "random generator",
+        "password generator",
+        "random number generator",
+        "strong password",
+        "random numbers",
+        "lottery numbers",
+        "withustools"
+      ]
+    },
+    "tools.random.password-generator": {
+      "title": "Generate Strong & Secure Passwords",
+      "description": "Free password generator for strong random passwords with customizable length and character sets in browser.",
+      "keywords": [
+        "password generator",
+        "strong password",
+        "random password",
+        "secure password",
+        "withustools"
+      ]
+    },
+    "tools.random.random-number-generator": {
+      "title": "Generate Random Numbers Instantly",
+      "description": "Free random number generator with customizable range, quantity, and output options in browser.",
+      "keywords": [
+        "random number generator",
+        "random numbers",
+        "random integer generator",
+        "lottery number generator",
+        "random sampling",
+        "withustools"
+      ]
+    },
+    "tools.seo.favicon-generator": {
+      "title": "Create All Platform Favicons",
+      "description": "Create a full favicon package online in your browser. Export favicon files, manifest, and HTML tags for web, iOS, Android, and Windows.",
+      "keywords": [
+        "favicon generator",
+        "favicon maker",
+        "favicon creator",
+        "website icon generator",
+        "favicon converter",
+        "favicon package",
+        "favicon design",
+        "withustools"
+      ]
+    },
+    "tools.seo.metatag-generator": {
+      "title": "Create SEO Meta Tags",
+      "description": "Generate SEO meta tags online in your browser. Create title, description, Open Graph, and Twitter Card tags you can paste into your site head.",
+      "keywords": [
+        "meta tag generator",
+        "seo meta tags",
+        "open graph generator",
+        "twitter card generator",
+        "meta description generator",
+        "withustools"
+      ]
+    },
+    "tools.seo": {
+      "title": "SEO Tools",
+      "description": "Free online SEO tools: Favicon Generator, Meta Tag Generator, Robots.txt Generator, and Sitemap Generator. Improve search engine visibility and social sharing.",
+      "keywords": [
+        "seo tools",
+        "favicon generator",
+        "meta tag generator",
+        "robots.txt generator",
+        "sitemap generator",
+        "seo optimization",
+        "withustools"
+      ]
+    },
+    "tools.seo.robots-generator": {
+      "title": "Create SEO File for Robots.txt",
+      "description": "Create a robots.txt file online in your browser. Set user-agent allow/disallow rules and add your sitemap URL for better crawl control.",
+      "keywords": [
+        "robots.txt generator",
+        "robots.txt creator",
+        "seo tools",
+        "search engine optimization",
+        "web crawler control",
+        "withustools"
+      ]
+    },
+    "tools.seo.sitemap-generator": {
+      "title": "Create XML Sitemaps for SEO",
+      "description": "Generate an XML sitemap online in your browser. Add URLs, set change frequency and priority, then download sitemap.xml for search engines.",
+      "keywords": [
+        "sitemap generator",
+        "xml sitemap",
+        "seo tools",
+        "website sitemap",
+        "google sitemap",
+        "withustools"
+      ]
+    },
+    "tools.ssh": {
+      "title": "SSH Key Generator",
+      "description": "Generate RSA, Ed25519, and ECDSA SSH key pairs in your browser. Keys run locally—never sent to any server. Free, secure, OpenSSH compatible.",
+      "keywords": [
+        "SSH key generator",
+        "generate SSH key",
+        "Ed25519",
+        "RSA",
+        "ECDSA",
+        "OpenSSH",
+        "withustools"
+      ]
+    },
+    "tools.ssh.ed25519": {
+      "title": "Ed25519 SSH Key Generator | Generate OpenSSH Keys",
+      "description": "Generate Ed25519 SSH key pairs in your browser. Fast, compact keys for servers, GitHub, and cloud access. Local processing, OpenSSH compatible.",
+      "keywords": [
+        "Ed25519 SSH key",
+        "generate Ed25519 key",
+        "SSH key generator",
+        "OpenSSH",
+        "Ed25519 key pair",
+        "withustools"
+      ]
+    },
+    "tools.ssh.rsa": {
+      "title": "RSA SSH Key Generator | Configurable Key Sizes",
+      "description": "Generate RSA SSH key pairs (1024–8192 bits, default 4096) in your browser. Broad server compatibility, optional passphrase, OpenSSH format.",
+      "keywords": [
+        "RSA SSH key",
+        "generate RSA key",
+        "SSH key generator",
+        "4096 RSA",
+        "OpenSSH",
+        "withustools"
+      ]
+    },
+    "tools.ssh.ecdsa": {
+      "title": "ECDSA SSH Key Generator | P-256, P-384, P-521",
+      "description": "Generate ECDSA SSH key pairs with P-256, P-384, or P-521 curves in your browser. Compact keys, OpenSSH compatible, local processing.",
+      "keywords": [
+        "ECDSA SSH key",
+        "generate ECDSA key",
+        "SSH key generator",
+        "elliptic curve SSH",
+        "OpenSSH",
+        "withustools"
+      ]
+    },
+    "tools.text": {
+      "title": "Text Tools",
+      "description": "Free online text tools: string comparison, text case converter, and text editor. Compare texts, convert case (uppercase, lowercase, capitalize), and write notes. All processing runs in your browser.",
+      "keywords": [
+        "text tools",
+        "string comparison",
+        "text converter",
+        "text editor",
+        "case converter",
+        "diff checker",
+        "note taking",
+        "withustools"
+      ]
+    },
+    "tools.text.string-comparison": {
+      "title": "String Comparison Tool | Compare Text Differences",
+      "description": "Free string comparison tool for side-by-side text diff checks in browser with local processing.",
+      "keywords": [
+        "string comparison",
+        "text comparison",
+        "diff checker",
+        "text difference",
+        "string diff",
+        "withustools"
+      ]
+    },
+    "tools.text.text-converter": {
+      "title": "Text Case Converter | Uppercase, Lowercase, Capitalize",
+      "description": "Free text case converter for uppercase, lowercase, and sentence formatting with browser-side processing.",
+      "keywords": [
+        "text converter",
+        "case converter",
+        "uppercase converter",
+        "lowercase converter",
+        "capitalize text",
+        "withustools"
+      ]
+    },
+    "tools.text.text-editor": {
+      "title": "Text Editor | Simple Note Taking",
+      "description": "Free browser text editor for quick notes with local save and Word/PDF export support.",
+      "keywords": [
+        "text editor",
+        "note taking",
+        "online notes",
+        "simple editor",
+        "text to pdf",
+        "text to word",
+        "withustools"
+      ]
+    },
+    "tools.time.alarm-clock": {
+      "title": "Online Alarm Clock with Multiple Alarms",
+      "description": "Set multiple browser alarms with optional notifications—free online alarm clock, no signup. Meetings, pills, or quick tab-side reminders.",
+      "keywords": [
+        "alarm clock",
+        "online alarm",
+        "multiple alarms",
+        "time reminder",
+        "withustools"
+      ]
+    },
+    "tools.time.calendar": {
+      "title": "Free Online Calendar & Event Planner",
+      "description": "Free online calendar for quick event planning in your browser. Add, edit, and manage date-based reminders with no signup.",
+      "keywords": [
+        "calendar",
+        "event planner",
+        "schedule",
+        "withustools"
+      ]
+    },
+    "tools.time.date-difference": {
+      "title": "Date Difference Calculator | Days, Weeks, Months",
+      "description": "Free online date difference calculator for days between dates and D-day planning. Compare past or future dates in your browser.",
+      "keywords": [
+        "date difference",
+        "d-day calculator",
+        "days between dates",
+        "date calculator",
+        "countdown",
+        "project deadline",
+        "withustools"
+      ]
+    },
+    "tools.time.interval-timer": {
+      "title": "Custom Interval Timer for Workouts & Routines",
+      "description": "Free online interval timer for workouts and routines. Build custom rounds, add rest, and repeat cycles in your browser.",
+      "keywords": [
+        "interval timer",
+        "workout timer",
+        "routine timer",
+        "HIIT",
+        "withustools"
+      ]
+    },
+    "tools.time": {
+      "title": "Time Tools",
+      "description": "Free online time tools in one place: alarm clock, online timer, stopwatch, Pomodoro, calendar, and world clock. Runs in your browser with no signup.",
+      "keywords": [
+        "alarm clock",
+        "stopwatch",
+        "timer",
+        "pomodoro",
+        "interval timer",
+        "date difference",
+        "d-day calculator",
+        "calendar",
+        "world clock",
+        "time zone",
+        "time management",
+        "countdown",
+        "withustools"
+      ]
+    },
+    "tools.time.pomodoro": {
+      "title": "Pomodoro Timer for Focus & Productivity",
+      "description": "Free online Pomodoro timer for focus sessions in your browser. Run 25/5 cycles, short breaks, and long breaks with alerts.",
+      "keywords": [
+        "pomodoro",
+        "pomodoro timer",
+        "focus timer",
+        "productivity",
+        "time management",
+        "withustools"
+      ]
+    },
+    "tools.time.stopwatch": {
+      "title": "Precise Online Stopwatch",
+      "description": "Free online stopwatch for lap timing and quick elapsed tracking in your browser. Start, lap, reset, and export records.",
+      "keywords": [
+        "stopwatch",
+        "lap timer",
+        "time tracking",
+        "chronometer",
+        "withustools"
+      ]
+    },
+    "tools.time.timer": {
+      "title": "Free Countdown Timer Online",
+      "description": "Free online countdown timer for cooking, workouts, and focused work. Runs in browser with optional sound and notifications.",
+      "keywords": [
+        "countdown timer",
+        "online timer",
+        "pomodoro",
+        "timer app",
+        "withustools"
+      ]
+    },
+    "tools.time.world-clock": {
+      "title": "World Clock & Time Zone Converter",
+      "description": "Free online world clock and time zone converter for global meetings and travel planning. Compare city times in your browser.",
+      "keywords": [
+        "world clock",
+        "time zone",
+        "timezone converter",
+        "international time",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.angle": {
+      "title": "Angle Converter | Degrees, Radians, MOA, Mil, Quadrant",
+      "description": "Convert angle: revolutions, quadrants, sextants, degrees, arc minutes, MOA, arcseconds, gradians, radians, milliradians, microradians, and NATO mils. Dedicated pair pages, formulas, and tables.",
+      "keywords": [
+        "angle converter",
+        "degrees to radians",
+        "radians to degrees",
+        "NATO mil",
+        "MOA to mil",
+        "quadrant to degree",
+        "gradians",
+        "arc minutes",
+        "milliradians",
+        "plane angle",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.area": {
+      "title": "Area Converter | m², ft², acre, hectare, pyeong, tsubo",
+      "description": "Convert area units: m², cm², km², hectare, decare, are, acre, pyeong, tsubo, ft², yd², in², mi². Free online area converter for real estate, land, and construction.",
+      "keywords": [
+        "area converter",
+        "square meters to square feet",
+        "acres to hectares",
+        "m2 to ft2",
+        "pyeong to m2",
+        "tsubo to m2",
+        "land area",
+        "real estate area",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.digital": {
+      "title": "Digital Storage Converter | Bytes, KB, MB, GB, TB, Bits",
+      "description": "Convert digital storage: bytes, kilobytes, megabytes, gigabytes, terabytes, petabytes, bits, megabits. Decimal SI and binary IEC units. Free online converter.",
+      "keywords": [
+        "digital storage converter",
+        "bytes to MB",
+        "GB to TB",
+        "megabit to megabyte",
+        "data units",
+        "binary units",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.energy": {
+      "title": "Energy Converter | J, kJ, MJ, GJ, kWh, MMBtu, toe, eV",
+      "description": "Convert energy: J, kJ, MJ, GJ, Wh, kWh, thermal kWh, cal, kcal, BTU, MMBtu, therm, toe, ft·lb, eV/MeV/GeV. Free online energy converter for engineering, utility, and science.",
+      "keywords": [
+        "energy converter",
+        "joules to calories",
+        "kWh to joules",
+        "BTU to joules",
+        "mmbtu to kwh",
+        "toe to gj",
+        "kilocalorie",
+        "electronvolt",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.length": {
+      "title": "Length Converter | Meters, Feet, Inches, Miles, Nautical Mile, Angstrom",
+      "description": "Convert length units: kilometers, meters, feet, inches, miles, yards, nautical miles, chains, fathoms, micrometers, nanometers, angstroms, picometers. Free online length converter.",
+      "keywords": [
+        "length converter",
+        "meters to feet",
+        "feet to meters",
+        "km to miles",
+        "inches to cm",
+        "nautical miles to km",
+        "angstrom to nm",
+        "metric length",
+        "imperial length",
+        "distance converter",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter": {
+      "title": "Unit Converter Tools",
+      "description": "Free online unit converter tools for length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle.",
+      "keywords": [
+        "unit converter",
+        "length converter",
+        "weight converter",
+        "temperature converter",
+        "area converter",
+        "volume converter",
+        "angle converter",
+        "power converter",
+        "digital storage converter",
+        "metric converter",
+        "imperial converter",
+        "measurement conversion",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.power": {
+      "title": "Power Converter | W, kW, GW, hp, PS, BTU/h, TR, dBm, dBW, kVA",
+      "description": "Convert power: W, mW, kW, MW, GW, hp, PS/CV, BTU/h, TR, kcal/h, VA/kVA/MVA, dBm, dBW, ft·lb/s. Free online power converter with dedicated pair pages.",
+      "keywords": [
+        "power converter",
+        "watts to kilowatts",
+        "hp to kw",
+        "ps to kw",
+        "BTU per hour to watts",
+        "tr to kw",
+        "dBm to watts",
+        "dBW to watts",
+        "VA to watts",
+        "megawatt",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.pressure": {
+      "title": "Pressure Converter | Pa, bar, PSI, kgf/cm², inHg, inH2O, mmHg",
+      "description": "Convert pressure: Pa, kPa, hPa, mbar, bar, atm, PSI, kgf/cm², inHg, inH2O, mmH2O, torr, mmHg. Dedicated pair pages, formulas, and tables.",
+      "keywords": [
+        "pressure converter",
+        "psi to bar",
+        "bar to pascal",
+        "hPa to mmHg",
+        "mmHg to kPa",
+        "inhg to psi",
+        "kgf cm2 to bar",
+        "atmosphere pressure",
+        "pressure conversion",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.speed": {
+      "title": "Speed Converter | m/s, km/s, km/h, mph, knots, Mach, Beaufort, c",
+      "description": "Convert speed: m/s, km/s, km/h, mph, knots, fpm, fps, ips, cm/s, mm/s, Mach (ISA), Beaufort wind force, and speed of light c. Dedicated pair pages, formulas, and tables.",
+      "keywords": [
+        "speed converter",
+        "km/h to mph",
+        "mph to km/h",
+        "meters per second",
+        "km/s to m/s",
+        "mach to mph",
+        "beaufort scale",
+        "speed of light converter",
+        "speed conversion",
+        "velocity converter",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.temperature": {
+      "title": "Temperature Converter | Celsius, Fahrenheit, Kelvin, Rankine",
+      "description": "Convert temperature: Celsius, Fahrenheit, Kelvin. Offset-correct formulas. Free online converter for weather, cooking, and science.",
+      "keywords": [
+        "temperature converter",
+        "celsius to fahrenheit",
+        "fahrenheit to celsius",
+        "kelvin converter",
+        "rankine converter",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.time": {
+      "title": "Time Converter | Seconds, Minutes, Hours, Days, Years",
+      "description": "Convert time units: seconds, minutes, hours, days, weeks, months, years. Free online time converter for scheduling and project management.",
+      "keywords": [
+        "time converter",
+        "seconds to minutes",
+        "hours to days",
+        "time conversion",
+        "duration converter",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.volume": {
+      "title": "Volume Converter | Liters, Gallons, Milliliters, Cubic Meters",
+      "description": "Convert volume units: liters, gallons, milliliters, cubic meters, quarts, pints. Free online volume converter for cooking and chemistry.",
+      "keywords": [
+        "volume converter",
+        "liters to gallons",
+        "gallons to liters",
+        "ml to cups",
+        "cubic meters",
+        "fluid ounces",
+        "withustools"
+      ]
+    },
+    "tools.unit-converter.weight": {
+      "title": "Weight Converter | kg, lb, oz, carat, grain, hundredweight",
+      "description": "Convert weight units: kg, g, mg, ug, lb, oz, grain, carat, stone, US/UK hundredweight, metric ton, US/UK ton. Free online weight converter for cooking, shipping, health, and trade.",
+      "keywords": [
+        "weight converter",
+        "kg to pounds",
+        "pounds to kg",
+        "grams to ounces",
+        "carat to gram",
+        "hundredweight to kg",
+        "mass converter",
+        "metric weight",
+        "imperial weight",
+        "withustools"
+      ]
+    },
+    "home": {
+      "title": "WithusTools - Free Online Web Tools",
+      "description": "50+ free online web tools. Calculator, developer tools, hash, image, random generator, SEO, text, time tools and more. No signup required.",
+      "keywords": [
+        "online tools",
+        "web utilities",
+        "free tools",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.md5": {
+      "title": "MD5 Hash Calculator",
+      "description": "Generate MD5 hashes from text or files. 128-bit hash for checksums. All processing runs in your browser.",
+      "keywords": [
+        "MD5 hash",
+        "hash calculator",
+        "MD5 checksum",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.sha1": {
+      "title": "SHA-1 Hash Calculator",
+      "description": "Generate SHA-1 hashes from text or files. 160-bit hash. All processing runs in your browser.",
+      "keywords": [
+        "SHA-1 hash",
+        "hash calculator",
+        "SHA1 checksum",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.sha224": {
+      "title": "SHA-224 Hash Calculator",
+      "description": "Generate SHA-224 hashes from text or files. 224-bit truncated SHA-256. Used in TLS, DNSSEC. All processing runs in your browser.",
+      "keywords": [
+        "SHA-224 hash",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.sha256": {
+      "title": "SHA-256 Hash Calculator",
+      "description": "Generate SHA-256 hashes from text or files. Industry standard 256-bit hash. All processing runs in your browser.",
+      "keywords": [
+        "SHA-256 hash",
+        "hash calculator",
+        "SHA256 checksum",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.sha384": {
+      "title": "SHA-384 Hash Calculator",
+      "description": "Generate SHA-384 hashes from text or files. 384-bit truncated SHA-512. All processing runs in your browser.",
+      "keywords": [
+        "SHA-384 hash",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.sha512": {
+      "title": "SHA-512 Hash Calculator",
+      "description": "Generate SHA-512 hashes from text or files. Maximum security 512-bit hash. All processing runs in your browser.",
+      "keywords": [
+        "SHA-512 hash",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.sha3": {
+      "title": "SHA-3 Hash Calculator",
+      "description": "Generate SHA-3 (Keccak) hashes. SHA3-224, 256, 384, 512. NIST standard. All processing runs in your browser.",
+      "keywords": [
+        "SHA-3 hash",
+        "hash calculator",
+        "Keccak",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.keccak256": {
+      "title": "Keccak-256 Hash Calculator",
+      "description": "Generate Keccak-256 hashes (original Keccak, not SHA3). Used in Ethereum, Web3, smart contracts. All processing runs in your browser.",
+      "keywords": [
+        "Keccak-256",
+        "hash calculator",
+        "Ethereum hash",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.crc32": {
+      "title": "CRC32 Checksum Calculator",
+      "description": "Generate CRC32 checksums from text or files. Non-cryptographic 32-bit checksum. Used in ZIP, PNG, Git. All processing runs in your browser.",
+      "keywords": [
+        "CRC32",
+        "checksum calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.adler32": {
+      "title": "Adler-32 Checksum Calculator",
+      "description": "Generate Adler-32 checksums from text or files. Non-cryptographic 32-bit checksum. Used in zlib, PNG. Faster than CRC32. All processing runs in your browser.",
+      "keywords": [
+        "Adler-32",
+        "checksum calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.xxhash": {
+      "title": "xxHash Calculator",
+      "description": "Generate xxHash hashes (xxHash32, xxHash64). Extremely fast non-cryptographic hash. Used for deduplication, checksums. All processing runs in your browser.",
+      "keywords": [
+        "xxHash",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.blake2": {
+      "title": "BLAKE2 Hash Calculator",
+      "description": "Generate BLAKE2 hashes (BLAKE2b-256/512, BLAKE2s-256). Fast cryptographic hash. RFC 7693. All processing runs in your browser.",
+      "keywords": [
+        "BLAKE2",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.ripemd160": {
+      "title": "RIPEMD-160 Hash Calculator",
+      "description": "Generate RIPEMD-160 hashes from text or files. European standard, used in Bitcoin. All processing runs in your browser.",
+      "keywords": [
+        "RIPEMD-160",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.bcrypt": {
+      "title": "Bcrypt Password Hash Generator",
+      "description": "Generate Bcrypt password hashes with configurable salt rounds. Verify passwords against hashes. All processing runs in your browser.",
+      "keywords": [
+        "Bcrypt",
+        "password hash",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.argon2": {
+      "title": "Argon2 Password Hash Generator",
+      "description": "Generate Argon2 password hashes (Argon2id, Argon2i, Argon2d). Winner of Password Hashing Competition. Verify passwords against hashes. All processing runs in your browser.",
+      "keywords": [
+        "Argon2",
+        "password hash",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.pbkdf2": {
+      "title": "PBKDF2 Key Derivation",
+      "description": "Derive keys from passwords using PBKDF2. RFC 2898. Configurable salt, iterations, hash (SHA-1/256/384/512). Used in TLS, Django, many frameworks. All processing runs in your browser.",
+      "keywords": [
+        "PBKDF2",
+        "key derivation",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.scrypt": {
+      "title": "Scrypt Key Derivation",
+      "description": "Memory-hard key derivation from passwords. RFC 7914. Configurable N, r, p. Used in cryptocurrencies, Unix passwords. All processing runs in your browser.",
+      "keywords": [
+        "Scrypt",
+        "key derivation",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.whirlpool": {
+      "title": "Whirlpool Hash Calculator",
+      "description": "Generate Whirlpool 512-bit hashes from text or files. ISO/IEC 10118-3 standard. Used in digital signatures, some cryptocurrencies. All processing runs in your browser.",
+      "keywords": [
+        "Whirlpool",
+        "hash calculator",
+        "withustools"
+      ]
+    },
+    "tools.hash-calculator.fnv1a": {
+      "title": "FNV-1a Hash Calculator",
+      "description": "Generate FNV-1a non-cryptographic hashes from text or files. Fowler-Noll-Vo algorithm. Fast with good distribution. 32–1024 bit. Used for URLs, hostnames, checksums. All processing runs in your browser.",
+      "keywords": [
+        "FNV-1a",
+        "hash calculator",
+        "withustools"
+      ]
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { routing, type Locale } from "@/i18n/routing";
 
 const SITE_URL = "https://withustools.com";
 
@@ -8,7 +9,36 @@ export interface PageMetadataParams {
   keywords?: string[];
   ogImage?: string;
   path?: string;
+  locale?: Locale;
   noIndex?: boolean;
+}
+
+/** localePrefix: 'always' — /en/tools/... 형태의 canonical path 생성 */
+export function localizedPath(locale: Locale, path = ""): string {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const hasLocalePrefix = routing.locales.some(
+    (loc) => normalized === `/${loc}` || normalized.startsWith(`/${loc}/`)
+  );
+  if (hasLocalePrefix) {
+    return normalized.endsWith("/") ? normalized : `${normalized}/`;
+  }
+  if (!normalized || normalized === "/") return `/${locale}/`;
+  const withLocale = `/${locale}${normalized}`;
+  return withLocale.endsWith("/") ? withLocale : `${withLocale}/`;
+}
+
+function buildPageUrl(path: string, locale: Locale): string {
+  return `${SITE_URL}${localizedPath(locale, path)}`;
+}
+
+/** hreflang alternates for all configured locales + x-default */
+export function buildLanguageAlternates(path = ""): Record<string, string> {
+  const languages: Record<string, string> = {};
+  for (const loc of routing.locales) {
+    languages[loc] = buildPageUrl(path, loc);
+  }
+  languages["x-default"] = buildPageUrl(path, routing.defaultLocale);
+  return languages;
 }
 
 /**
@@ -21,9 +51,10 @@ export function createMetadata({
   keywords = [],
   ogImage,
   path = "",
+  locale = routing.defaultLocale,
   noIndex = false,
 }: PageMetadataParams): Metadata {
-  const url = path ? `${SITE_URL}${path}` : SITE_URL;
+  const url = buildPageUrl(path, locale);
   const imageUrl = ogImage
     ? (ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`)
     : `${SITE_URL}/og-default.png`;
@@ -53,6 +84,7 @@ export function createMetadata({
     },
     alternates: {
       canonical: url,
+      languages: buildLanguageAlternates(path),
     },
     robots: noIndex
       ? { index: false, follow: false }

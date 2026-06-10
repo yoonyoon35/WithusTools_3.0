@@ -1,0 +1,66 @@
+{
+  "ssh-key-gen": {
+    "title": "SSH Key Generator",
+    "description": "Generate RSA, Ed25519, ECDSA SSH key pairs for secure authentication"
+  },
+  "hash-calculator": {
+    "title": "Hash Calculator",
+    "description": "Calculate MD5, SHA-1, SHA-256, SHA-512, SHA3, RIPEMD, Bcrypt hashes for text and files"
+  },
+  "calculator-tools": {
+    "title": "Calculator",
+    "description": "Average calculator, standard deviation calculator, GPA calculator, percentage calculator, programmer calculator, and calculator for everyday math"
+  },
+  "health-tools": {
+    "title": "Health Tools",
+    "description": "BMI calculator, skeletal muscle index calculator, waist-to-hip ratio calculator, BMR and TDEE calculator, and body fat (tape estimate) calculator for body metrics and energy estimates"
+  },
+  "time-tools": {
+    "title": "Time Tools",
+    "description": "Alarm clock, stopwatch, countdown timer, and calendar for time management"
+  },
+  "image-tools": {
+    "title": "Image Tools",
+    "description": "Image Compressor, Format Converter, Images to Animated GIF, Image Editor, Paint Board, JPG Converter, and GIF Converter hub for compressing, converting, merging frames to GIF, editing, and drawing"
+  },
+  "jpg-converter": {
+    "title": "JPG Converter",
+    "description": "Convert HEIC, HEIF, AVIF, BMP, PNG, SVG, TIFF, WEBP, PSD, JFIF, ICO, AI, DNG, CR2, CR3, TGA, and PDF to JPG format"
+  },
+  "gif-converter": {
+    "title": "GIF Converter",
+    "description": "GIF Converter hub—JPG to GIF (multiple JPEGs → one animated GIF) and more format routes over time. Browser-only gif.js encoding; use Image Tools for mixed image types."
+  },
+  "pdf-tools": {
+    "title": "PDF Tools",
+    "description": "Image to PDF: combine JPG, PNG, HEIC, HEIF, WEBP, AVIF, BMP, TIFF, and other images into one PDF. Format-specific converters also available. Zero margins in fit mode, local processing."
+  },
+  "pdf-converter": {
+    "title": "PDF Converter",
+    "description": "Convert JPG, HEIC, HEIF, PNG, WEBP, AVIF, BMP, TIFF, and images to PDF. Zero white margins, preserved aspect ratio. Combine multiple images into one PDF."
+  },
+  "text-tools": {
+    "title": "Text Tools",
+    "description": "String comparison, text case converter, and text editor for comparing texts, converting case, and writing notes"
+  },
+  "random-tools": {
+    "title": "Random Tools",
+    "description": "Password generator and random number generator for creating secure passwords and random numbers"
+  },
+  "seo-tools": {
+    "title": "SEO Tools",
+    "description": "Favicon generator, meta tag generator, robots.txt generator, and sitemap generator for website optimization"
+  },
+  "language-tools": {
+    "title": "Language Tools",
+    "description": "English Alphabet, Hiragana, Katakana, Hangul charts, Hiragana-Katakana converter, Hangul↔kana pronunciation tools, and Hiragana/Katakana-to-Hangul (inverse) for language learning"
+  },
+  "developer-tools": {
+    "title": "Developer Tools",
+    "description": "ASCII converter, Base64 encoder/decoder, code formatter, color picker, CSS sprites, number system converter, QR code generator and reader"
+  },
+  "unit-converter-tools": {
+    "title": "Unit Converter",
+    "description": "Convert length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, and angle units. Metric and imperial support."
+  }
+}

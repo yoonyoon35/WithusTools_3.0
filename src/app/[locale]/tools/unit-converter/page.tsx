@@ -1,0 +1,196 @@
+import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/page-metadata";
+import { Link } from "@/components/I18nLink";
+import ToolIcon from "@/components/ToolIcon";
+import HubToolGrid from "@/components/HubToolGrid";
+import UnitConverterHubGuide from "./UnitConverterHubGuide";
+
+const META_PATH = "/tools/unit-converter";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  return generatePageMetadata(params.locale, META_PATH);
+}
+
+const UNIT_CONVERTER_PATHS = [
+  "/tools/unit-converter/length",
+  "/tools/unit-converter/weight",
+  "/tools/unit-converter/temperature",
+  "/tools/unit-converter/area",
+  "/tools/unit-converter/volume",
+  "/tools/unit-converter/speed",
+  "/tools/unit-converter/time",
+  "/tools/unit-converter/digital",
+  "/tools/unit-converter/pressure",
+  "/tools/unit-converter/energy",
+  "/tools/unit-converter/power",
+  "/tools/unit-converter/angle",
+] as const;
+
+/** @deprecated use UNIT_CONVERTER_PATHS + HubToolGrid */
+const UNIT_CONVERTER_TOOLS = [
+  {
+    slug: "length",
+    name: "Length Converter",
+    description: "Convert kilometers, meters, feet, inches, miles, yards, and more. Supports metric and imperial units.",
+    path: "/tools/unit-converter/length",
+  },
+  {
+    slug: "weight",
+    name: "Weight Converter",
+    description: "Convert kilograms, pounds, ounces, grams, milligrams. Essential for cooking, shipping, and health monitoring.",
+    path: "/tools/unit-converter/weight",
+  },
+  {
+    slug: "temperature",
+    name: "Temperature Converter",
+    description: "Convert Celsius, Fahrenheit, and Kelvin. Perfect for weather, cooking, and scientific applications.",
+    path: "/tools/unit-converter/temperature",
+  },
+  {
+    slug: "area",
+    name: "Area Converter",
+    description: "Convert square meters, square feet, acres, hectares, and more. For real estate and construction.",
+    path: "/tools/unit-converter/area",
+  },
+  {
+    slug: "volume",
+    name: "Volume Converter",
+    description: "Convert liters, gallons, milliliters, cubic meters, quarts, pints, and more.",
+    path: "/tools/unit-converter/volume",
+  },
+  {
+    slug: "speed",
+    name: "Speed Converter",
+    description: "Convert km/h, mph, m/s, feet per second. For transportation, sports, and physics calculations.",
+    path: "/tools/unit-converter/speed",
+  },
+  {
+    slug: "time",
+    name: "Time Converter",
+    description: "Convert seconds, minutes, hours, days, weeks, months, and years.",
+    path: "/tools/unit-converter/time",
+  },
+  {
+    slug: "digital",
+    name: "Digital Storage Converter",
+    description: "Convert bits, bytes, KB, MB, GB, TB, KiB, MiB, GiB, TiB. Supports decimal (1000) and binary (1024) units.",
+    path: "/tools/unit-converter/digital",
+  },
+  {
+    slug: "pressure",
+    name: "Pressure Converter",
+    description:
+      "Convert Pascal, hPa, mmHg, bar, atmosphere, PSI, torr. Dedicated pair pages with formulas and tables. For engineering and meteorology.",
+    path: "/tools/unit-converter/pressure",
+  },
+  {
+    slug: "energy",
+    name: "Energy Converter",
+    description: "Convert joules, calories, kWh, BTU, electronvolts, therm, feet-pounds. For physics and energy management.",
+    path: "/tools/unit-converter/energy",
+  },
+  {
+    slug: "power",
+    name: "Power Converter",
+    description:
+      "Convert watts, kW, MW, mW, mechanical horsepower, BTU/h, kcal/h, VA, dBm, ft·lb/s. Dedicated pair pages with formulas and tables.",
+    path: "/tools/unit-converter/power",
+  },
+  {
+    slug: "angle",
+    name: "Angle Converter",
+    description:
+      "Convert degrees, radians, NATO mils, arc minutes, gradians, arcseconds. Dedicated pair pages with formulas and tables.",
+    path: "/tools/unit-converter/angle",
+  },
+] as const;
+
+const FAQ_ITEMS = [
+  {
+    question: "What can I convert on the Unit Converter Tools page?",
+    answer:
+      "You can convert common measurement categories including length, weight, temperature, area, volume, speed, time, digital storage, pressure, energy, power, and angle.",
+  },
+  {
+    question: "Do these unit converters support both metric and imperial units?",
+    answer:
+      "Yes. Most converters include both metric and imperial units where relevant.",
+  },
+  {
+    question: "Can I open detailed pair conversion pages from here?",
+    answer:
+      "Yes. Category tools link to dedicated pair pages with formulas, examples, and reference tables.",
+  },
+];
+
+export default function UnitConverterIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mb-8 flex flex-col items-center justify-center gap-4">
+        <div className="flex items-center gap-4">
+          <ToolIcon name="ruler" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-slate-100">Unit Converter Tools</h1>
+            <p className="mt-1 text-sm text-slate-500">unit-converter</p>
+          </div>
+        </div>
+      </div>
+
+      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
+        Convert everyday units quickly across major categories, with metric and imperial support where applicable.
+      </p>
+
+      <HubToolGrid paths={UNIT_CONVERTER_PATHS} />
+
+      <UnitConverterHubGuide />
+
+      <section className="mb-8 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="mb-3 text-xl font-semibold text-slate-200">Unit Converter Tools Guide</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          Popular starting points are{" "}
+          <Link href="/tools/unit-converter/length" className="underline hover:text-slate-200">
+            Length Converter
+          </Link>
+          ,{" "}
+          <Link href="/tools/unit-converter/temperature" className="underline hover:text-slate-200">
+            Temperature Converter
+          </Link>
+          , and{" "}
+          <Link href="/tools/unit-converter/weight" className="underline hover:text-slate-200">
+            Weight Converter
+          </Link>
+          . For advanced cases, open category-specific pair pages and FAQs.
+        </p>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <Link
+        href="/"
+        className="inline-block text-slate-400 underline transition-colors hover:text-slate-200"
+      >
+        ← Back to home
+      </Link>
+    </div>
+  );
+}
