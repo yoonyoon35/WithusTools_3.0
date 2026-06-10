@@ -771,3 +771,7 @@
 1417 - 페이지 한국어 현지화 작업
        - Language Tools
        - Developer Tools
+
+       npm 버전 문제로 클라우드플레어 배포 실패함. 
+       package-lock.json에 @swc/helpers@0.5.23 항목을 추가해 동기화했고, 
+       npm 10.9.2로 npm ci가 통과하는 것을 확인했습니다.
