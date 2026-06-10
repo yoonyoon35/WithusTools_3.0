@@ -4,6 +4,7 @@ import {
   formatDigitalResult,
   DIGITAL_UNITS,
 } from "@/utils/conversions";
+import { digitalUnitLabel } from "@/app/[locale]/tools/unit-converter/digital/digitalPairUi";
 
 export const DIGITAL_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const DIGITAL_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -12,13 +13,19 @@ export function DigitalConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = DIGITAL_UNITS[fromKey].nameSg ?? DIGITAL_UNITS[fromKey].name;
-  const toName = DIGITAL_UNITS[toKey].nameSg ?? DIGITAL_UNITS[toKey].name;
+  const fromName = ui
+    ? digitalUnitLabel(ui, fromKey, "nameSg")
+    : DIGITAL_UNITS[fromKey].nameSg ?? DIGITAL_UNITS[fromKey].name;
+  const toName = ui
+    ? digitalUnitLabel(ui, toKey, "nameSg")
+    : DIGITAL_UNITS[toKey].nameSg ?? DIGITAL_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -54,14 +61,16 @@ export function DigitalConversionTable({
 export function DigitalConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <DigitalConversionTable fromKey={fromKey} toKey={toKey} values={DIGITAL_TABLE_SMALL_STEPS} />
-      <DigitalConversionTable fromKey={fromKey} toKey={toKey} values={DIGITAL_TABLE_TENS_STEPS} />
+      <DigitalConversionTable fromKey={fromKey} toKey={toKey} values={DIGITAL_TABLE_SMALL_STEPS} ui={ui} />
+      <DigitalConversionTable fromKey={fromKey} toKey={toKey} values={DIGITAL_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

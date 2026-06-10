@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/components/I18nLink";
 import { notFound } from "next/navigation";
 import { createMetadata } from "@/lib/metadata";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, getToolContentEntry } from "@/lib/tool-content";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import ToolIcon from "@/components/ToolIcon";
 import { PowerConversionTablesPair } from "@/components/PowerConversionTable";
 import PowerPairCalculator from "../PowerPairCalculator";
@@ -11,7 +16,6 @@ import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLi
 import {
   getCanonicalPowerSlug,
   getPowerKeys,
-  POWER_UNITS,
   parsePowerPairSlug,
 } from "@/utils/conversions";
 import {
@@ -19,38 +23,43 @@ import {
   getRelationshipContext,
   getUnitDescription,
 } from "../powerPairContent";
+import { powerUnitLabel } from "../powerPairUi";
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
   const pair = parsePowerPairSlug(params.slug);
   if (!pair) {
-    return createMetadata({title: "Power Conversion", noIndex: true,
-    locale: params.locale as Locale,
-  });
+    return createMetadata({
+      title: "Power Conversion",
+      noIndex: true,
+      locale: locale as Locale,
+    });
   }
 
+  const toolContent = await loadToolContent(locale);
+  const metaPath = `/tools/unit-converter/power/${params.slug}`;
+  const content = getToolContentEntry(toolContent, metaPath);
   const { from, to } = pair;
-  const fromSg = POWER_UNITS[from].nameSg ?? POWER_UNITS[from].name;
-  const toSg = POWER_UNITS[to].nameSg ?? POWER_UNITS[to].name;
 
-  const title = `${fromSg} to ${toSg} Converter | Accurate Power Conversion`;
-  const description = `Easily convert ${fromSg} to ${toSg}. Fast, free, and accurate power converter with formulas, examples, and conversion tables for ${fromSg} and ${toSg}.`;
+  const title =
+    content?.h1 ??
+    `${powerUnitLabel(content?.ui, from, "nameSg")} to ${powerUnitLabel(content?.ui, to, "nameSg")} Converter`;
+  const description =
+    content?.intro ??
+    `Convert ${from} to ${to} with formulas, examples, and conversion tables.`;
 
-  return createMetadata({title,
+  return createMetadata({
+    title: `${title} | WithUsTools`,
     description,
-    path: `/tools/unit-converter/power/${params.slug}`,
-    keywords: [
-      `${fromSg} to ${toSg}`,
-      `${from} to ${to}`,
-      "power converter",
-      "unit conversion",
-      "watts",
-      "withustools",
-    ],
-    locale: params.locale as Locale,
+    path: metaPath,
+    keywords: [from, to, "power converter", "watts", "withustools"],
+    locale: locale as Locale,
   });
 }
 
@@ -66,115 +75,117 @@ export function generateStaticParams() {
   return slugs;
 }
 
-export default function PowerPairPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function PowerPairPage({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
+
   const pair = parsePowerPairSlug(params.slug);
   if (!pair) notFound();
 
+  const metaPath = `/tools/unit-converter/power/${params.slug}`;
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, metaPath);
+  if (!content) throw new Error(`Missing toolContent for ${metaPath}`);
+
   const { from: fromKey, to: toKey } = pair;
-  const fromSg = POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
-  const toSg = POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `How can I convert ${fromSg} to ${toSg}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Input a ${fromSg} value and the ${toSg} result is calculated immediately.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does this page include power conversion formulas?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Formula lines, explanation sections, and conversion tables are included.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I switch to other power pair pages?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Cross-links to related power conversions are provided below.",
-        },
-      },
-    ],
-  };
+  const pageUi = asMap(content.ui);
+  const fromSg = powerUnitLabel(content.ui, fromKey, "nameSg");
+  const toSg = powerUnitLabel(content.ui, toKey, "nameSg");
+  const faqJsonLd = buildFaqJsonLd(content.faq);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="ruler" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">
-              {fromSg} to {toSg} Converter
-            </h1>
-            <p className="mt-1 text-sm text-slate-500">Power · unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
-        reference tables. Linear units use SI watt definitions; mechanical hp uses 550 ft·lbf/s; BTU/h uses
-        the IT BTU; dBm/dBW are logarithmic relative to 1 mW and 1 W. The full Power Converter also includes
-        PS/CV, TR, kVA/MVA, and ft·lb/s.
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
-      <PowerPairCalculator fromKey={fromKey} toKey={toKey} />
+      <PowerPairCalculator fromKey={fromKey} toKey={toKey} metaPath={metaPath} />
 
       <section className="mt-12 grid gap-8 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {fromSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(fromKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: fromSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(fromKey, content.ui)}
+          </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {toSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(toKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: toSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(toKey, content.ui)}
+          </p>
         </div>
       </section>
 
       <div className="mt-10">
-        <HowToConvertPower fromKey={fromKey} toKey={toKey} />
+        <HowToConvertPower fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </div>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Summary</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getDetailedFormulaExplanation(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.summaryTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getDetailedFormulaExplanation(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Relationship context</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getRelationshipContext(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.relationshipTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getRelationshipContext(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
-        <PowerConversionTablesPair fromKey={fromKey} toKey={toKey} />
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">
+          {asText(pageUi.conversionTablesTitle)}
+        </h2>
+        <PowerConversionTablesPair fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </section>
 
-      <UnitConverterNonHubPairLinks category="power" fromKey={fromKey} toKey={toKey} />
+      <UnitConverterNonHubPairLinks
+        category="power"
+        fromKey={fromKey}
+        toKey={toKey}
+        ui={content.ui}
+      />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link
           href="/tools/unit-converter/power"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          ← Power Converter (all units)
+          {content.backToHub}
         </Link>
         <Link
           href="/tools/unit-converter"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          Unit Converter home
+          {content.backToDeveloper}
         </Link>
       </div>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

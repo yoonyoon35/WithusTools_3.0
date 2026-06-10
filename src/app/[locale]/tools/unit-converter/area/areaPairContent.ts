@@ -1,3 +1,4 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import {
   AREA_UNITS,
   getAreaMultiplier,
@@ -5,6 +6,7 @@ import {
   type AreaSystem,
 } from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { areaUnitLabel } from "./areaPairUi";
 
 export { formatRatioDisplay };
 
@@ -35,23 +37,51 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The square inch is the area of a square one inch on a side. Displays, machining, and small parts often reference square inches.",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ?? `${AREA_UNITS[key]?.name ?? key} is a standard area unit in this converter.`
   );
 }
 
-function systemLabel(s: AreaSystem): string {
-  if (s === "imperial") return "US customary / imperial";
-  return "metric (SI)";
+function systemLabel(s: AreaSystem, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (s === "imperial") return asText(pageUi.systemImperial) || "US customary / imperial";
+  return asText(pageUi.systemMetric) || "metric (SI)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const fromSys = getAreaSystem(fromKey);
   const toSys = getAreaSystem(toKey);
   const mult = getAreaMultiplier(fromKey, toKey);
-  const fromName = AREA_UNITS[fromKey].nameSg ?? AREA_UNITS[fromKey].name;
-  const toName = AREA_UNITS[toKey].nameSg ?? AREA_UNITS[toKey].name;
+  const fromName = areaUnitLabel(ui, fromKey, "nameSg");
+  const toName = areaUnitLabel(ui, toKey, "nameSg");
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    fromSystem: systemLabel(fromSys, pageUi),
+    toSystem: systemLabel(toSys, pageUi),
+  };
+
+  if (fromSys === toSys && fromSys === "metric" && asText(pageUi.relationshipMetric)) {
+    return formatUi(asText(pageUi.relationshipMetric), vars);
+  }
+  if (fromSys === toSys && fromSys === "imperial" && asText(pageUi.relationshipImperial)) {
+    return formatUi(asText(pageUi.relationshipImperial), vars);
+  }
+  if (fromSys !== toSys && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
+  }
 
   if (fromSys === toSys && fromSys === "metric") {
     return `Both units are ${systemLabel("metric")} and tied to the square meter. Conversions use exact ratios from their m² definitions. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
@@ -68,10 +98,23 @@ export function getRelationshipContext(fromKey: string, toKey: string): string {
   return `Area units are converted via their exact definitions in square meters. The multiplier between ${fromKey} and ${toKey} is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getAreaMultiplier(fromKey, toKey);
-  const fromName = AREA_UNITS[fromKey].nameSg ?? AREA_UNITS[fromKey].name;
-  const toName = AREA_UNITS[toKey].nameSg ?? AREA_UNITS[toKey].name;
+  const fromName = areaUnitLabel(ui, fromKey, "nameSg");
+  const toName = areaUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(AREA_UNITS[fromKey].factor),
+      toFactor: String(AREA_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by the ratio of square meters per ${fromKey} divided by square meters per ${toKey}. ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${AREA_UNITS[fromKey].factor} / ${AREA_UNITS[toKey].factor}). ` +
@@ -79,7 +122,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "ft2" && toKey === "in2") {
     return `1 ft² (square feet) = 12 in × 12 in = 144 square inches exactly.`;
   }

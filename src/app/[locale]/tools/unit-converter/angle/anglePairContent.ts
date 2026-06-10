@@ -1,4 +1,6 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { ANGLE_UNITS } from "@/utils/conversions";
+import { angleUnitLabel } from "./anglePairUi";
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   turn: "One revolution (turn) is a full circle: 2π radians or 360°. Used in rotation rates, motors, and astronomy (e.g. revolutions per minute).",
@@ -15,37 +17,77 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   mil: "NATO mils split a full circle into 6,400 parts for artillery and tactical optics; 1 mil = 2π/6400 rad.",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ??
     `${ANGLE_UNITS[key]?.name ?? key} is an angle unit in this converter; values bridge through radians.`
   );
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
-  const fromName = ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
-  const toName = ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
-
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = angleUnitLabel(ui, fromKey, "nameSg");
+  const toName = angleUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.relationshipDefault);
+  if (template) {
+    return formatUi(template, { fromName, toName, fromKey, toKey });
+  }
   return `Both ${fromName} and ${toName} are converted by fixed multiples of the radian. Multiplying by (rad per ${fromKey}) ÷ (rad per ${toKey}) matches passing through radians, keeping degrees, gradians, arc minutes, NATO mils, and revolutions consistent on the hub.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
-  const fromName = ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
-  const toName = ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = angleUnitLabel(ui, fromKey, "nameSg");
+  const toName = angleUnitLabel(ui, toKey, "nameSg");
 
   const fromF = ANGLE_UNITS[fromKey]?.factor;
   const toF = ANGLE_UNITS[toKey]?.factor;
   if (fromF == null || toF == null) {
+    const fallback = asText(pageUi.summaryFallback);
+    if (fallback) return formatUi(fallback, { fromName, toName });
     return `To convert ${fromName} to ${toName}, this tool uses an intermediate value in radians.`;
   }
 
   if (fromF === toF) {
+    const same = asText(pageUi.summarySame);
+    if (same) return formatUi(same, { fromName, toName, fromFactor: String(fromF) });
     return `To convert ${fromName} to ${toName}, both units use the same radian factor (${fromF} rad per unit) in this tool, so the numeric value is unchanged (1:1).`;
   }
 
   const ratio = fromF / toF;
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(fromF),
+      toFactor: String(toF),
+      mult: String(ratio),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by (${fromF} rad per ${fromKey}) / (${toF} rad per ${toKey}). ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${fromF} / ${toF}). Numerically, 1 ${fromKey} equals ${ratio} ${toKey}.`
   );
+}
+
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
+  if (fromKey === "deg" && toKey === "rad") return `1° = π/180 rad exactly.`;
+  if (fromKey === "rad" && toKey === "deg") return `1 rad = 180/π degrees.`;
+  if (fromKey === "turn" && toKey === "deg") return `1 turn = 360° exactly.`;
+  if (fromKey === "grad" && toKey === "deg") return `1 grad = 0.9° (400 grad = 360°).`;
+  if (fromKey === "deg" && toKey === "arcmin") return `1° = 60 arc minutes exactly.`;
+  if (fromKey === "arcmin" && toKey === "moa") return `MOA equals one arc minute (1:1 rad factor here).`;
+  if (fromKey === "mil" && toKey === "deg") return `360° = 6,400 NATO mils.`;
+  return null;
 }

@@ -1,4 +1,6 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { PA_PER_TORR, PRESSURE_UNITS } from "@/utils/conversions";
+import { pressureUnitLabel } from "./pressurePairUi";
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   pa: "The pascal (Pa) is the SI unit of pressure (one newton per square meter). It is the common reference for scientific and engineering work.",
@@ -16,30 +18,44 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   mbar: "Millibar (mbar) equals 100 Pa and is numerically identical to hPa. It appears in weather and legacy instrument labels.",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ??
     `${PRESSURE_UNITS[key]?.name ?? key} is a pressure unit in this converter; values bridge through pascal.`
   );
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
-  const fromName = PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
-  const toName = PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = pressureUnitLabel(ui, fromKey, "nameSg");
+  const toName = pressureUnitLabel(ui, toKey, "nameSg");
 
   if (
     (fromKey === "torr" && toKey === "mmhg") ||
     (fromKey === "mmhg" && toKey === "torr")
   ) {
+    const template = asText(pageUi.relationshipTorrMmhg);
+    if (template) {
+      return formatUi(template, { fromName, toName });
+    }
     return `You are converting between ${fromName} and ${toName}. In this tool both use the same pascal factor (standard atmosphere ÷ 760), so numeric values match one-to-one between torr and mmHg.`;
+  }
+
+  const template = asText(pageUi.relationshipDefault);
+  if (template) {
+    return formatUi(template, { fromName, toName, fromKey, toKey });
   }
 
   return `Both ${fromName} and ${toName} are converted by fixed multiples of the pascal. Multiplying by (Pa per ${fromKey}) ÷ (Pa per ${toKey}) gives the same result as passing through pascal, keeping bar, atm, PSI, kPa, hPa, torr, and mmHg consistent on the hub.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
-  const fromName = PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
-  const toName = PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = pressureUnitLabel(ui, fromKey, "nameSg");
+  const toName = pressureUnitLabel(ui, toKey, "nameSg");
 
   const fromF = PRESSURE_UNITS[fromKey]?.factor;
   const toF = PRESSURE_UNITS[toKey]?.factor;
@@ -48,12 +64,47 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   }
 
   if (fromF === toF) {
+    const sameTemplate = asText(pageUi.summarySame);
+    if (sameTemplate) {
+      return formatUi(sameTemplate, { fromName, toName, fromFactor: String(fromF) });
+    }
     return `To convert ${fromName} to ${toName}, both units use the same pascal factor (${fromF} Pa per unit) in this tool, so the numeric value is unchanged (1:1).`;
   }
 
   const ratio = fromF / toF;
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(fromF),
+      toFactor: String(toF),
+      mult: String(ratio),
+    });
+  }
+
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by (${fromF} Pa per ${fromKey}) / (${toF} Pa per ${toKey}). ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${fromF} / ${toF}). Numerically, 1 ${fromKey} equals ${ratio} ${toKey}.`
   );
+}
+
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
+  if (fromKey === "atm" && toKey === "torr") return `By definition, 1 atm = 760 torr.`;
+  if (fromKey === "bar" && toKey === "pa") return `1 bar = 100,000 Pa exactly.`;
+  if (fromKey === "hpa" && toKey === "mbar") return `1 hPa = 1 mbar (both 100 Pa).`;
+  if (
+    (fromKey === "torr" && toKey === "mmhg") ||
+    (fromKey === "mmhg" && toKey === "torr")
+  ) {
+    return `Torr and mmHg share the same pascal factor here (1:1).`;
+  }
+  return null;
 }

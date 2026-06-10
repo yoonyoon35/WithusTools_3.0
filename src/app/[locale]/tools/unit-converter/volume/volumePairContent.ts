@@ -1,3 +1,4 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import {
   VOLUME_UNITS,
   getVolumeMultiplier,
@@ -5,6 +6,7 @@ import {
   type VolumeSystem,
 } from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { volumeUnitLabel } from "./volumePairUi";
 
 export { formatRatioDisplay };
 
@@ -16,9 +18,9 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   gal:
     "The US liquid gallon is defined as 231 cubic inches (about 3.78541 liters). US recipes, fuel economy, and retail liquids typically use US gallons.",
   ft3:
-    "The cubic feet is the volume of a cube one feet on a side (about 28.3168 liters). HVAC, construction, and US freight sometimes use cubic feet.",
+    "The cubic foot is the volume of a cube one foot on a side (about 28.3168 liters). HVAC, construction, and US freight sometimes use cubic feet.",
   l:
-    "The liter is a metric unit equal to one cubic decimeter (0.001 m³). Science, global food labeling, and most countries’ everyday volumes use liters.",
+    "The liter is a metric unit equal to one cubic decimeter (0.001 m³). Science, global food labeling, and most countries' everyday volumes use liters.",
   ukqt:
     "The UK imperial quart is one quarter of an imperial gallon (about 1.1365 liters). It appears in UK cooking and beverage measures.",
   ukpt:
@@ -47,36 +49,75 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The UK teaspoon is smaller than many US teaspoons; this tool uses the liter-based UK teaspoon factor from the shared table.",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ?? `${VOLUME_UNITS[key]?.name ?? key} is a standard volume unit in this converter.`
   );
 }
 
-function systemLabel(s: VolumeSystem): string {
-  if (s === "uk") return "UK imperial fluid / volume";
-  if (s === "us") return "US customary fluid / volume";
-  return "metric (SI)";
+function systemLabel(s: VolumeSystem, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (s === "uk") return asText(pageUi.systemUk) || "UK imperial fluid / volume";
+  if (s === "us") return asText(pageUi.systemUs) || "US customary fluid / volume";
+  return asText(pageUi.systemMetric) || "metric (SI)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const fromSys = getVolumeSystem(fromKey);
   const toSys = getVolumeSystem(toKey);
   const mult = getVolumeMultiplier(fromKey, toKey);
-  const fromName = VOLUME_UNITS[fromKey].nameSg ?? VOLUME_UNITS[fromKey].name;
-  const toName = VOLUME_UNITS[toKey].nameSg ?? VOLUME_UNITS[toKey].name;
+  const fromName = volumeUnitLabel(ui, fromKey, "nameSg");
+  const toName = volumeUnitLabel(ui, toKey, "nameSg");
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    fromSystem: systemLabel(fromSys, pageUi),
+    toSystem: systemLabel(toSys, pageUi),
+    system: systemLabel(fromSys, pageUi),
+  };
+
+  if (fromSys === toSys && asText(pageUi.relationshipSame)) {
+    return formatUi(asText(pageUi.relationshipSame), vars);
+  }
+  if (fromSys !== toSys && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
+  }
 
   if (fromSys === toSys) {
-    return `Both units are ${systemLabel(fromSys)} in this tool’s grouping. Conversions use fixed liter equivalents, so factors are consistent for cooking, engineering, and cross-checking labels. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+    return `Both units are ${systemLabel(fromSys)} in this tool's grouping. Conversions use fixed liter equivalents, so factors are consistent for cooking, engineering, and cross-checking labels. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
   }
 
   return `You are converting between ${systemLabel(fromSys)} (${VOLUME_UNITS[fromKey].name}) and ${systemLabel(toSys)} (${VOLUME_UNITS[toKey].name}). US and UK fluid measures differ (gallons, ounces, tablespoons); metric liters and cubic meters align with SI. The numeric factor used here is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getVolumeMultiplier(fromKey, toKey);
-  const fromName = VOLUME_UNITS[fromKey].nameSg ?? VOLUME_UNITS[fromKey].name;
-  const toName = VOLUME_UNITS[toKey].nameSg ?? VOLUME_UNITS[toKey].name;
+  const fromName = volumeUnitLabel(ui, fromKey, "nameSg");
+  const toName = volumeUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(VOLUME_UNITS[fromKey].factor),
+      toFactor: String(VOLUME_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by the ratio of liters per ${fromKey} divided by liters per ${toKey}. ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${VOLUME_UNITS[fromKey].factor} / ${VOLUME_UNITS[toKey].factor}). ` +
@@ -84,7 +125,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "tbsp" && toKey === "tsp") {
     return `1 US tablespoon = 3 US teaspoons exactly (1/2 fl oz vs 1/6 fl oz of a US gallon).`;
   }

@@ -42,6 +42,7 @@ export type ToolPageContent = {
   guideIntroLink2?: string;
   guideIntroLink3?: string;
   guideIntroAfter?: string;
+  popularSectionTitle?: string;
   sections: ToolGuideBlock[];
   faq: ToolFaqItem[];
   backToHub?: string;

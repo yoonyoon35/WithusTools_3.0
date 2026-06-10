@@ -4,6 +4,7 @@ import {
   formatPowerResult,
   POWER_UNITS,
 } from "@/utils/conversions";
+import { powerUnitLabel } from "@/app/[locale]/tools/unit-converter/power/powerPairUi";
 
 export const POWER_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const POWER_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -12,13 +13,19 @@ export function PowerConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
-  const toName = POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
+  const fromName = ui
+    ? powerUnitLabel(ui, fromKey, "nameSg")
+    : POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
+  const toName = ui
+    ? powerUnitLabel(ui, toKey, "nameSg")
+    : POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -53,14 +60,16 @@ export function PowerConversionTable({
 export function PowerConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <PowerConversionTable fromKey={fromKey} toKey={toKey} values={POWER_TABLE_SMALL_STEPS} />
-      <PowerConversionTable fromKey={fromKey} toKey={toKey} values={POWER_TABLE_TENS_STEPS} />
+      <PowerConversionTable fromKey={fromKey} toKey={toKey} values={POWER_TABLE_SMALL_STEPS} ui={ui} />
+      <PowerConversionTable fromKey={fromKey} toKey={toKey} values={POWER_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

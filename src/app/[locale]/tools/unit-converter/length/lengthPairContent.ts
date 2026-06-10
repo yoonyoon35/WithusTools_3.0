@@ -1,9 +1,11 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import {
   LENGTH_UNITS,
   getLengthMultiplier,
   getLengthSystem,
   type LengthSystem,
 } from "@/utils/conversions";
+import { lengthUnitLabel } from "./lengthPairUi";
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   nmi:
@@ -37,40 +39,80 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   pm: "The picometer is one trillionth of a meter (10⁻¹² m). It is used for atomic radii and very small structural scales.",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return UNIT_DESCRIPTIONS[key] ?? `${LENGTH_UNITS[key]?.name ?? key} is a standard length unit in this converter.`;
 }
 
-function systemLabel(s: LengthSystem): string {
-  if (s === "nautical") return "nautical (navigation)";
-  if (s === "imperial") return "US customary / imperial";
-  return "metric (SI)";
+function systemLabel(s: LengthSystem, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (s === "nautical") return asText(pageUi.systemNautical) || "nautical (navigation)";
+  if (s === "imperial") return asText(pageUi.systemImperial) || "US customary / imperial";
+  return asText(pageUi.systemMetric) || "metric (SI)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const fromSys = getLengthSystem(fromKey);
   const toSys = getLengthSystem(toKey);
   const mult = getLengthMultiplier(fromKey, toKey);
+  const fromName = lengthUnitLabel(ui, fromKey, "nameSg");
+  const toName = lengthUnitLabel(ui, toKey, "nameSg");
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    fromSystem: systemLabel(fromSys, pageUi),
+    toSystem: systemLabel(toSys, pageUi),
+  };
 
-  if (fromSys === toSys && fromSys === "metric") {
-    return `Both units are ${systemLabel("metric")} and tied to the meter. Converting between them uses powers of ten (or simple rational factors), so the relationship is exact in decimal arithmetic. The factor from ${LENGTH_UNITS[fromKey].nameSg ?? LENGTH_UNITS[fromKey].name} to ${LENGTH_UNITS[toKey].nameSg ?? LENGTH_UNITS[toKey].name} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  if (fromSys === toSys && fromSys === "metric" && asText(pageUi.relationshipMetric)) {
+    return formatUi(asText(pageUi.relationshipMetric), vars);
+  }
+  if (fromSys === toSys && fromSys === "imperial" && asText(pageUi.relationshipImperial)) {
+    return formatUi(asText(pageUi.relationshipImperial), vars);
+  }
+  if (fromSys !== toSys && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
   }
 
+  if (fromSys === toSys && fromSys === "metric") {
+    return `Both units are ${systemLabel("metric")} and tied to the meter. Converting between them uses powers of ten (or simple rational factors), so the relationship is exact in decimal arithmetic. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  }
   if (fromSys === toSys && fromSys === "imperial") {
     return `Both units belong to ${systemLabel("imperial")} length. Conversions often use simple ratios (for example inches and feet), while miles relate to yards and feet through fixed definitions. The numeric factor used here is traceable to the international inch (0.0254 m) and related definitions.`;
   }
-
   if (fromSys !== toSys) {
     return `You are converting between ${systemLabel(fromSys)} (${LENGTH_UNITS[fromKey].name}) and ${systemLabel(toSys)} (${LENGTH_UNITS[toKey].name}). Metric units are decimal; imperial units use inches, feet, yards, and miles tied to the international yard definition. Nautical miles are defined in meters (1 nmi = 1,852 m). This tool uses SI-based factors so results stay consistent with modern standards.`;
   }
-
   return `Length units are converted via their exact definitions in meters. The multiplier between ${fromKey} and ${toKey} is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getLengthMultiplier(fromKey, toKey);
-  const fromName = LENGTH_UNITS[fromKey].nameSg ?? LENGTH_UNITS[fromKey].name;
-  const toName = LENGTH_UNITS[toKey].nameSg ?? LENGTH_UNITS[toKey].name;
+  const fromName = lengthUnitLabel(ui, fromKey, "nameSg");
+  const toName = lengthUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(LENGTH_UNITS[fromKey].factor),
+      toFactor: String(LENGTH_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by the ratio of meters per ${fromKey} divided by meters per ${toKey}. ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${LENGTH_UNITS[fromKey].factor} / ${LENGTH_UNITS[toKey].factor}). ` +
@@ -91,7 +133,14 @@ export function formatRatioDisplay(n: number): string {
 /**
  * Optional derivation line (inches, metric steps) for “How to convert” sections.
  */
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) {
+    const m = getLengthMultiplier(fromKey, toKey);
+    return formatUi(localized, { mult: formatRatioDisplay(m) });
+  }
   if (fromKey === "cm" && toKey === "ft") {
     const m = getLengthMultiplier("cm", "ft");
     return `1 centimeter is also equal to 1 ÷ 2.54 ÷ 12 feet (via inches: 1 cm = 1/2.54 in, 1 ft = 12 in), which equals ${formatRatioDisplay(m)} ft.`;

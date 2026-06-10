@@ -4,24 +4,28 @@ import {
   formatPressureResult,
   PRESSURE_UNITS,
 } from "@/utils/conversions";
+import { pressureUnitLabel } from "@/app/[locale]/tools/unit-converter/pressure/pressurePairUi";
 
-/** Same step pattern as speed/length dedicated pages: 0.1 and 1–9. */
 export const PRESSURE_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
-
-/** Same step pattern as speed/length dedicated pages: 10–100 by 10. */
 export const PRESSURE_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 
 export function PressureConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
-  const toName = PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
+  const fromName = ui
+    ? pressureUnitLabel(ui, fromKey, "nameSg")
+    : PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
+  const toName = ui
+    ? pressureUnitLabel(ui, toKey, "nameSg")
+    : PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
 
   return (
     <div className="overflow-x-auto">
@@ -54,11 +58,19 @@ export function PressureConversionTable({
   );
 }
 
-export function PressureConversionTablesPair({ fromKey, toKey }: { fromKey: string; toKey: string }) {
+export function PressureConversionTablesPair({
+  fromKey,
+  toKey,
+  ui,
+}: {
+  fromKey: string;
+  toKey: string;
+  ui?: unknown;
+}) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <PressureConversionTable fromKey={fromKey} toKey={toKey} values={PRESSURE_TABLE_SMALL_STEPS} />
-      <PressureConversionTable fromKey={fromKey} toKey={toKey} values={PRESSURE_TABLE_TENS_STEPS} />
+      <PressureConversionTable fromKey={fromKey} toKey={toKey} values={PRESSURE_TABLE_SMALL_STEPS} ui={ui} />
+      <PressureConversionTable fromKey={fromKey} toKey={toKey} values={PRESSURE_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

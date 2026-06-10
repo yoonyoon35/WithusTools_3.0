@@ -1,5 +1,7 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { DIGITAL_UNITS, getDigitalMultiplier } from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { digitalUnitLabel } from "./digitalPairUi";
 
 export { formatRatioDisplay };
 
@@ -22,13 +24,6 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The megabit (Mb) is 10⁶ bits. Dividing by 8 gives byte-equivalents for data size; ISP speeds (Mbps) refer to megabits per second, not megabytes.",
 };
 
-export function getUnitDescription(key: string): string {
-  return (
-    UNIT_DESCRIPTIONS[key] ??
-    `${DIGITAL_UNITS[key]?.name ?? key} uses the same byte-based factors as the main Digital Storage Converter.`
-  );
-}
-
 export type DigitalKind = "byteUnit" | "bitUnit";
 
 export function getDigitalKind(key: string): DigitalKind {
@@ -36,29 +31,77 @@ export function getDigitalKind(key: string): DigitalKind {
   return "byteUnit";
 }
 
-function kindLabel(k: DigitalKind): string {
-  if (k === "bitUnit") return "bit-based units (converted via 8 bits per byte)";
-  return "byte-based units (decimal SI: kB, MB, GB, …)";
+function kindLabel(k: DigitalKind, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (k === "bitUnit") {
+    return asText(pageUi.kindBit) || "bit-based units (converted via 8 bits per byte)";
+  }
+  return asText(pageUi.kindByte) || "byte-based units (decimal SI: kB, MB, GB, …)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
+  return (
+    UNIT_DESCRIPTIONS[key] ??
+    `${DIGITAL_UNITS[key]?.name ?? key} uses the same byte-based factors as the main Digital Storage Converter.`
+  );
+}
+
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const mult = getDigitalMultiplier(fromKey, toKey);
-  const fromName = DIGITAL_UNITS[fromKey].nameSg ?? DIGITAL_UNITS[fromKey].name;
-  const toName = DIGITAL_UNITS[toKey].nameSg ?? DIGITAL_UNITS[toKey].name;
+  const fromName = digitalUnitLabel(ui, fromKey, "nameSg");
+  const toName = digitalUnitLabel(ui, toKey, "nameSg");
   const fk = getDigitalKind(fromKey);
   const tk = getDigitalKind(toKey);
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    kind: kindLabel(fk, pageUi),
+    fromKind: kindLabel(fk, pageUi),
+    toKind: kindLabel(tk, pageUi),
+  };
 
-  if (fk === tk) {
-    return `Both units are ${kindLabel(fk)}. Factors are fixed relative to one byte, so conversions are exact in floating-point arithmetic for this tool. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  if (fk === tk && asText(pageUi.relationshipSame)) {
+    return formatUi(asText(pageUi.relationshipSame), vars);
+  }
+  if (fk !== tk && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
   }
 
-  return `You are converting between ${kindLabel(fk)} (${DIGITAL_UNITS[fromKey].name}) and ${kindLabel(tk)} (${DIGITAL_UNITS[toKey].name}). Bit units are mapped through 8 bits per byte, then scaled with the same decimal prefixes as byte units. The numeric factor is ${mult.toExponential(6)}.`;
+  if (fk === tk) {
+    return `Both units are ${kindLabel(fk, pageUi)}. Factors are fixed relative to one byte, so conversions are exact in floating-point arithmetic for this tool. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  }
+
+  return `You are converting between ${kindLabel(fk, pageUi)} (${DIGITAL_UNITS[fromKey].name}) and ${kindLabel(tk, pageUi)} (${DIGITAL_UNITS[toKey].name}). Bit units are mapped through 8 bits per byte, then scaled with the same decimal prefixes as byte units. The numeric factor is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getDigitalMultiplier(fromKey, toKey);
-  const fromName = DIGITAL_UNITS[fromKey].nameSg ?? DIGITAL_UNITS[fromKey].name;
-  const toName = DIGITAL_UNITS[toKey].nameSg ?? DIGITAL_UNITS[toKey].name;
+  const fromName = digitalUnitLabel(ui, fromKey, "nameSg");
+  const toName = digitalUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(DIGITAL_UNITS[fromKey].factor),
+      toFactor: String(DIGITAL_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   const Ff = DIGITAL_UNITS[fromKey].factor;
   const Ft = DIGITAL_UNITS[toKey].factor;
   return (
@@ -68,7 +111,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "bit" && toKey === "b") {
     return `8 bits make 1 byte, so 1 bit = 1/8 byte (0.125 B).`;
   }

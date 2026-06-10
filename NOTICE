@@ -201,6 +201,11 @@ next
   Copyright (c) 2024 Vercel, Inc.
   License: MIT
 
+next-intl
+  Copyright (c) Jan Amann (https://github.com/amannn/next-intl)
+  License: MIT
+  Used in: Site-wide internationalization (locale routing, translations)
+
 react
   Copyright (c) Facebook, Inc. and its affiliates.
   License: MIT

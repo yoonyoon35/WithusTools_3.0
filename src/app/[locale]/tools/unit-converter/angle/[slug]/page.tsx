@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/components/I18nLink";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { createMetadata } from "@/lib/metadata";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, getToolContentEntry } from "@/lib/tool-content";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import ToolIcon from "@/components/ToolIcon";
 import { AngleConversionTablesPair } from "@/components/AngleConversionTable";
 import AnglePairCalculator from "../AnglePairCalculator";
@@ -12,7 +17,6 @@ import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLi
 import {
   getCanonicalAngleSlug,
   ANGLE_HUB_KEYS,
-  ANGLE_UNITS,
   parseAnglePairSlug,
 } from "@/utils/conversions";
 import {
@@ -20,37 +24,43 @@ import {
   getRelationshipContext,
   getUnitDescription,
 } from "../anglePairContent";
+import { angleUnitLabel } from "../anglePairUi";
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
   const pair = parseAnglePairSlug(params.slug);
   if (!pair) {
-    return createMetadata({title: "Angle Conversion", noIndex: true,
-    locale: params.locale as Locale,
-  });
+    return createMetadata({
+      title: "Angle Conversion",
+      noIndex: true,
+      locale: locale as Locale,
+    });
   }
 
+  const toolContent = await loadToolContent(locale);
+  const metaPath = `/tools/unit-converter/angle/${params.slug}`;
+  const content = getToolContentEntry(toolContent, metaPath);
   const { from, to } = pair;
-  const fromSg = ANGLE_UNITS[from]?.nameSg ?? ANGLE_UNITS[from]?.name ?? from;
-  const toSg = ANGLE_UNITS[to]?.nameSg ?? ANGLE_UNITS[to]?.name ?? to;
 
-  const title = `${fromSg} to ${toSg} Converter | Accurate Angle Conversion`;
-  const description = `Easily convert ${fromSg} to ${toSg}. Fast, free, and accurate angle converter with formulas, examples, and conversion tables for ${fromSg} and ${toSg}.`;
+  const title =
+    content?.h1 ??
+    `${angleUnitLabel(content?.ui, from, "nameSg")} to ${angleUnitLabel(content?.ui, to, "nameSg")} Converter`;
+  const description =
+    content?.intro ??
+    `Convert ${from} to ${to} with formulas, examples, and conversion tables.`;
 
-  return createMetadata({title,
+  return createMetadata({
+    title: `${title} | WithUsTools`,
     description,
-    path: `/tools/unit-converter/angle/${params.slug}`,
-    keywords: [
-      `${fromSg} to ${toSg}`,
-      `${from} to ${to}`,
-      "angle converter",
-      "angle conversion",
-      "withustools",
-    ],
-    locale: params.locale as Locale,
+    path: metaPath,
+    keywords: [from, to, "angle converter", "angle conversion", "withustools"],
+    locale: locale as Locale,
   });
 }
 
@@ -65,64 +75,49 @@ export function generateStaticParams() {
   return slugs;
 }
 
-export default function AnglePairPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function AnglePairPage({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
+
   const pair = parseAnglePairSlug(params.slug);
   if (!pair) notFound();
 
+  const metaPath = `/tools/unit-converter/angle/${params.slug}`;
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, metaPath);
+  if (!content) throw new Error(`Missing toolContent for ${metaPath}`);
+
   const { from: fromKey, to: toKey } = pair;
-  const fromSg = ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
-  const toSg = ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `How do I convert ${fromSg} to ${toSg} on this page?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Enter a ${fromSg} value and this converter returns ${toSg} using fixed pair rules.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Are formula steps and tables included?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. This page includes formula guidance, summary notes, and angle conversion tables.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I navigate to other angle pairs?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Related pair links are shown below for quick switching.",
-        },
-      },
-    ],
-  };
+  const pageUi = asMap(content.ui);
+  const fromSg = angleUnitLabel(content.ui, fromKey, "nameSg");
+  const toSg = angleUnitLabel(content.ui, toKey, "nameSg");
+  const faqJsonLd = buildFaqJsonLd(content.faq);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="ruler" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">
-              {fromSg} to {toSg} Converter
-            </h1>
-            <p className="mt-1 text-sm text-slate-500">Angle · unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
-        reference tables. All calculations bridge through radians with fixed definitions (360° per turn, 400
-        grad per turn, 60′ per degree, 60″ per minute, plus practical units like MOA, urad, and NATO 6400
-        mils per turn).
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
       <Suspense
         fallback={
@@ -133,57 +128,74 @@ export default function AnglePairPage({ params }: { params: { locale: string; sl
           />
         }
       >
-        <AnglePairCalculator fromKey={fromKey} toKey={toKey} />
+        <AnglePairCalculator fromKey={fromKey} toKey={toKey} metaPath={metaPath} />
       </Suspense>
 
       <section className="mt-12 grid gap-8 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {fromSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(fromKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: fromSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(fromKey, content.ui)}
+          </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {toSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(toKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: toSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(toKey, content.ui)}
+          </p>
         </div>
       </section>
 
       <div className="mt-10">
-        <HowToConvertAngle fromKey={fromKey} toKey={toKey} />
+        <HowToConvertAngle fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </div>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Summary</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getDetailedFormulaExplanation(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.summaryTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getDetailedFormulaExplanation(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Relationship context</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getRelationshipContext(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.relationshipTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getRelationshipContext(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
-        <AngleConversionTablesPair fromKey={fromKey} toKey={toKey} />
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">
+          {asText(pageUi.conversionTablesTitle)}
+        </h2>
+        <AngleConversionTablesPair fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </section>
 
-      <UnitConverterNonHubPairLinks category="angle" fromKey={fromKey} toKey={toKey} />
+      <UnitConverterNonHubPairLinks
+        category="angle"
+        fromKey={fromKey}
+        toKey={toKey}
+        ui={content.ui}
+      />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link
           href="/tools/unit-converter/angle"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          ← Angle Converter (all units)
+          {content.backToHub}
         </Link>
         <Link
           href="/tools/unit-converter"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          Unit Converter home
+          {content.backToDeveloper}
         </Link>
       </div>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

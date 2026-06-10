@@ -1,31 +1,46 @@
 "use client";
 
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import NumberInputWithStepper from "@/components/NumberInputWithStepper";
+import useToolPageContent from "@/hooks/useToolPageContent";
+import { asMap, asText } from "@/lib/tool-ui-helpers";
 import {
-  SPEED_UNITS,
   convertSpeed,
   formatSpeedResult,
   formatWithThousands,
   getSpeedFormulaLine,
 } from "@/utils/conversions";
+import { speedUnitLabel } from "./speedPairUi";
 
 interface SpeedPairCalculatorProps {
   fromKey: string;
   toKey: string;
+  metaPath?: string;
 }
 
-export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalculatorProps) {
+function normalizeMetaPath(pathname: string): string {
+  const noLocale = pathname.replace(/^\/[^/]+(?=\/tools\/)/, "");
+  return noLocale.startsWith("/tools/") ? noLocale : "/tools/unit-converter/speed/kph-to-mph";
+}
+
+export default function SpeedPairCalculator({ fromKey, toKey, metaPath }: SpeedPairCalculatorProps) {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const page = useToolPageContent(metaPath ?? normalizeMetaPath(pathname));
+  const ui = page?.ui;
+  const toolUi = asMap(ui);
+  const labels = asMap(toolUi.labels);
+  const messages = asMap(toolUi.messages);
+
   const [fromValue, setFromValue] = useState("1");
   const [toValue, setToValue] = useState("");
   const [formulaText, setFormulaText] = useState("");
   const [toast, setToast] = useState<string | null>(null);
   const toastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const fromLabel = SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
-  const toLabel = SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
+  const fromLabel = speedUnitLabel(ui, fromKey, "nameSg");
+  const toLabel = speedUnitLabel(ui, toKey, "nameSg");
 
   const showToast = (message: string) => {
     if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
@@ -40,18 +55,18 @@ export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalcula
     const val = parseFloat(fromValue);
     if (fromValue === "" || isNaN(val)) {
       setToValue("");
-      setFormulaText("Enter a valid number");
+      setFormulaText(asText(messages.enterValidNumber) || "Enter a valid number");
       return;
     }
     const result = convertSpeed(val, fromKey, toKey);
     if (!Number.isFinite(result)) {
       setToValue("");
-      setFormulaText("Cannot convert this pair");
+      setFormulaText(asText(messages.cannotConvertPair) || "Cannot convert this pair");
       return;
     }
     setToValue(formatSpeedResult(result));
     setFormulaText(getSpeedFormulaLine(val, fromKey, toKey));
-  }, [fromValue, fromKey, toKey]);
+  }, [fromValue, fromKey, toKey, messages.enterValidNumber, messages.cannotConvertPair]);
 
   useLayoutEffect(() => {
     const q = searchParams.get("val");
@@ -66,19 +81,21 @@ export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalcula
 
   const copyResult = async () => {
     if (!toValue) {
-      showToast("No result to copy");
+      showToast(asText(messages.noResultToCopy));
       return;
     }
     try {
       await navigator.clipboard.writeText(toValue);
-      showToast("Result copied to clipboard!");
+      showToast(asText(messages.copied));
     } catch {
-      showToast("Failed to copy result");
+      showToast(asText(messages.copyFailed));
     }
   };
 
   const inputCls =
     "rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-slate-100 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
+
+  if (!ui) return null;
 
   return (
     <div className="relative">
@@ -92,21 +109,22 @@ export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalcula
         </div>
       )}
       <div className="rounded-xl border border-border bg-surface p-6">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Calculator</h2>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(labels.calculator)}</h2>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
           <div className="flex flex-1 flex-col gap-2">
             <label className="text-xs font-medium uppercase tracking-wide text-slate-500">
-              Input ({fromLabel})
+              {asText(labels.input)} ({fromLabel})
             </label>
             <NumberInputWithStepper
               value={fromValue}
               onChange={(v) => setFromValue(v)}
-              placeholder="Enter value"
+              placeholder={asText(labels.enterValue)}
               className="flex-1"
               aria-label={`Value in ${fromLabel}`}
             />
             <p className="text-sm text-slate-400">
-              From: <span className="font-medium text-slate-200">{fromLabel}</span> ({fromKey})
+              {asText(labels.fromPrefix)}{" "}
+              <span className="font-medium text-slate-200">{fromLabel}</span> ({fromKey})
             </p>
           </div>
 
@@ -116,7 +134,7 @@ export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalcula
 
           <div className="flex flex-1 flex-col gap-2">
             <label className="text-xs font-medium uppercase tracking-wide text-slate-500">
-              Result ({toLabel})
+              {asText(labels.result)} ({toLabel})
             </label>
             <input
               type="text"
@@ -126,7 +144,8 @@ export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalcula
               aria-label={`Result in ${toLabel}`}
             />
             <p className="text-sm text-slate-400">
-              To: <span className="font-medium text-slate-200">{toLabel}</span> ({toKey})
+              {asText(labels.toPrefix)}{" "}
+              <span className="font-medium text-slate-200">{toLabel}</span> ({toKey})
             </p>
           </div>
         </div>
@@ -138,7 +157,7 @@ export default function SpeedPairCalculator({ fromKey, toKey }: SpeedPairCalcula
             onClick={copyResult}
             className="shrink-0 rounded-lg border border-slate-600 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-slate-500 hover:bg-slate-700"
           >
-            Copy Result
+            {asText(labels.copyResult)}
           </button>
         </div>
       </div>

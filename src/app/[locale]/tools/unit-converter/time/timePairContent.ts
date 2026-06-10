@@ -1,3 +1,4 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import {
   TIME_UNITS,
   getTimeMultiplier,
@@ -5,6 +6,7 @@ import {
   type TimeTier,
 } from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { timeUnitLabel } from "./timePairUi";
 
 export { formatRatioDisplay };
 
@@ -31,24 +33,50 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "One nanosecond is one billionth of a second. CPU timings and optics may reference nanoseconds.",
 };
 
-export function getUnitDescription(key: string): string {
+function tierLabel(t: TimeTier, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (t === "long") return asText(pageUi.tierLong) || "longer spans (days to years, with average month/year definitions)";
+  if (t === "medium") return asText(pageUi.tierMedium) || "hours, minutes, and seconds";
+  return asText(pageUi.tierShort) || "subsecond precision (milliseconds and smaller)";
+}
+
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ?? `${TIME_UNITS[key]?.name ?? key} is a standard time unit in this converter.`
   );
 }
 
-function tierLabel(t: TimeTier): string {
-  if (t === "long") return "longer spans (days to years, with average month/year definitions)";
-  if (t === "medium") return "hours, minutes, and seconds";
-  return "subsecond precision (milliseconds and smaller)";
-}
-
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const fromTier = getTimeTier(fromKey);
   const toTier = getTimeTier(toKey);
   const mult = getTimeMultiplier(fromKey, toKey);
-  const fromName = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
-  const toName = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
+  const fromName = timeUnitLabel(ui, fromKey, "nameSg");
+  const toName = timeUnitLabel(ui, toKey, "nameSg");
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    tier: tierLabel(fromTier, pageUi),
+    fromTier: tierLabel(fromTier, pageUi),
+    toTier: tierLabel(toTier, pageUi),
+  };
+
+  if (fromTier === toTier && asText(pageUi.relationshipSame)) {
+    return formatUi(asText(pageUi.relationshipSame), vars);
+  }
+  if (fromTier !== toTier && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
+  }
 
   if (fromTier === toTier) {
     return `Both units fall in ${tierLabel(fromTier)}. Conversions use fixed second counts per unit, so factors stay consistent for estimation and UI math. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
@@ -57,10 +85,23 @@ export function getRelationshipContext(fromKey: string, toKey: string): string {
   return `You are converting between ${tierLabel(fromTier)} (${TIME_UNITS[fromKey].name}) and ${tierLabel(toTier)} (${TIME_UNITS[toKey].name}). Very large and very small steps share the same second-based definitions here. The numeric factor is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getTimeMultiplier(fromKey, toKey);
-  const fromName = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
-  const toName = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
+  const fromName = timeUnitLabel(ui, fromKey, "nameSg");
+  const toName = timeUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(TIME_UNITS[fromKey].factor),
+      toFactor: String(TIME_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by the ratio of seconds per ${fromKey} divided by seconds per ${toKey}. ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${TIME_UNITS[fromKey].factor} / ${TIME_UNITS[toKey].factor}). ` +
@@ -68,7 +109,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "min" && toKey === "s") {
     return `1 minute = 60 seconds exactly.`;
   }
@@ -76,7 +122,7 @@ export function getExtraDerivation(fromKey: string, toKey: string): string | nul
     return `1 hour = 60 minutes exactly.`;
   }
   if (fromKey === "d" && toKey === "h") {
-    return `1 day = 24 hours exactly (in this converter’s civil-day model).`;
+    return `1 day = 24 hours exactly (in this converter's civil-day model).`;
   }
   if (fromKey === "wk" && toKey === "d") {
     return `1 week = 7 days exactly.`;

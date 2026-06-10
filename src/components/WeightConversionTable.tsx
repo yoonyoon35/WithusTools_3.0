@@ -4,6 +4,7 @@ import {
   formatWeightResult,
   WEIGHT_UNITS,
 } from "@/utils/conversions";
+import { weightUnitLabel } from "@/app/[locale]/tools/unit-converter/weight/weightPairUi";
 
 /** Matches dedicated weight converter pages: 0.1 and 1–9. */
 export const WEIGHT_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
@@ -15,13 +16,19 @@ export function WeightConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = WEIGHT_UNITS[fromKey].nameSg ?? WEIGHT_UNITS[fromKey].name;
-  const toName = WEIGHT_UNITS[toKey].nameSg ?? WEIGHT_UNITS[toKey].name;
+  const fromName = ui
+    ? weightUnitLabel(ui, fromKey, "nameSg")
+    : WEIGHT_UNITS[fromKey].nameSg ?? WEIGHT_UNITS[fromKey].name;
+  const toName = ui
+    ? weightUnitLabel(ui, toKey, "nameSg")
+    : WEIGHT_UNITS[toKey].nameSg ?? WEIGHT_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -57,9 +64,11 @@ export function WeightConversionTable({
 export function WeightConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
@@ -67,11 +76,13 @@ export function WeightConversionTablesPair({
         fromKey={fromKey}
         toKey={toKey}
         values={WEIGHT_TABLE_SMALL_STEPS}
+        ui={ui}
       />
       <WeightConversionTable
         fromKey={fromKey}
         toKey={toKey}
         values={WEIGHT_TABLE_TENS_STEPS}
+        ui={ui}
       />
     </div>
   );

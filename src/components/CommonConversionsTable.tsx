@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { asMap, asText } from "@/lib/tool-ui-helpers";
 import {
   COMMON_TEMPERATURE_CONVERSIONS,
   formatCommonConversionNumber,
@@ -17,7 +18,10 @@ function rowAriaLabel(row: CommonTemperatureConversionRow): string {
   return `Convert ${formatCommonConversionNumber(row.v1)} ${row.from} to ${row.to}`;
 }
 
-export default function CommonConversionsTable() {
+export default function CommonConversionsTable({ ui }: { ui?: unknown }) {
+  const commonUi = asMap(asMap(ui).commonConversions);
+  const contexts = Array.isArray(commonUi.contexts) ? (commonUi.contexts as string[]) : [];
+
   return (
     <section
       className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8"
@@ -27,31 +31,31 @@ export default function CommonConversionsTable() {
         id="common-temperature-conversions-heading"
         className="mb-2 text-base font-semibold text-slate-200 sm:text-lg"
       >
-        Common Temperature Conversions
+        {asText(commonUi.title) || "Common Temperature Conversions"}
       </h3>
       <p className="mb-6 text-sm text-slate-500">
-        Reference values for weather, health, cooking, and engineering. Click a row to open the matching
-        dedicated temperature converter with that input pre-filled.
+        {asText(commonUi.description) ||
+          "Reference values for weather, health, cooking, and engineering. Click a row to open the matching dedicated temperature converter with that input pre-filled."}
       </p>
       <div
         className="max-h-[360px] overflow-y-auto overflow-x-auto pr-1 scrollbar-thin"
         role="region"
-        aria-label="Common temperature conversions table, scroll for more rows"
+        aria-label={asText(commonUi.tableAria) || "Common temperature conversions table, scroll for more rows"}
       >
         <table className="w-full border-separate border-spacing-0 text-left text-sm text-slate-300">
           <thead className="sticky top-0 z-20">
             <tr className="border-b border-slate-700 bg-slate-800">
               <th scope="col" className="whitespace-nowrap px-4 py-3 text-left font-semibold text-slate-200">
-                Context
+                {asText(commonUi.colContext) || "Context"}
               </th>
               <th scope="col" className="whitespace-nowrap px-4 py-3 text-left font-semibold text-slate-200">
-                From
+                {asText(commonUi.colFrom) || "From"}
               </th>
               <th scope="col" className="whitespace-nowrap px-4 py-3 text-left font-semibold text-slate-200">
-                To
+                {asText(commonUi.colTo) || "To"}
               </th>
               <th scope="col" className="whitespace-nowrap px-4 py-3 text-left font-semibold text-slate-200">
-                Result
+                {asText(commonUi.colResult) || "Result"}
               </th>
             </tr>
           </thead>
@@ -59,6 +63,7 @@ export default function CommonConversionsTable() {
             {COMMON_TEMPERATURE_CONVERSIONS.map((row, i) => {
               const href = rowHref(row);
               const isLast = i === COMMON_TEMPERATURE_CONVERSIONS.length - 1;
+              const ctx = contexts[i] || row.ctx;
               const cellLink =
                 "block w-full whitespace-nowrap px-4 py-3 text-inherit no-underline transition-colors group-hover/convrow:bg-slate-700/40";
               const rowSep = !isLast ? "border-b border-slate-700/80" : "";
@@ -69,9 +74,9 @@ export default function CommonConversionsTable() {
                       href={href}
                       aria-label={rowAriaLabel(row)}
                       className={`${cellLink} text-slate-400 focus-visible:relative focus-visible:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-blue-500`}
-                      title={row.ctx}
+                      title={ctx}
                     >
-                      {row.ctx}
+                      {ctx}
                     </Link>
                   </td>
                   <td className={`p-0 align-middle ${rowSep}`}>

@@ -1,4 +1,6 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { MACH_TO_MPS_ISA, SPEED_OF_LIGHT_MPS, SPEED_UNITS } from "@/utils/conversions";
+import { speedUnitLabel } from "./speedPairUi";
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   mps:
@@ -23,46 +25,78 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   c: `The speed of light in vacuum is exactly ${SPEED_OF_LIGHT_MPS} m/s (SI definition). Enter speeds as a fraction of c (e.g. 0.001 c).`,
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ??
     `${SPEED_UNITS[key]?.name ?? key} is a speed unit in this converter (values bridge through meters per second unless noted for Beaufort).`
   );
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
-  const fromName = SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
-  const toName = SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = speedUnitLabel(ui, fromKey, "nameSg");
+  const toName = speedUnitLabel(ui, toKey, "nameSg");
+  const vars = { fromName, toName, fromKey, toKey };
 
   if (fromKey === "beaufort" || toKey === "beaufort") {
+    const t = asText(pageUi.relationshipBeaufort);
+    if (t) return formatUi(t, vars);
     return `You are converting between ${fromName} and ${toName}. Beaufort is a discrete wind scale; conversions use WMO mean-wind m/s bands at 10 m. Linear units (m/s, km/h, mph, knots, etc.) bridge through an equivalent m/s value. Mach and c use fixed m/s definitions for Mach 1 and vacuum c.`;
   }
 
   if (fromKey === "c" || toKey === "c") {
+    const t = asText(pageUi.relationshipC);
+    if (t) return formatUi(t, vars);
     return `You are converting between ${fromName} and ${toName}. Speeds as a fraction of c are multiplied by ${SPEED_OF_LIGHT_MPS} m/s to compare with everyday units.`;
   }
 
   if (fromKey === "mach" || toKey === "mach") {
+    const t = asText(pageUi.relationshipMach);
+    if (t) return formatUi(t, vars);
     return `You are converting between ${fromName} and ${toName}. Mach is treated as multiples of Mach 1 = ${MACH_TO_MPS_ISA} m/s (ISA reference). Actual Mach depends on altitude and temperature; this tool uses one reference sound speed for reproducible numbers.`;
   }
 
+  const t = asText(pageUi.relationshipLinear);
+  if (t) return formatUi(t, vars);
   return `Both ${fromName} and ${toName} are expressed as fixed multiples of meters per second in this tool. Converting multiplies by the ratio of m/s per ${fromKey} to m/s per ${toKey}, so results stay consistent with SI-based definitions (international mile, knot, feet, etc.).`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
-  const fromName = SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
-  const toName = SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = speedUnitLabel(ui, fromKey, "nameSg");
+  const toName = speedUnitLabel(ui, toKey, "nameSg");
 
   if (fromKey === "beaufort" || toKey === "beaufort") {
+    const t = asText(pageUi.summaryBeaufort);
+    if (t) return formatUi(t, { fromName, toName });
     return `Beaufort conversions use the WMO-style mean wind m/s ranges at 10 m. From Beaufort: your value is rounded to force 0–12, then the midpoint m/s for that force is used. To Beaufort: the m/s equivalent of your input is classified into a force 0–12. Other pairs with ${fromName} and ${toName} still pass through that m/s bridge.`;
   }
 
   const fromF = SPEED_UNITS[fromKey]?.factor;
   const toF = SPEED_UNITS[toKey]?.factor;
   if (fromF == null || toF == null) {
+    const t = asText(pageUi.summaryMissingFactor);
+    if (t) return formatUi(t, { fromName, toName });
     return `To convert ${fromName} to ${toName}, this tool uses an intermediate value in meters per second.`;
   }
+
   const ratio = fromF / toF;
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(fromF),
+      toFactor: String(toF),
+      mult: String(ratio),
+    });
+  }
+
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by (${fromF} m/s per ${fromKey}) / (${toF} m/s per ${toKey}). ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${fromF} / ${toF}). Numerically, 1 ${fromKey} equals ${ratio} ${toKey}.`

@@ -4,6 +4,7 @@ import {
   formatLengthResult,
   LENGTH_UNITS,
 } from "@/utils/conversions";
+import { lengthUnitLabel } from "@/app/[locale]/tools/unit-converter/length/lengthPairUi";
 
 /** Matches dedicated length converter pages: 0.1 and 1–9. */
 export const LENGTH_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
@@ -15,13 +16,19 @@ export function LengthConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = LENGTH_UNITS[fromKey].nameSg ?? LENGTH_UNITS[fromKey].name;
-  const toName = LENGTH_UNITS[toKey].nameSg ?? LENGTH_UNITS[toKey].name;
+  const fromName = ui
+    ? lengthUnitLabel(ui, fromKey, "nameSg")
+    : LENGTH_UNITS[fromKey].nameSg ?? LENGTH_UNITS[fromKey].name;
+  const toName = ui
+    ? lengthUnitLabel(ui, toKey, "nameSg")
+    : LENGTH_UNITS[toKey].nameSg ?? LENGTH_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -57,9 +64,11 @@ export function LengthConversionTable({
 export function LengthConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
@@ -67,11 +76,13 @@ export function LengthConversionTablesPair({
         fromKey={fromKey}
         toKey={toKey}
         values={LENGTH_TABLE_SMALL_STEPS}
+        ui={ui}
       />
       <LengthConversionTable
         fromKey={fromKey}
         toKey={toKey}
         values={LENGTH_TABLE_TENS_STEPS}
+        ui={ui}
       />
     </div>
   );

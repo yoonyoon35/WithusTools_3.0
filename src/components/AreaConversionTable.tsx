@@ -4,6 +4,7 @@ import {
   formatConversionTableCell,
   AREA_UNITS,
 } from "@/utils/conversions";
+import { areaUnitLabel } from "@/app/[locale]/tools/unit-converter/area/areaPairUi";
 
 export const AREA_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const AREA_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -12,13 +13,19 @@ export function AreaConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = AREA_UNITS[fromKey].nameSg ?? AREA_UNITS[fromKey].name;
-  const toName = AREA_UNITS[toKey].nameSg ?? AREA_UNITS[toKey].name;
+  const fromName = ui
+    ? areaUnitLabel(ui, fromKey, "nameSg")
+    : AREA_UNITS[fromKey].nameSg ?? AREA_UNITS[fromKey].name;
+  const toName = ui
+    ? areaUnitLabel(ui, toKey, "nameSg")
+    : AREA_UNITS[toKey].nameSg ?? AREA_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -54,14 +61,16 @@ export function AreaConversionTable({
 export function AreaConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <AreaConversionTable fromKey={fromKey} toKey={toKey} values={AREA_TABLE_SMALL_STEPS} />
-      <AreaConversionTable fromKey={fromKey} toKey={toKey} values={AREA_TABLE_TENS_STEPS} />
+      <AreaConversionTable fromKey={fromKey} toKey={toKey} values={AREA_TABLE_SMALL_STEPS} ui={ui} />
+      <AreaConversionTable fromKey={fromKey} toKey={toKey} values={AREA_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

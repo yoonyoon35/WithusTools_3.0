@@ -3,7 +3,9 @@ import {
   convertLength,
   formatLengthResult,
 } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { formatRatioDisplay, getExtraDerivation } from "./lengthPairContent";
+import { lengthUnitLabel } from "./lengthPairUi";
 
 const HOW_TO_EXAMPLES = [20, 50] as const;
 
@@ -19,14 +21,17 @@ function SubD({ unit }: { unit: string }) {
 export default function HowToConvertLength({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
-  const fromSg = LENGTH_UNITS[fromKey].nameSg ?? LENGTH_UNITS[fromKey].name;
-  const toSg = LENGTH_UNITS[toKey].nameSg ?? LENGTH_UNITS[toKey].name;
-  const fromPlural = LENGTH_UNITS[fromKey].name;
-  const toPlural = LENGTH_UNITS[toKey].name;
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = lengthUnitLabel(ui, fromKey, "nameSg");
+  const toSg = lengthUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = lengthUnitLabel(ui, fromKey, "name");
+  const toPlural = lengthUnitLabel(ui, toKey, "name");
   const Lf = LENGTH_UNITS[fromKey].factor;
   const Lt = LENGTH_UNITS[toKey].factor;
   const mult = Lf / Lt;
@@ -34,19 +39,24 @@ export default function HowToConvertLength({
 
   const multStr = formatRatioDisplay(mult);
   const divisorStr = formatRatioDisplay(divisor);
-  const extra = getExtraDerivation(fromKey, toKey);
+  const extra = getExtraDerivation(fromKey, toKey, ui);
+
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
 
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> is equal to{" "}
-          <span className="font-medium text-slate-200">{multStr}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span>:
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: multStr,
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -58,16 +68,24 @@ export default function HowToConvertLength({
         {extra && <p>{extra}</p>}
 
         <p>
-          Each {fromSg.toLowerCase()} is defined as <span className="font-mono text-slate-300">{Lf}</span> m and each{" "}
-          {toSg.toLowerCase()} as <span className="font-mono text-slate-300">{Lt}</span> m, so one {fromKey} equals{" "}
-          <span className="font-mono text-slate-300">{Lf}</span> ÷ <span className="font-mono text-slate-300">{Lt}</span>{" "}
-          {toKey} = {multStr} {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: String(Lf),
+            toFactor: String(Lt),
+            mult: multStr,
+          })}
         </p>
 
         <p>
-          Let <SubD unit={fromKey} /> be the numeric value of the same length measured in{" "}
-          <span className="text-slate-300">{fromSg}</span> ({fromKey}), and <SubD unit={toKey} /> the value in{" "}
-          <span className="text-slate-300">{toSg}</span> ({toKey}). Then:
+          {formatUi(asText(howTo.letDFrom), {
+            fromSg,
+            toSg,
+            fromKey,
+            toKey,
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -76,10 +94,7 @@ export default function HowToConvertLength({
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (meters per {toKey} divided by
-          meters per {fromKey}):
-        </p>
+        <p>{asText(howTo.divideExplain)}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -88,11 +103,15 @@ export default function HowToConvertLength({
         </div>
 
         <p className="text-slate-500">
-          Or: {toSg.toLowerCase()} = {fromSg.toLowerCase()} ÷ {divisorStr}
+          {formatUi(asText(howTo.orLine), {
+            toSg: toSg.toLowerCase(),
+            fromSg: fromSg.toLowerCase(),
+            divisor: divisorStr,
+          })}
         </p>
 
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES.map((n, idx) => {
               const result = convertLength(n, fromKey, toKey);
@@ -100,7 +119,12 @@ export default function HowToConvertLength({
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: String(idx + 1),
+                      value: String(n),
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

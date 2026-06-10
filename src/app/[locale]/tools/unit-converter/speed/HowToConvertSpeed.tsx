@@ -1,4 +1,11 @@
-import { convertSpeed, formatSpeedResult, getSpeedFormulaLine, SPEED_UNITS } from "@/utils/conversions";
+import {
+  convertSpeed,
+  formatSpeedResult,
+  getSpeedFormulaLine,
+  SPEED_UNITS,
+} from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
+import { speedUnitLabel } from "./speedPairUi";
 
 const HOW_TO_EXAMPLES_LINEAR = [10, 50] as const;
 const HOW_TO_EXAMPLES_BEAUFORT = [3, 7] as const;
@@ -12,40 +19,41 @@ function SubV({ unit }: { unit: string }) {
   );
 }
 
-export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string; toKey: string }) {
-  const fromSg = SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
-  const toSg = SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
-  const fromPlural = SPEED_UNITS[fromKey]?.name ?? fromKey;
-  const toPlural = SPEED_UNITS[toKey]?.name ?? toKey;
+export default function HowToConvertSpeed({
+  fromKey,
+  toKey,
+  ui,
+}: {
+  fromKey: string;
+  toKey: string;
+  ui?: unknown;
+}) {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = speedUnitLabel(ui, fromKey, "nameSg");
+  const toSg = speedUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = speedUnitLabel(ui, fromKey, "name");
+  const toPlural = speedUnitLabel(ui, toKey, "name");
 
   const fromF = SPEED_UNITS[fromKey]?.factor;
   const toF = SPEED_UNITS[toKey]?.factor;
   const beaufortInvolved = fromKey === "beaufort" || toKey === "beaufort";
   const bothLinear = fromF != null && toF != null && !beaufortInvolved;
 
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
+
   if (beaufortInvolved) {
     return (
       <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">
-          How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-        </h2>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
         <div className="space-y-6 text-sm leading-relaxed text-slate-400">
-          <p>
-            The Beaufort scale is a <span className="text-slate-300">discrete wind force (0–12)</span> based on
-            mean wind at 10 m. This tool converts by passing through an equivalent value in meters per second
-            (WMO-style m/s bands; midpoints when starting from a force).
-          </p>
-          <p>
-            <span className="font-medium text-slate-200">From Beaufort:</span> your input is rounded to the
-            nearest whole force 0–12, then the midpoint m/s for that force is used before converting to{" "}
-            {toSg.toLowerCase()}.
-          </p>
-          <p>
-            <span className="font-medium text-slate-200">To Beaufort:</span> your speed is converted to m/s,
-            then classified into the matching force 0–12.
-          </p>
+          <p>{asText(howTo.beaufortIntro)}</p>
+          <p>{formatUi(asText(howTo.beaufortFromExplain), { toSg: toSg.toLowerCase() })}</p>
+          <p>{asText(howTo.beaufortToExplain)}</p>
           <div className="border-t border-slate-700 pt-6">
-            <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+            <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
             <div className="space-y-6">
               {HOW_TO_EXAMPLES_BEAUFORT.map((n, idx) => {
                 const result = convertSpeed(n, fromKey, toKey);
@@ -53,12 +61,18 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
                 return (
                   <div key={n}>
                     <p className="mb-2 font-medium text-slate-300">
-                      Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                      {formatUi(asText(howTo.exampleTitleTemplate), {
+                        n: String(idx + 1),
+                        value: String(n),
+                        fromKey,
+                        toSg: toSg.toLowerCase(),
+                      })}
                     </p>
                     <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                       <p>{line}</p>
                       <p className="mt-2 text-slate-400">
-                        Result: {Number.isFinite(result) ? formatSpeedResult(result) : "—"} {toKey}
+                        {asText(howTo.resultLabel)}{" "}
+                        {Number.isFinite(result) ? formatSpeedResult(result) : "—"} {toKey}
                       </p>
                     </div>
                   </div>
@@ -74,12 +88,9 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
   if (!bothLinear) {
     return (
       <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">
-          How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-        </h2>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
         <p className="text-sm leading-relaxed text-slate-400">
-          This pair uses fixed m/s definitions per unit (Mach 1 and c are defined in m/s). Multiply by the ratio
-          of m/s per {fromKey} to m/s per {toKey}, as shown in the formula line in the calculator above.
+          {formatUi(asText(howTo.specialPairExplain), { fromKey, toKey })}
         </p>
       </section>
     );
@@ -90,15 +101,15 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
 
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> equals{" "}
-          <span className="font-medium text-slate-200">{mult}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span> in this tool (via m/s):
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: String(mult),
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -108,15 +119,18 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
         </div>
 
         <p>
-          Each {fromSg.toLowerCase()} carries <span className="font-mono text-slate-300">{fromF}</span> m/s and
-          each {toSg.toLowerCase()} <span className="font-mono text-slate-300">{toF}</span> m/s, so one {fromKey}{" "}
-          equals <span className="font-mono text-slate-300">{fromF}</span> ÷{" "}
-          <span className="font-mono text-slate-300">{toF}</span> {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: String(fromF),
+            toFactor: String(toF),
+          })}
         </p>
 
         <p>
-          Let <SubV unit={fromKey} /> be the numeric speed in <span className="text-slate-300">{fromSg}</span> (
-          {fromKey}), and <SubV unit={toKey} /> in <span className="text-slate-300">{toSg}</span> ({toKey}). Then:
+          {formatUi(asText(howTo.letVFrom), { fromSg, toSg, fromKey, toKey })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -125,10 +139,7 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (m/s per {toKey} divided by m/s per{" "}
-          {fromKey}):
-        </p>
+        <p>{asText(howTo.divideExplain)}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -136,8 +147,16 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
           </p>
         </div>
 
+        <p className="text-slate-500">
+          {formatUi(asText(howTo.orLine), {
+            toSg: toSg.toLowerCase(),
+            fromSg: fromSg.toLowerCase(),
+            divisor: String(divisor),
+          })}
+        </p>
+
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES_LINEAR.map((n, idx) => {
               const result = convertSpeed(n, fromKey, toKey);
@@ -145,7 +164,12 @@ export default function HowToConvertSpeed({ fromKey, toKey }: { fromKey: string;
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: String(idx + 1),
+                      value: String(n),
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

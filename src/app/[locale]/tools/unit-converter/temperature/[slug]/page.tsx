@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/components/I18nLink";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { createMetadata } from "@/lib/metadata";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, getToolContentEntry } from "@/lib/tool-content";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import ToolIcon from "@/components/ToolIcon";
 import { TemperatureConversionTablesPair } from "@/components/TemperatureConversionTable";
 import TemperaturePairCalculator from "../TemperaturePairCalculator";
@@ -12,7 +17,6 @@ import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLi
 import {
   getCanonicalTemperatureSlug,
   TEMPERATURE_HUB_KEYS,
-  TEMPERATURE_UNITS,
   parseTemperaturePairSlug,
 } from "@/utils/conversions";
 import {
@@ -20,37 +24,43 @@ import {
   getRelationshipContext,
   getUnitDescription,
 } from "../temperaturePairContent";
+import { temperatureUnitLabel } from "../temperaturePairUi";
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
   const pair = parseTemperaturePairSlug(params.slug);
   if (!pair) {
-    return createMetadata({title: "Temperature Conversion", noIndex: true,
-    locale: params.locale as Locale,
-  });
+    return createMetadata({
+      title: "Temperature Conversion",
+      noIndex: true,
+      locale: locale as Locale,
+    });
   }
 
+  const toolContent = await loadToolContent(locale);
+  const metaPath = `/tools/unit-converter/temperature/${params.slug}`;
+  const content = getToolContentEntry(toolContent, metaPath);
   const { from, to } = pair;
-  const fromSg = TEMPERATURE_UNITS[from].nameSg ?? TEMPERATURE_UNITS[from].name;
-  const toSg = TEMPERATURE_UNITS[to].nameSg ?? TEMPERATURE_UNITS[to].name;
 
-  const title = `${fromSg} to ${toSg} Converter | Temperature Conversion`;
-  const description = `Convert ${fromSg} to ${toSg} with correct offset formulas, examples, and reference tables. Free temperature converter for weather, cooking, and science.`;
+  const title =
+    content?.h1 ??
+    `${temperatureUnitLabel(content?.ui, from, "nameSg")} to ${temperatureUnitLabel(content?.ui, to, "nameSg")} Converter`;
+  const description =
+    content?.intro ??
+    `Convert ${from} to ${to} with offset-aware formulas, examples, and conversion tables.`;
 
-  return createMetadata({title,
+  return createMetadata({
+    title: `${title} | WithUsTools`,
     description,
-    path: `/tools/unit-converter/temperature/${params.slug}`,
-    keywords: [
-      `${fromSg} to ${toSg}`,
-      `${from} to ${to}`,
-      "temperature converter",
-      "celsius fahrenheit kelvin",
-      "withustools",
-    ],
-    locale: params.locale as Locale,
+    path: metaPath,
+    keywords: [from, to, "temperature converter", "celsius fahrenheit kelvin", "withustools"],
+    locale: locale as Locale,
   });
 }
 
@@ -65,63 +75,49 @@ export function generateStaticParams() {
   return slugs;
 }
 
-export default function TemperaturePairPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function TemperaturePairPage({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
+
   const pair = parseTemperaturePairSlug(params.slug);
   if (!pair) notFound();
 
+  const metaPath = `/tools/unit-converter/temperature/${params.slug}`;
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, metaPath);
+  if (!content) throw new Error(`Missing toolContent for ${metaPath}`);
+
   const { from: fromKey, to: toKey } = pair;
-  const fromSg = TEMPERATURE_UNITS[fromKey].nameSg ?? TEMPERATURE_UNITS[fromKey].name;
-  const toSg = TEMPERATURE_UNITS[toKey].nameSg ?? TEMPERATURE_UNITS[toKey].name;
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `How do I convert ${fromSg} to ${toSg} here?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Enter a ${fromSg} value and the ${toSg} result is calculated with offset-aware formulas.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does this page include temperature formula details?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. This page includes formula lines, explanatory notes, and conversion tables.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I switch to other temperature scale pairs?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Related pair links are listed near the bottom.",
-        },
-      },
-    ],
-  };
+  const pageUi = asMap(content.ui);
+  const fromSg = temperatureUnitLabel(content.ui, fromKey, "nameSg");
+  const toSg = temperatureUnitLabel(content.ui, toKey, "nameSg");
+  const faqJsonLd = buildFaqJsonLd(content.faq);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="calculator" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">
-              {fromSg} to {toSg} Converter
-            </h1>
-            <p className="mt-1 text-sm text-slate-500">Temperature · unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert {fromSg} to {toSg} with offset-aware formulas (not simple ratio scaling), step-by-step lines,
-        and reference tables. Uses 273.15 for Celsius–Kelvin offsets, R = (9/5) × K for kelvin–rankine, and
-        °F–R offset 459.67.
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
       <Suspense
         fallback={
@@ -132,59 +128,74 @@ export default function TemperaturePairPage({ params }: { params: { locale: stri
           />
         }
       >
-        <TemperaturePairCalculator fromKey={fromKey} toKey={toKey} />
+        <TemperaturePairCalculator fromKey={fromKey} toKey={toKey} metaPath={metaPath} />
       </Suspense>
 
       <section className="mt-12 grid gap-8 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {fromSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(fromKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: fromSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(fromKey, content.ui)}
+          </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {toSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(toKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: toSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(toKey, content.ui)}
+          </p>
         </div>
       </section>
 
       <div className="mt-10">
-        <HowToConvertTemperature fromKey={fromKey} toKey={toKey} />
+        <HowToConvertTemperature fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </div>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Summary</h2>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.summaryTitle)}</h2>
         <p className="text-sm leading-relaxed text-slate-400">
-          {getDetailedFormulaExplanation(fromKey, toKey)}
+          {getDetailedFormulaExplanation(fromKey, toKey, content.ui)}
         </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Relationship context</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getRelationshipContext(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.relationshipTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getRelationshipContext(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
-        <TemperatureConversionTablesPair fromKey={fromKey} toKey={toKey} />
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">
+          {asText(pageUi.conversionTablesTitle)}
+        </h2>
+        <TemperatureConversionTablesPair fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </section>
 
-      <UnitConverterNonHubPairLinks category="temperature" fromKey={fromKey} toKey={toKey} />
+      <UnitConverterNonHubPairLinks
+        category="temperature"
+        fromKey={fromKey}
+        toKey={toKey}
+        ui={content.ui}
+      />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link
           href="/tools/unit-converter/temperature"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          ← Temperature Converter (all scales)
+          {content.backToHub}
         </Link>
         <Link
           href="/tools/unit-converter"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          Unit Converter home
+          {content.backToDeveloper}
         </Link>
       </div>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import { TIME_UNITS, convertTime, formatTimeResult } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { formatRatioDisplay, getExtraDerivation } from "./timePairContent";
+import { timeUnitLabel } from "./timePairUi";
 
 const HOW_TO_EXAMPLES = [20, 50] as const;
 
@@ -15,14 +17,17 @@ function SubT({ unit }: { unit: string }) {
 export default function HowToConvertTime({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
-  const fromSg = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
-  const toSg = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
-  const fromPlural = TIME_UNITS[fromKey].name;
-  const toPlural = TIME_UNITS[toKey].name;
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = timeUnitLabel(ui, fromKey, "nameSg");
+  const toSg = timeUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = timeUnitLabel(ui, fromKey, "name");
+  const toPlural = timeUnitLabel(ui, toKey, "name");
   const Sf = TIME_UNITS[fromKey].factor;
   const St = TIME_UNITS[toKey].factor;
   const mult = Sf / St;
@@ -30,19 +35,24 @@ export default function HowToConvertTime({
 
   const multStr = formatRatioDisplay(mult);
   const divisorStr = formatRatioDisplay(divisor);
-  const extra = getExtraDerivation(fromKey, toKey);
+  const extra = getExtraDerivation(fromKey, toKey, ui);
+
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
 
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> is equal to{" "}
-          <span className="font-medium text-slate-200">{multStr}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span>:
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: multStr,
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -54,16 +64,19 @@ export default function HowToConvertTime({
         {extra && <p>{extra}</p>}
 
         <p>
-          Each {fromSg.toLowerCase()} is defined as <span className="font-mono text-slate-300">{Sf}</span> s and each{" "}
-          {toSg.toLowerCase()} as <span className="font-mono text-slate-300">{St}</span> s, so one {fromKey} equals{" "}
-          <span className="font-mono text-slate-300">{Sf}</span> ÷ <span className="font-mono text-slate-300">{St}</span>{" "}
-          {toKey} = {multStr} {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: String(Sf),
+            toFactor: String(St),
+            mult: multStr,
+          })}
         </p>
 
         <p>
-          Let <SubT unit={fromKey} /> be the numeric value of the same duration measured in{" "}
-          <span className="text-slate-300">{fromSg}</span> ({fromKey}), and <SubT unit={toKey} /> the value in{" "}
-          <span className="text-slate-300">{toSg}</span> ({toKey}). Then:
+          {formatUi(asText(howTo.letTFrom), { fromSg, toSg, fromKey, toKey })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -72,10 +85,7 @@ export default function HowToConvertTime({
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (seconds per {toKey} divided by seconds per{" "}
-          {fromKey}):
-        </p>
+        <p>{asText(howTo.divideExplain)}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -84,11 +94,15 @@ export default function HowToConvertTime({
         </div>
 
         <p className="text-slate-500">
-          Or: {toSg.toLowerCase()} = {fromSg.toLowerCase()} ÷ {divisorStr}
+          {formatUi(asText(howTo.orLine), {
+            toSg: toSg.toLowerCase(),
+            fromSg: fromSg.toLowerCase(),
+            divisor: divisorStr,
+          })}
         </p>
 
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES.map((n, idx) => {
               const result = convertTime(n, fromKey, toKey);
@@ -96,7 +110,12 @@ export default function HowToConvertTime({
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: String(idx + 1),
+                      value: String(n),
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

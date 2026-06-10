@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/components/I18nLink";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { createMetadata } from "@/lib/metadata";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, getToolContentEntry } from "@/lib/tool-content";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import ToolIcon from "@/components/ToolIcon";
 import { PressureConversionTablesPair } from "@/components/PressureConversionTable";
 import PressurePairCalculator from "../PressurePairCalculator";
@@ -12,7 +17,6 @@ import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLi
 import {
   getCanonicalPressureSlug,
   PRESSURE_HUB_KEYS,
-  PRESSURE_UNITS,
   parsePressurePairSlug,
 } from "@/utils/conversions";
 import {
@@ -20,37 +24,43 @@ import {
   getRelationshipContext,
   getUnitDescription,
 } from "../pressurePairContent";
+import { pressureUnitLabel } from "../pressurePairUi";
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
   const pair = parsePressurePairSlug(params.slug);
   if (!pair) {
-    return createMetadata({title: "Pressure Conversion", noIndex: true,
-    locale: params.locale as Locale,
-  });
+    return createMetadata({
+      title: "Pressure Conversion",
+      noIndex: true,
+      locale: locale as Locale,
+    });
   }
 
+  const toolContent = await loadToolContent(locale);
+  const metaPath = `/tools/unit-converter/pressure/${params.slug}`;
+  const content = getToolContentEntry(toolContent, metaPath);
   const { from, to } = pair;
-  const fromSg = PRESSURE_UNITS[from]?.nameSg ?? PRESSURE_UNITS[from]?.name ?? from;
-  const toSg = PRESSURE_UNITS[to]?.nameSg ?? PRESSURE_UNITS[to]?.name ?? to;
 
-  const title = `${fromSg} to ${toSg} Converter | Accurate Pressure Conversion`;
-  const description = `Easily convert ${fromSg} to ${toSg}. Fast, free, and accurate pressure converter with formulas, examples, and conversion tables for ${fromSg} and ${toSg}.`;
+  const title =
+    content?.h1 ??
+    `${pressureUnitLabel(content?.ui, from, "nameSg")} to ${pressureUnitLabel(content?.ui, to, "nameSg")} Converter`;
+  const description =
+    content?.intro ??
+    `Convert ${from} to ${to} with formulas, examples, and conversion tables.`;
 
-  return createMetadata({title,
+  return createMetadata({
+    title: `${title} | WithUsTools`,
     description,
-    path: `/tools/unit-converter/pressure/${params.slug}`,
-    keywords: [
-      `${fromSg} to ${toSg}`,
-      `${from} to ${to}`,
-      "pressure converter",
-      "pressure conversion",
-      "withustools",
-    ],
-    locale: params.locale as Locale,
+    path: metaPath,
+    keywords: [from, to, "pressure converter", "pressure conversion", "withustools"],
+    locale: locale as Locale,
   });
 }
 
@@ -65,64 +75,49 @@ export function generateStaticParams() {
   return slugs;
 }
 
-export default function PressurePairPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function PressurePairPage({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
+
   const pair = parsePressurePairSlug(params.slug);
   if (!pair) notFound();
 
+  const metaPath = `/tools/unit-converter/pressure/${params.slug}`;
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, metaPath);
+  if (!content) throw new Error(`Missing toolContent for ${metaPath}`);
+
   const { from: fromKey, to: toKey } = pair;
-  const fromSg = PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
-  const toSg = PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `How can I convert ${fromSg} to ${toSg}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Enter a ${fromSg} value and this page calculates the ${toSg} output immediately.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Are formulas and conversion tables available?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Formula guidance, summary sections, and pressure conversion tables are included.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I open other pressure pair converters?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Related pressure pair links are available below.",
-        },
-      },
-    ],
-  };
+  const pageUi = asMap(content.ui);
+  const fromSg = pressureUnitLabel(content.ui, fromKey, "nameSg");
+  const toSg = pressureUnitLabel(content.ui, toKey, "nameSg");
+  const faqJsonLd = buildFaqJsonLd(content.faq);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="ruler" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">
-              {fromSg} to {toSg} Converter
-            </h1>
-            <p className="mt-1 text-sm text-slate-500">Pressure · unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
-        reference tables. All calculations bridge through pascal with fixed definitions (standard atmosphere =
-        101,325 Pa; torr and mmHg = atm/760; plus industrial/manometer units like kgf/cm², inHg, inH2O, and
-        mmH2O).
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
       <Suspense
         fallback={
@@ -133,57 +128,74 @@ export default function PressurePairPage({ params }: { params: { locale: string;
           />
         }
       >
-        <PressurePairCalculator fromKey={fromKey} toKey={toKey} />
+        <PressurePairCalculator fromKey={fromKey} toKey={toKey} metaPath={metaPath} />
       </Suspense>
 
       <section className="mt-12 grid gap-8 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {fromSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(fromKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: fromSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(fromKey, content.ui)}
+          </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {toSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(toKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: toSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(toKey, content.ui)}
+          </p>
         </div>
       </section>
 
       <div className="mt-10">
-        <HowToConvertPressure fromKey={fromKey} toKey={toKey} />
+        <HowToConvertPressure fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </div>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Summary</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getDetailedFormulaExplanation(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.summaryTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getDetailedFormulaExplanation(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Relationship context</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getRelationshipContext(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.relationshipTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getRelationshipContext(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
-        <PressureConversionTablesPair fromKey={fromKey} toKey={toKey} />
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">
+          {asText(pageUi.conversionTablesTitle)}
+        </h2>
+        <PressureConversionTablesPair fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </section>
 
-      <UnitConverterNonHubPairLinks category="pressure" fromKey={fromKey} toKey={toKey} />
+      <UnitConverterNonHubPairLinks
+        category="pressure"
+        fromKey={fromKey}
+        toKey={toKey}
+        ui={content.ui}
+      />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link
           href="/tools/unit-converter/pressure"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          ← Pressure Converter (all units)
+          {content.backToHub}
         </Link>
         <Link
           href="/tools/unit-converter"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          Unit Converter home
+          {content.backToDeveloper}
         </Link>
       </div>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

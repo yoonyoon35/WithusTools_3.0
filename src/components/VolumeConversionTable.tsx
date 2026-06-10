@@ -4,6 +4,7 @@ import {
   formatVolumeResult,
   VOLUME_UNITS,
 } from "@/utils/conversions";
+import { volumeUnitLabel } from "@/app/[locale]/tools/unit-converter/volume/volumePairUi";
 
 export const VOLUME_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const VOLUME_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -12,13 +13,19 @@ export function VolumeConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = VOLUME_UNITS[fromKey].nameSg ?? VOLUME_UNITS[fromKey].name;
-  const toName = VOLUME_UNITS[toKey].nameSg ?? VOLUME_UNITS[toKey].name;
+  const fromName = ui
+    ? volumeUnitLabel(ui, fromKey, "nameSg")
+    : VOLUME_UNITS[fromKey].nameSg ?? VOLUME_UNITS[fromKey].name;
+  const toName = ui
+    ? volumeUnitLabel(ui, toKey, "nameSg")
+    : VOLUME_UNITS[toKey].nameSg ?? VOLUME_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -54,14 +61,16 @@ export function VolumeConversionTable({
 export function VolumeConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <VolumeConversionTable fromKey={fromKey} toKey={toKey} values={VOLUME_TABLE_SMALL_STEPS} />
-      <VolumeConversionTable fromKey={fromKey} toKey={toKey} values={VOLUME_TABLE_TENS_STEPS} />
+      <VolumeConversionTable fromKey={fromKey} toKey={toKey} values={VOLUME_TABLE_SMALL_STEPS} ui={ui} />
+      <VolumeConversionTable fromKey={fromKey} toKey={toKey} values={VOLUME_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

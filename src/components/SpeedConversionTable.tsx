@@ -4,6 +4,7 @@ import {
   formatSpeedResult,
   SPEED_UNITS,
 } from "@/utils/conversions";
+import { speedUnitLabel } from "@/app/[locale]/tools/unit-converter/speed/speedPairUi";
 
 /** Same step pattern as dedicated length converter pages: 0.1 and 1–9. */
 export const SPEED_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
@@ -15,13 +16,19 @@ export function SpeedConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
-  const toName = SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
+  const fromName = ui
+    ? speedUnitLabel(ui, fromKey, "nameSg")
+    : SPEED_UNITS[fromKey]?.nameSg ?? SPEED_UNITS[fromKey]?.name ?? fromKey;
+  const toName = ui
+    ? speedUnitLabel(ui, toKey, "nameSg")
+    : SPEED_UNITS[toKey]?.nameSg ?? SPEED_UNITS[toKey]?.name ?? toKey;
 
   return (
     <div className="overflow-x-auto">
@@ -54,11 +61,19 @@ export function SpeedConversionTable({
   );
 }
 
-export function SpeedConversionTablesPair({ fromKey, toKey }: { fromKey: string; toKey: string }) {
+export function SpeedConversionTablesPair({
+  fromKey,
+  toKey,
+  ui,
+}: {
+  fromKey: string;
+  toKey: string;
+  ui?: unknown;
+}) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <SpeedConversionTable fromKey={fromKey} toKey={toKey} values={SPEED_TABLE_SMALL_STEPS} />
-      <SpeedConversionTable fromKey={fromKey} toKey={toKey} values={SPEED_TABLE_TENS_STEPS} />
+      <SpeedConversionTable fromKey={fromKey} toKey={toKey} values={SPEED_TABLE_SMALL_STEPS} ui={ui} />
+      <SpeedConversionTable fromKey={fromKey} toKey={toKey} values={SPEED_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

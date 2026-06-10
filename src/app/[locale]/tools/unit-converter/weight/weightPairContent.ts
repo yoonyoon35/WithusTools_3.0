@@ -1,3 +1,4 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import {
   WEIGHT_UNITS,
   getWeightMultiplier,
@@ -5,6 +6,7 @@ import {
   type WeightSystem,
 } from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { weightUnitLabel } from "./weightPairUi";
 
 export { formatRatioDisplay };
 
@@ -37,24 +39,52 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "The microgram is one millionth of a gram. It appears in pharmacology and trace analysis.",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return (
     UNIT_DESCRIPTIONS[key] ?? `${WEIGHT_UNITS[key]?.name ?? key} is a standard mass unit in this converter.`
   );
 }
 
-function systemLabel(s: WeightSystem): string {
-  if (s === "us_mass") return "US customary (short ton)";
-  if (s === "imperial") return "imperial / UK (stone, long ton, pound, ounce)";
-  return "metric (SI)";
+function systemLabel(s: WeightSystem, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (s === "us_mass") return asText(pageUi.systemUsMass) || "US customary (short ton)";
+  if (s === "imperial") return asText(pageUi.systemImperial) || "imperial / UK (stone, long ton, pound, ounce)";
+  return asText(pageUi.systemMetric) || "metric (SI)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const fromSys = getWeightSystem(fromKey);
   const toSys = getWeightSystem(toKey);
   const mult = getWeightMultiplier(fromKey, toKey);
-  const fromName = WEIGHT_UNITS[fromKey].nameSg ?? WEIGHT_UNITS[fromKey].name;
-  const toName = WEIGHT_UNITS[toKey].nameSg ?? WEIGHT_UNITS[toKey].name;
+  const fromName = weightUnitLabel(ui, fromKey, "nameSg");
+  const toName = weightUnitLabel(ui, toKey, "nameSg");
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    fromSystem: systemLabel(fromSys, pageUi),
+    toSystem: systemLabel(toSys, pageUi),
+  };
+
+  if (fromSys === toSys && fromSys === "metric" && asText(pageUi.relationshipMetric)) {
+    return formatUi(asText(pageUi.relationshipMetric), vars);
+  }
+  if (fromSys === toSys && fromSys === "imperial" && asText(pageUi.relationshipImperial)) {
+    return formatUi(asText(pageUi.relationshipImperial), vars);
+  }
+  if (fromSys !== toSys && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
+  }
 
   if (fromSys === toSys && fromSys === "metric") {
     return `Both units are ${systemLabel("metric")} and tied to the gram via the kilogram. Conversions use exact ratios from their gram definitions. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
@@ -71,10 +101,23 @@ export function getRelationshipContext(fromKey: string, toKey: string): string {
   return `Mass units are converted via their exact definitions in grams. The multiplier between ${fromKey} and ${toKey} is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getWeightMultiplier(fromKey, toKey);
-  const fromName = WEIGHT_UNITS[fromKey].nameSg ?? WEIGHT_UNITS[fromKey].name;
-  const toName = WEIGHT_UNITS[toKey].nameSg ?? WEIGHT_UNITS[toKey].name;
+  const fromName = weightUnitLabel(ui, fromKey, "nameSg");
+  const toName = weightUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(WEIGHT_UNITS[fromKey].factor),
+      toFactor: String(WEIGHT_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by the ratio of grams per ${fromKey} divided by grams per ${toKey}. ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${WEIGHT_UNITS[fromKey].factor} / ${WEIGHT_UNITS[toKey].factor}). ` +
@@ -82,7 +125,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "kg" && toKey === "lb") {
     return `1 kilogram is also equal to 1 ÷ 0.45359237 pounds (international pound definition), which matches the gram-based factor used here.`;
   }

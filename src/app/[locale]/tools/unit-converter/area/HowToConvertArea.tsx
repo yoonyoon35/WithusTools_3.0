@@ -1,5 +1,7 @@
-import { AREA_UNITS, convertArea, formatAreaResult } from "@/utils/conversions";
+import { convertArea, formatAreaResult, AREA_UNITS } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { formatRatioDisplay, getExtraDerivation } from "./areaPairContent";
+import { areaUnitLabel } from "./areaPairUi";
 
 const HOW_TO_EXAMPLES = [20, 50] as const;
 
@@ -15,14 +17,17 @@ function SubA({ unit }: { unit: string }) {
 export default function HowToConvertArea({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
-  const fromSg = AREA_UNITS[fromKey].nameSg ?? AREA_UNITS[fromKey].name;
-  const toSg = AREA_UNITS[toKey].nameSg ?? AREA_UNITS[toKey].name;
-  const fromPlural = AREA_UNITS[fromKey].name;
-  const toPlural = AREA_UNITS[toKey].name;
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = areaUnitLabel(ui, fromKey, "nameSg");
+  const toSg = areaUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = areaUnitLabel(ui, fromKey, "name");
+  const toPlural = areaUnitLabel(ui, toKey, "name");
   const Sf = AREA_UNITS[fromKey].factor;
   const St = AREA_UNITS[toKey].factor;
   const mult = Sf / St;
@@ -30,19 +35,24 @@ export default function HowToConvertArea({
 
   const multStr = formatRatioDisplay(mult);
   const divisorStr = formatRatioDisplay(divisor);
-  const extra = getExtraDerivation(fromKey, toKey);
+  const extra = getExtraDerivation(fromKey, toKey, ui);
+
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
 
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> is equal to{" "}
-          <span className="font-medium text-slate-200">{multStr}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span>:
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: multStr,
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -54,16 +64,19 @@ export default function HowToConvertArea({
         {extra && <p>{extra}</p>}
 
         <p>
-          Each {fromSg.toLowerCase()} is defined as <span className="font-mono text-slate-300">{Sf}</span> m² and each{" "}
-          {toSg.toLowerCase()} as <span className="font-mono text-slate-300">{St}</span> m², so one {fromKey} equals{" "}
-          <span className="font-mono text-slate-300">{Sf}</span> ÷ <span className="font-mono text-slate-300">{St}</span>{" "}
-          {toKey} = {multStr} {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: String(Sf),
+            toFactor: String(St),
+            mult: multStr,
+          })}
         </p>
 
         <p>
-          Let <SubA unit={fromKey} /> be the numeric value of the same area measured in{" "}
-          <span className="text-slate-300">{fromSg}</span> ({fromKey}), and <SubA unit={toKey} /> the value in{" "}
-          <span className="text-slate-300">{toSg}</span> ({toKey}). Then:
+          {formatUi(asText(howTo.letAFrom), { fromSg, toSg, fromKey, toKey })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -72,10 +85,7 @@ export default function HowToConvertArea({
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (m² per {toKey} divided by m² per{" "}
-          {fromKey}):
-        </p>
+        <p>{asText(howTo.divideExplain)}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -84,11 +94,15 @@ export default function HowToConvertArea({
         </div>
 
         <p className="text-slate-500">
-          Or: {toSg.toLowerCase()} = {fromSg.toLowerCase()} ÷ {divisorStr}
+          {formatUi(asText(howTo.orLine), {
+            toSg: toSg.toLowerCase(),
+            fromSg: fromSg.toLowerCase(),
+            divisor: divisorStr,
+          })}
         </p>
 
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES.map((n, idx) => {
               const result = convertArea(n, fromKey, toKey);
@@ -96,7 +110,12 @@ export default function HowToConvertArea({
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: String(idx + 1),
+                      value: String(n),
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

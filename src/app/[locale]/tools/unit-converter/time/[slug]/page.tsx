@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/components/I18nLink";
 import { notFound } from "next/navigation";
 import { createMetadata } from "@/lib/metadata";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, getToolContentEntry } from "@/lib/tool-content";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import ToolIcon from "@/components/ToolIcon";
 import { TimeConversionTablesPair } from "@/components/TimeConversionTable";
 import TimePairCalculator from "../TimePairCalculator";
@@ -11,7 +16,6 @@ import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLi
 import {
   getCanonicalTimeSlug,
   getTimeKeys,
-  TIME_UNITS,
   parseTimePairSlug,
 } from "@/utils/conversions";
 import {
@@ -19,37 +23,43 @@ import {
   getRelationshipContext,
   getUnitDescription,
 } from "../timePairContent";
+import { timeUnitLabel } from "../timePairUi";
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
   const pair = parseTimePairSlug(params.slug);
   if (!pair) {
-    return createMetadata({title: "Time Conversion", noIndex: true,
-    locale: params.locale as Locale,
-  });
+    return createMetadata({
+      title: "Time Conversion",
+      noIndex: true,
+      locale: locale as Locale,
+    });
   }
 
+  const toolContent = await loadToolContent(locale);
+  const metaPath = `/tools/unit-converter/time/${params.slug}`;
+  const content = getToolContentEntry(toolContent, metaPath);
   const { from, to } = pair;
-  const fromSg = TIME_UNITS[from].nameSg ?? TIME_UNITS[from].name;
-  const toSg = TIME_UNITS[to].nameSg ?? TIME_UNITS[to].name;
 
-  const title = `${fromSg} to ${toSg} Converter | Accurate Time Conversion`;
-  const description = `Easily convert ${fromSg} to ${toSg}. Fast, free, and accurate time converter with formulas, examples, and conversion tables for ${fromSg} and ${toSg}.`;
+  const title =
+    content?.h1 ??
+    `${timeUnitLabel(content?.ui, from, "nameSg")} to ${timeUnitLabel(content?.ui, to, "nameSg")} Converter`;
+  const description =
+    content?.intro ??
+    `Convert ${from} to ${to} with formulas, examples, and conversion tables.`;
 
-  return createMetadata({title,
+  return createMetadata({
+    title: `${title} | WithUsTools`,
     description,
-    path: `/tools/unit-converter/time/${params.slug}`,
-    keywords: [
-      `${fromSg} to ${toSg}`,
-      `${from} to ${to}`,
-      "time converter",
-      "duration converter",
-      "withustools",
-    ],
-    locale: params.locale as Locale,
+    path: metaPath,
+    keywords: [from, to, "time converter", "duration converter", "withustools"],
+    locale: locale as Locale,
   });
 }
 
@@ -65,114 +75,117 @@ export function generateStaticParams() {
   return slugs;
 }
 
-export default function TimePairPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function TimePairPage({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
+
   const pair = parseTimePairSlug(params.slug);
   if (!pair) notFound();
 
+  const metaPath = `/tools/unit-converter/time/${params.slug}`;
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, metaPath);
+  if (!content) throw new Error(`Missing toolContent for ${metaPath}`);
+
   const { from: fromKey, to: toKey } = pair;
-  const fromSg = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
-  const toSg = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `How do I convert ${fromSg} to ${toSg}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Enter a ${fromSg} value and the converter returns the ${toSg} output instantly.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does this page include formulas and conversion tables?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Formula guidance, summary explanations, and tables are included below the calculator.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I switch to other time unit pairs?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Related pair links are listed below for quick navigation.",
-        },
-      },
-    ],
-  };
+  const pageUi = asMap(content.ui);
+  const fromSg = timeUnitLabel(content.ui, fromKey, "nameSg");
+  const toSg = timeUnitLabel(content.ui, toKey, "nameSg");
+  const faqJsonLd = buildFaqJsonLd(content.faq);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="clock" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">
-              {fromSg} to {toSg} Converter
-            </h1>
-            <p className="mt-1 text-sm text-slate-500">Time · unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert {fromSg} to {toSg} with a fixed input and output unit, step-by-step formula line, and
-        reference tables. Year = 365 days and month = 30 days in this tool for consistent factors; calendar
-        months and leap years differ in real life.
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
-      <TimePairCalculator fromKey={fromKey} toKey={toKey} />
+      <TimePairCalculator fromKey={fromKey} toKey={toKey} metaPath={metaPath} />
 
       <section className="mt-12 grid gap-8 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {fromSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(fromKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: fromSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(fromKey, content.ui)}
+          </p>
         </div>
         <div className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-slate-200">About {toSg}</h2>
-          <p className="text-sm leading-relaxed text-slate-400">{getUnitDescription(toKey)}</p>
+          <h2 className="mb-3 text-lg font-semibold text-slate-200">
+            {formatUi(asText(pageUi.aboutTitle), { unit: toSg })}
+          </h2>
+          <p className="text-sm leading-relaxed text-slate-400">
+            {getUnitDescription(toKey, content.ui)}
+          </p>
         </div>
       </section>
 
       <div className="mt-10">
-        <HowToConvertTime fromKey={fromKey} toKey={toKey} />
+        <HowToConvertTime fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </div>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Summary</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getDetailedFormulaExplanation(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.summaryTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getDetailedFormulaExplanation(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">Relationship context</h2>
-        <p className="text-sm leading-relaxed text-slate-400">{getRelationshipContext(fromKey, toKey)}</p>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(pageUi.relationshipTitle)}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">
+          {getRelationshipContext(fromKey, toKey, content.ui)}
+        </p>
       </section>
 
       <section className="mt-10 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Conversion tables</h2>
-        <TimeConversionTablesPair fromKey={fromKey} toKey={toKey} />
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">
+          {asText(pageUi.conversionTablesTitle)}
+        </h2>
+        <TimeConversionTablesPair fromKey={fromKey} toKey={toKey} ui={content.ui} />
       </section>
 
-      <UnitConverterNonHubPairLinks category="time" fromKey={fromKey} toKey={toKey} />
+      <UnitConverterNonHubPairLinks
+        category="time"
+        fromKey={fromKey}
+        toKey={toKey}
+        ui={content.ui}
+      />
 
       <div className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link
           href="/tools/unit-converter/time"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          ← Time Converter (all units)
+          {content.backToHub}
         </Link>
         <Link
           href="/tools/unit-converter"
           className="text-slate-400 underline transition-colors hover:text-slate-200"
         >
-          Unit Converter home
+          {content.backToDeveloper}
         </Link>
       </div>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
     </div>
   );
 }

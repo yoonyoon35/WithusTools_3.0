@@ -1,10 +1,5 @@
-function scaleName(key: string): string {
-  if (key === "c") return "Celsius";
-  if (key === "f") return "Fahrenheit";
-  if (key === "k") return "Kelvin";
-  if (key === "r") return "Rankine";
-  return key;
-}
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
+import { temperatureUnitLabel } from "./temperaturePairUi";
 
 const UNIT_DESCRIPTIONS: Record<string, string> = {
   c:
@@ -17,23 +12,36 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
     "Rankine is an absolute scale with the same degree size as Fahrenheit (1 R interval = 1 °F interval). 0 R is absolute zero. Relationship: R = °F + 459.67, and R = (9/5) × K (exact ratio to kelvin).",
 };
 
-export function getUnitDescription(key: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
   return UNIT_DESCRIPTIONS[key] ?? `${key} is a temperature scale used in this converter.`;
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
-  const fromName = scaleName(fromKey);
-  const toName = scaleName(toKey);
-
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = temperatureUnitLabel(ui, fromKey, "nameSg");
+  const toName = temperatureUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.relationshipTemplate);
+  if (template) {
+    return formatUi(template, { fromName, toName, fromKey, toKey });
+  }
   return (
     `Converting ${fromName} to ${toName} uses different zeros and step sizes. You cannot multiply by a single ratio alone for every pair—you first express the same physical temperature in an intermediate form (Celsius is used inside this tool), then map to ${toName}. ` +
     `Unlike length or energy units, offsets matter for Celsius and Fahrenheit; kelvin and rankine are absolute scales linked by the exact factor 9/5.`
   );
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
-  const fromLabel = scaleName(fromKey);
-  const toLabel = scaleName(toKey);
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const pairKey = `${fromKey}-${toKey}`;
+  const summaries = asMap(pageUi.pairSummaries);
+  const localized = asText(summaries[pairKey]);
+  if (localized) return localized;
+
+  const fromLabel = temperatureUnitLabel(ui, fromKey, "nameSg");
+  const toLabel = temperatureUnitLabel(ui, toKey, "nameSg");
 
   if (fromKey === "c" && toKey === "f") {
     return `From Celsius to Fahrenheit: °F = (°C × 9/5) + 32. The 9/5 factor matches the ratio of degree sizes; +32 aligns the zero points.`;
@@ -72,10 +80,19 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
     return `From Rankine to Celsius: °C = R × (5/9) − 273.15, i.e. convert to kelvin then subtract 273.15.`;
   }
 
+  const fallback = asText(pageUi.summaryFallback);
+  if (fallback) {
+    return formatUi(fallback, { fromName: fromLabel, toName: toLabel, fromKey, toKey });
+  }
   return `Converting ${fromLabel} to ${toLabel} uses the offset-aware rules above (via Celsius internally in this tool, except kelvin–rankine which is a pure ratio).`;
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "c" && toKey === "f") {
     return `Sanity check: 0 °C = 32 °F and 100 °C = 212 °F at 1 atm (by definition of the Celsius scale).`;
   }

@@ -4,6 +4,9 @@ import {
   getAngleFormulaLine,
   ANGLE_UNITS,
 } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
+import { getExtraDerivation } from "./anglePairContent";
+import { angleUnitLabel } from "./anglePairUi";
 
 const HOW_TO_EXAMPLES = [1, 10] as const;
 
@@ -16,21 +19,33 @@ function SubA({ unit }: { unit: string }) {
   );
 }
 
-export default function HowToConvertAngle({ fromKey, toKey }: { fromKey: string; toKey: string }) {
-  const fromSg = ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
-  const toSg = ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
-  const fromPlural = ANGLE_UNITS[fromKey]?.name ?? fromKey;
-  const toPlural = ANGLE_UNITS[toKey]?.name ?? toKey;
+export default function HowToConvertAngle({
+  fromKey,
+  toKey,
+  ui,
+}: {
+  fromKey: string;
+  toKey: string;
+  ui?: unknown;
+}) {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = angleUnitLabel(ui, fromKey, "nameSg");
+  const toSg = angleUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = angleUnitLabel(ui, fromKey, "name");
+  const toPlural = angleUnitLabel(ui, toKey, "name");
+  const extra = getExtraDerivation(fromKey, toKey, ui);
 
   const fromF = ANGLE_UNITS[fromKey]?.factor;
   const toF = ANGLE_UNITS[toKey]?.factor;
   if (fromF == null || toF == null) {
+    const title = formatUi(asText(howTo.titleTemplate), {
+      fromPlural: fromPlural.toLowerCase(),
+      toPlural: toPlural.toLowerCase(),
+    });
     return (
       <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">
-          How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-        </h2>
-        <p className="text-sm leading-relaxed text-slate-400">Unknown unit pair.</p>
+        <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
+        <p className="text-sm leading-relaxed text-slate-400">{asText(howTo.unknownPair)}</p>
       </section>
     );
   }
@@ -38,17 +53,22 @@ export default function HowToConvertAngle({ fromKey, toKey }: { fromKey: string;
   const mult = fromF / toF;
   const divisor = toF / fromF;
 
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
+
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> equals{" "}
-          <span className="font-medium text-slate-200">{mult}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span> in this tool (via radian):
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: String(mult),
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -57,16 +77,26 @@ export default function HowToConvertAngle({ fromKey, toKey }: { fromKey: string;
           </p>
         </div>
 
+        {extra && <p>{extra}</p>}
+
         <p>
-          Each {fromSg.toLowerCase()} carries <span className="font-mono text-slate-300">{fromF}</span> rad and each{" "}
-          {toSg.toLowerCase()} <span className="font-mono text-slate-300">{toF}</span> rad, so one {fromKey} equals{" "}
-          <span className="font-mono text-slate-300">{fromF}</span> ÷{" "}
-          <span className="font-mono text-slate-300">{toF}</span> {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: String(fromF),
+            toFactor: String(toF),
+          })}
         </p>
 
         <p>
-          Let <SubA unit={fromKey} /> be the angle in <span className="text-slate-300">{fromSg}</span> ({fromKey}), and{" "}
-          <SubA unit={toKey} /> in <span className="text-slate-300">{toSg}</span> ({toKey}). Then:
+          {formatUi(asText(howTo.letAFrom), {
+            fromSg,
+            fromKey,
+            toSg,
+            toKey,
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -75,10 +105,7 @@ export default function HowToConvertAngle({ fromKey, toKey }: { fromKey: string;
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (rad per {toKey} divided by rad per{" "}
-          {fromKey}):
-        </p>
+        <p>{formatUi(asText(howTo.divideExplain), { fromKey, toKey })}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -86,8 +113,16 @@ export default function HowToConvertAngle({ fromKey, toKey }: { fromKey: string;
           </p>
         </div>
 
+        <p className="text-slate-500">
+          {formatUi(asText(howTo.orLine), {
+            toSg: toSg.toLowerCase(),
+            fromSg: fromSg.toLowerCase(),
+            divisor: String(divisor),
+          })}
+        </p>
+
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES.map((n, idx) => {
               const result = convertAngle(n, fromKey, toKey);
@@ -95,7 +130,12 @@ export default function HowToConvertAngle({ fromKey, toKey }: { fromKey: string;
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: idx + 1,
+                      value: n,
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

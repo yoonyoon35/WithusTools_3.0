@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { generatePageMetadata } from "@/lib/page-metadata";
+import { routing, type Locale } from "@/i18n/routing";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, formatToolUiString, getToolContentEntry } from "@/lib/tool-content";
 import { Link } from "@/components/I18nLink";
 import ToolIcon from "@/components/ToolIcon";
-import UnitConverter from "../UnitConverter";
+import ToolPageGuide from "@/components/ToolPageGuide";
 import { getFaqEntriesByCategory } from "@/data/faq-data";
-import {
-  getCanonicalVolumeSlug,
-  VOLUME_KEY_TO_SLUG,
-  VOLUME_UNITS,
-  VOLUME_HUB_KEYS,
-} from "@/utils/conversions";
+import { asMap, asText } from "@/lib/tool-ui-helpers";
+import UnitConverter from "../UnitConverter";
+import { getCanonicalVolumeSlug, VOLUME_HUB_KEYS } from "@/utils/conversions";
+import { volumeUnitLabel, volumeUnitSlug } from "./volumePairUi";
 
 const META_PATH = "/tools/unit-converter/volume";
 
@@ -20,22 +22,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return generatePageMetadata(params.locale, META_PATH);
 }
-
-const VOLUME_GUIDE = {
-  quickStart: [
-    "Enter a value and pick source and target units. The result updates as you type.",
-    "Use swap to reverse units and copy to copy the result. The All Unit Conversions panel lists your value across every supported volume unit.",
-  ],
-  deeper: [
-    "Need formulas, worked examples, and tables for one pair (e.g. liters to US gallons)? Use a dedicated converter from the list below.",
-    "Short answers to common questions are in the FAQ section above. All calculations run in your browser; US, UK, and metric volume units are supported.",
-  ],
-  exampleUses: [
-    "Cooking: recipe volumes in liters, gallons, tablespoons, or teaspoons.",
-    "Chemistry and lab work: liters and cubic meters.",
-    "Shipping and HVAC: cubic feet and cubic meters.",
-  ],
-};
 
 const VOLUME_PAIR_LINKS: { from: string; to: string }[] = (() => {
   const pairs: { from: string; to: string }[] = [];
@@ -48,70 +34,59 @@ const VOLUME_PAIR_LINKS: { from: string; to: string }[] = (() => {
   return pairs;
 })();
 
-const VOLUME_FAQ_LINKS = getFaqEntriesByCategory("volume");
-const FAQ_ITEMS = [
-  {
-    question: "What volume units are supported?",
-    answer:
-      "You can convert volume units like liter, milliliter, gallon, quart, pint, and cubic meter.",
-  },
-  {
-    question: "Can I open dedicated volume pair converters?",
-    answer:
-      "Yes. Dedicated pair pages are listed with formulas, examples, and tables.",
-  },
-  {
-    question: "Does conversion happen in-browser?",
-    answer: "Yes. This volume converter runs locally in your browser.",
-  },
-];
+export default async function VolumeConverterPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
 
-export default function VolumeConverterPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, META_PATH);
+  if (!content) throw new Error(`Missing toolContent for ${META_PATH}`);
+
+  const toolUi = asMap(content.ui);
+  const faqJsonLd = buildFaqJsonLd(content.faq);
+  const volumeFaqLinks = getFaqEntriesByCategory("volume", locale);
+  const converterTitle = asText(toolUi.converterTitle) || "Convert Volume";
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="ruler" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">Volume Converter</h1>
-            <p className="mt-1 text-sm text-slate-500">unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between liters, gallons, cups, fluid ounces, cubic meters, cubic feet, and more.
-        US and UK fluid measures. All Unit Conversions panel included.
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
-      <UnitConverter category="volume" title="Convert Volume" />
+      <UnitConverter category="volume" title={converterTitle} ui={content.ui} />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (Liters, Cubic Meters, Gallons US, Fluid Ounces US, Cubic Feet,
-          Tablespoons US, Teaspoons US, Cubic Inches)
-        </h2>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(toolUi.pairGridTitle)}</h2>
         <p className="mb-6 text-sm text-slate-500">
-          {VOLUME_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,
-          examples, and conversion tables.
+          {formatToolUiString(asText(toolUi.pairGridDesc), { count: VOLUME_PAIR_LINKS.length })}
         </p>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {VOLUME_PAIR_LINKS.map(({ from, to }) => {
             const href = `/tools/unit-converter/volume/${getCanonicalVolumeSlug(from, to)}`;
-            const fromName = VOLUME_UNITS[from].nameSg ?? VOLUME_UNITS[from].name;
-            const toName = VOLUME_UNITS[to].nameSg ?? VOLUME_UNITS[to].name;
-            const fromSlug = VOLUME_KEY_TO_SLUG[from] ?? from;
-            const toSlug = VOLUME_KEY_TO_SLUG[to] ?? to;
+            const fromName = volumeUnitLabel(content.ui, from, "nameSg");
+            const toName = volumeUnitLabel(content.ui, to, "nameSg");
+            const fromSlug = volumeUnitSlug(from);
+            const toSlug = volumeUnitSlug(to);
             return (
               <li key={`${from}-${to}`}>
                 <Link
@@ -119,7 +94,12 @@ export default function VolumeConverterPage() {
                   className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
                 >
                   <span className="font-medium text-slate-200">
-                    {fromSlug} to {toSlug} ({fromName} to {toName})
+                    {formatToolUiString(asText(toolUi.pairLinkTemplate), {
+                      fromSlug,
+                      toSlug,
+                      fromName,
+                      toName,
+                    })}
                   </span>
                 </Link>
               </li>
@@ -128,12 +108,12 @@ export default function VolumeConverterPage() {
         </ul>
 
         <div className="mt-10 border-t border-slate-700 pt-8">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Common questions (FAQ)</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(toolUi.faqSectionTitle)}</h3>
           <p className="mb-4 text-sm text-slate-500">
-            {VOLUME_FAQ_LINKS.length} quick answers with guides and links to the matching converter.
+            {formatToolUiString(asText(toolUi.faqSectionDesc), { count: volumeFaqLinks.length })}
           </p>
           <ul className="grid gap-2 sm:grid-cols-2">
-            {VOLUME_FAQ_LINKS.map((faq) => (
+            {volumeFaqLinks.map((faq) => (
               <li key={faq.slug}>
                 <Link
                   href={`/faq/${faq.category}/${faq.slug}`}
@@ -147,43 +127,17 @@ export default function VolumeConverterPage() {
         </div>
       </section>
 
-      <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Volume Converter Guide</h2>
-        <div className="space-y-6 text-sm leading-relaxed text-slate-400">
-          <div>
-            <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
-            <ul className="list-disc space-y-2 pl-5">
-              {VOLUME_GUIDE.quickStart.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-2 font-semibold text-slate-200">Formulas &amp; deeper content</h3>
-            <div className="space-y-2">
-              {VOLUME_GUIDE.deeper.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-2 font-semibold text-slate-200">Example uses</h3>
-            <ul className="list-disc space-y-2 pl-5">
-              {VOLUME_GUIDE.exampleUses.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <ToolPageGuide
+        title={content.guideTitle}
+        sections={content.sections}
+        className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8"
+      />
 
       <Link
         href="/tools/unit-converter"
         className="mt-8 inline-block text-slate-400 underline transition-colors hover:text-slate-200"
       >
-        ← Back to Unit Converter
+        {content.backToHub}
       </Link>
     </div>
   );

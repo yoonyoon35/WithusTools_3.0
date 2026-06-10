@@ -1,5 +1,7 @@
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { ENERGY_UNITS, getEnergyMultiplier } from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { energyUnitLabel } from "./energyPairUi";
 
 export { formatRatioDisplay };
 
@@ -33,13 +35,6 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   mev: "A megaelectronvolt is 10^6 eV and appears in nuclear and particle physics contexts.",
 };
 
-export function getUnitDescription(key: string): string {
-  return (
-    UNIT_DESCRIPTIONS[key] ??
-    `${ENERGY_UNITS[key]?.name ?? key} is converted via its joule equivalent in this tool.`
-  );
-}
-
 export type EnergyKind = "nutrition" | "electric" | "si" | "imperial" | "atomic";
 
 export function getEnergyKind(key: string): EnergyKind {
@@ -50,32 +45,78 @@ export function getEnergyKind(key: string): EnergyKind {
   return "atomic";
 }
 
-function kindLabel(k: EnergyKind): string {
-  if (k === "nutrition") return "food / nutrition energy (calories)";
-  if (k === "electric") return "electrical energy (watt-hours)";
-  if (k === "si") return "SI energy (joules)";
-  if (k === "imperial") return "US / imperial engineering units (BTU, therm, ft·lb)";
-  return "atomic-scale energy (electronvolts)";
+function kindLabel(k: EnergyKind, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (k === "nutrition") return asText(pageUi.kindNutrition) || "food / nutrition energy (calories)";
+  if (k === "electric") return asText(pageUi.kindElectric) || "electrical energy (watt-hours)";
+  if (k === "si") return asText(pageUi.kindSi) || "SI energy (joules)";
+  if (k === "imperial") return asText(pageUi.kindImperial) || "US / imperial engineering units (BTU, therm, ft·lb)";
+  return asText(pageUi.kindAtomic) || "atomic-scale energy (electronvolts)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
+  return (
+    UNIT_DESCRIPTIONS[key] ??
+    `${ENERGY_UNITS[key]?.name ?? key} is converted via its joule equivalent in this tool.`
+  );
+}
+
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const mult = getEnergyMultiplier(fromKey, toKey);
-  const fromName = ENERGY_UNITS[fromKey].nameSg ?? ENERGY_UNITS[fromKey].name;
-  const toName = ENERGY_UNITS[toKey].nameSg ?? ENERGY_UNITS[toKey].name;
+  const fromName = energyUnitLabel(ui, fromKey, "nameSg");
+  const toName = energyUnitLabel(ui, toKey, "nameSg");
   const fk = getEnergyKind(fromKey);
   const tk = getEnergyKind(toKey);
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    kind: kindLabel(fk, pageUi),
+    fromKind: kindLabel(fk, pageUi),
+    toKind: kindLabel(tk, pageUi),
+  };
 
-  if (fk === tk) {
-    return `Both units are ${kindLabel(fk)}. Conversions use fixed joule factors, so results stay consistent with the definitions in this converter. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  if (fk === tk && asText(pageUi.relationshipSame)) {
+    return formatUi(asText(pageUi.relationshipSame), vars);
+  }
+  if (fk !== tk && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
   }
 
-  return `You are converting between ${kindLabel(fk)} (${ENERGY_UNITS[fromKey].name}) and ${kindLabel(tk)} (${ENERGY_UNITS[toKey].name}). All values are mapped through joules first. The numeric factor is ${mult.toExponential(6)}.`;
+  if (fk === tk) {
+    return `Both units are ${kindLabel(fk, pageUi)}. Conversions use fixed joule factors, so results stay consistent with the definitions in this converter. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  }
+
+  return `You are converting between ${kindLabel(fk, pageUi)} (${ENERGY_UNITS[fromKey].name}) and ${kindLabel(tk, pageUi)} (${ENERGY_UNITS[toKey].name}). All values are mapped through joules first. The numeric factor is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
   const m = getEnergyMultiplier(fromKey, toKey);
-  const fromName = ENERGY_UNITS[fromKey].nameSg ?? ENERGY_UNITS[fromKey].name;
-  const toName = ENERGY_UNITS[toKey].nameSg ?? ENERGY_UNITS[toKey].name;
+  const fromName = energyUnitLabel(ui, fromKey, "nameSg");
+  const toName = energyUnitLabel(ui, toKey, "nameSg");
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(ENERGY_UNITS[fromKey].factor),
+      toFactor: String(ENERGY_UNITS[toKey].factor),
+      mult: String(m),
+    });
+  }
   const Ff = ENERGY_UNITS[fromKey].factor;
   const Ft = ENERGY_UNITS[toKey].factor;
   return (
@@ -85,7 +126,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "cal" && toKey === "j") {
     return `Thermochemical calorie: 1 cal = 4.184 J exactly in this tool.`;
   }

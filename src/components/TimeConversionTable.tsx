@@ -4,6 +4,7 @@ import {
   formatTimeResult,
   TIME_UNITS,
 } from "@/utils/conversions";
+import { timeUnitLabel } from "@/app/[locale]/tools/unit-converter/time/timePairUi";
 
 export const TIME_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const TIME_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -12,13 +13,19 @@ export function TimeConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
-  const toName = TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
+  const fromName = ui
+    ? timeUnitLabel(ui, fromKey, "nameSg")
+    : TIME_UNITS[fromKey].nameSg ?? TIME_UNITS[fromKey].name;
+  const toName = ui
+    ? timeUnitLabel(ui, toKey, "nameSg")
+    : TIME_UNITS[toKey].nameSg ?? TIME_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -54,14 +61,16 @@ export function TimeConversionTable({
 export function TimeConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <TimeConversionTable fromKey={fromKey} toKey={toKey} values={TIME_TABLE_SMALL_STEPS} />
-      <TimeConversionTable fromKey={fromKey} toKey={toKey} values={TIME_TABLE_TENS_STEPS} />
+      <TimeConversionTable fromKey={fromKey} toKey={toKey} values={TIME_TABLE_SMALL_STEPS} ui={ui} />
+      <TimeConversionTable fromKey={fromKey} toKey={toKey} values={TIME_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   formatTemperatureResult,
   TEMPERATURE_UNITS,
 } from "@/utils/conversions";
+import { temperatureUnitLabel } from "@/app/[locale]/tools/unit-converter/temperature/temperaturePairUi";
 
 /** Reference inputs spanning cold / room / body / boiling (°C-oriented). */
 export const TEMPERATURE_TABLE_COLD_STEPS = [-40, -20, -10, 0, 10, 20, 37, 100] as const;
@@ -25,13 +26,19 @@ export function TemperatureConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = TEMPERATURE_UNITS[fromKey].nameSg ?? TEMPERATURE_UNITS[fromKey].name;
-  const toName = TEMPERATURE_UNITS[toKey].nameSg ?? TEMPERATURE_UNITS[toKey].name;
+  const fromName = ui
+    ? temperatureUnitLabel(ui, fromKey, "nameSg")
+    : TEMPERATURE_UNITS[fromKey].nameSg ?? TEMPERATURE_UNITS[fromKey].name;
+  const toName = ui
+    ? temperatureUnitLabel(ui, toKey, "nameSg")
+    : TEMPERATURE_UNITS[toKey].nameSg ?? TEMPERATURE_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -67,9 +74,11 @@ export function TemperatureConversionTable({
 export function TemperatureConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   const steps = pickStepsForFromKey(fromKey);
   const mid = Math.ceil(steps.length / 2);
@@ -77,8 +86,8 @@ export function TemperatureConversionTablesPair({
   const second = steps.slice(mid);
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <TemperatureConversionTable fromKey={fromKey} toKey={toKey} values={first} />
-      <TemperatureConversionTable fromKey={fromKey} toKey={toKey} values={second} />
+      <TemperatureConversionTable fromKey={fromKey} toKey={toKey} values={first} ui={ui} />
+      <TemperatureConversionTable fromKey={fromKey} toKey={toKey} values={second} ui={ui} />
     </div>
   );
 }

@@ -1,5 +1,12 @@
-import { POWER_UNITS, convertPower, formatPowerResult, isPowerDbmKey } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
+import {
+  POWER_UNITS,
+  convertPower,
+  formatPowerResult,
+  isPowerDbmKey,
+} from "@/utils/conversions";
 import { formatRatioDisplay } from "../length/lengthPairContent";
+import { powerUnitLabel } from "./powerPairUi";
 
 export { formatRatioDisplay };
 
@@ -23,12 +30,6 @@ const UNIT_DESCRIPTIONS: Record<string, string> = {
   ft_lb_s: "Foot-pounds per second is a mechanical power rate: 1 ft·lb/s = 1.3558179483314004 W (exactly, from the international foot definition).",
 };
 
-export function getUnitDescription(key: string): string {
-  return (
-    UNIT_DESCRIPTIONS[key] ?? `${POWER_UNITS[key]?.name ?? key} is converted via its watt equivalent in this tool.`
-  );
-}
-
 export type PowerKind = "si" | "thermal" | "mechanical" | "electrical" | "rf";
 
 export function getPowerKind(key: string): PowerKind {
@@ -39,35 +40,79 @@ export function getPowerKind(key: string): PowerKind {
   return "electrical";
 }
 
-function kindLabel(k: PowerKind): string {
-  if (k === "si") return "SI / decimal power (watts and prefixes)";
-  if (k === "thermal") return "thermal engineering rates (BTU/h, kcal/h)";
-  if (k === "mechanical") return "mechanical power (horsepower, ft·lb/s)";
-  if (k === "rf") return "logarithmic RF levels (dBm)";
-  return "apparent power at unity PF (VA)";
+function kindLabel(k: PowerKind, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  if (k === "si") return asText(pageUi.kindSi) || "SI / decimal power (watts and prefixes)";
+  if (k === "thermal") return asText(pageUi.kindThermal) || "thermal engineering rates (BTU/h, kcal/h)";
+  if (k === "mechanical") return asText(pageUi.kindMechanical) || "mechanical power (horsepower, ft·lb/s)";
+  if (k === "rf") return asText(pageUi.kindRf) || "logarithmic RF levels (dBm/dBW)";
+  return asText(pageUi.kindElectrical) || "apparent power at unity PF (VA)";
 }
 
-export function getRelationshipContext(fromKey: string, toKey: string): string {
-  const fromName = POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
-  const toName = POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
+export function getUnitDescription(key: string, ui?: unknown): string {
+  const descriptions = asMap(asMap(ui).unitDescriptions);
+  const localized = asText(descriptions[key]);
+  if (localized) return localized;
+  return (
+    UNIT_DESCRIPTIONS[key] ??
+    `${POWER_UNITS[key]?.name ?? key} is converted via its watt equivalent in this tool.`
+  );
+}
+
+export function getRelationshipContext(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = powerUnitLabel(ui, fromKey, "nameSg");
+  const toName = powerUnitLabel(ui, toKey, "nameSg");
   const fk = getPowerKind(fromKey);
   const tk = getPowerKind(toKey);
 
   if (isPowerDbmKey(fromKey) || isPowerDbmKey(toKey)) {
-    return `You are converting between ${kindLabel(fk)} (${POWER_UNITS[fromKey].name}) and ${kindLabel(tk)} (${POWER_UNITS[toKey].name}). Log units (dBm/dBW) use base-10 definitions relative to 1 mW or 1 W; linear units map through watts first, then to or from the selected log unit. Only strictly positive power in watts maps to a real dB power value.`;
+    const template = asText(pageUi.relationshipDbm);
+    if (template) {
+      return formatUi(template, {
+        fromKind: kindLabel(fk, pageUi),
+        toKind: kindLabel(tk, pageUi),
+        fromName,
+        toName,
+      });
+    }
+    return `You are converting between ${kindLabel(fk, pageUi)} (${POWER_UNITS[fromKey].name}) and ${kindLabel(tk, pageUi)} (${POWER_UNITS[toKey].name}). Log units (dBm/dBW) use base-10 definitions relative to 1 mW or 1 W; linear units map through watts first, then to or from the selected log unit. Only strictly positive power in watts maps to a real dB power value.`;
   }
 
   const mult = convertPower(1, fromKey, toKey);
-  if (fk === tk) {
-    return `Both units are ${kindLabel(fk)}. Conversions use fixed watt factors, so results stay consistent with the definitions in this converter. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  const vars = {
+    fromName,
+    toName,
+    fromKey,
+    toKey,
+    mult: String(mult),
+    multExp: mult.toExponential(6),
+    kind: kindLabel(fk, pageUi),
+    fromKind: kindLabel(fk, pageUi),
+    toKind: kindLabel(tk, pageUi),
+  };
+
+  if (fk === tk && asText(pageUi.relationshipSame)) {
+    return formatUi(asText(pageUi.relationshipSame), vars);
+  }
+  if (fk !== tk && asText(pageUi.relationshipCross)) {
+    return formatUi(asText(pageUi.relationshipCross), vars);
+  }
+  if (asText(pageUi.relationshipDefault)) {
+    return formatUi(asText(pageUi.relationshipDefault), vars);
   }
 
-  return `You are converting between ${kindLabel(fk)} (${POWER_UNITS[fromKey].name}) and ${kindLabel(tk)} (${POWER_UNITS[toKey].name}). All linear values are mapped through watts first. The numeric factor is ${mult.toExponential(6)}.`;
+  if (fk === tk) {
+    return `Both units are ${kindLabel(fk, pageUi)}. Conversions use fixed watt factors, so results stay consistent with the definitions in this converter. The factor from ${fromName} to ${toName} is ${mult.toExponential(6)} (1 ${fromKey} = ${mult} ${toKey}).`;
+  }
+
+  return `You are converting between ${kindLabel(fk, pageUi)} (${POWER_UNITS[fromKey].name}) and ${kindLabel(tk, pageUi)} (${POWER_UNITS[toKey].name}). All linear values are mapped through watts first. The numeric factor is ${mult.toExponential(6)}.`;
 }
 
-export function getDetailedFormulaExplanation(fromKey: string, toKey: string): string {
-  const fromName = POWER_UNITS[fromKey].nameSg ?? POWER_UNITS[fromKey].name;
-  const toName = POWER_UNITS[toKey].nameSg ?? POWER_UNITS[toKey].name;
+export function getDetailedFormulaExplanation(fromKey: string, toKey: string, ui?: unknown): string {
+  const pageUi = asMap(ui);
+  const fromName = powerUnitLabel(ui, fromKey, "nameSg");
+  const toName = powerUnitLabel(ui, toKey, "nameSg");
 
   if (isPowerDbmKey(fromKey) && !isPowerDbmKey(toKey)) {
     const F = POWER_UNITS[toKey].factor!;
@@ -104,6 +149,18 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   const Ff = POWER_UNITS[fromKey].factor!;
   const Ft = POWER_UNITS[toKey].factor!;
   const m = Ff / Ft;
+  const template = asText(pageUi.summaryTemplate);
+  if (template) {
+    return formatUi(template, {
+      fromName,
+      toName,
+      fromKey,
+      toKey,
+      fromFactor: String(Ff),
+      toFactor: String(Ft),
+      mult: String(m),
+    });
+  }
   return (
     `To convert ${fromName} to ${toName}, multiply the value in ${fromKey} by the ratio of watts per ${fromKey} divided by watts per ${toKey}. ` +
     `Equivalently: value_${toKey} = value_${fromKey} × (${Ff} / ${Ft}). ` +
@@ -111,7 +168,12 @@ export function getDetailedFormulaExplanation(fromKey: string, toKey: string): s
   );
 }
 
-export function getExtraDerivation(fromKey: string, toKey: string): string | null {
+export function getExtraDerivation(fromKey: string, toKey: string, ui?: unknown): string | null {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const derivations = asMap(howTo.extraDerivations);
+  const localized = asText(derivations[`${fromKey}-${toKey}`]);
+  if (localized) return localized;
+
   if (fromKey === "kw" && toKey === "w") {
     return `SI prefix: 1 kW = 1,000 W exactly.`;
   }

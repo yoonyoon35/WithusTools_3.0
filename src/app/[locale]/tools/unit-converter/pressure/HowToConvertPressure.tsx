@@ -4,6 +4,9 @@ import {
   getPressureFormulaLine,
   PRESSURE_UNITS,
 } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
+import { getExtraDerivation } from "./pressurePairContent";
+import { pressureUnitLabel } from "./pressurePairUi";
 
 const HOW_TO_EXAMPLES = [1, 10] as const;
 
@@ -16,11 +19,20 @@ function SubP({ unit }: { unit: string }) {
   );
 }
 
-export default function HowToConvertPressure({ fromKey, toKey }: { fromKey: string; toKey: string }) {
-  const fromSg = PRESSURE_UNITS[fromKey]?.nameSg ?? PRESSURE_UNITS[fromKey]?.name ?? fromKey;
-  const toSg = PRESSURE_UNITS[toKey]?.nameSg ?? PRESSURE_UNITS[toKey]?.name ?? toKey;
-  const fromPlural = PRESSURE_UNITS[fromKey]?.name ?? fromKey;
-  const toPlural = PRESSURE_UNITS[toKey]?.name ?? toKey;
+export default function HowToConvertPressure({
+  fromKey,
+  toKey,
+  ui,
+}: {
+  fromKey: string;
+  toKey: string;
+  ui?: unknown;
+}) {
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = pressureUnitLabel(ui, fromKey, "nameSg");
+  const toSg = pressureUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = pressureUnitLabel(ui, fromKey, "name");
+  const toPlural = pressureUnitLabel(ui, toKey, "name");
 
   const fromF = PRESSURE_UNITS[fromKey]?.factor;
   const toF = PRESSURE_UNITS[toKey]?.factor;
@@ -28,27 +40,36 @@ export default function HowToConvertPressure({ fromKey, toKey }: { fromKey: stri
     return (
       <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="mb-6 text-lg font-semibold text-slate-200">
-          How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
+          {formatUi(asText(howTo.titleTemplate), {
+            fromPlural: fromPlural.toLowerCase(),
+            toPlural: toPlural.toLowerCase(),
+          })}
         </h2>
-        <p className="text-sm leading-relaxed text-slate-400">Unknown unit pair.</p>
+        <p className="text-sm leading-relaxed text-slate-400">{asText(howTo.unknownPair)}</p>
       </section>
     );
   }
 
   const mult = fromF / toF;
   const divisor = toF / fromF;
+  const extra = getExtraDerivation(fromKey, toKey, ui);
+
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
 
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> equals{" "}
-          <span className="font-medium text-slate-200">{mult}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span> in this tool (via pascal):
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: String(mult),
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -57,16 +78,21 @@ export default function HowToConvertPressure({ fromKey, toKey }: { fromKey: stri
           </p>
         </div>
 
+        {extra && <p>{extra}</p>}
+
         <p>
-          Each {fromSg.toLowerCase()} carries <span className="font-mono text-slate-300">{fromF}</span> Pa and each{" "}
-          {toSg.toLowerCase()} <span className="font-mono text-slate-300">{toF}</span> Pa, so one {fromKey} equals{" "}
-          <span className="font-mono text-slate-300">{fromF}</span> ÷{" "}
-          <span className="font-mono text-slate-300">{toF}</span> {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: String(fromF),
+            toFactor: String(toF),
+          })}
         </p>
 
         <p>
-          Let <SubP unit={fromKey} /> be pressure in <span className="text-slate-300">{fromSg}</span> ({fromKey}), and{" "}
-          <SubP unit={toKey} /> in <span className="text-slate-300">{toSg}</span> ({toKey}). Then:
+          {formatUi(asText(howTo.letPFrom), { fromSg, toSg, fromKey, toKey })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -75,10 +101,7 @@ export default function HowToConvertPressure({ fromKey, toKey }: { fromKey: stri
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (Pa per {toKey} divided by Pa per{" "}
-          {fromKey}):
-        </p>
+        <p>{asText(howTo.divideExplain)}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -87,7 +110,7 @@ export default function HowToConvertPressure({ fromKey, toKey }: { fromKey: stri
         </div>
 
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES.map((n, idx) => {
               const result = convertPressure(n, fromKey, toKey);
@@ -95,7 +118,12 @@ export default function HowToConvertPressure({ fromKey, toKey }: { fromKey: stri
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: String(idx + 1),
+                      value: String(n),
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

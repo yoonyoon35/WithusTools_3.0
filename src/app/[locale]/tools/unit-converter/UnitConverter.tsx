@@ -2,6 +2,19 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import NumberInputWithStepper from "@/components/NumberInputWithStepper";
+import { asMap, asText } from "@/lib/tool-ui-helpers";
+import { lengthUnitLabel } from "./length/lengthPairUi";
+import { weightUnitLabel } from "./weight/weightPairUi";
+import { temperatureUnitLabel } from "./temperature/temperaturePairUi";
+import { areaUnitLabel } from "./area/areaPairUi";
+import { volumeUnitLabel } from "./volume/volumePairUi";
+import { speedUnitLabel } from "./speed/speedPairUi";
+import { timeUnitLabel } from "./time/timePairUi";
+import { digitalUnitLabel } from "./digital/digitalPairUi";
+import { pressureUnitLabel } from "./pressure/pressurePairUi";
+import { energyUnitLabel } from "./energy/energyPairUi";
+import { powerUnitLabel } from "./power/powerPairUi";
+import { angleUnitLabel } from "./angle/anglePairUi";
 import {
   AREA_UNITS,
   DIGITAL_UNITS,
@@ -62,6 +75,8 @@ const UNITS: Record<UnitCategory, Record<string, UnitDef>> = {
 interface UnitConverterProps {
   category: UnitCategory;
   title: string;
+  /** Length/weight/temperature/area hub: localized labels from toolContent ui */
+  ui?: unknown;
 }
 
 /** Valid initial select values on first paint (avoids controlled select with value "" before useEffect). */
@@ -106,17 +121,36 @@ function convertStandard(
   return [result, formula];
 }
 
-export default function UnitConverter({ category, title }: UnitConverterProps) {
+export default function UnitConverter({ category, title, ui }: UnitConverterProps) {
+  const units = UNITS[category];
+  const unitKeys = Object.keys(units);
+  const toolUi = asMap(ui);
+  const labels = asMap(toolUi.labels);
+  const messages = asMap(toolUi.messages);
+  const unitDisplayName = (key: string) => {
+    if (category === "length" && ui) return lengthUnitLabel(ui, key, "name");
+    if (category === "weight" && ui) return weightUnitLabel(ui, key, "name");
+    if (category === "temperature" && ui) return temperatureUnitLabel(ui, key, "name");
+    if (category === "area" && ui) return areaUnitLabel(ui, key, "name");
+    if (category === "volume" && ui) return volumeUnitLabel(ui, key, "name");
+    if (category === "speed" && ui) return speedUnitLabel(ui, key, "name");
+    if (category === "time" && ui) return timeUnitLabel(ui, key, "name");
+    if (category === "digital" && ui) return digitalUnitLabel(ui, key, "name");
+    if (category === "pressure" && ui) return pressureUnitLabel(ui, key, "name");
+    if (category === "energy" && ui) return energyUnitLabel(ui, key, "name");
+    if (category === "power" && ui) return powerUnitLabel(ui, key, "name");
+    if (category === "angle" && ui) return angleUnitLabel(ui, key, "name");
+    return units[key]?.name ?? key;
+  };
   const [fromValue, setFromValue] = useState("");
   const [toValue, setToValue] = useState("");
   const [fromUnit, setFromUnit] = useState(() => defaultPairForCategory(category).from);
   const [toUnit, setToUnit] = useState(() => defaultPairForCategory(category).to);
-  const [formulaText, setFormulaText] = useState("Formula will appear here");
+  const [formulaText, setFormulaText] = useState(
+    () => asText(messages.formulaPlaceholder) || "Formula will appear here"
+  );
   const [toast, setToast] = useState<string | null>(null);
   const toastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const units = UNITS[category];
-  const unitKeys = Object.keys(units);
 
   const showToast = (message: string) => {
     if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
@@ -138,7 +172,7 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
     const val = parseFloat(fromValue);
     if (isNaN(val)) {
       setToValue("");
-      setFormulaText("Enter a valid number");
+      setFormulaText(asText(messages.enterValidNumber) || "Enter a valid number");
       return;
     }
 
@@ -188,7 +222,7 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
   useEffect(() => {
     if (fromValue === "") {
       setToValue("");
-      setFormulaText("Formula will appear here");
+      setFormulaText(asText(messages.formulaPlaceholder) || "Formula will appear here");
       return;
     }
     convert();
@@ -204,14 +238,14 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
 
   const copyResult = async () => {
     if (!toValue) {
-      showToast("No result to copy");
+      showToast(asText(messages.noResultToCopy) || "No result to copy");
       return;
     }
     try {
       await navigator.clipboard.writeText(toValue);
-      showToast("Result copied to clipboard!");
+      showToast(asText(messages.copied) || "Result copied to clipboard!");
     } catch {
-      showToast("Failed to copy result");
+      showToast(asText(messages.copyFailed) || "Failed to copy result");
     }
   };
 
@@ -240,7 +274,7 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
             : "—";
       return {
         unitKey: key,
-        name: units[key].name,
+        name: unitDisplayName(key),
         value: display,
       };
     });
@@ -271,19 +305,19 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
             <NumberInputWithStepper
               value={fromValue}
               onChange={(v) => setFromValue(v)}
-              placeholder="Enter value"
+              placeholder={asText(messages.enterValue) || "Enter value"}
               className="min-w-0 flex-1"
-              aria-label="From value"
+              aria-label={asText(labels.fromValue) || "From value"}
             />
             <select
               value={fromUnit}
               onChange={(e) => setFromUnit(e.target.value)}
               className={selectCls}
-              aria-label="From unit"
+              aria-label={asText(labels.fromUnit) || "From unit"}
             >
               {unitKeys.map((key) => (
                 <option key={key} value={key}>
-                  {units[key].name}
+                  {unitDisplayName(key)}
                 </option>
               ))}
             </select>
@@ -293,7 +327,7 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
             type="button"
             onClick={swapUnits}
             className="flex h-10 w-10 shrink-0 items-center justify-center self-center rounded-lg border border-slate-600 bg-slate-800 text-slate-400 transition-colors hover:border-slate-500 hover:bg-slate-700 hover:text-slate-200"
-            aria-label="Swap units"
+            aria-label={asText(labels.swapUnits) || "Swap units"}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -319,17 +353,17 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
               value={toValue ? formatWithThousands(toValue) : ""}
               readOnly
               className={`${inputCls} min-w-0 w-full cursor-default bg-slate-800/70`}
-              aria-label="To value"
+              aria-label={asText(labels.toValue) || "To value"}
             />
             <select
               value={toUnit}
               onChange={(e) => setToUnit(e.target.value)}
               className={selectCls}
-              aria-label="To unit"
+              aria-label={asText(labels.toUnit) || "To unit"}
             >
               {unitKeys.map((key) => (
                 <option key={key} value={key}>
-                  {units[key].name}
+                  {unitDisplayName(key)}
                 </option>
               ))}
             </select>
@@ -345,14 +379,14 @@ export default function UnitConverter({ category, title }: UnitConverterProps) {
             onClick={copyResult}
             className="shrink-0 rounded-lg border border-slate-600 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-slate-500 hover:bg-slate-700"
           >
-            Copy Result
+            {asText(labels.copyResult) || "Copy Result"}
           </button>
         </div>
         </div>
 
         <div className="min-w-0 flex-1 rounded-xl border border-border bg-surface p-6">
           <h3 className="mb-4 text-lg font-semibold text-slate-200">
-            All Unit Conversions
+            {asText(toolUi.allConversionsTitle) || "All Unit Conversions"}
           </h3>
           <div className="max-h-[360px] overflow-y-auto space-y-2 pr-1 scrollbar-thin">
             {allUnitConversions.map(({ unitKey, name, value }) => (

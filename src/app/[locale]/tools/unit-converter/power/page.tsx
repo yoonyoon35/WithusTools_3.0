@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { generatePageMetadata } from "@/lib/page-metadata";
+import { routing, type Locale } from "@/i18n/routing";
+import { loadToolContent } from "@/lib/load-tool-content";
+import { buildFaqJsonLd, formatToolUiString, getToolContentEntry } from "@/lib/tool-content";
 import { Link } from "@/components/I18nLink";
 import ToolIcon from "@/components/ToolIcon";
-import UnitConverter from "../UnitConverter";
+import ToolPageGuide from "@/components/ToolPageGuide";
 import { getFaqEntriesByCategory } from "@/data/faq-data";
-import {
-  getCanonicalPowerSlug,
-  POWER_HUB_KEYS,
-  POWER_KEY_TO_SLUG,
-  POWER_UNITS,
-} from "@/utils/conversions";
+import { asMap, asText } from "@/lib/tool-ui-helpers";
+import UnitConverter from "../UnitConverter";
+import { getCanonicalPowerSlug, POWER_HUB_KEYS } from "@/utils/conversions";
+import { powerUnitLabel, powerUnitSlug } from "./powerPairUi";
 
 const META_PATH = "/tools/unit-converter/power";
 
@@ -20,22 +22,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return generatePageMetadata(params.locale, META_PATH);
 }
-
-const POWER_GUIDE = {
-  quickStart: [
-    "Enter a value and pick source and target units. The result updates as you type.",
-    "Use swap to reverse units and copy to copy the result. The All Unit Conversions panel lists your value across every supported power unit.",
-  ],
-  deeper: [
-    "Need formulas, worked examples, and tables for one pair (e.g. kilowatts to horsepower)? Use a dedicated converter from the list above.",
-    "Short answers to common questions are in the FAQ section above. Linear units use fixed watt factors; dBm maps through watts with a log₁₀ definition relative to 1 mW.",
-  ],
-  exampleUses: [
-    "Motors and HVAC: kW, hp, and BTU/h.",
-    "RF engineering: dBm, mW, and W.",
-    "Electrical ratings: VA at unity PF and watts.",
-  ],
-};
 
 const POWER_PAIR_LINKS: { from: string; to: string }[] = (() => {
   const pairs: { from: string; to: string }[] = [];
@@ -48,71 +34,59 @@ const POWER_PAIR_LINKS: { from: string; to: string }[] = (() => {
   return pairs;
 })();
 
-const POWER_FAQ_LINKS = getFaqEntriesByCategory("power");
-const FAQ_ITEMS = [
-  {
-    question: "What power units can I convert here?",
-    answer:
-      "You can convert W/mW/kW/MW/GW, hp and PS/CV, BTU/h and TR, kcal/h, VA/kVA/MVA, dBm/dBW, and related units.",
-  },
-  {
-    question: "Does this include dedicated pair conversion pages?",
-    answer:
-      "Yes. Each pair page includes formulas, examples, and conversion tables.",
-  },
-  {
-    question: "Is dBm conversion supported?",
-    answer:
-      "Yes. dBm and dBW conversions are handled through watt-based logarithmic definitions in this tool.",
-  },
-];
+export default async function PowerConverterPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const locale = routing.locales.includes(params.locale as Locale)
+    ? (params.locale as Locale)
+    : routing.defaultLocale;
+  setRequestLocale(locale);
 
-export default function PowerConverterPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
+  const toolContent = await loadToolContent(locale);
+  const content = getToolContentEntry(toolContent, META_PATH);
+  if (!content) throw new Error(`Missing toolContent for ${META_PATH}`);
+
+  const toolUi = asMap(content.ui);
+  const faqJsonLd = buildFaqJsonLd(content.faq);
+  const powerFaqLinks = getFaqEntriesByCategory("power", locale);
+  const converterTitle = asText(toolUi.converterTitle) || "Convert Power";
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 flex flex-col items-center justify-center gap-4">
         <div className="flex items-center gap-4">
           <ToolIcon name="ruler" />
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-100">Power Converter</h1>
-            <p className="mt-1 text-sm text-slate-500">unit-converter</p>
+            <h1 className="text-3xl font-bold text-slate-100">{content.h1}</h1>
+            <p className="mt-1 text-sm text-slate-500">{content.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">
-        Convert between W/mW/kW/MW/GW, hp/PS/CV, BTU/h, TR, kcal/h, VA/kVA/MVA, dBm/dBW, ft·lb/s, and more.
-        All Unit Conversions panel included.
-      </p>
+      {content.intro ? (
+        <p className="mx-auto mb-8 max-w-2xl text-center text-slate-400">{content.intro}</p>
+      ) : null}
 
-      <UnitConverter category="power" title="Convert Power" />
+      <UnitConverter category="power" title={converterTitle} ui={content.ui} />
 
       <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-4 text-lg font-semibold text-slate-200">
-          Dedicated converters (SI power, horsepower variants, thermal/HVAC, electrical apparent power,
-          logarithmic RF levels, mechanical rates)
-        </h2>
+        <h2 className="mb-4 text-lg font-semibold text-slate-200">{asText(toolUi.pairGridTitle)}</h2>
         <p className="mb-6 text-sm text-slate-500">
-          {POWER_PAIR_LINKS.length} pages — every pair of units below, with fixed input/output, formulas,
-          examples, and conversion tables.
+          {formatToolUiString(asText(toolUi.pairGridDesc), { count: POWER_PAIR_LINKS.length })}
         </p>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {POWER_PAIR_LINKS.map(({ from, to }) => {
             const href = `/tools/unit-converter/power/${getCanonicalPowerSlug(from, to)}`;
-            const fromName = POWER_UNITS[from].nameSg ?? POWER_UNITS[from].name;
-            const toName = POWER_UNITS[to].nameSg ?? POWER_UNITS[to].name;
-            const fromSlug = POWER_KEY_TO_SLUG[from] ?? from;
-            const toSlug = POWER_KEY_TO_SLUG[to] ?? to;
+            const fromName = powerUnitLabel(content.ui, from, "nameSg");
+            const toName = powerUnitLabel(content.ui, to, "nameSg");
+            const fromSlug = powerUnitSlug(from);
+            const toSlug = powerUnitSlug(to);
             return (
               <li key={`${from}-${to}`}>
                 <Link
@@ -120,7 +94,12 @@ export default function PowerConverterPage() {
                   className="flex flex-col rounded-lg border border-slate-600 bg-slate-800/50 px-4 py-3 text-sm transition-colors hover:border-slate-500 hover:bg-slate-800"
                 >
                   <span className="font-medium text-slate-200">
-                    {fromSlug} to {toSlug} ({fromName} to {toName})
+                    {formatToolUiString(asText(toolUi.pairLinkTemplate), {
+                      fromSlug,
+                      toSlug,
+                      fromName,
+                      toName,
+                    })}
                   </span>
                 </Link>
               </li>
@@ -129,12 +108,12 @@ export default function PowerConverterPage() {
         </ul>
 
         <div className="mt-10 border-t border-slate-700 pt-8">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Common questions (FAQ)</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(toolUi.faqSectionTitle)}</h3>
           <p className="mb-4 text-sm text-slate-500">
-            {POWER_FAQ_LINKS.length} quick answers with guides and links to the matching converter.
+            {formatToolUiString(asText(toolUi.faqSectionDesc), { count: powerFaqLinks.length })}
           </p>
           <ul className="grid gap-2 sm:grid-cols-2">
-            {POWER_FAQ_LINKS.map((faq) => (
+            {powerFaqLinks.map((faq) => (
               <li key={faq.slug}>
                 <Link
                   href={`/faq/${faq.category}/${faq.slug}`}
@@ -148,43 +127,17 @@ export default function PowerConverterPage() {
         </div>
       </section>
 
-      <section className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="mb-6 text-lg font-semibold text-slate-200">Power Converter Guide</h2>
-        <div className="space-y-6 text-sm leading-relaxed text-slate-400">
-          <div>
-            <h3 className="mb-2 font-semibold text-slate-200">Quick start</h3>
-            <ul className="list-disc space-y-2 pl-5">
-              {POWER_GUIDE.quickStart.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-2 font-semibold text-slate-200">Formulas &amp; deeper content</h3>
-            <div className="space-y-2">
-              {POWER_GUIDE.deeper.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-2 font-semibold text-slate-200">Example uses</h3>
-            <ul className="list-disc space-y-2 pl-5">
-              {POWER_GUIDE.exampleUses.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <ToolPageGuide
+        title={content.guideTitle}
+        sections={content.sections}
+        className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8"
+      />
 
       <Link
         href="/tools/unit-converter"
         className="mt-8 inline-block text-slate-400 underline transition-colors hover:text-slate-200"
       >
-        ← Back to Unit Converter
+        {content.backToHub}
       </Link>
     </div>
   );

@@ -4,7 +4,9 @@ import {
   formatDigitalResult,
   formatWithThousands,
 } from "@/utils/conversions";
+import { asMap, asText, formatUi } from "@/lib/tool-ui-helpers";
 import { formatRatioDisplay, getExtraDerivation } from "./digitalPairContent";
+import { digitalUnitLabel } from "./digitalPairUi";
 
 const HOW_TO_EXAMPLES = [1, 10] as const;
 
@@ -20,14 +22,17 @@ function SubD({ unit }: { unit: string }) {
 export default function HowToConvertDigital({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
-  const fromSg = DIGITAL_UNITS[fromKey].nameSg ?? DIGITAL_UNITS[fromKey].name;
-  const toSg = DIGITAL_UNITS[toKey].nameSg ?? DIGITAL_UNITS[toKey].name;
-  const fromPlural = DIGITAL_UNITS[fromKey].name;
-  const toPlural = DIGITAL_UNITS[toKey].name;
+  const howTo = asMap(asMap(ui).howToConvert);
+  const fromSg = digitalUnitLabel(ui, fromKey, "nameSg");
+  const toSg = digitalUnitLabel(ui, toKey, "nameSg");
+  const fromPlural = digitalUnitLabel(ui, fromKey, "name");
+  const toPlural = digitalUnitLabel(ui, toKey, "name");
   const Bf = DIGITAL_UNITS[fromKey].factor;
   const Bt = DIGITAL_UNITS[toKey].factor;
   const mult = Bf / Bt;
@@ -35,20 +40,24 @@ export default function HowToConvertDigital({
 
   const multStr = formatRatioDisplay(mult);
   const divisorStr = formatRatioDisplay(divisor);
-  const extra = getExtraDerivation(fromKey, toKey);
+  const extra = getExtraDerivation(fromKey, toKey, ui);
+
+  const title = formatUi(asText(howTo.titleTemplate), {
+    fromPlural: fromPlural.toLowerCase(),
+    toPlural: toPlural.toLowerCase(),
+  });
 
   return (
     <section className="rounded-xl border border-border bg-surface p-6 sm:p-8">
-      <h2 className="mb-6 text-lg font-semibold text-slate-200">
-        How to convert {fromPlural.toLowerCase()} to {toPlural.toLowerCase()}
-      </h2>
+      <h2 className="mb-6 text-lg font-semibold text-slate-200">{title}</h2>
 
       <div className="space-y-6 text-sm leading-relaxed text-slate-400">
         <p>
-          <span className="font-medium text-slate-200">1 {fromSg.toLowerCase()}</span> is equal to{" "}
-          <span className="font-medium text-slate-200">{multStr}</span>{" "}
-          <span className="font-medium text-slate-200">{toSg.toLowerCase()}</span> in this tool (values are
-          compared in byte-equivalents):
+          {formatUi(asText(howTo.oneEquals), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            mult: multStr,
+          })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -61,18 +70,19 @@ export default function HowToConvertDigital({
         {extra && <p>{extra}</p>}
 
         <p>
-          Each {fromSg.toLowerCase()} counts as{" "}
-          <span className="font-mono text-slate-300">{formatWithThousands(Bf)}</span> bytes and each{" "}
-          {toSg.toLowerCase()} as <span className="font-mono text-slate-300">{formatWithThousands(Bt)}</span>{" "}
-          bytes, so one {fromKey} equals <span className="font-mono text-slate-300">{formatWithThousands(Bf)}</span>{" "}
-          ÷ <span className="font-mono text-slate-300">{formatWithThousands(Bt)}</span> {toKey} = {multStr}{" "}
-          {toKey}.
+          {formatUi(asText(howTo.factorExplain), {
+            fromSg: fromSg.toLowerCase(),
+            toSg: toSg.toLowerCase(),
+            fromKey,
+            toKey,
+            fromFactor: formatWithThousands(Bf),
+            toFactor: formatWithThousands(Bt),
+            mult: multStr,
+          })}
         </p>
 
         <p>
-          Let <SubD unit={fromKey} /> be the numeric amount in <span className="text-slate-300">{fromSg}</span> (
-          {fromKey}), and <SubD unit={toKey} /> the amount in <span className="text-slate-300">{toSg}</span> (
-          {toKey}). Then:
+          {formatUi(asText(howTo.letDFrom), { fromSg, toSg, fromKey, toKey })}
         </p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
@@ -82,10 +92,7 @@ export default function HowToConvertDigital({
           </p>
         </div>
 
-        <p>
-          Equivalently, divide by how many {fromKey} fit into one {toKey} (bytes per {toKey} divided by bytes
-          per {fromKey}):
-        </p>
+        <p>{asText(howTo.divideExplain)}</p>
 
         <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
           <p>
@@ -94,11 +101,15 @@ export default function HowToConvertDigital({
         </div>
 
         <p className="text-slate-500">
-          Or: {toSg.toLowerCase()} = {fromSg.toLowerCase()} ÷ {divisorStr}
+          {formatUi(asText(howTo.orLine), {
+            toSg: toSg.toLowerCase(),
+            fromSg: fromSg.toLowerCase(),
+            divisor: divisorStr,
+          })}
         </p>
 
         <div className="border-t border-slate-700 pt-6">
-          <h3 className="mb-4 text-base font-semibold text-slate-200">Examples</h3>
+          <h3 className="mb-4 text-base font-semibold text-slate-200">{asText(howTo.examplesTitle)}</h3>
           <div className="space-y-6">
             {HOW_TO_EXAMPLES.map((n, idx) => {
               const result = convertDigital(n, fromKey, toKey);
@@ -106,7 +117,12 @@ export default function HowToConvertDigital({
               return (
                 <div key={n}>
                   <p className="mb-2 font-medium text-slate-300">
-                    Example #{idx + 1}: Convert {n} {fromKey} to {toSg.toLowerCase()}
+                    {formatUi(asText(howTo.exampleTitleTemplate), {
+                      n: String(idx + 1),
+                      value: String(n),
+                      fromKey,
+                      toSg: toSg.toLowerCase(),
+                    })}
                   </p>
                   <div className="rounded-lg border border-slate-600 bg-slate-800/40 px-4 py-3 font-mono text-[13px] leading-relaxed text-slate-200 sm:text-sm">
                     <p>

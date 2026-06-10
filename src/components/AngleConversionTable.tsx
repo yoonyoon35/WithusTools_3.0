@@ -4,24 +4,28 @@ import {
   formatConversionTableCell,
   ANGLE_UNITS,
 } from "@/utils/conversions";
+import { angleUnitLabel } from "@/app/[locale]/tools/unit-converter/angle/anglePairUi";
 
-/** Same step pattern as speed/length dedicated pages: 0.1 and 1–9. */
 export const ANGLE_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
-
-/** Same step pattern as speed/length dedicated pages: 10–100 by 10. */
 export const ANGLE_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 
 export function AngleConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
-  const toName = ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
+  const fromName = ui
+    ? angleUnitLabel(ui, fromKey, "nameSg")
+    : ANGLE_UNITS[fromKey]?.nameSg ?? ANGLE_UNITS[fromKey]?.name ?? fromKey;
+  const toName = ui
+    ? angleUnitLabel(ui, toKey, "nameSg")
+    : ANGLE_UNITS[toKey]?.nameSg ?? ANGLE_UNITS[toKey]?.name ?? toKey;
 
   return (
     <div className="overflow-x-auto">
@@ -54,11 +58,19 @@ export function AngleConversionTable({
   );
 }
 
-export function AngleConversionTablesPair({ fromKey, toKey }: { fromKey: string; toKey: string }) {
+export function AngleConversionTablesPair({
+  fromKey,
+  toKey,
+  ui,
+}: {
+  fromKey: string;
+  toKey: string;
+  ui?: unknown;
+}) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <AngleConversionTable fromKey={fromKey} toKey={toKey} values={ANGLE_TABLE_SMALL_STEPS} />
-      <AngleConversionTable fromKey={fromKey} toKey={toKey} values={ANGLE_TABLE_TENS_STEPS} />
+      <AngleConversionTable fromKey={fromKey} toKey={toKey} values={ANGLE_TABLE_SMALL_STEPS} ui={ui} />
+      <AngleConversionTable fromKey={fromKey} toKey={toKey} values={ANGLE_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }

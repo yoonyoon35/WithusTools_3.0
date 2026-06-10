@@ -4,6 +4,7 @@ import {
   formatEnergyResult,
   ENERGY_UNITS,
 } from "@/utils/conversions";
+import { energyUnitLabel } from "@/app/[locale]/tools/unit-converter/energy/energyPairUi";
 
 export const ENERGY_TABLE_SMALL_STEPS = [0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 export const ENERGY_TABLE_TENS_STEPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
@@ -12,13 +13,19 @@ export function EnergyConversionTable({
   fromKey,
   toKey,
   values,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
   values: readonly number[] | number[];
+  ui?: unknown;
 }) {
-  const fromName = ENERGY_UNITS[fromKey].nameSg ?? ENERGY_UNITS[fromKey].name;
-  const toName = ENERGY_UNITS[toKey].nameSg ?? ENERGY_UNITS[toKey].name;
+  const fromName = ui
+    ? energyUnitLabel(ui, fromKey, "nameSg")
+    : ENERGY_UNITS[fromKey].nameSg ?? ENERGY_UNITS[fromKey].name;
+  const toName = ui
+    ? energyUnitLabel(ui, toKey, "nameSg")
+    : ENERGY_UNITS[toKey].nameSg ?? ENERGY_UNITS[toKey].name;
 
   return (
     <div className="overflow-x-auto">
@@ -54,14 +61,16 @@ export function EnergyConversionTable({
 export function EnergyConversionTablesPair({
   fromKey,
   toKey,
+  ui,
 }: {
   fromKey: string;
   toKey: string;
+  ui?: unknown;
 }) {
   return (
     <div className="grid gap-10 md:grid-cols-2">
-      <EnergyConversionTable fromKey={fromKey} toKey={toKey} values={ENERGY_TABLE_SMALL_STEPS} />
-      <EnergyConversionTable fromKey={fromKey} toKey={toKey} values={ENERGY_TABLE_TENS_STEPS} />
+      <EnergyConversionTable fromKey={fromKey} toKey={toKey} values={ENERGY_TABLE_SMALL_STEPS} ui={ui} />
+      <EnergyConversionTable fromKey={fromKey} toKey={toKey} values={ENERGY_TABLE_TENS_STEPS} ui={ui} />
     </div>
   );
 }
