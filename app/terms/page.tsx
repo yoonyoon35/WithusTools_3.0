@@ -59,9 +59,6 @@ export default function TermsPage() {
           정리되어 있으며, 카카오톡 공유 버튼 이미지는 카카오 디벨로퍼스 제공 리소스를 사용합니다.
         </p>
       </section>
-      <p className="text-muted-foreground text-xs">
-        전문은 사이트 운영 정책에 따라 업데이트될 수 있습니다. 상세 문구는 기존 사이트의 이용약관을 기준으로 하되, 배포 전 법률 검토를 권장합니다.
-      </p>
     </LegalPageShell>
   );
 }

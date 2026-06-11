@@ -53,10 +53,6 @@ export default function PrivacyPage() {
         <h2 className="text-lg font-semibold">5. 개인정보 보호책임자</h2>
         <p>운영진 / dbsghkwns553@gmail.com</p>
       </section>
-      <p className="text-muted-foreground text-xs">
-        전문은 사이트 운영 정책에 따라 업데이트될 수 있습니다. 상세 문구는 기존 사이트의 개인정보처리방침을 기준으로 하되, Next.js 버전 배포 시
-        법률 검토를 권장합니다.
-      </p>
     </LegalPageShell>
   );
 }
