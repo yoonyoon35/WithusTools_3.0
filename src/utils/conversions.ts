@@ -373,7 +373,7 @@ export function getWeightSystem(key: string): WeightSystem {
   return "metric";
 }
 
-/** Hub keys for the Weight category dedicated pair links. */
+/** Hub keys for the Weight category dedicated pair links (excludes UK/US hundredweight). */
 export const WEIGHT_HUB_KEYS = [
   "kg",
   "g",
@@ -384,8 +384,6 @@ export const WEIGHT_HUB_KEYS = [
   "gr",
   "ct",
   "st",
-  "cwt_uk",
-  "cwt_us",
   "t",
   "lton",
   "ust",
@@ -759,8 +757,8 @@ export function getVolumeSystem(key: string): VolumeSystem {
   return "us";
 }
 
-/** Hub: liter, m³, US gal, US fl oz, ft³, US tbsp, US tsp, in³ (8×7 = 56 pair pages). */
-export const VOLUME_HUB_KEYS = ["l", "m3", "gal", "floz", "ft3", "tbsp", "tsp", "in3"] as const;
+/** Hub keys for dedicated volume pair pages (excludes pints, UK cup, UK fl oz, US/UK tbsp & tsp). */
+export const VOLUME_HUB_KEYS = ["l", "m3", "gal", "floz", "ft3", "in3"] as const;
 
 export function getOutboundVolumeHubLinks(hubKey: string): { toKey: string; href: string }[] {
   if (!isValidVolumeKey(hubKey)) return [];
@@ -906,7 +904,7 @@ export function getTimeTier(key: string): TimeTier {
   return "short";
 }
 
-/** Hub: year, month, week, day, hour, minute, second, millisecond (8×7 = 56). */
+/** Hub keys for dedicated time pair pages (excludes microseconds, nanoseconds). */
 export const TIME_HUB_KEYS = ["yr", "mo", "wk", "d", "h", "min", "s", "ms"] as const;
 
 export function getOutboundTimeHubLinks(hubKey: string): { toKey: string; href: string }[] {
@@ -1099,8 +1097,8 @@ export function getDigitalFormulaLine(value: number, fromKey: string, toKey: str
   return `${formatWithThousands(value)} ${fromKey} × (${formatWithThousands(fromFactor)} / ${formatWithThousands(toFactor)}) = ${formatWithThousands(formatDigitalResult(result))} ${toKey}`;
 }
 
-/** Hub order: GB, TB, MB, B, KB, PB, bits, Mbit (8×7 = 56 dedicated pages). */
-export const DIGITAL_HUB_KEYS = ["gb", "tb", "mb", "b", "kb", "pb", "bit", "mbit"] as const;
+/** Hub keys for dedicated digital pair pages (decimal byte/bit hub; excludes PB and IEC/binary units). */
+export const DIGITAL_HUB_KEYS = ["gb", "tb", "mb", "b", "kb", "bit", "mbit"] as const;
 
 export function getOutboundDigitalHubLinks(hubKey: string): { toKey: string; href: string }[] {
   if (!isValidDigitalKey(hubKey)) return [];
@@ -1267,24 +1265,14 @@ export function getEnergyFormulaLine(value: number, fromKey: string, toKey: stri
   return `${formatWithThousands(value)} ${fromKey} × (${formatWithThousands(fromFactor)} / ${formatWithThousands(toFactor)}) = ${formatWithThousands(formatEnergyResult(result))} ${toKey}`;
 }
 
-/** Hub keys for the Energy category dedicated pair links. */
+/** Hub keys for the Energy category dedicated pair links (excludes toe, GJ/kJ/MJ, MMBtu, therm, kWh thermal, ft·lb, GeV/MeV/eV). */
 export const ENERGY_HUB_KEYS = [
-  "toe",
-  "gj",
-  "mmbtu",
-  "therm",
   "kwh",
-  "kwh_th",
-  "mj",
   "kcal",
   "wh",
-  "kj",
   "btu",
   "cal",
-  "ftlb",
   "j",
-  "gev",
-  "mev",
   "ev",
 ] as const;
 
@@ -1540,25 +1528,15 @@ export function convertPowerWithFormula(
   return [result, getPowerFormulaLine(value, from, to)];
 }
 
-/** Hub keys for the Power category dedicated pair links. */
+/** Hub keys for the Power category dedicated pair links (excludes GW, CV, BTU/h, kcal/h, VA/kVA/MVA, TR, dBm/dBW, ft·lb/s). */
 export const POWER_HUB_KEYS = [
   "w",
   "mw",
   "kw",
   "megaw",
-  "gw",
   "hp",
   "ps",
   "cv",
-  "btu_hr",
-  "kcal_h",
-  "va",
-  "kva",
-  "mva",
-  "tr",
-  "dbm",
-  "dbw",
-  "ft_lb_s",
 ] as const;
 
 export function getOutboundPowerHubLinks(hubKey: string): { toKey: string; href: string }[] {
@@ -1660,20 +1638,18 @@ const SPEED_SLUG_TO_KEY: Record<string, string> = {
   c: "c",
 };
 
-/** Hub keys for dedicated speed pair pages. */
+/** Hub keys for dedicated speed pair pages (excludes ft/min, Beaufort). */
 export const SPEED_HUB_KEYS = [
   "mps",
   "kmps",
   "kph",
   "mph",
   "knots",
-  "fpm",
   "fps",
   "ips",
   "cms",
   "mms",
   "mach",
-  "beaufort",
   "c",
 ] as const;
 
@@ -1862,15 +1838,12 @@ const PRESSURE_SLUG_TO_KEY: Record<string, string> = {
   pa: "pa",
 };
 
-/** Hub keys for dedicated pressure pair pages. */
+/** Hub keys for dedicated pressure pair pages (excludes kgf/cm², inH2O, mmH2O). */
 export const PRESSURE_HUB_KEYS = [
   "bar",
   "atm",
   "psi",
-  "kgf_cm2",
   "inhg",
-  "inh2o",
-  "mmh2o",
   "kpa",
   "hpa",
   "mbar",
@@ -2021,20 +1994,15 @@ const ANGLE_SLUG_TO_KEY: Record<string, string> = {
   mils: "mil",
 };
 
-/** Hub keys for dedicated angle pair pages. */
+/** Hub keys for dedicated angle pair pages (excludes quadrant, sextant, MOA, urad, NATO mil). */
 export const ANGLE_HUB_KEYS = [
   "turn",
-  "quadrant",
-  "sextant",
   "deg",
   "arcmin",
-  "moa",
   "arcsec",
   "grad",
   "rad",
   "mrad",
-  "urad",
-  "mil",
 ] as const;
 
 export function getAngleKeys(): string[] {

@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  SPEED_HUB_KEYS,
   SPEED_KEY_TO_SLUG,
-  SPEED_UNIT_KEYS,
   speedHubContentEn,
   speedHubContentKo,
   speedUiEn,
@@ -121,9 +121,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of SPEED_UNIT_KEYS) {
-    for (const toKey of SPEED_UNIT_KEYS) {
+  for (const fromKey of SPEED_HUB_KEYS) {
+    for (const toKey of SPEED_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalSpeedSlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

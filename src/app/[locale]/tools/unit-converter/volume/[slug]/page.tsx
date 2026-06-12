@@ -15,7 +15,7 @@ import HowToConvertVolume from "../HowToConvertVolume";
 import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalVolumeSlug,
-  getVolumeKeys,
+  VOLUME_HUB_KEYS,
   parseVolumePairSlug,
 } from "@/utils/conversions";
 import {
@@ -24,6 +24,12 @@ import {
   getUnitDescription,
 } from "../volumePairContent";
 import { volumeUnitLabel } from "../volumePairUi";
+
+const VOLUME_HUB_KEY_SET = new Set<string>(VOLUME_HUB_KEYS);
+
+function isVolumeHubPair(from: string, to: string): boolean {
+  return VOLUME_HUB_KEY_SET.has(from) && VOLUME_HUB_KEY_SET.has(to);
+}
 
 export async function generateMetadata({
   params,
@@ -34,7 +40,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseVolumePairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isVolumeHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Volume Conversion",
       noIndex: true,
@@ -64,10 +70,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const keys = getVolumeKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of keys) {
-    for (const to of keys) {
+  for (const from of VOLUME_HUB_KEYS) {
+    for (const to of VOLUME_HUB_KEYS) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalVolumeSlug(from, to) });
     }
@@ -86,7 +91,7 @@ export default async function VolumePairPage({
   setRequestLocale(locale);
 
   const pair = parseVolumePairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isVolumeHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/volume/${params.slug}`;
   const toolContent = await loadToolContent(locale);

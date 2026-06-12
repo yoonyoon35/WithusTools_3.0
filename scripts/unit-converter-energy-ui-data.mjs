@@ -5,6 +5,11 @@ export const ENERGY_UNIT_KEYS = [
   "wh", "kj", "btu", "cal", "ftlb", "j", "gev", "mev", "ev",
 ];
 
+/** Dedicated pair pages only (subset of ENERGY_UNIT_KEYS). */
+export const ENERGY_HUB_KEYS = [
+  "kwh", "kcal", "wh", "btu", "cal", "j", "ev",
+];
+
 export const ENERGY_KEY_TO_SLUG = {
   toe: "toe",
   gj: "gigajoule",
@@ -24,8 +29,6 @@ export const ENERGY_KEY_TO_SLUG = {
   mev: "megaelectronvolt",
   ev: "electronvolt",
 };
-
-export const ENERGY_HUB_KEYS = ENERGY_UNIT_KEYS;
 
 const unitDescriptionsEn = {
   toe: "A ton of oil equivalent (toe) is a large industrial energy unit standardized at 41.868 GJ. It is common in energy policy and fuel-balance reporting.",
@@ -182,7 +185,7 @@ export const energyUiEn = {
     backUnitConverter: "Unit Converter",
     moreConvertersTitle: "More {unit} converters",
     moreConvertersIntro:
-      "Dedicated pages from {unitSg} to every other hub energy unit (kilocalorie, kilowatt-hour, calorie, joule, kilojoule, watt-hour, BTU, electronvolt).",
+      "Dedicated pages from {unitSg} to every other hub energy unit (kilocalorie, kilowatt-hour, calorie, joule, watt-hour, BTU, electronvolt).",
     moreConvertersLink: "{fromSlug} to {toSlug} ({fromName} to {toName})",
   },
 };
@@ -302,7 +305,7 @@ export const energyUiKo = {
     backUnitConverter: "단위 변환기",
     moreConvertersTitle: "{unit} 관련 변환기",
     moreConvertersIntro:
-      "{unitSg}에서 다른 허브 에너지 단위(kilocalorie, kilowatt-hour, calorie, joule, kilojoule, watt-hour, BTU, electronvolt)로 가는 전용 페이지입니다.",
+      "{unitSg}에서 다른 허브 에너지 단위(kilocalorie, kilowatt-hour, calorie, joule, watt-hour, BTU, electronvolt)로 가는 전용 페이지입니다.",
     moreConvertersLink: "{fromSlug} → {toSlug} ({fromName} → {toName})",
   },
 };

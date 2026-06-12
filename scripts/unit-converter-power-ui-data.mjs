@@ -5,6 +5,11 @@ export const POWER_UNIT_KEYS = [
   "va", "kva", "mva", "tr", "dbm", "dbw", "ft_lb_s",
 ];
 
+/** Dedicated pair pages only (subset of POWER_UNIT_KEYS). */
+export const POWER_HUB_KEYS = [
+  "w", "mw", "kw", "megaw", "hp", "ps", "cv",
+];
+
 export const POWER_KEY_TO_SLUG = {
   w: "w",
   mw: "milliwatt",
@@ -24,8 +29,6 @@ export const POWER_KEY_TO_SLUG = {
   dbw: "dbw",
   ft_lb_s: "ft-lb-s",
 };
-
-export const POWER_HUB_KEYS = POWER_UNIT_KEYS;
 
 const unitDescriptionsEn = {
   w: "The watt is the SI unit of power (one joule per second). All linear units in this converter are defined by a fixed watt equivalent.",
@@ -188,7 +191,7 @@ export const powerUiEn = {
     backUnitConverter: "Unit Converter",
     moreConvertersTitle: "More {unit} converters",
     moreConvertersIntro:
-      "Dedicated pages from {unitSg} to every other hub power unit (watt, milliwatt, kilowatt, megawatt, mechanical horsepower, BTU per hour, kilocalorie per hour, volt-ampere).",
+      "Dedicated pages from {unitSg} to every other hub power unit (watt, milliwatt, kilowatt, megawatt, mechanical horsepower, metric horsepower PS/CV).",
     moreConvertersLink: "{fromSlug} to {toSlug} ({fromName} to {toName})",
   },
 };
@@ -314,7 +317,7 @@ export const powerUiKo = {
     backUnitConverter: "단위 변환기",
     moreConvertersTitle: "{unit} 관련 변환기",
     moreConvertersIntro:
-      "{unitSg}에서 다른 허브 전력 단위(watt, milliwatt, kilowatt, megawatt, mechanical horsepower, BTU per hour, kilocalorie per hour, volt-ampere)로 가는 전용 페이지입니다.",
+      "{unitSg}에서 다른 허브 전력 단위(watt, milliwatt, kilowatt, megawatt, mechanical horsepower, metric horsepower PS/CV)로 가는 전용 페이지입니다.",
     moreConvertersLink: "{fromSlug} → {toSlug} ({fromName} → {toName})",
   },
 };

@@ -15,7 +15,7 @@ import HowToConvertEnergy from "../HowToConvertEnergy";
 import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalEnergySlug,
-  getEnergyKeys,
+  ENERGY_HUB_KEYS,
   parseEnergyPairSlug,
 } from "@/utils/conversions";
 import {
@@ -24,6 +24,12 @@ import {
   getUnitDescription,
 } from "../energyPairContent";
 import { energyUnitLabel } from "../energyPairUi";
+
+const ENERGY_HUB_KEY_SET = new Set<string>(ENERGY_HUB_KEYS);
+
+function isEnergyHubPair(from: string, to: string): boolean {
+  return ENERGY_HUB_KEY_SET.has(from) && ENERGY_HUB_KEY_SET.has(to);
+}
 
 export async function generateMetadata({
   params,
@@ -34,7 +40,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseEnergyPairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isEnergyHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Energy Conversion",
       noIndex: true,
@@ -64,10 +70,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const keys = getEnergyKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of keys) {
-    for (const to of keys) {
+  for (const from of ENERGY_HUB_KEYS) {
+    for (const to of ENERGY_HUB_KEYS) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalEnergySlug(from, to) });
     }
@@ -86,7 +91,7 @@ export default async function EnergyPairPage({
   setRequestLocale(locale);
 
   const pair = parseEnergyPairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isEnergyHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/energy/${params.slug}`;
   const toolContent = await loadToolContent(locale);

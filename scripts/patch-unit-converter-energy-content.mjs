@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  ENERGY_HUB_KEYS,
   ENERGY_KEY_TO_SLUG,
-  ENERGY_UNIT_KEYS,
   energyHubContentEn,
   energyHubContentKo,
   energyUiEn,
@@ -125,9 +125,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of ENERGY_UNIT_KEYS) {
-    for (const toKey of ENERGY_UNIT_KEYS) {
+  for (const fromKey of ENERGY_HUB_KEYS) {
+    for (const toKey of ENERGY_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalEnergySlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

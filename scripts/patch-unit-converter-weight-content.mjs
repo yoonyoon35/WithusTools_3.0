@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  WEIGHT_HUB_KEYS,
   WEIGHT_KEY_TO_SLUG,
-  WEIGHT_UNIT_KEYS,
   weightHubContentEn,
   weightHubContentKo,
   weightUiEn,
@@ -123,9 +123,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of WEIGHT_UNIT_KEYS) {
-    for (const toKey of WEIGHT_UNIT_KEYS) {
+  for (const fromKey of WEIGHT_HUB_KEYS) {
+    for (const toKey of WEIGHT_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalWeightSlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

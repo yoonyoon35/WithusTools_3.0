@@ -15,7 +15,7 @@ import HowToConvertPower from "../HowToConvertPower";
 import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalPowerSlug,
-  getPowerKeys,
+  POWER_HUB_KEYS,
   parsePowerPairSlug,
 } from "@/utils/conversions";
 import {
@@ -24,6 +24,12 @@ import {
   getUnitDescription,
 } from "../powerPairContent";
 import { powerUnitLabel } from "../powerPairUi";
+
+const POWER_HUB_KEY_SET = new Set<string>(POWER_HUB_KEYS);
+
+function isPowerHubPair(from: string, to: string): boolean {
+  return POWER_HUB_KEY_SET.has(from) && POWER_HUB_KEY_SET.has(to);
+}
 
 export async function generateMetadata({
   params,
@@ -34,7 +40,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parsePowerPairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isPowerHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Power Conversion",
       noIndex: true,
@@ -64,10 +70,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const keys = getPowerKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of keys) {
-    for (const to of keys) {
+  for (const from of POWER_HUB_KEYS) {
+    for (const to of POWER_HUB_KEYS) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalPowerSlug(from, to) });
     }
@@ -86,7 +91,7 @@ export default async function PowerPairPage({
   setRequestLocale(locale);
 
   const pair = parsePowerPairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isPowerHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/power/${params.slug}`;
   const toolContent = await loadToolContent(locale);

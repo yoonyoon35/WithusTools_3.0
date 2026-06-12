@@ -31,7 +31,7 @@ export const DIGITAL_KEY_TO_SLUG = {
   bit: "bit",
 };
 
-export const DIGITAL_HUB_KEYS = ["gb", "tb", "mb", "b", "kb", "pb", "bit", "mbit"];
+export const DIGITAL_HUB_KEYS = ["gb", "tb", "mb", "b", "kb", "bit", "mbit"];
 
 const unitDescriptionsEn = {
   gb:
@@ -224,7 +224,7 @@ export const digitalUiEn = {
     backUnitConverter: "Unit Converter",
     moreConvertersTitle: "More {unit} converters",
     moreConvertersIntro:
-      "Dedicated pages from {unitSg} to every other hub digital unit (gigabyte, terabyte, megabyte, byte, kilobyte, petabyte, bit, megabit).",
+      "Dedicated pages from {unitSg} to every other hub digital unit (gigabyte, terabyte, megabyte, byte, kilobyte, bit, megabit).",
     moreConvertersLink: "{fromSlug} to {toSlug} ({fromName} to {toName})",
   },
 };
@@ -339,7 +339,7 @@ export const digitalUiKo = {
     backUnitConverter: "단위 변환기",
     moreConvertersTitle: "{unit} 관련 변환기",
     moreConvertersIntro:
-      "{unitSg}에서 다른 허브 디지털 단위(gigabyte, terabyte, megabyte, byte, kilobyte, petabyte, bit, megabit)로 가는 전용 페이지입니다.",
+      "{unitSg}에서 다른 허브 디지털 단위(gigabyte, terabyte, megabyte, byte, kilobyte, bit, megabit)로 가는 전용 페이지입니다.",
     moreConvertersLink: "{fromSlug} → {toSlug} ({fromName} → {toName})",
   },
 };

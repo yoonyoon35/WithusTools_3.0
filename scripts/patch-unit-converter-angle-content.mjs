@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  ANGLE_HUB_KEYS,
   ANGLE_KEY_TO_SLUG,
-  ANGLE_UNIT_KEYS,
   angleHubContentEn,
   angleHubContentKo,
   angleUiEn,
@@ -120,9 +120,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of ANGLE_UNIT_KEYS) {
-    for (const toKey of ANGLE_UNIT_KEYS) {
+  for (const fromKey of ANGLE_HUB_KEYS) {
+    for (const toKey of ANGLE_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalAngleSlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

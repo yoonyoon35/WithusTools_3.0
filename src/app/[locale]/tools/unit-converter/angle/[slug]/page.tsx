@@ -26,6 +26,12 @@ import {
 } from "../anglePairContent";
 import { angleUnitLabel } from "../anglePairUi";
 
+const ANGLE_HUB_KEY_SET = new Set<string>(ANGLE_HUB_KEYS);
+
+function isAngleHubPair(from: string, to: string): boolean {
+  return ANGLE_HUB_KEY_SET.has(from) && ANGLE_HUB_KEY_SET.has(to);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -35,7 +41,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseAnglePairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isAngleHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Angle Conversion",
       noIndex: true,
@@ -86,7 +92,7 @@ export default async function AnglePairPage({
   setRequestLocale(locale);
 
   const pair = parseAnglePairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isAngleHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/angle/${params.slug}`;
   const toolContent = await loadToolContent(locale);

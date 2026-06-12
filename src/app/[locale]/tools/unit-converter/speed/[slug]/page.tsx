@@ -26,6 +26,12 @@ import {
 } from "../speedPairContent";
 import { speedUnitLabel } from "../speedPairUi";
 
+const SPEED_HUB_KEY_SET = new Set<string>(SPEED_HUB_KEYS);
+
+function isSpeedHubPair(from: string, to: string): boolean {
+  return SPEED_HUB_KEY_SET.has(from) && SPEED_HUB_KEY_SET.has(to);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -35,7 +41,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseSpeedPairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isSpeedHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Speed Conversion",
       noIndex: true,
@@ -86,7 +92,7 @@ export default async function SpeedPairPage({
   setRequestLocale(locale);
 
   const pair = parseSpeedPairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isSpeedHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/speed/${params.slug}`;
   const toolContent = await loadToolContent(locale);

@@ -4,6 +4,11 @@ export const SPEED_UNIT_KEYS = [
   "mps", "kmps", "kph", "mph", "knots", "fpm", "fps", "ips", "cms", "mms", "mach", "beaufort", "c",
 ];
 
+/** Dedicated pair pages only (subset of SPEED_UNIT_KEYS). */
+export const SPEED_HUB_KEYS = [
+  "mps", "kmps", "kph", "mph", "knots", "fps", "ips", "cms", "mms", "mach", "c",
+];
+
 export const SPEED_KEY_TO_SLUG = {
   mps: "mps",
   kmps: "kmps",
@@ -19,8 +24,6 @@ export const SPEED_KEY_TO_SLUG = {
   beaufort: "beaufort",
   c: "c",
 };
-
-export const SPEED_HUB_KEYS = SPEED_UNIT_KEYS;
 
 const unitDescriptionsEn = {
   mps: "Meters per second is the SI derived unit for speed. It is the standard in physics and engineering for expressing velocity.",
@@ -168,7 +171,7 @@ export const speedUiEn = {
     backUnitConverter: "Unit Converter",
     moreConvertersTitle: "More {unit} converters",
     moreConvertersIntro:
-      "Dedicated pages from {unitSg} to every other hub speed unit (m/s, km/h, mph, knots, ft/s, Mach, Beaufort, c).",
+      "Dedicated pages from {unitSg} to every other hub speed unit (m/s, km/s, km/h, mph, knots, ft/s, in/s, cm/s, mm/s, Mach, c).",
     moreConvertersLink: "{fromSlug} to {toSlug} ({fromName} to {toName})",
   },
 };
@@ -287,7 +290,7 @@ export const speedUiKo = {
     backUnitConverter: "단위 변환기",
     moreConvertersTitle: "{unit} 관련 변환기",
     moreConvertersIntro:
-      "{unitSg}에서 다른 허브 속도 단위(m/s, km/h, mph, knot, ft/s, Mach, Beaufort, c)로 가는 전용 페이지입니다.",
+      "{unitSg}에서 다른 허브 속도 단위(m/s, km/s, km/h, mph, knot, ft/s, in/s, cm/s, mm/s, Mach, c)로 가는 전용 페이지입니다.",
     moreConvertersLink: "{fromSlug} → {toSlug} ({fromName} → {toName})",
   },
 };

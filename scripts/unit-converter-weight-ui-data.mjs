@@ -22,7 +22,7 @@ export const WEIGHT_KEY_TO_SLUG = {
 };
 
 export const WEIGHT_HUB_KEYS = [
-  "kg", "g", "mg", "ug", "lb", "oz", "gr", "ct", "st", "cwt_uk", "cwt_us", "t", "lton", "ust",
+  "kg", "g", "mg", "ug", "lb", "oz", "gr", "ct", "st", "t", "lton", "ust",
 ];
 
 const unitDescriptionsEn = {

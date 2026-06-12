@@ -779,3 +779,27 @@
 2050 - 페이지 한국어 현지화 작업 (Unit Converter Tools)
 
        next-intl 저작권, 라이센스 표기
+
+=================================================================================================================
+
+260612
+
+1911 - UnitConverter 낮은 수요 단위 전용 변환기 페이지 삭제(페이지수가 너무 많음)
+       - Angle Converter(Quadrants, Sextants, Minutes of Angle (MOA), Microradians, Mils (NATO, 6400))
+       - Power Converter(Gigawatts, Metric Horsepower (CV), BTU per Hour, Kilocalories per Hour, 
+       Volt-Amperes (VA), Kilovolt-Amperes (kVA), Megavolt-Amperes (MVA), Tons of Refrigeration (TR), 
+       Decibels (dBm), Decibels (dBW), Foot-pounds per Second)
+       - Energy Converter(Tons of Oil Equivalent, GigajoulesKilojoules, Million BTU (MMBtu), 
+       Therm, Kilowatt-hour (thermal), MegajoulesKilojoules, Feet-PoundsJoules, Gigaelectronvolts, 
+       Megaelectronvolts)
+       - Pressure Converter(Inch of Water, Millimeter of Water, Kilogram-force per Square Centimeter)
+       - Digital Storage Converter(Petabytes, Pebibits, Petabits, Tebibytes, Tebibits, Terabits, Gibibytes, 
+       Gibibits, Mebibytes, Mebibits, Kibibytes, Kibibits)
+       - Time Converter(Microseconds, Nanoseconds)
+       - Speed Converter(Feet per Minute, Beaufort wind force)
+       - Volume Converter(Pints (UK) / Pints (US), Cups (UK), Fluid Ounces (UK), Tablespoons (US) / Tablespoons (UK), 
+       Teaspoons (US) / Teaspoons (UK))
+       - Weight Converter(Hundredweight (UK), Hundredweight (US))
+       - Length Converter는 순위가 높으니 일단 그냥 유지
+
+       - 이 작업으로 en + ko 각 버전 합쳐서 2,572개 페이지 제거(이제 기존 방식으로 정상 배포는 가능 할 듯)

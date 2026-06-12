@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  TIME_HUB_KEYS,
   TIME_KEY_TO_SLUG,
-  TIME_UNIT_KEYS,
   timeHubContentEn,
   timeHubContentKo,
   timeUiEn,
@@ -118,9 +118,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of TIME_UNIT_KEYS) {
-    for (const toKey of TIME_UNIT_KEYS) {
+  for (const fromKey of TIME_HUB_KEYS) {
+    for (const toKey of TIME_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalTimeSlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

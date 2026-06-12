@@ -15,7 +15,7 @@ import HowToConvertDigital from "../HowToConvertDigital";
 import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalDigitalSlug,
-  getDigitalKeys,
+  DIGITAL_HUB_KEYS,
   parseDigitalPairSlug,
 } from "@/utils/conversions";
 import {
@@ -24,6 +24,12 @@ import {
   getUnitDescription,
 } from "../digitalPairContent";
 import { digitalUnitLabel } from "../digitalPairUi";
+
+const DIGITAL_HUB_KEY_SET = new Set<string>(DIGITAL_HUB_KEYS);
+
+function isDigitalHubPair(from: string, to: string): boolean {
+  return DIGITAL_HUB_KEY_SET.has(from) && DIGITAL_HUB_KEY_SET.has(to);
+}
 
 export async function generateMetadata({
   params,
@@ -34,7 +40,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseDigitalPairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isDigitalHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Digital Storage Conversion",
       noIndex: true,
@@ -64,10 +70,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const keys = getDigitalKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of keys) {
-    for (const to of keys) {
+  for (const from of DIGITAL_HUB_KEYS) {
+    for (const to of DIGITAL_HUB_KEYS) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalDigitalSlug(from, to) });
     }
@@ -86,7 +91,7 @@ export default async function DigitalPairPage({
   setRequestLocale(locale);
 
   const pair = parseDigitalPairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isDigitalHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/digital/${params.slug}`;
   const toolContent = await loadToolContent(locale);

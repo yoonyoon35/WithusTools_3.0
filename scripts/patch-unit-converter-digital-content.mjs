@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  DIGITAL_HUB_KEYS,
   DIGITAL_KEY_TO_SLUG,
-  DIGITAL_UNIT_KEYS,
   digitalHubContentEn,
   digitalHubContentKo,
   digitalUiEn,
@@ -130,9 +130,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of DIGITAL_UNIT_KEYS) {
-    for (const toKey of DIGITAL_UNIT_KEYS) {
+  for (const fromKey of DIGITAL_HUB_KEYS) {
+    for (const toKey of DIGITAL_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalDigitalSlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

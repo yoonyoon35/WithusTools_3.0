@@ -650,15 +650,15 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "volume",
     slug: "how-many-teaspoons-in-a-us-tablespoon",
-    hubUnitKey: "tbsp",
+    hubUnitKey: "floz",
     question: "How many US teaspoons are in a US tablespoon?",
     directAnswer: "There are 3 US teaspoons in 1 US tablespoon.",
     detailedExplanation:
       "In US customary cooking measure, 1 tablespoon is 1/2 US fluid ounce and 1 teaspoon is 1/6 US fluid ounce, so 1 tbsp = 3 tsp exactly.",
     relationshipContext:
       "Tablespoons and teaspoons are the same US fluid family used in American recipes. The 3:1 ratio is exact.",
-    relatedConverterPath: "/tools/unit-converter/volume/us-tablespoon-to-us-teaspoon",
-    relatedConverterLabel: "US Tablespoon to US Teaspoon",
+    relatedConverterPath: "/tools/unit-converter/volume",
+    relatedConverterLabel: "Volume Converter",
     tableFromKey: "tbsp",
     tableToKey: "tsp",
     seoUnitA: "US teaspoon",
@@ -675,8 +675,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "One US fluid ounce is 1/128 of a US gallon; one US tablespoon is 1/256 of a US gallon. Therefore 1 fl oz = 2 tbsp exactly.",
     relationshipContext:
       "Fluid ounces and tablespoons are common in US cooking. Doubling tablespoons per ounce is easy to remember for scaling recipes.",
-    relatedConverterPath: "/tools/unit-converter/volume/us-fluid-ounce-to-us-tablespoon",
-    relatedConverterLabel: "US Fluid Ounce to US Tablespoon",
+    relatedConverterPath: "/tools/unit-converter/volume",
+    relatedConverterLabel: "Volume Converter",
     tableFromKey: "floz",
     tableToKey: "tbsp",
     seoUnitA: "US tablespoon",
@@ -765,8 +765,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "Since 1 US fl oz = 2 tbsp and 1 tbsp = 3 tsp, 1 fl oz = 2 × 3 = 6 tsp exactly.",
     relationshipContext:
       "Teaspoons are the smallest common US kitchen measure; fluid ounces measure the same US fluid system at a larger step.",
-    relatedConverterPath: "/tools/unit-converter/volume/us-fluid-ounce-to-us-teaspoon",
-    relatedConverterLabel: "US Fluid Ounce to US Teaspoon",
+    relatedConverterPath: "/tools/unit-converter/volume",
+    relatedConverterLabel: "Volume Converter",
     tableFromKey: "floz",
     tableToKey: "tsp",
     seoUnitA: "US teaspoon",
@@ -1028,15 +1028,15 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "digital",
     slug: "how-many-terabytes-in-a-petabyte-decimal",
-    hubUnitKey: "pb",
+    hubUnitKey: "tb",
     question: "How many terabytes are in a petabyte (decimal)?",
     directAnswer: "There are 1,000 terabytes in 1 decimal petabyte (PB).",
     detailedExplanation:
       "1 PB = 10¹⁵ bytes and 1 TB = 10¹² bytes, so 1 PB = 1,000 TB. Each step up the decimal ladder multiplies by 1,000.",
     relationshipContext:
       "Data centers and archives quote PB-class capacity; TB remains the common workstation scale.",
-    relatedConverterPath: "/tools/unit-converter/digital/petabyte-to-terabyte",
-    relatedConverterLabel: "Petabyte to Terabyte",
+    relatedConverterPath: "/tools/unit-converter/digital",
+    relatedConverterLabel: "Digital Storage Converter",
     tableFromKey: "pb",
     tableToKey: "tb",
     seoUnitA: "terabyte",
@@ -1190,15 +1190,15 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "energy",
     slug: "how-many-joules-in-a-kilojoule",
-    hubUnitKey: "kj",
+    hubUnitKey: "j",
     question: "How many joules are in a kilojoule?",
     directAnswer: "There are 1,000 joules in 1 kilojoule (kJ).",
     detailedExplanation:
       "The SI prefix kilo- means 1,000. Multiply kJ by 1,000 for joules; divide joules by 1,000 for kJ.",
     relationshipContext:
       "Kilojoules appear on some food labels (especially outside the US) and in engineering heat tables.",
-    relatedConverterPath: "/tools/unit-converter/energy/kilojoule-to-joule",
-    relatedConverterLabel: "Kilojoule to Joule",
+    relatedConverterPath: "/tools/unit-converter/energy",
+    relatedConverterLabel: "Energy Converter",
     tableFromKey: "kj",
     tableToKey: "j",
     seoUnitA: "joule",
@@ -1298,15 +1298,15 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "energy",
     slug: "how-many-kilocalories-in-a-kilojoule",
-    hubUnitKey: "kj",
+    hubUnitKey: "kcal",
     question: "How many kilocalories are in a kilojoule?",
     directAnswer: "One kilojoule is approximately 0.239006 kilocalories.",
     detailedExplanation:
       "1 kJ = 1,000 J. Since 1 kcal = 4,184 J, 1 kJ = 1,000 / 4,184 kcal. Food labels using kJ can be compared to kcal with this ratio.",
     relationshipContext:
       "Regions that label food in kilojoules still often think in kcal for diet planning.",
-    relatedConverterPath: "/tools/unit-converter/energy/kilojoule-to-kilocalorie",
-    relatedConverterLabel: "Kilojoule to Kilocalorie",
+    relatedConverterPath: "/tools/unit-converter/energy",
+    relatedConverterLabel: "Energy Converter",
     tableFromKey: "kj",
     tableToKey: "kcal",
     seoUnitA: "kilocalorie",
@@ -1353,7 +1353,7 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "power",
     slug: "how-many-btu-hr-in-1-ton-of-air-conditioning",
-    hubUnitKey: "btu_hr",
+    hubUnitKey: "kw",
     question: "how many btu/hr in 1 ton of air conditioning",
     directAnswer:
       "In US HVAC, 1 refrigeration ton is defined as 12,000 BTU/h (a rate of cooling), not a mass ton.",
@@ -1361,8 +1361,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "The “ton” in air conditioning refers to cooling capacity: 1 ton = 12,000 BTU per hour. That convention comes from historical ice-melting capacity; it is unrelated to the 2,000 lb short ton. Use BTU/h or kW for equipment comparisons; this site’s power converter does not include “tons” as a unit.",
     relationshipContext:
       "BTU/h and kilowatts both express thermal power. After knowing 12,000 BTU/h per ton, you can convert BTU/h to kW or W with the fixed IT BTU/h → watt factor in this tool.",
-    relatedConverterPath: "/tools/unit-converter/power/btu-hr-to-kilowatt",
-    relatedConverterLabel: "BTU per Hour to Kilowatt",
+    relatedConverterPath: "/tools/unit-converter/power",
+    relatedConverterLabel: "Power Converter",
     tableFromKey: "btu_hr",
     tableToKey: "kw",
     seoUnitA: "BTU per hour",
@@ -1397,8 +1397,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "This tool defines BTU/h using the IT British thermal unit rate: ≈0.293071 W per BTU/h. Divide watts by that value to get BTU/h. Ratings on packaging may round; always check whether the device is resistive (close to unity PF) before treating W as heat output.",
     relationshipContext:
       "Electric heaters are often sold with wattage; gas and mixed HVAC specs still use BTU/h. Converting helps compare electric models to fuel-based ratings.",
-    relatedConverterPath: "/tools/unit-converter/power/w-to-btu-hr",
-    relatedConverterLabel: "Watt to BTU per Hour",
+    relatedConverterPath: "/tools/unit-converter/power",
+    relatedConverterLabel: "Power Converter",
     tableFromKey: "w",
     tableToKey: "btu_hr",
     seoUnitA: "BTU per hour",
@@ -1426,7 +1426,7 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "power",
     slug: "what-is-the-difference-between-2000-va-and-2000-watts",
-    hubUnitKey: "va",
+    hubUnitKey: "w",
     question: "what is the difference between 2000 va and 2000 watts",
     directAnswer:
       "VA is apparent power; W is real power. At unity power factor, 2,000 VA and 2,000 W are numerically the same in this tool; with reactive loads, real watts are lower than VA for the same current.",
@@ -1434,8 +1434,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "Volt-amperes (VA) = voltage × current magnitude without accounting for phase. Watts account for power factor (cos φ for sinusoidal AC). UPS and transformer sizes are often given in VA; resistive heaters are ~1 W per VA. This converter assumes 1 VA = 1 W for numeric conversion between VA and watt units.",
     relationshipContext:
       "Sizing a UPS or generator requires VA for current limits; billing and heat output are closer to watts. Always read the equipment power factor when it matters.",
-    relatedConverterPath: "/tools/unit-converter/power/va-to-w",
-    relatedConverterLabel: "Volt-Ampere to Watt",
+    relatedConverterPath: "/tools/unit-converter/power",
+    relatedConverterLabel: "Power Converter",
     tableFromKey: "va",
     tableToKey: "w",
     seoUnitA: "watt",
@@ -1453,8 +1453,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "Convert watts to joules per second, then relate to kcal/h: this tool uses 1 kcal/h = 4,184/3,600 W. So kcal/h = W ÷ (4,184/3,600). A pure resistive heater converts essentially all electrical power to thermal power.",
     relationshipContext:
       "Some European thermal labels use kcal/h; electric ratings are often in W or kW. The conversion is linear once the thermochemical kcal definition is fixed.",
-    relatedConverterPath: "/tools/unit-converter/power/w-to-kcal-h",
-    relatedConverterLabel: "Watt to Kilocalorie per Hour",
+    relatedConverterPath: "/tools/unit-converter/power",
+    relatedConverterLabel: "Power Converter",
     tableFromKey: "w",
     tableToKey: "kcal_h",
     seoUnitA: "kilocalorie per hour",
@@ -1482,7 +1482,7 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "power",
     slug: "how-many-watts-does-a-5000-btu-hr-ac-use",
-    hubUnitKey: "btu_hr",
+    hubUnitKey: "w",
     question: "how many watts does a 5000 btu/hr ac use",
     directAnswer:
       "Cooling capacity 5,000 BTU/h is about 1,465 W of thermal power; electrical draw in watts depends on efficiency (EER/COP) and is usually higher than that cooling-equivalent rate.",
@@ -1490,8 +1490,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "Convert BTU/h to watts with this tool’s IT BTU/h factor: 5,000 × (~0.293071 W per BTU/h) ≈ 1,465 W. That value describes cooling power, not plug power. Actual current draw (VA/W) comes from the nameplate amperage or SEER/EER; inverter mini-splits vary widely.",
     relationshipContext:
       "Window units list BTU/h for cooling; consumers often want equivalent watts for generators or solar. Always separate thermal cooling watts from electrical input watts.",
-    relatedConverterPath: "/tools/unit-converter/power/btu-hr-to-w",
-    relatedConverterLabel: "BTU per Hour to Watt",
+    relatedConverterPath: "/tools/unit-converter/power",
+    relatedConverterLabel: "Power Converter",
     tableFromKey: "btu_hr",
     tableToKey: "w",
     seoUnitA: "watt",
@@ -1574,7 +1574,7 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "speed",
     slug: "what-wind-speed-is-beaufort-5",
-    hubUnitKey: "beaufort",
+    hubUnitKey: "knots",
     question: "What wind speed is Beaufort force 5?",
     directAnswer:
       "On this site, Beaufort force 5 maps to 9.35 m/s (midpoint of the WMO-style band at 10 m), then converts to knots, mph, etc.",
@@ -1582,8 +1582,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "The Beaufort scale maps observed sea state / wind effects to force numbers 0–12. This converter uses WMO-style mean wind speed ranges at 10 m and maps each force to a representative midpoint in m/s before converting to other units. Force 5 sits in the “fresh breeze” range used in marine forecasts.",
     relationshipContext:
       "Marine forecasts still cite Beaufort force; converting to knots or m/s helps comparison with anemometers and numerical models.",
-    relatedConverterPath: "/tools/unit-converter/speed/beaufort-to-knots",
-    relatedConverterLabel: "Beaufort to Knots",
+    relatedConverterPath: "/tools/unit-converter/speed",
+    relatedConverterLabel: "Speed Converter",
     tableFromKey: "beaufort",
     tableToKey: "knots",
     seoUnitA: "knots",
@@ -1978,15 +1978,15 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     category: "angle",
     slug: "how-many-nato-mils-in-a-full-circle",
-    hubUnitKey: "mil",
+    hubUnitKey: "deg",
     question: "How many NATO mils are in a full circle?",
     directAnswer: "A full circle is exactly 6,400 NATO mils.",
     detailedExplanation:
       "NATO defines the mil so that 6,400 mils complete 360°. Each mil is 360°/6400 = 0.05625°, or 2π/6400 radians.",
     relationshipContext:
       "Artillery and tactical reticles use this 6400 division for quick angle and sector arithmetic.",
-    relatedConverterPath: "/tools/unit-converter/angle/mil-to-deg",
-    relatedConverterLabel: "NATO Mil to Degrees",
+    relatedConverterPath: "/tools/unit-converter/angle",
+    relatedConverterLabel: "Angle Converter",
     tableFromKey: "mil",
     tableToKey: "deg",
     seoUnitA: "degree",
@@ -2021,8 +2021,8 @@ export const FAQ_ENTRIES: FaqEntry[] = [
       "Because 360° = 6400 NATO mils, 1° = 6400/360 mils. The converter applies the same ratio via radians for consistency.",
     relationshipContext:
       "Converting between degree-based maps and mil-based fire-direction or reticle stadia is a common workflow.",
-    relatedConverterPath: "/tools/unit-converter/angle/deg-to-mil",
-    relatedConverterLabel: "Degrees to NATO Mil",
+    relatedConverterPath: "/tools/unit-converter/angle",
+    relatedConverterLabel: "Angle Converter",
     tableFromKey: "deg",
     tableToKey: "mil",
     seoUnitA: "NATO mil",

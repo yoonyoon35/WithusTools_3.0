@@ -15,7 +15,7 @@ import HowToConvertTime from "../HowToConvertTime";
 import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalTimeSlug,
-  getTimeKeys,
+  TIME_HUB_KEYS,
   parseTimePairSlug,
 } from "@/utils/conversions";
 import {
@@ -24,6 +24,12 @@ import {
   getUnitDescription,
 } from "../timePairContent";
 import { timeUnitLabel } from "../timePairUi";
+
+const TIME_HUB_KEY_SET = new Set<string>(TIME_HUB_KEYS);
+
+function isTimeHubPair(from: string, to: string): boolean {
+  return TIME_HUB_KEY_SET.has(from) && TIME_HUB_KEY_SET.has(to);
+}
 
 export async function generateMetadata({
   params,
@@ -34,7 +40,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseTimePairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isTimeHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Time Conversion",
       noIndex: true,
@@ -64,10 +70,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const keys = getTimeKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of keys) {
-    for (const to of keys) {
+  for (const from of TIME_HUB_KEYS) {
+    for (const to of TIME_HUB_KEYS) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalTimeSlug(from, to) });
     }
@@ -86,7 +91,7 @@ export default async function TimePairPage({
   setRequestLocale(locale);
 
   const pair = parseTimePairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isTimeHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/time/${params.slug}`;
   const toolContent = await loadToolContent(locale);

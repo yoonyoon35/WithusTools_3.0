@@ -421,7 +421,7 @@ function VolumeHubLinkCards({
       </h2>
       <p className="mb-6 text-sm text-slate-500">
         {formatUi(asText(pageUi.moreConvertersIntro), { unitSg: fromSg }) ||
-          `Dedicated pages from ${fromSg} to every other hub volume unit (liter, cubic meter, US gallon, US fluid ounce, cubic foot, US tablespoon, US teaspoon, cubic inch).`}
+          `Dedicated pages from ${fromSg} to every other hub volume unit (liter, cubic meter, US gallon, US fluid ounce, cubic foot, cubic inch).`}
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map(({ toKey, href }) => {
@@ -599,7 +599,7 @@ function DigitalHubLinkCards({
       </h2>
       <p className="mb-6 text-sm text-slate-500">
         {formatUi(asText(pageUi.moreConvertersIntro), { unitSg: fromSg }) ||
-          `Dedicated pages from ${fromSg} to every other hub digital unit (gigabyte, terabyte, megabyte, byte, kilobyte, petabyte, bit, megabit).`}
+          `Dedicated pages from ${fromSg} to every other hub digital unit (gigabyte, terabyte, megabyte, byte, kilobyte, bit, megabit).`}
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map(({ toKey, href }) => {
@@ -658,7 +658,7 @@ function EnergyHubLinkCards({
       </h2>
       <p className="mb-6 text-sm text-slate-500">
         {formatUi(asText(pageUi.moreConvertersIntro), { unitSg: fromSg }) ||
-          `Dedicated pages from ${fromSg} to every other hub energy unit (kilocalorie, kilowatt-hour, calorie, joule, kilojoule, watt-hour, BTU, electronvolt).`}
+          `Dedicated pages from ${fromSg} to every other hub energy unit (kilocalorie, kilowatt-hour, calorie, joule, watt-hour, BTU, electronvolt).`}
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map(({ toKey, href }) => {
@@ -717,7 +717,7 @@ function PowerHubLinkCards({
       </h2>
       <p className="mb-6 text-sm text-slate-500">
         {formatUi(asText(pageUi.moreConvertersIntro), { unitSg: fromSg }) ||
-          `Dedicated pages from ${fromSg} to every other hub power unit (watt, milliwatt, kilowatt, megawatt, mechanical horsepower, BTU per hour, kilocalorie per hour, volt-ampere).`}
+          `Dedicated pages from ${fromSg} to every other hub power unit (watt, milliwatt, kilowatt, megawatt, mechanical horsepower, metric horsepower PS/CV).`}
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map(({ toKey, href }) => {
@@ -836,7 +836,7 @@ function SpeedHubLinkCards({
       </h2>
       <p className="mb-6 text-sm text-slate-500">
         {formatUi(asText(pageUi.moreConvertersIntro), { unitSg: fromSg }) ||
-          `Dedicated pages from ${fromSg} to every other hub speed unit (m/s, km/h, mph, knots, ft/s, Mach, Beaufort, c).`}
+          `Dedicated pages from ${fromSg} to every other hub speed unit (m/s, km/s, km/h, mph, knots, ft/s, in/s, cm/s, mm/s, Mach, c).`}
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map(({ toKey, href }) => {
@@ -895,7 +895,7 @@ function AngleHubLinkCards({
       </h2>
       <p className="mb-6 text-sm text-slate-500">
         {formatUi(asText(pageUi.moreConvertersIntro), { unitSg: fromSg }) ||
-          `Dedicated pages from ${fromSg} to every other hub angle unit (turn, deg, arcmin, arcsec, grad, rad, mrad, mil).`}
+          `Dedicated pages from ${fromSg} to every other hub angle unit (turn, deg, arcmin, arcsec, grad, rad, mrad).`}
       </p>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map(({ toKey, href }) => {

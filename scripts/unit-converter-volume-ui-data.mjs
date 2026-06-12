@@ -26,7 +26,7 @@ export const VOLUME_KEY_TO_SLUG = {
   uktsp: "uk-teaspoon",
 };
 
-export const VOLUME_HUB_KEYS = ["l", "m3", "gal", "floz", "ft3", "tbsp", "tsp", "in3"];
+export const VOLUME_HUB_KEYS = ["l", "m3", "gal", "floz", "ft3", "in3"];
 
 const unitDescriptionsEn = {
   m3:
@@ -197,7 +197,7 @@ export const volumeUiEn = {
     backUnitConverter: "Unit Converter",
     moreConvertersTitle: "More {unit} converters",
     moreConvertersIntro:
-      "Dedicated pages from {unitSg} to every other hub volume unit (liter, cubic meter, US gallon, US fluid ounce, cubic foot, US tablespoon, US teaspoon, cubic inch).",
+      "Dedicated pages from {unitSg} to every other hub volume unit (liter, cubic meter, US gallon, US fluid ounce, cubic foot, cubic inch).",
     moreConvertersLink: "{fromSlug} to {toSlug} ({fromName} to {toName})",
   },
 };
@@ -311,7 +311,7 @@ export const volumeUiKo = {
     backUnitConverter: "단위 변환기",
     moreConvertersTitle: "{unit} 관련 변환기",
     moreConvertersIntro:
-      "{unitSg}에서 다른 허브 부피 단위(L, m³, US gallon, US fl oz, ft³, US tbsp, US tsp, in³)로 가는 전용 페이지입니다.",
+      "{unitSg}에서 다른 허브 부피 단위(L, m³, US gallon, US fl oz, ft³, in³)로 가는 전용 페이지입니다.",
     moreConvertersLink: "{fromSlug} → {toSlug} ({fromName} → {toName})",
   },
 };

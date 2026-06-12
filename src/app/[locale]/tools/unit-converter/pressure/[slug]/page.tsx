@@ -26,6 +26,12 @@ import {
 } from "../pressurePairContent";
 import { pressureUnitLabel } from "../pressurePairUi";
 
+const PRESSURE_HUB_KEY_SET = new Set<string>(PRESSURE_HUB_KEYS);
+
+function isPressureHubPair(from: string, to: string): boolean {
+  return PRESSURE_HUB_KEY_SET.has(from) && PRESSURE_HUB_KEY_SET.has(to);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -35,7 +41,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parsePressurePairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isPressureHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Pressure Conversion",
       noIndex: true,
@@ -86,7 +92,7 @@ export default async function PressurePairPage({
   setRequestLocale(locale);
 
   const pair = parsePressurePairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isPressureHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/pressure/${params.slug}`;
   const toolContent = await loadToolContent(locale);

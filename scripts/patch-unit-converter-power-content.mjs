@@ -4,8 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
+  POWER_HUB_KEYS,
   POWER_KEY_TO_SLUG,
-  POWER_UNIT_KEYS,
   powerHubContentEn,
   powerHubContentKo,
   powerUiEn,
@@ -125,9 +125,15 @@ for (const locale of ["en", "ko"]) {
 
   data.byPath[HUB_PATH] = { ...hubSrc, ui: buildHubUi(uiMap) };
 
+  for (const key of Object.keys(data.byPath)) {
+    if (key.startsWith(`${HUB_PATH}.`)) {
+      delete data.byPath[key];
+    }
+  }
+
   let pairCount = 0;
-  for (const fromKey of POWER_UNIT_KEYS) {
-    for (const toKey of POWER_UNIT_KEYS) {
+  for (const fromKey of POWER_HUB_KEYS) {
+    for (const toKey of POWER_HUB_KEYS) {
       if (fromKey === toKey) continue;
       const slug = getCanonicalPowerSlug(fromKey, toKey);
       data.byPath[`${HUB_PATH}.${slug}`] = {

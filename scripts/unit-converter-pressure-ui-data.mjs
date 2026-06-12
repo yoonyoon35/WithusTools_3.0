@@ -5,6 +5,11 @@ export const PRESSURE_UNIT_KEYS = [
   "kpa", "hpa", "mbar", "torr", "mmhg", "pa",
 ];
 
+/** Dedicated pair pages only (subset of PRESSURE_UNIT_KEYS). */
+export const PRESSURE_HUB_KEYS = [
+  "bar", "atm", "psi", "inhg", "kpa", "hpa", "mbar", "torr", "mmhg", "pa",
+];
+
 export const PRESSURE_KEY_TO_SLUG = {
   bar: "bar",
   atm: "atm",
@@ -20,8 +25,6 @@ export const PRESSURE_KEY_TO_SLUG = {
   mmhg: "mmhg",
   pa: "pa",
 };
-
-export const PRESSURE_HUB_KEYS = PRESSURE_UNIT_KEYS;
 
 const unitDescriptionsEn = {
   pa: "The pascal (Pa) is the SI unit of pressure (one newton per square meter). It is the common reference for scientific and engineering work.",

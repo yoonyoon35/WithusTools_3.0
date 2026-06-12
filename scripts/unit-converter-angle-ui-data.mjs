@@ -5,6 +5,11 @@ export const ANGLE_UNIT_KEYS = [
   "grad", "rad", "mrad", "urad", "mil",
 ];
 
+/** Dedicated pair pages only (subset of ANGLE_UNIT_KEYS). */
+export const ANGLE_HUB_KEYS = [
+  "turn", "deg", "arcmin", "arcsec", "grad", "rad", "mrad",
+];
+
 export const ANGLE_KEY_TO_SLUG = {
   turn: "turn",
   quadrant: "quadrant",
@@ -19,8 +24,6 @@ export const ANGLE_KEY_TO_SLUG = {
   urad: "urad",
   mil: "mil",
 };
-
-export const ANGLE_HUB_KEYS = ANGLE_UNIT_KEYS;
 
 const unitDescriptionsEn = {
   turn: "One revolution (turn) is a full circle: 2π radians or 360°. Used in rotation rates, motors, and astronomy (e.g. revolutions per minute).",
@@ -162,7 +165,7 @@ export const angleUiEn = {
     backUnitConverter: "Unit Converter",
     moreConvertersTitle: "More {unit} converters",
     moreConvertersIntro:
-      "Dedicated pages from {unitSg} to every other hub angle unit (turn, deg, arcmin, arcsec, grad, rad, mrad, mil).",
+      "Dedicated pages from {unitSg} to every other hub angle unit (turn, deg, arcmin, arcsec, grad, rad, mrad).",
     moreConvertersLink: "{fromSlug} to {toSlug} ({fromName} to {toName})",
   },
 };
@@ -277,7 +280,7 @@ export const angleUiKo = {
     backUnitConverter: "단위 변환기",
     moreConvertersTitle: "{unit} 관련 변환기",
     moreConvertersIntro:
-      "{unitSg}에서 다른 허브 각도 단위(turn, deg, arcmin, arcsec, grad, rad, mrad, mil)로 가는 전용 페이지입니다.",
+      "{unitSg}에서 다른 허브 각도 단위(turn, deg, arcmin, arcsec, grad, rad, mrad)로 가는 전용 페이지입니다.",
     moreConvertersLink: "{fromSlug} → {toSlug} ({fromName} → {toName})",
   },
 };

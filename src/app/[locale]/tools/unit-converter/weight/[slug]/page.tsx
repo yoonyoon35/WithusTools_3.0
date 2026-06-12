@@ -15,7 +15,7 @@ import HowToConvertWeight from "../HowToConvertWeight";
 import UnitConverterNonHubPairLinks from "@/components/UnitConverterNonHubPairLinks";
 import {
   getCanonicalWeightSlug,
-  getWeightKeys,
+  WEIGHT_HUB_KEYS,
   parseWeightPairSlug,
 } from "@/utils/conversions";
 import {
@@ -24,6 +24,12 @@ import {
   getUnitDescription,
 } from "../weightPairContent";
 import { weightUnitLabel } from "../weightPairUi";
+
+const WEIGHT_HUB_KEY_SET = new Set<string>(WEIGHT_HUB_KEYS);
+
+function isWeightHubPair(from: string, to: string): boolean {
+  return WEIGHT_HUB_KEY_SET.has(from) && WEIGHT_HUB_KEY_SET.has(to);
+}
 
 export async function generateMetadata({
   params,
@@ -34,7 +40,7 @@ export async function generateMetadata({
     ? (params.locale as Locale)
     : routing.defaultLocale;
   const pair = parseWeightPairSlug(params.slug);
-  if (!pair) {
+  if (!pair || !isWeightHubPair(pair.from, pair.to)) {
     return createMetadata({
       title: "Weight Conversion",
       noIndex: true,
@@ -64,10 +70,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const keys = getWeightKeys();
   const slugs: { slug: string }[] = [];
-  for (const from of keys) {
-    for (const to of keys) {
+  for (const from of WEIGHT_HUB_KEYS) {
+    for (const to of WEIGHT_HUB_KEYS) {
       if (from === to) continue;
       slugs.push({ slug: getCanonicalWeightSlug(from, to) });
     }
@@ -86,7 +91,7 @@ export default async function WeightPairPage({
   setRequestLocale(locale);
 
   const pair = parseWeightPairSlug(params.slug);
-  if (!pair) notFound();
+  if (!pair || !isWeightHubPair(pair.from, pair.to)) notFound();
 
   const metaPath = `/tools/unit-converter/weight/${params.slug}`;
   const toolContent = await loadToolContent(locale);
