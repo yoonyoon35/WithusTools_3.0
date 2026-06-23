@@ -123,7 +123,7 @@ export function DsrCalculator() {
   const [loans, setLoans] = React.useState<LoanRowState[]>(() => [createLoanRow(`${loansBaseId}-0`, "new")]);
   const [equalPrincipalDsrBasis, setEqualPrincipalDsrBasis] =
     React.useState<EqualPrincipalDsrBasis>("first-month");
-  const [bulletDsrBasis, setBulletDsrBasis] = React.useState<BulletDsrBasis>("equal-payment");
+  const [bulletDsrBasis, setBulletDsrBasis] = React.useState<BulletDsrBasis>("interest-only");
   const [dsrMode, setDsrMode] = React.useState<"general" | "stress">("general");
   const [stressPresetId, setStressPresetId] = React.useState<StressDsrPresetId>("metro_mortgage");
   const [stressCustomPercent, setStressCustomPercent] = React.useState("1.5");
@@ -385,7 +385,7 @@ export function DsrCalculator() {
 
           {hasBulletLoan ? (
             <div className="space-y-2 border-t pt-4">
-              <Label htmlFor="dsr-bullet-basis">만기일시 DSR·납입 추정 기준</Label>
+              <Label htmlFor="dsr-bullet-basis">만기일시 — DSR 산정 기준 (선택)</Label>
               <select
                 id="dsr-bullet-basis"
                 className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
@@ -447,22 +447,34 @@ export function DsrCalculator() {
           </div>
 
           {!showZeroResult && displaySnapshot.loanResults.length > 0 ? (
-            <div className="overflow-auto rounded-md border">
-              <table className="w-full min-w-[520px] border-collapse text-sm">
+            <div className="rounded-md border">
+              <table className="w-full table-fixed border-collapse text-sm">
                 <caption className="sr-only">대출별 월 상환액</caption>
                 <thead className="bg-muted/50 border-b">
                   <tr>
-                    <th scope="col" className="p-2 text-left font-medium">
+                    <th
+                      scope="col"
+                      className={`px-2 py-1.5 text-left text-xs font-medium sm:text-sm ${displaySnapshot.isStressDsr ? "w-[22%]" : "w-[30%]"}`}
+                    >
                       대출
                     </th>
-                    <th scope="col" className="p-2 text-left font-medium">
+                    <th
+                      scope="col"
+                      className={`px-1 py-1.5 text-left text-xs font-medium sm:text-sm ${displaySnapshot.isStressDsr ? "w-[10%]" : "w-[12%]"}`}
+                    >
                       구분
                     </th>
-                    <th scope="col" className="p-2 text-right font-medium">
+                    <th
+                      scope="col"
+                      className={`px-1 py-1.5 text-right text-xs font-medium whitespace-nowrap sm:px-2 sm:text-sm ${displaySnapshot.isStressDsr ? "w-[34%]" : "w-[58%]"}`}
+                    >
                       월 상환 (계약)
                     </th>
                     {displaySnapshot.isStressDsr ? (
-                      <th scope="col" className="p-2 text-right font-medium">
+                      <th
+                        scope="col"
+                        className="w-[34%] px-1 py-1.5 text-right text-xs font-medium whitespace-nowrap sm:px-2 sm:text-sm"
+                      >
                         월 상환 (DSR)
                       </th>
                     ) : null}
@@ -471,11 +483,17 @@ export function DsrCalculator() {
                 <tbody>
                   {displaySnapshot.loanResults.map((loan) => (
                     <tr key={loan.label + loan.isNew + loan.monthlyContract} className="border-b last:border-0">
-                      <td className="p-2 font-medium">{loan.label}</td>
-                      <td className="text-muted-foreground p-2">{loan.isNew ? "신규" : "기존"}</td>
-                      <td className="p-2 text-right tabular-nums">{formatNumber(Math.round(loan.monthlyContract))}원</td>
+                      <td className="truncate px-2 py-1.5 font-medium">{loan.label}</td>
+                      <td className="text-muted-foreground px-1 py-1.5 whitespace-nowrap">
+                        {loan.isNew ? "신규" : "기존"}
+                      </td>
+                      <td className="px-1 py-1.5 text-right text-xs tabular-nums whitespace-nowrap sm:px-2 sm:text-sm">
+                        {formatNumber(Math.round(loan.monthlyContract))}원
+                      </td>
                       {displaySnapshot.isStressDsr ? (
-                        <td className="p-2 text-right tabular-nums">{formatNumber(Math.round(loan.monthlyDsr))}원</td>
+                        <td className="px-1 py-1.5 text-right text-xs tabular-nums whitespace-nowrap sm:px-2 sm:text-sm">
+                          {formatNumber(Math.round(loan.monthlyDsr))}원
+                        </td>
                       ) : null}
                     </tr>
                   ))}
@@ -807,7 +825,12 @@ function LoanRowEditor({
           ) : null}
           {computedMonthly != null && computedMonthly > 0 ? (
             <p className="text-muted-foreground text-xs">
-              계약 금리 기준 월 상환 추정:{" "}
+              {parsed?.repaymentType === "bullet"
+                ? bulletDsrBasis === "interest-only"
+                  ? "계약 금리 기준 월 납입(이자)"
+                  : "DSR 환산 월 상환(원리금균등)"
+                : "계약 금리 기준 월 상환 추정"}
+              :{" "}
               <span className="text-foreground font-medium tabular-nums">
                 {formatNumber(Math.round(computedMonthly))}원
               </span>

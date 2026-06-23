@@ -127,7 +127,7 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
         <h2 id="guide-t2h-example" className="text-foreground text-xl font-semibold tracking-tight">
           일시적 2주택 취득세 계산 예시
         </h2>
-        <p className="text-muted-foreground text-sm">조정대상지역 신규 주택 매매가 7억 원 취득</p>
+        <p className="text-muted-foreground text-sm">조정대상지역 신규 주택 매매가 7억 원 취득, 전용 85㎡ 이하·농특세 제외(취득세 계산기 기준)</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -159,14 +159,14 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
                   일시적 2주택 요건 미충족 시(중과세율)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">8%</td>
-                <td className="border-border border-b px-3 py-2.5">약 6,160만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 5,880만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   차이
                 </th>
                 <td className="px-3 py-2.5">—</td>
-                <td className="px-3 py-2.5">약 4,876만 원</td>
+                <td className="px-3 py-2.5">약 4,596만 원</td>
               </tr>
             </tbody>
           </table>

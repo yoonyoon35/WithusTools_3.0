@@ -26,14 +26,15 @@ export const equalPrincipalDsrBasisHints: Record<EqualPrincipalDsrBasis, string>
 export type BulletDsrBasis = "interest-only" | "equal-payment";
 
 export const bulletDsrBasisLabels: Record<BulletDsrBasis, string> = {
-  "interest-only": "기간 중 이자만 (실제 납부 이자)",
-  "equal-payment": "원리금균등 환산액 (동일 금리·기간 가정)",
+  "interest-only": "기간 중 이자만 (실제 월 납입)",
+  "equal-payment": "원리금균등 환산 (DSR 보수적 산정)",
 };
 
 export const bulletDsrBasisHints: Record<BulletDsrBasis, string> = {
-  "interest-only": "만기 전까지 실제로 납부하는 이자만 연간 상환액에 반영합니다(만기 원금 제외).",
+  "interest-only":
+    "만기 전까지 실제로 납부하는 이자만 반영합니다. 원리금균등상환은 상환 방식에서 직접 선택하세요.",
   "equal-payment":
-    "만기일시를 원리금균등으로 환산해 연간 상환액을 계산합니다. 일부 기관·계산기의 보수적 산정과 유사할 수 있습니다.",
+    "만기일시를 원리금균등으로 환산해 DSR 연간 상환액을 계산합니다. 일부 금융기관·계산기의 보수적 산정과 비교할 때 선택합니다.",
 };
 
 /** 신규 대출 스트레스 금리 반영: 가이드의 변동·혼합·주기·순수고정 가중 */
@@ -154,11 +155,15 @@ export function annualLoanDebtService(
     return sum;
   }
 
-  const monthlyRate = annualRatePercent / 100 / 12;
-  const repaymentMonths = Math.max(1, months - graceMonths);
-  const totalInterest = balanceWon * monthlyRate * (repaymentMonths + 1) / 2;
-  const totalPaid = balanceWon + totalInterest;
-  return (totalPaid / repaymentMonths) * 12;
+  const { schedule } = calculateEqualPrincipal(
+    balanceWon,
+    annualRatePercent,
+    months,
+    graceMonths,
+  );
+  if (!schedule.length) return 0;
+  const totalPaid = schedule.reduce((sum, row) => sum + row.payment, 0);
+  return (totalPaid / schedule.length) * 12;
 }
 
 /** @deprecated annualLoanDebtService 사용. grace 미반영 시 호환용 */

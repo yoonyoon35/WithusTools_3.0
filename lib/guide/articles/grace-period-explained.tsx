@@ -72,21 +72,21 @@ export function GracePeriodExplainedBody() {
                   거치기간 1년
                 </th>
                 <td className="border-border border-b px-3 py-2.5">약 100만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 149만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 146만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   거치기간 2년
                 </th>
                 <td className="border-border border-b px-3 py-2.5">약 100만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 155만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 149만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   거치기간 3년
                 </th>
                 <td className="px-3 py-2.5">약 100만 원</td>
-                <td className="px-3 py-2.5">약 162만 원</td>
+                <td className="px-3 py-2.5">약 152만 원</td>
               </tr>
             </tbody>
           </table>
@@ -121,30 +121,30 @@ export function GracePeriodExplainedBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   거치기간 없음
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 2억 1,500만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 2억 1,600만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   거치기간 1년
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 2억 2,700만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 2억 1,940만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   거치기간 2년
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 2억 3,900만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 2억 2,320만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   거치기간 3년
                 </th>
-                <td className="px-3 py-2.5">약 2억 5,200만 원</td>
+                <td className="px-3 py-2.5">약 2억 2,710만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>거치기간 1년당 총 이자 부담이 약 1,200만 원 증가합니다.</p>
+        <p>거치기간 1년당 총 이자 부담이 약 375만 원 증가합니다(대출 이자 계산기 기준).</p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-grace-when-good">
@@ -244,9 +244,12 @@ export function GracePeriodExplainedBody() {
           거치기간과 DSR의 관계
         </h2>
         <p>
-          거치기간 중에는 이자만 납부하므로 <abbr title="총부채원리금상환비율">DSR</abbr> 산정 시 월 상환액이 낮게 계산됩니다. 이로
-          인해 거치기간이 있는 대출이 거치기간 없는 대출보다 DSR 한도 내에서 더 많은 금액을 빌릴 수 있는 것처럼 보일 수 있습니다. 단,
-          본 상환 시작 후 월 상환액이 크게 증가하므로 실제 상환 능력을 기준으로 판단해야 합니다.
+          거치기간이 있으면 DSR 산정 방식은 금융기관·상품마다 다릅니다. 본 사이트{" "}
+          <Link href="/dsr-calculator" className="text-primary underline-offset-4 hover:underline">
+            DSR 계산기
+          </Link>
+          는 거치 종료 후 원리금균등 월 상환액을 연환산하는 방식을 사용합니다. 거치 중 실제 이자만 내는 기간보다 보수적으로
+          잡힐 수 있으므로, 실제 심사 기준은 해당 금융기관에 확인해야 합니다.
         </p>
       </section>
 

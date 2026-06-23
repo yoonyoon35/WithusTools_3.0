@@ -77,7 +77,7 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
         <h2 id="guide-s2-by-price" className="text-foreground text-xl font-semibold tracking-tight">
           매매가별 취득세 비교(조정 vs 비조정)
         </h2>
-        <p className="text-muted-foreground text-sm">전용 85㎡ 이하 기준(농특세 제외 합계 예시)</p>
+        <p className="text-muted-foreground text-sm">전용 85㎡ 이하·농특세 제외(취득세 계산기 기준)</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -105,32 +105,32 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
                   3억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">330만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2,640만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2,310만 원</td>
+                <td className="border-border border-b px-3 py-2.5">2,520만 원</td>
+                <td className="border-border border-b px-3 py-2.5">2,190만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   5억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">550만 원</td>
-                <td className="border-border border-b px-3 py-2.5">4,400만 원</td>
-                <td className="border-border border-b px-3 py-2.5">3,850만 원</td>
+                <td className="border-border border-b px-3 py-2.5">4,200만 원</td>
+                <td className="border-border border-b px-3 py-2.5">3,650만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   7억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">약 1,284만 원</td>
-                <td className="border-border border-b px-3 py-2.5">6,160만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 4,876만 원</td>
+                <td className="border-border border-b px-3 py-2.5">5,880만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 4,596만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   10억 원
                 </th>
                 <td className="px-3 py-2.5">3,300만 원</td>
-                <td className="px-3 py-2.5">8,800만 원</td>
-                <td className="px-3 py-2.5">5,500만 원</td>
+                <td className="px-3 py-2.5">8,400만 원</td>
+                <td className="px-3 py-2.5">5,100만 원</td>
               </tr>
             </tbody>
           </table>

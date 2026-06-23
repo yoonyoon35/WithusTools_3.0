@@ -278,8 +278,8 @@ export function AcquisitionTaxRates2026GuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">8%</td>
                 <td className="border-border border-b px-3 py-2.5">4,000만 원</td>
-                <td className="border-border border-b px-3 py-2.5">400만 원</td>
-                <td className="border-border border-b px-3 py-2.5">100만 원</td>
+                <td className="border-border border-b px-3 py-2.5">200만 원</td>
+                <td className="border-border border-b px-3 py-2.5">300만 원</td>
                 <td className="border-border border-b px-3 py-2.5">4,500만 원</td>
               </tr>
               <tr className="bg-muted/20">
@@ -288,8 +288,8 @@ export function AcquisitionTaxRates2026GuideBody() {
                 </th>
                 <td className="px-3 py-2.5">8%</td>
                 <td className="px-3 py-2.5">8,000만 원</td>
-                <td className="px-3 py-2.5">800만 원</td>
-                <td className="px-3 py-2.5">200만 원</td>
+                <td className="px-3 py-2.5">400만 원</td>
+                <td className="px-3 py-2.5">600만 원</td>
                 <td className="px-3 py-2.5">9,000만 원</td>
               </tr>
             </tbody>

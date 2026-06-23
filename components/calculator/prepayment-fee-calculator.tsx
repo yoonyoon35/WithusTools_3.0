@@ -17,8 +17,10 @@ import {
   formatDateLabel,
   formatDaysLabel,
   formatMonthsLabel,
+  getFeePeriodLabel,
   getFeeSpreadDisplay,
   getRemainingPeriodLabel,
+  PREPAYMENT_FEE_FORMULA,
   parseDateInput,
   toMonths,
   type PrepaymentFeeResult,
@@ -587,11 +589,19 @@ export function PrepaymentFeeCalculator() {
                 <span className="text-lg font-semibold tabular-nums">{result.feeRatePercent}%</span>
               </div>
               <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
-                <span className="text-muted-foreground text-sm">대출기간</span>
+                <span className="text-muted-foreground text-sm">계약 대출기간</span>
                 <span className="text-lg font-semibold tabular-nums">
                   {result.inputMode === "date" && result.loanTermDays !== undefined
                     ? `${formatDaysLabel(result.loanTermDays)} (${formatMonthsLabel(result.loanTermMonths)} 환산)`
                     : formatMonthsLabel(result.loanTermMonths)}
+                </span>
+              </div>
+              <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
+                <span className="text-muted-foreground text-sm">{getFeePeriodLabel(result.remainingPeriodBasis)}</span>
+                <span className="text-lg font-semibold tabular-nums">
+                  {result.inputMode === "date" && result.feePeriodDays !== undefined
+                    ? `${formatDaysLabel(result.feePeriodDays)} (${formatMonthsLabel(result.feePeriodMonths)} 환산)`
+                    : formatMonthsLabel(result.feePeriodMonths)}
                 </span>
               </div>
               <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
@@ -639,8 +649,8 @@ export function PrepaymentFeeCalculator() {
         <CardHeader>
           <CardTitle className="text-lg">중도상환 수수료 계산 기준</CardTitle>
           <p className="text-muted-foreground text-sm font-normal">
-            중도상환 수수료 = 중도상환 원금 × 수수료율 × 잔여기간 ÷ 대출기간. 면제 기간이 있는 상품은 중도상환일부터
-            면제 종료일까지, 없는 상품은 만기일까지 남은 기간을 잔여기간으로 계산합니다.
+            {PREPAYMENT_FEE_FORMULA}. 면제 기간이 있는 상품은 잔여기간·대출기간 모두 면제 기간(통상 3년) 기준으로
+            계산하고, 없는 상품은 만기일까지 남은 기간을 잔여기간으로, 전체 대출기간을 분모로 사용합니다.
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -662,10 +672,11 @@ export function PrepaymentFeeCalculator() {
                   {[
                     ["중도상환 원금", "5,000만 원"],
                     ["수수료율", "1.2%"],
-                    ["대출기간", "30년(360개월)"],
+                    ["계약 대출기간", "30년(360개월)"],
+                    ["수수료 계산 기간", "3년(36개월, 면제 기간)"],
                     ["경과 기간", "1년(12개월)"],
                     ["잔여기간", "24개월(36개월 − 12개월)"],
-                    ["수수료", "5,000만 원 × 1.2% × 24/360 = 약 40만 원"],
+                    ["수수료", "5,000만 원 × 1.2% × (24 ÷ 36) = 약 40만 원"],
                   ].map(([label, value]) => (
                     <tr
                       key={label}
@@ -779,7 +790,7 @@ export function PrepaymentFeeCalculator() {
                 </p>
                 <p>
                   반대로 <strong>잔여 대출기간이 1~2년뿐</strong>이고 금리가 이미 2%대처럼 낮다면 이야기가 달라집니다. 잔여
-                  24개월 동안 5,000만 원에 붙는 이자가 100~150만 원 수준까지 줄어들 수 있고, 면제 직전이라 수수료도 10~20만
+                  24개월 동안 5,000만 원에 붙는 이자가 100~150만 원 수준까지 줄어들 수 있고, 면제 직전이라 수수료도 5~10만
                   원대로 낮아집니다. 절감 이자와 수수료의 차이가 크지 않아, 굳이 지금 상환하지 않아도 되는 경우가
                   생깁니다. 잔여 6개월 미만·금리 2% 이하처럼 조건이 겹치면 수수료가 절감 이자보다 클 수도 있으니, 면제
                   기간 종료를 기다리거나 만기 상환을 검토하는 편이 낫습니다.
@@ -793,7 +804,7 @@ export function PrepaymentFeeCalculator() {
                   중도상환한다고 가정합니다.
                 </p>
                 <p>
-                  이때 납부할 <strong>중도상환 수수료는 약 40만 원</strong>입니다(5,000만 원 × 1.2% × 24/360). 상환하지
+                  이때 납부할 <strong>중도상환 수수료는 약 40만 원</strong>입니다(5,000만 원 × 1.2% × (24 ÷ 36)). 상환하지
                   않고 24개월을 더 갚아 나가면, 해당 5,000만 원에 대해 그 기간 동안 추가로 부담하는 이자는{" "}
                   <strong>약 380만 원</strong> 수준으로 잡을 수 있습니다(금리·상환 방식에 따라 달라짐). 수수료 40만 원을
                   내더라도 이자 380만 원을 줄일 수 있으므로, <strong>순 절감액은 약 340만 원</strong> 정도로 볼 수

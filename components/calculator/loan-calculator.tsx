@@ -204,13 +204,12 @@ export function LoanCalculator() {
       loanPeriodMonths = periodVal;
     }
 
-    let adjustedGrace = graceDisabled ? 0 : grace;
-    const graceMonths = adjustedGrace * 12;
-    if (graceMonths >= loanPeriodMonths) {
-      const maxGraceYears = Math.max(0, Math.floor(loanPeriodMonths / 12));
-      adjustedGrace = Math.min(adjustedGrace, maxGraceYears);
+    const finalGraceYears = graceDisabled ? 0 : grace;
+    const graceMonths = finalGraceYears * 12;
+    if (!graceDisabled && graceMonths >= loanPeriodMonths) {
+      window.alert("거치기간은 대출기간보다 짧아야 합니다. 본금을 상환할 기간이 필요합니다.");
+      return;
     }
-    const finalGraceYears = graceDisabled ? 0 : adjustedGrace;
 
     const parsedGraduatedRate = parseFloat(graduatedIncreaseRate);
     if (Number.isNaN(parsedGraduatedRate) || parsedGraduatedRate < 0 || parsedGraduatedRate > 20) {
@@ -241,7 +240,7 @@ export function LoanCalculator() {
     setHasCalculated(true);
 
     const totalPayment = primary.schedule.reduce((s, r) => s + r.payment, 0);
-    const totalInterest = totalPayment - loanAmount;
+    const totalInterest = primary.schedule.reduce((s, r) => s + r.interest, 0);
     setExportData({
       schedule: primary.schedule,
       principal: loanAmount,
@@ -298,7 +297,7 @@ export function LoanCalculator() {
     }
 
     const totalPayment = result.schedule.reduce((s, r) => s + r.payment, 0);
-    const totalInterest = totalPayment - (parseFloat(removeCommas(loanAmountDisplay)) || 0);
+    const totalInterest = result.schedule.reduce((s, r) => s + r.interest, 0);
     if (!compareResult) {
       return {
         monthly: result.monthlyPayment,
@@ -310,7 +309,7 @@ export function LoanCalculator() {
       };
     }
     const cTotal = compareResult.schedule.reduce((s, r) => s + r.payment, 0);
-    const cInt = cTotal - (parseFloat(removeCommas(loanAmountDisplay)) || 0);
+    const cInt = compareResult.schedule.reduce((s, r) => s + r.interest, 0);
     return {
       monthly: result.monthlyPayment,
       totalPay: totalPayment,

@@ -447,7 +447,7 @@ export function SecondHomeAcquisitionTaxExceptionGuideBody() {
                   특례 미적용(2주택 중과)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">8% + 지방교육세 등</td>
-                <td className="border-border border-b px-3 py-2.5">약 4,400만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 4,200만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -578,8 +578,8 @@ export function SecondHomeAcquisitionTaxExceptionGuideBody() {
                   <th scope="row" className="px-3 py-2.5 font-medium">
                     조정지역 2주택 중과(참고)
                   </th>
-                  <td className="px-3 py-2.5">4,400만 원</td>
-                  <td className="px-3 py-2.5">강릉 취득 시 해당 없음</td>
+                  <td className="px-3 py-2.5">4,200만 원</td>
+                  <td className="px-3 py-2.5">취득세 4,000만 + 지방교육세 200만(5억 × 0.4%)</td>
                 </tr>
               </tbody>
             </table>
@@ -616,21 +616,21 @@ export function SecondHomeAcquisitionTaxExceptionGuideBody() {
                 </tr>
                 <tr>
                   <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                    지방교육세 등
+                    지방교육세
                   </th>
-                  <td className="border-border border-b px-3 py-2.5">240만 원</td>
+                  <td className="border-border border-b px-3 py-2.5">120만 원(3억 원 × 0.4%)</td>
                 </tr>
                 <tr className="bg-muted/20">
                   <th scope="row" className="px-3 py-2.5 font-medium">
                     합계
                   </th>
-                  <td className="px-3 py-2.5">2,640만 원</td>
+                  <td className="px-3 py-2.5">2,520만 원</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p>
-            같은 1주택자가 3억 원짜리를 추가로 사더라도, 강릉이면 330만 원·수원이면 2,640만 원으로 갈립니다. 취득세는{" "}
+            같은 1주택자가 3억 원짜리를 추가로 사더라도, 강릉이면 330만 원·수원이면 2,520만 원으로 갈립니다. 취득세는{" "}
             <strong>새로 사는 집이 조정대상지역인지</strong>, 세컨드홈 특례는{" "}
             <strong>인구감소·관심지역인지</strong>를 각각 따로 봐야 합니다.
           </p>

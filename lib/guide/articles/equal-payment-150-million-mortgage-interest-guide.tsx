@@ -363,36 +363,36 @@ export function EqualPayment150MillionMortgageInterestGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">—</td>
                 <td className="border-border border-b px-3 py-2.5">71만 6천 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 1억 776만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1억 780만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   1년
                 </th>
                 <td className="border-border border-b px-3 py-2.5">50만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 74만 3천 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 1억 1,376만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 73만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1억 970만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   2년
                 </th>
                 <td className="border-border border-b px-3 py-2.5">50만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 77만 4천 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 1억 1,976만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 74만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1억 1,160만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   3년
                 </th>
                 <td className="px-3 py-2.5">50만 원</td>
-                <td className="px-3 py-2.5">약 80만 9천 원</td>
-                <td className="px-3 py-2.5">약 1억 2,576만 원</td>
+                <td className="px-3 py-2.5">약 76만 원</td>
+                <td className="px-3 py-2.5">약 1억 1,350만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>거치기간 1년당 총 이자 부담이 약 600만 원 증가합니다.</p>
+        <p>거치기간 1년당 총 이자 부담이 약 190만 원 증가합니다(대출 이자 계산기 기준).</p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-ep15-term-compare">

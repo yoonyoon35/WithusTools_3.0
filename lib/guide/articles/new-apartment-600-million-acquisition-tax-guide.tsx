@@ -214,13 +214,13 @@ export function NewApartment600MillionAcquisitionTaxGuideBody() {
                   <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                     취득세(8%) + 지방교육세 등
                   </th>
-                  <td className="border-border border-b px-3 py-2.5">약 2,640만 원</td>
+                  <td className="border-border border-b px-3 py-2.5">약 5,040만 원</td>
                 </tr>
                 <tr className="bg-muted/20">
                   <th scope="row" className="px-3 py-2.5 font-medium">
                     1주택 대비 차이
                   </th>
-                  <td className="px-3 py-2.5">약 1,980만 원 추가</td>
+                  <td className="px-3 py-2.5">약 4,380만 원 추가</td>
                 </tr>
               </tbody>
             </table>

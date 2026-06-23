@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 // import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { PrepaymentFeeCalculatorSection } from "@/components/prepayment-fee-calculator-section";
+import { PREPAYMENT_FEE_FORMULA } from "@/lib/prepayment-fee-calculations";
 import { SITE_URL } from "@/lib/site";
 
 const pageTitle = "중도상환 수수료 계산기";
@@ -39,7 +40,8 @@ export default function PrepaymentFeeCalculatorPage() {
           </nav>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{pageTitle}</h1>
           <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-            중도상환 수수료 = 중도상환 원금 × 수수료율 × 잔여기간 ÷ 대출기간 공식을 반영했습니다. 하단에 수수료율 범위와
+            {PREPAYMENT_FEE_FORMULA} 공식을 반영했습니다. 면제 기간이 있는 상품은 잔여기간·대출기간 모두 면제 기간
+            기준으로 계산합니다. 하단에 수수료율 범위와
             면제·감면 조건을 함께 두었습니다. 계산 결과는 참고용이며, 실제 수수료는 대출 계약서·금융기관 확인이 필요합니다.
           </p>
         </div>

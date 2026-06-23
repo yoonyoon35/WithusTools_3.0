@@ -257,7 +257,7 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
         <h2 id="guide-orb-multi-owner" className="text-foreground text-xl font-semibold tracking-tight">
           다주택자 기준 업무용 vs 주거용 취득세 비교
         </h2>
-        <p className="text-muted-foreground text-sm">기존 1주택 보유자가 조정대상지역 내 추가 취득 기준</p>
+        <p className="text-muted-foreground text-sm">전용 85㎡ 이하·농특세 제외(취득세 계산기 기준)</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -285,24 +285,24 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
                   3억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">1,380만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2,640만 원</td>
-                <td className="border-border border-b px-3 py-2.5">1,260만 원</td>
+                <td className="border-border border-b px-3 py-2.5">2,520만 원</td>
+                <td className="border-border border-b px-3 py-2.5">1,140만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   5억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">2,300만 원</td>
-                <td className="border-border border-b px-3 py-2.5">4,400만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2,100만 원</td>
+                <td className="border-border border-b px-3 py-2.5">4,200만 원</td>
+                <td className="border-border border-b px-3 py-2.5">1,900만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   7억 원
                 </th>
                 <td className="px-3 py-2.5">3,220만 원</td>
-                <td className="px-3 py-2.5">6,160만 원</td>
-                <td className="px-3 py-2.5">2,940만 원</td>
+                <td className="px-3 py-2.5">5,880만 원</td>
+                <td className="px-3 py-2.5">2,660만 원</td>
               </tr>
             </tbody>
           </table>

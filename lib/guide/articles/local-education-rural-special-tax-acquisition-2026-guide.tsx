@@ -4,7 +4,7 @@ export const localEducationRuralSpecialTaxAcquisition2026GuideMeta = {
   slug: "local-education-rural-special-tax-acquisition-2026-guide",
   title: "지방교육세·농어촌특별세 계산법",
   description:
-    "취득세와 함께 부과되는 지방교육세(취득세액의 10%)·농어촌특별세(과세표준 0.2%, 85㎡ 기준), 예시·실질 부담률·생애최초 감면 연동·상속·증여 적용을 표로 정리했습니다.",
+    "취득세와 함께 부과되는 지방교육세·농어촌특별세 계산법을 정리했습니다. 취득세율 8% 미만은 취득세액의 10%, 8% 이상은 과세표준의 0.4%로 산정합니다(취득세 계산기 기준).",
   updated: "2026년 5월 11일",
 } as const;
 
@@ -62,18 +62,26 @@ export function LocalEducationRuralSpecialTaxAcquisition2026GuideBody() {
         <h2 id="guide-ler-local" className="text-foreground text-xl font-semibold tracking-tight">
           지방교육세 계산법
         </h2>
-        <p>지방교육세는 취득세액을 기준으로 산정합니다.</p>
-        <p className="bg-muted/30 rounded-md border border-border px-3 py-2 font-mono text-sm">지방교육세 = 취득세액 × 10%</p>
         <p>
-          취득세율에 관계없이 취득세액의 10%가 일률적으로 부과됩니다. 취득세가 감면되면 지방교육세도 연동하여 감면된 취득세액을
-          기준으로 재산정됩니다.
+          지방교육세는 취득세율에 따라 산정 방식이 달라집니다.{" "}
+          <Link href="/acquisition-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            취득세 계산기
+          </Link>
+          와 동일한 기준입니다.
+        </p>
+        <ul className="list-disc space-y-1 pl-5 text-sm">
+          <li>취득세율 8% 미만(1~3% 구간 등): 지방교육세 = 취득세액 × 10%</li>
+          <li>취득세율 8% 이상(2주택 조정지역 중과 등): 지방교육세 = 과세표준 × 0.4%</li>
+        </ul>
+        <p>
+          취득세가 감면되면 지방교육세도 감면된 취득세액(또는 감면 후 과세표준)을 기준으로 재산정됩니다.
         </p>
 
         <h3 className="text-foreground text-lg font-semibold tracking-tight">지방교육세 계산 예시</h3>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              취득세액 기준 지방교육세
+              취득세율별 지방교육세·합계(8% 미만은 취득세×10%, 8% 이상은 과세표준×0.4%)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -84,7 +92,7 @@ export function LocalEducationRuralSpecialTaxAcquisition2026GuideBody() {
                   취득세액
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  지방교육세(10%)
+                  지방교육세
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
                   합계
@@ -112,17 +120,17 @@ export function LocalEducationRuralSpecialTaxAcquisition2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   8%
                 </th>
-                <td className="border-border border-b px-3 py-2.5">4,000만 원</td>
-                <td className="border-border border-b px-3 py-2.5">400만 원</td>
-                <td className="border-border border-b px-3 py-2.5">4,400만 원</td>
+                <td className="border-border border-b px-3 py-2.5">4,000만 원(5억 원 × 8%)</td>
+                <td className="border-border border-b px-3 py-2.5">200만 원(5억 원 × 0.4%)</td>
+                <td className="border-border border-b px-3 py-2.5">4,200만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   12%
                 </th>
-                <td className="px-3 py-2.5">7,200만 원</td>
-                <td className="px-3 py-2.5">720만 원</td>
-                <td className="px-3 py-2.5">7,920만 원</td>
+                <td className="px-3 py-2.5">7,200만 원(6억 원 × 12%)</td>
+                <td className="px-3 py-2.5">240만 원(6억 원 × 0.4%)</td>
+                <td className="px-3 py-2.5">7,440만 원</td>
               </tr>
             </tbody>
           </table>
@@ -372,15 +380,15 @@ export function LocalEducationRuralSpecialTaxAcquisition2026GuideBody() {
                   <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                     지방교육세
                   </th>
-                  <td className="border-border border-b px-3 py-2.5">4,000만 원 × 10%</td>
-                  <td className="border-border border-b px-3 py-2.5">400만 원</td>
+                  <td className="border-border border-b px-3 py-2.5">5억 원 × 0.4%</td>
+                  <td className="border-border border-b px-3 py-2.5">200만 원</td>
                 </tr>
                 <tr>
                   <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                     농어촌특별세
                   </th>
-                  <td className="border-border border-b px-3 py-2.5">5억 원 × 0.2%</td>
-                  <td className="border-border border-b px-3 py-2.5">100만 원</td>
+                  <td className="border-border border-b px-3 py-2.5">5억 원 × 0.6%(2주택·조정·85㎡ 초과)</td>
+                  <td className="border-border border-b px-3 py-2.5">300만 원</td>
                 </tr>
                 <tr className="bg-muted/20">
                   <th scope="row" className="px-3 py-2.5 font-medium">
@@ -444,8 +452,8 @@ export function LocalEducationRuralSpecialTaxAcquisition2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   8%
                 </th>
-                <td className="border-border border-b px-3 py-2.5">0.8%</td>
-                <td className="border-border border-b px-3 py-2.5">0.2%</td>
+                <td className="border-border border-b px-3 py-2.5">0.4%</td>
+                <td className="border-border border-b px-3 py-2.5">0.6%(2주택·조정·85㎡ 초과)</td>
                 <td className="border-border border-b px-3 py-2.5">9.0%</td>
               </tr>
               <tr className="bg-muted/20">

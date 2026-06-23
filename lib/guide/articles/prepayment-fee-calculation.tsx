@@ -36,10 +36,11 @@ export function PrepaymentFeeCalculationBody() {
           기본 계산식
         </h2>
         <p className="rounded-md border border-border bg-muted/30 px-3 py-2 font-medium">
-          중도상환 수수료 = 중도상환 원금 × 수수료율 × 잔여기간 / 대출기간
+          중도상환 수수료 = 중도상환 원금 × 수수료율 × (잔여기간 ÷ 대출기간)
         </p>
         <p>
-          잔여기간은 중도상환일로부터 수수료 면제 기간(통상 3년) 종료일까지의 기간입니다.
+          잔여기간은 중도상환일로부터 수수료 면제 기간(통상 3년) 종료일까지의 기간입니다. 면제 기간이 있는 상품은
+          분모의 대출기간도 면제 기간(통상 3년)으로 계산합니다.
         </p>
       </section>
 
@@ -80,21 +81,33 @@ export function PrepaymentFeeCalculationBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  잔여기간
+                  계약 대출기간
                 </th>
-                <td className="border-border border-b px-3 py-2.5">24개월(36개월 - 12개월)</td>
+                <td className="border-border border-b px-3 py-2.5">30년(360개월)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  대출기간
+                  수수료 계산 기간
                 </th>
-                <td className="border-border border-b px-3 py-2.5">360개월</td>
+                <td className="border-border border-b px-3 py-2.5">3년(36개월, 면제 기간)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  경과 기간
+                </th>
+                <td className="border-border border-b px-3 py-2.5">1년(12개월)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  잔여기간
+                </th>
+                <td className="border-border border-b px-3 py-2.5">24개월(36개월 − 12개월)</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   수수료
                 </th>
-                <td className="px-3 py-2.5">5,000만 원 × 1.2% × 24/360 = 약 40만 원</td>
+                <td className="px-3 py-2.5">5,000만 원 × 1.2% × (24 ÷ 36) = 약 40만 원</td>
               </tr>
             </tbody>
           </table>
