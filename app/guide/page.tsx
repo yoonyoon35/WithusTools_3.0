@@ -3,7 +3,7 @@ import Link from "next/link";
 // import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { GuideArticleCard } from "@/components/guide-article-card";
 import { guideTopics, getGuideTopicsWithArticles } from "@/lib/guide/topics";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 const pageTitle = "대출·금융 가이드";
 
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: `${SITE_URL}/guide` },
     openGraph: {
       url: `${SITE_URL}/guide`,
-      title: `${pageTitle} | Daechulija.com`,
+      title: `${pageTitle} | ${SITE_DOMAIN}`,
       description,
     },
   };

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 // import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { BrokerageFeeCalculatorSection } from "@/components/brokerage-fee-calculator-section";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 const pageTitle = "중개보수 계산기";
 const pageDescription =
@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: `${SITE_URL}/brokerage-fee-calculator` },
     openGraph: {
       url: `${SITE_URL}/brokerage-fee-calculator`,
-      title: `${pageTitle} | Daechulija.com`,
+      title: `${pageTitle} | ${SITE_DOMAIN}`,
       description: pageDescription,
     },
   };

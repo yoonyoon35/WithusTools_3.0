@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GuideArticleShell } from "@/components/guide-article-shell";
 import { getAllGuideSlugs, getGuideArticle } from "@/lib/guide/registry";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: { canonical: `${SITE_URL}/guide/${article.slug}` },
     openGraph: {
       url: `${SITE_URL}/guide/${article.slug}`,
-      title: `${article.title} | Daechulija.com`,
+      title: `${article.title} | ${SITE_DOMAIN}`,
       description: article.description,
     },
   };

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/legal-page-shell";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "개인정보처리방침";
   return {
     title,
-    description: "대출이자.com 개인정보처리방침",
+    description: "withustools.com 개인정보처리방침",
     alternates: { canonical: `${SITE_URL}/privacy` },
     openGraph: {
       url: `${SITE_URL}/privacy`,
-      title: `${title} | Daechulija.com`,
+      title: `${title} | ${SITE_DOMAIN}`,
     },
   };
 }
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">1. 개인정보의 처리 목적</h2>
         <p>
-          https://daechulija.com은 무료 대출 이자 계산기 서비스를 제공하며, 회원가입이나 결제를 운영하지 않습니다. 이름·연락처 등
+          https://withustools.com은 무료 대출 이자 계산기 서비스를 제공하며, 회원가입이나 결제를 운영하지 않습니다. 이름·연락처 등
           직접적인 개인정보는 수집하지 않고, 서비스 제공·통계·개선 및 Google AdSense 등 광고 서비스를 위해 자동으로 수집되는 정보를 처리할 수
           있습니다.
         </p>

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/legal-page-shell";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "사이트 소개";
   return {
     title,
     description:
-      "daechulija.com을 운영하는 이유, 주택담보대출 등 실제 경험, 콘텐츠 작성 기준 및 문의 방법을 안내합니다.",
+      "withustools.com을 운영하는 이유, 주택담보대출 등 실제 경험, 콘텐츠 작성 기준 및 문의 방법을 안내합니다.",
     alternates: { canonical: `${SITE_URL}/about` },
     openGraph: {
       url: `${SITE_URL}/about`,
-      title: `${title} | Daechulija.com`,
+      title: `${title} | ${SITE_DOMAIN}`,
     },
   };
 }

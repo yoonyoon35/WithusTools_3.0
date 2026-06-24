@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/legal-page-shell";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "이용약관";
   return {
     title,
-    description: "대출이자.com 이용약관",
+    description: "withustools.com 이용약관",
     alternates: { canonical: `${SITE_URL}/terms` },
     openGraph: {
       url: `${SITE_URL}/terms`,
-      title: `${title} | Daechulija.com`,
+      title: `${title} | ${SITE_DOMAIN}`,
     },
   };
 }
@@ -20,7 +20,7 @@ export default function TermsPage() {
     <LegalPageShell title="이용약관" updated="2026년 4월 13일">
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">제1조 (목적)</h2>
-        <p>본 약관은 https://daechulija.com이 제공하는 온라인 서비스 이용과 관련하여 운영자와 이용자의 권리·의무를 규정합니다.</p>
+        <p>본 약관은 https://withustools.com이 제공하는 온라인 서비스 이용과 관련하여 운영자와 이용자의 권리·의무를 규정합니다.</p>
       </section>
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">제2조 (서비스)</h2>

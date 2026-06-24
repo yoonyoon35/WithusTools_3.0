@@ -1,10 +1,10 @@
-import { SITE_URL, defaultDescription } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL, defaultDescription } from "@/lib/site";
 
 const webApplication = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "대출 이자 계산기",
-  alternateName: "Daechulija.com",
+  alternateName: SITE_DOMAIN,
   description: defaultDescription,
   url: SITE_URL,
   applicationCategory: "FinanceApplication",

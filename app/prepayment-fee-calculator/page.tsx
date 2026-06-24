@@ -3,7 +3,7 @@ import Link from "next/link";
 // import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { PrepaymentFeeCalculatorSection } from "@/components/prepayment-fee-calculator-section";
 import { PREPAYMENT_FEE_FORMULA } from "@/lib/prepayment-fee-calculations";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 const pageTitle = "중도상환 수수료 계산기";
 const pageDescription =
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: `${SITE_URL}/prepayment-fee-calculator` },
     openGraph: {
       url: `${SITE_URL}/prepayment-fee-calculator`,
-      title: `${pageTitle} | Daechulija.com`,
+      title: `${pageTitle} | ${SITE_DOMAIN}`,
       description: pageDescription,
     },
   };

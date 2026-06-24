@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 // import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { AcquisitionTaxCalculatorSection } from "@/components/acquisition-tax-calculator-section";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 const pageTitle = "취득세 계산기";
 const pageDescription =
@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: `${SITE_URL}/acquisition-tax-calculator` },
     openGraph: {
       url: `${SITE_URL}/acquisition-tax-calculator`,
-      title: `${pageTitle} | Daechulija.com`,
+      title: `${pageTitle} | ${SITE_DOMAIN}`,
       description: pageDescription,
     },
   };

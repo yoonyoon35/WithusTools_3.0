@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 // import { AdfitLeaderboard728 } from "@/components/adfit-leaderboard-728";
 // import { AdfitPcSkyscraperRail } from "@/components/adfit-pc-skyscraper-rail";
-import { defaultDescription, defaultTitle, ogImagePath, SITE_URL } from "@/lib/site";
+import { defaultDescription, defaultTitle, ogImagePath, SITE_DOMAIN, SITE_URL } from "@/lib/site";
 // import { kakaoAdfitBaScriptSrc } from "@/lib/site";
 
 const googleAdsenseClient = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT?.trim();
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: defaultTitle,
-    template: "%s | Daechulija.com",
+    template: `%s | ${SITE_DOMAIN}`,
   },
   description: defaultDescription,
   keywords: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "주택담보대출",
     "전세자금대출",
   ],
-  authors: [{ name: "Daechulija.com" }],
+  authors: [{ name: SITE_DOMAIN }],
   verification: {
     yandex: "b9d7eec2f6c0396f",
   },
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: "대출 이자 계산기",
     title: defaultTitle,
     description: defaultDescription,
-    images: [{ url: ogImagePath, width: 152, height: 152, alt: "Daechulija" }],
+    images: [{ url: ogImagePath, width: 152, height: 152, alt: SITE_DOMAIN }],
   },
   twitter: {
     card: "summary",

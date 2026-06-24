@@ -461,3 +461,21 @@
         > 취득세율 8% 미만 취득세×10%, 8% 이상 과세표준×0.4% (취득세 계산기와 동일)
 
         아직 push 안함
+
+--------------------------------------------------------------------------------------------------------------------
+
+260624
+
+Phase 1 - withustools.com 도메인 마이그레이션 코드 수정
+       - lib/site.ts: SITE_DOMAIN/SITE_URL → withustools.com
+       - layout, 메타, 푸터, privacy/terms/about, json-ld, 계산기·가이드 페이지 타이틀 suffix 통일
+       - ads.txt: 기존 pub ID 유지 (withustools 3.0과 동일 ca-pub-8191448150133387)
+       - GA/AdSense env, 애드핏 주석 유지 → Cloudflare에서 설정 (Phase 3)
+
+Phase 2·3 배포 준비
+       - Phase 2: Cloudflare Pages env 설정 완료
+       - 1단계: GitHub Actions secrets (CLOUDFLARE_*, NEXT_PUBLIC_KAKAO/ADSENSE/GA) 등록
+       - 2단계: deploy-pages.yml Build step에 NEXT_PUBLIC_* secrets 연결
+       - 3단계: 카카오 JS SDK withustools.com 도메인 허용
+       - 5단계: remote → WithusTools_3.0, commit + main push (GitHub Actions → withustools-3-0 배포)
+       - push 후 withustools.com 확인 OK면 Phase 4(daechulija 301) 진행

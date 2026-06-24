@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { referenceDisclaimerLine } from "@/lib/site";
+import { referenceDisclaimerLine, SITE_DOMAIN } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -34,7 +34,7 @@ export function SiteFooter() {
             오픈소스 고지
           </Link>
         </div>
-        <p>© {new Date().getFullYear()} daechulija.com. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} {SITE_DOMAIN}. All rights reserved.</p>
         <p className="text-xs">{referenceDisclaimerLine}</p>
       </div>
     </footer>

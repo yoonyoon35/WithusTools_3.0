@@ -1,4 +1,5 @@
-export const SITE_URL = "https://daechulija.com" as const;
+export const SITE_DOMAIN = "withustools.com" as const;
+export const SITE_URL = `https://${SITE_DOMAIN}` as const;
 
 /**
  * Facebook 공유 등 외부 서비스는 localhost URL을 받지 못해 링크 입력란이 비는 경우가 많습니다.
@@ -14,7 +15,7 @@ export function getPublicSharePageUrl(): string {
   return `${base}${window.location.pathname}${window.location.search}`;
 }
 
-export const defaultTitle = "대출 이자 계산기 - Daechulija.com";
+export const defaultTitle = `대출 이자 계산기 - ${SITE_DOMAIN}`;
 
 /** SNS 공유 등 본문 요약 */
 export const defaultShareText = "대출 받기 전 미리 이자 계산해보세요.";
@@ -24,7 +25,7 @@ export const referenceDisclaimerLine =
   "본 서비스는 표준 계산식 기반 참고용이며, 실제 조건은 금융기관에 문의하시기 바랍니다.";
 
 export const defaultDescription =
-  "대출 이자 계산기 Daechulija.com에서 원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산해 보세요. 주택담보대출, 신용대출, 전세자금대출 조건별 상환 계획을 비교하고 대출 전 예상 부담을 참고용으로 확인할 수 있는 무료 온라인 계산기입니다.";
+  `대출 이자 계산기 ${SITE_DOMAIN}에서 원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산해 보세요. 주택담보대출, 신용대출, 전세자금대출 조건별 상환 계획을 비교하고 대출 전 예상 부담을 참고용으로 확인할 수 있는 무료 온라인 계산기입니다.`;
 
 export const ogImagePath = "/favicon/apple-touch-icon-152x152.png";
 
