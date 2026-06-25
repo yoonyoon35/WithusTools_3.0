@@ -479,3 +479,23 @@ Phase 2·3 배포 준비
        - 3단계: 카카오 JS SDK withustools.com 도메인 허용
        - 5단계: remote → WithusTools_3.0, commit + main push (GitHub Actions → withustools-3-0 배포)
        - push 후 withustools.com 확인 OK면 Phase 4(daechulija 301) 진행
+
+Phase 3 배포 완료
+       - GitHub Actions → Cloudflare Pages(withustools-3-0) 배포 성공
+       - withustools.com·sitemap.xml 마이그레이션 URL 확인
+
+Phase 4 daechulija.com 301 완료
+       - daechulija.com Cloudflare Redirect Rule: daechulija.com / www → withustools.com (301, path·query 유지)
+       - http→https 별도 규칙 불필요 (대상 URL이 https://withustools.com 이라 http 접속도 withustools HTTPS로 이전됨)
+       - daechulija.com → withustools.com 도메인 마이그레이션 전체 완료
+
+--------------------------------------------------------------------------------------------------------------------
+
+260625
+
+1237 - 가이드 내용 보강
+        - 2026년 취득세율 완전 정리
+        - 일시적 2주택 취득세 중과 예외 조건
+        - 취득세 세액공제·감면 제도 총정리
+        - 주택 취득 시 국민주택채권 매입 기준
+        - 생애최초 취득세 감면 조건과 신청 방법

@@ -238,7 +238,15 @@ export function HomePurchaseAdditionalCostsGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   국민주택채권 매입
                 </th>
-                <td className="border-border border-b px-3 py-2.5">매매가 기준 일정 비율 매입 후 즉시 할인 매도 가능</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  시가표준액(공시가격) 기준 요율 매입 후 할인 매도 — 실부담은 할인 손실.{" "}
+                  <Link
+                    href="/guide/national-housing-bond-purchase-criteria-guide"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    국민주택채권 매입 기준
+                  </Link>
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
