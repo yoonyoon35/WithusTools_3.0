@@ -310,7 +310,7 @@ export function VariableVsFixedRate2026Body() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             금리 유형별 월 상환액 차이는 대출 이자 계산기에서 직접 비교해볼 수 있다.
           </Link>
         </p>

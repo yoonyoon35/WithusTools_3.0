@@ -15,7 +15,7 @@ export function EqualPayment150MillionMortgageInterestGuideBody() {
         <p>
           원리금균등상환은 매월 납부하는 원금과 이자의 합계액이 동일한 상환 방식입니다. 대출 초기에는 이자 비중이 높고 원금 비중이
           낮지만, 시간이 지날수록 원금 비중이 늘어나고 이자 비중이 줄어듭니다. 홈{" "}
-          <Link href="/#calculator" className="text-primary underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary underline-offset-4 hover:underline">
             대출 이자 계산기
           </Link>
           에 조건을 넣으면 숫자를 바로 볼 수 있고, 이 글은 <strong>1억 5천만 원 규모에서 기간·금리 선택이 월 부담에 어떻게
@@ -557,7 +557,7 @@ export function EqualPayment150MillionMortgageInterestGuideBody() {
         aria-label="대출 이자 계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             → 대출 금액·금리·기간을 직접 입력하면 월 상환액을 바로 계산해볼 수 있습니다.
           </Link>
         </p>

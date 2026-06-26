@@ -78,6 +78,8 @@ export const guideTopics: readonly GuideTopic[] = [
       "officetel-residential-vs-business-tax-guide",
       "acquisition-tax-deadline-and-penalty-guide",
       "capital-gains-surcharge-revival-2026-guide",
+      "holding-capital-gains-tax-increase-2026-guide",
+      "comprehensive-property-tax-fair-ratio-calculation-2026-guide",
     ],
   },
   {

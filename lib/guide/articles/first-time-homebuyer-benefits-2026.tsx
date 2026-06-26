@@ -169,7 +169,7 @@ export function FirstTimeHomebuyerBenefits2026Body() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             생애최초 조건 적용 시 월 상환액 대출 이자 계산
           </Link>
         </p>

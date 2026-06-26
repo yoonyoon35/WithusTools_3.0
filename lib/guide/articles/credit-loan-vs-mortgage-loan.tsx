@@ -319,7 +319,7 @@ export function CreditLoanVsMortgageLoanBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             신용대출과 주택담보대출의 월 상환액 차이는 대출 이자 계산기에서 확인할 수 있습니다.
           </Link>
         </p>

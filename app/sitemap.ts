@@ -18,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     {
+      url: `${base}/loan-calculator`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
       url: `${base}/acquisition-tax-calculator`,
       lastModified: new Date(),
       changeFrequency: "weekly",
@@ -37,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${base}/prepayment-fee-calculator`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${base}/comprehensive-property-tax-calculator`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,

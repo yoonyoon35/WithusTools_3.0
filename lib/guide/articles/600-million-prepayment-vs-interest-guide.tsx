@@ -20,7 +20,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
           중도상환 수수료 계산기
         </Link>
         와{" "}
-        <Link href="/#calculator" className="text-primary underline-offset-4 hover:underline">
+        <Link href="/loan-calculator" className="text-primary underline-offset-4 hover:underline">
           대출 이자 계산기
         </Link>
         로 다시 확인하는 것이 좋습니다.
@@ -314,7 +314,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
             중도상환 수수료 계산기
           </Link>
           에서 본인 수수료율·면제 기간·상환 시점을 넣어 볼 수 있습니다.{" "}
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             대출 이자 계산기
           </Link>
           로 상환 방식별 이자 절감액을 함께 확인하세요.

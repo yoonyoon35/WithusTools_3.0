@@ -534,7 +534,7 @@ export function HomePurchaseAdditionalCostsGuideBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             대출 원금과 금리에 따른 월 상환액은 대출 이자 계산기에서 확인할 수 있습니다.
           </Link>
         </p>

@@ -276,7 +276,7 @@ export function CarInstallmentDsrMortgageLimitImpactGuideBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             자동차 할부를 포함한 월 상환 부담은 대출 이자 계산기에서 바로 확인할 수 있습니다.
           </Link>
         </p>

@@ -467,7 +467,7 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
         aria-label="대출 이자 계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             → 금리에 따른 월 상환액과 총 이자는 대출 이자 계산기에서 확인할 수 있습니다.
           </Link>
         </p>

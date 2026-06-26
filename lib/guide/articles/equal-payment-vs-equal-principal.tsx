@@ -14,7 +14,7 @@ export function EqualPaymentVsEqualPrincipalBody() {
       <p>
         두 방식 모두 매월 원금과 이자를 함께 상환하는 분할상환 방식입니다. 차이는 매월 상환액을 어떻게 구성하느냐에 있습니다. 홈
         화면의{" "}
-        <Link href="/#calculator" className="text-primary underline-offset-4 hover:underline">
+        <Link href="/loan-calculator" className="text-primary underline-offset-4 hover:underline">
           대출 이자 계산기
         </Link>
         는 조건별 숫자를 빠르게 비교하는 데 적합하고, 이 글은 <strong>왜 한쪽을 선택하는지</strong> 판단할 때 참고하는 용도로
@@ -327,7 +327,7 @@ export function EqualPaymentVsEqualPrincipalBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             내 대출 조건에 맞는 두 방식의 상환액 차이 계산
           </Link>
         </p>

@@ -7,7 +7,7 @@ import { ChevronDown, Copy } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { sendKakaoFeedShare } from "@/lib/kakao-share";
-import { defaultShareText, defaultTitle, getPublicSharePageUrl, SITE_URL } from "@/lib/site";
+import { defaultShareText, defaultTitle, getPublicSharePageUrl, SITE_NAME, siteTagline, SITE_URL } from "@/lib/site";
 
 function shareUrl() {
   if (typeof window !== "undefined") return window.location.href;
@@ -86,13 +86,13 @@ export function SiteHeader() {
         <div className="min-w-0">
           <Link href="/" className="text-foreground block hover:opacity-90">
             <span className="text-lg leading-tight font-bold tracking-tight sm:text-xl">
-              대출 이자 계산기
+              {SITE_NAME}
             </span>
             <span className="text-muted-foreground mt-0.5 block text-xs font-normal sm:text-sm">
-              원리금균등상환 · 원금균등상환 · 만기일시상환
+              {siteTagline}
             </span>
           </Link>
-          <p className="text-muted-foreground mt-1 text-xs sm:text-sm">모의 대출 이자 계산</p>
+          <p className="text-muted-foreground mt-1 text-xs sm:text-sm">무료 온라인 계산기·가이드</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:justify-end">
@@ -118,7 +118,7 @@ export function SiteHeader() {
                   <Link
                     role="menuitem"
                     className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
-                    href="/#calculator"
+                    href="/loan-calculator"
                   >
                     대출 이자 계산기
                   </Link>
@@ -150,10 +150,17 @@ export function SiteHeader() {
                   >
                     중도상환 수수료 계산기
                   </Link>
+                  <Link
+                    role="menuitem"
+                    className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
+                    href="/comprehensive-property-tax-calculator"
+                  >
+                    종합부동산세 계산기
+                  </Link>
                 </div>
               </div>
             </div>
-            <Link className="hover:text-foreground rounded-md px-2 py-1" href="/#faq">
+            <Link className="hover:text-foreground rounded-md px-2 py-1" href="/loan-calculator#faq">
               자주묻는질문
             </Link>
             <Link className="hover:text-foreground rounded-md px-2 py-1" href="/guide">

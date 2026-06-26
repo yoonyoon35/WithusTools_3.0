@@ -330,7 +330,7 @@ export function BogeumjariVsDidimdolBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             대출 금리와 상환 기간에 따른 월 상환액·대출 이자 계산
           </Link>
           은 홈의 대출 이자 계산기에서 확인할 수 있습니다.

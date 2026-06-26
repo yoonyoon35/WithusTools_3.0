@@ -356,7 +356,7 @@ export function StressDsrExplainedBody() {
           에서 일반·스트레스 DSR을 함께 비교해 볼 수 있습니다.
         </p>
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             대출 이자 계산기
           </Link>
           로 가산 금리를 반영한 월 상환액만 따로 확인할 수도 있습니다.

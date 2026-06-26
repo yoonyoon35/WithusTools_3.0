@@ -819,7 +819,7 @@ export function PrepaymentFeeCalculator() {
                 <p className="text-muted-foreground text-xs">
                   ※ 이자 절감액은 잔여 원금·상환 방식(원리금균등·원금균등·만기일시)에 따라 달라집니다. 본인 조건에 맞는
                   금액은{" "}
-                  <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+                  <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
                     대출 이자 계산기
                   </Link>
                   에서 확인할 수 있습니다.
@@ -844,7 +844,7 @@ export function PrepaymentFeeCalculator() {
             <Link href="/guide/loan-refinancing-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
               대출 갈아타기 가이드
             </Link>
-            <Link href="/#calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            <Link href="/loan-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
               대출 이자 계산기
             </Link>
           </p>

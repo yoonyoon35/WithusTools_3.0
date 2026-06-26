@@ -372,7 +372,7 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
         aria-label="계산기 이동"
       >
         <p>
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             추가 주택 취득 시 월 상환액은 대출 이자 계산기에서 확인할 수 있습니다.
           </Link>
         </p>

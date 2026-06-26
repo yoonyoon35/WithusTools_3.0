@@ -309,7 +309,7 @@ export function LoanCalculatorReference() {
           <Link href="/dsr-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
             DSR 계산기
           </Link>
-          <Link href="/#faq" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator#faq" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
             자주 묻는 질문
           </Link>
         </p>

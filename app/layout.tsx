@@ -3,13 +3,13 @@ import { Noto_Sans_KR } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { KakaoSdkLoader } from "@/components/kakao-sdk-loader";
-import { WebApplicationJsonLd } from "@/components/json-ld";
+import { WebSiteJsonLd } from "@/components/json-ld";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 // import { AdfitLeaderboard728 } from "@/components/adfit-leaderboard-728";
 // import { AdfitPcSkyscraperRail } from "@/components/adfit-pc-skyscraper-rail";
-import { defaultDescription, defaultTitle, ogImagePath, SITE_DOMAIN, SITE_URL } from "@/lib/site";
+import { defaultDescription, defaultTitle, ogImagePath, SITE_DOMAIN, SITE_NAME, SITE_URL } from "@/lib/site";
 // import { kakaoAdfitBaScriptSrc } from "@/lib/site";
 
 const googleAdsenseClient = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT?.trim();
@@ -30,13 +30,15 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   keywords: [
-    "대출 이자 계산기",
+    "WithusTools",
     "대출 계산기",
+    "대출 이자 계산기",
+    "DSR 계산기",
+    "취득세 계산기",
+    "중개보수 계산기",
     "원리금균등상환",
     "원금균등상환",
-    "만기일시상환",
     "주택담보대출",
-    "전세자금대출",
   ],
   authors: [{ name: SITE_DOMAIN }],
   verification: {
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: SITE_URL,
-    siteName: "대출 이자 계산기",
+    siteName: SITE_NAME,
     title: defaultTitle,
     description: defaultDescription,
     images: [{ url: ogImagePath, width: 152, height: 152, alt: SITE_DOMAIN }],
@@ -132,7 +134,7 @@ export default function RootLayout({
         /> */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <KakaoSdkLoader />
-          <WebApplicationJsonLd />
+          <WebSiteJsonLd />
           <SiteHeader />
           {/* <AdfitLeaderboard728 /> */}
           <div className="mx-auto w-full max-w-6xl px-4 lg:flex lg:max-w-[calc(72rem+1.5rem+160px)] lg:gap-6">

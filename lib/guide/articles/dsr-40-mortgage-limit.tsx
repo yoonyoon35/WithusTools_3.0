@@ -184,7 +184,7 @@ export function Dsr40MortgageLimitBody() {
         </p>
         <p>
           <Link
-            href="/#calculator"
+            href="/loan-calculator"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
             금리와 상환 기간별 월 상환액·대출 이자 계산

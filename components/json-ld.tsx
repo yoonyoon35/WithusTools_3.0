@@ -1,12 +1,28 @@
-import { SITE_DOMAIN, SITE_URL, defaultDescription } from "@/lib/site";
+import { LOAN_CALCULATOR_PATH } from "@/lib/calculators";
+import {
+  defaultDescription,
+  loanCalculatorDescription,
+  SITE_DOMAIN,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
-const webApplication = {
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  alternateName: SITE_DOMAIN,
+  description: defaultDescription,
+  url: SITE_URL,
+};
+
+const loanCalculatorApplication = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "대출 이자 계산기",
   alternateName: SITE_DOMAIN,
-  description: defaultDescription,
-  url: SITE_URL,
+  description: loanCalculatorDescription,
+  url: `${SITE_URL}${LOAN_CALCULATOR_PATH}`,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Any",
   offers: {
@@ -23,11 +39,20 @@ const webApplication = {
   ],
 };
 
-export function WebApplicationJsonLd() {
+export function WebSiteJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplication) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(website) }}
+    />
+  );
+}
+
+export function LoanCalculatorWebApplicationJsonLd() {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(loanCalculatorApplication) }}
     />
   );
 }

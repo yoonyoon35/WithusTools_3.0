@@ -301,7 +301,7 @@ export function PrepaymentFeeCalculationBody() {
           <Link href="/prepayment-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             중도상환 수수료는 중도상환 수수료 계산기에서 바로 계산할 수 있다.
           </Link>{" "}
-          <Link href="/#calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             상환 시점별 이자 절감액은 대출 이자 계산기에서 확인할 수 있다.
           </Link>
         </p>

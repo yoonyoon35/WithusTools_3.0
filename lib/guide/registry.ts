@@ -157,6 +157,14 @@ import {
   capitalGainsSurchargeRevival2026GuideMeta,
 } from "@/lib/guide/articles/capital-gains-surcharge-revival-2026-guide";
 import {
+  ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
+  comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
+} from "@/lib/guide/articles/comprehensive-property-tax-fair-ratio-calculation-2026-guide";
+import {
+  HoldingCapitalGainsTaxIncrease2026GuideBody,
+  holdingCapitalGainsTaxIncrease2026GuideMeta,
+} from "@/lib/guide/articles/holding-capital-gains-tax-increase-2026-guide";
+import {
   EqualPayment150MillionMortgageInterestGuideBody,
   equalPayment150MillionMortgageInterestGuideMeta,
 } from "@/lib/guide/articles/equal-payment-150-million-mortgage-interest-guide";
@@ -393,6 +401,14 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...capitalGainsSurchargeRevival2026GuideMeta,
     Body: CapitalGainsSurchargeRevival2026GuideBody,
+  },
+  {
+    ...holdingCapitalGainsTaxIncrease2026GuideMeta,
+    Body: HoldingCapitalGainsTaxIncrease2026GuideBody,
+  },
+  {
+    ...comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
+    Body: ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
   },
   {
     ...equalPayment150MillionMortgageInterestGuideMeta,
