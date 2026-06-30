@@ -19,6 +19,16 @@ export const calculatorTools: readonly CalculatorTool[] = [
     description: "연 소득과 기존·신규 대출 조건으로 DSR(%)을 간이 산출합니다.",
   },
   {
+    href: "/dti-calculator",
+    title: "DTI 계산기",
+    description: "주담대 원리금·기타 대출 이자를 반영해 DTI(%)를 간이 산출합니다.",
+  },
+  {
+    href: "/ltv-calculator",
+    title: "LTV 계산기",
+    description: "담보 가격·지역·주택 보유 조건으로 LTV(%)와 대출 가능액을 간이 산출합니다.",
+  },
+  {
     href: "/acquisition-tax-calculator",
     title: "취득세 계산기",
     description: "주택·주택 외 자산 구분과 취득 유형별 취득세·부가세를 계산합니다.",

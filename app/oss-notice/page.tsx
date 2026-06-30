@@ -26,6 +26,8 @@ const directDependencies = [
   { name: "@base-ui/react", license: "MIT" },
   { name: "class-variance-authority", license: "Apache-2.0" },
   { name: "clsx", license: "MIT" },
+  { name: "docx", license: "MIT" },
+  { name: "html-to-image", license: "MIT" },
   { name: "tailwind-merge", license: "MIT" },
   { name: "tw-animate-css", license: "MIT" },
   { name: "shadcn", license: "MIT" },
@@ -33,7 +35,7 @@ const directDependencies = [
 
 export default function OssNoticePage() {
   return (
-    <LegalPageShell title="오픈소스 고지" updated="2026년 4월 13일">
+    <LegalPageShell title="오픈소스 고지" updated="2026년 6월 30일">
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">1. 안내</h2>
         <p>

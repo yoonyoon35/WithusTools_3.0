@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import {
   bulletDsrBasisHints,
   bulletDsrBasisLabels,
+  bulletDsrBasisOrder,
   computeDsrSnapshotFromLoans,
   equalPrincipalDsrBasisHints,
   equalPrincipalDsrBasisLabels,
@@ -24,13 +25,26 @@ import {
   type StressDsrPresetId,
   type StressRateKind,
 } from "@/lib/dsr-calculations";
-import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas, repaymentTypeLabels, type RepaymentType } from "@/lib/loan-calculations";
+import { MoneyValue, ResultRow, SubTextValue } from "@/components/calculator/calculator-result-rows";
+import { CalculatorResultExportButtons } from "@/components/calculator/calculator-result-export-buttons";
+import {
+  CalculatorLoanBreakdownTable,
+  LoanBreakdownTd,
+  LoanBreakdownTh,
+} from "@/components/calculator/calculator-loan-breakdown-table";
+import { formatDsrResultText } from "@/lib/dsr-result-text";
 
 function addCommas(value: string): string {
   const numValue = removeCommas(value);
   if (!numValue) return "";
   return new Intl.NumberFormat("ko-KR").format(parseInt(numValue, 10));
+}
+
+function formatLoanDsrContributionPercent(annualDsrWon: number, annualIncomeWon: number): string {
+  if (annualIncomeWon <= 0) return "—";
+  const pct = (annualDsrWon / annualIncomeWon) * 100;
+  return pct % 1 === 0 ? `${pct}` : pct.toFixed(1).replace(/\.0$/, "");
 }
 
 type LoanKind = "existing" | "new";
@@ -117,13 +131,14 @@ function parseLoanRow(row: LoanRowState): DsrLoanInput | null {
 
 
 export function DsrCalculator() {
+  const exportRef = React.useRef<HTMLDivElement>(null);
   const loansBaseId = React.useId();
   const nextLoanSeqRef = React.useRef(1);
   const [annualIncomeManwonDisplay, setAnnualIncomeManwonDisplay] = React.useState("");
   const [loans, setLoans] = React.useState<LoanRowState[]>(() => [createLoanRow(`${loansBaseId}-0`, "new")]);
   const [equalPrincipalDsrBasis, setEqualPrincipalDsrBasis] =
     React.useState<EqualPrincipalDsrBasis>("first-month");
-  const [bulletDsrBasis, setBulletDsrBasis] = React.useState<BulletDsrBasis>("interest-only");
+  const [bulletDsrBasis, setBulletDsrBasis] = React.useState<BulletDsrBasis>("regulatory-5y-principal");
   const [dsrMode, setDsrMode] = React.useState<"general" | "stress">("general");
   const [stressPresetId, setStressPresetId] = React.useState<StressDsrPresetId>("metro_mortgage");
   const [stressCustomPercent, setStressCustomPercent] = React.useState("1.5");
@@ -227,6 +242,22 @@ export function DsrCalculator() {
   const displayDsr = showZeroResult ? "0.00" : dsrDisplay;
   const displayWithinBankCap = showZeroResult ? true : withinBankCap;
   const showSingleNewRate = !showZeroResult && displaySnapshot.loanResults.filter((l) => l.isNew && l.inputMode === "details").length === 1;
+
+  const dsrModeLabel =
+    dsrMode === "stress"
+      ? displaySnapshot.isStressDsr
+        ? "스트레스 DSR(신규 대출에 가산금리 반영)"
+        : "스트레스 DSR"
+      : "일반 DSR";
+
+  const exportText = React.useMemo(() => {
+    if (showZeroResult) return "";
+    return formatDsrResultText({
+      snapshot: displaySnapshot,
+      dsrModeLabel,
+      withinBankCap: displayWithinBankCap,
+    });
+  }, [displaySnapshot, displayWithinBankCap, dsrModeLabel, showZeroResult]);
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
@@ -392,8 +423,11 @@ export function DsrCalculator() {
                 value={bulletDsrBasis}
                 onChange={(e) => setBulletDsrBasis(e.target.value as BulletDsrBasis)}
               >
-                <option value="interest-only">{bulletDsrBasisLabels["interest-only"]}</option>
-                <option value="equal-payment">{bulletDsrBasisLabels["equal-payment"]}</option>
+                {bulletDsrBasisOrder.map((key) => (
+                  <option key={key} value={key}>
+                    {bulletDsrBasisLabels[key]}
+                  </option>
+                ))}
               </select>
               <p className="text-muted-foreground text-xs">{bulletDsrBasisHints[bulletDsrBasis]}</p>
             </div>
@@ -415,6 +449,11 @@ export function DsrCalculator() {
           <CardTitle className="text-xl">계산 결과</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+          <div ref={exportRef} className="bg-background space-y-4 rounded-lg p-3">
+            <div className="border-border/80 border-b pb-2">
+              <p className="text-sm font-semibold">DSR 계산기 · 계산 결과</p>
+              <p className="text-muted-foreground text-xs">withustools.com · 참고용</p>
+            </div>
           <div
             className={`rounded-lg border p-4 ${
               displayWithinBankCap
@@ -447,132 +486,132 @@ export function DsrCalculator() {
           </div>
 
           {!showZeroResult && displaySnapshot.loanResults.length > 0 ? (
-            <div className="rounded-md border">
-              <table className="w-full table-fixed border-collapse text-sm">
-                <caption className="sr-only">대출별 월 상환액</caption>
-                <thead className="bg-muted/50 border-b">
-                  <tr>
-                    <th
-                      scope="col"
-                      className={`px-2 py-1.5 text-left text-xs font-medium sm:text-sm ${displaySnapshot.isStressDsr ? "w-[22%]" : "w-[30%]"}`}
-                    >
-                      대출
-                    </th>
-                    <th
-                      scope="col"
-                      className={`px-1 py-1.5 text-left text-xs font-medium sm:text-sm ${displaySnapshot.isStressDsr ? "w-[10%]" : "w-[12%]"}`}
-                    >
-                      구분
-                    </th>
-                    <th
-                      scope="col"
-                      className={`px-1 py-1.5 text-right text-xs font-medium whitespace-nowrap sm:px-2 sm:text-sm ${displaySnapshot.isStressDsr ? "w-[34%]" : "w-[58%]"}`}
-                    >
-                      월 상환 (계약)
-                    </th>
-                    {displaySnapshot.isStressDsr ? (
-                      <th
-                        scope="col"
-                        className="w-[34%] px-1 py-1.5 text-right text-xs font-medium whitespace-nowrap sm:px-2 sm:text-sm"
-                      >
-                        월 상환 (DSR)
-                      </th>
-                    ) : null}
-                  </tr>
-                </thead>
-                <tbody>
-                  {displaySnapshot.loanResults.map((loan) => (
-                    <tr key={loan.label + loan.isNew + loan.monthlyContract} className="border-b last:border-0">
-                      <td className="truncate px-2 py-1.5 font-medium">{loan.label}</td>
-                      <td className="text-muted-foreground px-1 py-1.5 whitespace-nowrap">
-                        {loan.isNew ? "신규" : "기존"}
-                      </td>
-                      <td className="px-1 py-1.5 text-right text-xs tabular-nums whitespace-nowrap sm:px-2 sm:text-sm">
-                        {formatNumber(Math.round(loan.monthlyContract))}원
-                      </td>
-                      {displaySnapshot.isStressDsr ? (
-                        <td className="px-1 py-1.5 text-right text-xs tabular-nums whitespace-nowrap sm:px-2 sm:text-sm">
-                          {formatNumber(Math.round(loan.monthlyDsr))}원
-                        </td>
-                      ) : null}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <CalculatorLoanBreakdownTable
+              caption="대출별 월·연 상환액 및 DSR 기여"
+              columnCount={displaySnapshot.isStressDsr ? 7 : 5}
+              header={
+                <tr>
+                  <LoanBreakdownTh>대출</LoanBreakdownTh>
+                  <LoanBreakdownTh>구분</LoanBreakdownTh>
+                  <LoanBreakdownTh align="right">
+                    {displaySnapshot.isStressDsr ? "월(계)" : "월 상환"}
+                  </LoanBreakdownTh>
+                  {displaySnapshot.isStressDsr ? (
+                    <LoanBreakdownTh align="right">월(D)</LoanBreakdownTh>
+                  ) : null}
+                  <LoanBreakdownTh align="right">
+                    {displaySnapshot.isStressDsr ? "연(D)" : "연 상환"}
+                  </LoanBreakdownTh>
+                  {displaySnapshot.isStressDsr ? (
+                    <LoanBreakdownTh align="right">연(계)</LoanBreakdownTh>
+                  ) : null}
+                  <LoanBreakdownTh align="right">DSR 기여</LoanBreakdownTh>
+                </tr>
+              }
+              footnote={
+                <>
+                  연 상환은 DSR 합산에 쓰는 연간 원리금입니다. DSR 기여는 해당 대출 연 상환 ÷ 연소득입니다.
+                  {displaySnapshot.isStressDsr
+                    ? " 스트레스 DSR 적용 신규 건은 월·연 (DSR)과 (계약)을 함께 표시합니다."
+                    : null}
+                </>
+              }
+            >
+              {displaySnapshot.loanResults.map((loan, index) => (
+                <tr key={`${loan.label}-${loan.isNew}-${index}`} className="border-b last:border-0">
+                  <LoanBreakdownTd truncate>{loan.label}</LoanBreakdownTd>
+                  <LoanBreakdownTd muted>{loan.isNew ? "신규" : "기존"}</LoanBreakdownTd>
+                  <LoanBreakdownTd align="right">
+                    {formatNumber(Math.round(loan.monthlyContract))}원
+                  </LoanBreakdownTd>
+                  {displaySnapshot.isStressDsr ? (
+                    <LoanBreakdownTd align="right">
+                      {formatNumber(Math.round(loan.monthlyDsr))}원
+                    </LoanBreakdownTd>
+                  ) : null}
+                  <LoanBreakdownTd align="right">
+                    {formatNumber(Math.round(loan.annualDsr))}원
+                  </LoanBreakdownTd>
+                  {displaySnapshot.isStressDsr ? (
+                    <LoanBreakdownTd align="right">
+                      {formatNumber(Math.round(loan.annualContract))}원
+                    </LoanBreakdownTd>
+                  ) : null}
+                  <LoanBreakdownTd align="right" muted>
+                    {formatLoanDsrContributionPercent(loan.annualDsr, displaySnapshot.annualIncomeWon)}%
+                  </LoanBreakdownTd>
+                </tr>
+              ))}
+            </CalculatorLoanBreakdownTable>
           ) : null}
 
-          <dl className="text-sm space-y-3">
-            <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-              <dt className="text-muted-foreground">연 소득</dt>
-              <dd className="font-medium tabular-nums">
-                {formatNumber(displaySnapshot.annualIncomeWon)}원
-                <span className="text-muted-foreground ml-1 text-xs font-normal">
-                  ({formatAmountKoreanWon(displaySnapshot.annualIncomeWon)})
-                </span>
-              </dd>
-            </div>
+          <dl className="divide-border divide-y text-sm">
+            <ResultRow label="연 소득">
+              <MoneyValue amount={displaySnapshot.annualIncomeWon} />
+            </ResultRow>
             {showSingleNewRate ? (
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                <dt className="text-muted-foreground">계약 금리(신규 1건)</dt>
-                <dd className="font-medium tabular-nums">
-                  {`${displaySnapshot.contractRatePercent % 1 === 0 ? displaySnapshot.contractRatePercent : displaySnapshot.contractRatePercent.toFixed(2)}%`}
-                </dd>
-              </div>
+              <ResultRow label="계약 금리(신규 1건)">
+                {`${displaySnapshot.contractRatePercent % 1 === 0 ? displaySnapshot.contractRatePercent : displaySnapshot.contractRatePercent.toFixed(2)}%`}
+              </ResultRow>
             ) : null}
             {dsrMode === "stress" && showSingleNewRate ? (
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                <dt className="text-muted-foreground">DSR 산정 금리(신규 1건)</dt>
-                <dd className="font-medium tabular-nums">
-                  {displaySnapshot.newLoanRateForDsrPercent % 1 === 0
-                    ? `${displaySnapshot.newLoanRateForDsrPercent}%`
-                    : `${displaySnapshot.newLoanRateForDsrPercent.toFixed(2)}%`}
-                  {displaySnapshot.stressAddPercent > 0 ? (
-                    <span className="text-muted-foreground ml-1 text-xs font-normal">
-                      (가산 +{displaySnapshot.stressAddPercent % 1 === 0 ? displaySnapshot.stressAddPercent : displaySnapshot.stressAddPercent.toFixed(2)}%p)
-                    </span>
-                  ) : null}
-                </dd>
-              </div>
+              <ResultRow label="DSR 산정 금리(신규 1건)">
+                {displaySnapshot.stressAddPercent > 0 ? (
+                  <SubTextValue
+                    primary={
+                      displaySnapshot.newLoanRateForDsrPercent % 1 === 0
+                        ? `${displaySnapshot.newLoanRateForDsrPercent}%`
+                        : `${displaySnapshot.newLoanRateForDsrPercent.toFixed(2)}%`
+                    }
+                    sub={`가산 +${
+                      displaySnapshot.stressAddPercent % 1 === 0
+                        ? displaySnapshot.stressAddPercent
+                        : displaySnapshot.stressAddPercent.toFixed(2)
+                    }%p`}
+                  />
+                ) : (
+                  <>
+                    {displaySnapshot.newLoanRateForDsrPercent % 1 === 0
+                      ? `${displaySnapshot.newLoanRateForDsrPercent}%`
+                      : `${displaySnapshot.newLoanRateForDsrPercent.toFixed(2)}%`}
+                  </>
+                )}
+              </ResultRow>
             ) : null}
-            <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-              <dt className="text-muted-foreground">신규 대출 월 상환 합계</dt>
-              <dd className="font-medium tabular-nums">
-                {formatNumber(Math.round(displaySnapshot.newMonthlyContract))}원
-              </dd>
-            </div>
+            <ResultRow label="신규 대출 월 상환 합계">
+              <MoneyValue amount={Math.round(displaySnapshot.newMonthlyContract)} />
+            </ResultRow>
             {displaySnapshot.isStressDsr ? (
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                <dt className="text-muted-foreground">신규 월 상환 (DSR 산정용)</dt>
-                <dd className="font-medium tabular-nums">{formatNumber(Math.round(displaySnapshot.newMonthly))}원</dd>
-              </div>
+              <ResultRow label="신규 월 상환 (DSR 산정용)">
+                <MoneyValue amount={Math.round(displaySnapshot.newMonthly)} />
+              </ResultRow>
             ) : null}
-            <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-              <dt className="text-muted-foreground">
-                {displaySnapshot.isStressDsr ? "월 상환 합계 (DSR 산정용)" : "월 상환 합계"}
-              </dt>
-              <dd className="font-medium tabular-nums">{formatNumber(Math.round(displaySnapshot.totalMonthly))}원</dd>
-            </div>
+            <ResultRow label={displaySnapshot.isStressDsr ? "월 상환 합계 (DSR 산정용)" : "월 상환 합계"}>
+              <MoneyValue amount={Math.round(displaySnapshot.totalMonthly)} />
+            </ResultRow>
             {displaySnapshot.isStressDsr ? (
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                <dt className="text-muted-foreground">월 상환 합계 (실제 납입 추정)</dt>
-                <dd className="font-medium tabular-nums">
-                  {formatNumber(Math.round(displaySnapshot.totalMonthlyContract))}원
-                </dd>
-              </div>
+              <ResultRow label="월 상환 합계 (실제 납입 추정)">
+                <MoneyValue amount={Math.round(displaySnapshot.totalMonthlyContract)} />
+              </ResultRow>
             ) : null}
-            <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-              <dt className="text-muted-foreground">
-                {displaySnapshot.isStressDsr ? "연간 상환 합계 (DSR 산정용)" : "연간 원리금 상환 합계"}
-              </dt>
-              <dd className="font-medium tabular-nums">{formatNumber(Math.round(displaySnapshot.annualDebtServiceWon))}원</dd>
-            </div>
+            <ResultRow label={displaySnapshot.isStressDsr ? "연간 상환 합계 (DSR 산정용)" : "연간 원리금 상환 합계"}>
+              <MoneyValue amount={Math.round(displaySnapshot.annualDebtServiceWon)} />
+            </ResultRow>
           </dl>
 
           <p className="rounded-md border border-border bg-muted/30 px-3 py-2 text-xs leading-relaxed text-muted-foreground">
             DSR(%)는 「연간 상환 합계 (DSR 산정용)」÷ 연소득으로 계산합니다. 대출 조건은 <strong>잔액·잔여 기간</strong>
             과 상환 방식으로 월 상환을 추정합니다. 스트레스 가산은 신규·대출 조건 입력 건에만 적용됩니다.
           </p>
+          </div>
+          <div className="border-border/60 border-t pt-4">
+            <CalculatorResultExportButtons
+              disabled={showZeroResult}
+              getText={() => exportText}
+              captureRef={exportRef}
+              filenameBase="dsr-calculator-result"
+            />
+          </div>
         </CardContent>
       </Card>
 
@@ -828,7 +867,9 @@ function LoanRowEditor({
               {parsed?.repaymentType === "bullet"
                 ? bulletDsrBasis === "interest-only"
                   ? "계약 금리 기준 월 납입(이자)"
-                  : "DSR 환산 월 상환(원리금균등)"
+                  : bulletDsrBasis === "regulatory-5y-principal"
+                    ? "DSR 환산 월 상환(5년 원금+전액 이자)"
+                    : "DSR 환산 월 상환(원리금균등)"
                 : "계약 금리 기준 월 상환 추정"}
               :{" "}
               <span className="text-foreground font-medium tabular-nums">
@@ -963,10 +1004,7 @@ function DsrCalculatorReferenceCard() {
     equalPrincipalDsrBasisLabels[k],
     equalPrincipalDsrBasisHints[k],
   ]);
-  const bulletRows = (Object.keys(bulletDsrBasisLabels) as BulletDsrBasis[]).map((k) => [
-    bulletDsrBasisLabels[k],
-    bulletDsrBasisHints[k],
-  ]);
+  const bulletRows = bulletDsrBasisOrder.map((k) => [bulletDsrBasisLabels[k], bulletDsrBasisHints[k]]);
   const stressRows = stressDsrPresets
     .filter((p) => p.id !== "custom")
     .map((p) => [p.label, p.nominalPercent != null ? `${p.nominalPercent}%p` : "—"]);
@@ -1056,7 +1094,7 @@ function DsrCalculatorReferenceCard() {
               "대출 조건 입력 시 잔액·잔여 기간(개월)을 기준으로 월 상환을 계산합니다. 총액·총 기간·거치도 함께 반영할 수 있습니다.",
               "스트레스 DSR은 신규·대출 조건 입력 건에만 가산금리를 적용합니다. 기존 대출·월 상환 직접 입력 건은 입력값을 그대로 씁니다.",
               "체증식은 「월 상환 직접」 입력만 지원합니다. 통장·상환 스케줄의 월 납입액을 그대로 넣으세요.",
-              "원금균등·만기일시는 선택한 연간 상환 산출 방식에 따라 DSR이 달라집니다. 타사 계산기와 정의가 다를 수 있습니다.",
+              "만기일시 DSR 기본은 「5년 원금균등+전액 이자」(신용·만기일시 규정)이며, 원리금균등 환산·이자만도 선택할 수 있습니다. 금융기관별로 정의가 다를 수 있습니다.",
               "마이너스통장·신용카드 리볼빙·보증채무 등은 본 화면에 포함되지 않을 수 있습니다.",
               "LTV·DTI·규제지역·다주택·스트레스 DSR 단계별 시행 등은 별도 규정이며, 승인 한도는 신청 금융기관에서 확인해야 합니다.",
             ].map((text, i) => (
@@ -1084,6 +1122,9 @@ function DsrCalculatorReferenceCard() {
           </Link>
           <Link href="/guide/ltv-dti-dsr-comparison" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
             LTV·DTI·DSR 비교
+          </Link>
+          <Link href="/dti-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            DTI 계산기
           </Link>
         </p>
       </CardContent>

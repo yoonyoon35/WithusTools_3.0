@@ -22,19 +22,30 @@ export const equalPrincipalDsrBasisHints: Record<EqualPrincipalDsrBasis, string>
   "lifetime-avg": "총 상환÷개월로 평균 낸 뒤 연환산합니다. 일부 안내용 계산기와 유사할 수 있습니다.",
 };
 
-/** 만기일시 DSR 산정 기준(기관·계산기 비교용) */
-export type BulletDsrBasis = "interest-only" | "equal-payment";
+/** 만기일시 DSR 산정 기준(기관·규정·계산기 비교용). bulletDsrBasisOrder 순 = 실무 DSR 심사에 가까운 순 */
+export const BULLET_DSR_REGULATORY_AMORTIZATION_YEARS = 5;
+
+export type BulletDsrBasis = "regulatory-5y-principal" | "equal-payment" | "interest-only";
+
+export const bulletDsrBasisOrder: readonly BulletDsrBasis[] = [
+  "regulatory-5y-principal",
+  "equal-payment",
+  "interest-only",
+] as const;
 
 export const bulletDsrBasisLabels: Record<BulletDsrBasis, string> = {
+  "regulatory-5y-principal": "5년 원금균등+전액 이자 (신용·만기일시 DSR)",
+  "equal-payment": "원리금균등 환산",
   "interest-only": "기간 중 이자만 (실제 월 납입)",
-  "equal-payment": "원리금균등 환산 (DSR 보수적 산정)",
 };
 
 export const bulletDsrBasisHints: Record<BulletDsrBasis, string> = {
-  "interest-only":
-    "만기 전까지 실제로 납부하는 이자만 반영합니다. 원리금균등상환은 상환 방식에서 직접 선택하세요.",
+  "regulatory-5y-principal":
+    "잔액을 5년(60개월) 균등 상환한다고 가정한 연간 원금 + 잔액 전액 기준 이자입니다. 신용대출 만기일시 DSR 규정·금융당국 안내와 유사하며, 실제 만기와 무관하게 5년을 적용합니다.",
   "equal-payment":
-    "만기일시를 원리금균등으로 환산해 DSR 연간 상환액을 계산합니다. 일부 금융기관·계산기의 보수적 산정과 비교할 때 선택합니다.",
+    "만기일시를 입력한 총·잔여 기간으로 원리금균등 환산합니다. 일부 금융기관·계산기 비교용입니다.",
+  "interest-only":
+    "만기 전 실제 납부 이자만 반영합니다. DSR 심사용이 아니라 통장 출금액 확인에 가깝습니다.",
 };
 
 /** 신규 대출 스트레스 금리 반영: 가이드의 변동·혼합·주기·순수고정 가중 */
@@ -119,6 +130,11 @@ export function annualLoanDebtService(
   }
 
   if (repaymentType === "bullet") {
+    if (bulletBasis === "regulatory-5y-principal") {
+      const annualPrincipal = balanceWon / BULLET_DSR_REGULATORY_AMORTIZATION_YEARS;
+      const annualInterest = balanceWon * (annualRatePercent / 100);
+      return annualPrincipal + annualInterest;
+    }
     if (bulletBasis === "equal-payment") {
       const { monthlyPayment } = calculateEqualPayment(
         balanceWon,
@@ -197,7 +213,7 @@ export function monthlyPaymentForDsr(
   termMonths: number,
   repaymentType: RepaymentType,
   equalPrincipalBasis: EqualPrincipalDsrBasis = "first-month",
-  bulletBasis: BulletDsrBasis = "interest-only",
+  bulletBasis: BulletDsrBasis = "regulatory-5y-principal",
   options?: { graceMonths?: number; graduatedAnnualIncreasePercent?: number },
 ): number {
   return impliedMonthlyFromAnnual(
@@ -382,7 +398,7 @@ export function computeDsrSnapshotFromLoans(args: {
   stress?: DsrStressOptions | null;
 }) {
   const basis = args.equalPrincipalDsrBasis ?? "first-month";
-  const bulletBasis = args.bulletDsrBasis ?? "interest-only";
+  const bulletBasis = args.bulletDsrBasis ?? "regulatory-5y-principal";
   const annualIncomeWon = args.annualIncomeManwon * 10_000;
   const nominalStress =
     args.stress != null && Number.isFinite(args.stress.nominalStressPercent)
