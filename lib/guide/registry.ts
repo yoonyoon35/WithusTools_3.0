@@ -165,6 +165,10 @@ import {
   holdingCapitalGainsTaxIncrease2026GuideMeta,
 } from "@/lib/guide/articles/holding-capital-gains-tax-increase-2026-guide";
 import {
+  RegulatedAreaDesignationEffects2026GuideBody,
+  regulatedAreaDesignationEffects2026GuideMeta,
+} from "@/lib/guide/articles/regulated-area-designation-effects-2026-guide";
+import {
   EqualPayment150MillionMortgageInterestGuideBody,
   equalPayment150MillionMortgageInterestGuideMeta,
 } from "@/lib/guide/articles/equal-payment-150-million-mortgage-interest-guide";
@@ -184,6 +188,18 @@ import {
   NationalHousingBondPurchaseCriteriaGuideBody,
   nationalHousingBondPurchaseCriteriaGuideMeta,
 } from "@/lib/guide/articles/national-housing-bond-purchase-criteria-guide";
+import {
+  DongtanGiheungGuriRegulatedAreaLtv2026GuideBody,
+  dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta,
+} from "@/lib/guide/articles/dongtan-giheung-guri-regulated-area-ltv-2026-guide";
+import {
+  DongtanGiheungGuriGapInvestmentLandPermit2026GuideBody,
+  dongtanGiheungGuriGapInvestmentLandPermit2026GuideMeta,
+} from "@/lib/guide/articles/dongtan-giheung-guri-gap-investment-land-permit-2026-guide";
+import {
+  DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody,
+  dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
+} from "@/lib/guide/articles/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide";
 import {
   BrokerageFeeVatSeparateGuideBody,
   brokerageFeeVatSeparateGuideMeta,
@@ -411,6 +427,10 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
   },
   {
+    ...regulatedAreaDesignationEffects2026GuideMeta,
+    Body: RegulatedAreaDesignationEffects2026GuideBody,
+  },
+  {
     ...equalPayment150MillionMortgageInterestGuideMeta,
     Body: EqualPayment150MillionMortgageInterestGuideBody,
   },
@@ -437,6 +457,18 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...brokerageFeeVatSeparateGuideMeta,
     Body: BrokerageFeeVatSeparateGuideBody,
+  },
+  {
+    ...dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta,
+    Body: DongtanGiheungGuriRegulatedAreaLtv2026GuideBody,
+  },
+  {
+    ...dongtanGiheungGuriGapInvestmentLandPermit2026GuideMeta,
+    Body: DongtanGiheungGuriGapInvestmentLandPermit2026GuideBody,
+  },
+  {
+    ...dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
+    Body: DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody,
   },
 ];
 
