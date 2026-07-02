@@ -157,6 +157,18 @@ import {
   capitalGainsSurchargeRevival2026GuideMeta,
 } from "@/lib/guide/articles/capital-gains-surcharge-revival-2026-guide";
 import {
+  OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody,
+  oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta,
+} from "@/lib/guide/articles/one-household-one-home-comprehensive-property-tax-amount-guide";
+import {
+  PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody,
+  propertyTaxVsComprehensivePropertyTaxFairRatioGuideMeta,
+} from "@/lib/guide/articles/property-tax-vs-comprehensive-property-tax-fair-ratio-guide";
+import {
+  ComprehensivePropertyTaxOverviewGuideBody,
+  comprehensivePropertyTaxOverviewGuideMeta,
+} from "@/lib/guide/articles/comprehensive-property-tax-overview-guide";
+import {
   ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
   comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
 } from "@/lib/guide/articles/comprehensive-property-tax-fair-ratio-calculation-2026-guide";
@@ -421,6 +433,18 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...holdingCapitalGainsTaxIncrease2026GuideMeta,
     Body: HoldingCapitalGainsTaxIncrease2026GuideBody,
+  },
+  {
+    ...comprehensivePropertyTaxOverviewGuideMeta,
+    Body: ComprehensivePropertyTaxOverviewGuideBody,
+  },
+  {
+    ...oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta,
+    Body: OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody,
+  },
+  {
+    ...propertyTaxVsComprehensivePropertyTaxFairRatioGuideMeta,
+    Body: PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody,
   },
   {
     ...comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,

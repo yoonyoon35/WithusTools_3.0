@@ -82,8 +82,18 @@ export const guideTopics: readonly GuideTopic[] = [
       "officetel-residential-vs-business-tax-guide",
       "acquisition-tax-deadline-and-penalty-guide",
       "capital-gains-surcharge-revival-2026-guide",
-      "holding-capital-gains-tax-increase-2026-guide",
+    ],
+  },
+  {
+    id: "holding-tax",
+    label: "보유세·종부세",
+    description: "재산세·지방교육세·종합부동산세·농특세, 공시가격·기본공제·신고 일정",
+    slugs: [
+      "comprehensive-property-tax-overview-guide",
+      "one-household-one-home-comprehensive-property-tax-amount-guide",
+      "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
       "comprehensive-property-tax-fair-ratio-calculation-2026-guide",
+      "holding-capital-gains-tax-increase-2026-guide",
     ],
   },
   {
