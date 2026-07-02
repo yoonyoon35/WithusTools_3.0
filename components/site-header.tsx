@@ -134,7 +134,7 @@ export function SiteHeader() {
                     className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
                     href="/brokerage-fee-calculator"
                   >
-                    중개보수 계산기
+                    중개수수료 계산기
                   </Link>
                   <Link
                     role="menuitem"

@@ -220,6 +220,30 @@ import {
   NewApartment600MillionAcquisitionTaxGuideBody,
   newApartment600MillionAcquisitionTaxGuideMeta,
 } from "@/lib/guide/articles/new-apartment-600-million-acquisition-tax-guide";
+import {
+  NewApartment700MillionAcquisitionTaxGuideBody,
+  newApartment700MillionAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/new-apartment-700-million-acquisition-tax-guide";
+import {
+  NewApartment800MillionAcquisitionTaxGuideBody,
+  newApartment800MillionAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/new-apartment-800-million-acquisition-tax-guide";
+import {
+  NewApartment900MillionAcquisitionTaxGuideBody,
+  newApartment900MillionAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/new-apartment-900-million-acquisition-tax-guide";
+import {
+  NewApartment1200MillionAcquisitionTaxGuideBody,
+  newApartment1200MillionAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/new-apartment-1200-million-acquisition-tax-guide";
+import {
+  NewConstructionApartmentAcquisitionTaxGuideBody,
+  newConstructionApartmentAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/new-construction-apartment-acquisition-tax-guide";
+import {
+  Apartment1000MillionBrokerageFeeGuideBody,
+  apartment1000MillionBrokerageFeeGuideMeta,
+} from "@/lib/guide/articles/apartment-1000-million-brokerage-fee-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -477,6 +501,30 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...newApartment600MillionAcquisitionTaxGuideMeta,
     Body: NewApartment600MillionAcquisitionTaxGuideBody,
+  },
+  {
+    ...newConstructionApartmentAcquisitionTaxGuideMeta,
+    Body: NewConstructionApartmentAcquisitionTaxGuideBody,
+  },
+  {
+    ...newApartment700MillionAcquisitionTaxGuideMeta,
+    Body: NewApartment700MillionAcquisitionTaxGuideBody,
+  },
+  {
+    ...newApartment800MillionAcquisitionTaxGuideMeta,
+    Body: NewApartment800MillionAcquisitionTaxGuideBody,
+  },
+  {
+    ...newApartment900MillionAcquisitionTaxGuideMeta,
+    Body: NewApartment900MillionAcquisitionTaxGuideBody,
+  },
+  {
+    ...newApartment1200MillionAcquisitionTaxGuideMeta,
+    Body: NewApartment1200MillionAcquisitionTaxGuideBody,
+  },
+  {
+    ...apartment1000MillionBrokerageFeeGuideMeta,
+    Body: Apartment1000MillionBrokerageFeeGuideBody,
   },
   {
     ...brokerageFeeVatSeparateGuideMeta,

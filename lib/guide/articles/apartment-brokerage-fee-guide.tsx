@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const apartmentBrokerageFeeGuideMeta = {
   slug: "apartment-brokerage-fee-guide",
-  title: "아파트 매매 중개수수료 얼마나 나올까",
+  title: "아파트 매매 중개수수료·아파트매매 수수료 계산",
   description:
-    "2026년 4월 기준 아파트 매매 중개 상한요율표, 매매가별 수수료 예시, 9억 구간 경계, 부가세·지급 시기와 흔한 실수를 표로 정리했습니다.",
-  updated: "2026년 4월 28일",
+    "2026년 4월 기준 아파트 매매·아파트매매 중개수수료 상한요율표, 7억·8억·9억·10억·12억 매매가별 예시, 0.4%·0.5% 구간 경계, 부가세·지급 시기와 흔한 실수를 표로 정리했습니다.",
+  updated: "2026년 7월 2일",
 } as const;
 
 export function ApartmentBrokerageFeeGuideBody() {
@@ -16,8 +16,12 @@ export function ApartmentBrokerageFeeGuideBody() {
           2026년 4월 기준
         </h2>
         <p>
-          아파트 매매 중개수수료는 거래금액에 상한요율을 곱한 금액 이내에서 공인중개사와 협의해 결정합니다. 매도인과 매수인이 각각
-          중개사에게 별도로 지급하는 것이 원칙입니다.
+          아파트 매매 중개수수료(아파트매매 중개수수료)는 거래금액에 상한요율을 곱한 금액 이내에서 공인중개사와 협의해 결정합니다.
+          매도인과 매수인이 각각 중개사에게 별도로 지급하는 것이 원칙입니다.{" "}
+          <Link href="/brokerage-fee-calculator" className="text-primary underline-offset-4 hover:underline">
+            중개수수료 계산기
+          </Link>
+          에서 매매가를 입력하면 1인당·쌍방 합계를 바로 확인할 수 있습니다.
         </p>
         <p className="text-muted-foreground text-sm">
           2026년 기준 아파트 매매 상한요율은 5,000만 원 미만 0.6%(한도 25만 원), 5,000만 원 이상 2억 원 미만 0.5%(한도 80만 원), 2억
@@ -388,8 +392,16 @@ export function ApartmentBrokerageFeeGuideBody() {
         aria-label="중개수수료 계산기 이동"
       >
         <p>
+          <Link href="/guide/apartment-1000-million-brokerage-fee-guide" className="text-primary font-medium underline-offset-4 hover:underline">
+            10억 아파트 매매 중개수수료
+          </Link>
+          {" · "}
+          <Link href="/guide/presale-right-resale-brokerage-fee-guide" className="text-primary font-medium underline-offset-4 hover:underline">
+            분양권 전매 중개수수료
+          </Link>
+          {" · "}
           <Link href="/brokerage-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            매매가를 직접 입력하면 중개수수료를 바로 계산해볼 수 있습니다.
+            중개수수료 계산기
           </Link>
         </p>
       </aside>

@@ -375,7 +375,7 @@ export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
             </Link>
           </li>
           <li>
-            <strong>중개보수·국민주택채권</strong> — 매매가·지역에 따라 달라집니다.
+            <strong>중개수수료·국민주택채권</strong> — 매매가·지역에 따라 달라집니다.
           </li>
           <li>
             <strong>인지대·등기비용</strong> — 소액이지만 잔금 자금에 포함해야 합니다.

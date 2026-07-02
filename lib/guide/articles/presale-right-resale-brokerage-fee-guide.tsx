@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const presaleRightResaleBrokerageFeeGuideMeta = {
   slug: "presale-right-resale-brokerage-fee-guide",
-  title: "분양권 전매 중개수수료 계산법",
+  title: "분양권 전매 중개수수료 계산·요율",
   description:
-    "2026년 기준 분양권 거래금액 산정 방식, 적용 요율, 금액별 중개수수료 예시를 표로 정리했습니다. 마이너스 프리미엄, 추가 비용, 전매제한 등 계약 전 유의사항과 중개보수 계산기 활용 방법도 참고용으로 확인하세요. 실제 수수료는 협의·관할 고시에 따라 달라질 수 있습니다.",
-  updated: "2026년 5월 5일",
+    "2026년 기준 분양권 전매 중개수수료 산정 방식, 거래금액(계약금+중도금+프리미엄) 공식, 금액별 예시·마이너스 프리미엄·전매제한 유의사항. 중개수수료 계산기로 바로 계산할 수 있습니다.",
+  updated: "2026년 7월 2일",
 } as const;
 
 export function PresaleRightResaleBrokerageFeeGuideBody() {
@@ -17,8 +17,15 @@ export function PresaleRightResaleBrokerageFeeGuideBody() {
         </h2>
         <p>
           분양권 전매 중개수수료는 일반 아파트 매매와 계산 방식이 다릅니다. 분양권 매매 계약의 거래금액은 거래 당시까지 납입한
-          계약금과 중도금(대출 포함)에 프리미엄을 모두 합하여 산정합니다. 분양가 전체가 아닌 실제 납입액과 프리미엄의 합계가
-          기준입니다.
+          계약금과 중도금(대출 포함)에 프리미엄을 모두 합하여 산정합니다.{" "}
+          <Link href="/brokerage-fee-calculator" className="text-primary underline-offset-4 hover:underline">
+            중개수수료 계산기
+          </Link>
+          와{" "}
+          <Link href="/guide/apartment-brokerage-fee-guide" className="text-primary underline-offset-4 hover:underline">
+            아파트 매매 중개수수료
+          </Link>
+          가이드도 함께 참고하세요.
         </p>
       </section>
 
@@ -352,7 +359,7 @@ export function PresaleRightResaleBrokerageFeeGuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="중개보수 계산기 이동"
+        aria-label="중개수수료 계산기 이동"
       >
         <p>
           <Link href="/brokerage-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">

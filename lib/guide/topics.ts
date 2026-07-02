@@ -68,8 +68,13 @@ export const guideTopics: readonly GuideTopic[] = [
     description: "세율·감면·중과, 지방교육세·농어촌특별세, 납부 기한",
     slugs: [
       "acquisition-tax-rates-2026-guide",
+      "new-construction-apartment-acquisition-tax-guide",
       "first-home-acquisition-tax-amount-guide",
       "new-apartment-600-million-acquisition-tax-guide",
+      "new-apartment-700-million-acquisition-tax-guide",
+      "new-apartment-800-million-acquisition-tax-guide",
+      "new-apartment-900-million-acquisition-tax-guide",
+      "new-apartment-1200-million-acquisition-tax-guide",
       "first-home-acquisition-tax-relief-guide",
       "acquisition-tax-relief-programs-2026-guide",
       "second-home-acquisition-tax-surcharge-2026-guide",
@@ -98,12 +103,13 @@ export const guideTopics: readonly GuideTopic[] = [
   },
   {
     id: "brokerage",
-    label: "중개보수·거래",
+    label: "중개수수료·거래",
     description: "중개수수료 요율, 전·월세, 직거래, 분양권·재계약",
     slugs: [
       "brokerage-fee-rates-2026-guide",
       "brokerage-fee-vat-separate-guide",
       "apartment-brokerage-fee-guide",
+      "apartment-1000-million-brokerage-fee-guide",
       "jeonse-brokerage-fee-calculation-2026-guide",
       "wolse-brokerage-fee-calculation-2026-guide",
       "brokerage-fee-payment-timing-guide",

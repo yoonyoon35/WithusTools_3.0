@@ -4,7 +4,7 @@ export const directDealVsBrokeredDealGuideMeta = {
   slug: "direct-deal-vs-brokered-deal-guide",
   title: "직거래 vs 중개거래 비용 비교",
   description:
-    "직거래·중개거래 비용 차이, 절감액 대비 리스크, 매매·전세 상황별 판단 기준을 정리했습니다. 중개보수 계산기와 함께 상황에 맞는 거래 방식을 비교해 볼 수 있는 참고 가이드입니다. 계약 조건, 분쟁 대응, 실제 절감액은 거래마다 달라질 수 있으니 개별 확인이 필요합니다.",
+    "직거래·중개거래 비용 차이, 절감액 대비 리스크, 매매·전세 상황별 판단 기준을 정리했습니다. 중개수수료 계산기와 함께 상황에 맞는 거래 방식을 비교해 볼 수 있는 참고 가이드입니다. 계약 조건, 분쟁 대응, 실제 절감액은 거래마다 달라질 수 있으니 개별 확인이 필요합니다.",
   updated: "2026년 4월 28일",
 } as const;
 
@@ -444,11 +444,11 @@ export function DirectDealVsBrokeredDealGuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="중개보수 계산기 이동"
+        aria-label="중개수수료 계산기 이동"
       >
         <p>
           <Link href="/brokerage-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            → 거래금액에 따른 중개수수료는 중개보수 계산기에서 확인할 수 있습니다.
+            → 거래금액에 따른 중개수수료는 중개수수료 계산기에서 확인할 수 있습니다.
           </Link>
         </p>
       </aside>

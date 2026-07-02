@@ -13,7 +13,7 @@ export function SiteFooter() {
             취득세 계산기
           </Link>
           <Link href="/brokerage-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            중개보수 계산기
+            중개수수료 계산기
           </Link>
           <Link href="/dsr-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             DSR 계산기

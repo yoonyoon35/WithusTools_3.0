@@ -15,7 +15,7 @@ export function DsrCalculatorSection() {
     <section className="scroll-mt-24 py-10 sm:py-14" aria-labelledby="dsr-calculator-heading">
       <div className="mx-auto max-w-6xl px-4">
         <h2 id="dsr-calculator-heading" className="mb-8 text-2xl font-bold tracking-tight sm:text-3xl">
-          DSR 계산기
+          DSR·주담대 한도 계산
         </h2>
         <Suspense fallback={<CalculatorFallback />}>
           <DsrCalculator />

@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const carInstallmentDsrMortgageLimitImpactGuideMeta = {
   slug: "car-installment-dsr-mortgage-limit-impact-guide",
-  title: "자동차 할부가 DSR·주담대 한도에 미치는 영향",
+  title: "주담대 차량 할부 한도·DSR 영향",
   description:
-    "자동차 할부가 DSR 40%와 주택담보대출 한도에 어떻게 반영되는지, 연봉별 체감 차이와 실행 순서를 표 중심으로 정리했습니다.",
-  updated: "2026년 5월 28일",
+    "주담대 차량 할부 한도가 DSR 40%와 주택담보대출 승인에 미치는 영향, 연봉별 체감 차이, 할부 전·후 실행 순서. DSR 계산기로 한도 변화를 바로 확인할 수 있습니다.",
+  updated: "2026년 7월 2일",
 } as const;
 
 export function CarInstallmentDsrMortgageLimitImpactGuideBody() {
@@ -16,8 +16,8 @@ export function CarInstallmentDsrMortgageLimitImpactGuideBody() {
           먼저 결론부터
         </h2>
         <p>
-          자동차 할부는 DSR 계산에서 <strong>기존 부채의 월 원리금</strong>으로 반영됩니다. 그래서 같은 연봉이라도 차량 할부가
-          있으면 주택담보대출에 쓸 수 있는 월 상환 여력이 줄고, 결과적으로 승인 한도가 내려갑니다.
+          주담대 차량 할부 한도는 DSR 계산에서 <strong>기존 부채의 월 원리금</strong>으로 반영됩니다. 자동차 할부가 있으면
+          주택담보대출에 쓸 수 있는 월 상환 여력이 줄고, 결과적으로 승인 한도가 내려갑니다.
         </p>
       </section>
 

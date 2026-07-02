@@ -25,7 +25,7 @@ export function HubHeroSection() {
           {siteTagline}
         </h1>
         <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-          대출 이자·DSR·취득세·중개보수 등 계산기와 가이드를 한곳에서 이용할 수 있습니다. {referenceDisclaimerLine}
+          대출 이자·DSR·취득세·중개수수료 등 계산기와 가이드를 한곳에서 이용할 수 있습니다. {referenceDisclaimerLine}
         </p>
         <div className="mt-6">
           <Link
@@ -89,7 +89,7 @@ export function GuideTopicsSection() {
           </h2>
         </div>
         <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-          DSR·상환·취득세·중개보수 등 주제별 설명 글을 확인할 수 있습니다.
+          DSR·상환·취득세·중개수수료 등 주제별 설명 글을 확인할 수 있습니다.
         </p>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">
           {guideTopics.map((topic) => (

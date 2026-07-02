@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const newApartment600MillionAcquisitionTaxGuideMeta = {
   slug: "new-apartment-600-million-acquisition-tax-guide",
-  title: "6억 신축 분양 아파트 취득세 계산",
+  title: "6억·분양가6억 신축 아파트 취득세 계산",
   description:
-    "2026년 6월 기준 분양가 6억 원 신축 아파트 취득세·지방교육세·농특세 산출, 전용면적·주택 수·생애최초 감면 시나리오와 납부 시점을 표로 정리했습니다.",
-  updated: "2026년 6월 1일",
+    "2026년 6월 기준 분양가 6억 원(분양가6억아파트) 신축 아파트 취득세·지방교육세·농특세 산출, 전용면적·주택 수·생애최초 감면 시나리오와 납부 시점을 표로 정리했습니다.",
+  updated: "2026년 7월 2일",
 } as const;
 
 export function NewApartment600MillionAcquisitionTaxGuideBody() {
@@ -383,6 +383,10 @@ export function NewApartment600MillionAcquisitionTaxGuideBody() {
         <p>
           <Link href="/acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             → 분양가·주택 수·면적에 맞는 취득세는 취득세 계산기에서 확인할 수 있습니다.
+          </Link>
+          {" · "}
+          <Link href="/guide/new-construction-apartment-acquisition-tax-guide" className="text-primary font-medium underline-offset-4 hover:underline">
+            신축 취득세 허브
           </Link>
         </p>
       </aside>

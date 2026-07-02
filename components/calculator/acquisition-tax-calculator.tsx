@@ -900,6 +900,21 @@ export function AcquisitionTaxCalculator() {
           </p>
 
           <p className="flex flex-wrap gap-x-3 gap-y-1">
+            <Link href="/guide/new-construction-apartment-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              신축 아파트 취득세 계산
+            </Link>
+            <Link href="/guide/new-apartment-600-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              6억 신축 취득세
+            </Link>
+            <Link href="/guide/new-apartment-800-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              8억 주택 취득세
+            </Link>
+            <Link href="/guide/new-apartment-900-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              9억 신축 취득세
+            </Link>
+            <Link href="/guide/new-apartment-1200-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              12억 신축 취득세
+            </Link>
             <Link href="/guide/acquisition-tax-rates-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
               2026년 취득세율 정리
             </Link>

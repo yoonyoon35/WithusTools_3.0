@@ -1114,14 +1114,26 @@ function DsrCalculatorReferenceCard() {
         </p>
 
         <p className="flex flex-wrap gap-x-3 gap-y-1">
+          <Link href="/guide/car-installment-dsr-mortgage-limit-impact-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            주담대 차량 할부 한도
+          </Link>
+          <Link href="/guide/dsr-40-mortgage-limit" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            DSR 40% 주담대 한도
+          </Link>
           <Link href="/guide/dsr-calculation-method" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            DSR 계산 방법 (상세 가이드)
+            DSR 계산 방법
           </Link>
           <Link href="/guide/stress-dsr-explained" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
             스트레스 DSR 설명
           </Link>
           <Link href="/guide/ltv-dti-dsr-comparison" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
             LTV·DTI·DSR 비교
+          </Link>
+          <Link href="/guide/annual-salary-mortgage-limit-dsr" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            연봉별 주담대 한도
+          </Link>
+          <Link href="/ltv-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+            LTV 계산기
           </Link>
           <Link href="/dti-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
             DTI 계산기

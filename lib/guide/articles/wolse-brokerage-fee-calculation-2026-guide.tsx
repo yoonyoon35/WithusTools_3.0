@@ -556,7 +556,7 @@ export function WolseBrokerageFeeCalculation2026GuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="중개보수 계산기 이동"
+        aria-label="중개수수료 계산기 이동"
       >
         <p>
           <Link href="/brokerage-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">

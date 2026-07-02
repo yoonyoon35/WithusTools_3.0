@@ -27,7 +27,7 @@ export const referenceDisclaimerLine =
   "본 서비스는 표준 계산식 기반 참고용이며, 실제 조건은 금융기관에 문의하시기 바랍니다.";
 
 export const defaultDescription =
-  `${SITE_NAME}(${SITE_DOMAIN})에서 대출 이자·DSR·취득세·중개보수·중도상환 수수료 계산기와 가이드를 무료로 이용하세요. 주택담보대출, 부동산 거래, 세금 납부 전 예상 비용을 참고용으로 미리 확인할 수 있습니다.`;
+  `${SITE_NAME}(${SITE_DOMAIN})에서 대출 이자·DSR·취득세·중개수수료·중도상환 수수료 계산기와 가이드를 무료로 이용하세요. 주택담보대출, 부동산 거래, 세금 납부 전 예상 비용을 참고용으로 미리 확인할 수 있습니다.`;
 
 export const loanCalculatorTitle = `대출 이자 계산기 - ${SITE_DOMAIN}`;
 

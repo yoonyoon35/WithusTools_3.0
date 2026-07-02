@@ -338,7 +338,7 @@ export function BrokerageFeeCalculator() {
           </Button>
 
           <p className="text-muted-foreground text-xs leading-relaxed">
-            본 계산기는 서울특별시가 고시한 중개보수 상한 요율을 바탕으로 한 참고용입니다. 실제 중개보수는 의뢰인과 개업공인중개사 간 협의로
+            본 계산기는 서울특별시가 고시한 중개보수 상한 요율을 바탕으로 한 참고용입니다. 실제 중개수수료는 의뢰인과 개업공인중개사 간 협의로
             결정되며, 부가가치세는 별도입니다. 다른 지역·시점의 고시와 다를 수 있습니다.
           </p>
         </CardContent>
@@ -372,7 +372,7 @@ export function BrokerageFeeCalculator() {
                 </div>
               ) : null}
               <div className="bg-muted/40 flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
-                <span className="text-muted-foreground text-sm">법정 최대 중개보수 (상한)</span>
+                <span className="text-muted-foreground text-sm">법정 최대 중개수수료 (상한)</span>
                 <ResultAmountBlock amount={Math.round(result.bracket.maxFee)} className="text-2xl font-bold tabular-nums" />
               </div>
               <p className="text-muted-foreground text-xs leading-relaxed">
@@ -566,11 +566,20 @@ export function BrokerageFeeCalculator() {
           </p>
 
           <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <Link href="/guide/brokerage-fee-rates-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              2026년 중개수수료 요율표
-            </Link>
             <Link href="/guide/apartment-brokerage-fee-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
               아파트 매매 중개수수료
+            </Link>
+            <Link href="/guide/apartment-1000-million-brokerage-fee-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              10억 아파트 중개수수료
+            </Link>
+            <Link href="/guide/presale-right-resale-brokerage-fee-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              분양권 전매 중개수수료
+            </Link>
+            <Link href="/guide/brokerage-fee-income-deduction-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              중개수수료 소득공제
+            </Link>
+            <Link href="/guide/brokerage-fee-rates-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
+              2026년 중개수수료 요율표
             </Link>
             <Link href="/guide/jeonse-brokerage-fee-calculation-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
               전세 중개수수료 계산

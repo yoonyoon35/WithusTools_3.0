@@ -35,7 +35,7 @@ export const calculatorTools: readonly CalculatorTool[] = [
   },
   {
     href: "/brokerage-fee-calculator",
-    title: "중개보수 계산기",
+    title: "중개수수료 계산기",
     description: "매매·전세·월세 거래 유형별 중개수수료 상한액을 계산합니다.",
   },
   {
