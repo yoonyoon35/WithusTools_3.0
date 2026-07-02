@@ -36,7 +36,7 @@ export const loanCalculatorDescription =
 
 export const loanCalculatorShareText = "대출 받기 전 미리 이자 계산해 보세요.";
 
-export const ogImagePath = "/favicon/apple-touch-icon-152x152.png";
+export const ogImagePath = "/favicon/apple-touch-icon.png";
 
 /** 카카오 애드핏 PC 세로형(160×600) 광고단위 */
 export const kakaoAdfitPcSkyscraperUnit = "DAN-BNkWYYZ7sfTPst4Y" as const;

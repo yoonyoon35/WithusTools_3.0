@@ -3,12 +3,13 @@ import { Noto_Sans_KR } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { KakaoSdkLoader } from "@/components/kakao-sdk-loader";
-import { WebSiteJsonLd } from "@/components/json-ld";
+import { SiteJsonLd } from "@/components/json-ld";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 // import { AdfitLeaderboard728 } from "@/components/adfit-leaderboard-728";
 // import { AdfitPcSkyscraperRail } from "@/components/adfit-pc-skyscraper-rail";
+import { authorAboutUrl, authorDisplayName } from "@/lib/publisher";
 import { defaultDescription, defaultTitle, ogImagePath, SITE_DOMAIN, SITE_NAME, SITE_URL } from "@/lib/site";
 // import { kakaoAdfitBaScriptSrc } from "@/lib/site";
 
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     "원금균등상환",
     "주택담보대출",
   ],
-  authors: [{ name: SITE_DOMAIN }],
+  authors: [{ name: authorDisplayName, url: authorAboutUrl }],
   verification: {
     yandex: "b9d7eec2f6c0396f",
   },
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: defaultTitle,
     description: defaultDescription,
-    images: [{ url: ogImagePath, width: 152, height: 152, alt: SITE_DOMAIN }],
+    images: [{ url: ogImagePath, width: 180, height: 180, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary",
@@ -134,7 +135,7 @@ export default function RootLayout({
         /> */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <KakaoSdkLoader />
-          <WebSiteJsonLd />
+          <SiteJsonLd />
           <SiteHeader />
           {/* <AdfitLeaderboard728 /> */}
           <div className="mx-auto w-full max-w-6xl px-4 lg:flex lg:max-w-[calc(72rem+1.5rem+160px)] lg:gap-6">

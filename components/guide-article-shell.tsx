@@ -1,7 +1,12 @@
-import Link from "next/link";
-// import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
 import { GuideArticleBodyWithMidAd } from "@/components/guide-article-body-with-mid-ad";
+import {
+  GuideAuthoritativeSources,
+  GuideAuthorByline,
+  GuideUpdatedTime,
+} from "@/components/guide-meta-footer";
 import { GuideRelatedArticles } from "@/components/guide-related-articles";
+import { BreadcrumbNav } from "@/components/breadcrumb-nav";
+import { parseKoreanDateLabel } from "@/lib/dates";
 
 export function GuideArticleShell({
   slug,
@@ -14,36 +19,28 @@ export function GuideArticleShell({
   updated: string;
   children: React.ReactNode;
 }) {
+  const updatedIso = parseKoreanDateLabel(updated);
+
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 sm:py-14" role="main">
-      <nav className="text-muted-foreground mb-8 text-sm" aria-label="이동 경로">
-        <ol className="flex flex-wrap items-center gap-1">
-          <li>
-            <Link href="/" className="hover:text-foreground underline-offset-4 hover:underline">
-              홈
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li>
-            <Link href="/guide" className="hover:text-foreground underline-offset-4 hover:underline">
-              가이드
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="text-foreground">{title}</li>
-        </ol>
-      </nav>
+      <BreadcrumbNav
+        items={[
+          { name: "홈", href: "/" },
+          { name: "가이드", href: "/guide" },
+          { name: title },
+        ]}
+      />
       <article>
         <header className="border-primary border-l-4 pl-4 sm:pl-5">
           <h1 className="text-foreground text-balance text-3xl font-bold tracking-tight sm:text-4xl">
             {title}
           </h1>
-          <p className="text-muted-foreground mt-3 text-sm">게시·수정: {updated}</p>
+          <GuideAuthorByline />
+          <GuideUpdatedTime label={updated} iso={updatedIso} />
         </header>
-        {/* <AdfitInlineLeader320 className="mt-8" /> */}
         <GuideArticleBodyWithMidAd>{children}</GuideArticleBodyWithMidAd>
         <GuideRelatedArticles slug={slug} />
-        {/* <AdfitInlineLeader320 className="mt-12 border-border border-t pt-10" /> */}
+        <GuideAuthoritativeSources />
       </article>
     </main>
   );

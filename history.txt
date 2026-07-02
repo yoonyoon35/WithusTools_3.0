@@ -581,3 +581,10 @@ Phase 4 daechulija.com 301 완료
         - 신축 취득세 허브 + 7·8·9·12억 금액별 가이드, 10억 아파트 중개수수료 가이드 추가
         - 아파트 매매·분양권 전매·주담대 차량 할부 한도 등 기존 가이드 meta·내부링크 보강
         - 사용자-facing 표기 「중개보수 계산기」→「중개수수료 계산기」(고시·요율표 등 법령 용어는 중개보수 유지)
+
+2007 - AI 인용·검색 친화 SEO 보강 (robots.txt·Cloudflare AI 크롤 정책은 변경 없이 모니터링)
+        - llms.txt·llms-full.txt: scripts/generate-llms.mjs, prebuild 자동 생성 (가이드 71편)
+        - JSON-LD: Organization·Person·WebSite(전역), Article·Breadcrumb(가이드), FAQPage·WebApplication(계산기 8·/guide)
+        - FAQ: 계산기별 3~4문항 + /guide 허브 3문항, CalculatorPageShell 공통화
+        - 메타: createPageMetadata(OG·Twitter 통일), 저자·time datetime, 가이드 참고·출처(공공기관 링크) 섹션
+        - sitemap: /oss-notice 추가, 가이드 lastModified 수정일 반영 / og 이미지 apple-touch-icon(180px)

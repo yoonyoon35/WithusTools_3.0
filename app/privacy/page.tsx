@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/legal-page-shell";
-import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "개인정보처리방침";
-  return {
+  return createPageMetadata({
     title,
     description: "withustools.com 개인정보처리방침",
-    alternates: { canonical: `${SITE_URL}/privacy` },
-    openGraph: {
-      url: `${SITE_URL}/privacy`,
-      title: `${title} | ${SITE_DOMAIN}`,
-    },
-  };
+    path: "/privacy",
+  });
 }
 
 export default function PrivacyPage() {

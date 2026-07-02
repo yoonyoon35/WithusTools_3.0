@@ -1,43 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-// import { AdfitInlineLeader320 } from "@/components/adfit-inline-leader-320";
+import { BreadcrumbNav } from "@/components/breadcrumb-nav";
+import { FaqSection } from "@/components/faq-section";
+import { FAQPageJsonLd } from "@/components/json-ld";
 import { GuideArticleCard } from "@/components/guide-article-card";
+import { guideIndexFaqItems } from "@/lib/faq-data";
 import { guideTopics, getGuideTopicsWithArticles } from "@/lib/guide/topics";
-import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
 
 const pageTitle = "대출·금융 가이드";
+const pageDescription =
+  "DSR, 주택담보대출 한도, 취득세, 중개수수료 등 대출·금융·부동산 거래 가이드를 주제별로 모았습니다. 2026년 기준 세율·요율·신청 절차와 계산 방법을 표와 예시로 정리한 참고 글입니다. 각 글은 실제 심사·신고·협의 결과와 다를 수 있으니 개별 확인이 필요합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const description =
-    "DSR, 주택담보대출 한도, 취득세, 중개수수료 등 대출·금융·부동산 거래 가이드를 주제별로 모았습니다. 2026년 기준 세율·요율·신청 절차와 계산 방법을 표와 예시로 정리한 참고 글입니다. 각 글은 실제 심사·신고·협의 결과와 다를 수 있으니 개별 확인이 필요합니다.";
-  return {
+  return createPageMetadata({
     title: pageTitle,
-    description,
-    alternates: { canonical: `${SITE_URL}/guide` },
-    openGraph: {
-      url: `${SITE_URL}/guide`,
-      title: `${pageTitle} | ${SITE_DOMAIN}`,
-      description,
-    },
-  };
+    description: pageDescription,
+    path: "/guide",
+  });
 }
 
 export function GuideIndexContent() {
   const topicsWithArticles = getGuideTopicsWithArticles();
+  const breadcrumbs = [
+    { name: "홈", href: "/" },
+    { name: pageTitle },
+  ] as const;
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 sm:py-14" role="main">
-      <nav className="text-muted-foreground mb-8 text-sm" aria-label="이동 경로">
-        <ol className="flex flex-wrap items-center gap-1">
-          <li>
-            <Link href="/" className="hover:text-foreground underline-offset-4 hover:underline">
-              홈
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="text-foreground">{pageTitle}</li>
-        </ol>
-      </nav>
+      <FAQPageJsonLd items={guideIndexFaqItems} breadcrumbs={breadcrumbs} />
+      <BreadcrumbNav items={breadcrumbs} />
       <header className="border-primary border-l-4 pl-4 sm:pl-5">
         <h1 className="text-foreground text-balance text-3xl font-bold tracking-tight sm:text-4xl">{pageTitle}</h1>
         <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
@@ -58,8 +51,6 @@ export function GuideIndexContent() {
         ))}
       </nav>
 
-      {/* <AdfitInlineLeader320 className="mt-8" /> */}
-
       <div className="mt-10 space-y-12">
         {topicsWithArticles.map(({ topic, articles }) => (
           <section key={topic.id} id={topic.id} className="scroll-mt-24">
@@ -77,6 +68,15 @@ export function GuideIndexContent() {
           </section>
         ))}
       </div>
+
+      <section id="faq" className="scroll-mt-24 mt-14 border-t pt-12" aria-labelledby="guide-faq-title">
+        <h2 id="guide-faq-title" className="text-2xl font-bold tracking-tight sm:text-3xl">
+          자주 묻는 질문
+        </h2>
+        <div className="mt-8">
+          <FaqSection items={guideIndexFaqItems} />
+        </div>
+      </section>
     </main>
   );
 }

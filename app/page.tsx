@@ -5,19 +5,15 @@ import {
   GuideTopicsSection,
   HubHeroSection,
 } from "@/components/marketing/hub-home-sections";
-import { defaultDescription, defaultTitle, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
+import { defaultDescription, defaultTitle } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return {
+  return createPageMetadata({
     title: defaultTitle,
     description: defaultDescription,
-    alternates: { canonical: SITE_URL },
-    openGraph: {
-      url: SITE_URL,
-      title: defaultTitle,
-      description: defaultDescription,
-    },
-  };
+    path: "/",
+  });
 }
 
 export default function HomePage() {

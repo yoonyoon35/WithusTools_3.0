@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/legal-page-shell";
-import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "오픈소스 고지";
-  return {
+  return createPageMetadata({
     title,
-    description: "대출이자.com 오픈소스 및 제3자 리소스 고지",
-    alternates: { canonical: `${SITE_URL}/oss-notice` },
-    openGraph: {
-      url: `${SITE_URL}/oss-notice`,
-      title: `${title} | ${SITE_DOMAIN}`,
-      description: "서비스에 사용된 오픈소스 라이선스 및 외부 리소스 출처 안내",
-    },
-  };
+    description: "withustools.com 서비스에 사용된 오픈소스 라이선스 및 제3자 리소스 출처 안내",
+    path: "/oss-notice",
+  });
 }
 
 const directDependencies = [

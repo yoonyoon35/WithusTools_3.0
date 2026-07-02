@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/legal-page-shell";
-import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "이용약관";
-  return {
+  return createPageMetadata({
     title,
     description: "withustools.com 이용약관",
-    alternates: { canonical: `${SITE_URL}/terms` },
-    openGraph: {
-      url: `${SITE_URL}/terms`,
-      title: `${title} | ${SITE_DOMAIN}`,
-    },
-  };
+    path: "/terms",
+  });
 }
 
 export default function TermsPage() {

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { GuideArticleJsonLd } from "@/components/json-ld";
 import { GuideArticleShell } from "@/components/guide-article-shell";
+import { parseKoreanDateLabel } from "@/lib/dates";
 import { getAllGuideSlugs, getGuideArticle } from "@/lib/guide/registry";
-import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -18,16 +20,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) {
     return { title: "가이드" };
   }
-  return {
+  return createPageMetadata({
     title: article.title,
     description: article.description,
-    alternates: { canonical: `${SITE_URL}/guide/${article.slug}` },
-    openGraph: {
-      url: `${SITE_URL}/guide/${article.slug}`,
-      title: `${article.title} | ${SITE_DOMAIN}`,
-      description: article.description,
-    },
-  };
+    path: `/guide/${article.slug}`,
+  });
 }
 
 export default async function GuideArticlePage({ params }: PageProps) {
@@ -36,10 +33,20 @@ export default async function GuideArticlePage({ params }: PageProps) {
   if (!article) {
     notFound();
   }
-  const { Body, title, updated, slug: articleSlug } = article;
+  const { Body, title, description, updated, slug: articleSlug } = article;
+  const dateModifiedIso = parseKoreanDateLabel(updated);
+
   return (
-    <GuideArticleShell slug={articleSlug} title={title} updated={updated}>
-      <Body />
-    </GuideArticleShell>
+    <>
+      <GuideArticleJsonLd
+        title={title}
+        description={description}
+        slug={articleSlug}
+        dateModifiedIso={dateModifiedIso}
+      />
+      <GuideArticleShell slug={articleSlug} title={title} updated={updated}>
+        <Body />
+      </GuideArticleShell>
+    </>
   );
 }
