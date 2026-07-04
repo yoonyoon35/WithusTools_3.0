@@ -505,25 +505,87 @@ export function ComprehensivePropertyTaxCalculator() {
             국세청 세액계산 흐름도·종합부동산세 신고서 별지3호 부표를 기준으로, 재산세(지방세)를 먼저 산출한 뒤
             종합부동산세(국세)에서 공제할 재산세액을 차감합니다. 유형별로 각각 계산한 후 합산합니다.
           </p>
-          <pre className="bg-muted/30 text-foreground overflow-x-auto rounded-md border border-border p-3 font-mono text-xs leading-relaxed whitespace-pre sm:text-sm">
-            {`[① 재산세 · 지방세 · 7월 납부]
-공시가격 × 재산세 공정시장가액비율
-  (주택 일반 ${toPercent(PROPERTY_TAX_HOUSING_FAIR_RATIO_DEFAULT)}, 1세대1주택 ${toPercent(PROPERTY_TAX_HOUSING_FAIR_RATIO_ONE_HOME)}, 토지 ${toPercent(PROPERTY_TAX_LAND_FAIR_RATIO)})
-  = 재산세 과세표준 × 세율 − 누진공제
-  = 재산세 + 지방교육세(재산세의 ${toPercent(LOCAL_EDUCATION_TAX_RATE)})
 
-[② 종합부동산세 · 국세 · 12월 납부]
-∑ 공시가격 − 기본공제(주택 9억/1세대1주택 12억, 종합합산토지 5억, 별도합산토지 80억)
-  × 종부세 공정시장가액비율(주택 60%, 토지 100%)
-  = 종부세 과세표준 × 세율 − 누진공제
-  = 종합부동산세액 − 공제할 재산세액
-  (공제 표준세액 = (공시가격−공제) × 종부세공정 × 재산세공정 × 표준세율)
-  − 1세대 1주택 세액공제(한도 80%) − 세부담상한(150%)
-  = 종부세 납부세액 + 농어촌특별세(20%)
-
-[③ 연간 보유세 합계]
-재산세 + 지방교육세 + 종부세 + 농특세`}
-          </pre>
+          <div className="overflow-auto rounded-md border">
+            <table className="w-full min-w-[640px] border-collapse text-sm">
+              <caption className="border-b bg-muted/50 px-3 py-2 text-left text-sm font-medium">
+                계산 단계
+              </caption>
+              <thead className="bg-muted/50 border-b">
+                <tr>
+                  <th scope="col" className="w-12 p-2 text-left font-medium">
+                    단계
+                  </th>
+                  <th scope="col" className="w-40 p-2 text-left font-medium">
+                    항목
+                  </th>
+                  <th scope="col" className="p-2 text-left font-medium">
+                    산식·적용
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b">
+                  <td className="p-2 align-top font-medium">①</td>
+                  <td className="p-2 align-top font-medium whitespace-nowrap">
+                    재산세·지방세
+                    <span className="text-muted-foreground block text-xs font-normal">7월 납부</span>
+                  </td>
+                  <td className="p-2 align-top">
+                    <ul className="text-muted-foreground list-disc space-y-1 pl-4">
+                      <li>
+                        공시가격 × 재산세 공정시장가액비율 (주택 일반{" "}
+                        {toPercent(PROPERTY_TAX_HOUSING_FAIR_RATIO_DEFAULT)}, 1세1주택{" "}
+                        {toPercent(PROPERTY_TAX_HOUSING_FAIR_RATIO_ONE_HOME)}, 토지{" "}
+                        {toPercent(PROPERTY_TAX_LAND_FAIR_RATIO)})
+                      </li>
+                      <li>= 재산세 과세표준 × 세율 − 누진공제</li>
+                      <li>
+                        = 재산세 + 지방교육세(재산세의 {toPercent(LOCAL_EDUCATION_TAX_RATE)})
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr className="border-b">
+                  <td className="p-2 align-top font-medium">②</td>
+                  <td className="p-2 align-top font-medium whitespace-nowrap">
+                    종합부동산세
+                    <span className="text-muted-foreground block text-xs font-normal">12월 납부</span>
+                  </td>
+                  <td className="p-2 align-top">
+                    <ul className="text-muted-foreground list-disc space-y-1 pl-4">
+                      <li>
+                        ∑ 공시가격 − 기본공제 (주택 {formatNumber(HOUSING_BASIC_DEDUCTION_DEFAULT)}/
+                        {formatNumber(HOUSING_BASIC_DEDUCTION_ONE_HOME)}, 종합합산토지{" "}
+                        {formatNumber(COMPREHENSIVE_LAND_BASIC_DEDUCTION)}, 별도합산토지{" "}
+                        {formatNumber(SEPARATE_LAND_BASIC_DEDUCTION)})
+                      </li>
+                      <li>
+                        × 종부세 공정시장가액비율 (주택 {toPercent(HOUSING_FAIR_MARKET_RATIO)}, 토지 100%)
+                      </li>
+                      <li>= 종부세 과세표준 × 세율 − 누진공제</li>
+                      <li>= 종합부동산세액 − 공제할 재산세액</li>
+                      <li className="text-xs">
+                        (공제 표준세액 = (공시가격−공제) × 종부세공정 × 재산세공정 × 표준세율)
+                      </li>
+                      <li>− 1세1주택 세액공제(한도 80%) − 세부담상한(150%)</li>
+                      <li>= 종부세 납부세액 + 농어촌특별세(20%)</li>
+                    </ul>
+                    <p className="text-muted-foreground mt-2 text-xs">
+                      유형별 기본공제·공정시장가액비율은 아래 표를 참고하세요.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-2 align-top font-medium">③</td>
+                  <td className="p-2 align-top font-medium whitespace-nowrap">연간 보유세</td>
+                  <td className="p-2 align-top">
+                    재산세 + 지방교육세 + 종부세 + 농어촌특별세
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <div className="overflow-auto rounded-md border">
             <table className="w-full min-w-[720px] border-collapse text-sm">

@@ -5,7 +5,7 @@ export const capitalGainsSurchargeRevival2026GuideMeta = {
   title: "부동산 양도세 중과 4년 만에 부활",
   description:
     "2026년 5월 기준 조정대상지역 다주택자 양도세 중과 유예 종료, 세율·장기보유특별공제·보완책·제외 대상·주택 수 산정·대응 전략을 표로 정리했습니다.",
-  updated: "2026년 5월 9일",
+  updated: "2026년 7월 4일",
 } as const;
 
 export function CapitalGainsSurchargeRevival2026GuideBody() {
@@ -292,6 +292,98 @@ export function CapitalGainsSurchargeRevival2026GuideBody() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-cgsr-longterm-rental">
+        <h2 id="guide-cgsr-longterm-rental" className="text-foreground text-xl font-semibold tracking-tight">
+          장기임대주택 조세특례(제97조의3)
+        </h2>
+        <p>
+          <strong>장기임대주택</strong>에 장기임대사업자 등록 등 요건을 갖추면, 일반 다주택자와 달리{" "}
+          <strong>조정지역·주택 수와 관계없이</strong> 장기보유특별공제를 높은 비율로 받거나, 다주택{" "}
+          <strong>중과·주택 수 산정에서 제외</strong>될 수 있습니다(조세특례제한법 제97조의3·소득세법 §104⑦
+          등). 아래는 대표 요건·효과입니다. 실제 적용은 등록·임대 이력·주택 규모·시가 등을 종합해
+          세무서·세무사 확인이 필요합니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              장기임대주택 양도세 특례(요약)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  구분
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  내용
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
+                  장특공 특례
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  임대 <strong>8년</strong> 50% · <strong>10년</strong> 70% (일반 표1·표2와 별도, 다주택·조정지역
+                  무관)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  다주택 중과
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  요건 충족 장기임대주택 <strong>양도 시</strong> 조정지역 +20/30%p 중과 배제 가능
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  주택 수
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  등록·유지 요건 충족 시 주택 수에서 <strong>제외</strong>될 수 있음
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  대표 요건
+                </th>
+                <td className="px-3 py-2.5 text-sm leading-relaxed">
+                  국민주택규모(85㎡) 이하, 임대 개시 시점 시가 수도권 6억·그 외 3억 이하, 연간 임대료 인상 5% 이하,
+                  장기임대사업자 등록·임대 의무 이행 등(시행령 세부 확인)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          조정지역 2·3주택자가 일반 주택을 매도할 때는 2026년 5월 10일 이후{" "}
+          <strong>장특공이 배제</strong>되고 중과가 적용되지만, 장기임대주택 특례를 받는 주택은 다른
+          경로로 공제·중과 면제가 가능합니다. 반면{" "}
+          <Link
+            href="/guide/presale-right-capital-gains-tax-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양권
+          </Link>
+          ·{" "}
+          <Link
+            href="/guide/occupancy-right-capital-gains-tax-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            입주권
+          </Link>
+          은 이 특례와 별개 규정입니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 본 사이트{" "}
+          <Link href="/capital-gains-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            양도소득세 계산기
+          </Link>
+          는 장기임대주택 특례 옵션을 아직 반영하지 않습니다. 홈택스·세무사 상담을 권장합니다.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-cgsr-count">

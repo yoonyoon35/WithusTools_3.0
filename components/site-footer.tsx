@@ -33,6 +33,12 @@ export function SiteFooter() {
           >
             종합부동산세 계산기
           </Link>
+          <Link
+            href="/capital-gains-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            양도소득세 계산기
+          </Link>
           <Link href="/guide" className="hover:text-foreground underline-offset-4 hover:underline">
             가이드
           </Link>

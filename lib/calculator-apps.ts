@@ -58,6 +58,12 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
     path: "/comprehensive-property-tax-calculator",
     featureList: ["재산세·종부세 산출", "1세대 1주택 공제 반영", "연간 보유세 합계"],
   },
+  "/capital-gains-tax-calculator": {
+    name: "양도소득세 계산기",
+    description: "양도차익·장기보유특별공제·다주택 중과를 반영해 양도소득세·지방소득세를 산출하는 계산기입니다.",
+    path: "/capital-gains-tax-calculator",
+    featureList: ["1세대 1주택 비과세·고가 안분", "장기보유특별공제", "다주택 중과·단기세율 비교"],
+  },
 };
 
 export function getCalculatorWebApplication(path: string): WebApplicationSchemaInput | undefined {

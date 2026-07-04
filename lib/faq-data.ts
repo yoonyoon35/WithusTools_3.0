@@ -161,6 +161,34 @@ export const comprehensivePropertyTaxCalculatorFaqItems = [
   },
 ] as const satisfies readonly FaqItem[];
 
+export const capitalGainsTaxCalculatorFaqItems = [
+  {
+    question: "1세대 1주택은 양도소득세가 없나요?",
+    answer:
+      "실지거래가 12억 원 이하·2년 이상 보유·거주요건(조정지역 취득 시 2년 거주)을 충족하면 비과세될 수 있습니다. 12억 초과 고가주택은 초과분만 과세됩니다.",
+  },
+  {
+    question: "장기보유특별공제는 어떻게 적용되나요?",
+    answer:
+      "일반 자산·비사업용 토지는 3년 이상 보유 시 표1(최대 30%), 1세대 1주택·거주 2년 이상 주택은 표2(보유·거주 각 최대 40%, 합산 80%)가 적용됩니다. 분양권은 장특공이 없고, 조합원입주권은 관리처분인가 전 종전주택분에만 표2가 적용될 수 있습니다. 조정지역 다주택 중과 재시행 후에는 배제될 수 있습니다.",
+  },
+  {
+    question: "분양권 양도 시 다주택 중과가 적용되나요?",
+    answer:
+      "주택분양권 양도는 보유 1년 미만 70%, 1년 이상 60% 전용세율이 적용됩니다. 조정지역 다주택 중과(+20/30%p)는 주택 양도 시 해당하며, 분양권 양도 자체에는 적용되지 않습니다. 2021.1.1 이후 취득 분양권은 주택 수 산정에는 포함될 수 있습니다.",
+  },
+  {
+    question: "조합원입주권(입주권)은 어떻게 계산하나요?",
+    answer:
+      "관리처분계획인가일 기준으로 종전주택분·입주권분 차익을 나눕니다. 장특공은 인가 전 종전주택분에만 적용되고, 입주권분에는 적용되지 않습니다. 조합원권리가액·인가일 입력이 중요합니다. 자세한 내용은 조합원입주권 양도세 가이드를 참고하세요.",
+  },
+  {
+    question: "계산 결과와 홈택스 세액이 다른 이유는?",
+    answer:
+      "확정신고·다건 양도·감면소득·필요경비 인정 범위·양도시기(잔금 vs 등기) 등이 반영되기 때문입니다. 예정신고 전 홈택스 모의계산·세무사 확인을 권장합니다.",
+  },
+] as const satisfies readonly FaqItem[];
+
 export const guideIndexFaqItems = [
   {
     question: "가이드 글은 누가 작성하나요?",
@@ -188,6 +216,7 @@ export const calculatorFaqByPath: Record<string, readonly FaqItem[]> = {
   "/brokerage-fee-calculator": brokerageFeeCalculatorFaqItems,
   "/prepayment-fee-calculator": prepaymentFeeCalculatorFaqItems,
   "/comprehensive-property-tax-calculator": comprehensivePropertyTaxCalculatorFaqItems,
+  "/capital-gains-tax-calculator": capitalGainsTaxCalculatorFaqItems,
 };
 
 export function getCalculatorFaqItems(path: string): readonly FaqItem[] {

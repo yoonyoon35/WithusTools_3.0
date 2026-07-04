@@ -48,6 +48,11 @@ export const calculatorTools: readonly CalculatorTool[] = [
     title: "종합부동산세 계산기",
     description: "공시가격·주택 수 기준 재산세·지방교육세·종부세·농특세와 연간 보유세 합계를 산출합니다.",
   },
+  {
+    href: "/capital-gains-tax-calculator",
+    title: "양도소득세 계산기",
+    description: "양도차익·1세대1주택 비과세·장기보유특별공제·다주택 중과를 반영해 양도세·지방소득세를 산출합니다.",
+  },
 ] as const;
 
 export const LOAN_CALCULATOR_PATH = "/loan-calculator" as const;

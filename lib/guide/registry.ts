@@ -157,6 +157,26 @@ import {
   capitalGainsSurchargeRevival2026GuideMeta,
 } from "@/lib/guide/articles/capital-gains-surcharge-revival-2026-guide";
 import {
+  CapitalGainsTaxOverviewGuideBody,
+  capitalGainsTaxOverviewGuideMeta,
+} from "@/lib/guide/articles/capital-gains-tax-overview-guide";
+import {
+  OneHouseholdOneHomeCapitalGainsTaxGuideBody,
+  oneHouseholdOneHomeCapitalGainsTaxGuideMeta,
+} from "@/lib/guide/articles/one-household-one-home-capital-gains-tax-guide";
+import {
+  CapitalGainsTaxCalculation2026GuideBody,
+  capitalGainsTaxCalculation2026GuideMeta,
+} from "@/lib/guide/articles/capital-gains-tax-calculation-2026-guide";
+import {
+  PresaleRightCapitalGainsTaxGuideBody,
+  presaleRightCapitalGainsTaxGuideMeta,
+} from "@/lib/guide/articles/presale-right-capital-gains-tax-guide";
+import {
+  OccupancyRightCapitalGainsTaxGuideBody,
+  occupancyRightCapitalGainsTaxGuideMeta,
+} from "@/lib/guide/articles/occupancy-right-capital-gains-tax-guide";
+import {
   OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody,
   oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta,
 } from "@/lib/guide/articles/one-household-one-home-comprehensive-property-tax-amount-guide";
@@ -244,6 +264,10 @@ import {
   Apartment1000MillionBrokerageFeeGuideBody,
   apartment1000MillionBrokerageFeeGuideMeta,
 } from "@/lib/guide/articles/apartment-1000-million-brokerage-fee-guide";
+import {
+  NewbornSpecialLoan2026GuideBody,
+  newbornSpecialLoan2026GuideMeta,
+} from "@/lib/guide/articles/newborn-special-loan-2026-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -455,6 +479,26 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: CapitalGainsSurchargeRevival2026GuideBody,
   },
   {
+    ...capitalGainsTaxOverviewGuideMeta,
+    Body: CapitalGainsTaxOverviewGuideBody,
+  },
+  {
+    ...oneHouseholdOneHomeCapitalGainsTaxGuideMeta,
+    Body: OneHouseholdOneHomeCapitalGainsTaxGuideBody,
+  },
+  {
+    ...capitalGainsTaxCalculation2026GuideMeta,
+    Body: CapitalGainsTaxCalculation2026GuideBody,
+  },
+  {
+    ...presaleRightCapitalGainsTaxGuideMeta,
+    Body: PresaleRightCapitalGainsTaxGuideBody,
+  },
+  {
+    ...occupancyRightCapitalGainsTaxGuideMeta,
+    Body: OccupancyRightCapitalGainsTaxGuideBody,
+  },
+  {
     ...holdingCapitalGainsTaxIncrease2026GuideMeta,
     Body: HoldingCapitalGainsTaxIncrease2026GuideBody,
   },
@@ -541,6 +585,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
     Body: DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody,
+  },
+  {
+    ...newbornSpecialLoan2026GuideMeta,
+    Body: NewbornSpecialLoan2026GuideBody,
   },
 ];
 
