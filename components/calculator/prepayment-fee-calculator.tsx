@@ -828,26 +828,6 @@ export function PrepaymentFeeCalculator() {
             </div>
           </div>
 
-          <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <Link
-              href="/guide/prepayment-fee-calculation"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              중도상환 수수료 계산 방식
-            </Link>
-            <Link
-              href="/guide/600-million-prepayment-vs-interest-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              6억 대출 중도상환 vs 이자납입
-            </Link>
-            <Link href="/guide/loan-refinancing-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              대출 갈아타기 가이드
-            </Link>
-            <Link href="/loan-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              대출 이자 계산기
-            </Link>
-          </p>
         </CardContent>
       </Card>
     </div>

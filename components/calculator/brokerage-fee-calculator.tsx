@@ -565,33 +565,6 @@ export function BrokerageFeeCalculator() {
             요율표는 고시 내용을 사용자가 빠르게 대조할 수 있도록 정리한 것입니다. 용어·구간 해석은 관할 지자체 및 최신 고시를 확인하세요.
           </p>
 
-          <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <Link href="/guide/apartment-brokerage-fee-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              아파트 매매 중개수수료
-            </Link>
-            <Link href="/guide/apartment-1000-million-brokerage-fee-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              10억 아파트 중개수수료
-            </Link>
-            <Link href="/guide/presale-right-resale-brokerage-fee-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              분양권 전매 중개수수료
-            </Link>
-            <Link href="/guide/brokerage-fee-income-deduction-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              중개수수료 소득공제
-            </Link>
-            <Link href="/guide/brokerage-fee-rates-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              2026년 중개수수료 요율표
-            </Link>
-            <Link href="/guide/jeonse-brokerage-fee-calculation-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              전세 중개수수료 계산
-            </Link>
-            <Link href="/guide/wolse-brokerage-fee-calculation-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              월세 중개수수료 계산
-            </Link>
-            <Link href="/guide/brokerage-fee-payment-timing-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              중개수수료 납부 시기
-            </Link>
-          </p>
-
           <div className="space-y-3 rounded-xl border p-4 sm:p-5">
             <h3 className="text-base font-semibold tracking-tight">지역별 공식 요율표 확인</h3>
             <p className="text-muted-foreground text-xs leading-relaxed">

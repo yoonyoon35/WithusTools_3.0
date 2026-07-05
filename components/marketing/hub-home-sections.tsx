@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Calculator } from "lucide-react";
 import { calculatorTools } from "@/lib/calculators";
 import { getGuideArticle } from "@/lib/guide/registry";
-import { guideTopics } from "@/lib/guide/topics";
+import { getGuideTopicPath, getTopicArticleCount, guideTopics } from "@/lib/guide/topics";
 import { referenceDisclaimerLine, SITE_NAME, siteTagline } from "@/lib/site";
 
 const featuredGuideSlugs = [
@@ -95,12 +95,12 @@ export function GuideTopicsSection() {
           {guideTopics.map((topic) => (
             <li key={topic.id}>
               <Link
-                href={`/guide#${topic.id}`}
+                href={getGuideTopicPath(topic.id)}
                 className="hover:border-primary/40 hover:bg-card group flex h-full flex-col rounded-xl border border-border bg-card/80 p-5 transition-colors"
               >
                 <span className="group-hover:text-primary text-base font-semibold">{topic.label}</span>
                 <span className="text-muted-foreground mt-2 text-sm leading-relaxed">{topic.description}</span>
-                <span className="text-muted-foreground mt-3 text-xs">{topic.slugs.length}편</span>
+                <span className="text-muted-foreground mt-3 text-xs">{getTopicArticleCount(topic)}편</span>
               </Link>
             </li>
           ))}

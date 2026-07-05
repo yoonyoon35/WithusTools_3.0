@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { BreadcrumbNav } from "@/components/breadcrumb-nav";
+import { CalculatorRelatedGuides } from "@/components/calculator-related-guides";
 import {
   CalculatorWebApplicationJsonLd,
   FAQPageJsonLd,
@@ -42,6 +43,7 @@ export function CalculatorPageShell({
         </div>
       </section>
       {children}
+      <CalculatorRelatedGuides path={path} />
       {faqItems.length > 0 ? (
         <section id="faq" className="scroll-mt-24 py-10 sm:py-14" aria-labelledby="faq-title">
           <div className="mx-auto max-w-3xl px-4">

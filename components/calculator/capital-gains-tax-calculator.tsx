@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -821,45 +820,6 @@ export function CapitalGainsTaxCalculator() {
               <li>확정신고·다건 양도·감면소득 등은 본 계산기에 미반영. 홈택스·세무사 확인 권장.</li>
             </ol>
           </div>
-
-          <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <Link
-              href="/guide/capital-gains-tax-overview-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              양도소득세 개요·신고
-            </Link>
-            <Link
-              href="/guide/capital-gains-tax-calculation-2026-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              2026년 양도세 계산 예시
-            </Link>
-            <Link
-              href="/guide/one-household-one-home-capital-gains-tax-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              1세대 1주택 비과세·장특공
-            </Link>
-            <Link
-              href="/guide/presale-right-capital-gains-tax-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              분양권 양도세
-            </Link>
-            <Link
-              href="/guide/occupancy-right-capital-gains-tax-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              조합원입주권 양도세
-            </Link>
-            <Link
-              href="/guide/capital-gains-surcharge-revival-2026-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              다주택 중과 재시행
-            </Link>
-          </p>
         </CardContent>
       </Card>
     </div>

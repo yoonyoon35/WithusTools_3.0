@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -897,39 +896,6 @@ export function AcquisitionTaxCalculator() {
           <p className="text-muted-foreground text-xs leading-relaxed">
             기준표는 일반적인 주택 유상취득 세율 구조를 쉽게 보도록 단순화해 정리했습니다. 정책 개편, 감면 요건, 일시적 2주택, 법인 취득, 지분율
             등에 따라 실제 신고세액은 달라질 수 있습니다.
-          </p>
-
-          <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <Link href="/guide/new-construction-apartment-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              신축 아파트 취득세 계산
-            </Link>
-            <Link href="/guide/new-apartment-600-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              6억 신축 취득세
-            </Link>
-            <Link href="/guide/new-apartment-800-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              8억 주택 취득세
-            </Link>
-            <Link href="/guide/new-apartment-900-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              9억 신축 취득세
-            </Link>
-            <Link href="/guide/new-apartment-1200-million-acquisition-tax-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              12억 신축 취득세
-            </Link>
-            <Link href="/guide/acquisition-tax-rates-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              2026년 취득세율 정리
-            </Link>
-            <Link href="/guide/first-home-acquisition-tax-relief-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              생애최초 취득세 감면
-            </Link>
-            <Link href="/guide/second-home-acquisition-tax-surcharge-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              2주택자 취득세 중과
-            </Link>
-            <Link href="/guide/local-education-rural-special-tax-acquisition-2026-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              지방교육세·농어촌특별세
-            </Link>
-            <Link href="/guide/acquisition-tax-deadline-and-penalty-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-              취득세 납부 기한·가산세
-            </Link>
           </p>
         </CardContent>
       </Card>

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import * as React from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -1111,33 +1110,6 @@ function DsrCalculatorReferenceCard() {
         <p className="text-muted-foreground text-xs leading-relaxed">
           기준표는 가이드·정책 공지를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 소득 인정·부채 재산정·스트레스 적용
           범위는 금융기관 심사와 다를 수 있습니다.
-        </p>
-
-        <p className="flex flex-wrap gap-x-3 gap-y-1">
-          <Link href="/guide/car-installment-dsr-mortgage-limit-impact-guide" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            주담대 차량 할부 한도
-          </Link>
-          <Link href="/guide/dsr-40-mortgage-limit" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            DSR 40% 주담대 한도
-          </Link>
-          <Link href="/guide/dsr-calculation-method" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            DSR 계산 방법
-          </Link>
-          <Link href="/guide/stress-dsr-explained" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            스트레스 DSR 설명
-          </Link>
-          <Link href="/guide/ltv-dti-dsr-comparison" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            LTV·DTI·DSR 비교
-          </Link>
-          <Link href="/guide/annual-salary-mortgage-limit-dsr" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            연봉별 주담대 한도
-          </Link>
-          <Link href="/ltv-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            LTV 계산기
-          </Link>
-          <Link href="/dti-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            DTI 계산기
-          </Link>
         </p>
       </CardContent>
     </Card>

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -854,21 +853,6 @@ export function ComprehensivePropertyTaxCalculator() {
               <li>법인 주택분: 2주택 이하 2.7%, 3주택 이상 5.0% 단일세율(기본공제 없음).</li>
             </ol>
           </div>
-
-          <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <Link
-              href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              공정시장가액비율·공시가격별 예시
-            </Link>
-            <Link
-              href="/guide/holding-capital-gains-tax-increase-2026-guide"
-              className="text-primary text-sm font-medium underline-offset-4 hover:underline"
-            >
-              보유세·양도세 강화 쟁점
-            </Link>
-          </p>
         </CardContent>
       </Card>
     </div>

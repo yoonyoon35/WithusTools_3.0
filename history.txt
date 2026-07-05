@@ -614,3 +614,19 @@ Phase 4 daechulija.com 301 완료
         - 양도소득세 계산기: 「양도소득세 계산 흐름」pre 블록 → 계산 단계·자산별 특례 표로 전환
         - 종합부동산세 계산기: 「세액계산 흐름도」pre 블록 → 계산 단계(재산세·종부세·연간합계) 표로 전환
         - 양도소득세 계산기 하단 가이드에 2026년 양도세 계산 예시 링크 추가(토픽 6편 중 유일 누락분)
+
+1615 - 구조 중심 SEO: 주제 허브 URL·계산기↔가이드 연결 표준화
+        - 가이드 주제별 독립 허브 페이지 7개 추가 (/guide/topics/[topicId], sitemap priority 0.75)
+        - lib/guide/topics.ts: pillarSlug·calculatorHrefs·getGuideTopicPath·주제 breadcrumb·ItemList JSON-LD
+        - lib/calculator-guides.ts: 계산기별 관련 가이드 슬러그 registry
+        - CalculatorPageShell 공통 「관련 가이드」 섹션 (components/calculator-related-guides.tsx)
+        - 홈·/guide·관련 글 링크: /guide#앵커 → /guide/topics/... URL로 전환
+        - 가이드 글 breadcrumb: 홈 > 가이드 > 「주제」 가이드 > 글 제목 (4단계)
+
+1635 - 구조 SEO 후속: 계산기 중복 링크 정리·취득세 시나리오 섹션
+        - 계산기 9개 기준표 하단 가이드/계산기 링크 묶음 제거 → shell에서 일원화 (맥락별 본문 링크는 유지)
+        - lib/calculator-guides.ts: calculatorRelatedCalculators (DSR↔LTV↔DTI 등) shell 「함께 쓰는 계산기」
+        - GuideTopic.scenarioGroups: 취득세 금액대 5편(6·7·8·9·12억)을 「매매가별 계산 예시」로 분리 (신규 글 없음, 기존 글 재배치)
+        - components/guide-topic-article-sections.tsx: pillar·본문·시나리오 공통 렌더
+        - /guide 목록·/guide/topics/acquisition-tax 동일 구조 반영, 취득세 계산기 shell에서 시나리오 앵커 링크
+        - npm run build 정상(124 static pages)

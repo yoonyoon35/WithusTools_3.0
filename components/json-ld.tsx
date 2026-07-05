@@ -2,6 +2,7 @@ import {
   buildArticleSchema,
   buildBreadcrumbListSchema,
   buildFAQPageSchema,
+  buildItemListSchema,
   buildOrganizationSchema,
   buildPersonSchema,
   buildWebApplicationSchema,
@@ -10,6 +11,8 @@ import {
   type WebApplicationSchemaInput,
 } from "@/lib/schema-builders";
 import type { FaqItem } from "@/lib/faq-data";
+import { getGuideArticle } from "@/lib/guide/registry";
+import { getAllTopicArticleSlugs, getGuideTopicPath, type GuideTopic } from "@/lib/guide/topics";
 import { publisherOrganization, siteAuthorPerson } from "@/lib/publisher";
 import {
   defaultDescription,
@@ -125,16 +128,23 @@ export function GuideArticleJsonLd({
   description,
   slug,
   dateModifiedIso,
+  topicLabel,
+  topicId,
 }: {
   title: string;
   description: string;
   slug: string;
   dateModifiedIso?: string;
+  topicLabel?: string;
+  topicId?: string;
 }) {
   const path = `/guide/${slug}`;
   const breadcrumbs: BreadcrumbItem[] = [
     { name: "홈", href: "/" },
     { name: "가이드", href: "/guide" },
+    ...(topicLabel && topicId
+      ? [{ name: `${topicLabel} 가이드`, href: getGuideTopicPath(topicId) }]
+      : []),
     { name: title },
   ];
 
@@ -160,6 +170,37 @@ export function GuideArticleJsonLd({
 
 export function BreadcrumbJsonLd({ items }: { items: readonly BreadcrumbItem[] }) {
   return <MultiJsonLd graphs={[buildBreadcrumbListSchema({ url: SITE_URL, items })]} />;
+}
+
+export function GuideTopicHubJsonLd({ topic }: { topic: GuideTopic }) {
+  const path = getGuideTopicPath(topic.id);
+  const pageTitle = `${topic.label} 가이드`;
+  const breadcrumbs: BreadcrumbItem[] = [
+    { name: "홈", href: "/" },
+    { name: "가이드", href: "/guide" },
+    { name: pageTitle },
+  ];
+  const listItems = getAllTopicArticleSlugs(topic)
+    .map((slug) => getGuideArticle(slug))
+    .filter((article): article is NonNullable<typeof article> => article != null)
+    .map((article) => ({
+      name: article.title,
+      url: `${SITE_URL}/guide/${article.slug}`,
+    }));
+
+  return (
+    <MultiJsonLd
+      graphs={[
+        buildItemListSchema({
+          name: pageTitle,
+          description: topic.description,
+          url: `${SITE_URL}${path}`,
+          items: listItems,
+        }),
+        buildBreadcrumbListSchema({ url: SITE_URL, items: breadcrumbs }),
+      ]}
+    />
+  );
 }
 
 /** @deprecated SiteJsonLd 사용 */

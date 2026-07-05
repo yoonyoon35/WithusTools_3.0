@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { guideArticles } from "@/lib/guide/registry";
+import { getAllGuideTopicIds, getGuideTopicPath } from "@/lib/guide/topics";
 import { parseKoreanDateLabelToDate } from "@/lib/dates";
 import { SITE_URL } from "@/lib/site";
 
@@ -32,6 +33,12 @@ const staticPages: MetadataRoute.Sitemap = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const topicEntries: MetadataRoute.Sitemap = getAllGuideTopicIds().map((topicId) => ({
+    url: `${SITE_URL}${getGuideTopicPath(topicId)}`,
+    changeFrequency: "weekly",
+    priority: 0.75,
+  }));
+
   const guideEntries: MetadataRoute.Sitemap = guideArticles.map((article) => ({
     url: `${SITE_URL}/guide/${article.slug}`,
     lastModified: parseKoreanDateLabelToDate(article.updated) ?? undefined,
@@ -39,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...guideEntries];
+  return [...staticPages, ...topicEntries, ...guideEntries];
 }

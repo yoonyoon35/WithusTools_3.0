@@ -4,6 +4,7 @@ import { GuideArticleJsonLd } from "@/components/json-ld";
 import { GuideArticleShell } from "@/components/guide-article-shell";
 import { parseKoreanDateLabel } from "@/lib/dates";
 import { getAllGuideSlugs, getGuideArticle } from "@/lib/guide/registry";
+import { getGuideTopicForSlug } from "@/lib/guide/topics";
 import { createPageMetadata } from "@/lib/metadata";
 
 type PageProps = {
@@ -35,6 +36,7 @@ export default async function GuideArticlePage({ params }: PageProps) {
   }
   const { Body, title, description, updated, slug: articleSlug } = article;
   const dateModifiedIso = parseKoreanDateLabel(updated);
+  const topic = getGuideTopicForSlug(articleSlug);
 
   return (
     <>
@@ -43,6 +45,8 @@ export default async function GuideArticlePage({ params }: PageProps) {
         description={description}
         slug={articleSlug}
         dateModifiedIso={dateModifiedIso}
+        topicLabel={topic?.label}
+        topicId={topic?.id}
       />
       <GuideArticleShell slug={articleSlug} title={title} updated={updated}>
         <Body />

@@ -5,7 +5,7 @@ import { FaqSection } from "@/components/faq-section";
 import { FAQPageJsonLd } from "@/components/json-ld";
 import { GuideArticleCard } from "@/components/guide-article-card";
 import { guideIndexFaqItems } from "@/lib/faq-data";
-import { guideTopics, getGuideTopicsWithArticles } from "@/lib/guide/topics";
+import { getGuideTopicPath, guideTopics, getGuideTopicsWithArticles } from "@/lib/guide/topics";
 import { createPageMetadata } from "@/lib/metadata";
 
 const pageTitle = "대출·금융 가이드";
@@ -43,7 +43,7 @@ export function GuideIndexContent() {
         {guideTopics.map((topic) => (
           <Link
             key={topic.id}
-            href={`#${topic.id}`}
+            href={getGuideTopicPath(topic.id)}
             className="hover:bg-muted rounded-full border border-border px-3 py-1.5 text-sm transition-colors"
           >
             {topic.label}
@@ -52,19 +52,46 @@ export function GuideIndexContent() {
       </nav>
 
       <div className="mt-10 space-y-12">
-        {topicsWithArticles.map(({ topic, articles }) => (
+        {topicsWithArticles.map(({ topic, mainArticles, scenarioGroups }) => (
           <section key={topic.id} id={topic.id} className="scroll-mt-24">
-            <div className="mb-5">
-              <h2 className="text-xl font-bold tracking-tight sm:text-2xl">{topic.label}</h2>
-              <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{topic.description}</p>
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-bold tracking-tight sm:text-2xl">{topic.label}</h2>
+                <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{topic.description}</p>
+              </div>
+              <Link
+                href={getGuideTopicPath(topic.id)}
+                className="text-primary text-sm font-medium underline-offset-4 hover:underline"
+              >
+                주제 페이지
+              </Link>
             </div>
-            <ul className="space-y-4">
-              {articles.map((article) => (
-                <li key={article.slug}>
-                  <GuideArticleCard article={article} />
-                </li>
-              ))}
-            </ul>
+
+            {mainArticles.length > 0 ? (
+              <ul className="space-y-4">
+                {mainArticles.map((article) => (
+                  <li key={article.slug}>
+                    <GuideArticleCard article={article} />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {scenarioGroups.map(({ group, articles }) =>
+              articles.length > 0 ? (
+                <div key={group.id} id={group.id} className="scroll-mt-24 mt-10 border-t pt-8">
+                  <h3 className="text-lg font-semibold tracking-tight">{group.label}</h3>
+                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{group.description}</p>
+                  <ul className="mt-4 space-y-4">
+                    {articles.map((article) => (
+                      <li key={article.slug}>
+                        <GuideArticleCard article={article} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null,
+            )}
           </section>
         ))}
       </div>

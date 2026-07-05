@@ -295,24 +295,6 @@ export function LoanCalculatorReference() {
           기준표는 일반적인 상환 구조와 본 계산기 산식을 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. DSR·LTV·스트레스
           DSR 등 한도 규정은 별도이며, 확정 조건은 신청 금융기관에서 확인해야 합니다.
         </p>
-
-        <p className="flex flex-wrap gap-x-3 gap-y-1">
-          <Link href="/guide/equal-payment-vs-equal-principal" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            원리금균등 vs 원금균등
-          </Link>
-          <Link href="/guide/grace-period-explained" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            거치기간 설명
-          </Link>
-          <Link href="/guide/variable-vs-fixed-rate-2026" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            고정 vs 변동 금리
-          </Link>
-          <Link href="/dsr-calculator" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            DSR 계산기
-          </Link>
-          <Link href="/loan-calculator#faq" className="text-primary text-sm font-medium underline-offset-4 hover:underline">
-            자주 묻는 질문
-          </Link>
-        </p>
       </CardContent>
     </Card>
   );

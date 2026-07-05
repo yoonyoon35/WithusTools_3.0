@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getGuideTopicForSlug, getRelatedGuideArticles } from "@/lib/guide/topics";
+import { getGuideTopicForSlug, getGuideTopicPath, getRelatedGuideArticles } from "@/lib/guide/topics";
 
 export function GuideRelatedArticles({ slug }: { slug: string }) {
   const topic = getGuideTopicForSlug(slug);
@@ -32,7 +32,7 @@ export function GuideRelatedArticles({ slug }: { slug: string }) {
       </ul>
       <p className="mt-4">
         <Link
-          href={`/guide#${topic.id}`}
+          href={getGuideTopicPath(topic.id)}
           className="text-primary text-sm font-medium underline-offset-4 hover:underline"
         >
           {topic.label} 글 전체 보기

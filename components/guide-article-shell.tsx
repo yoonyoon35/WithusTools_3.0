@@ -7,6 +7,7 @@ import {
 import { GuideRelatedArticles } from "@/components/guide-related-articles";
 import { BreadcrumbNav } from "@/components/breadcrumb-nav";
 import { parseKoreanDateLabel } from "@/lib/dates";
+import { getGuideTopicForSlug, getGuideTopicPath } from "@/lib/guide/topics";
 
 export function GuideArticleShell({
   slug,
@@ -20,6 +21,7 @@ export function GuideArticleShell({
   children: React.ReactNode;
 }) {
   const updatedIso = parseKoreanDateLabel(updated);
+  const topic = getGuideTopicForSlug(slug);
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 sm:py-14" role="main">
@@ -27,6 +29,9 @@ export function GuideArticleShell({
         items={[
           { name: "홈", href: "/" },
           { name: "가이드", href: "/guide" },
+          ...(topic
+            ? [{ name: `${topic.label} 가이드`, href: getGuideTopicPath(topic.id) }]
+            : []),
           { name: title },
         ]}
       />

@@ -137,3 +137,24 @@ export function buildBreadcrumbListSchema(input: { url: string; items: readonly 
     })),
   };
 }
+
+export function buildItemListSchema(input: {
+  name: string;
+  description: string;
+  url: string;
+  items: readonly { name: string; url: string }[];
+}) {
+  return {
+    "@type": "ItemList",
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    numberOfItems: input.items.length,
+    itemListElement: input.items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+    })),
+  };
+}
