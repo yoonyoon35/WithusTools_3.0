@@ -39,6 +39,12 @@ export function SiteFooter() {
           >
             양도소득세 계산기
           </Link>
+          <Link
+            href="/inheritance-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            상속세 계산기
+          </Link>
           <Link href="/guide" className="hover:text-foreground underline-offset-4 hover:underline">
             가이드
           </Link>

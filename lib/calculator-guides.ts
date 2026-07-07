@@ -68,6 +68,17 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "occupancy-right-capital-gains-tax-guide",
     "capital-gains-surcharge-revival-2026-guide",
   ],
+  "/inheritance-tax-calculator": [
+    "inheritance-tax-overview-guide",
+    "inheritance-tax-apartment-price-scenarios-guide",
+    "inheritance-tax-filing-deadline-installment-guide",
+    "co-residence-housing-inheritance-deduction-guide",
+    "inherited-housing-acquisition-tax-2026-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+    "one-household-one-home-comprehensive-property-tax-amount-guide",
+    "one-household-one-home-capital-gains-tax-guide",
+  ],
 };
 
 /** 계산기 페이지 하단에 함께 노출할 다른 계산기 */
@@ -77,6 +88,14 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
   "/dti-calculator": ["/dsr-calculator", "/ltv-calculator", "/loan-calculator"],
   "/ltv-calculator": ["/dsr-calculator", "/dti-calculator", "/loan-calculator"],
   "/prepayment-fee-calculator": ["/loan-calculator"],
+  "/inheritance-tax-calculator": [
+    "/acquisition-tax-calculator",
+    "/capital-gains-tax-calculator",
+    "/comprehensive-property-tax-calculator",
+  ],
+  "/acquisition-tax-calculator": ["/inheritance-tax-calculator"],
+  "/capital-gains-tax-calculator": ["/inheritance-tax-calculator"],
+  "/comprehensive-property-tax-calculator": ["/inheritance-tax-calculator"],
 };
 
 export function getCalculatorRelatedGuides(path: string): GuideArticle[] {

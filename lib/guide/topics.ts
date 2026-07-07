@@ -162,6 +162,19 @@ export const guideTopics: readonly GuideTopic[] = [
     ],
   },
   {
+    id: "inheritance-tax",
+    label: "상속세",
+    description: "과세가액·상속공제·누진세율·세대생략·신고·납부",
+    pillarSlug: "inheritance-tax-overview-guide",
+    calculatorHrefs: ["/inheritance-tax-calculator"],
+    slugs: [
+      "inheritance-tax-overview-guide",
+      "inheritance-tax-apartment-price-scenarios-guide",
+      "inheritance-tax-filing-deadline-installment-guide",
+      "co-residence-housing-inheritance-deduction-guide",
+    ],
+  },
+  {
     id: "brokerage",
     label: "중개수수료·거래",
     description: "중개수수료 요율, 전·월세, 직거래, 분양권·재계약",

@@ -77,6 +77,22 @@ import {
   secondHomeAcquisitionTaxSurcharge2026GuideMeta,
 } from "@/lib/guide/articles/second-home-acquisition-tax-surcharge-2026-guide";
 import {
+  CoResidenceHousingInheritanceDeductionGuideBody,
+  coResidenceHousingInheritanceDeductionGuideMeta,
+} from "@/lib/guide/articles/co-residence-housing-inheritance-deduction-guide";
+import {
+  InheritanceTaxApartmentPriceScenariosGuideBody,
+  inheritanceTaxApartmentPriceScenariosGuideMeta,
+} from "@/lib/guide/articles/inheritance-tax-apartment-price-scenarios-guide";
+import {
+  InheritanceTaxFilingDeadlineInstallmentGuideBody,
+  inheritanceTaxFilingDeadlineInstallmentGuideMeta,
+} from "@/lib/guide/articles/inheritance-tax-filing-deadline-installment-guide";
+import {
+  InheritanceTaxOverviewGuideBody,
+  inheritanceTaxOverviewGuideMeta,
+} from "@/lib/guide/articles/inheritance-tax-overview-guide";
+import {
   InheritedHousingAcquisitionTax2026GuideBody,
   inheritedHousingAcquisitionTax2026GuideMeta,
 } from "@/lib/guide/articles/inherited-housing-acquisition-tax-2026-guide";
@@ -405,6 +421,22 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...inheritedHousingAcquisitionTax2026GuideMeta,
     Body: InheritedHousingAcquisitionTax2026GuideBody,
+  },
+  {
+    ...inheritanceTaxOverviewGuideMeta,
+    Body: InheritanceTaxOverviewGuideBody,
+  },
+  {
+    ...inheritanceTaxApartmentPriceScenariosGuideMeta,
+    Body: InheritanceTaxApartmentPriceScenariosGuideBody,
+  },
+  {
+    ...inheritanceTaxFilingDeadlineInstallmentGuideMeta,
+    Body: InheritanceTaxFilingDeadlineInstallmentGuideBody,
+  },
+  {
+    ...coResidenceHousingInheritanceDeductionGuideMeta,
+    Body: CoResidenceHousingInheritanceDeductionGuideBody,
   },
   {
     ...localEducationRuralSpecialTaxAcquisition2026GuideMeta,

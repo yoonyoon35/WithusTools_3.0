@@ -64,6 +64,13 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
     path: "/capital-gains-tax-calculator",
     featureList: ["1세대 1주택 비과세·고가 안분", "장기보유특별공제", "다주택 중과·단기세율 비교"],
   },
+  "/inheritance-tax-calculator": {
+    name: "상속세 계산기",
+    description:
+      "국세청 세액계산 흐름도 기준으로 과세가액·상속공제·누진세율·세액공제를 반영해 예상 상속세를 산출하는 계산기입니다.",
+    path: "/inheritance-tax-calculator",
+    featureList: ["일괄공제·배우자공제", "금융·동거주택 상속공제", "세대생략할증·신고세액공제"],
+  },
 };
 
 export function getCalculatorWebApplication(path: string): WebApplicationSchemaInput | undefined {

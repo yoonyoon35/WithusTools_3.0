@@ -25,6 +25,11 @@ const staticPages: MetadataRoute.Sitemap = [
     changeFrequency: "weekly",
     priority: 0.85,
   },
+  {
+    url: `${SITE_URL}/inheritance-tax-calculator`,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  },
   { url: `${SITE_URL}/guide`, changeFrequency: "weekly", priority: 0.7 },
   { url: `${SITE_URL}/about`, changeFrequency: "yearly", priority: 0.4 },
   { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.3 },

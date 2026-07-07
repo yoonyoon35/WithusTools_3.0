@@ -53,6 +53,11 @@ export const calculatorTools: readonly CalculatorTool[] = [
     title: "양도소득세 계산기",
     description: "양도차익·1세대1주택 비과세·장기보유특별공제·다주택 중과를 반영해 양도세·지방소득세를 산출합니다.",
   },
+  {
+    href: "/inheritance-tax-calculator",
+    title: "상속세 계산기",
+    description: "과세가액·일괄공제·배우자공제·금융재산공제·동거주택공제·세대생략할증·신고세액공제를 반영해 예상 상속세를 산출합니다.",
+  },
 ] as const;
 
 export const LOAN_CALCULATOR_PATH = "/loan-calculator" as const;

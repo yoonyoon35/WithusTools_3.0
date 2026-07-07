@@ -52,7 +52,7 @@ export function GuideIndexContent() {
       </nav>
 
       <div className="mt-10 space-y-12">
-        {topicsWithArticles.map(({ topic, mainArticles, scenarioGroups }) => (
+        {topicsWithArticles.map(({ topic, pillar, mainArticles, scenarioGroups }) => (
           <section key={topic.id} id={topic.id} className="scroll-mt-24">
             <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
               <div>
@@ -67,8 +67,13 @@ export function GuideIndexContent() {
               </Link>
             </div>
 
-            {mainArticles.length > 0 ? (
+            {mainArticles.length > 0 || pillar ? (
               <ul className="space-y-4">
+                {pillar && !mainArticles.some((a) => a.slug === pillar.slug) ? (
+                  <li key={pillar.slug}>
+                    <GuideArticleCard article={pillar} />
+                  </li>
+                ) : null}
                 {mainArticles.map((article) => (
                   <li key={article.slug}>
                     <GuideArticleCard article={article} />

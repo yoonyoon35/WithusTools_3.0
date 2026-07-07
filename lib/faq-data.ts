@@ -189,6 +189,34 @@ export const capitalGainsTaxCalculatorFaqItems = [
   },
 ] as const satisfies readonly FaqItem[];
 
+export const inheritanceTaxCalculatorFaqItems = [
+  {
+    question: "상속세 과세가액은 어떻게 계산하나요?",
+    answer:
+      "국세청 세액계산흐름도 기준으로 총상속재산가액에서 비과세·과세가액 불산입·공과금·채무·장례비를 빼고, 상속개시 전 사전증여재산(상속인 10년·비상속인 5년)을 더합니다. 본 계산기는 합산된 금액을 직접 입력하는 방식입니다.",
+  },
+  {
+    question: "일괄공제 5억과 배우자공제를 같이 받을 수 있나요?",
+    answer:
+      "일괄공제는 기초공제(2억)+인적공제와 비교해 큰 금액을 택하는 제도이며, 배우자 상속공제는 별도로 가산 적용됩니다(제21·19조). 배우자 단독 상속인은 일괄공제 5억을 적용할 수 없습니다.",
+  },
+  {
+    question: "동거주택 상속공제 한도는 얼마인가요?",
+    answer:
+      "상속세 및 증여세법 제23조의2에 따라 상속주택가액 100%를 공제하되, 한도는 6억 원입니다. 10년 동거·1세대 1주택·무주택 상속인 등 요건을 모두 충족해야 합니다.",
+  },
+  {
+    question: "과세표준 50만 원 미만이면 세금이 없나요?",
+    answer:
+      "제25조②에 따라 과세표준이 50만 원 미만이면 상속세를 부과하지 않습니다. 감정평가 수수료는 과세표준 계산 시 차감됩니다.",
+  },
+  {
+    question: "계산 결과와 홈택스·세무서 고지가 다른 이유는?",
+    answer:
+      "재산 시가 평가·상속인별 안분·추정상속재산·가업상속공제·증여세액공제 안분·가산세 등은 개별 신고서에 따라 달라집니다. 법정신고기한(상속개시일이 속하는 달 말일부터 6개월) 내 홈택스 상속세 자동계산과 대조하세요.",
+  },
+] as const satisfies readonly FaqItem[];
+
 export const guideIndexFaqItems = [
   {
     question: "가이드 글은 누가 작성하나요?",
@@ -217,6 +245,7 @@ export const calculatorFaqByPath: Record<string, readonly FaqItem[]> = {
   "/prepayment-fee-calculator": prepaymentFeeCalculatorFaqItems,
   "/comprehensive-property-tax-calculator": comprehensivePropertyTaxCalculatorFaqItems,
   "/capital-gains-tax-calculator": capitalGainsTaxCalculatorFaqItems,
+  "/inheritance-tax-calculator": inheritanceTaxCalculatorFaqItems,
 };
 
 export function getCalculatorFaqItems(path: string): readonly FaqItem[] {
