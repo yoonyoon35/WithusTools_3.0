@@ -53,6 +53,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "income-type-loan-limit-difference-guide",
       "multi-homeowner-loan-regulations-guide",
       "regulated-area-designation-effects-2026-guide",
+      "real-estate-balloon-effect-2026-guide",
       "dongtan-giheung-guri-regulated-area-ltv-2026-guide",
       "dongtan-giheung-guri-gap-investment-land-permit-2026-guide",
       "mortgage-rate-status-2026",

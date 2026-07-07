@@ -221,6 +221,10 @@ import {
   nationalHousingBondPurchaseCriteriaGuideMeta,
 } from "@/lib/guide/articles/national-housing-bond-purchase-criteria-guide";
 import {
+  RealEstateBalloonEffect2026GuideBody,
+  realEstateBalloonEffect2026GuideMeta,
+} from "@/lib/guide/articles/real-estate-balloon-effect-2026-guide";
+import {
   DongtanGiheungGuriRegulatedAreaLtv2026GuideBody,
   dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta,
 } from "@/lib/guide/articles/dongtan-giheung-guri-regulated-area-ltv-2026-guide";
@@ -573,6 +577,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...brokerageFeeVatSeparateGuideMeta,
     Body: BrokerageFeeVatSeparateGuideBody,
+  },
+  {
+    ...realEstateBalloonEffect2026GuideMeta,
+    Body: RealEstateBalloonEffect2026GuideBody,
   },
   {
     ...dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta,

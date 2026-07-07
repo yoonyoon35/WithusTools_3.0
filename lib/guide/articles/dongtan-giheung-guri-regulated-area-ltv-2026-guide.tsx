@@ -23,8 +23,12 @@ export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
         </p>
         <p>
           지정 배경은 2025년 10·15 대책 이후 <strong>비규제지역으로 풍선효과</strong>가 나타난 지역에 투자 수요가
-          유입되면서 집값·거래량이 빠르게 늘었다는 점입니다. 국토부는 동탄·기흥은 반도체 호황·GTX 등 교통 호재,
-          구리는 서울 인접 역세권 수요를 이유로 들었습니다.
+          유입되면서 집값·거래량이 빠르게 늘었다는 점입니다.{" "}
+          <Link href="/guide/real-estate-balloon-effect-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            부동산 풍선효과
+          </Link>
+          가 무엇인지, 규제 이후 남양주·병점 등 인접지 사례는 별도 가이드에서 정리했습니다. 국토부는 동탄·기흥은
+          반도체 호황·GTX 등 교통 호재, 구리는 서울 인접 역세권 수요를 이유로 들었습니다.
         </p>
       </section>
 

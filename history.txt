@@ -630,3 +630,13 @@ Phase 4 daechulija.com 301 완료
         - components/guide-topic-article-sections.tsx: pillar·본문·시나리오 공통 렌더
         - /guide 목록·/guide/topics/acquisition-tax 동일 구조 반영, 취득세 계산기 shell에서 시나리오 앵커 링크
         - npm run build 정상(124 static pages)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260707
+
+1247 - withustools.com 애널리틱스 측정 ID를 클라우드 플레어에서 G-7E4V7PJZVR 로 설정했는데,
+        대출관련 사이트로 마이그레이션하기 전에 기존 사이트를 깃허브 빌딩 방식으로 바꾸면서 측정ID를 이쪽에서
+        하는 방식으로 바꾼 걸 까먹고 있었음. 일단 여기 설정을 다시 G-7E4V7PJZVR로 바꿨고, 지켜보면 될 듯.
+
+1312 - 풍선효과에 대한 가이드 내용추가.

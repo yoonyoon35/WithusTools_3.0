@@ -70,7 +70,12 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
         </div>
         <p>
           금융 규제에서 말하는 「규제지역」은 보통 <strong>투기과열지구 또는 조정대상지역</strong>을 가리킵니다. 2025년
-          10·15 대책 이후 수도권 대부분이 세 유형이 겹치게 지정된 경우가 많습니다.
+          10·15 대책 이후 수도권 대부분이 세 유형이 겹치게 지정된 경우가 많습니다. 규제 지역과 맞닿은 비규제지역으로
+          수요가 이동하는 <strong>풍선효과</strong>는{" "}
+          <Link href="/guide/real-estate-balloon-effect-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            부동산 풍선효과 가이드
+          </Link>
+          에서 동탄·기흥·구리·남양주 사례와 함께 정리했습니다.
         </p>
       </section>
 

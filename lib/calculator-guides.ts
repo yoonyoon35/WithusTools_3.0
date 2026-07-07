@@ -10,6 +10,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "loan-refinancing-guide",
   ],
   "/dsr-calculator": [
+    "real-estate-balloon-effect-2026-guide",
     "dsr-calculation-method",
     "dsr-40-mortgage-limit",
     "stress-dsr-explained",
@@ -24,6 +25,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "bogeumjari-vs-didimdol",
   ],
   "/ltv-calculator": [
+    "real-estate-balloon-effect-2026-guide",
     "ltv-dti-dsr-comparison",
     "first-time-homebuyer-benefits-2026",
     "multi-homeowner-loan-regulations-guide",
