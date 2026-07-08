@@ -66,6 +66,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "one-household-one-home-capital-gains-tax-guide",
     "presale-right-capital-gains-tax-guide",
     "occupancy-right-capital-gains-tax-guide",
+    "mokdong-redevelopment-occupancy-right-capital-gains-tax-guide",
     "capital-gains-surcharge-revival-2026-guide",
   ],
   "/inheritance-tax-calculator": [

@@ -655,3 +655,21 @@ Phase 4 daechulija.com 301 완료
         - registry·topics·calculator-guides 등록, 계산기 하단 관련 가이드 9편
 
 2039 - /guide 목록: 모든 주제 pillar(개요) 글을 파생 글 위에 항상 표시(기존엔 mainArticles만 노출·개요 누락)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260708
+
+1402 - 가이드 「보유세 vs 거래세, 무슨 차이인가」 추가 (holding-vs-transaction-tax-guide)
+        - holding-tax·acquisition-tax 토픽 등록, 입문용(종부세·재산세·취득세·양도세 개념)
+        - 블로그 마크다운·썸네일 (보유세_거래세_블로그포스팅_2026.md, thumbnail_보유세_거래세_2026.png)
+
+1405 - 가이드 「7월 부동산 세제개편 예상」 — 신규 대신 기존 글 보강 (holding-capital-gains-tax-increase-2026-guide)
+        - 제목·description·updated(7/8) 변경, OECD 7/2 권고·구윤철 6/16·7/7 발언·일정표 추가
+        - 예상 정리·발표 후 갱신 안내, 보유세·거래세 균형·오해 보강 (slug 유지)
+
+1556 - 목동 재건축 입주권 양도세 시나리오 가이드 추가·시세 반영
+        - 신규: /guide/mokdong-redevelopment-occupancy-right-capital-gains-tax-guide
+        - 양도세 주제 「입주권 지역·시나리오」 scenarioGroups 등록, 계산기·입주권 pillar 링크
+        - 1~14단지 시세(고가 5·14단지 35.4·32.5억, 저가 10·11·12단지 19억대) 기준 세액 표·시나리오
+        - 제목·예시 14·16·18억 → 19·26·35억 밴드로 수정, llms.txt 재생성(84편)

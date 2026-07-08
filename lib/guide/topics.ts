@@ -145,6 +145,15 @@ export const guideTopics: readonly GuideTopic[] = [
       "presale-right-capital-gains-tax-guide",
       "occupancy-right-capital-gains-tax-guide",
       "capital-gains-surcharge-revival-2026-guide",
+      "holding-vs-transaction-tax-guide",
+    ],
+    scenarioGroups: [
+      {
+        id: "occupancy-right-regional-scenarios",
+        label: "입주권 지역·시나리오",
+        description: "재건축·재개발 입주권 양도를 지역·금액별로 풀어 쓴 계산 예시입니다.",
+        slugs: ["mokdong-redevelopment-occupancy-right-capital-gains-tax-guide"],
+      },
     ],
   },
   {
@@ -154,6 +163,7 @@ export const guideTopics: readonly GuideTopic[] = [
     pillarSlug: "comprehensive-property-tax-overview-guide",
     calculatorHrefs: ["/comprehensive-property-tax-calculator"],
     slugs: [
+      "holding-vs-transaction-tax-guide",
       "comprehensive-property-tax-overview-guide",
       "one-household-one-home-comprehensive-property-tax-amount-guide",
       "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",

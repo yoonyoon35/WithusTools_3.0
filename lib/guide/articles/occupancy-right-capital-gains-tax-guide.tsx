@@ -315,12 +315,19 @@ export function OccupancyRightCapitalGainsTaxGuideBody() {
         </p>
         <p>
           <Link
+            href="/guide/mokdong-redevelopment-occupancy-right-capital-gains-tax-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            목동 재건축 입주권 양도세
+          </Link>
+          에서 5단지 35.4억·10단지 19억 등 단지별 시나리오를 확인할 수 있습니다.{" "}
+          <Link
             href="/guide/capital-gains-tax-calculation-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             2026년 양도세 계산 예시
           </Link>
-          에서 분양권·토지 사례도 확인할 수 있습니다.
+          에서 분양권·토지 사례도 봅니다.
         </p>
       </section>
 
@@ -334,6 +341,14 @@ export function OccupancyRightCapitalGainsTaxGuideBody() {
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
             → 1세1주택 비과세·장특공
+          </Link>
+        </p>
+        <p>
+          <Link
+            href="/guide/mokdong-redevelopment-occupancy-right-capital-gains-tax-guide"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            → 목동 재건축 입주권 양도세(19억·26억·35억)
           </Link>
         </p>
         <p>

@@ -193,6 +193,10 @@ import {
   occupancyRightCapitalGainsTaxGuideMeta,
 } from "@/lib/guide/articles/occupancy-right-capital-gains-tax-guide";
 import {
+  MokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideBody,
+  mokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideMeta,
+} from "@/lib/guide/articles/mokdong-redevelopment-occupancy-right-capital-gains-tax-guide";
+import {
   OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody,
   oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta,
 } from "@/lib/guide/articles/one-household-one-home-comprehensive-property-tax-amount-guide";
@@ -288,6 +292,10 @@ import {
   NewbornSpecialLoan2026GuideBody,
   newbornSpecialLoan2026GuideMeta,
 } from "@/lib/guide/articles/newborn-special-loan-2026-guide";
+import {
+  HoldingVsTransactionTaxGuideBody,
+  holdingVsTransactionTaxGuideMeta,
+} from "@/lib/guide/articles/holding-vs-transaction-tax-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -535,6 +543,10 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: OccupancyRightCapitalGainsTaxGuideBody,
   },
   {
+    ...mokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideMeta,
+    Body: MokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideBody,
+  },
+  {
     ...holdingCapitalGainsTaxIncrease2026GuideMeta,
     Body: HoldingCapitalGainsTaxIncrease2026GuideBody,
   },
@@ -629,6 +641,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...newbornSpecialLoan2026GuideMeta,
     Body: NewbornSpecialLoan2026GuideBody,
+  },
+  {
+    ...holdingVsTransactionTaxGuideMeta,
+    Body: HoldingVsTransactionTaxGuideBody,
   },
 ];
 
