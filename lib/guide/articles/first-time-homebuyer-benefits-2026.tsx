@@ -5,7 +5,7 @@ export const firstTimeHomebuyerBenefits2026Meta = {
   title: "생애최초 주택 구입자 혜택 정리",
   description:
     "2026년 4월 기준 생애최초 주택 구입자 대상 대출·취득세·청약 혜택과 필수 확인사항을 표 중심으로 정리했습니다.",
-  updated: "2026년 4월 13일",
+  updated: "2026년 7월 8일",
 } as const;
 
 export function FirstTimeHomebuyerBenefits2026Body() {
@@ -27,6 +27,21 @@ export function FirstTimeHomebuyerBenefits2026Body() {
         <p>
           본인과 배우자 모두 과거 주택 소유 이력이 없어야 하며, 분양권·입주권 보유 이력도 포함됩니다. 세대원 중 부모가 주택을
           보유한 경우 세대 분리 이후 요건 충족 여부를 별도로 확인해야 합니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          디딤돌·버팀목 등 기금 대출은 접수일 기준 세대원 전원 무주택이 원칙입니다. 다만{" "}
+          <strong>만 65세 이상 직계존속이 주택 1채(1세대)만 소유</strong>한 경우에는 기금 대출 「무주택으로 보는
+          경우」에 해당해 예외가 인정될 수 있습니다(2025년 6월 HUG 디딤돌·버팀목 기준 60세→65세 상향).{" "}
+          <strong>노부모부양 특별공급·청약 일반 무주택(60세)과는 다른 기준</strong>입니다. 주택{" "}
+          <strong>등기부등본상 소유자</strong>가 65세 미만이거나 2주택 이상이면 세대 분리가 필요한 경우가 많습니다. 상세
+          표는{" "}
+          <Link
+            href="/guide/bogeumjari-vs-didimdol#guide-compare-household-elderly"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            보금자리론 vs 디딤돌 — 무주택·부모 연령
+          </Link>
+          을 참고하세요.
         </p>
       </section>
 

@@ -4,8 +4,8 @@ export const bogeumjariVsDidimdolMeta = {
   slug: "bogeumjari-vs-didimdol",
   title: "보금자리론 vs 디딤돌대출 비교",
   description:
-    "보금자리론·디딤돌대출 조건 비교와 주택가·소득·한도별 선택 시나리오, 혼합 검토 순서, 신청 전 흔한 실수를 정리했습니다.",
-  updated: "2026년 4월 13일",
+    "보금자리론·디딤돌대출 조건 비교, 무주택 세대주·부모 65세 1주택 예외, 주택가·소득·한도별 시나리오와 신청 전 흔한 실수를 정리했습니다.",
+  updated: "2026년 7월 8일",
 } as const;
 
 export function BogeumjariVsDidimdolBody() {
@@ -23,7 +23,8 @@ export function BogeumjariVsDidimdolBody() {
         </h2>
         <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed">
           <li>
-            <strong>무주택·세대주 요건</strong> — 디딤돌은 세대주 조건이 있습니다.
+            <strong>무주택·세대주 요건</strong> — 디딤돌은 세대주·세대원 전원 무주택이 원칙입니다. 부모 65세 이상·1주택
+            예외는 등기상 소유자 연령을 확인하세요.
           </li>
           <li>
             <strong>주택 가격</strong> — 5억 원 초과면 디딤돌 대상에서 제외됩니다.
@@ -112,6 +113,108 @@ export function BogeumjariVsDidimdolBody() {
         </div>
         <p className="text-muted-foreground text-sm">
           ※ 금리는 분기별로 변동 고시되며, 가입 시점 기준으로 적용됩니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-compare-household-elderly">
+        <h2 id="guide-compare-household-elderly" className="text-foreground text-xl font-semibold tracking-tight">
+          무주택 세대주·부모(직계존속) 연령
+        </h2>
+        <p>
+          디딤돌·버팀목 등 주택도시기금 대출은 접수일 기준 <strong>세대주를 포함한 세대원 전원이 무주택</strong>이어야
+          합니다. 본인·배우자 명의 주택이 없어도, <strong>부모님과 같은 주민등록 세대</strong>에 있으면서 부모가 유주택인
+          경우 심사에서 탈락하는 일이 많습니다.
+        </p>
+        <p>
+          다만 HF·주택도시보증공사(HUG) 업무기준 <strong>「무주택으로 보는 경우」</strong> 6번에 따라, 아래 조건을
+          충족하면 전산상 유주택으로 잡혀도 <strong>무주택 세대주</strong>로 인정받을 수 있습니다. 2025년 6월
+          HUG가 디딤돌·버팀목 심사에서 이 연령 기준을 <strong>만 60세 → 65세</strong>로 상향·강화했습니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ <strong>노부모부양 특별공급</strong>(65세 이상·3년 부양)과는 별개 제도입니다. 노부모부양은 원래 65세
+          기준이며, 「60→65 변경」은 청약 특공이 아니라 <strong>기금 대출 무주택 세대주 판정</strong> 이야기입니다.
+          청약 일반 무주택 인정(「주택공급에 관한 규칙」 제53조 6호, 만 60세·1주택)도 디딤돌과 기준이 다를 수
+          있습니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              부모(직계존속) 주택 보유 시 무주택 인정(디딤돌·버팀목, 참고)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  상황
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  요지
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  만 65세 이상 직계존속이 주택 1호(1세대)만 소유
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  「무주택으로 보는 경우」에 해당할 수 있음. <strong>등기부등본상 소유자</strong> 연령·주택 수 확인
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  주택 소유자가 만 65세 미만
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  예외 적용 어려움. <strong>세대 분리</strong> 후 본인·배우자 무주택 세대 구성이 일반적
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  65세 이상이라도 주택 2호(2세대) 이상 보유
+                </th>
+                <td className="border-border border-b px-3 py-2.5">예외 없음. 세대원 전원 무주택 원칙 적용</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  부모 중 65세 이상·65세 미만 혼재
+                </th>
+                <td className="px-3 py-2.5">
+                  <strong>등기 명의·공동명의 여부</strong>와 소유자 연령에 따라 달라짐. 접수 전 수탁은행·기금e든든 사전
+                  확인 권장
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          신혼부부·생애최초로 디딤돌을 검토할 때도 동일한 무주택 검증이 적용됩니다. 혼인신고만 하고 각자 주소에
+          주민등록을 유지하더라도, 한쪽이 <strong>부모 유주택 세대원</strong>으로 남아 있으면 배우자 합산 심사에서
+          문제가 될 수 있습니다.{" "}
+          <Link
+            href="/guide/first-time-homebuyer-benefits-2026"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            생애최초 주택 구입자 혜택
+          </Link>
+          과{" "}
+          <Link
+            href="/guide/mortgage-loan-application-documents"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            주담대 신청 서류
+          </Link>
+          (주민등록등본·가족관계증명)도 함께 준비하세요.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 보금자리론은 디딤돌과 달리 세대주 조건은 없으나, 본인·배우자 무주택 등 별도 요건이 있습니다. 최신 기준은{" "}
+          <a
+            href="https://www.myhome.go.kr"
+            className="text-primary underline-offset-4 hover:underline"
+            rel="noopener noreferrer"
+          >
+            마이홈(myhome.go.kr)
+          </a>
+          ·수탁은행 사전 자격 조회로 확인하세요.
         </p>
       </section>
 
@@ -310,6 +413,10 @@ export function BogeumjariVsDidimdolBody() {
           </li>
           <li>
             <strong>소득 산정 착오</strong> — 부부합산·세대주·무주택 요건은 서류 심사에서 엄격히 확인됩니다.
+          </li>
+          <li>
+            <strong>부모 유주택 세대 방치</strong> — 65세 이상·1주택 예외는 등기상 소유자 연령에 따라 달라집니다. 65세
+            미만 소유자이면 세대 분리 없이는 불리할 수 있습니다.
           </li>
           <li>
             <strong>비대면 가산 미반영</strong> — 보금자리론은 비대면 신청 시 0.1%p 가산이 붙을 수 있습니다.
