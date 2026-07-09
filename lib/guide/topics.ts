@@ -57,6 +57,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "dongtan-giheung-guri-regulated-area-ltv-2026-guide",
       "dongtan-giheung-guri-gap-investment-land-permit-2026-guide",
       "mortgage-rate-status-2026",
+      "kb-mortgage-300-million-limit-2026-guide",
     ],
   },
   {
@@ -145,6 +146,8 @@ export const guideTopics: readonly GuideTopic[] = [
       "presale-right-capital-gains-tax-guide",
       "occupancy-right-capital-gains-tax-guide",
       "capital-gains-surcharge-revival-2026-guide",
+      "two-vs-three-home-holding-cost-2026-guide",
+      "non-resident-one-home-tax-checklist-2026-guide",
       "holding-vs-transaction-tax-guide",
     ],
     scenarioGroups: [
@@ -169,6 +172,8 @@ export const guideTopics: readonly GuideTopic[] = [
       "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
       "comprehensive-property-tax-fair-ratio-calculation-2026-guide",
       "holding-capital-gains-tax-increase-2026-guide",
+      "two-vs-three-home-holding-cost-2026-guide",
+      "non-resident-one-home-tax-checklist-2026-guide",
     ],
   },
   {

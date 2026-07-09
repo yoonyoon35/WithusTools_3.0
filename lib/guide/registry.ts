@@ -217,6 +217,18 @@ import {
   holdingCapitalGainsTaxIncrease2026GuideMeta,
 } from "@/lib/guide/articles/holding-capital-gains-tax-increase-2026-guide";
 import {
+  TwoVsThreeHomeHoldingCost2026GuideBody,
+  twoVsThreeHomeHoldingCost2026GuideMeta,
+} from "@/lib/guide/articles/two-vs-three-home-holding-cost-2026-guide";
+import {
+  KbMortgage300MillionLimit2026GuideBody,
+  kbMortgage300MillionLimit2026GuideMeta,
+} from "@/lib/guide/articles/kb-mortgage-300-million-limit-2026-guide";
+import {
+  NonResidentOneHomeTaxChecklist2026GuideBody,
+  nonResidentOneHomeTaxChecklist2026GuideMeta,
+} from "@/lib/guide/articles/non-resident-one-home-tax-checklist-2026-guide";
+import {
   RegulatedAreaDesignationEffects2026GuideBody,
   regulatedAreaDesignationEffects2026GuideMeta,
 } from "@/lib/guide/articles/regulated-area-designation-effects-2026-guide";
@@ -549,6 +561,18 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...holdingCapitalGainsTaxIncrease2026GuideMeta,
     Body: HoldingCapitalGainsTaxIncrease2026GuideBody,
+  },
+  {
+    ...twoVsThreeHomeHoldingCost2026GuideMeta,
+    Body: TwoVsThreeHomeHoldingCost2026GuideBody,
+  },
+  {
+    ...kbMortgage300MillionLimit2026GuideMeta,
+    Body: KbMortgage300MillionLimit2026GuideBody,
+  },
+  {
+    ...nonResidentOneHomeTaxChecklist2026GuideMeta,
+    Body: NonResidentOneHomeTaxChecklist2026GuideBody,
   },
   {
     ...comprehensivePropertyTaxOverviewGuideMeta,

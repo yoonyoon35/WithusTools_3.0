@@ -679,3 +679,14 @@ Phase 4 daechulija.com 301 완료
         - 노부모부양 특별공급·청약 53조(60세)와 구분 안내
         - first-time-homebuyer-benefits-2026: 동일 내용 요약·디딤돌 가이드 앵커 링크
         - llms.txt 재생성(84편)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260709
+
+2023 - 다주택·대출·비거주 1주택 가이드 3편 추가 (7월 뉴스·세제개편 맥락)
+        - two-vs-three-home-holding-cost-2026-guide: 2주택 vs 3주택 보유세·양도세·대출 비교, 공시 23억·33억 예시
+        - kb-mortgage-300-million-limit-2026-guide: KB 7/10 주담대 3억 한도, 당국 6억과 차이·7/9 서류 마감·자기자금 표
+        - non-resident-one-home-tax-checklist-2026-guide: 비거주 1주택 보유세·장특공·7월 개편 전 체크리스트
+        - registry·topics(holding-tax·capital-gains-tax·dsr-limit) 등록
+        - 「다주택자 매도 타이밍」단독 가이드는 two-vs-three·중과 재개 가이드와 겹쳐 보류
