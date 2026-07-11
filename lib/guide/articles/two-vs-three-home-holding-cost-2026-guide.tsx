@@ -5,7 +5,7 @@ export const twoVsThreeHomeHoldingCost2026GuideMeta = {
   title: "2주택 vs 3주택, 몇 채까지 버틸 수 있나",
   description:
     "2026년 7월 기준 2주택·3주택 이상 보유세(재산세·종부세)·양도세 중과·대출 규제 차이, 공시 23억·33억 연간 부담 비교, 2채로 줄이기 판단 기준과 7월 세제개편 리스크를 표로 정리했습니다.",
-  updated: "2026년 7월 9일",
+  updated: "2026년 7월 11일",
 } as const;
 
 export function TwoVsThreeHomeHoldingCost2026GuideBody() {
@@ -39,6 +39,21 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
           </Link>
           로 본인 조건을 바로 대입해 볼 수 있습니다.
         </p>
+        <p>
+          이 글은 세금 숫자 비교표와 함께, <strong>몇 채까지 버틸지 판단하는 기준</strong>을 짚습니다. 보유세만
+          보면 2주택·3주택 차이가 작을 수 있고, 조정지역 매도를 앞두면 양도세 중과 차이가 더 크게 작용합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-tvth-who-reads">
+        <h2 id="guide-tvth-who-reads" className="text-foreground text-xl font-semibold tracking-tight">
+          이 글에서 확인할 것
+        </h2>
+        <p>
+          3주택 이상 보유자는 <strong>한 채를 정리할지·전부 정리할지</strong>를, 2주택자는 「한 채 더 사도
+          되나」보다 <strong>한 채를 팔아 1주택으로 갈지</strong>를 먼저 봐야 합니다. 2채로 줄인다고 대출 규제가
+          풀리지는 않습니다 — 1주택까지 내려가야 LTV·만기 연장이 완화됩니다.
+        </p>
       </section>
 
       <nav
@@ -47,6 +62,11 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
       >
         <p className="text-foreground font-medium">목차</p>
         <ul className="text-muted-foreground list-disc space-y-1 pl-5">
+          <li>
+            <a href="#guide-tvth-who-reads" className="text-primary underline-offset-4 hover:underline">
+              이 글에서 확인할 것
+            </a>
+          </li>
           <li>
             <a href="#guide-tvth-same-diff" className="text-primary underline-offset-4 hover:underline">
               2주택 vs 3주택 — 같고 다른 것
@@ -181,6 +201,12 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
             양도세 중과 재개 가이드
           </Link>
           에서 별도 정리했습니다.
+        </p>
+        <p>
+          표만 보면 「2주택이든 3주택이든 비슷하다」고 느낄 수 있지만, 실제 판단은 <strong>공시가격 합계</strong>와{" "}
+          <strong>조정지역 매도 계획</strong>에 달려 있습니다. 공시 합계가 29억 원을 넘으면 3주택의 종부세 부담이
+          눈에 띄게 커지고, 조정지역에서 팔 계획이 있으면 +20%p와 +30%p 차이가 수천만 원 이상 벌어질 수
+          있습니다.
         </p>
       </section>
 
@@ -499,6 +525,11 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
         <h2 id="guide-tvth-reduce-two" className="text-foreground text-xl font-semibold tracking-tight">
           3채 → 2채로 줄이기 — 언제 의미가 있나
         </h2>
+        <p>
+          「두 채는 버텨도 세 채는 무리」가 맞는 경우와 아닌 경우가 있습니다. 보유세만 보면 공시 합계가 29억 원
+          미만이면 2주택·3주택 차이가 거의 없고, <strong>고가 합산·조정지역 매도</strong>가 있을 때 3→2 정리
+          의미가 커집니다.
+        </p>
         <p>
           전문가들은 최근 2주택자 수 반등을 「전략적 선택」보다 <strong>정리 과정의 중간 상태</strong>로
           보는 시각이 많습니다. 중과 유예 종료 전에 다 못 팔고 2주택으로 남았거나, 한 채는 보유·한 채는

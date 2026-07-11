@@ -5,7 +5,7 @@ export const regulatedAreaDesignationEffects2026GuideMeta = {
   title: "규제지역 지정되면 달라지는 것…대출·취득세·양도세 비교",
   description:
     "2026년 6월 기준 규제지역·조정대상지역 지정 시 달라지는 LTV·스트레스 DSR·2주택 취득세·다주택 양도세·토지거래허가, 주택 수별 영향과 5억·7억 매수 예시를 표로 정리했습니다.",
-  updated: "2026년 6월 26일",
+  updated: "2026년 7월 11일",
 } as const;
 
 export function RegulatedAreaDesignationEffects2026GuideBody() {
@@ -20,6 +20,22 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
           <strong>지정 유형마다 적용 항목이 다릅니다</strong>. 흔히 겹쳐 지정되는 세 가지는 투기과열지구, 조정대상지역,
           토지거래허가구역입니다. 이 글은 내가 사는·사려는 지역이 지정됐을 때 무엇이 달라지는지, 주택 수별로
           정리합니다.
+        </p>
+        <p>
+          먼저 본인이 <strong>무주택·1주택·다주택 중 어디에 해당하는지</strong>를 정하고, 매물이 조정·규제·허가구역
+          중 어디에 걸리는지 확인하세요. 같은 「규제지역」이라도 대출·취득세·양도세·허가가 동시에 바뀌지는
+          않습니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-rade-who-reads">
+        <h2 id="guide-rade-who-reads" className="text-foreground text-xl font-semibold tracking-tight">
+          이 글에서 확인할 것
+        </h2>
+        <p>
+          추가 매수·갈아타기를 검토 중이면 <strong>대출 LTV → 취득세 중과 → 양도세</strong> 순으로 보세요. 이미
+          1주택만 보유·거주 중이라면 「영향 없음」이 아니라, <strong>다음 매수 때</strong> 규제가 걸린다는 뜻입니다.
+          토지거래허가구역이면 계약 전 허가 여부를 반드시 확인합니다.
         </p>
       </section>
 
@@ -83,6 +99,10 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
         <h2 id="guide-rade-summary" className="text-foreground text-xl font-semibold tracking-tight">
           주택 수별로 보면
         </h2>
+        <p>
+          아래 표는 「규제지역에 살거나, 규제지역에서 추가로 살 때」 체감이 큰 변화를 한눈에 모은 것입니다.
+          무주택·첫 매수는 대출 한도 축소가, 다주택자는 취득세·양도세 중과가 먼저 걸리는 경우가 많습니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -142,6 +162,11 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
         </div>
         <p className="text-muted-foreground text-sm">
           ※ LTV는 2026년 4월 기준 금융당국 가이드라인이며, 은행·상품별로 다를 수 있습니다.
+        </p>
+        <p>
+          1주택만 갖고 있는데 「규제와 무관하다」고 생각하기 쉽지만, <strong>갈아타기·추가 매수</strong> 순간
+          LTV 40%와 스트레스 DSR이 적용됩니다. 다주택자는 신규 주담대가 막히는 동시에 조정지역 취득세 8%·12%를
+          함께 봐야 합니다.
         </p>
       </section>
 
@@ -530,6 +555,11 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
         <h2 id="guide-rade-checklist" className="text-foreground text-xl font-semibold tracking-tight">
           매수·매도 전 체크리스트
         </h2>
+        <p>
+          계약 전에 아래 항목을 순서대로 확인하면, 잔금 단계에서 「대출이 안 나온다」「취득세가 예상보다 크다」는
+          상황을 줄일 수 있습니다. 특히 <strong>잔금일 기준 주택 수</strong>와 <strong>대출 실행 시점 LTV</strong>는
+          계약서 날짜와 다를 수 있습니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[30rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">

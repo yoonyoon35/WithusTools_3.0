@@ -5,7 +5,7 @@ export const dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta = {
   title: "동탄·기흥·구리 규제지역 지정…7월 1일 LTV 40% 뭐가 달라지나",
   description:
     "2026년 6월 30일 발표 화성 동탄구·용인 기흥구·구리시 규제지역 지정 배경, 7월 1일 LTV 40%·대출한도·생애최초 70%, 6억·7억·8억 매수 예시, 막차 계약·DSR과 부대비용 안내.",
-  updated: "2026년 7월 1일",
+  updated: "2026년 7월 11일",
 } as const;
 
 export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
@@ -29,6 +29,22 @@ export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
           </Link>
           가 무엇인지, 규제 이후 남양주·병점 등 인접지 사례는 별도 가이드에서 정리했습니다. 국토부는 동탄·기흥은
           반도체 호황·GTX 등 교통 호재, 구리는 서울 인접 역세권 수요를 이유로 들었습니다.
+        </p>
+        <p>
+          7월 1일 이후 이 지역에서 집을 사려는 분, 6월에 계약하고 잔금만 남은 분, 갈아타기를 준비 중인 분이
+          각각 막히는 지점이 다릅니다. 아래에서는 <strong>누가 40% LTV에 걸리는지</strong>와{" "}
+          <strong>지금 확인할 순서</strong>를 먼저 짚고, 숫자 비교 표는 그다음에 둡니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-dggl-who-reads">
+        <h2 id="guide-dggl-who-reads" className="text-foreground text-xl font-semibold tracking-tight">
+          이 글에서 확인할 것
+        </h2>
+        <p>
+          무주택·생애최초 실수요자는 LTV 40%와 자기자금 증가분을, 1주택자는 추가 매수 가능 여부를, 6월 계약·7월
+          잔금 예정자는 <strong>대출 실행 시점</strong> 기준을 먼저 봐야 합니다. 투기과열지구가 겹쳐 무주택도 40%가
+          적용되는 점이 이번 3곳의 핵심입니다.
         </p>
       </section>
 
@@ -131,6 +147,11 @@ export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
         <h2 id="guide-dggl-ltv" className="text-foreground text-xl font-semibold tracking-tight">
           LTV — 누가 40%인가
         </h2>
+        <p>
+          규제지역이라고 해서 전원이 같은 LTV는 아닙니다. 다만 이번 3곳은 <strong>투기과열지구</strong>가 겹쳐
+          무주택·처분조건부 1주택도 40%가 기본입니다. 「무주택이면 70%」라고 알고 있던 분이 가장 크게 당황하는
+          구간입니다.
+        </p>
         <p>정부 발표 기준, 이 3곳이 규제지역이 되면 주택담보대출 LTV가 아래처럼 적용됩니다.</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
@@ -296,7 +317,12 @@ export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
         </div>
         <p>
           동탄·구리 상반기 평균 매매가가 7억~8억 원대로 올라온 만큼, 40% LTV만 적용해도 자기자금이 2억 원 넘게
-          늘어날 수 있습니다.
+          늘어날 수 있습니다. 표의 「자기자금 차이」는 대출만 기준이므로, 취득세·중개비를 더하면 실제 필요 현금은
+          더 큽니다.
+        </p>
+        <p>
+          생애최초 요건을 충족하면 70% LTV가 열릴 수 있어 차이가 2억 원 이상 벌어집니다. 다만 소득·가격 상한·전입
+          의무를 모두 맞춰야 하므로, 「생애최초면 된다」고만 짐작하지 말고 은행에 사전 한도 조회를 받으세요.
         </p>
       </section>
 
@@ -436,6 +462,60 @@ export function DongtanGiheungGuriRegulatedAreaLtv2026GuideBody() {
           6월에 가계약·본계약을 마치고 대출을 신청하는 사례가 보도됐지만,{" "}
           <strong>70% LTV를 받을 수 있는지는 대출 신청·실행 시점과 금융기관 기준</strong>에 따릅니다. 계약서에
           적힌 날짜만으로 결정되지 않으니, 잔금일 전에 은행에 서면으로 확인하는 것이 안전합니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-dggl-action">
+        <h2 id="guide-dggl-action" className="text-foreground text-xl font-semibold tracking-tight">
+          지금 할 일 — 상황별 순서
+        </h2>
+        <p>
+          7월 1일을 지났다면 「막차」보다 <strong>본인 실행 시점에 어떤 LTV가 적용되는지</strong>를 먼저
+          확인하는 단계입니다. 계약일이 아니라 대출 신청·실행일이 기준이 되는 경우가 많습니다.
+        </p>
+        <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
+          <li>
+            <strong>6월 계약·7월 잔금</strong> — 은행에 서면으로 LTV 적용 시점 문의. 40%면 자기자금·DSR 재산정,
+            생애최초·처분조건부 해당 여부 확인
+          </li>
+          <li>
+            <strong>7월 이후 매수 검토</strong> — LTV 40%·한도 6억·DSR을 함께 시뮬레이션.{" "}
+            <Link href="/dsr-calculator" className="text-primary underline-offset-4 hover:underline">
+              DSR 계산기
+            </Link>
+            로 먼저 가능액 확인
+          </li>
+          <li>
+            <strong>2주택 추가 매수</strong> — 신규 주담대가 막히고 취득세 8%가 붙을 수 있음.{" "}
+            <Link
+              href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              2주택 취득세
+            </Link>
+            와 병행 검토
+          </li>
+          <li>
+            <strong>7월 5일 이후 계약</strong> — 토지거래허가·실거주 의무 확인.{" "}
+            <Link
+              href="/guide/dongtan-giheung-guri-gap-investment-land-permit-2026-guide"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              갭투자·토허구역
+            </Link>
+            가이드 참고
+          </li>
+        </ul>
+        <p>
+          KB국민은행이 7월 10일부터 주담대를 최대 3억 원으로 묶었다면, 동탄·구리에서도 KB만 보면 당국 상한과
+          무관하게 대출이 줄어듭니다.{" "}
+          <Link
+            href="/guide/kb-mortgage-300-million-limit-2026-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            KB 3억 한도 가이드
+          </Link>
+          와 함께 보세요.
         </p>
       </section>
 

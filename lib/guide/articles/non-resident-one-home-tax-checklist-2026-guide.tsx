@@ -5,7 +5,7 @@ export const nonResidentOneHomeTaxChecklist2026GuideMeta = {
   title: "살지 않는 1주택, 세금 어떻게 달라지나",
   description:
     "2026년 7월 기준 비거주 1주택자 보유세(재산세·종부세)·양도세 장특공·1세대1주택 요건 차이, 공시 15억·20억 실거주 vs 비거주 비교, 7월 세제개편 전 체크리스트를 표로 정리했습니다.",
-  updated: "2026년 7월 9일",
+  updated: "2026년 7월 11일",
 } as const;
 
 export function NonResidentOneHomeTaxChecklist2026GuideBody() {
@@ -37,6 +37,23 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
           </Link>
           로 본인 조건을 대입해 볼 수 있습니다.
         </p>
+        <p>
+          「1주택인데 왜 다주택자처럼 세금이 나오지」라는 질문이 많습니다. 세대에 집이 한 채뿐이어도{" "}
+          <strong>그 집에 살지 않으면</strong> 보유세·양도세에서 실거주 1세대 1주택 혜택을 받기 어렵습니다. 이
+          글은 현행 세법 기준과 7월 개편 검토 항목을 구분해 정리합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-nroh-who-reads">
+        <h2 id="guide-nroh-who-reads" className="text-foreground text-xl font-semibold tracking-tight">
+          이 글에서 확인할 것
+        </h2>
+        <p>
+          전세·월세로 임대 중인 1주택, 부모 댁·지방 집만 갖고 다른 곳에 사는 경우가 대표적입니다. 먼저{" "}
+          <strong>6월 1일 기준 거주 여부</strong>를 확인하고, 이어서 실거주 전환·매도·임대 유지 중 어떤 선택이
+          유리한지 시뮬레이션하세요. 7월 개편안은 아직 확정 전이므로 「검토 중」 항목과 현행을 구분해 읽어야
+          합니다.
+        </p>
       </section>
 
       <aside
@@ -57,6 +74,11 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
       >
         <p className="text-foreground font-medium">목차</p>
         <ul className="text-muted-foreground list-disc space-y-1 pl-5">
+          <li>
+            <a href="#guide-nroh-who-reads" className="text-primary underline-offset-4 hover:underline">
+              이 글에서 확인할 것
+            </a>
+          </li>
           <li>
             <a href="#guide-nroh-who" className="text-primary underline-offset-4 hover:underline">
               비거주 1주택이란
@@ -162,6 +184,10 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
           양도세 1세대 1주택 비과세(2년 거주 등)와 종부세 1세대 1주택 요건은 <strong>비슷하지만
           동일하지 않습니다</strong>. 보유세는 6월 1일 거주·주택 수, 양도세는 양도 직전 1년·2년 거주가
           핵심입니다.
+        </p>
+        <p>
+          본인이 위 표의 어느 유형에 가까운지 먼저 정하세요. 「1주택이니까 괜찮겠지」보다 <strong>6월 1일에 그
+          집에 살고 있었는지</strong>가 보유세, <strong>양도 직전 거주 기간</strong>이 양도세를 가릅니다.
         </p>
       </section>
 
@@ -483,6 +509,11 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
         <h2 id="guide-nroh-action" className="text-foreground text-xl font-semibold tracking-tight">
           대응 시나리오 — 버티기·전환·매도
         </h2>
+        <p>
+          7월 개편안 발표 전에는 「지금 당장 팔아야 하나」보다 <strong>현행 세법에서 연간 부담이 얼마인지</strong>를
+          먼저 숫자로 잡는 게 순서입니다. 실거주 전환은 보유세를 줄일 수 있지만 이사·직장·학군 비용과 맞물리고,
+          매도는 양도세·장특공 조건을 함께 봐야 합니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -547,6 +578,11 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
         <h2 id="guide-nroh-checklist" className="text-foreground text-xl font-semibold tracking-tight">
           7월 개편안 발표 전 체크리스트
         </h2>
+        <p>
+          개편안이 나오기 전에 아래를 채워 두면, 발표 직후 「나에게 해당되는지」를 빠르게 판단할 수 있습니다.
+          특히 공정시장가액비율·장특공·거주 요건이 바뀌면 <strong>임대 유지 vs 실거주 전환 vs 매도</strong> 순위가
+          달라질 수 있습니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[30rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">

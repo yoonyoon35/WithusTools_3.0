@@ -700,3 +700,19 @@ Phase 4 daechulija.com 301 완료
         - 5블록 구조: ①산출공식 ②예시 ③포함·미포함 ④기준표 ⑤활용 참고(하단)
         - 기존 인라인 Reference·loan-calculator-reference.tsx 제거, #calculation-reference 앵커 통일
         - 섹션 번호 3→5 건너뜀 수정(기준표 4번·활용 참고 5번)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260711
+
+2045 - KB 주담대 3억 한도 가이드 대폭 보강 (계약·잔금대출 당사자 대응)
+        - kb-mortgage-300-million-limit-2026-guide: 왜 KB만 먼저·예외 대상·상황별 대책·대출불가 특약·7/9 이후 안내
+        - 제목·설명 SEO(「계약했는데 대출」), LTV 40% 자기자금 표 수정, 7/11 기준 갱신
+        - DSR·LTV 계산기 관련 가이드 1순위 노출
+
+2100 - 대응·판단형 우선순위 5편 서술 보강 (표 앞뒤 판단 가이드·이 글에서 확인할 것)
+        - kb-mortgage-300-million-limit-2026-guide: 당사자 읽기 순서·표 해석 문단 추가
+        - dongtan-giheung-guri-regulated-area-ltv-2026-guide: LTV 40% 당황·지금 할 일·KB 3억 연계
+        - regulated-area-designation-effects-2026-guide: 주택 수별 판단·체크리스트 도입
+        - two-vs-three-home-holding-cost-2026-guide: 2·3주택 판단 기준·3→2 정리 의미
+        - non-resident-one-home-tax-checklist-2026-guide: 비거주 1주택 판단·대응 시나리오 서술
