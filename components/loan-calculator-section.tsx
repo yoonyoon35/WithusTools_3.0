@@ -1,6 +1,6 @@
 // import { AllCreditAffiliateCta } from "@/components/affiliate/allcredit-cta";
 import { LoanCalculator } from "@/components/calculator/loan-calculator";
-import { LoanCalculatorReference } from "@/components/calculator/loan-calculator-reference";
+import { LoanCalculatorReference } from "@/components/calculator/reference";
 
 export function LoanCalculatorSection() {
   return (

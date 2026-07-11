@@ -690,3 +690,13 @@ Phase 4 daechulija.com 301 완료
         - non-resident-one-home-tax-checklist-2026-guide: 비거주 1주택 보유세·장특공·7월 개편 전 체크리스트
         - registry·topics(holding-tax·capital-gains-tax·dsr-limit) 등록
         - 「다주택자 매도 타이밍」단독 가이드는 two-vs-three·중과 재개 가이드와 겹쳐 보류
+
+--------------------------------------------------------------------------------------------------------------------
+
+260710
+
+1425 - 계산기 10종 「산정 참고」 섹션 통일
+        - components/calculator/reference/ 공통 컴포넌트(Card·Section·Table·Notes) 및 계산기별 *-reference.tsx 분리
+        - 5블록 구조: ①산출공식 ②예시 ③포함·미포함 ④기준표 ⑤활용 참고(하단)
+        - 기존 인라인 Reference·loan-calculator-reference.tsx 제거, #calculation-reference 앵커 통일
+        - 섹션 번호 3→5 건너뜀 수정(기준표 4번·활용 참고 5번)

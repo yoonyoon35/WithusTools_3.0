@@ -1,5 +1,6 @@
 "use client";
 
+import { DsrCalculatorReference } from "@/components/calculator/reference";
 import * as React from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -614,7 +615,7 @@ export function DsrCalculator() {
         </CardContent>
       </Card>
 
-      <DsrCalculatorReferenceCard />
+      <DsrCalculatorReference />
     </div>
   );
 }
@@ -945,173 +946,5 @@ function LoanMonthsField({
         className="h-9 min-w-0"
       />
     </div>
-  );
-}
-
-function DsrReferenceTable({
-  caption,
-  headers,
-  rows,
-  minWidth,
-}: {
-  caption: string;
-  headers: string[];
-  rows: readonly (readonly string[])[];
-  minWidth: string;
-}) {
-  return (
-    <div className="overflow-auto rounded-md border">
-      <table className={`w-full ${minWidth} border-collapse text-sm`}>
-        <caption className="sr-only">{caption}</caption>
-        <thead className="bg-muted/50 border-b">
-          <tr>
-            {headers.map((h, i) => (
-              <th
-                key={h}
-                scope="col"
-                className={`p-2 font-medium ${i === headers.length - 1 && headers.length === 3 ? "text-right" : "text-left"}`}
-              >
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr
-              key={row[0]}
-              className="border-b transition-colors duration-150 ease-out last:border-0 hover:bg-primary/10 dark:hover:bg-primary/20"
-            >
-              {row.map((cell, i) => (
-                <td
-                  key={`${row[0]}-${i}`}
-                  className={`p-2 ${i === 0 ? "font-medium" : "text-muted-foreground"} ${i === 1 && headers.length === 3 ? "text-right font-medium text-foreground" : ""}`}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function DsrCalculatorReferenceCard() {
-  const epRows = (Object.keys(equalPrincipalDsrBasisLabels) as EqualPrincipalDsrBasis[]).map((k) => [
-    equalPrincipalDsrBasisLabels[k],
-    equalPrincipalDsrBasisHints[k],
-  ]);
-  const bulletRows = bulletDsrBasisOrder.map((k) => [bulletDsrBasisLabels[k], bulletDsrBasisHints[k]]);
-  const stressRows = stressDsrPresets
-    .filter((p) => p.id !== "custom")
-    .map((p) => [p.label, p.nominalPercent != null ? `${p.nominalPercent}%p` : "—"]);
-
-  return (
-    <Card className="lg:col-span-2">
-      <CardHeader>
-        <CardTitle className="text-lg">DSR 기준표 및 산정 참고</CardTitle>
-        <p className="text-muted-foreground text-sm font-normal">
-          DSR(%) = 연간 원리금 상환 합계 ÷ 연소득 × 100. 아래 표는 일반적인 기준을 요약한 것이며, 금융기관·상품별 심사와 다를 수
-          있습니다.
-        </p>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <section className="space-y-2">
-          <p className="text-sm font-semibold">1. 업권별 DSR 한도 (참고)</p>
-          <DsrReferenceTable
-            caption="업권별 DSR 한도"
-            headers={["구분", "DSR 한도", "비고"]}
-            rows={[
-              ["은행권", "40%", "주택담보·가계대출 일반 기준"],
-              ["제2금융권", "50%", "저축은행·카드·캐피탈 등(상품별 상이)"],
-              ["서민금융", "별도", "햇살론 등 정책상품은 별도 규정"],
-            ]}
-            minWidth="min-w-[480px]"
-          />
-        </section>
-
-        <section className="space-y-2">
-          <p className="text-sm font-semibold">2. DSR에 포함되는 부채 (일반)</p>
-          <DsrReferenceTable
-            caption="대출 종류별 DSR 포함 항목"
-            headers={["대출 종류", "포함 항목"]}
-            rows={[
-              ["주택담보대출", "연간 원금 + 이자"],
-              ["신용대출·카드론", "연간 원금 + 이자"],
-              ["자동차 할부", "연간 원금 + 이자"],
-              ["전세자금대출", "연간 원금 + 이자(기관별 이자만 인정 등 상이)"],
-              ["마이너스통장", "한도액 기준 연간 이자(미사용 한도도 반영될 수 있음)"],
-            ]}
-            minWidth="min-w-[560px]"
-          />
-        </section>
-
-        <section className="space-y-2">
-          <p className="text-sm font-semibold">3. 원금균등 — 연간 상환액 산출 방식</p>
-          <DsrReferenceTable
-            caption="원금균등 DSR 연간 상환 산출 방식"
-            headers={["방식", "산출 개요"]}
-            rows={epRows}
-            minWidth="min-w-[640px]"
-          />
-        </section>
-
-        <section className="space-y-2">
-          <p className="text-sm font-semibold">4. 만기일시 — DSR 산정 기준</p>
-          <DsrReferenceTable
-            caption="만기일시 DSR 산정 기준"
-            headers={["기준", "설명"]}
-            rows={bulletRows}
-            minWidth="min-w-[560px]"
-          />
-        </section>
-
-        <section className="space-y-2">
-          <p className="text-sm font-semibold">5. 스트레스 DSR — 명목 가산금리 참고</p>
-          <DsrReferenceTable
-            caption="스트레스 DSR 명목 가산금리 프리셋"
-            headers={["구분", "명목 가산(%p)"]}
-            rows={stressRows}
-            minWidth="min-w-[720px]"
-          />
-          <p className="text-muted-foreground text-xs leading-relaxed">
-            신규 대출 금리 유형별 실제 가산 = 명목 × 가중(변동 100%, 혼합 80%, 주기형 40%, 순수 고정 0%). 계산기 입력과 동일한 간이
-            모델입니다.
-          </p>
-        </section>
-
-        <div className="relative overflow-hidden rounded-xl border bg-card shadow-sm">
-          <div className="from-primary/15 via-primary/8 bg-gradient-to-r to-transparent px-4 py-3 sm:px-5">
-            <h3 className="text-primary text-base font-semibold tracking-tight">DSR 산정 시 참고사항</h3>
-            <p className="text-muted-foreground mt-1 text-xs">본 계산기에 반영된 범위와 한계를 요약했습니다.</p>
-          </div>
-          <ol className="list-none space-y-3 p-4 sm:p-5">
-            {[
-              "연소득은 근로소득 기준 세전 연소득(만 원)을 가정하며, 사업·임대·연금 등은 금융기관별 인정 방식이 다릅니다.",
-              "대출 조건 입력 시 잔액·잔여 기간(개월)을 기준으로 월 상환을 계산합니다. 총액·총 기간·거치도 함께 반영할 수 있습니다.",
-              "스트레스 DSR은 신규·대출 조건 입력 건에만 가산금리를 적용합니다. 기존 대출·월 상환 직접 입력 건은 입력값을 그대로 씁니다.",
-              "체증식은 「월 상환 직접」 입력만 지원합니다. 통장·상환 스케줄의 월 납입액을 그대로 넣으세요.",
-              "만기일시 DSR 기본은 「5년 원금균등+전액 이자」(신용·만기일시 규정)이며, 원리금균등 환산·이자만도 선택할 수 있습니다. 금융기관별로 정의가 다를 수 있습니다.",
-              "마이너스통장·신용카드 리볼빙·보증채무 등은 본 화면에 포함되지 않을 수 있습니다.",
-              "LTV·DTI·규제지역·다주택·스트레스 DSR 단계별 시행 등은 별도 규정이며, 승인 한도는 신청 금융기관에서 확인해야 합니다.",
-            ].map((text, i) => (
-              <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                <span className="border-amber-800/25 bg-amber-100 text-amber-950 dark:bg-amber-950/45 dark:border-amber-700/40 dark:text-amber-50 mt-0.5 flex size-6 shrink-0 items-center justify-center rounded border text-xs font-semibold">
-                  {i + 1}
-                </span>
-                <span>{text}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <p className="text-muted-foreground text-xs leading-relaxed">
-          기준표는 가이드·정책 공지를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 소득 인정·부채 재산정·스트레스 적용
-          범위는 금융기관 심사와 다를 수 있습니다.
-        </p>
-      </CardContent>
-    </Card>
   );
 }
