@@ -10,6 +10,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "loan-refinancing-guide",
   ],
   "/dsr-calculator": [
+    "auction-home-purchase-guide",
     "kb-mortgage-300-million-limit-2026-guide",
     "real-estate-balloon-effect-2026-guide",
     "dsr-calculation-method",
@@ -18,6 +19,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "ltv-dti-dsr-comparison",
     "annual-salary-mortgage-limit-dsr",
     "car-installment-dsr-mortgage-limit-impact-guide",
+    "auction-winning-bid-mortgage-loan-guide",
   ],
   "/dti-calculator": [
     "ltv-dti-dsr-comparison",
@@ -26,6 +28,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "bogeumjari-vs-didimdol",
   ],
   "/ltv-calculator": [
+    "auction-home-purchase-guide",
     "kb-mortgage-300-million-limit-2026-guide",
     "real-estate-balloon-effect-2026-guide",
     "ltv-dti-dsr-comparison",
@@ -34,8 +37,12 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "stress-dsr-explained",
     "bogeumjari-vs-didimdol",
     "mortgage-loan-application-documents",
+    "auction-winning-bid-mortgage-loan-guide",
   ],
   "/acquisition-tax-calculator": [
+    "auction-home-purchase-guide",
+    "auction-500-million-total-cost-guide",
+    "auction-700-million-total-cost-guide",
     "acquisition-tax-rates-2026-guide",
     "new-construction-apartment-acquisition-tax-guide",
     "first-home-acquisition-tax-relief-guide",
@@ -44,6 +51,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "acquisition-tax-deadline-and-penalty-guide",
   ],
   "/brokerage-fee-calculator": [
+    "auction-vs-brokered-sale-cost-guide",
     "brokerage-fee-rates-2026-guide",
     "apartment-brokerage-fee-guide",
     "jeonse-brokerage-fee-calculation-2026-guide",

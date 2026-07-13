@@ -716,3 +716,14 @@ Phase 4 daechulija.com 301 완료
         - regulated-area-designation-effects-2026-guide: 주택 수별 판단·체크리스트 도입
         - two-vs-three-home-holding-cost-2026-guide: 2·3주택 판단 기준·3→2 정리 의미
         - non-resident-one-home-tax-checklist-2026-guide: 비거주 1주택 판단·대응 시나리오 서술
+
+--------------------------------------------------------------------------------------------------------------------
+
+260713
+
+2057 - 부동산 경매 가이드 주제 신설 (5편 + topics/auction)
+        - 신규 주제 auction(부동산 경매), pillar: 경매로 집 사는 방법
+        - auction-winning-bid-mortgage-loan-guide: 경락잔금대출 조건 (housing-loan → auction 이동)
+        - auction-vs-brokered-sale-cost-guide: 경매 vs 일반 매매 비용·일정
+        - scenarioGroups 「낙찰가별 비용 예시」: 5억·7억 낙찰 취득세·부대비용·자금
+        - registry·topics·calculator-guides(LTV·DSR·취득세·중개수수료) 연결, 허브·파생 상호 링크

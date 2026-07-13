@@ -109,6 +109,26 @@ import {
   officetelResidentialVsBusinessTaxGuideMeta,
 } from "@/lib/guide/articles/officetel-residential-vs-business-tax-guide";
 import {
+  Auction500MillionTotalCostGuideBody,
+  auction500MillionTotalCostGuideMeta,
+} from "@/lib/guide/articles/auction-500-million-total-cost-guide";
+import {
+  Auction700MillionTotalCostGuideBody,
+  auction700MillionTotalCostGuideMeta,
+} from "@/lib/guide/articles/auction-700-million-total-cost-guide";
+import {
+  AuctionHomePurchaseGuideBody,
+  auctionHomePurchaseGuideMeta,
+} from "@/lib/guide/articles/auction-home-purchase-guide";
+import {
+  AuctionVsBrokeredSaleCostGuideBody,
+  auctionVsBrokeredSaleCostGuideMeta,
+} from "@/lib/guide/articles/auction-vs-brokered-sale-cost-guide";
+import {
+  AuctionWinningBidMortgageLoanGuideBody,
+  auctionWinningBidMortgageLoanGuideMeta,
+} from "@/lib/guide/articles/auction-winning-bid-mortgage-loan-guide";
+import {
   ApartmentBrokerageFeeGuideBody,
   apartmentBrokerageFeeGuideMeta,
 } from "@/lib/guide/articles/apartment-brokerage-fee-guide";
@@ -421,6 +441,26 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...homePurchaseAdditionalCostsGuideMeta,
     Body: HomePurchaseAdditionalCostsGuideBody,
+  },
+  {
+    ...auctionHomePurchaseGuideMeta,
+    Body: AuctionHomePurchaseGuideBody,
+  },
+  {
+    ...auctionWinningBidMortgageLoanGuideMeta,
+    Body: AuctionWinningBidMortgageLoanGuideBody,
+  },
+  {
+    ...auctionVsBrokeredSaleCostGuideMeta,
+    Body: AuctionVsBrokeredSaleCostGuideBody,
+  },
+  {
+    ...auction500MillionTotalCostGuideMeta,
+    Body: Auction500MillionTotalCostGuideBody,
+  },
+  {
+    ...auction700MillionTotalCostGuideMeta,
+    Body: Auction700MillionTotalCostGuideBody,
   },
   {
     ...acquisitionTaxRates2026GuideMeta,

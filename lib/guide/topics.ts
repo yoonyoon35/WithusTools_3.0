@@ -97,6 +97,26 @@ export const guideTopics: readonly GuideTopic[] = [
     ],
   },
   {
+    id: "auction",
+    label: "부동산 경매",
+    description: "경매 절차·비용·대출, 입찰 전후 자금 계획",
+    pillarSlug: "auction-home-purchase-guide",
+    calculatorHrefs: ["/acquisition-tax-calculator", "/ltv-calculator", "/dsr-calculator"],
+    slugs: [
+      "auction-home-purchase-guide",
+      "auction-winning-bid-mortgage-loan-guide",
+      "auction-vs-brokered-sale-cost-guide",
+    ],
+    scenarioGroups: [
+      {
+        id: "auction-bid-price-scenarios",
+        label: "낙찰가별 비용 예시",
+        description: "낙찰가 5억·7억 기준 취득세·부대비용·자금 계획 추산입니다.",
+        slugs: ["auction-500-million-total-cost-guide", "auction-700-million-total-cost-guide"],
+      },
+    ],
+  },
+  {
     id: "acquisition-tax",
     label: "취득세",
     description: "세율·감면·중과, 지방교육세·농어촌특별세, 납부 기한",
