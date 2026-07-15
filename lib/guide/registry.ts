@@ -81,6 +81,10 @@ import {
   coResidenceHousingInheritanceDeductionGuideMeta,
 } from "@/lib/guide/articles/co-residence-housing-inheritance-deduction-guide";
 import {
+  InheritanceTaxFuneralExpenseDeductionGuideBody,
+  inheritanceTaxFuneralExpenseDeductionGuideMeta,
+} from "@/lib/guide/articles/inheritance-tax-funeral-expense-deduction-guide";
+import {
   InheritanceTaxApartmentPriceScenariosGuideBody,
   inheritanceTaxApartmentPriceScenariosGuideMeta,
 } from "@/lib/guide/articles/inheritance-tax-apartment-price-scenarios-guide";
@@ -289,6 +293,10 @@ import {
   dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
 } from "@/lib/guide/articles/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide";
 import {
+  GwangjuHonamSemiconductorLandPermit2026GuideBody,
+  gwangjuHonamSemiconductorLandPermit2026GuideMeta,
+} from "@/lib/guide/articles/gwangju-honam-semiconductor-land-permit-2026-guide";
+import {
   BrokerageFeeVatSeparateGuideBody,
   brokerageFeeVatSeparateGuideMeta,
 } from "@/lib/guide/articles/brokerage-fee-vat-separate-guide";
@@ -328,6 +336,10 @@ import {
   HoldingVsTransactionTaxGuideBody,
   holdingVsTransactionTaxGuideMeta,
 } from "@/lib/guide/articles/holding-vs-transaction-tax-guide";
+import {
+  LongTermJeonse20YearMaturity2026GuideBody,
+  longTermJeonse20YearMaturity2026GuideMeta,
+} from "@/lib/guide/articles/long-term-jeonse-20-year-maturity-2026-guide";
 
 export type GuideArticle = {
   slug: string;
@@ -497,6 +509,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...coResidenceHousingInheritanceDeductionGuideMeta,
     Body: CoResidenceHousingInheritanceDeductionGuideBody,
+  },
+  {
+    ...inheritanceTaxFuneralExpenseDeductionGuideMeta,
+    Body: InheritanceTaxFuneralExpenseDeductionGuideBody,
   },
   {
     ...localEducationRuralSpecialTaxAcquisition2026GuideMeta,
@@ -699,6 +715,10 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: DongtanGiheungGuriGapInvestmentLandPermit2026GuideBody,
   },
   {
+    ...gwangjuHonamSemiconductorLandPermit2026GuideMeta,
+    Body: GwangjuHonamSemiconductorLandPermit2026GuideBody,
+  },
+  {
     ...dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
     Body: DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody,
   },
@@ -709,6 +729,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...holdingVsTransactionTaxGuideMeta,
     Body: HoldingVsTransactionTaxGuideBody,
+  },
+  {
+    ...longTermJeonse20YearMaturity2026GuideMeta,
+    Body: LongTermJeonse20YearMaturity2026GuideBody,
   },
 ];
 

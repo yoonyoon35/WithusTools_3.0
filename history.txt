@@ -727,3 +727,19 @@ Phase 4 daechulija.com 301 완료
         - auction-vs-brokered-sale-cost-guide: 경매 vs 일반 매매 비용·일정
         - scenarioGroups 「낙찰가별 비용 예시」: 5억·7억 낙찰 취득세·부대비용·자금
         - registry·topics·calculator-guides(LTV·DSR·취득세·중개수수료) 연결, 허브·파생 상호 링크
+
+--------------------------------------------------------------------------------------------------------------------
+
+260715
+
+1743 - 장기전세 20년 만기 가이드 추가 (시프트 만기·계약연장·분양전환 논란)
+        - long-term-jeonse-20-year-maturity-2026-guide: 선택지·비용 시나리오·체크리스트, 시프트 vs 미리내집 비교
+        - registry·topics(brokerage)·calculator-guides(중개수수료) 등록, 전세 재계약·부대비용 가이드 내부 링크
+
+1814 - 호남 반도체 클러스터 광주권 토지거래허가구역 가이드 추가 (7/14 시행)
+        - gwangju-honam-semiconductor-land-permit-2026-guide: 364.19㎢·허가 면적·실거주·동탄과 차이·체크리스트
+        - registry·topics(dsr-limit) 등록, regulated-area-designation-effects 가이드에 광주 토허 링크
+
+1910 - 상속세 장례비 공제 가이드 추가 (inheritance-tax-funeral-expense-deduction-guide)
+        - 블로그(상속세_장례비_공제_블로그포스팅_2026.md) 기반, 일반 1,000만+봉안 500만·과세가액 차감·형제 분담 등
+        - registry·topics(inheritance-tax)·calculator-guides(상속세 계산기) 등록

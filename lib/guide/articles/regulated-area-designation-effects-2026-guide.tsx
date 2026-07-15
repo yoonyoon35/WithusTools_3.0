@@ -85,6 +85,16 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
           </table>
         </div>
         <p>
+          2026년 7월에는 호남 반도체 클러스터 예정지인{" "}
+          <Link
+            href="/guide/gwangju-honam-semiconductor-land-permit-2026-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            광주·나주·장성·화순 토허구역
+          </Link>
+          이 새로 지정됐습니다. 규제지역과 별개로 토허만 적용되는 사례입니다.
+        </p>
+        <p>
           금융 규제에서 말하는 「규제지역」은 보통 <strong>투기과열지구 또는 조정대상지역</strong>을 가리킵니다. 2025년
           10·15 대책 이후 수도권 대부분이 세 유형이 겹치게 지정된 경우가 많습니다. 규제 지역과 맞닿은 비규제지역으로
           수요가 이동하는 <strong>풍선효과</strong>는{" "}
