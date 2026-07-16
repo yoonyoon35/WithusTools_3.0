@@ -18,7 +18,11 @@ export function JeonseGuaranteeInsuranceGuideBody() {
         <p>
           전세보증보험(전세보증금반환보증)은 전세 계약 종료 후 집주인이 보증금을 돌려주지 않을 때 보증기관이 세입자에게 먼저 보증금을
           지급하고, 이후 집주인에게 구상권을 행사하는 제도입니다. 전세사기와 깡통전세 피해가 급증하면서 전세보증보험은 사실상 필수
-          가입 항목이 됐습니다.
+          가입 항목이 됐습니다. 2026년 하반기부터 추진되는{" "}
+          <Link href="/guide/jeonse-safe-trust-program-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            전세 안심신탁
+          </Link>
+          은 보증금을 처음부터 공적기구가 보관하는 구조로, 시행 전까지는 본 가이드의 보증보험 절차가 기본입니다.
         </p>
       </section>
 

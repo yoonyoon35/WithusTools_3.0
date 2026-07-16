@@ -41,9 +41,17 @@ import {
   housingSubscriptionSavingsGuideMeta,
 } from "@/lib/guide/articles/housing-subscription-savings-guide";
 import {
+  PrivateHousingSubscriptionEligibility2026GuideBody,
+  privateHousingSubscriptionEligibility2026GuideMeta,
+} from "@/lib/guide/articles/private-housing-subscription-eligibility-2026-guide";
+import {
   JeonseGuaranteeInsuranceGuideBody,
   jeonseGuaranteeInsuranceGuideMeta,
 } from "@/lib/guide/articles/jeonse-guarantee-insurance-guide";
+import {
+  JeonseSafeTrustProgram2026GuideBody,
+  jeonseSafeTrustProgram2026GuideMeta,
+} from "@/lib/guide/articles/jeonse-safe-trust-program-2026-guide";
 import {
   MultiHomeownerLoanRegulationsGuideBody,
   multiHomeownerLoanRegulationsGuideMeta,
@@ -435,8 +443,16 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: HousingSubscriptionSavingsGuideBody,
   },
   {
+    ...privateHousingSubscriptionEligibility2026GuideMeta,
+    Body: PrivateHousingSubscriptionEligibility2026GuideBody,
+  },
+  {
     ...jeonseGuaranteeInsuranceGuideMeta,
     Body: JeonseGuaranteeInsuranceGuideBody,
+  },
+  {
+    ...jeonseSafeTrustProgram2026GuideMeta,
+    Body: JeonseSafeTrustProgram2026GuideBody,
   },
   {
     ...multiHomeownerLoanRegulationsGuideMeta,

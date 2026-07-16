@@ -743,3 +743,16 @@ Phase 4 daechulija.com 301 완료
 1910 - 상속세 장례비 공제 가이드 추가 (inheritance-tax-funeral-expense-deduction-guide)
         - 블로그(상속세_장례비_공제_블로그포스팅_2026.md) 기반, 일반 1,000만+봉안 500만·과세가액 차감·형제 분담 등
         - registry·topics(inheritance-tax)·calculator-guides(상속세 계산기) 등록
+
+--------------------------------------------------------------------------------------------------------------------
+
+260716
+
+1047 - 민영주택 청약 자격·재당첨 제한 가이드 추가 (방배 디에이치 논란·제도 설명형)
+        - private-housing-subscription-eligibility-2026-guide: 무주택·재당첨·가점/추첨·당첨 후 의무, 고가 단지 사례는 설명만
+        - registry·topics(housing-loan) 등록, housing-subscription-savings-guide 내부 링크
+
+1052 - 전세 안심신탁사업 가이드 추가 (2026 하반기 경제성장전략·미시행)
+        - jeonse-safe-trust-program-2026-guide: HUG·전월세안정화기구 보관, 보증보험과 비교·적용 대상(예정)·미확정 사항
+        - registry·topics(housing-loan) 등록, jeonse-guarantee-insurance-guide 상호 링크
+        - llms.txt 재생성(97편)

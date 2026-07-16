@@ -33,7 +33,14 @@ export function HousingSubscriptionSavingsGuideBody() {
           <Link href="/guide/first-time-homebuyer-benefits-2026" className="text-primary underline-offset-4 hover:underline">
             생애최초 혜택
           </Link>
-          과 특별공급 일정을 함께 보면 납입 속도를 정하기 쉽습니다.
+          과 특별공급 일정을 함께 보면 납입 속도를 정하기 쉽습니다. 민영주택 청약 전에는{" "}
+          <Link
+            href="/guide/private-housing-subscription-eligibility-2026-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            청약 자격·재당첨 제한
+          </Link>
+          도 함께 확인하세요.
         </p>
       </section>
 
