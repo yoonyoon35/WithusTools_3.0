@@ -756,3 +756,17 @@ Phase 4 daechulija.com 301 완료
         - jeonse-safe-trust-program-2026-guide: HUG·전월세안정화기구 보관, 보증보험과 비교·적용 대상(예정)·미확정 사항
         - registry·topics(housing-loan) 등록, jeonse-guarantee-insurance-guide 상호 링크
         - llms.txt 재생성(97편)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260717
+
+1543 - 종부세 형평성 논쟁 가이드 추가 (comprehensive-property-tax-fairness-debate-2026-guide)
+        - 「30억 1채 vs 10억 3채」 주택 수 기준 과세 형평성: 기본공제·재산세공정·중과세율·세액공제·세부담상한 5가지 차이
+        - 양쪽 주장·똘똘한 한 채·정부/OECD 방향(주택 수→가액·실거주), two-vs-three 가이드와 상호 링크
+        - registry·topics(holding-tax)·calculator-guides(종부세 계산기) 등록
+
+1635 - 초고가 주택 기준 논쟁 가이드 추가 (ultra-high-end-home-threshold-debate-2026-guide)
+        - 「30억? 43억? 50억?」 현행 고가 기준(양도세 12억·종부세 12/9억·중개보수 15억) vs 새 과세선
+        - 이재명 7/14 「30억 가혹」·시세 43~50억 관측, 시세→공시 환산(현실화율 69%), 기준별 대상 규모·일정(7/16·23)
+        - 예상·미확정 명시(발표 후 갱신), registry·topics(holding-tax)·calculator-guides(종부세 계산기) 등록

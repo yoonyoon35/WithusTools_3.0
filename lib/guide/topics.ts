@@ -194,6 +194,8 @@ export const guideTopics: readonly GuideTopic[] = [
       "one-household-one-home-comprehensive-property-tax-amount-guide",
       "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
       "comprehensive-property-tax-fair-ratio-calculation-2026-guide",
+      "comprehensive-property-tax-fairness-debate-2026-guide",
+      "ultra-high-end-home-threshold-debate-2026-guide",
       "holding-capital-gains-tax-increase-2026-guide",
       "two-vs-three-home-holding-cost-2026-guide",
       "non-resident-one-home-tax-checklist-2026-guide",

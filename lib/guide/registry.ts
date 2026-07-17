@@ -245,6 +245,14 @@ import {
   comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
 } from "@/lib/guide/articles/comprehensive-property-tax-fair-ratio-calculation-2026-guide";
 import {
+  ComprehensivePropertyTaxFairnessDebate2026GuideBody,
+  comprehensivePropertyTaxFairnessDebate2026GuideMeta,
+} from "@/lib/guide/articles/comprehensive-property-tax-fairness-debate-2026-guide";
+import {
+  UltraHighEndHomeThresholdDebate2026GuideBody,
+  ultraHighEndHomeThresholdDebate2026GuideMeta,
+} from "@/lib/guide/articles/ultra-high-end-home-threshold-debate-2026-guide";
+import {
   HoldingCapitalGainsTaxIncrease2026GuideBody,
   holdingCapitalGainsTaxIncrease2026GuideMeta,
 } from "@/lib/guide/articles/holding-capital-gains-tax-increase-2026-guide";
@@ -661,6 +669,14 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
     Body: ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
+  },
+  {
+    ...comprehensivePropertyTaxFairnessDebate2026GuideMeta,
+    Body: ComprehensivePropertyTaxFairnessDebate2026GuideBody,
+  },
+  {
+    ...ultraHighEndHomeThresholdDebate2026GuideMeta,
+    Body: UltraHighEndHomeThresholdDebate2026GuideBody,
   },
   {
     ...regulatedAreaDesignationEffects2026GuideMeta,

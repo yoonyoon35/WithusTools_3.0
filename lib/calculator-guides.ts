@@ -68,6 +68,8 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
   "/comprehensive-property-tax-calculator": [
     "comprehensive-property-tax-overview-guide",
     "comprehensive-property-tax-fair-ratio-calculation-2026-guide",
+    "comprehensive-property-tax-fairness-debate-2026-guide",
+    "ultra-high-end-home-threshold-debate-2026-guide",
     "one-household-one-home-comprehensive-property-tax-amount-guide",
     "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
   ],
