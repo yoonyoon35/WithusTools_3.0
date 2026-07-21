@@ -5,7 +5,7 @@ export const acquisitionTaxRates2026GuideMeta = {
   title: "2026년 취득세율 완전 정리",
   description:
     "2026년 기준 취득가액·취득 시점, 1주택 구간별 세율, 지방교육세·농특세, 주택 수·지역별 중과, 2주택 비조정 vs 조정 비교, 3주택·저가주택·분양 시점, 2026 감면·특례 요약과 관련 가이드 링크를 표로 정리했습니다.",
-  updated: "2026년 6월 25일",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function AcquisitionTaxRates2026GuideBody() {
@@ -13,7 +13,7 @@ export function AcquisitionTaxRates2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-at-overview">
         <h2 id="guide-at-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 6월 기준
+          2026년 7월 기준
         </h2>
         <p>
           취득세는 주택 매수 시 1회 부과되는 지방세입니다. 주택 수·취득가액·조정대상지역 여부에 따라 세율이 달라지며, 취득세에
@@ -308,12 +308,13 @@ export function AcquisitionTaxRates2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-at-adjusted-areas">
         <h2 id="guide-at-adjusted-areas" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준 조정대상지역 현황
+          2026년 7월 기준 조정대상지역 현황
         </h2>
         <p>
           2025년 10월 15일 부동산 대책으로 서울 25개 자치구 전역과 경기도 12개 지역(과천·광명·수원·성남·안양·용인·의왕·하남
-          등)이 조정대상지역으로 지정되었습니다. 지방 광역시(부산·대구 등)와 세종시는 현재 조정대상지역에서 해제된
-          상태입니다.
+          등)이 조정대상지역으로 지정되었습니다. <strong>2026년 7월 1일</strong>부터는 경기{" "}
+          <strong>화성 동탄·용인 기흥·구리</strong>가 추가로 조정·투기과열지구에 편입되었습니다. 지방 광역시(부산·대구 등)와
+          세종시는 현재 조정대상지역에서 해제된 상태입니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
@@ -343,6 +344,12 @@ export function AcquisitionTaxRates2026GuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">해당</td>
               </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  경기 화성 동탄·용인 기흥·구리(2026.7.1~)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">해당</td>
+              </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   비수도권 광역시·지방
@@ -362,7 +369,14 @@ export function AcquisitionTaxRates2026GuideBody() {
           >
             국토교통부
           </a>{" "}
-          공식 고시에서 확인해야 합니다.
+          공식 고시에서 확인해야 합니다. 동탄·기흥·구리 지역 세부는{" "}
+          <Link
+            href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            동탄·기흥·구리 2주택 취득세
+          </Link>
+          가이드를 참고하세요.
         </p>
       </section>
 

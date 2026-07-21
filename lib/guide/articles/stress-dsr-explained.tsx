@@ -5,7 +5,7 @@ export const stressDsrExplainedMeta = {
   title: "스트레스 DSR이란 무엇인가",
   description:
     "스트레스 DSR의 의미, 일반 DSR과의 차이, 단계별 시행·지역별 기준, 10·15 대책 명목 하한(3.0%p), 대출 유형별 적용 비율과 한도 변화 예시를 표로 정리했습니다.",
-  updated: "2026년 5월 8일",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function StressDsrExplainedBody() {
@@ -13,7 +13,7 @@ export function StressDsrExplainedBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-stress-dsr-overview">
         <h2 id="guide-stress-dsr-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 7월 기준
         </h2>
         <p>
           스트레스 DSR은 대출 한도를 산정할 때 실제 대출 금리에 일정 수준의 가산금리(스트레스 금리)를 더해 계산하는 제도입니다.
@@ -134,7 +134,7 @@ export function StressDsrExplainedBody() {
 
       <section className="space-y-4" aria-labelledby="guide-stress-dsr-regional">
         <h2 id="guide-stress-dsr-regional" className="text-foreground text-xl font-semibold tracking-tight">
-          지역별 적용 기준(2026년 4월 현재)
+          지역별 적용 기준(2026년 7월)
         </h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
@@ -171,10 +171,10 @@ export function StressDsrExplainedBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  비수도권
+                  비수도권(규제지역 외)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">0.75%</td>
-                <td className="border-border border-b px-3 py-2.5">2026년 6월 30일까지 유예 적용</td>
+                <td className="border-border border-b px-3 py-2.5">1.50%(명목), 2단계 50% 적용</td>
+                <td className="border-border border-b px-3 py-2.5">2026.7.1~12.31 하반기</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -187,8 +187,10 @@ export function StressDsrExplainedBody() {
           </table>
         </div>
         <p>
-          비수도권 주담대는 2025년 12월 금융위원회 결정으로 2026년 6월 30일까지 2단계 스트레스 금리가 유예 적용 중이며, 유예
-          종료 후 적용 기준은 금융당국 정책에 따라 결정됩니다.
+          비수도권(규제지역이 아닌 지역) 주담대는 2025년 12월 금융위원회 결정에 따라 <strong>2026년 6월 30일까지</strong> 2단계
+          스트레스 금리가 유예되었고, <strong>2026년 7월 1일부터 12월 31일</strong> 하반기에는 명목 스트레스{" "}
+          <strong>1.50%p</strong>·2단계(적용비율 50% 등) 기준이 적용됩니다. 대출 금리 유형·만기에 따라 실제 가산 반영액은
+          달라질 수 있습니다.
         </p>
       </section>
 

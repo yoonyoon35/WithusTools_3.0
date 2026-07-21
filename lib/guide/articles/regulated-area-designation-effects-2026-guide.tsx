@@ -4,8 +4,8 @@ export const regulatedAreaDesignationEffects2026GuideMeta = {
   slug: "regulated-area-designation-effects-2026-guide",
   title: "규제지역 지정되면 달라지는 것…대출·취득세·양도세 비교",
   description:
-    "2026년 6월 기준 규제지역·조정대상지역 지정 시 달라지는 LTV·스트레스 DSR·2주택 취득세·다주택 양도세·토지거래허가, 주택 수별 영향과 5억·7억 매수 예시를 표로 정리했습니다.",
-  updated: "2026년 7월 11일",
+    "2026년 7월 기준 규제지역·조정대상지역 지정 시 달라지는 LTV·스트레스 DSR·2주택 취득세·다주택 양도세·토지거래허가, 주택 수별 영향과 5억·7억 매수 예시를 표로 정리했습니다.",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function RegulatedAreaDesignationEffects2026GuideBody() {
@@ -13,7 +13,7 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-rade-intro">
         <h2 id="guide-rade-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 6월 기준
+          2026년 7월 기준
         </h2>
         <p>
           뉴스에서 「규제지역 지정」이 나오면 대출·세금·매매 절차가 한꺼번에 바뀌는 것처럼 느껴지지만, 실제로는{" "}

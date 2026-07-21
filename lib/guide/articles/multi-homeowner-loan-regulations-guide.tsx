@@ -4,8 +4,8 @@ export const multiHomeownerLoanRegulationsGuideMeta = {
   slug: "multi-homeowner-loan-regulations-guide",
   title: "다주택자 대출 규제 정리",
   description:
-    "2026년 4월 기준 다주택자 주택 수 산정, LTV·만기 연장·취득세·양도세·종부세 규제와 규제지역 현황, 핵심 일정을 표로 정리했습니다.",
-  updated: "2026년 4월 20일",
+    "2026년 7월 기준 다주택자 주택 수 산정, LTV·만기 연장·취득세·양도세·종부세 규제와 규제지역 현황, 핵심 일정을 표로 정리했습니다.",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function MultiHomeownerLoanRegulationsGuideBody() {
@@ -13,7 +13,7 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-multi-overview">
         <h2 id="guide-multi-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 7월 기준
         </h2>
         <p>
           다주택자는 무주택자·1주택자보다 대출·세금·청약 전반에 걸쳐 강화된 규제를 적용받습니다. 2025년 6월과 10월 부동산 대책 이후
@@ -73,8 +73,8 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   규제지역 LTV
                 </th>
-                <td className="border-border border-b px-3 py-2.5">70%</td>
-                <td className="border-border border-b px-3 py-2.5">40%</td>
+                <td className="border-border border-b px-3 py-2.5">40%(생애최초 70%)</td>
+                <td className="border-border border-b px-3 py-2.5">0%(사실상 불가)</td>
                 <td className="border-border border-b px-3 py-2.5">0%(사실상 불가)</td>
               </tr>
               <tr>
@@ -96,6 +96,10 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
             </tbody>
           </table>
         </div>
+        <p className="text-muted-foreground text-sm">
+          ※ 규제지역 무주택·처분조건부 1주택은 LTV 40%이며, 유주택자의 추가 주택 구입 목적 주담대는 사실상 불가합니다(10·15
+          대책).
+        </p>
       </section>
 
       <section className="space-y-3" aria-labelledby="guide-multi-extension">
@@ -172,8 +176,8 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
           양도소득세 중과
         </h2>
         <p>
-          2022년부터 이어져 온 다주택자 양도세 중과 유예가 2026년 5월 9일 종료될 예정입니다. 유예가 끝나면 조정대상지역 내 주택을
-          매도할 때 2주택자는 기본세율에 20%p, 3주택 이상은 30%p가 추가됩니다.
+          2022년부터 이어져 온 다주택자 양도세 중과 유예가 <strong>2026년 5월 10일</strong> 종료되었습니다. 이후 조정대상지역 내
+          주택을 매도할 때 2주택자는 기본세율에 20%p, 3주택 이상은 30%p가 추가됩니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
@@ -268,11 +272,12 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-multi-regions">
         <h2 id="guide-multi-regions" className="text-foreground text-xl font-semibold tracking-tight">
-          규제지역 현황(2026년 4월 기준)
+          규제지역 현황(2026년 7월 기준)
         </h2>
         <p>
           2025년 10·15 주택시장 안정화 대책으로 서울 강남·서초·송파·용산 4개 자치구 외 서울 21개 자치구 전체와 경기도 12개 지역이
-          규제지역으로 신규 지정되었습니다.
+          규제지역으로 신규 지정되었습니다. <strong>2026년 7월 1일</strong>부터 경기{" "}
+          <strong>화성 동탄·용인 기흥·구리</strong>가 조정·투기과열지구에 추가되었습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
@@ -297,8 +302,14 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
                 <td className="border-border border-b px-3 py-2.5">강남·서초·송파·용산구</td>
               </tr>
               <tr className="bg-muted/20">
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  2026.7.1 추가
+                </th>
+                <td className="border-border border-b px-3 py-2.5">화성 동탄·용인 기흥·구리</td>
+              </tr>
+              <tr>
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  신규 조정대상지역
+                  신규 조정대상지역(2025.10.15~)
                 </th>
                 <td className="px-3 py-2.5">
                   서울 21개 자치구, 경기 과천·광명·수원·성남·안양·용인·의왕·하남 일부

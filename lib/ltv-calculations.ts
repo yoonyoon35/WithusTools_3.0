@@ -73,7 +73,7 @@ export interface LtvLimitResolution {
   loanUnavailable: boolean;
 }
 
-/** 보유·지역·생애최초 조건에 따른 LTV 한도(%). 2026년 3~4월 가이드 기준 간이 모델. */
+/** 보유·지역·생애최초 조건에 따른 LTV 한도(%). 2026년 7월 가이드·10·15 대책 기준 간이 모델. */
 export function resolveLtvLimit(ctx: LtvLimitContext): LtvLimitResolution {
   const { regionType, homeOwnership, isFirstTimeBuyer, metroArea } = ctx;
 
@@ -89,14 +89,6 @@ export function resolveLtvLimit(ctx: LtvLimitContext): LtvLimitResolution {
     return {
       ltvLimitPercent: 80,
       reasonLabel: "생애최초 주택 구입(비수도권)",
-      loanUnavailable: false,
-    };
-  }
-
-  if (regionType === "regulated" && homeOwnership === "one") {
-    return {
-      ltvLimitPercent: 40,
-      reasonLabel: "규제지역 1주택자",
       loanUnavailable: false,
     };
   }
@@ -117,9 +109,25 @@ export function resolveLtvLimit(ctx: LtvLimitContext): LtvLimitResolution {
     };
   }
 
+  if (regionType === "regulated" && homeOwnership === "none") {
+    return {
+      ltvLimitPercent: 40,
+      reasonLabel: "규제지역 무주택자(일반)",
+      loanUnavailable: false,
+    };
+  }
+
+  if (regionType === "regulated" && homeOwnership === "one") {
+    return {
+      ltvLimitPercent: 0,
+      reasonLabel: "규제지역 유주택자 — 신규 주택 구입 목적 주담대 사실상 불가",
+      loanUnavailable: true,
+    };
+  }
+
   return {
     ltvLimitPercent: 70,
-    reasonLabel: homeOwnership === "none" ? "무주택자(일반)" : "1주택자(비규제지역)",
+    reasonLabel: homeOwnership === "none" ? "무주택자(일반·비규제)" : "1주택자(비규제지역)",
     loanUnavailable: false,
   };
 }
@@ -202,8 +210,8 @@ export const ltvReferenceRows: readonly { condition: string; ltv: string; note?:
   { condition: "비규제지역 · 무주택(일반)", ltv: "70%" },
   { condition: "비규제지역 · 1주택", ltv: "70%" },
   { condition: "비규제지역 · 다주택", ltv: "60%" },
-  { condition: "규제지역 · 무주택(일반)", ltv: "70%" },
-  { condition: "규제지역 · 1주택", ltv: "40%", note: "2026년 기준" },
+  { condition: "규제지역 · 무주택(일반)", ltv: "40%", note: "10·15 대책·투기과열·조정지역" },
+  { condition: "규제지역 · 1주택(추가 매수)", ltv: "0%", note: "신규 주택 구입 목적 주담대 사실상 불가" },
   { condition: "규제지역 · 다주택", ltv: "0%", note: "주택 구입 목적 주담대 사실상 불가" },
   { condition: "생애최초 · 비수도권", ltv: "80%", note: "무주택자 한정" },
   { condition: "생애최초 · 수도권·규제지역", ltv: "70%", note: "무주택자 한정" },

@@ -5,7 +5,7 @@ export const kbMortgage300MillionLimit2026GuideMeta = {
   title: "KB국민銀 주담대 3억 한도… 계약했는데 대출 어떻게 하나",
   description:
     "2026년 7월 10일 KB국민은행 주담대 6억→3억 조치, 계약·잔금대출 당황 대응, 7월 9일 서류 마감 예외, 상황별 대책·다른 은행·정책금융·대출불가 특약을 표로 정리했습니다.",
-  updated: "2026년 7월 11일",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function KbMortgage300MillionLimit2026GuideBody() {
@@ -13,7 +13,7 @@ export function KbMortgage300MillionLimit2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-kbml-intro">
         <h2 id="guide-kbml-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 11일 기준
+          2026년 7월 21일 기준
         </h2>
         <p>
           KB국민은행이 <strong>7월 10일</strong>부터 주택 <strong>구입 목적</strong> 주담대 최대 한도를 6억 원에서{" "}
@@ -824,8 +824,10 @@ export function KbMortgage300MillionLimit2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   우리은행
                 </th>
-                <td className="border-border border-b px-3 py-2.5">신용대출 1억·마통 5,000만 원 한도</td>
-                <td className="border-border border-b px-3 py-2.5">주담대 직접 한도 축소는 아님</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  7/16~ 지점별 가계대출 월 한도 10억(기존 30억), MCI·MCG 가입 제한
+                </td>
+                <td className="border-border border-b px-3 py-2.5">KB처럼 3억 직접 상한은 아님</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">

@@ -73,7 +73,7 @@ export const stressDsrPresets = [
     nominalPercent: 3.0,
   },
   { id: "metro_mortgage", label: "수도권 주담대 · 3단계 명목(1.50%p, 하한 별도)", nominalPercent: 1.5 },
-  { id: "non_metro_mortgage", label: "비수도권 주담대 · 유예(0.75%p, 참고)", nominalPercent: 0.75 },
+  { id: "non_metro_mortgage", label: "비수도권 주담대 · 2026 하반기(1.50%p, 2단계)", nominalPercent: 1.5 },
   { id: "credit_over_100m", label: "신용(잔액 1억 초과, 1.50%p)", nominalPercent: 1.5 },
   { id: "phase2_metro", label: "2단계 수도권 주담대(1.20%p, 참고)", nominalPercent: 1.2 },
   { id: "custom", label: "직접 입력", nominalPercent: null },

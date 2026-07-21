@@ -5,7 +5,7 @@ export const ltvDtiDsrComparisonMeta = {
   title: "LTV·DTI·DSR 차이 한눈에 정리",
   description:
     "LTV·DTI·DSR의 차이, 실제 한도를 가르는 규제 판단, 연봉·담보·기존 부채가 겹칠 때 시나리오와 흔한 오해를 정리했습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function LtvDtiDsrComparisonBody() {
@@ -285,9 +285,15 @@ export function LtvDtiDsrComparisonBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  규제지역 1주택자
+                  규제지역 무주택(일반)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">50%</td>
+                <td className="border-border border-b px-3 py-2.5">40%</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  규제지역 1주택자(추가 매수)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">0%(사실상 불가)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -305,7 +311,7 @@ export function LtvDtiDsrComparisonBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   다주택자(규제지역)
                 </th>
-                <td className="px-3 py-2.5">30%</td>
+                <td className="px-3 py-2.5">0%(사실상 불가)</td>
               </tr>
             </tbody>
           </table>

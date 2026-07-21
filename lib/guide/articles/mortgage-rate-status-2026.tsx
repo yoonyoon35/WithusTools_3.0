@@ -5,8 +5,8 @@ export const mortgageRateStatus2026Meta = {
   slug: "mortgage-rate-status-2026",
   title: "2026년 주택담보대출 금리 현황",
   description:
-    "2026년 4월 기준 주담대 금리 범위, 정책 모기지·규제 변화, 금리 유형별 월 상환 영향과 지금 신청자에게 의미 있는 선택 기준을 정리했습니다.",
-  updated: "2026년 4월 13일",
+    "2026년 7월 기준 주담대 금리 범위, 정책 모기지·규제 변화, 금리 유형별 월 상환 영향과 지금 신청자에게 의미 있는 선택 기준을 정리했습니다.",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function MortgageRateStatus2026Body() {
@@ -14,13 +14,16 @@ export function MortgageRateStatus2026Body() {
     <>
       <section className="space-y-3" aria-labelledby="guide-2026-overview">
         <h2 id="guide-2026-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 7월 기준
         </h2>
         <p>
-          2026년 4월 기준 시중은행 고정금리 상단이 <strong>연 7.01%</strong>를 넘었고, 변동금리는 우대 적용 시 최저{" "}
-          <strong>연 4.44%</strong> 수준입니다. 아래 수치는 <strong>그 시점의 시장 스냅샷</strong>이며, 실제 적용 금리는
-          신용·담보·우대 조건에 따라 달라집니다. 금리 숫자보다 <strong>내 조건에서 어느 유형이 유리한지</strong>를 함께 보는
-          것이 중요합니다.
+          2026년 7월 초 KB국민은행 주담대 고시(기준일 7월 2일) 기준, 혼합·변동형 상품의 적용 금리(우대 전·후 범위)는 대체로{" "}
+          <strong>연 4.07% ~ 5.97%</strong> 수준입니다. 아래 수치는 <strong>그 시점의 시장 스냅샷</strong>이며, 실제 적용
+          금리는 신용·담보·우대·가산 조건에 따라 달라집니다.{" "}
+          <Link href="/guide/kb-mortgage-300-million-limit-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            KB 3억 한도
+          </Link>
+          등 은행별 내부 한도는 금리와 별도로 한도를 줄일 수 있습니다.
         </p>
       </section>
 
@@ -46,7 +49,7 @@ export function MortgageRateStatus2026Body() {
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              2026년 4월 기준 시중은행 주담대 금리
+              2026년 7월 기준 시중은행 주담대 금리(KB 고시 참고)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -61,21 +64,21 @@ export function MortgageRateStatus2026Body() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  변동금리
+                  변동·혼합(금융채 연동, 우대 반영)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 4.44% ~ 5.26%</td>
+                <td className="border-border border-b px-3 py-2.5">연 4.07% ~ 5.97%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  혼합고정금리(상단)
+                  5년 고정 후 변동(상단)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 7.01%</td>
+                <td className="border-border border-b px-3 py-2.5">연 6.49% 내외</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  평균 주담대 금리(2월 신규취급 기준)
+                  평균 주담대 금리(2026년 5월 신규취급, 한국은행)
                 </th>
-                <td className="px-3 py-2.5">연 4.32%</td>
+                <td className="px-3 py-2.5">연 4.32% 전후(참고)</td>
               </tr>
             </tbody>
           </table>
@@ -84,7 +87,7 @@ export function MortgageRateStatus2026Body() {
 
       <section className="space-y-4" aria-labelledby="guide-policy-mortgage-rate">
         <h2 id="guide-policy-mortgage-rate" className="text-foreground text-xl font-semibold tracking-tight">
-          정책 모기지 금리(2026년 4월 기준)
+          정책 모기지 금리(2026년 7월 기준)
         </h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[26rem] border-collapse text-left text-sm">
@@ -248,8 +251,10 @@ export function MortgageRateStatus2026Body() {
         </h2>
         <p>
           DSR 규제가 은행권 40%, 비은행권 50%로 강화되었으며, 2026년 4월 17일부터 다주택자의 수도권 및 규제지역 아파트
-          담보대출 만기 연장이 제한됩니다. 또한 2억 4,900만 원을 초과하는 고액 주택담보대출에는 최대 0.25%p 가산금리가
-          적용됩니다.
+          담보대출 만기 연장이 제한됩니다. <strong>2026년 7월 1일</strong> 동탄·기흥·구리 규제지역 편입,{" "}
+          <strong>7월 10일</strong> KB국민은행 구입 목적 주담대 <strong>3억 원</strong> 자체 상한, 지방 주담대{" "}
+          <strong>스트레스 DSR 하반기(1.50%p)</strong> 적용 등이 이어졌습니다. 2억 4,900만 원을 초과하는 고액
+          주택담보대출에는 최대 0.25%p 가산금리가 적용됩니다.
         </p>
         <p>
           <strong>실무적으로는</strong> 표에 나온 최저 금리와 실제 승인 금리 사이에 간극이 있는 경우가 많습니다. 우대

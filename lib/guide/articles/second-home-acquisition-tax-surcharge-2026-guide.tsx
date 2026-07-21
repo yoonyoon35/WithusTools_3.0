@@ -4,8 +4,8 @@ export const secondHomeAcquisitionTaxSurcharge2026GuideMeta = {
   slug: "second-home-acquisition-tax-surcharge-2026-guide",
   title: "2주택자 취득세 중과 기준",
   description:
-    "2026년 4월 기준 조정·비조정 지역 2주택 취득세율, 매매가별 납부액 비교, 조정대상지역·취득 시점 판단, 저가주택 중과 제외, 주택 수 산정, 증여·일시적 2주택·법인 세율과 자가진단 체크리스트를 표로 정리했습니다.",
-  updated: "2026년 5월 11일",
+    "2026년 7월 기준 조정·비조정 지역 2주택 취득세율, 매매가별 납부액 비교, 조정대상지역·취득 시점 판단, 저가주택 중과 제외, 주택 수 산정, 증여·일시적 2주택·법인 세율과 자가진단 체크리스트를 표로 정리했습니다.",
+  updated: "2026년 7월 21일",
 } as const;
 
 export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
@@ -13,7 +13,7 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-s2-overview">
         <h2 id="guide-s2-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 7월 기준
         </h2>
         <p>
           1주택자가 주택을 추가로 취득해 2주택자가 되는 경우, 취득하는 주택의 소재지가 조정대상지역인지 여부에 따라 취득세율이 크게
@@ -143,11 +143,12 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-s2-zones">
         <h2 id="guide-s2-zones" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준 조정대상지역 현황
+          2026년 7월 기준 조정대상지역 현황
         </h2>
         <p>
           2025년 10월 15일 부동산 대책으로 서울 25개 자치구 전역과 경기도 12개 지역(과천·광명·성남·수원·안양·용인·의왕·하남 등)이
-          조정대상지역으로 지정되었습니다.
+          조정대상지역으로 지정되었습니다. <strong>2026년 7월 1일</strong>부터 경기{" "}
+          <strong>화성 동탄·용인 기흥·구리</strong>가 추가 편입되었습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
@@ -177,6 +178,12 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">해당</td>
               </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  경기 화성 동탄·용인 기흥·구리(2026.7.1~)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">해당</td>
+              </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   비수도권 광역시·지방
@@ -196,7 +203,14 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
           >
             국토교통부
           </a>{" "}
-          공식 고시에서 확인해야 합니다.
+          공식 고시에서 확인해야 합니다.{" "}
+          <Link
+            href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            동탄·기흥·구리 2주택 취득세
+          </Link>
+          가이드에서 지역별 예시를 볼 수 있습니다.
         </p>
       </section>
 
