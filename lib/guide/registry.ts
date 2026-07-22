@@ -30,6 +30,10 @@ import {
   MortgageLoanApplicationDocumentsBody,
   mortgageLoanApplicationDocumentsMeta,
 } from "@/lib/guide/articles/mortgage-loan-application-documents";
+import {
+  SellerFinancingPrivateMortgage2026GuideBody,
+  sellerFinancingPrivateMortgage2026GuideMeta,
+} from "@/lib/guide/articles/seller-financing-private-mortgage-2026-guide";
 import { GracePeriodExplainedBody, gracePeriodExplainedMeta } from "@/lib/guide/articles/grace-period-explained";
 import { LoanRefinancingGuideBody, loanRefinancingGuideMeta } from "@/lib/guide/articles/loan-refinancing-guide";
 import {
@@ -433,6 +437,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...mortgageLoanApplicationDocumentsMeta,
     Body: MortgageLoanApplicationDocumentsBody,
+  },
+  {
+    ...sellerFinancingPrivateMortgage2026GuideMeta,
+    Body: SellerFinancingPrivateMortgage2026GuideBody,
   },
   {
     ...gracePeriodExplainedMeta,

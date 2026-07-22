@@ -59,6 +59,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "gwangju-honam-semiconductor-land-permit-2026-guide",
       "mortgage-rate-status-2026",
       "kb-mortgage-300-million-limit-2026-guide",
+      "seller-financing-private-mortgage-2026-guide",
     ],
   },
   {
@@ -95,6 +96,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "jeonse-guarantee-insurance-guide",
       "jeonse-safe-trust-program-2026-guide",
       "mortgage-loan-application-documents",
+      "seller-financing-private-mortgage-2026-guide",
       "home-purchase-additional-costs-guide",
       "national-housing-bond-purchase-criteria-guide",
     ],
@@ -236,6 +238,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "direct-deal-vs-brokered-deal-guide",
       "online-direct-trade-platform-precautions-2026-guide",
       "lease-contract-without-broker-guide",
+      "seller-financing-private-mortgage-2026-guide",
       "brokerage-accident-compensation-guide",
     ],
   },

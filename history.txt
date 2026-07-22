@@ -782,3 +782,12 @@ Phase 4 daechulija.com 301 완료
         - 해당 글 updated 2026년 7월 21일
 
 1513 - LTV 계산기 참고표(ltvReferenceRows)를 resolveLtvLimit과 동기화(규제 무주택 40%·유주택 0%)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260722
+
+2040 - 셀러 파이낸싱(집주인 대출) 가이드 추가 (seller-financing-private-mortgage-2026-guide)
+        - 2025.6·27 대책·은행 vs 집주인·2순위 사인 간 근저당·등기부·금전소비대차·잔금일·체크리스트
+        - registry·topics(dsr-limit·housing-loan·brokerage)·calculator-guides(DSR·LTV) 등록
+        - generate-llms.mjs 가이드 편수 동적 반영, llms.txt·llms-full.txt 재생성(100편)

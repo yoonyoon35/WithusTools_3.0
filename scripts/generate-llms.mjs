@@ -77,7 +77,7 @@ const articles = articleFiles
 const llmsLines = [
   "# WithusTools",
   "",
-  "> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 71편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.",
+  `> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 ${articles.length}편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.`,
   "",
   "표준 계산식과 공공 자료 기반 참고용 콘텐츠입니다. 실제 심사·신고 결과는 금융기관·관할 지자체에서 확인해야 합니다.",
   "",
@@ -89,7 +89,7 @@ const llmsLines = [
   "",
   "## 가이드 허브",
   "",
-  `- [대출·금융 가이드](${siteUrl}/guide): DSR·상환·취득세·중개수수료·보유세 주제별 71편.`,
+  `- [대출·금융 가이드](${siteUrl}/guide): DSR·상환·취득세·중개수수료·보유세 주제별 ${articles.length}편.`,
   `- [사이트 소개](${siteUrl}/about): 운영 배경·콘텐츠 작성 기준·문의.`,
   "",
   "## 자주 찾는 가이드",

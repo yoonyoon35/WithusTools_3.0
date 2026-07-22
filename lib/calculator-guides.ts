@@ -12,6 +12,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
   "/dsr-calculator": [
     "auction-home-purchase-guide",
     "kb-mortgage-300-million-limit-2026-guide",
+    "seller-financing-private-mortgage-2026-guide",
     "real-estate-balloon-effect-2026-guide",
     "dsr-calculation-method",
     "dsr-40-mortgage-limit",
@@ -37,6 +38,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "stress-dsr-explained",
     "bogeumjari-vs-didimdol",
     "mortgage-loan-application-documents",
+    "seller-financing-private-mortgage-2026-guide",
     "auction-winning-bid-mortgage-loan-guide",
   ],
   "/acquisition-tax-calculator": [
