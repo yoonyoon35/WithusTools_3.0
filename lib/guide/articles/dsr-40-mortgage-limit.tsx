@@ -5,12 +5,16 @@ export const dsr40MortgageLimitMeta = {
   title: "DSR 40% 기준 주택담보대출 한도 산정 방식",
   description:
     "DSR 40% 한도 산정 단계, LTV·스트레스 DSR과의 관계, 연소득·기존 부채별 시나리오와 한도 산출 시 흔한 실수를 정리했습니다.",
-  updated: "2026년 4월 13일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function Dsr40MortgageLimitBody() {
   return (
     <>
+      <p className="text-muted-foreground text-sm">
+        <strong className="text-foreground">2026년 8월 기준.</strong> DSR 40% 산출 후에도 LTV(규제지역 무주택 40% 등), 주담대 6억
+        원 상한, 스트레스 DSR, 은행별 자체 한도가 더 낮은 값을 적용할 수 있습니다.
+      </p>
       <p>
         <abbr title="총부채원리금상환비율">DSR</abbr>(총부채원리금상환비율)은 연간 총 부채 원리금 상환액을 연소득으로 나눈 비율입니다. 2023년
         이후 은행권 기준 <strong>40%</strong>가 상한선으로 적용되고 있습니다.{" "}
@@ -130,9 +134,9 @@ export function Dsr40MortgageLimitBody() {
           DSR은 통과했는데 LTV에서 막히는 경우
         </h2>
         <p>
-          DSR만 보면 약 2억 8,700만 원까지 가능해 보여도, 담보 주택 감정가 3억 5,000만 원·LTV 70%면 LTV 한도는{" "}
-          <strong>2억 4,500만 원</strong>입니다. 이 경우 실제 한도는 DSR 산출액이 아니라 <strong>2억 4,500만 원</strong>이
-          먼저 적용됩니다.
+          DSR만 보면 약 2억 8,700만 원까지 가능해 보여도, 담보 주택 감정가 3억 5,000만 원·<strong>비규제지역·LTV 70%</strong>
+          면 LTV 한도는 <strong>2억 4,500만 원</strong>입니다. 규제지역이면 LTV 40%로 <strong>1억 4,000만 원</strong>이
+          먼저 적용될 수 있습니다. 이 경우 실제 한도는 DSR 산출액이 아니라 LTV 쪽입니다.
         </p>
         <p>
           생애최초·규제지역·다주택 여부에 따라 LTV가 달라지므로,{" "}
@@ -149,8 +153,17 @@ export function Dsr40MortgageLimitBody() {
         </h2>
         <p>
           은행 심사에서는 DSR 40%를 넘지 않더라도, <strong>스트레스 DSR</strong>(금리 가산 후 한도)에서 먼저 걸리는
-          경우가 있습니다. 변동금리·혼합금리는 특히 실제 금리보다 높은 금리로 한도를 계산하므로, 위 표의 한도보다 10~20%
-          낮게 나올 수 있습니다.
+          경우가 있습니다. 2026년 하반기에는 수도권·규제지역 외 지방에 <strong>1.50%p</strong> 스트레스 가산이 검토 중입니다.
+          변동금리·혼합금리는 특히 실제 금리보다 높은 금리로 한도를 계산하므로, 위 표의 한도보다 10~20% 낮게 나올 수
+          있습니다.{" "}
+          <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">
+            스트레스 DSR
+          </Link>
+          ·{" "}
+          <Link href="/guide/ltv-dti-dsr-comparison" className="text-primary underline-offset-4 hover:underline">
+            LTV·DTI·DSR 차이
+          </Link>
+          를 함께 보세요.
         </p>
       </section>
 

@@ -6,17 +6,24 @@ export const annualSalaryMortgageLimitDsrMeta = {
   title: "연봉별 주택담보대출 한도 기준",
   description:
     "연봉별 DSR 40% 월 상환 한도와 기존 부채·금리·LTV를 반영한 시나리오를 표로 정리했습니다. 실제 매수 가능 금액 추산 방법, 대출 신청 전 체크리스트, DSR 계산 개념을 참고용으로 확인할 수 있는 가이드입니다. 실제 한도는 금융기관 심사 결과에 따라 달라질 수 있습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function AnnualSalaryMortgageLimitDsrBody() {
   return (
     <>
-      <p>
-        연봉에 따른 주택담보대출 한도는 <strong>DSR 40%</strong> 규제를 기준으로 산출됩니다. DSR 40%란 연간 원리금 상환액이 연소득의
-        40%를 초과할 수 없다는 규제입니다. 아래 표는 <strong>기존 부채 없음·금리 4%·30년</strong> 같은 단순 가정 하의
-        참고값이며, 실제로는 소득 산정 방식·스트레스 DSR·LTV가 한도를 더 줄입니다.
-      </p>
+      <section className="space-y-3" aria-labelledby="guide-salary-baseline">
+        <h2 id="guide-salary-baseline" className="text-foreground text-xl font-semibold tracking-tight">
+          2026년 8월 기준
+        </h2>
+        <p>
+          연봉에 따른 주택담보대출 한도는 <strong>DSR 40%</strong> 규제를 기준으로 산출됩니다. DSR 40%란 연간 원리금 상환액이
+          연소득의 40%를 초과할 수 없다는 규제입니다. 아래 표는 <strong>기존 부채 없음·금리 4%·30년</strong> 같은 단순 가정 하의
+          참고값이며, 실제로는 <strong>스트레스 DSR</strong>(지방은 2026년 하반기 1.50%p 가산 검토),{" "}
+          <abbr title="담보인정비율">LTV</abbr>(규제지역 무주택 40% 등), 주담대 <strong>6억 원</strong> 상한, 일부 은행
+          자체 한도(예: KB국민은행 3억 원)가 한도를 더 줄입니다.
+        </p>
+      </section>
 
       <section className="space-y-4" aria-labelledby="guide-salary-scenario-5500">
         <h2 id="guide-salary-scenario-5500" className="text-foreground text-xl font-semibold tracking-tight">
@@ -28,8 +35,9 @@ export function AnnualSalaryMortgageLimitDsrBody() {
           수준으로 줄어듭니다. 같은 연봉이라도 부채 유무에 따라 “살 수 있는 집값”이 크게 달라집니다.
         </p>
         <p>
-          매매가 4억 주택을 70% LTV로 보면 대출 필요액은 2.8억인데, 위 DSR 산출액(약 2.5억)보다 크면{" "}
-          <strong>추가 자기자금 또는 LTV·DSR 중 하나를 맞추는 조정</strong>이 필요합니다. 자영업·프리랜서는 소득
+          매매가 4억 주택을 <strong>비규제지역·무주택·LTV 70%</strong>로 보면 대출 필요액은 2.8억인데, 위 DSR 산출액(약 2.5억)보다
+          크면 <strong>추가 자기자금 또는 LTV·DSR 중 하나를 맞추는 조정</strong>이 필요합니다. 규제지역(수도권·동탄·기흥·구리
+          등)이면 LTV 40%가 먼저 적용될 수 있습니다. 자영업·프리랜서는 소득
           인정액이 더 낮게 잡혀 같은 연봉 표와 결과가 다를 수 있습니다 —{" "}
           <Link href="/guide/income-type-loan-limit-difference-guide" className="text-primary underline-offset-4 hover:underline">
             소득 유형별 대출 한도
@@ -347,9 +355,21 @@ export function AnnualSalaryMortgageLimitDsrBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  일반 주담대
+                  일반(비규제지역·무주택)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">감정가의 70%</td>
+                <td className="border-border border-b px-3 py-2.5">감정가의 70%(한도 6억 원과 병행)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  규제지역 무주택(일반)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">감정가의 40%</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  규제지역 1주택자(추가 매수)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">0%(사실상 불가)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -357,15 +377,32 @@ export function AnnualSalaryMortgageLimitDsrBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">감정가의 80%</td>
               </tr>
-              <tr className="bg-muted/20">
-                <th scope="row" className="px-3 py-2.5 font-medium">
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   생애최초(수도권·규제지역)
                 </th>
-                <td className="px-3 py-2.5">감정가의 70%</td>
+                <td className="border-border border-b px-3 py-2.5">감정가의 70%</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  다주택자(규제지역)
+                </th>
+                <td className="px-3 py-2.5">0%(사실상 불가)</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p className="text-sm leading-relaxed">
+          규제지역·조정대상지역 현황(동탄·기흥·구리 2026.7.1~ 등)은{" "}
+          <Link href="/guide/regulated-area-designation-effects-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            규제지역 지정 효과
+          </Link>
+          ·{" "}
+          <Link href="/guide/kb-mortgage-300-million-limit-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            KB 주담대 3억 한도
+          </Link>
+          를 함께 확인하세요.
+        </p>
         <p className="text-muted-foreground text-sm">
           ※ 정확한 한도는 금융기관 심사를 통해 확인해야 하며, 소득 산정 방식(근로소득·사업소득·기타소득)에 따라 결과가 달라질 수
           있습니다.
@@ -378,8 +415,9 @@ export function AnnualSalaryMortgageLimitDsrBody() {
         </h2>
         <p>
           연봉 6,000만 원·기존 부채 없음·금리 4%·30년이면 DSR 기준 대출 가능액은 표상 약 4억 1,800만 원입니다. 그러나
-          담보 주택 5억·LTV 70%면 LTV 한도는 <strong>3억 5,000만 원</strong>입니다. 이 경우 실제 한도는 DSR이 아니라 LTV
-          쪽입니다. 반대로 저가 주택·높은 LTV 구간에서는 DSR이 먼저 한도를 제한합니다.
+          담보 주택 5억·<strong>비규제지역·LTV 70%</strong>면 LTV 한도는 <strong>3억 5,000만 원</strong>입니다. 같은
+          5억 주택이 규제지역이면 LTV 40%로 <strong>2억 원</strong>이 먼저 적용됩니다. 반대로 저가 주택·높은 LTV 구간에서는
+          DSR이 먼저 한도를 제한합니다.
         </p>
       </section>
 

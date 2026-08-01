@@ -5,7 +5,7 @@ export const mortgageLoanApplicationDocumentsMeta = {
   title: "주택담보대출 신청 절차 및 필요 서류",
   description:
     "주담대 신청 절차·필수 서류, 잔금일 역산 준비 일정, 소득 유형별 제출물, 심사 지연·반려 흔한 원인과 대응 방법을 정리했습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function MortgageLoanApplicationDocumentsBody() {
@@ -410,6 +410,36 @@ export function MortgageLoanApplicationDocumentsBody() {
         <p>
           공동명의로 대출을 신청하는 경우 명의자 전원의 서류가 필요합니다. 준비 기간을 더 넉넉히 잡아야 합니다.
         </p>
+        <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
+          <li>
+            <strong>규제지역·조정대상지역</strong> — 2026년 7월 기준 동탄·기흥·구리 등 추가 지정. 무주택 LTV 40%, 1주택자
+            추가 매수 주담대는 사실상 불가.{" "}
+            <Link href="/guide/regulated-area-designation-effects-2026-guide" className="text-primary underline-offset-4 hover:underline">
+              규제지역 지정 효과
+            </Link>
+          </li>
+          <li>
+            <strong>주담대 6억 원 상한·은행별 한도</strong> — DSR·LTV와 별도로 실행액이 줄 수 있음. KB국민은행 등 3억 원
+            자체 한도 사례는{" "}
+            <Link href="/guide/kb-mortgage-300-million-limit-2026-guide" className="text-primary underline-offset-4 hover:underline">
+              KB 주담대 3억 한도
+            </Link>
+            참고.
+          </li>
+          <li>
+            <strong>스트레스 DSR</strong> — 사전 한도 조회 시 일반 DSR과 스트레스 DSR 결과를 함께 확인.{" "}
+            <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">
+              스트레스 DSR
+            </Link>
+          </li>
+          <li>
+            <strong>잔금 부족·셀러 파이낸싱</strong> — 은행 대출이 부족할 때 집주인 대출(2순위 근저당) 검토 시{" "}
+            <Link href="/guide/seller-financing-private-mortgage-2026-guide" className="text-primary underline-offset-4 hover:underline">
+              셀러 파이낸싱
+            </Link>
+            계약·등기 순서를 잔금일 전에 정리.
+          </li>
+        </ul>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-mla-doc-caution">

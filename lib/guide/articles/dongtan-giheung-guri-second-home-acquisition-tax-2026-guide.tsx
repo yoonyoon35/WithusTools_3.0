@@ -5,7 +5,7 @@ export const dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta = {
   title: "동탄·구리·기흥 2주택 취득세…조정지역 8% 얼마나 나오나",
   description:
     "2026년 7월 1일 조정대상지역 된 화성 동탄구·용인 기흥구·구리시 2주택·3주택 취득세 8%·12% 중과, 5억·6억·7억·10억 예시, 취득일·일시적 2주택·농특세·양도세 연계 안내.",
-  updated: "2026년 7월 1일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody() {

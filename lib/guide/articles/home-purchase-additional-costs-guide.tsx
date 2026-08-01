@@ -5,7 +5,7 @@ export const homePurchaseAdditionalCostsGuideMeta = {
   title: "주택 구입 시 추가 비용 총정리",
   description:
     "2026년 기준 취득세, 등기비용, 인지세, 중개수수료 등 주택 매수 시 발생하는 부대비용을 표로 정리했습니다. 자금 계획 체크리스트, 총 비용 추산 방법, 취득세·중개수수료 계산기 연결 정보를 참고용으로 확인할 수 있습니다. 실제 비용은 거래 조건·지역에 따라 달라질 수 있습니다.",
-  updated: "2026년 4월 20일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function HomePurchaseAdditionalCostsGuideBody() {
@@ -13,7 +13,7 @@ export function HomePurchaseAdditionalCostsGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-cost-overview">
         <h2 id="guide-cost-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 8월 기준
         </h2>
         <p>
           주택을 구입할 때 매매가격 외에 취득세·등기비용·중개수수료 등 부대비용이 추가로 발생합니다. 이 비용을 사전에 파악하지 않으면
@@ -199,6 +199,18 @@ export function HomePurchaseAdditionalCostsGuideBody() {
           아니므로 취득세 납부 시 별도 신청이 필요하며, 감면 후 3년 이내 매각·증여·임대 전환 시 추징됩니다.
         </p>
         <p>취득세는 잔금 지급일로부터 60일 이내에 납부해야 하며, 기한 초과 시 가산세가 부과됩니다.</p>
+        <p className="text-sm leading-relaxed">
+          2026년 7월 1일부터 <strong>동탄·기흥·구리</strong> 등이 조정대상지역에 추가되면, 해당 지역에서 2주택 취득 시 8% 중과가
+          적용됩니다. 취득일(잔금·등기) 기준 지정 여부를 확인하고,{" "}
+          <Link href="/guide/second-home-acquisition-tax-surcharge-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            2주택 취득세 중과
+          </Link>
+          ·{" "}
+          <Link href="/guide/acquisition-tax-rates-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            2026년 취득세율
+          </Link>
+          을 참고하세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-cost-registration">
@@ -515,12 +527,31 @@ export function HomePurchaseAdditionalCostsGuideBody() {
                 </th>
                 <td className="px-3 py-2.5">□</td>
               </tr>
+              <tr>
+                <th scope="row" className="border-border border-t px-3 py-2.5 font-medium">
+                  주담대 한도·규제지역(LTV·KB 3억 등) 확인
+                </th>
+                <td className="border-border border-t px-3 py-2.5">□</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  잔금 부족 시 셀러 파이낸싱(집주인 대출) 계약·등기 검토
+                </th>
+                <td className="px-3 py-2.5">□</td>
+              </tr>
             </tbody>
           </table>
         </div>
         <p>
           중개수수료는 통상 잔금일에 납부하며, 취득세는 잔금일로부터 60일 이내가 납부 기한입니다. 자금 흐름을 미리 계획하지 않으면
           잔금일 직후 자금 부담이 집중될 수 있습니다.
+        </p>
+        <p className="text-sm leading-relaxed">
+          주담대가 규제·은행 한도로 부족할 때는 2025.6·27 대책 이후 허용된{" "}
+          <Link href="/guide/seller-financing-private-mortgage-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            셀러 파이낸싱(집주인 대출)
+          </Link>
+          으로 잔금을 메우는 경우가 있습니다. 금융기관 대출과 별도로 등기·금전소비대차 계약을 확인해야 합니다.
         </p>
         <p className="text-muted-foreground text-sm">
           ※ 취득세율과 중개수수료 상한 요율은 정부 정책에 따라 변동될 수 있습니다. 정확한 세율은 위택스(wetax.go.kr) 및 국토교통부에서

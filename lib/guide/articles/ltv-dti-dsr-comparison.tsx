@@ -82,7 +82,7 @@ export function LtvDtiDsrComparisonBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   규제 한도(은행권)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">70%(생애최초 80%)</td>
+                <td className="border-border border-b px-3 py-2.5">70%(비규제·무주택, 생애최초 80%)</td>
                 <td className="border-border border-b px-3 py-2.5">60%</td>
                 <td className="border-border border-b px-3 py-2.5">40%</td>
               </tr>

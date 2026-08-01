@@ -5,7 +5,7 @@ export const firstHomeAcquisitionTaxAmountGuideMeta = {
   title: "1주택자 취득세 얼마나 나올까",
   description:
     "1주택자·무주택자 취득세 구조, 매매가 구간별 세액, 1주택 교체·생애최초 감면 시나리오와 계산기와의 역할 구분을 정리했습니다.",
-  updated: "2026년 4월 23일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function FirstHomeAcquisitionTaxAmountGuideBody() {
@@ -37,6 +37,30 @@ export function FirstHomeAcquisitionTaxAmountGuideBody() {
             일시적 2주택 예외
           </Link>
           요건을 미리 확인하는 것이 중요합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-fhat-adjusted-area">
+        <h2 id="guide-fhat-adjusted-area" className="text-foreground text-xl font-semibold tracking-tight">
+          조정대상지역에서 2주택이 되는 경우
+        </h2>
+        <p>
+          이 글의 1~3% 구간은 <strong>1주택·무주택 매수</strong> 기준입니다. 기존 주택을 팔기 전 새 집을 취득하거나, 세대
+          합산 주택 수가 2가 되면 <strong>조정대상지역</strong>에서는 취득세 8% 중과가 적용될 수 있습니다. 2026년 7월 1일부터{" "}
+          <strong>동탄·기흥·구리</strong> 등이 조정대상지역에 포함되었으므로, 취득일(잔금·등기) 당시 지정 여부를 확인해야
+          합니다.{" "}
+          <Link href="/guide/second-home-acquisition-tax-surcharge-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            2주택 취득세 중과
+          </Link>
+          ·{" "}
+          <Link href="/guide/acquisition-tax-rates-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            2026년 취득세율
+          </Link>
+          ·{" "}
+          <Link href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide" className="text-primary underline-offset-4 hover:underline">
+            동탄·기흥·구리 2주택 취득세
+          </Link>
+          를 참고하세요.
         </p>
       </section>
 

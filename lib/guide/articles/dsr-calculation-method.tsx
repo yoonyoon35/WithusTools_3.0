@@ -5,7 +5,7 @@ export const dsrCalculationMethodMeta = {
   title: "총부채원리금상환비율(DSR) 계산 방법",
   description:
     "DSR의 정의·기본 계산식, 포함 부채 범위, 계산 예시, 한도별 주담대 월 상환 여유, 소득 유형별 산정 방식을 표로 정리했습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 8월 1일",
 } as const;
 
 export function DsrCalculationMethodBody() {
@@ -281,6 +281,25 @@ export function DsrCalculationMethodBody() {
         <p className="text-muted-foreground text-sm">
           ※ 소득 산정 방식과 부채 인정 범위는 금융기관별로 상이할 수 있습니다. 정확한 DSR 계산은 대출 신청 금융기관에서 확인해야
           합니다.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-dsr-stress-link">
+        <h2 id="guide-dsr-stress-link" className="text-foreground text-xl font-semibold tracking-tight">
+          DSR 40%와 스트레스 DSR
+        </h2>
+        <p>
+          DSR 40% 이내라도 심사 시에는 <strong>스트레스 DSR</strong>으로 더 높은 금리를 적용해 한도를 줄이는 경우가 많습니다.
+          2026년 7월 기준 수도권·규제지역은 명목 3.0%p 가산 등이 적용되며, 지방은 하반기 1.50%p 강화가 검토 중입니다. LTV와
+          함께{" "}
+          <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">
+            스트레스 DSR
+          </Link>
+          ·{" "}
+          <Link href="/guide/dsr-40-mortgage-limit" className="text-primary underline-offset-4 hover:underline">
+            DSR 40% 한도 산정
+          </Link>
+          을 연계해 보세요.
         </p>
       </section>
 
