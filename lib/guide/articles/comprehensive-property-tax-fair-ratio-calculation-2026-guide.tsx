@@ -156,10 +156,10 @@ export function ComprehensivePropertyTaxFairRatioCalculation2026GuideBody() {
                   종부세 60%
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  70%('27~)
+                  70%(2027~)
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  80%('28~)
+                  80%(2028~)
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
                   60%→70% 차이
@@ -248,7 +248,7 @@ export function ComprehensivePropertyTaxFairRatioCalculation2026GuideBody() {
                   종부세 60%
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  70%('27~)
+                  70%(2027~)
                 </th>
               </tr>
             </thead>
@@ -341,7 +341,7 @@ export function ComprehensivePropertyTaxFairRatioCalculation2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  70%('27~)
+                  70%(2027~)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">10.4억 원</td>
                 <td className="border-border border-b px-3 py-2.5">약 1,200만 원</td>
@@ -380,7 +380,7 @@ export function ComprehensivePropertyTaxFairRatioCalculation2026GuideBody() {
                   종부세 60%
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  70%('27~)
+                  70%(2027~)
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
                   60%→70% 차이
