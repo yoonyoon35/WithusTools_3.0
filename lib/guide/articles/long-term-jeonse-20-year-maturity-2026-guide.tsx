@@ -4,8 +4,8 @@ export const longTermJeonse20YearMaturity2026GuideMeta = {
   slug: "long-term-jeonse-20-year-maturity-2026-guide",
   title: "장기전세 20년 만기 대응 가이드: 계약연장·분양전환 선택과 비용",
   description:
-    "2026년 7월 기준 서울시 장기전세주택(시프트) 20년 만기 배경, 입주민·서울시 입장, 퇴거·재계약·분양전환·이주 선택지별 비용·절차, 만기 전 체크리스트를 표로 정리했습니다.",
-  updated: "2026년 7월 15일",
+    "2026년 8월 26일 기준 서울시 장기전세주택(시프트) 20년 만기 배경, 입주민·서울시 입장(연장·분양전환 불가), 퇴거·재계약·이주 선택지별 비용·절차, 만기 전 체크리스트를 표로 정리했습니다.",
+  updated: "2026년 8월 26일",
 } as const;
 
 export function LongTermJeonse20YearMaturity2026GuideBody() {
@@ -13,7 +13,7 @@ export function LongTermJeonse20YearMaturity2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-ltj-intro">
         <h2 id="guide-ltj-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 8월 26일 기준
         </h2>
         <p>
           서울시 <strong>장기전세주택</strong>(일명 <strong>시프트</strong>)은 2007년 도입된 공공임대 제도로, 주변 전세 시세 대비
@@ -22,9 +22,9 @@ export function LongTermJeonse20YearMaturity2026GuideBody() {
         </p>
         <p>
           2027년부터 강동구 강일리버파크·강일리엔파크 등 초기 입주 단지가 순차적으로 만기를 맞으면서, 입주민들은{" "}
-          <strong>계약 연장·분양 전환</strong>을 요구하고 서울시는 <strong>계약대로 퇴거·미리내집 재공급</strong> 입장을
-          유지하고 있습니다. 이 글은 뉴스 논란을 넘어, 만기를 앞둔 세입자가 <strong>선택지·비용·확인 사항</strong>을
-          비교하는 데 초점을 맞춥니다.
+          <strong>계약 연장·분양 전환</strong>을 요구하고 있습니다. 서울시는 2026년 8월 26일{" "}
+          <strong>계약 연장·분양전환 불가·대체 임대주택 별도 검토 없음</strong>을 재확인했습니다. 이 글은 만기를 앞둔
+          세입자가 <strong>선택지·비용·확인 사항</strong>을 비교하는 데 초점을 맞춥니다.
         </p>
       </section>
 
@@ -347,7 +347,7 @@ export function LongTermJeonse20YearMaturity2026GuideBody() {
                 <td className="border-border border-b px-3 py-2.5">
                   취득세, 등기·중개수수료, 주담대(DSR·LTV)
                 </td>
-                <td className="border-border border-b px-3 py-2.5">2026년 7월 현재 시프트 분양 전환은 미확정</td>
+                <td className="border-border border-b px-3 py-2.5">2026년 8월 26일 서울시 — 시프트 분양·계약 연장 불가 재확인</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">

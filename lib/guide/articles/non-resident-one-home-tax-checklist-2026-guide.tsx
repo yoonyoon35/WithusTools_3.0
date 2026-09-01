@@ -4,8 +4,8 @@ export const nonResidentOneHomeTaxChecklist2026GuideMeta = {
   slug: "non-resident-one-home-tax-checklist-2026-guide",
   title: "살지 않는 1주택, 세금 어떻게 달라지나",
   description:
-    "2026년 7월 기준 비거주 1주택자 보유세(재산세·종부세)·양도세 장특공·1세대1주택 요건 차이, 공시 15억·20억 실거주 vs 비거주 비교, 7월 세제개편 전 체크리스트를 표로 정리했습니다.",
-  updated: "2026년 7월 11일",
+    "2026년 8월 3일 정부안 기준 비거주 1주택자 보유세(재산세·종부세)·양도세 장특공·1세대1주택 요건 차이, 공시 15억·20억 실거주 vs 비거주 비교, 8·3 세제개편 대응 체크리스트를 표로 정리했습니다.",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function NonResidentOneHomeTaxChecklist2026GuideBody() {
@@ -13,18 +13,16 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-nroh-intro">
         <h2 id="guide-nroh-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 9일 기준
+          2026년 8월 3일 정부안 기준
         </h2>
         <p>
-          정부가 7월 말 세제개편안에서 「집은 사는(living) 곳」이라는 원칙을 강조하면서,{" "}
-          <strong>다주택자뿐 아니라 살지 않는 1주택</strong>도 겨냥한다는 해석이 나옵니다. 세대에 집이
-          한 채뿐이어도 전세·월세로 임대하거나 비워 두면, 보유세·양도세에서 실거주 1세대 1주택과 다른
-          대우를 받습니다.
+          8·3 세제개편안은 「집은 사는(living) 곳」 원칙 아래 <strong>살지 않는 1주택</strong>에 대한 보유세·양도세
+          부담을 실거주 1주택과 <strong>더 크게 차등</strong>합니다. 세대에 집이 한 채뿐이어도 전세·월세로 임대하거나
+          비워 두면, 보유세·양도세에서 실거주 1세대 1주택과 다른 대우를 받습니다.
         </p>
         <p>
-          이 글은 비거주 1주택이 <strong>지금 세법</strong>에서 어떻게 과세되는지, 7월 개편에서 무엇이
-          달라질 수 있는지, 발표 전에 확인할 항목을 체크리스트로 정리합니다. 확정 세법이 아닌 검토
-          항목은 별도 표시했습니다.{" "}
+          이 글은 비거주 1주택이 <strong>현행 세법</strong>에서 어떻게 과세되는지, <strong>8·3 정부안</strong>에서
+          무엇이 바뀌는지, 대응 전 확인할 항목을 체크리스트로 정리합니다.{" "}
           <Link
             href="/comprehensive-property-tax-calculator"
             className="text-primary underline-offset-4 hover:underline"
@@ -40,7 +38,7 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
         <p>
           「1주택인데 왜 다주택자처럼 세금이 나오지」라는 질문이 많습니다. 세대에 집이 한 채뿐이어도{" "}
           <strong>그 집에 살지 않으면</strong> 보유세·양도세에서 실거주 1세대 1주택 혜택을 받기 어렵습니다. 이
-          글은 현행 세법 기준과 7월 개편 검토 항목을 구분해 정리합니다.
+          글은 현행 세법과 8·3 정부안을 구분해 정리합니다.
         </p>
       </section>
 
@@ -51,7 +49,7 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
         <p>
           전세·월세로 임대 중인 1주택, 부모 댁·지방 집만 갖고 다른 곳에 사는 경우가 대표적입니다. 먼저{" "}
           <strong>6월 1일 기준 거주 여부</strong>를 확인하고, 이어서 실거주 전환·매도·임대 유지 중 어떤 선택이
-          유리한지 시뮬레이션하세요. 7월 개편안은 아직 확정 전이므로 「검토 중」 항목과 현행을 구분해 읽어야
+          유리한지 시뮬레이션하세요. 8·3 정부안은 국회 심의 전이므로 「정부안」과 현행을 구분해 읽어야
           합니다.
         </p>
       </section>
@@ -59,12 +57,12 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="예상 정리 안내"
+        aria-label="정부안 안내"
       >
-        <p className="text-foreground font-medium">※ 7월 개편 관련은 예상 · 발표 후 갱신 예정</p>
+        <p className="text-foreground font-medium">※ 8·3 정부안 · 국회 심의 전</p>
         <p className="mt-2">
-          아래 「검토 중」 항목은 아직 확정된 세법이 아닙니다. 7월 말 개편안·국회 심의 결과에 따라 달라질
-          수 있습니다.
+          아래 「정부안」 항목은 2026년 8월 3일 발표 내용입니다. 비거주 1주택 차등과세는 국회 심의에서 수정될 수
+          있습니다.
         </p>
       </aside>
 
@@ -101,7 +99,7 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
           </li>
           <li>
             <a href="#guide-nroh-july" className="text-primary underline-offset-4 hover:underline">
-              7월 개편 검토 항목
+              8·3 정부안 — 비거주 1주택
             </a>
           </li>
           <li>
@@ -415,17 +413,16 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-nroh-july">
         <h2 id="guide-nroh-july" className="text-foreground text-xl font-semibold tracking-tight">
-          7월 세제개편 — 비거주 1주택 검토 항목(미확정)
+          8·3 정부안 — 비거주 1주택 핵심
         </h2>
         <p>
-          구윤철 부총리는 7월 말 개편안에 부동산 내용이 포함될 것이라고 밝혔고, 보유 기간보다{" "}
-          <strong>거주 여부</strong>에 무게를 두겠다는 방향을 제시했습니다. 비거주 1주택 보유자가 주목할
-          카드는 아래와 같습니다.
+          정부안은 실거주 1주택과 비거주 1주택의 <strong>기본공제·공정비율·장특공</strong>을 동시에 조정합니다.
+          비거주 1주택 보유자가 주목할 항목은 아래와 같습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              검토 중(2026년 7월 8일 기준)
+              정부안(2026년 8월 3일)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -436,56 +433,58 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
                   비거주 1주택 영향
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  상태
+                  적용 시점
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  공정시장가액비율 상향
+                  종부세 기본공제
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  재산세·종부세 과세표준 상승. 이미 60%·9억 공제 구간이라 체감 여지 있음
+                  12억→<strong>9억</strong>(거주 1주택 14억과 5억 차등)
                 </td>
-                <td className="border-border border-b px-3 py-2.5">검토 중</td>
+                <td className="border-border border-b px-3 py-2.5">2027~</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  비거주 1주택 장특공 축소
+                  공정시장가액비율
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  보유기간 공제만으로는 부족한 구조를 더 조임
+                  1세1주택 60%→70%, 3주택·조정지역 80%까지(비거주도 동일 비율 적용)
                 </td>
-                <td className="border-border border-b px-3 py-2.5">검토 중</td>
+                <td className="border-border border-b px-3 py-2.5">2027~2028</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  거주 기간 비중 확대
+                  장특공 → 거주기간 공제
                 </th>
-                <td className="border-border border-b px-3 py-2.5">실거주 전환 시에만 혜택 확대 방향</td>
-                <td className="border-border border-b px-3 py-2.5">검토 중</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  2029년부터 보유공제 폐지, 거주 연 8%만(비거주는 사실상 공제 축소)
+                </td>
+                <td className="border-border border-b px-3 py-2.5">2029~</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  고가 1주택 보유세
+                  고가 구간 세율
                 </th>
-                <td className="px-3 py-2.5">공시 12억 초과 구간 종부세·재산세 부담 확대 가능</td>
-                <td className="px-3 py-2.5">검토 중</td>
+                <td className="px-3 py-2.5">과표 12억 초과 구간 세율 단계 인상(시가 20억~부터 체감)</td>
+                <td className="px-3 py-2.5">2027~2028</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          일부 보도에서는 공정시장가액비율 80% 상향 시 보유세가 크게 늘 수 있다는 전망도 나오지만,{" "}
-          <strong>확정된 수치·시행일은 없습니다.</strong>{" "}
+          시가 20억 원대 비거주 1주택은 정부안 기준 보유세가 현행 대비 <strong>5배 이상</strong> 늘 수 있다는
+          분석도 나옵니다.{" "}
           <Link
             href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
-            2026년 7월 부동산 세제개편 예상 총정리
+            2026년 부동산 세제개편안 총정리
           </Link>
-          에서 확정·검토·현행을 구분해 볼 수 있습니다.
+          에서 정부안·현행을 구분해 볼 수 있습니다.
         </p>
       </section>
 
@@ -510,7 +509,7 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
           대응 시나리오 — 버티기·전환·매도
         </h2>
         <p>
-          7월 개편안 발표 전에는 「지금 당장 팔아야 하나」보다 <strong>현행 세법에서 연간 부담이 얼마인지</strong>를
+          정부안이 발표된 뒤에는 「지금 당장 팔아야 하나」보다 <strong>현행 세법에서 연간 부담이 얼마인지</strong>를
           먼저 숫자로 잡는 게 순서입니다. 실거주 전환은 보유세를 줄일 수 있지만 이사·직장·학군 비용과 맞물리고,
           매도는 양도세·장특공 조건을 함께 봐야 합니다.
         </p>
@@ -576,10 +575,10 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-nroh-checklist">
         <h2 id="guide-nroh-checklist" className="text-foreground text-xl font-semibold tracking-tight">
-          7월 개편안 발표 전 체크리스트
+          8·3 정부안 대응 체크리스트
         </h2>
         <p>
-          개편안이 나오기 전에 아래를 채워 두면, 발표 직후 「나에게 해당되는지」를 빠르게 판단할 수 있습니다.
+          정부안이 발표된 뒤 아래를 채워 두면, 국회 심의·시행 시 「나에게 해당되는지」를 빠르게 판단할 수 있습니다.
           특히 공정시장가액비율·장특공·거주 요건이 바뀌면 <strong>임대 유지 vs 실거주 전환 vs 매도</strong> 순위가
           달라질 수 있습니다.
         </p>
@@ -619,7 +618,7 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 text-left font-medium">
-                  4. 7월 말 개편안 — 공정비율·장특공·시행일
+                  4. 8·3 정부안 — 공정비율·기본공제·장특공·시행일
                 </th>
                 <td className="border-border border-b px-3 py-2.5 text-center">□</td>
               </tr>
@@ -670,7 +669,7 @@ export function NonResidentOneHomeTaxChecklist2026GuideBody() {
             href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
-            → 7월 세제개편 전체 흐름은 부동산 세제개편 예상 총정리에서 확인할 수 있습니다.
+            → 세제개편 전체 흐름은 부동산 세제개편안 총정리에서 확인할 수 있습니다.
           </Link>
         </p>
       </aside>

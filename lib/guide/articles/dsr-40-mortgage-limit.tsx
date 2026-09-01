@@ -5,7 +5,7 @@ export const dsr40MortgageLimitMeta = {
   title: "DSR 40% 기준 주택담보대출 한도 산정 방식",
   description:
     "DSR 40% 한도 산정 단계, LTV·스트레스 DSR과의 관계, 연소득·기존 부채별 시나리오와 한도 산출 시 흔한 실수를 정리했습니다.",
-  updated: "2026년 8월 1일",
+  updated: "2026년 6월 30일",
 } as const;
 
 export function Dsr40MortgageLimitBody() {
@@ -153,7 +153,8 @@ export function Dsr40MortgageLimitBody() {
         </h2>
         <p>
           은행 심사에서는 DSR 40%를 넘지 않더라도, <strong>스트레스 DSR</strong>(금리 가산 후 한도)에서 먼저 걸리는
-          경우가 있습니다. 2026년 하반기에는 수도권·규제지역 외 지방에 <strong>1.50%p</strong> 스트레스 가산이 검토 중입니다.
+          경우가 있습니다. 2026년 하반기(7~12월)에도 지방 비규제지역 주담대는 <strong>2단계(0.75%p)</strong>가
+          유지됩니다(6월 30일 은행연합회 발표).
           변동금리·혼합금리는 특히 실제 금리보다 높은 금리로 한도를 계산하므로, 위 표의 한도보다 10~20% 낮게 나올 수
           있습니다.{" "}
           <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">

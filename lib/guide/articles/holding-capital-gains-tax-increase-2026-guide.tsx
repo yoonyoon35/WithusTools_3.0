@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const holdingCapitalGainsTaxIncrease2026GuideMeta = {
   slug: "holding-capital-gains-tax-increase-2026-guide",
-  title: "2026년 7월 부동산 세제개편 예상 총정리 | OECD·구윤철·종부세·장특공",
+  title: "2026년 부동산 세제개편안 총정리 | 8·3 정부안·종부세·양도세",
   description:
-    "2026년 7월 8일 기준 부동산 세제개편 예상 내용. OECD 7월 2일 권고, 구윤철 부총리 발언, 7월 말 개편안 전 거론되는 고가주택 보유세·비실거주 장특공 축소 방향을 확정·검토·현행법으로 구분해 정리했습니다. 정부안 발표 후 갱신 예정.",
-  updated: "2026년 7월 8일",
+    "2026년 8월 3일 발표된 부동산 세제개편안 핵심. 종부세 공정비율 70%·80% 단계 인상, 거주 14억·비거주 9억 기본공제, 장특공 거주 중심 전환, 다주택 중과 한시 완화를 정부안·현행·국회 심의 중으로 구분해 정리했습니다.",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
@@ -13,28 +13,30 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-hcgi-intro">
         <h2 id="guide-hcgi-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 8일 기준
+          2026년 8월 3일 정부안 기준
         </h2>
         <p>
-          정부는 <strong>7월 말 부동산 세제개편안</strong> 발표를 준비 중입니다. 이재명 대통령·김용범 정책실장에 이어
-          구윤철 부총리 겸 기재부 장관이 「실거주 중심」「보유세·거래세 균형」을 공식 언급했고, OECD도 거래세에서
-          보유세로의 전환을 권고했습니다. 다만 <strong>세율·공제 변경은 아직 법으로 확정되지 않았습니다.</strong>
+          재정경제부는 2026년 8월 3일 세제발전심의위원회에서 <strong>2026년 세제개편안</strong>을 확정·발표했습니다.
+          핵심은 「실거주 중심」 과세로, 종부세는 주택 수 기준을 없애고 <strong>가액·거주 여부</strong> 중심으로
+          재편하고, 양도세 장기보유특별공제는 보유 공제를 단계적으로 폐지해 <strong>거주 기간 공제</strong>로
+          전환합니다.
         </p>
         <p>
-          이 글은 <strong>발표 전 예상·보도·정부 발언</strong>을 정리한 것입니다. 확정안·검토 중인 카드·현행 세법을
-          구분해 읽어 주세요. 정부 세제개편안이 공개되면 본문과 표를 갱신할 예정입니다.
+          이 글은 <strong>8월 3일 정부안</strong>과 <strong>현행 세법</strong>을 구분해 정리합니다. 입법예고·국회
+          심의 과정에서 일부 조항(비거주 1주택 차등과세 등)이 수정될 수 있으므로, 최종 법률 공포 전까지는 정부안
+          기준으로 읽어 주세요.
         </p>
       </section>
 
       <aside
         className="bg-muted/40 text-muted-foreground rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="예상 정리 안내"
+        aria-label="정부안 안내"
       >
-        <p className="text-foreground font-medium">※ 예상 정리 · 발표 후 업데이트 예정</p>
+        <p className="text-foreground font-medium">※ 8·3 정부안 · 국회 심의 전</p>
         <p className="mt-2">
-          아래 「검토 중」「거론」 항목은 확정 세법이 아닙니다. 7월 말 개편안·국회 심의 결과에 따라 달라질 수
-          있습니다.
+          아래 「정부안」 항목은 2026년 8월 3일 발표 내용입니다. 국회 통과·시행령 확정 전까지 변경될 수 있으며,
+          현행 세법은 별도 표기합니다.
         </p>
       </aside>
 
@@ -181,16 +183,18 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  2026년 7월 말(예정)
+                  2026년 8월 3일
                 </th>
-                <td className="border-border border-b px-3 py-2.5">정부 부동산 세제개편안 발표</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  재정경제부 「2026년 세제개편안」 확정·발표 — 종부세·양도세 실거주 중심 재편
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  2026년 8월(예정)
+                  2026년 8~9월
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  기재부·국토부 등 부동산 정책 관련 대토론회 개최 예정(보도)
+                  입법예고·국회 제출·심의(비거주 1주택 차등과세 등 수정 논의)
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -236,7 +240,7 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   발표 시점
                 </th>
-                <td className="border-border border-b px-3 py-2.5">7월 말 전후 세제개편안 발표 준비</td>
+                <td className="border-border border-b px-3 py-2.5">2026년 8월 3일 세제개편안 발표(완료)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -275,9 +279,9 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-hcgi-status">
         <h2 id="guide-hcgi-status" className="text-foreground text-xl font-semibold tracking-tight">
-          확정 vs 검토 중
+          정부안 vs 현행 vs 국회 심의
         </h2>
-        <p>지금 시점에서 구분해야 할 것은 「방향 공식화」와 「세율·요건 변경 확정」입니다.</p>
+        <p>8월 3일 정부안은 확정됐지만, <strong>법률로 시행되려면 국회 통과</strong>가 필요합니다.</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -296,29 +300,27 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  보유세·양도세 강화 방향
+                  실거주 중심 과세 방향
                 </th>
-                <td className="border-border border-b px-3 py-2.5">대통령실·기재부 공식 발언으로 사실상 공식화</td>
+                <td className="border-border border-b px-3 py-2.5">8·3 정부안에 반영</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  보유세·거래세 균형 조정
+                  종부세 공정비율 70%·80% 단계 인상
                 </th>
-                <td className="border-border border-b px-3 py-2.5">
-                  구 부총리 7월 7일 발언·OECD 권고와 맞물려 검토(구체안 미발표)
-                </td>
+                <td className="border-border border-b px-3 py-2.5">정부안 확정(2027~2028년 단계 적용)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  종부세 공정시장가액비율·세율 인상
+                  거주 14억·비거주 9억 기본공제 차등
                 </th>
-                <td className="border-border border-b px-3 py-2.5">언론·전문가 거론·시행령 개정 가능성, 정부안 미발표</td>
+                <td className="border-border border-b px-3 py-2.5">정부안 확정(국회에서 수정 논의 중)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  비거주 1주택 장기보유특별공제 축소
+                  양도세 장특공 → 거주기간 공제 전환
                 </th>
-                <td className="border-border border-b px-3 py-2.5">검토 중으로 알려짐, 확정 아님</td>
+                <td className="border-border border-b px-3 py-2.5">정부안 확정(2029년 전면 전환)</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -396,13 +398,13 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-hcgi-review-holding">
         <h2 id="guide-hcgi-review-holding" className="text-foreground text-xl font-semibold tracking-tight">
-          검토 중인 보유세 카드
+          정부안 보유세(종부세) 개편
         </h2>
-        <p>7월 세제개편안에 담길 수 있다고 거론되는 항목입니다. 최종안은 미확정입니다.</p>
+        <p>8·3 정부안에 담긴 종부세 핵심 변경입니다. 적용은 2027년 1월 1일 이후 납세의무 성립분부터 단계적으로 진행됩니다.</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              보유세 강화 검토 항목
+              정부안 보유세 개편 핵심
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -410,47 +412,64 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                   항목
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  취지·영향
+                  정부안 내용
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  공정시장가액비율 상향
+                  과세 체계
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  60% → 과거 높은 수준(80%·100% 등) 복원 검토. 종부세 과세표준 직접 상승
+                  주택 수 기준 폐지 → <strong>가액·거주 여부</strong> 중심 일원화
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  다주택자 종부세율 인상
+                  기본공제(1주택)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  윤석열 정부 때 완화된 보유세 부담 일부 되돌리기 방향 언급
+                  거주 12억→<strong>14억</strong> / 비거주 12억→<strong>9억</strong>(공시가 기준)
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  초고가 1주택자 과세 강화
+                  공정시장가액비율
                 </th>
-                <td className="border-border border-b px-3 py-2.5">공시가격 12억 초과 1주택 보유 부담 확대 검토</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  1세1주택·지방 1·2주택: 60%→<strong>70%</strong>(2027~); 3주택·조정지역: 60%→70%→<strong>80%</strong>
+                  (2027~2028)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  고가 구간 세율
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  과표 12억 초과 구간 세율 단계 인상(시가 40억 원대부터 부담 본격 증가)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  세액공제
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  보유공제 폐지 → 거주기간 공제 전환(2028년~), 공제 한도 800만→600만 원
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  주택 재산세 과세표준상한제(5% 상한)
+                  세부담 상한
                 </th>
-                <td className="px-3 py-2.5">
-                  2024년 도입된 연간 세부담 상승 제한 재검토 거론(종부세와 별도 제도)
-                </td>
+                <td className="px-3 py-2.5">150% → 200%로 인상</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h3 className="text-foreground text-base font-semibold">공정시장가액비율 60% → 80% 가정 시(1주택)</h3>
-        <p className="text-muted-foreground text-sm">공시가격 합계 25억 원, 기본공제 12억 원</p>
+        <h3 className="text-foreground text-base font-semibold">공정시장가액비율 60% → 70% 가정 시(1주택)</h3>
+        <p className="text-muted-foreground text-sm">공시가격 합계 25억 원, 기본공제 12억 원(현행)</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -475,14 +494,14 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  80%로 상향 가정
+                  70%로 상향(정부안)
                 </th>
-                <td className="px-3 py-2.5">10.4억 원</td>
+                <td className="px-3 py-2.5">9.1억 원</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>비율만 올라가도 세율을 건드리지 않아도 종부세액이 늘어납니다. 실제 인상 폭은 개편안·국회 협의에 따라 달라집니다.</p>
+        <p>3주택·조정지역은 2028년부터 80%까지 올라갑니다. 국회 심의 결과에 따라 수치·시점이 달라질 수 있습니다.</p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-hcgi-current-cg">
@@ -549,12 +568,12 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-hcgi-review-cg">
         <h2 id="guide-hcgi-review-cg" className="text-foreground text-xl font-semibold tracking-tight">
-          검토 중인 양도세 카드
+          정부안 양도세(장특공) 개편
         </h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              양도세 강화 검토 항목
+              정부안 양도세 개편 핵심
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -562,37 +581,52 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                   항목
                 </th>
                 <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  취지
+                  정부안 내용
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  비거주 1주택 장특공 축소
+                  장특공 → 거주기간 공제
                 </th>
-                <td className="border-border border-b px-3 py-2.5">보유만 길게 하고 거주하지 않은 경우 공제 축소</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  2029년부터 보유공제 폐지, 거주 연 8%(최대 80%)만 적용
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  거주 기간 비중 확대
+                  공제 한도
                 </th>
-                <td className="border-border border-b px-3 py-2.5">실거주 중심 과세 원칙 강화</td>
+                <td className="border-border border-b px-3 py-2.5">2028년 20억 원, 2029년~ 10억 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  다주택 중과
+                </th>
+                <td className="border-border border-b px-3 py-2.5">2027~2028년 한시 완화(매도 기회)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  조정지역 일시 2주택
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  종전 주택 처분 기한 3년→2년(2026.10.1~ 양도분)
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  고가 1주택 장특공 상한 조정
+                  10년+ 거주 1세1주택
                 </th>
-                <td className="px-3 py-2.5">12억 원 초과 1주택에 대한 공제 축소 가능성 거론</td>
+                <td className="px-3 py-2.5">양도가 30억 이하 시 기본공제 연 250만→2,500만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          다주택자 조정지역 중과는 이미 적용 중이므로, 이번 논의의 초점은 <strong>1주택·특히 비거주 보유</strong>와{" "}
-          <strong>고가 보유세</strong>에 맞춰져 있습니다. 취득·보유·양도 전 과정의 세 부담을 함께 보며 설계하겠다는
-          정부 입장도 전해졌습니다. 일부 보도에서는 보유세 인상과 함께 거래세(취득세 등) 부담 완화를 묶어 「균형」을
-          맞추는 시나리오도 거론되나, <strong>확정된 안은 없습니다.</strong>
+          다주택자 조정지역 중과는 이미 적용 중입니다. 이번 정부안은 <strong>1주택·비거주 보유</strong>와{" "}
+          <strong>고가 보유세</strong>를 함께 조정합니다. 10년 이상 거주·양도가 30억 이하 1세1주택 기본공제 확대,
+          65세 이상 수도권→비수도권 이주 감면 등 완화 조항도 포함됩니다.
         </p>
       </section>
 
@@ -658,32 +692,32 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
         </h2>
         <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>
-            <strong>「이미 세율이 올랐다」</strong> — 7월 초 현재 종부세·장특공 규정은 개편 전과 동일합니다.
+            <strong>「이미 세율이 올랐다」</strong> — 2026년 현재 적용 중인 종부세·장특공 규정은 개편 전과 동일합니다.
+            정부안은 2027년 이후 단계 적용입니다.
           </li>
           <li>
-            <strong>「OECD 권고 = 곧 시행」</strong> — OECD는 정책 권고 기관이며, 입법은 정부·국회 절차를 거칩니다.
+            <strong>「정부안 = 곧 시행」</strong> — 8·3 정부안은 국회 통과·공포를 거쳐야 법률이 됩니다.
           </li>
           <li>
-            <strong>「구 부총리가 공정비율 80% 확정」</strong> — 7월 7일 인터뷰에서 구체 수치는 확인되지 않았습니다.
+            <strong>「공정비율 80%·100% 확정」</strong> — 정부안은 1주택 70%, 3주택·조정지역 80%까지입니다. 100%는
+            포함되지 않았습니다.
           </li>
           <li>
-            <strong>「7월 발표 = 내년 바로 적용」</strong> — 국회 심의·시행 시점에 따라 적용 연도가 달라질 수
-            있습니다.
+            <strong>「8월 발표 = 내년 바로 적용」</strong> — 항목별로 2027·2028·2029년 등 적용 시점이 다릅니다.
           </li>
           <li>
-            <strong>「보유세만 오르면 집값이 떨어진다」</strong> — 전문가 사이에서 보유세·거래세 동시 인상이
-            전월세·매매가에 미치는 영향을 두고 의견이 갈립니다.
+            <strong>「초고가 기준 30억·50억 확정」</strong> — 단일 과세선이 아니라 가액 구간별 세율 인상 구조입니다.
           </li>
           <li>
             <strong>「다주택 중과와 이번 개편이 같다」</strong> — 5월 재시행된 다주택 중과와 별개로, 이번은 보유세·1주택
-            양도 공제 쪽 논의입니다.
+            양도 공제 쪽 개편입니다.
           </li>
         </ul>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-hcgi-checklist">
         <h2 id="guide-hcgi-checklist" className="text-foreground text-xl font-semibold tracking-tight">
-          개편안 발표 전 체크리스트
+          개편안 대응 체크리스트
         </h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[30rem] border-collapse text-left text-sm">
@@ -715,7 +749,7 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 text-left font-medium">
-                  7월 세제개편안 공정시장가액비율·세율 변경 여부
+                  8·3 정부안 공정시장가액비율·기본공제·시행 시점
                 </th>
                 <td className="border-border border-b px-3 py-2.5 text-center">□</td>
               </tr>
@@ -729,8 +763,8 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ 세제개편안 내용·시행일은 정부 발표 및 국회 심의 결과에 따라 달라집니다. 정부안 공개 후 본 가이드를
-          갱신할 예정이며, 확정 세액은 홈택스(hometax.go.kr) 또는 관할 세무과에서 확인할 것을 권장합니다.
+          ※ 8·3 정부안은 국회 심의·시행령 확정 과정에서 변경될 수 있습니다. 확정 세액은 홈택스(hometax.go.kr) 또는 관할
+          세무과에서 확인할 것을 권장합니다.
         </p>
       </section>
 

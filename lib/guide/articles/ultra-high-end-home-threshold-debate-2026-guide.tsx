@@ -4,8 +4,8 @@ export const ultraHighEndHomeThresholdDebate2026GuideMeta = {
   slug: "ultra-high-end-home-threshold-debate-2026-guide",
   title: "초고가 주택 기준, 30억? 43억? 50억? | 보유세 과세선 논쟁",
   description:
-    "2026년 7월 기준 초고가 주택 기준 논쟁 정리. 현행 고가주택 기준(양도세 12억·종부세 12/9억), 새로 거론되는 30·43·50억 과세선, 시세-공시가격 환산(현실화율 69%), 기준별 과세 대상 규모와 일정을 정리했습니다. 예상·미확정.",
-  updated: "2026년 7월 17일",
+    "2026년 8월 3일 정부안 기준 초고가 주택 과세. 시세 30·43·50억 논쟁과 정부안 가액 구간별 세율 인상(시가 40억+), 거주 14억·비거주 9억 기본공제, 시세-공시 환산을 정리했습니다.",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function UltraHighEndHomeThresholdDebate2026GuideBody() {
@@ -13,18 +13,17 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-uheh-intro">
         <h2 id="guide-uheh-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 17일 기준
+          2026년 8월 3일 정부안 기준
         </h2>
         <p>
-          정부가 <strong>초고가 1주택 보유세 강화</strong>를 검토하면서, 「어느 가격부터 초고가로 볼 것인가」가
-          쟁점이 됐습니다. 30억·43억·50억 등 숫자가 오가는데, 사실 <strong>「초고가 주택」이라는 하나의 법적
-          정의는 없습니다.</strong> 세목마다 고가주택 기준이 따로 있고, 이번에 새로 그으려는 과세선이 별도로
-          논의되는 것입니다.
+          7월 논의 때 거론됐던 시세 30·43·50억 <strong>단일 과세선</strong>은 8·3 정부안에 그대로 담기지
+          않았습니다. 대신 종부세 과세 체계를 <strong>주택 수 → 가액·거주 여부</strong> 중심으로 바꾸고, 과표
+          12억 원 초과 구간부터 세율을 단계 인상해 <strong>시가 40억 원대부터</strong> 보유세 부담이 본격
+          늘어나도록 설계했습니다.
         </p>
         <p>
-          이 글은 <strong>현행 고가주택 기준</strong>과 <strong>새로 거론되는 초고가 과세선(30·43·50억)</strong>을
-          구분해 정리하고, 시세와 공시가격의 차이·기준별 대상 규모·일정까지 짚습니다. 아래 내용은{" "}
-          <strong>발표 전 예상·논의 정리</strong>이며, 확정 세법이 아닙니다. 개편안이 나오면 갱신할 예정입니다.{" "}
+          이 글은 <strong>발표 전 논의(30·43·50억)</strong>와 <strong>8·3 정부안 확정 내용</strong>을 구분해
+          정리합니다. 「초고가 주택」이라는 법적 단일 정의는 여전히 없으며, 세목마다 기준이 다릅니다.{" "}
           <Link
             href="/comprehensive-property-tax-calculator"
             className="text-primary underline-offset-4 hover:underline"
@@ -38,12 +37,12 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="예상 정리 안내"
+        aria-label="정부안 안내"
       >
-        <p className="text-foreground font-medium">※ 예상·논의 정리 · 발표 후 업데이트 예정</p>
+        <p className="text-foreground font-medium">※ 8·3 정부안 · 국회 심의 전</p>
         <p className="mt-2">
-          30·43·50억 등 초고가 기준은 <strong>확정된 세법이 아닙니다.</strong> 7월 말 세제개편안·국회 심의 결과에
-          따라 달라질 수 있습니다.
+          정부안은 30·50억 등 <strong>단일 기준선</strong> 대신 <strong>가액 구간별 세율 인상</strong>을 택했습니다.
+          국회 심의에서 조정될 수 있습니다.
         </p>
       </aside>
 
@@ -194,7 +193,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              거론되는 기준선(미확정)
+              7월 논의 때 거론됐던 기준선(8·3 정부안과 다름)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -393,9 +392,11 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium whitespace-nowrap">
-                  2026년 7월 말(예정)
+                  2026년 8월 3일
                 </th>
-                <td className="px-3 py-2.5">정부 세제개편안 발표(초고가 기준 포함 여부 주목)</td>
+                <td className="px-3 py-2.5">
+                  세제개편안 확정·발표 — 가액 구간별 세율 인상, 거주 14억·비거주 9억 기본공제, 공정비율 70%·80%
+                </td>
               </tr>
             </tbody>
           </table>
@@ -406,7 +407,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
             href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
-            2026년 7월 부동산 세제개편 예상 총정리
+            2026년 부동산 세제개편안 총정리
           </Link>
           , 주택 수 vs 가액 과세 형평성은{" "}
           <Link
@@ -444,7 +445,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-uheh-checklist">
         <h2 id="guide-uheh-checklist" className="text-foreground text-xl font-semibold tracking-tight">
-          발표 전 확인 순서
+          8·3 정부안 대응 확인 순서
         </h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[30rem] border-collapse text-left text-sm">
@@ -482,7 +483,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 text-left font-medium">
-                  7월 말 세제개편안·시행일 확인 후 재계산
+                  8·3 정부안·국회 심의·시행일 확인 후 재계산
                 </th>
                 <td className="px-3 py-2.5 text-center">□</td>
               </tr>
@@ -491,7 +492,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
         </div>
         <p className="text-muted-foreground text-sm">
           ※ 초고가 기준·세율·시행일은 정부 발표 및 국회 심의 결과에 따라 달라집니다. 정확한 세액은
-          홈택스(hometax.go.kr)·관할 지자체 고지에서 확인하세요. 본 가이드는 발표 후 갱신할 예정입니다.
+          홈택스(hometax.go.kr)·관할 지자체 고지에서 확인하세요. 8·3 정부안은 국회 심의 전입니다.
         </p>
       </section>
 
@@ -513,7 +514,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
             href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
-            → 7월 세제개편 예상 배경·정부 발언·OECD 권고는 세제개편 예상 가이드에서 확인하세요.
+            → 세제개편 배경·8·3 정부안 전체는 세제개편안 총정리 가이드에서 확인하세요.
           </Link>
         </p>
         <p>

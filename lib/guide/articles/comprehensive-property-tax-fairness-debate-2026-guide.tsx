@@ -4,8 +4,8 @@ export const comprehensivePropertyTaxFairnessDebate2026GuideMeta = {
   slug: "comprehensive-property-tax-fairness-debate-2026-guide",
   title: "30억 1채 vs 10억 3채, 종부세 왜 다른가 | 주택 수 과세 형평성",
   description:
-    "2026년 7월 기준 같은 30억이라도 초고가 1주택과 10억 3주택의 종부세가 갈리는 이유(기본공제·재산세 공정·중과세율·세액공제·세부담상한), 주택 수 기준 과세 형평성 논쟁, 「똘똘한 한 채」와 세제개편 방향을 표로 정리했습니다.",
-  updated: "2026년 7월 17일",
+    "2026년 8월 3일 정부안 기준 같은 30억이라도 초고가 1주택과 10억 3주택의 종부세가 갈리는 이유(기본공제·재산세 공정·중과세율·세액공제·세부담상한), 주택 수→가액 과세 전환, 「똘똘한 한 채」와 세제개편 방향을 표로 정리했습니다.",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
@@ -13,7 +13,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-cptfd-intro">
         <h2 id="guide-cptfd-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 8월 3일 정부안 기준
         </h2>
         <p>
           「공시가격 <strong>30억 원 아파트 한 채</strong>」와 「<strong>공시 10억 원 아파트 세 채</strong>」는 재산
@@ -280,7 +280,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
           다르다」는 논쟁이 나오는 지점입니다.
         </p>
         <p className="text-muted-foreground text-sm">
-          공시가격대별 1주택 연간 보유세(60%·80%·100% 가정)는{" "}
+          공시가격대별 1주택 연간 보유세(60%·70%·80% 정부안)는{" "}
           <Link
             href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
@@ -387,16 +387,16 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-cptfd-direction">
         <h2 id="guide-cptfd-direction" className="text-foreground text-xl font-semibold tracking-tight">
-          정부·OECD가 말한 방향
+          8·3 정부안과 형평성 논쟁
         </h2>
         <p>
-          2026년 들어 정부와 OECD 모두 <strong>주택 수보다 가액·실거주 중심</strong> 과세로 무게를 옮기는 방향을
-          언급했습니다. 다만 <strong>확정된 세법 변경은 아닙니다.</strong>
+          8·3 정부안은 형평성 논쟁의 핵심인 <strong>주택 수 → 가액·거주 중심</strong> 과세 전환을 담았습니다. 국회
+          심의 전이지만 방향은 확정됐습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              형평성 논쟁과 맞닿은 언급(미확정)
+              8·3 정부안 핵심(형평성 관련)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -411,10 +411,10 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  정부(7월 세제개편 예고)
+                  정부(8·3 세제개편안)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  실거주 중심 과세, 보유세·거래세 균형, 비실거주·초고가 부담 강화 검토
+                  주택 수 기준 폐지·가액 중심 일원화, 1주택 고가도 다주택 수준 세율, 거주 14억·비거주 9억 차등
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -434,7 +434,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
             href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
-            2026년 7월 부동산 세제개편 예상 총정리
+            2026년 부동산 세제개편안 총정리
           </Link>
           에서 다룹니다. 개편안이 확정되면 본문 수치를 갱신할 예정입니다.
         </p>
@@ -509,7 +509,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 text-left font-medium">
-                  7월 말 세제개편안·시행일 확인 후 재계산
+                  8·3 정부안·국회 심의·시행일 확인 후 재계산
                 </th>
                 <td className="px-3 py-2.5 text-center">□</td>
               </tr>

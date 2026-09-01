@@ -19,7 +19,7 @@ export function AnnualSalaryMortgageLimitDsrBody() {
         <p>
           연봉에 따른 주택담보대출 한도는 <strong>DSR 40%</strong> 규제를 기준으로 산출됩니다. DSR 40%란 연간 원리금 상환액이
           연소득의 40%를 초과할 수 없다는 규제입니다. 아래 표는 <strong>기존 부채 없음·금리 4%·30년</strong> 같은 단순 가정 하의
-          참고값이며, 실제로는 <strong>스트레스 DSR</strong>(지방은 2026년 하반기 1.50%p 가산 검토),{" "}
+          참고값이며, 실제로는 <strong>스트레스 DSR</strong>(지방 비규제지역 2026년 하반기 2단계 0.75%p 유지),{" "}
           <abbr title="담보인정비율">LTV</abbr>(규제지역 무주택 40% 등), 주담대 <strong>6억 원</strong> 상한, 일부 은행
           자체 한도(예: KB국민은행 3억 원)가 한도를 더 줄입니다.
         </p>

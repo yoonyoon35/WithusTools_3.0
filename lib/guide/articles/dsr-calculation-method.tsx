@@ -5,7 +5,7 @@ export const dsrCalculationMethodMeta = {
   title: "총부채원리금상환비율(DSR) 계산 방법",
   description:
     "DSR의 정의·기본 계산식, 포함 부채 범위, 계산 예시, 한도별 주담대 월 상환 여유, 소득 유형별 산정 방식을 표로 정리했습니다.",
-  updated: "2026년 8월 1일",
+  updated: "2026년 6월 30일",
 } as const;
 
 export function DsrCalculationMethodBody() {
@@ -290,7 +290,8 @@ export function DsrCalculationMethodBody() {
         </h2>
         <p>
           DSR 40% 이내라도 심사 시에는 <strong>스트레스 DSR</strong>으로 더 높은 금리를 적용해 한도를 줄이는 경우가 많습니다.
-          2026년 7월 기준 수도권·규제지역은 명목 3.0%p 가산 등이 적용되며, 지방은 하반기 1.50%p 강화가 검토 중입니다. LTV와
+          2026년 하반기(7월 1일~12월 31일)에도 지방 비규제지역 주담대는 <strong>2단계 스트레스 DSR(0.75%p)</strong>이
+          유지됩니다. 수도권·규제지역은 3단계(3.0%p)입니다. LTV와
           함께{" "}
           <Link href="/guide/stress-dsr-explained" className="text-primary underline-offset-4 hover:underline">
             스트레스 DSR

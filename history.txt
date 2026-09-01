@@ -801,3 +801,18 @@ Phase 4 daechulija.com 301 완료
         - 주택 구입 부대비용·주담대 신청 서류: 동탄·기흥·구리 2주택 취득세·셀러 파이낸싱 체크리스트
         - 1주택자 취득세: 조정지역 2주택 8% 중과 섹션·관련 가이드 링크
         - LTV·DTI·DSR 차이: LTV 70% 비규제·무주택 명시, 동탄·기흥·구리 2주택 취득세 메타 갱신
+
+--------------------------------------------------------------------------------------------------------------------
+
+260901
+
+1732 - 전망·미확정 가이드 13편 확정일 기준 갱신 (updated = 정책 발표일, 오늘 날짜 아님)
+        - 세제개편 8건(8/3): holding-capital-gains-tax-increase-2026-guide(허브) 및 파생 7편
+          「7월 예상·검토 중」→「8·3 정부안·국회 심의 전」, 공정비율 70%/80%, 거주14억·비거주9억, 장특공 거주 전환 등
+        - 스트레스 DSR 3건(6/30): dsr-calculation-method, dsr-40-mortgage-limit, annual-salary-mortgage-limit-dsr
+          지방 하반기 1.50%p 검토 → 2단계(0.75%p) 유지 확정
+        - 전세 안심신탁(8/20): jeonse-safe-trust-program-2026-guide — HUG·연4%·20억 이하·9월 공고 일정
+        - 직거래 플랫폼(5/7): online-direct-trade-platform-precautions-2026-guide — 거래신고법 통과·확인의무·과태료
+        - 장기전세 만기(8/26): long-term-jeonse-20-year-maturity-2026-guide — 연장·분양전환 불가 재확인
+        - 민영 청약(6/15): private-housing-subscription-eligibility-2026-guide — 신생아 특공 시행
+        - 미갱신: 풍선효과(6/30 규제 확정·시장 분석), 변동/고정금리(개인 선택 가이드)

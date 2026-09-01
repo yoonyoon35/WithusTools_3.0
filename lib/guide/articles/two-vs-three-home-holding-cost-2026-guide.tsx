@@ -4,8 +4,8 @@ export const twoVsThreeHomeHoldingCost2026GuideMeta = {
   slug: "two-vs-three-home-holding-cost-2026-guide",
   title: "2주택 vs 3주택, 몇 채까지 버틸 수 있나",
   description:
-    "2026년 7월 기준 2주택·3주택 이상 보유세(재산세·종부세)·양도세 중과·대출 규제 차이, 공시 23억·33억 연간 부담 비교, 2채로 줄이기 판단 기준과 7월 세제개편 리스크를 표로 정리했습니다.",
-  updated: "2026년 7월 11일",
+    "2026년 8월 3일 정부안 기준 2주택·3주택 이상 보유세(재산세·종부세)·양도세 중과·대출 규제 차이, 공시 23억·33억 연간 부담 비교, 2채로 줄이기 판단 기준과 세제개편 리스크를 표로 정리했습니다.",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function TwoVsThreeHomeHoldingCost2026GuideBody() {
@@ -13,7 +13,7 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-tvth-intro">
         <h2 id="guide-tvth-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 9일 기준
+          2026년 8월 3일 정부안 기준
         </h2>
         <p>
           「두 채는 버텨도 세 채는 무리」라는 말이 나올 만큼, 다주택자 사이에서 <strong>2주택과 3주택
@@ -104,7 +104,7 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
           </li>
           <li>
             <a href="#guide-tvth-july-reform" className="text-primary underline-offset-4 hover:underline">
-              7월 세제개편 리스크
+              8·3 세제개편 리스크
             </a>
           </li>
           <li>
@@ -597,17 +597,16 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-tvth-july-reform">
         <h2 id="guide-tvth-july-reform" className="text-foreground text-xl font-semibold tracking-tight">
-          7월 세제개편 — 보유세·양도세 동시 변수
+          8·3 세제개편 — 보유세·양도세 동시 변수
         </h2>
         <p>
-          정부는 7월 말 세제개편안에서 <strong>실거주 중심</strong> 방향을 예고했습니다. 보유 기간보다
-          거주 여부, 다주택·비거주 보유에 대한 기준 조정, 공정시장가액비율·장기보유특별공제 손질이 거론됩니다.
-          확정 전이지만 다주택자는 아래 항목에 촉각을 곤두세울 필요가 있습니다.
+          8·3 정부안은 <strong>실거주 중심</strong> 과세로, 다주택·비거주 보유에 대한 공정비율·세율 인상과
+          장특공 거주 중심 전환을 담았습니다. 다주택자는 아래 항목에 촉각을 곤두세울 필요가 있습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              검토 중인 변화(2026년 7월 8일 기준·미확정)
+              정부안 핵심(2026년 8월 3일)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -622,40 +621,44 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  공정시장가액비율 상향
+                  공정시장가액비율
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  재산세·종부세 과세표준 동시 상승. 고가·다주택일수록 체감 큼
+                  3주택·조정지역 60%→70%→80%(2027~2028). 과세표준 상승
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  비실거주 장특공 축소
+                  가액 구간 세율
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  임대·투자용 장기 보유 시 양도세 혜택 축소 가능
+                  과표 12억 초과 구간 세율 단계 인상(고가일수록 체감)
                 </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  양도세 중과
+                </th>
+                <td className="border-border border-b px-3 py-2.5">2027~2028년 한시 완화(매도 기회)</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  보유세·거래세 균형
+                  장특공
                 </th>
-                <td className="px-3 py-2.5">
-                  버티기 유인은 보유세 쪽, 매도 유인은 거래세 쪽으로 재조정 검토
-                </td>
+                <td className="px-3 py-2.5">2029년부터 거주기간 공제만, 공제 한도 10억 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          개편안이 확정되면 본문 수치를 갱신할 예정입니다.{" "}
+          국회 심의 결과에 따라 달라질 수 있습니다.{" "}
           <Link
             href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
-            2026년 7월 부동산 세제개편 예상 총정리
+            2026년 부동산 세제개편안 총정리
           </Link>
-          에서 확정·검토·현행을 구분해 볼 수 있습니다.
+          에서 정부안·현행을 구분해 볼 수 있습니다.
         </p>
       </section>
 
@@ -705,7 +708,7 @@ export function TwoVsThreeHomeHoldingCost2026GuideBody() {
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 text-left font-medium">
-                  5. 7월 말 세제개편안·시행일 확인 후 재계산
+                  5. 8·3 정부안·국회 심의·시행일 확인 후 재계산
                 </th>
                 <td className="px-3 py-2.5 text-center">□</td>
               </tr>

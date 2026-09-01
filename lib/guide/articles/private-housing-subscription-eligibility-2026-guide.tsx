@@ -5,7 +5,7 @@ export const privateHousingSubscriptionEligibility2026GuideMeta = {
   title: "민영주택 청약 자격·재당첨 제한 총정리",
   description:
     "2026년 7월 기준 민영주택 일반공급 청약 자격, 무주택·세대원 주택 소유 판정, 재당첨 제한 기간, 가점제·추첨제 비율, 당첨 후 전매·실거주 의무와 청약 전 확인 순서를 정리했습니다.",
-  updated: "2026년 7월 16일",
+  updated: "2026년 6월 15일",
 } as const;
 
 export function PrivateHousingSubscriptionEligibility2026GuideBody() {
@@ -462,8 +462,9 @@ export function PrivateHousingSubscriptionEligibility2026GuideBody() {
         <p>
           논란의 초점은 「불법 당첨」 여부보다, <strong>추첨으로 열린 기회가 고가 단지에서 현금 여력 있는 신청자에게
           실질적으로 유리</strong>하다는 점입니다. 분양가는 상한제로 낮지만 계약금·중도금·잔금 준비가 관건이고, 당첨
-          후 시세 차이가 크면 「로또 청약」으로 불릴 수 있습니다. 제도 개편 논의는 진행 중일 수 있으므로,{" "}
-          <strong>확정된 규정이 아닌 모집공고·국토교통부 발표</strong>를 기준으로 판단하세요.
+          후 시세 차이가 크면 「로또 청약」으로 불릴 수 있습니다. 2026년 6월 15일부터 민영주택{" "}
+          <strong>신생아 특별공급(전체 10%)</strong>이 시행됐으므로,{" "}
+          <strong>모집공고·국토교통부 발표</strong>를 기준으로 판단하세요.
         </p>
       </section>
 

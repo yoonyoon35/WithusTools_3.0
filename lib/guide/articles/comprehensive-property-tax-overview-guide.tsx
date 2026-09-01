@@ -5,7 +5,7 @@ export const comprehensivePropertyTaxOverviewGuideMeta = {
   title: "종합부동산세란? 재산세·지방교육세·종부세·농특세 한 번에 정리",
   description:
     "2026년 기준 보유세 4종(재산세·지방교육세·종합부동산세·농어촌특별세) 구조, 6월 1일 과세 기준·7월·12월 납부, 공정시장가액비율·기본공제, 취득세·양도세와의 차이, 1세대 1주택 공시가격별 연간 보유세 예시를 표로 정리했습니다.",
-  updated: "2026년 7월 2일",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function ComprehensivePropertyTaxOverviewGuideBody() {
@@ -432,8 +432,9 @@ export function ComprehensivePropertyTaxOverviewGuideBody() {
           </table>
         </div>
         <p>
-          2026년 6~7월 정부가 종부세 공정시장가액비율 인상을 검토한다는 보도가 있었으나, <strong>7월 2일 현재 법령상
-          60%가 그대로</strong>입니다. 인상 시나리오별 금액은{" "}
+          8·3 정부안은 종부세 공정시장가액비율을 2027년 <strong>70%</strong>, 3주택·조정지역은 2028년{" "}
+          <strong>80%</strong>까지 단계 인상합니다. <strong>현재 법령상 60%가 그대로</strong> 적용 중입니다. 시나리오별
+          금액은{" "}
           <Link
             href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
@@ -1004,7 +1005,7 @@ export function ComprehensivePropertyTaxOverviewGuideBody() {
               href="/guide/holding-capital-gains-tax-increase-2026-guide"
               className="text-primary font-medium underline-offset-4 hover:underline"
             >
-              보유세·양도세 강화 검토 동향
+              8·3 세제개편안 총정리
             </Link>
           </li>
           <li>

@@ -5,7 +5,7 @@ export const propertyTaxVsComprehensivePropertyTaxFairRatioGuideMeta = {
   title: "재산세 공정 45% vs 종부세 공정 60%… 왜 세금이 두 번 나오나",
   description:
     "2026년 기준 재산세·종부세 공정시장가액비율(45%·60%) 차이, 과세표준·기본공제, 7월·12월 이중 고지 이유, 공제할 재산세(시행령 제4조의2) 산식과 공시 20억·1세대1주택·2주택 비교 예시를 표로 정리했습니다.",
-  updated: "2026년 7월 2일",
+  updated: "2026년 8월 3일",
 } as const;
 
 export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
@@ -348,8 +348,8 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
 공시 20억·2주택 → (20억−9억)×60% = 6.6억`}
         </p>
         <p>
-          공정시장가액비율 인상(80%·100% 등) 검토는 <strong>종부세 쪽</strong> 이야기입니다. 재산세 공정 45%와는
-          별개로 움직입니다.{" "}
+          8·3 정부안은 종부세 공정시장가액비율을 1주택 <strong>70%</strong>, 3주택·조정지역 <strong>80%</strong>까지
+          단계 인상합니다. 재산세 공정 45%와는 별개입니다.{" "}
           <Link
             href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
             className="text-primary underline-offset-4 hover:underline"

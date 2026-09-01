@@ -4,8 +4,8 @@ export const onlineDirectTradePlatformPrecautions2026GuideMeta = {
   slug: "online-direct-trade-platform-precautions-2026-guide",
   title: "온라인 직거래 플랫폼 이용 시 주의사항",
   description:
-    "2026년 4월 기준 직거래 플랫폼 통계·피해 유형, 플랫폼별 특징, 계약 전 확인·입금·전세·규제·피해 대응·안전 체크리스트를 표로 정리했습니다.",
-  updated: "2026년 5월 11일",
+    "2026년 5월 7일 국회 통과 부동산거래신고법 개정. 직거래 플랫폼 소유자 확인 의무·500만원 이하 과태료(공포 후 1년 시행), 허위매물·필수정보 표시 의무, 당근마켓 등 이용 시 확인 순서를 정리했습니다.",
+  updated: "2026년 5월 7일",
 } as const;
 
 export function OnlineDirectTradePlatformPrecautions2026GuideBody() {
@@ -311,8 +311,11 @@ export function OnlineDirectTradePlatformPrecautions2026GuideBody() {
           직거래 플랫폼 규제 현황
         </h2>
         <p>
-          플랫폼 사업자에게 소유자 확인 의무와 과태료 부과가 도입될 전망입니다. 현재는 플랫폼이 허위 매물에 대한 법적 책임을 지지
-          않으므로 피해가 발생해도 플랫폼에 보상을 청구하기 어렵습니다.
+          2026년 5월 7일 국회 본회의를 통과한 <strong>부동산거래신고법</strong> 개정안에 따라, 플랫폼 운영사업자는
+          게시자 신원·매물 소유자 관계 <strong>확인 의무</strong>가 생깁니다. 위반 시 <strong>500만원 이하
+          과태료</strong>입니다. 공포 후 <strong>1년</strong> 뒤 시행(시스템 구축 기간)이며, 허위매물·부당 광고 금지는
+          공포 후 6개월 뒤 적용됩니다. 시행 전까지도 플랫폼이 허위 매물에 대한 법적 배상 책임을 지지 않으므로, 피해
+          예방은 이용자가 직접 확인해야 합니다.
         </p>
       </section>
 
