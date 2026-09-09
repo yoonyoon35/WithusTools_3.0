@@ -5,7 +5,7 @@ export const brokerageFeeRates2026GuideMeta = {
   title: "2026년 부동산 중개수수료 요율표 완전 정리",
   description:
     "2026년 기준 매매·전세·월세 환산·오피스텔 중개수수료 상한요율과 유형별 비교표를 정리했습니다. VAT 포함 여부, 절약 방법, 중개수수료 계산기로 예상 금액을 확인할 수 있습니다. 관할 고시·협의 금액·부가세는 개별 확인이 필요한 참고 자료이며 계약 전 비교용으로 활용하세요.",
-  updated: "2026년 4월 28일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function BrokerageFeeRates2026GuideBody() {
@@ -374,6 +374,69 @@ export function BrokerageFeeRates2026GuideBody() {
           매매 시 중개보수는 매도인과 매수인으로부터 각각 받으며, 임대차 시에는 임대인과 임차인이 각각 부담하는 것이 원칙입니다.
           쌍방이 동일 상한요율을 각각 적용받으므로 하나의 거래에서 공인중개사가 받는 총 수수료는 요율표 금액의 2배가 됩니다.
         </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-bfr-commercial">
+        <h2 id="guide-bfr-commercial" className="text-foreground text-xl font-semibold tracking-tight">
+          상가·점포(주택·오피스텔 외) 임대차
+        </h2>
+        <p>
+          <strong>상가</strong> 등 주택·오피스텔이 아닌 부동산은 위 「주택 매매·전세」 표와 <strong>다른 요율</strong>이
+          적용됩니다. 관할 지자체 고시·중개사무소 <strong>게시 요율표</strong>를 확인하고,{" "}
+          <Link href="/brokerage-fee-calculator" className="text-primary underline-offset-4 hover:underline">
+            중개수수료 계산기
+          </Link>
+          에서 <strong>주택·오피스텔 외</strong>를 선택해 참고할 수 있습니다(서울시 기준 등).
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              상가 임대차·권리금 거래 시 참고
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  항목
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  참고
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  거래금액
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  임대차는 <strong>보증금 + 월세 환산</strong>(전·월세 환산 규칙). <strong>권리금은 포함하지 않음</strong>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  부담 주체
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>임대인 + 신규 임차인</strong> 각각(쌍방). 기존 임차인 퇴거·점포 승계 시 복비는{" "}
+                  <Link
+                    href="/guide/jeonse-renewal-brokerage-fee-guide#guide-jrbf-commercial-key-money"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    상가·권리금·복비
+                  </Link>
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  상한
+                </th>
+                <td className="px-3 py-2.5">
+                  법정 상한 이내 협의. <strong>「성공보수」</strong> 등 명목으로 상한 초과 청구 불가
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-bfr-vat">

@@ -5,7 +5,7 @@ export const leaseContractWithoutBrokerGuideMeta = {
   title: "공인중개사 없이 계약서 작성하는 방법",
   description:
     "직접 작성 전 확인 서류, 필수 기재사항, 표준양식 다운로드, 전입·확정일자, 전월세 신고, 보증금 보호 조치를 표로 정리했습니다.",
-  updated: "2026년 4월 28일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function LeaseContractWithoutBrokerGuideBody() {
@@ -381,6 +381,80 @@ export function LeaseContractWithoutBrokerGuideBody() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-lcwb-key-money-brokerage">
+        <h2 id="guide-lcwb-key-money-brokerage" className="text-foreground text-xl font-semibold tracking-tight">
+          상가 권리금과 중개수수료(복비) 구분
+        </h2>
+        <p>
+          상가·점포를 <strong>양도·승계</strong>할 때 <strong>권리금</strong>과 <strong>중개수수료</strong>는{" "}
+          <strong>별도</strong>입니다. 권리금은 통상 <strong>기존 임차인 ↔ 신규 임차인</strong> 간 협의하고, 복비는{" "}
+          <strong>공인중개사 중개</strong>에 대한 대가입니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              권리금 vs 복비
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  구분
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  성격
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  누가·무엇을
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  권리금
+                </th>
+                <td className="border-border border-b px-3 py-2.5">임차인 간 점포·영업 가치 대가</td>
+                <td className="border-border border-b px-3 py-2.5">금액·지급은 당사자 협의. 임대인 승낙·재계약 별도 확인</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  중개수수료
+                </th>
+                <td className="border-border border-b px-3 py-2.5">중개사 법정 상한 이내 보수</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  임대차 원칙 <strong>임대인 + 임차인(신규)</strong> 각각.{" "}
+                  <Link
+                    href="/guide/brokerage-fee-rates-2026-guide#guide-bfr-commercial"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    상가 요율
+                  </Link>
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  묵시적 갱신 중 교체
+                </th>
+                <td className="px-3 py-2.5">새 임대차 중개 시 복비 발생 가능</td>
+                <td className="px-3 py-2.5">
+                  <Link
+                    href="/guide/jeonse-renewal-brokerage-fee-guide#guide-jrbf-commercial-key-money"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    기존 임차인 복비 면제
+                  </Link>{" "}
+                  등 참고
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-muted-foreground text-sm">
+          ※ 중개 의뢰 계약에 「기존 임차인 + 신규 임차인」만 부담한다고 적혀 있어도, 위 원칙과 다르면{" "}
+          <strong>중개 계약·관할 지회</strong> 확인을 권장합니다.
+        </p>
       </section>
 
       <section className="space-y-3" aria-labelledby="guide-lcwb-effect">

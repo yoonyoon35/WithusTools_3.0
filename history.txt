@@ -828,3 +828,9 @@ Phase 4 daechulija.com 301 완료
         - capital-gains-overview: 형제·자매 지분 양도 (#guide-cgto-sibling-share)
         - private-housing-subscription: 증여 지분 처분 후 청약 (#guide-phse-gift-share)
         - llms-full.txt 재생성
+
+2138 - 상가·권리금·점포 승계 복비 — 기존 가이드 FAQ 보강
+        - jeonse-renewal-brokerage-fee: 상가 묵시적 갱신·임차인 교체 (#guide-jrbf-commercial-key-money)
+        - brokerage-fee-rates: 상가·주택외 요율·권리금 미포함 (#guide-bfr-commercial)
+        - lease-contract-without-broker: 권리금 vs 복비 구분 (#guide-lcwb-key-money-brokerage)
+        - llms-full.txt 재생성
