@@ -5,7 +5,7 @@ export const privateHousingSubscriptionEligibility2026GuideMeta = {
   title: "민영주택 청약 자격·재당첨 제한 총정리",
   description:
     "2026년 7월 기준 민영주택 일반공급 청약 자격, 무주택·세대원 주택 소유 판정, 재당첨 제한 기간, 가점제·추첨제 비율, 당첨 후 전매·실거주 의무와 청약 전 확인 순서를 정리했습니다.",
-  updated: "2026년 6월 15일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function PrivateHousingSubscriptionEligibility2026GuideBody() {
@@ -196,6 +196,35 @@ export function PrivateHousingSubscriptionEligibility2026GuideBody() {
         <p className="text-muted-foreground text-sm">
           ※ 세대 분리·직계존속 주택 보유 등 예외는 단지·공급 유형마다 다릅니다. 청약홈 자격확인과 해당 모집공고의
           「청약 자격」란을 함께 보세요.
+        </p>
+        <h3 id="guide-phse-gift-share" className="text-foreground text-base font-semibold">
+          부모 증여 공유 지분만 보유한 경우
+        </h3>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          부모 <strong>증여</strong>로 50% 등 <strong>공유 지분</strong>만 있어도 가점제는{" "}
+          <strong>무주택세대구성원</strong> 요건에서 탈락할 수 있습니다. 형제·자매에게 지분을 넘겨 등기상{" "}
+          <strong>0%</strong>가 되면 <strong>현재 무주택</strong> 청약 재조회가 가능하지만,{" "}
+          <Link
+            href="/guide/first-time-homebuyer-benefits-2026#guide-first-home-gift-share"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            생애최초·특별공급
+          </Link>
+          은 <strong>과거 소유 이력</strong>을 별도로 봅니다. 지분 이전·세금은{" "}
+          <Link
+            href="/guide/inherited-housing-acquisition-tax-2026-guide#guide-inh-gift-share-transfer"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            증여 공유 지분 양도
+          </Link>
+          ·
+          <Link
+            href="/guide/capital-gains-tax-overview-guide#guide-cgto-sibling-share"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            형제·자매 지분 양도세
+          </Link>
+          를 참고하세요.
         </p>
       </section>
 

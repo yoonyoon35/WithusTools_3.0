@@ -360,7 +360,6 @@ import {
   LongTermJeonse20YearMaturity2026GuideBody,
   longTermJeonse20YearMaturity2026GuideMeta,
 } from "@/lib/guide/articles/long-term-jeonse-20-year-maturity-2026-guide";
-
 export type GuideArticle = {
   slug: string;
   title: string;

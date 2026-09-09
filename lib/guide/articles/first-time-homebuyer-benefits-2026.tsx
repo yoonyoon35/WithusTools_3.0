@@ -5,7 +5,7 @@ export const firstTimeHomebuyerBenefits2026Meta = {
   title: "생애최초 주택 구입자 혜택 정리",
   description:
     "2026년 4월 기준 생애최초 주택 구입자 대상 대출·취득세·청약 혜택과 필수 확인사항을 표 중심으로 정리했습니다.",
-  updated: "2026년 7월 8일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function FirstTimeHomebuyerBenefits2026Body() {
@@ -175,6 +175,96 @@ export function FirstTimeHomebuyerBenefits2026Body() {
         <p className="text-muted-foreground text-sm">
           ※ 대출 한도 및 금리는 신청 시점 기준으로 변동될 수 있습니다. 정확한 조건은 주택도시기금(myhome.go.kr) 및 한국주택금융공사(hf.go.kr)에서
           확인할 것을 권장합니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-first-home-gift-share">
+        <h2 id="guide-first-home-gift-share" className="text-foreground text-xl font-semibold tracking-tight">
+          부모 증여 공유 지분만 보유한 경우
+        </h2>
+        <p>
+          부모님 <strong>증여</strong>로 아파트 <strong>50:50 공유</strong> 등기를 받았는데, 한쪽은{" "}
+          <strong>실거주·담보대출</strong> 중이고 다른 쪽은 <strong>지분만 보유</strong>하는 경우가 있습니다. 실거주·대출
+          여부와 관계없이 <strong>등기상 본인 지분</strong>이 있으면 과거 주택 소유 이력·현재 무주택 판정 모두에 영향을
+          줄 수 있습니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              지분 50%를 형제·자매에게 넘긴 뒤 — 무엇이 달라지나
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  구분
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  지분 보유 중
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  지분 0%·등기 완료 후
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  생애최초(과거 이력)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">증여 지분 = 소유 이력</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>자동 복구 기대는 어려움</strong>.{" "}
+                  <Link
+                    href="/guide/first-home-acquisition-tax-relief-guide#guide-fhatr-exception"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    무주택 예외
+                  </Link>
+                  (상속·소형 단독 등) 해당 여부는 구청 확인
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  청약·현재 무주택
+                </th>
+                <td className="border-border border-b px-3 py-2.5">1주택(지분) 보유</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  무주택 가능 →{" "}
+                  <Link
+                    href="/guide/private-housing-subscription-eligibility-2026-guide#guide-phse-homeless"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    청약홈 재조회
+                  </Link>
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  세금
+                </th>
+                <td className="px-3 py-2.5" colSpan={2}>
+                  이전 시{" "}
+                  <Link
+                    href="/guide/capital-gains-tax-overview-guide#guide-cgto-sibling-share"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    양도세·취득세·증여세
+                  </Link>
+                  별도. 증여받을 때 낸 취득세와 무관
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-muted-foreground text-sm">
+          ※ 지분 이전 전 대출 은행 동의·등기부 근저당 확인이 필요합니다. 지분별 취득세 구조는{" "}
+          <Link
+            href="/guide/inherited-housing-acquisition-tax-2026-guide#guide-inh-gift-share-transfer"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            공유 지분 취득세(증여·양도)
+          </Link>
+          를 참고하세요.
         </p>
       </section>
 

@@ -5,7 +5,7 @@ export const capitalGainsTaxOverviewGuideMeta = {
   title: "양도소득세란? 과세대상·세율·신고·납부 한 번에 정리",
   description:
     "2026년 기준 국세청 양도소득세 개요를 바탕으로 과세대상·양도차익·기본세율·단기·다주택 중과·비과세·예정·확정신고·분할납부·가산세를 표로 정리했습니다.",
-  updated: "2026년 7월 4일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function CapitalGainsTaxOverviewGuideBody() {
@@ -141,6 +141,75 @@ export function CapitalGainsTaxOverviewGuideBody() {
           <strong>양도</strong>는 등기 여부와 관계없이 매매·교환·현물출자 등 유상으로 소유권이 이전되는 경우를
           말합니다. 부담부증여(채무 인수 증여)도 양도에 해당할 수 있습니다. 반면 배우자·직계존비속 간 매매는 증여
           추정으로 양도세가 아닌 증여세가 과세될 수 있습니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-cgto-sibling-share">
+        <h2 id="guide-cgto-sibling-share" className="text-foreground text-xl font-semibold tracking-tight">
+          형제·자매 간 공유 지분 양도
+        </h2>
+        <p>
+          부모 <strong>증여</strong>로 받은 아파트 <strong>공유 지분</strong>(예: 50%)을 형제·자매에게 넘길 때, 형제·자매는{" "}
+          <strong>직계존비속이 아니므로</strong> 위 「증여 추정」 대상이 아닙니다. <strong>유상 매매</strong>와{" "}
+          <strong>무상 증여</strong>를 구분해 설계해야 합니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              지분 양도 시 검토 세목
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  방식
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  양도자(지분 넘기는 쪽)
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  취득자
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  유상 매매
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  양도가 − 취득가(증여 당시 등) − 필요경비 → <strong>양도소득세</strong>. 지분만 보유·미거주 시 1세1주택
+                  비과세 적용 어려울 수 있음
+                </td>
+                <td className="border-border border-b px-3 py-2.5">
+                  <Link
+                    href="/guide/inherited-housing-acquisition-tax-2026-guide#guide-inh-gift-share-transfer"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    취득세
+                  </Link>
+                  (지분율×가액)
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  무상 증여
+                </th>
+                <td className="px-3 py-2.5">증여세</td>
+                <td className="px-3 py-2.5">증여 취득 취득세 등</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-muted-foreground text-sm">
+          ※ 증여받을 때 낸 취득세와 별개로 <strong>이전 시점</strong> 세금이 발생할 수 있습니다.{" "}
+          <Link href="/capital-gains-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            양도소득세 계산기
+          </Link>
+          ·
+          <Link href="/acquisition-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            취득세 계산기
+          </Link>
+          로 가정 후 세무·지방세 확인을 권장합니다.
         </p>
       </section>
 
@@ -515,6 +584,14 @@ export function CapitalGainsTaxOverviewGuideBody() {
           <li>
             <Link href="/acquisition-tax-calculator" className="text-primary underline-offset-4 hover:underline">
               취득세 계산기
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/guide/inherited-housing-acquisition-tax-2026-guide#guide-inh-gift-share-transfer"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              부모 증여 공유 지분 양도·취득세
             </Link>
           </li>
         </ul>

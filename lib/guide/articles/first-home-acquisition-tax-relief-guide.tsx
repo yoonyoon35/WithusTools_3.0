@@ -5,7 +5,7 @@ export const firstHomeAcquisitionTaxReliefGuideMeta = {
   title: "생애최초 취득세 감면 조건과 신청 방법",
   description:
     "2026년 4월 기준 생애최초 감면 조건, 감면 한도, 매매가별 효과, 예외 요건, 신청·사후 관리(추징), 환급 방법을 표로 정리했습니다.",
-  updated: "2026년 5월 5일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function FirstHomeAcquisitionTaxReliefGuideBody() {
@@ -490,6 +490,18 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
         <p>
           단, 위 예외에 해당하더라도 감면 대상 주택 취득일 전 또는 취득일로부터 3개월 이내에 처분한 경우에 한정합니다. 예외
           무주택 해당 시 등기·매매계약서 등 <strong>처분 증빙</strong>을 추가로 제출해야 할 수 있습니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          <strong>부모 증여</strong>로 받은 공유 지분은 위 「상속 주택」 무주택 예외와 <strong>구분</strong>됩니다. 지분을
+          형제·자매에게 넘겨 <strong>현재 무주택</strong>이 되더라도 <strong>과거 소유 이력</strong>은 별도로 보이므로,
+          생애최초 감면 적용 여부는 관할 구청·위택스에서 확인해야 합니다.{" "}
+          <Link
+            href="/guide/first-time-homebuyer-benefits-2026#guide-first-home-gift-share"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            생애최초 — 부모 증여 공유 지분
+          </Link>
+          도 함께 보세요.
         </p>
       </section>
 

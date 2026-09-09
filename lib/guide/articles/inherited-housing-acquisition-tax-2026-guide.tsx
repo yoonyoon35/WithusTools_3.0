@@ -5,7 +5,7 @@ export const inheritedHousingAcquisitionTax2026GuideMeta = {
   title: "상속 주택 취득세 계산 방법",
   description:
     "2026년 4월 기준 상속 취득세율·과세표준, 매매와의 비교, 공시가격별 예시·공유지분 계산, 주택 수 포함, 추가 취득 시 세율, 납부 기한·가산세, 신고 방법을 표로 정리했습니다.",
-  updated: "2026년 5월 11일",
+  updated: "2026년 9월 9일",
 } as const;
 
 export function InheritedHousingAcquisitionTax2026GuideBody() {
@@ -245,6 +245,14 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
         <h2 id="guide-inh-share" className="text-foreground text-xl font-semibold tracking-tight">
           공유 지분 상속 시 취득세 계산
         </h2>
+        <p className="text-muted-foreground text-sm">
+          아래는 <strong>상속</strong>(취득세율 2.8%) 기준입니다. <strong>부모 증여</strong> 취득·형제·자매 간 지분 이전은
+          하단{" "}
+          <a href="#guide-inh-gift-share-transfer" className="text-primary underline-offset-4 hover:underline">
+            증여 공유 지분 양도
+          </a>
+          를 참고하세요.
+        </p>
         <p>
           여러 상속인이 주택을 공유로 상속받는 경우 각 상속인이 취득하는 지분에 해당하는 세액을 각각 납부합니다.
         </p>
@@ -322,6 +330,74 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-inh-gift-share-transfer">
+        <h2 id="guide-inh-gift-share-transfer" className="text-foreground text-xl font-semibold tracking-tight">
+          부모 증여 공유 지분 — 형제·자매에게 넘길 때
+        </h2>
+        <p>
+          부모 <strong>증여</strong>로 50:50 공유 등기 후, 지분만 보유한 쪽이 실거주 형제·자매에게 <strong>50% 지분</strong>을
+          넘기는 경우입니다. 지분별 과세표준은 위 상속 예시와 같이 <strong>주택 가액 × 지분율</strong>로 나뉩니다. 다만
+          취득 원인·세율은 상속과 다릅니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              지분 50% 이전 방식별 세금(참고)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  방식
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  양도자
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  취득자
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  유상 매매
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  양도차익 있으면{" "}
+                  <Link
+                    href="/guide/capital-gains-tax-overview-guide#guide-cgto-sibling-share"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    양도소득세
+                  </Link>
+                </td>
+                <td className="border-border border-b px-3 py-2.5">
+                  추가 50% 지분 <strong>취득세</strong>(증여 취득 3.5%·매매 1~3% 등, 주택 수·지역별)
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  무상 증여
+                </th>
+                <td className="px-3 py-2.5">증여세 검토</td>
+                <td className="px-3 py-2.5">증여 취득 취득세(일반 3.5% 등)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-muted-foreground text-sm">
+          취득자가 이미 같은 아파트 50%를 보유 중이면 <strong>새 주택 2채째</strong>가 아니라 <strong>지분 확대</strong>에
+          가깝습니다. 담보대출이 걸려 있으면 <strong>은행 동의</strong> 후 등기해야 합니다. 생애최초·청약은{" "}
+          <Link
+            href="/guide/first-time-homebuyer-benefits-2026#guide-first-home-gift-share"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            생애최초 — 부모 증여 공유 지분
+          </Link>
+          을 참고하세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-inh-count">

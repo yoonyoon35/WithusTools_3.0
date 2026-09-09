@@ -816,3 +816,15 @@ Phase 4 daechulija.com 301 완료
         - 장기전세 만기(8/26): long-term-jeonse-20-year-maturity-2026-guide — 연장·분양전환 불가 재확인
         - 민영 청약(6/15): private-housing-subscription-eligibility-2026-guide — 신생아 특공 시행
         - 미갱신: 풍선효과(6/30 규제 확정·시장 분석), 변동/고정금리(개인 선택 가이드)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260909
+
+2021 - 부모 증여 공유 지분 형제·자매 양도 — 기존 가이드 FAQ·예시 보강 (신규 가이드 없음)
+        - first-time-homebuyer: 부모 증여 공유 지분·처분 후 표 (#guide-first-home-gift-share)
+        - first-home-acquisition-tax-relief: 증여 vs 상속 무주택 예외 구분
+        - inherited-housing: 증여 공유 지분 양도·취득세 (#guide-inh-gift-share-transfer)
+        - capital-gains-overview: 형제·자매 지분 양도 (#guide-cgto-sibling-share)
+        - private-housing-subscription: 증여 지분 처분 후 청약 (#guide-phse-gift-share)
+        - llms-full.txt 재생성
