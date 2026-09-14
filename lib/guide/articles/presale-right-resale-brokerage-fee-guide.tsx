@@ -5,7 +5,7 @@ export const presaleRightResaleBrokerageFeeGuideMeta = {
   title: "분양권 전매 중개수수료 계산·요율",
   description:
     "2026년 기준 분양권 전매 중개수수료 산정 방식, 거래금액(계약금+중도금+프리미엄) 공식, 금액별 예시·마이너스 프리미엄·전매제한 유의사항. 중개수수료 계산기로 바로 계산할 수 있습니다.",
-  updated: "2026년 7월 2일",
+  updated: "2026년 9월 14일",
 } as const;
 
 export function PresaleRightResaleBrokerageFeeGuideBody() {
@@ -25,7 +25,14 @@ export function PresaleRightResaleBrokerageFeeGuideBody() {
           <Link href="/guide/apartment-brokerage-fee-guide" className="text-primary underline-offset-4 hover:underline">
             아파트 매매 중개수수료
           </Link>
-          가이드도 함께 참고하세요.
+          가이드도 함께 참고하세요. 분양권 거래와 일반 매매의 차이는{" "}
+          <Link
+            href="/guide/presale-right-capital-gains-tax-guide#guide-prcg-vs-sale"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양권 양도세 가이드
+          </Link>
+          를 참고하세요.
         </p>
       </section>
 
@@ -351,8 +358,15 @@ export function PresaleRightResaleBrokerageFeeGuideBody() {
           반드시 확인해야 합니다.
         </p>
         <p className="text-muted-foreground text-sm">
-          ※ 분양권 중개수수료 계산 기준은 공인중개사법 시행규칙 제20조에 근거합니다. 정확한 요율은 국토교통부(molit.go.kr) 또는
-          한국공인중개사협회(kar.or.kr)에서 확인할 것을 권장합니다.
+          ※ 분양권 중개수수료 계산 기준은 공인중개사법 시행규칙 제20조에 근거합니다. 전매제한·실거주·대출·취득세 시점 등 전체
+          비교는{" "}
+          <Link
+            href="/guide/presale-right-capital-gains-tax-guide#guide-prcg-vs-sale"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양권 거래와 매매 비교
+          </Link>
+          를 참고하세요. 정확한 요율은 국토교통부(molit.go.kr) 또는 한국공인중개사협회(kar.or.kr)에서 확인할 것을 권장합니다.
         </p>
       </section>
 

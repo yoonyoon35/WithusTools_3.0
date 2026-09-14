@@ -5,7 +5,7 @@ export const occupancyRightCapitalGainsTaxGuideMeta = {
   title: "조합원입주권(입주권) 양도소득세 | 종전주택·입주권분 차익·장특공",
   description:
     "2026년 기준 조합원입주권 양도소득세 계산. 관리처분계획인가일 기준 종전주택·입주권분 차익 분리, 1세1주택 12억 안분, 표2 장특공(인가 전분), 조합원권리가액·계산 예시를 정리했습니다.",
-  updated: "2026년 7월 4일",
+  updated: "2026년 9월 14일",
 } as const;
 
 export function OccupancyRightCapitalGainsTaxGuideBody() {
@@ -33,6 +33,11 @@ export function OccupancyRightCapitalGainsTaxGuideBody() {
         <p className="text-foreground font-medium">목차</p>
         <ul className="text-muted-foreground list-disc space-y-1 pl-5">
           <li>
+            <a href="#guide-orcg-vs-presale" className="text-primary underline-offset-4 hover:underline">
+              조합원입주권 vs 분양권
+            </a>
+          </li>
+          <li>
             <a href="#guide-orcg-split" className="text-primary underline-offset-4 hover:underline">
               차익 분리
             </a>
@@ -59,6 +64,87 @@ export function OccupancyRightCapitalGainsTaxGuideBody() {
           </li>
         </ul>
       </nav>
+
+      <section className="space-y-4" aria-labelledby="guide-orcg-vs-presale">
+        <h2 id="guide-orcg-vs-presale" className="text-foreground text-xl font-semibold tracking-tight">
+          조합원입주권과 주택분양권의 차이
+        </h2>
+        <p>
+          재개발·재건축에서 말하는 <strong>조합원입주권(입주권)</strong>은 종전 주택 지분과 연결된{" "}
+          <strong>새 아파트 입주 권리</strong>입니다. 신축 아파트를 분양받기 전 거래하는{" "}
+          <strong>주택분양권(분양권)</strong>과 출처·계약 구조가 다르며, 양도소득세 계산 방식도 다릅니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              양도세 처리 비교(요약)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  항목
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  조합원입주권
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  주택분양권
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  발생 배경
+                </th>
+                <td className="border-border border-b px-3 py-2.5">재건축·재개발 조합원 지분</td>
+                <td className="border-border border-b px-3 py-2.5">신축 아파트 분양 계약</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  차익 계산
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>관리처분계획인가일</strong> 기준 종전주택분·입주권분 분리
+                </td>
+                <td className="border-border border-b px-3 py-2.5">양도가액 − 취득가액 − 필요경비(단일 차익)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  1세1주택 비과세
+                </th>
+                <td className="border-border border-b px-3 py-2.5">종전주택분 등 요건 충족 시 12억 안분 가능</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>미적용</strong> —{" "}
+                  <Link
+                    href="/guide/presale-right-capital-gains-tax-guide#guide-prcg-compare"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    60~70% 단일세율
+                  </Link>
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  장기보유특별공제
+                </th>
+                <td className="px-3 py-2.5">인가 전 <strong>종전주택분</strong>에만 표2 적용</td>
+                <td className="px-3 py-2.5">미적용</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-muted-foreground text-sm">
+          주택분양권의 개념·일반 매매와의 차이는{" "}
+          <Link
+            href="/guide/presale-right-capital-gains-tax-guide#guide-prcg-terms"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양권 양도세 가이드
+          </Link>
+          를 참고하세요.
+        </p>
+      </section>
 
       <section className="space-y-4" aria-labelledby="guide-orcg-split">
         <h2 id="guide-orcg-split" className="text-foreground text-xl font-semibold tracking-tight">

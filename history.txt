@@ -834,3 +834,19 @@ Phase 4 daechulija.com 301 완료
         - brokerage-fee-rates: 상가·주택외 요율·권리금 미포함 (#guide-bfr-commercial)
         - lease-contract-without-broker: 권리금 vs 복비 구분 (#guide-lcwb-key-money-brokerage)
         - llms-full.txt 재생성
+
+--------------------------------------------------------------------------------------------------------------------
+
+260914
+
+1333 - 분양권·입주권 섹션 톤 수정 — 지식인 Q&A형 → 가이드 본문형
+        - presale-right-capital-gains-tax: #guide-prcg-terms·#guide-prcg-vs-sale (5억·한 줄·앱필터 제거)
+        - occupancy-right-capital-gains-tax: 조합원입주권 vs 분양권 비교표 보강
+        - acquisition-tax-rates·new-construction·presale-right-resale-brokerage-fee: 교차 링크 문구 정리
+        - llms-full.txt 재생성
+
+1323 - 분양권·입주권 개념·매매 비교 — 기존 가이드 보강
+        - presale-right-capital-gains-tax: 개념 (#guide-prcg-terms)·전매 vs 매매 (#guide-prcg-vs-sale)
+        - occupancy-right-capital-gains-tax: 분양권과의 차이 (#guide-orcg-vs-presale)
+        - presale-right-resale-brokerage-fee·acquisition-tax-rates·new-construction-apartment: 교차 링크
+        - llms-full.txt 재생성

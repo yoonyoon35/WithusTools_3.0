@@ -5,7 +5,7 @@ export const acquisitionTaxRates2026GuideMeta = {
   title: "2026년 취득세율 완전 정리",
   description:
     "2026년 기준 취득가액·취득 시점, 1주택 구간별 세율, 지방교육세·농특세, 주택 수·지역별 중과, 2주택 비조정 vs 조정 비교, 3주택·저가주택·분양 시점, 2026 감면·특례 요약과 관련 가이드 링크를 표로 정리했습니다.",
-  updated: "2026년 7월 21일",
+  updated: "2026년 9월 14일",
 } as const;
 
 export function AcquisitionTaxRates2026GuideBody() {
@@ -813,15 +813,26 @@ export function AcquisitionTaxRates2026GuideBody() {
         </h2>
         <p>
           신축 분양 아파트는 계약금·중도금 납부만으로는 취득세가 부과되지 않습니다. 보통{" "}
-          <strong>잔금 지급·소유권 이전등기</strong> 시점에 취득으로 보아 한 번에 과세됩니다. 분양권·입주권은 취득
-          유형·시점에 따라 주택 수에 포함될 수 있으므로, 잔금 전후 주택 보유 현황을 함께 확인하세요.{" "}
+          <strong>잔금 지급·소유권 이전등기</strong> 시점에 취득으로 보아 한 번에 과세됩니다.
+        </p>
+        <p>
+          <strong>분양권을 전매로 취득</strong>하면 잔금·등기 이전에도 취득세가 별도로 발생할 수 있습니다. 이후 잔금을
+          치르고 소유권 이전등기를 하면 다시 취득으로 봅니다. 권리만 양수하는 전매와 등기된 주택 매매는 취득 시점·주택
+          수 판정이 달라질 수 있으므로,{" "}
           <Link
-            href="/guide/new-apartment-600-million-acquisition-tax-guide"
-            className="text-primary font-medium underline-offset-4 hover:underline"
+            href="/guide/presale-right-capital-gains-tax-guide#guide-prcg-vs-sale"
+            className="text-primary underline-offset-4 hover:underline"
           >
-            6억 신축 분양 아파트 취득세 계산
+            분양권 거래와 매매 차이
           </Link>
-          가이드에서 시나리오별 금액을 확인할 수 있습니다.
+          ·
+          <Link
+            href="/guide/new-construction-apartment-acquisition-tax-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            신축 분양 취득세
+          </Link>
+          를 함께 확인하세요.
         </p>
       </section>
 

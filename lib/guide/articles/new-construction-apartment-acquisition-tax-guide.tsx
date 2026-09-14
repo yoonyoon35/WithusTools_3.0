@@ -5,7 +5,7 @@ export const newConstructionApartmentAcquisitionTaxGuideMeta = {
   title: "신축 아파트 취득세 계산 방법",
   description:
     "2026년 기준 신축·분양 아파트 취득세 납부 시점, 6억·7억·8억·9억·12억 구간별 예시, 지방교육세·농특세, 생애최초 감면·2주택 중과. 취득세 계산기로 본인 조건을 바로 확인할 수 있습니다.",
-  updated: "2026년 7월 2일",
+  updated: "2026년 9월 14일",
 } as const;
 
 const amountGuides = [
@@ -75,6 +75,24 @@ export function NewConstructionApartmentAcquisitionTaxGuideBody() {
             </tbody>
           </table>
         </div>
+        <p className="text-muted-foreground text-sm">
+          ※ <strong>분양권 전매</strong>로 권리만 취득하는 경우, <strong>잔금·등기로 직접 분양받는 경우</strong>,{" "}
+          <strong>등기된 기존 주택을 매매</strong>하는 경우는 취득 시점·주택 수 산정이 다릅니다.{" "}
+          <Link
+            href="/guide/presale-right-capital-gains-tax-guide#guide-prcg-vs-sale"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양권 거래와 매매 차이
+          </Link>
+          ·
+          <Link
+            href="/guide/acquisition-tax-rates-2026-guide#guide-at-presale-timing"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양·신축 취득 시점
+          </Link>
+          을 참고하세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-ncat-amounts">

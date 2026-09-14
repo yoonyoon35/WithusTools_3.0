@@ -4,8 +4,8 @@ export const presaleRightCapitalGainsTaxGuideMeta = {
   slug: "presale-right-capital-gains-tax-guide",
   title: "분양권 양도소득세 계산 | 60%·70% 세율·다주택·장특공",
   description:
-    "2026년 기준 주택분양권 양도소득세 60%·70% 단일세율, 1세1주택 비과세·장기보유특별공제·다주택 중과 미적용, 주택 수 산정·필요경비·계산 예시를 국세청·소득세법 기준으로 정리했습니다.",
-  updated: "2026년 7월 4일",
+    "2026년 기준 주택분양권·조합원입주권 개념, 분양권 거래와 일반 매매 차이, 양도세 60%·70% 단일세율, 1세1주택 비과세 미적용, 주택 수·계산 예시를 정리했습니다.",
+  updated: "2026년 9월 14일",
 } as const;
 
 export function PresaleRightCapitalGainsTaxGuideBody() {
@@ -33,8 +33,18 @@ export function PresaleRightCapitalGainsTaxGuideBody() {
         <p className="text-foreground font-medium">목차</p>
         <ul className="text-muted-foreground list-disc space-y-1 pl-5">
           <li>
+            <a href="#guide-prcg-terms" className="text-primary underline-offset-4 hover:underline">
+              주택분양권·조합원입주권
+            </a>
+          </li>
+          <li>
+            <a href="#guide-prcg-vs-sale" className="text-primary underline-offset-4 hover:underline">
+              분양권 거래 vs 일반 매매
+            </a>
+          </li>
+          <li>
             <a href="#guide-prcg-compare" className="text-primary underline-offset-4 hover:underline">
-              주택 vs 분양권
+              주택 vs 분양권(양도세)
             </a>
           </li>
           <li>
@@ -55,9 +65,203 @@ export function PresaleRightCapitalGainsTaxGuideBody() {
         </ul>
       </nav>
 
+      <section className="space-y-4" aria-labelledby="guide-prcg-terms">
+        <h2 id="guide-prcg-terms" className="text-foreground text-xl font-semibold tracking-tight">
+          주택분양권·조합원입주권 개념
+        </h2>
+        <p>
+          이 가이드의 <strong>주택분양권(분양권)</strong>은 신축 아파트를 직접 분양받기 전, 그 아파트를 받을{" "}
+          <strong>분양 계약상의 권리</strong>를 말합니다. 아직 준공·입주·소유권 이전등기가 끝나지 않았으므로{" "}
+          <strong>등기된 주택을 사는 것과는 다른 거래</strong>입니다.
+        </p>
+        <p>
+          말하는 <strong>「입주권」</strong>은 보통 재건축·재개발 조합의 <strong>조합원입주권</strong>을 가리킵니다. 종전
+          주택을 헐고 새 아파트를 받을 조합원의 권리로, 신규 분양의 주택분양권과 <strong>세법상 별도 자산</strong>입니다.{" "}
+          <Link
+            href="/guide/occupancy-right-capital-gains-tax-guide#guide-orcg-vs-presale"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            조합원입주권 양도세
+          </Link>
+          는 관리처분계획인가일 기준으로 차익을 나눠 계산합니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              거래 대상별 구분
+            </caption>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b bg-muted/30 px-3 py-2.5 font-medium w-32">
+                  주택분양권
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  신축 아파트 <strong>분양 계약 권리</strong>. 준공 전 전매·양도 가능. 소유권 등기 전이므로 일반 주택 매매와
+                  세율·주택 수 규칙이 다름
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b bg-muted/30 px-3 py-2.5 font-medium">
+                  조합원입주권
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  재건축·재개발 <strong>조합원의 입주 권리</strong>. 종전 주택 지분과 연결. 양도세는 인가일 전·후 차익을
+                  분리해 계산
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  일반 매매
+                </th>
+                <td className="px-3 py-2.5">
+                  <strong>준공·등기가 끝난 주택</strong>의 소유권을 잔금·등기로 이전받는 거래. 1세1주택 비과세·장특공 등 일반
+                  주택 양도세 규칙 적용
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-prcg-vs-sale">
+        <h2 id="guide-prcg-vs-sale" className="text-foreground text-xl font-semibold tracking-tight">
+          분양권 거래와 일반 매매의 차이
+        </h2>
+        <p>
+          분양권 전매는 <strong>지금까지 납입한 분양금 + 프리미엄</strong> 수준의 권리를 사고, 앞으로 남은{" "}
+          <strong>잔금·중도금을 이어받는 구조</strong>입니다. 일반 매매는 등기된 주택의 <strong>매매가 전액</strong>을
+          잔금·등기로 마무리합니다. 매물 표시 금액이 비슷해 보여도 실제 부담·세금·대출 조건은 다를 수 있습니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              분양권 전매와 등기 주택 매매 비교
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  항목
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  분양권(전매)
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  일반 매매(등기)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  사는 것
+                </th>
+                <td className="border-border border-b px-3 py-2.5">권리 + <strong>남은 분양금(잔금)</strong> 부담</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>등기상 주택</strong> 소유권
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  거래가 구성
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <Link
+                    href="/guide/presale-right-resale-brokerage-fee-guide#guide-prrb-formula"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    납입금 + 프리미엄
+                  </Link>
+                  (분양가 전체가 아님)
+                </td>
+                <td className="border-border border-b px-3 py-2.5">매매가 일체</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  양도세
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>60~70%</strong> 단일세율, 1세1주택 비과세 <strong>미적용</strong>
+                </td>
+                <td className="border-border border-b px-3 py-2.5">1세1주택 비과세·장특공 등(요건 충족 시)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  취득세
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>전매 취득</strong>·<strong>잔금·등기</strong> 시점 별도 —{" "}
+                  <Link
+                    href="/guide/acquisition-tax-rates-2026-guide#guide-at-presale-timing"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    취득 시점
+                  </Link>
+                </td>
+                <td className="border-border border-b px-3 py-2.5">잔금·등기 기준 1회(주택 수·세율 적용)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  대출·LTV
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>은행·무주택·규제지역·납입 단계</strong>별 상이.{" "}
+                  <Link
+                    href="/guide/multi-homeowner-loan-regulations-guide"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    다주택·규제
+                  </Link>{" "}
+                  확인
+                </td>
+                <td className="border-border border-b px-3 py-2.5">주택담보대출 일반 LTV·DSR 규칙</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  실거주
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <strong>입주·준공 전</strong>(공사 지연·변동 리스크)
+                </td>
+                <td className="border-border border-b px-3 py-2.5">계약·잔금 후 <strong>즉시 가능</strong></td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  전매제한
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  <Link
+                    href="/guide/presale-right-resale-brokerage-fee-guide#guide-prrb-limit-check"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    전매제한 기간
+                  </Link>{" "}
+                  · 실거주 의무 등(지역·공급계약별)
+                </td>
+                <td className="border-border border-b px-3 py-2.5">일반 매매 해당 없음</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  청약·주택 수
+                </th>
+                <td className="px-3 py-2.5">
+                  분양권·입주권 <strong>보유로 잡힐 수 있음</strong> —{" "}
+                  <Link
+                    href="/guide/private-housing-subscription-eligibility-2026-guide#guide-phse-homeless"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    청약·무주택
+                  </Link>
+                </td>
+                <td className="px-3 py-2.5">취득 시 1주택(세대·지분별 확인)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section className="space-y-4" aria-labelledby="guide-prcg-compare">
         <h2 id="guide-prcg-compare" className="text-foreground text-xl font-semibold tracking-tight">
-          주택 vs 분양권
+          주택 vs 분양권(양도세)
         </h2>
         <p>
           분양권은 「주택」이 아니라 「주택분양권」으로 분류됩니다. 1세1주택 비과세·표2 장특공·조정지역 다주택
