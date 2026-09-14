@@ -271,6 +271,16 @@ export function LeaseContractWithoutBrokerGuideBody() {
           </table>
         </div>
         <p>임대차 신고 완료 시 확정일자가 자동으로 부여되므로 별도로 확정일자를 신청하지 않아도 됩니다.</p>
+        <p className="text-muted-foreground text-sm">
+          ※ 임차인이 계약 만료 전 사망한 경우, 확정일자·계약서·보증금 입금 내역은 상속인의 권리 확인에 중요합니다.{" "}
+          <Link
+            href="/guide/tenant-death-lease-inheritance-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            임차인 사망 시 전월세·상속
+          </Link>
+          가이드를 참고하세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-lcwb-report">

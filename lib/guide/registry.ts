@@ -181,6 +181,10 @@ import {
   leaseContractWithoutBrokerGuideMeta,
 } from "@/lib/guide/articles/lease-contract-without-broker-guide";
 import {
+  TenantDeathLeaseInheritanceGuideBody,
+  tenantDeathLeaseInheritanceGuideMeta,
+} from "@/lib/guide/articles/tenant-death-lease-inheritance-guide";
+import {
   BrokerageAccidentCompensationGuideBody,
   brokerageAccidentCompensationGuideMeta,
 } from "@/lib/guide/articles/brokerage-accident-compensation-guide";
@@ -592,6 +596,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...leaseContractWithoutBrokerGuideMeta,
     Body: LeaseContractWithoutBrokerGuideBody,
+  },
+  {
+    ...tenantDeathLeaseInheritanceGuideMeta,
+    Body: TenantDeathLeaseInheritanceGuideBody,
   },
   {
     ...brokerageAccidentCompensationGuideMeta,

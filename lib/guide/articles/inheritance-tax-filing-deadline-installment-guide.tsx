@@ -215,7 +215,16 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
         <p>국세청 홈택스 「상속세 신고」·「상속세 자동계산」으로 신고서 작성·전송이 가능합니다.</p>
         <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>피상속인·상속인 관계증명, 사망진단서(또는 제적등본)</li>
-          <li>상속재산 목록·시가(부동산 감정평가서, 금융잔고증명, 보험금 등)</li>
+          <li>
+            상속재산 목록·시가(부동산 감정평가서, 금융잔고증명, 보험금,{" "}
+            <Link
+              href="/guide/tenant-death-lease-inheritance-guide#guide-tdli-deposit"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              전·월세 보증금
+            </Link>
+            등)
+          </li>
           <li>공과금·채무·장례비용 증빙, 사전증여·증여세 신고 내역</li>
           <li>동거주택공제·가업상속공제 등 해당 시 추가 서류</li>
         </ul>

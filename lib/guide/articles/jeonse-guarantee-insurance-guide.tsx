@@ -402,7 +402,14 @@ export function JeonseGuaranteeInsuranceGuideBody() {
         </p>
         <p className="text-muted-foreground text-sm">
           ※ 보증료율과 조건은 기관 정책에 따라 변동될 수 있습니다. 정확한 보증료는 HUG(hug.or.kr), HF(hf.go.kr), SGI(sgi.co.kr)
-          홈페이지에서 확인할 것을 권장합니다.
+          홈페이지에서 확인할 것을 권장합니다. 임차인 사망 후 증권·청구 주체는{" "}
+          <Link
+            href="/guide/tenant-death-lease-inheritance-guide#guide-tdli-deposit"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            임차인 사망 시 전월세·상속
+          </Link>
+          가이드를 참고하세요.
         </p>
       </section>
 

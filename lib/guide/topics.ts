@@ -215,6 +215,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "inheritance-tax-filing-deadline-installment-guide",
       "inheritance-tax-funeral-expense-deduction-guide",
       "co-residence-housing-inheritance-deduction-guide",
+      "tenant-death-lease-inheritance-guide",
     ],
   },
   {
@@ -238,6 +239,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "direct-deal-vs-brokered-deal-guide",
       "online-direct-trade-platform-precautions-2026-guide",
       "lease-contract-without-broker-guide",
+      "tenant-death-lease-inheritance-guide",
       "seller-financing-private-mortgage-2026-guide",
       "brokerage-accident-compensation-guide",
     ],
