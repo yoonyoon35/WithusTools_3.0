@@ -272,7 +272,11 @@ export function InheritanceTaxOverviewGuideBody() {
           </li>
           <li>
             <strong className="text-foreground">가산(사전증여)</strong>: 상속개시 전 10년 이내 상속인에게 한 증여,
-            5년 이내 비상속인에게 한 증여 재산가액
+            5년 이내 비상속인에게 한 증여 재산가액(
+            <Link href="/guide/gift-tax-overview-guide" className="text-primary underline-offset-4 hover:underline">
+              증여세 개요
+            </Link>
+            )
           </li>
           <li>
             <strong className="text-foreground">장례비</strong>: 시행령상 한도(통상 500~1,500만 원) 내에서 인정.

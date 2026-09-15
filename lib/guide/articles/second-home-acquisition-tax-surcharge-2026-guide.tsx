@@ -379,7 +379,12 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
         </h2>
         <p>
           조정대상지역에 있는 시가표준액 3억 원 이상 주택을 증여받는 경우 취득세율 12%가 적용됩니다. 단, 1세대 1주택자가 소유한 주택을
-          배우자나 직계비속이 증여로 취득하는 경우에는 기본세율(3.5%)이 적용됩니다.
+          배우자나 직계비속이 증여로 취득하는 경우에는 기본세율(3.5%)이 적용됩니다.{" "}
+          <strong>증여세(국세)</strong>는 별도이며,{" "}
+          <Link href="/guide/gift-tax-overview-guide" className="text-primary underline-offset-4 hover:underline">
+            증여세 개요
+          </Link>
+          를 참고하세요.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[32rem] border-collapse text-left text-sm">

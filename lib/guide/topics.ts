@@ -138,6 +138,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "second-home-acquisition-tax-exception-guide",
       "temporary-two-home-acquisition-tax-exception-guide",
       "inherited-housing-acquisition-tax-2026-guide",
+      "gift-tax-overview-guide",
       "local-education-rural-special-tax-acquisition-2026-guide",
       "apartment-villa-officetel-acquisition-tax-guide",
       "officetel-residential-vs-business-tax-guide",
@@ -211,6 +212,7 @@ export const guideTopics: readonly GuideTopic[] = [
     calculatorHrefs: ["/inheritance-tax-calculator"],
     slugs: [
       "inheritance-tax-overview-guide",
+      "gift-tax-overview-guide",
       "inheritance-tax-apartment-price-scenarios-guide",
       "inheritance-tax-filing-deadline-installment-guide",
       "inheritance-tax-funeral-expense-deduction-guide",

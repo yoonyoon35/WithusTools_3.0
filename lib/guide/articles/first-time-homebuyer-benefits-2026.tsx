@@ -264,6 +264,10 @@ export function FirstTimeHomebuyerBenefits2026Body() {
           >
             공유 지분 취득세(증여·양도)
           </Link>
+          ,{" "}
+          <Link href="/guide/gift-tax-overview-guide" className="text-primary underline-offset-4 hover:underline">
+            증여세 개요
+          </Link>
           를 참고하세요.
         </p>
       </section>

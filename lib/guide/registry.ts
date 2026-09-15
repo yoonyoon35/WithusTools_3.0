@@ -109,6 +109,10 @@ import {
   inheritanceTaxOverviewGuideMeta,
 } from "@/lib/guide/articles/inheritance-tax-overview-guide";
 import {
+  GiftTaxOverviewGuideBody,
+  giftTaxOverviewGuideMeta,
+} from "@/lib/guide/articles/gift-tax-overview-guide";
+import {
   InheritedHousingAcquisitionTax2026GuideBody,
   inheritedHousingAcquisitionTax2026GuideMeta,
 } from "@/lib/guide/articles/inherited-housing-acquisition-tax-2026-guide";
@@ -532,6 +536,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...inheritanceTaxOverviewGuideMeta,
     Body: InheritanceTaxOverviewGuideBody,
+  },
+  {
+    ...giftTaxOverviewGuideMeta,
+    Body: GiftTaxOverviewGuideBody,
   },
   {
     ...inheritanceTaxApartmentPriceScenariosGuideMeta,
