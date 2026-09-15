@@ -869,3 +869,11 @@ Phase 4 daechulija.com 301 완료
         - 과세표준·10년 공제·누진세율·취득세·1·3·6억 예시 (#guide-gto-scenarios)
         - inheritance-tax-overview·second-home-acquisition-tax·first-time-homebuyer: 교차 링크
         - llms-full.txt 재생성
+
+2126 - 네이버 검색 TOP 10이 전부 계산기 의도. 지식인 가이드와 채널 분리, 계산기 문구만 맞춤
+        - 이자 계산기: 메타 제목에 원리금균등·원금균등·체증식·만기일시·거치식, 설명은 원문 유지하고 체증식·거치식만 추가.
+          인트로·WebApplication 스키마(거치식·체증식 featureList)
+        - DSR: 제목 유지. 스니펫·인트로가 차량 할부로 시작하던 부분 제거, 한도·DSR이 바로 나오게.
+          입력/결과 카드·버튼 문구도 한도·DSR
+        - 취득세: H1 유지. 인트로에 농지 취득세·농어촌특별세(농특세). FAQ에 농지 문항 추가(지방교육세 문항은 유지).
+          description 주택 외(토지·건물 등)로 풀어 씀. 스키마에 농지·농특세

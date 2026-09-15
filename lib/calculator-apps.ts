@@ -4,13 +4,14 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
   "/loan-calculator": {
     name: "대출 이자 계산기",
     description:
-      "원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산하는 무료 온라인 계산기입니다.",
+      "거치식·체증식·원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산하는 무료 온라인 계산기입니다.",
     path: "/loan-calculator",
     featureList: [
+      "거치식(거치기간) 계산",
+      "체증식상환 계산",
       "원리금균등상환 계산",
       "원금균등상환 계산",
       "만기일시상환 계산",
-      "거치기간 설정",
       "상환 방식 비교",
       "상환 일정표 다운로드",
     ],
@@ -18,9 +19,9 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
   "/dsr-calculator": {
     name: "DSR·주담대 한도 계산기",
     description:
-      "연소득·기존 부채·신규 대출 조건으로 DSR(%)과 월 상환 부담을 간이 산출하는 DSR 계산기입니다.",
+      "연소득·기존 부채·신규 대출 조건으로 주담대 한도와 DSR(%)을 바로 확인하는 계산기입니다.",
     path: "/dsr-calculator",
-    featureList: ["DSR(%) 산출", "주담대·신용·할부 부채 반영", "만기일시·원금균등 산정 방식 선택"],
+    featureList: ["주담대 한도(DSR 40%) 확인", "DSR(%) 산출", "주담대·신용·할부 부채 반영", "만기일시·원금균등 산정 방식 선택"],
   },
   "/dti-calculator": {
     name: "DTI 계산기",
@@ -36,9 +37,9 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
   },
   "/acquisition-tax-calculator": {
     name: "취득세 계산기",
-    description: "주택·주택 외 자산 구분과 취득 유형별 취득세·지방교육세·농어촌특별세를 계산하는 계산기입니다.",
+    description: "주택, 주택 외(토지·건물 등), 농지 취득세와 지방교육세·농어촌특별세(농특세)를 계산하는 계산기입니다.",
     path: "/acquisition-tax-calculator",
-    featureList: ["취득세 산출", "지방교육세·농특세 반영", "주택 수·조정지역 조건"],
+    featureList: ["취득세 산출", "농지 취득세", "지방교육세·농어촌특별세(농특세) 반영", "주택 수·조정지역 조건"],
   },
   "/brokerage-fee-calculator": {
     name: "중개수수료 계산기",

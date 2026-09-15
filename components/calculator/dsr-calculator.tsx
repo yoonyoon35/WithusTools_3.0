@@ -263,7 +263,7 @@ export function DsrCalculator() {
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
       <Card id="dsr-calculator" className="scroll-mt-24">
         <CardHeader>
-          <CardTitle className="text-xl">입력</CardTitle>
+          <CardTitle className="text-xl">한도·DSR 입력</CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
           <div className="space-y-2">
@@ -439,19 +439,19 @@ export function DsrCalculator() {
             disabled={!canSubmit}
             onClick={() => setHasCalculated(true)}
           >
-            DSR 계산하기
+            한도·DSR 계산하기
           </Button>
         </CardContent>
       </Card>
 
       <Card className="scroll-mt-24 outline-none" tabIndex={-1}>
         <CardHeader>
-          <CardTitle className="text-xl">계산 결과</CardTitle>
+          <CardTitle className="text-xl">한도·DSR 결과</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div ref={exportRef} className="bg-background space-y-4 rounded-lg p-3">
             <div className="border-border/80 border-b pb-2">
-              <p className="text-sm font-semibold">DSR 계산기 · 계산 결과</p>
+              <p className="text-sm font-semibold">DSR·주담대 한도 · 계산 결과</p>
               <p className="text-muted-foreground text-xs">withustools.com · 참고용</p>
             </div>
           <div
@@ -463,7 +463,7 @@ export function DsrCalculator() {
             role="status"
             aria-live="polite"
           >
-            <p className="text-muted-foreground text-sm">총부채원리금상환비율(DSR)</p>
+            <p className="text-muted-foreground text-sm">주담대 한도 기준 DSR</p>
             <p className="text-muted-foreground mt-0.5 text-xs">
               {dsrMode === "stress"
                 ? displaySnapshot.isStressDsr
@@ -478,10 +478,10 @@ export function DsrCalculator() {
             </p>
             <p className="text-muted-foreground mt-2 text-sm">
               {showZeroResult
-                ? "입력 후 계산하기를 누르면 결과가 갱신됩니다."
+                ? "입력 후 한도·DSR 계산하기를 누르면 주담대 한도와 DSR이 나옵니다."
                 : displayWithinBankCap
-                  ? "은행권에서 흔히 예시되는 40% 기준(참고)과 비교해 이내로 보입니다. 제2금융권 등은 별도 기준이 적용될 수 있습니다."
-                  : "은행권 40% 참고 기준을 초과하는 수준으로 입력되었습니다. 실제 심사·업권별 한도와 다를 수 있습니다."}
+                  ? "은행권 주담대 한도(DSR 40% 참고) 이내로 보입니다. 제2금융권 등은 별도 기준이 적용될 수 있습니다."
+                  : "은행권 주담대 한도(DSR 40% 참고)를 초과하는 수준입니다. 실제 심사·업권별 한도와 다를 수 있습니다."}
             </p>
           </div>
 

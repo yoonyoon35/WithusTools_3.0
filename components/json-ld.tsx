@@ -80,10 +80,11 @@ export function LoanCalculatorWebApplicationJsonLd() {
         description: loanCalculatorDescription,
         path: LOAN_CALCULATOR_PATH,
         featureList: [
+          "거치식(거치기간) 계산",
+          "체증식상환 계산",
           "원리금균등상환 계산",
           "원금균등상환 계산",
           "만기일시상환 계산",
-          "거치기간 설정",
           "상환 일정표 다운로드",
         ],
       }}
