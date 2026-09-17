@@ -289,7 +289,14 @@ export function LeaseContractWithoutBrokerGuideBody() {
         </h2>
         <p>
           보증금 6,000만 원 초과 또는 월세 30만 원 초과하는 임대차 계약은 계약 체결일로부터 30일 이내에 신고해야 합니다.
-          임대료 변동이 없는 갱신 계약은 신고 의무가 없습니다.
+          임대료 변동이 없는 갱신 계약은 신고 의무가 없습니다.{" "}
+          <Link
+            href="/guide/lease-renewal-report-confirmed-date-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            재계약·단기 연장·월세 인상
+          </Link>
+          시 신고·확정일자는 별도 가이드를 참고하세요.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">

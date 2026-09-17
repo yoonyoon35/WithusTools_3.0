@@ -185,6 +185,10 @@ import {
   leaseContractWithoutBrokerGuideMeta,
 } from "@/lib/guide/articles/lease-contract-without-broker-guide";
 import {
+  LeaseRenewalReportConfirmedDateGuideBody,
+  leaseRenewalReportConfirmedDateGuideMeta,
+} from "@/lib/guide/articles/lease-renewal-report-confirmed-date-guide";
+import {
   TenantDeathLeaseInheritanceGuideBody,
   tenantDeathLeaseInheritanceGuideMeta,
 } from "@/lib/guide/articles/tenant-death-lease-inheritance-guide";
@@ -604,6 +608,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...leaseContractWithoutBrokerGuideMeta,
     Body: LeaseContractWithoutBrokerGuideBody,
+  },
+  {
+    ...leaseRenewalReportConfirmedDateGuideMeta,
+    Body: LeaseRenewalReportConfirmedDateGuideBody,
   },
   {
     ...tenantDeathLeaseInheritanceGuideMeta,

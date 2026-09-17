@@ -379,7 +379,14 @@ export function JeonseRenewalBrokerageFeeGuideBody() {
         </div>
         <p className="text-muted-foreground text-sm">
           ※ 중개수수료 발생 여부는 재계약 방식에 따라 다릅니다. 합의 재계약이라도 임대인·임차인이 직접 계약서를 작성하면
-          중개수수료 없이 진행할 수 있습니다.
+          중개수수료 없이 진행할 수 있습니다. 월세·단기 연장·집주인 변경 시{" "}
+          <Link
+            href="/guide/lease-renewal-report-confirmed-date-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            재계약·연장 시 전월세 신고·확정일자
+          </Link>
+          가이드를 함께 보세요.
         </p>
       </section>
 

@@ -235,6 +235,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "wolse-brokerage-fee-calculation-2026-guide",
       "brokerage-fee-payment-timing-guide",
       "jeonse-renewal-brokerage-fee-guide",
+      "lease-renewal-report-confirmed-date-guide",
       "long-term-jeonse-20-year-maturity-2026-guide",
       "presale-right-resale-brokerage-fee-guide",
       "brokerage-fee-income-deduction-guide",
