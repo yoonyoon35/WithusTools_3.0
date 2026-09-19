@@ -3,6 +3,7 @@ import { getGuideArticle, type GuideArticle } from "@/lib/guide/registry";
 /** 계산기 페이지 하단「관련 가이드」에 노출할 글 슬러그. 순서대로 표시됩니다. */
 export const calculatorGuideSlugs: Record<string, readonly string[]> = {
   "/loan-calculator": [
+    "kakao-emergency-loan-interest-guide",
     "equal-payment-vs-equal-principal",
     "grace-period-explained",
     "variable-vs-fixed-rate-2026",

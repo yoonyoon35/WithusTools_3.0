@@ -40,6 +40,8 @@ export const metadata: Metadata = {
     "원리금균등상환",
     "원금균등상환",
     "주택담보대출",
+    "비상금대출",
+    "마이너스통장",
   ],
   authors: [{ name: authorDisplayName, url: authorAboutUrl }],
   verification: {

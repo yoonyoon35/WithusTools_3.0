@@ -4,7 +4,7 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
   "/loan-calculator": {
     name: "대출 이자 계산기",
     description:
-      "거치식·체증식·원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산하는 무료 온라인 계산기입니다.",
+      "거치식·체증식·원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산하는 무료 온라인 계산기입니다. 카카오 비상금대출·마이너스통장은 만기일시로 월 이자를 어림할 수 있습니다.",
     path: "/loan-calculator",
     featureList: [
       "거치식(거치기간) 계산",
@@ -12,6 +12,7 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
       "원리금균등상환 계산",
       "원금균등상환 계산",
       "만기일시상환 계산",
+      "비상금대출·마이너스통장 월 이자 어림",
       "상환 방식 비교",
       "상환 일정표 다운로드",
     ],

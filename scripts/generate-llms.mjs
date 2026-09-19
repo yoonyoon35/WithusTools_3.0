@@ -13,7 +13,7 @@ const articlesDir = path.join(root, "lib", "guide", "articles");
 const siteUrl = "https://withustools.com";
 
 const calculators = [
-  { path: "/loan-calculator", title: "대출 이자 계산기", desc: "원리금균등·원금균등·만기일시상환, 거치기간, 상환 방식 비교." },
+  { path: "/loan-calculator", title: "대출 이자 계산기", desc: "원리금균등·원금균등·만기일시상환, 거치기간, 비상금대출·마이너스통장 월 이자 어림, 상환 방식 비교." },
   { path: "/dsr-calculator", title: "DSR·주담대 한도 계산기", desc: "연소득·기존·신규 대출로 DSR(%)과 월 상환 부담 간이 산출." },
   { path: "/dti-calculator", title: "DTI 계산기", desc: "주담대 원리금·기타 대출 이자로 DTI(%) 간이 산출." },
   { path: "/ltv-calculator", title: "LTV 계산기", desc: "담보 가격·규제지역·주택 보유 조건으로 LTV(%)와 대출 가능액." },

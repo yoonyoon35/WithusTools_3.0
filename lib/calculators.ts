@@ -10,7 +10,7 @@ export const calculatorTools: readonly CalculatorTool[] = [
   {
     href: "/loan-calculator",
     title: "대출 이자 계산기",
-    description: "원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 비교합니다.",
+    description: "원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 비교합니다. 비상금대출·마이너스통장 월 이자 어림에도 쓸 수 있습니다.",
     featured: true,
   },
   {

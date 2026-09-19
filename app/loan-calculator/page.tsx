@@ -21,8 +21,9 @@ export default function LoanCalculatorPage() {
       title="대출 이자 계산기"
       intro={
         <>
-          거치식(거치기간)·체증식·원리금균등·원금균등·만기일시 상환을 한 화면에서 비교합니다. 하단 기준표로 각 방식의 특징을
-          확인할 수 있습니다. {referenceDisclaimerLine}
+          거치식(거치기간)·체증식·원리금균등·원금균등·만기일시 상환을 한 화면에서 비교합니다. 카카오 비상금대출처럼 쓴 금액만
+          이자가 붙는 마이너스통장은 만기일시로 월 이자를 어림할 수 있습니다. 하단 기준표로 각 방식의 특징을 확인할 수 있습니다.{" "}
+          {referenceDisclaimerLine}
         </>
       }
       faqItems={loanCalculatorFaqItems}

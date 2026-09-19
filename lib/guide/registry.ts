@@ -372,6 +372,10 @@ import {
   LongTermJeonse20YearMaturity2026GuideBody,
   longTermJeonse20YearMaturity2026GuideMeta,
 } from "@/lib/guide/articles/long-term-jeonse-20-year-maturity-2026-guide";
+import {
+  KakaoEmergencyLoanInterestGuideBody,
+  kakaoEmergencyLoanInterestGuideMeta,
+} from "@/lib/guide/articles/kakao-emergency-loan-interest-guide";
 export type GuideArticle = {
   slug: string;
   title: string;
@@ -796,6 +800,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...longTermJeonse20YearMaturity2026GuideMeta,
     Body: LongTermJeonse20YearMaturity2026GuideBody,
+  },
+  {
+    ...kakaoEmergencyLoanInterestGuideMeta,
+    Body: KakaoEmergencyLoanInterestGuideBody,
   },
 ];
 

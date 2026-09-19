@@ -32,7 +32,7 @@ export const defaultDescription =
 export const loanCalculatorTitle = `대출 이자 계산기 - ${SITE_DOMAIN}`;
 
 export const loanCalculatorDescription =
-  `대출 이자 계산기 ${SITE_DOMAIN}에서 원리금균등·원금균등·체증식·거치식·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산해 보세요. 주택담보대출, 신용대출, 전세자금대출 조건별 상환 계획을 비교하고 대출 전 예상 부담을 참고용으로 확인할 수 있는 무료 온라인 계산기입니다.`;
+  `대출 이자 계산기 ${SITE_DOMAIN}에서 원리금균등·원금균등·체증식·거치식·만기일시상환 방식별 월 납입액과 총 이자를 미리 계산해 보세요. 주택담보대출, 신용대출, 전세자금대출은 물론 카카오 비상금대출·마이너스통장처럼 이자만 내는 조건도 만기일시로 어림해 비교할 수 있는 무료 온라인 계산기입니다.`;
 
 export const loanCalculatorShareText = "대출 받기 전 미리 이자 계산해 보세요.";
 

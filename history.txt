@@ -887,3 +887,13 @@ Phase 4 daechulija.com 301 완료
         - lease-contract-without-broker·jeonse-renewal-brokerage-fee: 교차 링크
         - 초안 Q&A 맞춤 서술 → 일반 가이드 스탠스로 수정 (#guide-lrrcd-principle·by-type·by-condition)
         - llms-full.txt 재생성 (103편)
+
+--------------------------------------------------------------------------------------------------------------------
+
+260919
+
+1631 - 카카오 비상금대출 이자 계산 가이드 추가 (지식인·네이버 검색 유입)
+        - kakao-emergency-loan-interest-guide: 마이너스통장 일할 공식, 사용 일수 예시, 당일 인출·상환, 계산기 만기일시 어림, DSR 한도
+        - 대출 이자 계산기: 설명·인트로·FAQ·기준표·관련 가이드에 비상금대출 연결
+        - 제목은 카카오만 유지. 토스·케이는 점유율은 비슷해도 본문이 카카오 기준이라 3사 제목·은행별 분리는 보류
+        - llms.txt·llms-full.txt 재생성 (104편)

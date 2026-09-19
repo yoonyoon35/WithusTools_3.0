@@ -65,12 +65,13 @@ export const guideTopics: readonly GuideTopic[] = [
   {
     id: "repayment-rate",
     label: "상환·금리",
-    description: "원리금균등·원금균등, 거치기간, 고정·변동 금리, 중도상환",
+    description: "원리금균등·원금균등, 거치기간, 고정·변동 금리, 중도상환, 비상금대출 이자",
     pillarSlug: "equal-payment-vs-equal-principal",
     calculatorHrefs: ["/loan-calculator", "/prepayment-fee-calculator"],
     slugs: [
       "equal-payment-vs-equal-principal",
       "equal-payment-150-million-mortgage-interest-guide",
+      "kakao-emergency-loan-interest-guide",
       "grace-period-explained",
       "variable-vs-fixed-rate-2026",
       "prepayment-fee-calculation",

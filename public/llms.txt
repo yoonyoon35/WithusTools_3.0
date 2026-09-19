@@ -1,12 +1,12 @@
 # WithusTools
 
-> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 103편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.
+> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 104편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.
 
 표준 계산식과 공공 자료 기반 참고용 콘텐츠입니다. 실제 심사·신고 결과는 금융기관·관할 지자체에서 확인해야 합니다.
 
 ## 계산기
 
-- [대출 이자 계산기](https://withustools.com/loan-calculator): 원리금균등·원금균등·만기일시상환, 거치기간, 상환 방식 비교.
+- [대출 이자 계산기](https://withustools.com/loan-calculator): 원리금균등·원금균등·만기일시상환, 거치기간, 비상금대출·마이너스통장 월 이자 어림, 상환 방식 비교.
 - [DSR·주담대 한도 계산기](https://withustools.com/dsr-calculator): 연소득·기존·신규 대출로 DSR(%)과 월 상환 부담 간이 산출.
 - [DTI 계산기](https://withustools.com/dti-calculator): 주담대 원리금·기타 대출 이자로 DTI(%) 간이 산출.
 - [LTV 계산기](https://withustools.com/ltv-calculator): 담보 가격·규제지역·주택 보유 조건으로 LTV(%)와 대출 가능액.
@@ -17,7 +17,7 @@
 
 ## 가이드 허브
 
-- [대출·금융 가이드](https://withustools.com/guide): DSR·상환·취득세·중개수수료·보유세 주제별 103편.
+- [대출·금융 가이드](https://withustools.com/guide): DSR·상환·취득세·중개수수료·보유세 주제별 104편.
 - [사이트 소개](https://withustools.com/about): 운영 배경·콘텐츠 작성 기준·문의.
 
 ## 자주 찾는 가이드
