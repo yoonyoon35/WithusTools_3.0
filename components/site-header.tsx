@@ -181,6 +181,13 @@ export function SiteHeader() {
                   <Link
                     role="menuitem"
                     className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
+                    href="/comprehensive-income-tax-calculator"
+                  >
+                    종합소득세 계산기
+                  </Link>
+                  <Link
+                    role="menuitem"
+                    className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
                     href="/inheritance-tax-calculator"
                   >
                     상속세 계산기

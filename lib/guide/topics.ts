@@ -222,6 +222,22 @@ export const guideTopics: readonly GuideTopic[] = [
     ],
   },
   {
+    id: "comprehensive-income-tax",
+    label: "종합소득세",
+    description: "신고 대상·세액 계산·세율·경비율·간편장부·성실신고·중간예납·주택임대 분리과세·가산세",
+    pillarSlug: "comprehensive-income-tax-overview-guide",
+    calculatorHrefs: ["/comprehensive-income-tax-calculator"],
+    slugs: [
+      "comprehensive-income-tax-overview-guide",
+      "business-expense-ratio-application-guide",
+      "simple-bookkeeping-income-tax-guide",
+      "sincere-filing-confirmation-guide",
+      "interim-prepayment-income-tax-guide",
+      "housing-rental-income-separate-taxation-guide",
+      "comprehensive-income-tax-penalty-guide",
+    ],
+  },
+  {
     id: "brokerage",
     label: "중개수수료·거래",
     description: "중개수수료 요율, 전·월세, 직거래, 분양권·재계약",

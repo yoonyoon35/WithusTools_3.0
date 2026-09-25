@@ -85,6 +85,15 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "mokdong-redevelopment-occupancy-right-capital-gains-tax-guide",
     "capital-gains-surcharge-revival-2026-guide",
   ],
+  "/comprehensive-income-tax-calculator": [
+    "comprehensive-income-tax-overview-guide",
+    "business-expense-ratio-application-guide",
+    "simple-bookkeeping-income-tax-guide",
+    "sincere-filing-confirmation-guide",
+    "interim-prepayment-income-tax-guide",
+    "housing-rental-income-separate-taxation-guide",
+    "comprehensive-income-tax-penalty-guide",
+  ],
   "/inheritance-tax-calculator": [
     "inheritance-tax-overview-guide",
     "inheritance-tax-apartment-price-scenarios-guide",
@@ -113,6 +122,10 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
   ],
   "/acquisition-tax-calculator": ["/inheritance-tax-calculator"],
   "/capital-gains-tax-calculator": ["/inheritance-tax-calculator"],
+  "/comprehensive-income-tax-calculator": [
+    "/capital-gains-tax-calculator",
+    "/comprehensive-property-tax-calculator",
+  ],
   "/comprehensive-property-tax-calculator": ["/inheritance-tax-calculator"],
 };
 

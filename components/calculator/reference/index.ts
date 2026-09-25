@@ -10,6 +10,7 @@ export { ComprehensivePropertyTaxCalculatorReference } from "./comprehensive-pro
 export { DsrCalculatorReference } from "./dsr-reference";
 export { DtiCalculatorReference } from "./dti-reference";
 export { InheritanceTaxCalculatorReference } from "./inheritance-tax-reference";
+export { ComprehensiveIncomeTaxCalculatorReference } from "./comprehensive-income-tax-reference";
 export { LoanCalculatorReference } from "./loan-reference";
 export { LtvCalculatorReference } from "./ltv-reference";
 export { PrepaymentFeeCalculatorReference } from "./prepayment-fee-reference";

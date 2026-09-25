@@ -376,6 +376,34 @@ import {
   KakaoEmergencyLoanInterestGuideBody,
   kakaoEmergencyLoanInterestGuideMeta,
 } from "@/lib/guide/articles/kakao-emergency-loan-interest-guide";
+import {
+  ComprehensiveIncomeTaxOverviewGuideBody,
+  comprehensiveIncomeTaxOverviewGuideMeta,
+} from "@/lib/guide/articles/comprehensive-income-tax-overview-guide";
+import {
+  BusinessExpenseRatioApplicationGuideBody,
+  businessExpenseRatioApplicationGuideMeta,
+} from "@/lib/guide/articles/business-expense-ratio-application-guide";
+import {
+  HousingRentalIncomeSeparateTaxationGuideBody,
+  housingRentalIncomeSeparateTaxationGuideMeta,
+} from "@/lib/guide/articles/housing-rental-income-separate-taxation-guide";
+import {
+  ComprehensiveIncomeTaxPenaltyGuideBody,
+  comprehensiveIncomeTaxPenaltyGuideMeta,
+} from "@/lib/guide/articles/comprehensive-income-tax-penalty-guide";
+import {
+  SimpleBookkeepingIncomeTaxGuideBody,
+  simpleBookkeepingIncomeTaxGuideMeta,
+} from "@/lib/guide/articles/simple-bookkeeping-income-tax-guide";
+import {
+  SincereFilingConfirmationGuideBody,
+  sincereFilingConfirmationGuideMeta,
+} from "@/lib/guide/articles/sincere-filing-confirmation-guide";
+import {
+  InterimPrepaymentIncomeTaxGuideBody,
+  interimPrepaymentIncomeTaxGuideMeta,
+} from "@/lib/guide/articles/interim-prepayment-income-tax-guide";
 export type GuideArticle = {
   slug: string;
   title: string;
@@ -804,6 +832,34 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...kakaoEmergencyLoanInterestGuideMeta,
     Body: KakaoEmergencyLoanInterestGuideBody,
+  },
+  {
+    ...comprehensiveIncomeTaxOverviewGuideMeta,
+    Body: ComprehensiveIncomeTaxOverviewGuideBody,
+  },
+  {
+    ...businessExpenseRatioApplicationGuideMeta,
+    Body: BusinessExpenseRatioApplicationGuideBody,
+  },
+  {
+    ...housingRentalIncomeSeparateTaxationGuideMeta,
+    Body: HousingRentalIncomeSeparateTaxationGuideBody,
+  },
+  {
+    ...comprehensiveIncomeTaxPenaltyGuideMeta,
+    Body: ComprehensiveIncomeTaxPenaltyGuideBody,
+  },
+  {
+    ...simpleBookkeepingIncomeTaxGuideMeta,
+    Body: SimpleBookkeepingIncomeTaxGuideBody,
+  },
+  {
+    ...sincereFilingConfirmationGuideMeta,
+    Body: SincereFilingConfirmationGuideBody,
+  },
+  {
+    ...interimPrepaymentIncomeTaxGuideMeta,
+    Body: InterimPrepaymentIncomeTaxGuideBody,
   },
 ];
 

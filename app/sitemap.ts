@@ -26,6 +26,11 @@ const staticPages: MetadataRoute.Sitemap = [
     priority: 0.85,
   },
   {
+    url: `${SITE_URL}/comprehensive-income-tax-calculator`,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  },
+  {
     url: `${SITE_URL}/inheritance-tax-calculator`,
     changeFrequency: "weekly",
     priority: 0.85,

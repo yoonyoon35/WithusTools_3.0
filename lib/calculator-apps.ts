@@ -66,6 +66,12 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
     path: "/capital-gains-tax-calculator",
     featureList: ["1세대 1주택 비과세·고가 안분", "장기보유특별공제", "다주택 중과·단기세율 비교"],
   },
+  "/comprehensive-income-tax-calculator": {
+    name: "종합소득세 계산기",
+    description: "국세청 세율표·경비율·중간예납 식으로 산출세액, 추계 사업소득, 납부·환급세액을 계산하는 계산기입니다.",
+    path: "/comprehensive-income-tax-calculator",
+    featureList: ["2023~2025년 귀속 세율", "단순·기준경비율 추계", "중간예납 고지·추계액"],
+  },
   "/inheritance-tax-calculator": {
     name: "상속세 계산기",
     description:

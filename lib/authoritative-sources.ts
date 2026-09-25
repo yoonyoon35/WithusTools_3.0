@@ -13,7 +13,7 @@ export const authoritativeSources = [
   {
     name: "국세청",
     url: "https://www.nts.go.kr",
-    description: "취득세·종합부동산세·양도소득세 안내",
+    description: "종합소득세·취득세·종합부동산세·양도소득세 안내",
   },
   {
     name: "위택스",

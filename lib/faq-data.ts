@@ -199,6 +199,34 @@ export const capitalGainsTaxCalculatorFaqItems = [
   },
 ] as const satisfies readonly FaqItem[];
 
+export const comprehensiveIncomeTaxCalculatorFaqItems = [
+  {
+    question: "산출세액은 어떻게 계산하나요?",
+    answer:
+      "이자·배당이 2천만 원 이하면 산출세액은 과세표준 × 해당 구간 세율 − 누진공제입니다. 과세표준 30,000,000원이면 30,000,000원 × 15% − 1,260,000원 = 3,240,000원입니다. 이자·배당 합계가 2천만 원을 넘으면 소득세법 제62조에 따라 1호와 2호 중 큰 금액을 산출세액으로 씁니다. 2023~2025년 귀속은 1,400만 원 이하 6%부터 10억 원 초과 45%까지입니다.",
+  },
+  {
+    question: "경비율 사업소득은 어떤 식을 쓰나요?",
+    answer:
+      "단순경비율은 수입금액 − (수입금액 × 단순경비율)입니다. 기준경비율은 수입금액 − 주요경비 − (수입금액 × 기준경비율)과, 단순경비율로 계산한 소득금액 × 배율 중 작은 금액입니다. 2020~2027년 귀속 배율은 간편장부대상자 2.8배, 복식부기의무자 3.4배이고, 복식부기 추계는 기준경비율의 1/2를 씁니다.",
+  },
+  {
+    question: "소득공제와 세액공제 금액은 왜 직접 입력하나요?",
+    answer:
+      "기본공제와 추가공제는 부양가족 인원으로 계산합니다. 2026~2029년 귀속 자녀세액공제는 2016년생 이전 자녀·손자녀 수로, 표준세액공제는 근로소득 여부로 계산합니다. 2017년생은 2030년 귀속부터입니다. 연금보험료와 보험료·의료비·교육비·기부금·연금계좌·월세·감면은 항목마다 한도가 달라 합계를 직접 넣습니다.",
+  },
+  {
+    question: "개인지방소득세도 같이 나오나요?",
+    answer:
+      "이 계산기는 종합소득세만 계산하고, 결정세액에 개인지방소득세를 더하지 않습니다. 인적용역 원천징수 3.3%는 소득세 3%와 개인지방소득세 0.3%로 나뉘며, 이미 낸 세금에는 소득세 3%만 넣습니다.",
+  },
+  {
+    question: "중간예납세액은 어떻게 나오나요?",
+    answer:
+      "중간예납세액 = 중간예납기준액 × 1/2 − 중간예납 기간의 토지 등 매매차익 예정신고 납부세액입니다. 기준액은 전년도 중간예납세액, 확정신고 자진납부세액, 추가납부세액, 기한 후·수정신고 추가 자진납부세액을 더하고 환급세액을 뺀 금액입니다. 50만 원 미만은 소액부징수입니다.",
+  },
+] as const satisfies readonly FaqItem[];
+
 export const inheritanceTaxCalculatorFaqItems = [
   {
     question: "상속세 과세가액은 어떻게 계산하나요?",
@@ -255,6 +283,7 @@ export const calculatorFaqByPath: Record<string, readonly FaqItem[]> = {
   "/prepayment-fee-calculator": prepaymentFeeCalculatorFaqItems,
   "/comprehensive-property-tax-calculator": comprehensivePropertyTaxCalculatorFaqItems,
   "/capital-gains-tax-calculator": capitalGainsTaxCalculatorFaqItems,
+  "/comprehensive-income-tax-calculator": comprehensiveIncomeTaxCalculatorFaqItems,
   "/inheritance-tax-calculator": inheritanceTaxCalculatorFaqItems,
 };
 
