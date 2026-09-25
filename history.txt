@@ -917,3 +917,8 @@ Phase 4 daechulija.com 301 완료
 1121 - 종합소득세 계산기 결과 화면·기타소득 합산 선택
         - 계산 결과를 상속세와 같이 소득금액·과세표준·산출세액 구간과 납부·환급 강조 상자로 표시
         - 기타소득 300만 원 이하는 빼고, 「종합소득에 포함하기」를 켜면 합산. 300만 원 초과는 항상 합산
+
+1141 - 종합소득세 배포 빌드 실패
+        - Actions는 exit code 1만 표시. 로컬 빌드에서 원인 확인
+        - scripts/check-comprehensive-income-tax.ts가 import에 .ts를 붙여 Node로 실행되는데, Next 타입 검사가 그 파일을 포함해 실패
+        - 기존 계산기에는 이 검증 스크립트가 없음. tsconfig exclude에 scripts를 넣어 빌드 검사에서만 제외
