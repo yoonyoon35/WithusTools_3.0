@@ -46,6 +46,9 @@ export const metadata: Metadata = {
   authors: [{ name: authorDisplayName, url: authorAboutUrl }],
   verification: {
     yandex: "b9d7eec2f6c0396f",
+    other: {
+      "naver-site-verification": "551a44c497d130cf232d223938a7454299519fca",
+    },
   },
   robots: {
     index: true,
