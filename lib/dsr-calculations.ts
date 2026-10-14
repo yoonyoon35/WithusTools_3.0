@@ -454,6 +454,104 @@ export function computeDsrSnapshotFromLoans(args: {
   };
 }
 
+export interface MaxNewLoanInput {
+  annualIncomeWon: number;
+  /** 목표 DSR(%). 은행권 40%, 제2금융권 50% 또는 사용자가 정한 값 */
+  targetDsrPercent: number;
+  /** 역산 대상 신규 대출을 제외한 나머지 대출의 DSR 산정 연간 상환 합계(원) */
+  otherAnnualDebtServiceWon: number;
+  /** DSR 산정 금리(%). 스트레스 DSR이면 가산금리 포함 */
+  annualRatePercent: number;
+  termMonths: number;
+  graceMonths: number;
+  repaymentType: RepaymentType;
+  equalPrincipalBasis: EqualPrincipalDsrBasis;
+  bulletBasis: BulletDsrBasis;
+}
+
+export interface MaxNewLoanResult {
+  /** 연소득 × 목표 DSR */
+  targetAnnualDebtServiceWon: number;
+  /** 목표 DSR 안에서 신규 대출에 쓸 수 있는 연 상환 여력 */
+  availableAnnualWon: number;
+  availableMonthlyWon: number;
+  /** 최대 대출 가능액(만원 단위 내림) */
+  maxPrincipalWon: number;
+  /** 최대 대출 가능액일 때 신규 대출의 월 상환(DSR 산정) */
+  maxMonthlyWon: number;
+  /** 다른 대출만으로 이미 목표 DSR을 넘은 경우 */
+  alreadyOverTarget: boolean;
+}
+
+/** 역산 시 기준 원금. 연 상환액은 원금에 비례하므로 이 값으로 원당 상환액을 구한다. */
+const MAX_LOAN_PROBE_PRINCIPAL_WON = 100_000_000;
+const MAX_LOAN_ROUND_UNIT_WON = 10_000;
+
+/**
+ * 목표 DSR 안에서 받을 수 있는 신규 대출의 최대 원금을 역산합니다.
+ * (연소득 × 목표 DSR − 다른 대출 연 상환) ÷ 원당 연 상환액. DSR 외 LTV·상한·내부 기준은 반영하지 않습니다.
+ * 체증식은 월 상환 직접 입력만 지원하므로 대상이 아닙니다.
+ */
+export function computeMaxNewLoanPrincipal(input: MaxNewLoanInput): MaxNewLoanResult | null {
+  const { annualIncomeWon, targetDsrPercent, otherAnnualDebtServiceWon, annualRatePercent } = input;
+  if (!(annualIncomeWon > 0)) return null;
+  if (!Number.isFinite(targetDsrPercent) || targetDsrPercent <= 0) return null;
+  if (!Number.isFinite(annualRatePercent) || annualRatePercent < 0) return null;
+  if (input.repaymentType === "graduated") return null;
+
+  const months = Math.min(600, Math.max(1, Math.round(input.termMonths)));
+  const graceMonths = Math.max(0, Math.min(600, Math.round(input.graceMonths)));
+  if (graceMonths >= months) return null;
+
+  const targetAnnualDebtServiceWon = annualIncomeWon * (targetDsrPercent / 100);
+  const availableAnnualWon = targetAnnualDebtServiceWon - Math.max(0, otherAnnualDebtServiceWon);
+
+  if (availableAnnualWon <= 0) {
+    return {
+      targetAnnualDebtServiceWon,
+      availableAnnualWon: 0,
+      availableMonthlyWon: 0,
+      maxPrincipalWon: 0,
+      maxMonthlyWon: 0,
+      alreadyOverTarget: true,
+    };
+  }
+
+  const annualFor = (principalWon: number) =>
+    annualLoanDebtService(
+      principalWon,
+      annualRatePercent,
+      months,
+      input.repaymentType,
+      input.equalPrincipalBasis,
+      input.bulletBasis,
+      { graceMonths },
+    );
+
+  const probeAnnual = annualFor(MAX_LOAN_PROBE_PRINCIPAL_WON);
+  if (!(probeAnnual > 0)) return null;
+
+  const annualPerWon = probeAnnual / MAX_LOAN_PROBE_PRINCIPAL_WON;
+  let principal =
+    Math.floor(availableAnnualWon / annualPerWon / MAX_LOAN_ROUND_UNIT_WON) * MAX_LOAN_ROUND_UNIT_WON;
+
+  let guard = 0;
+  while (principal > 0 && annualFor(principal) > availableAnnualWon + 1 && guard < 20) {
+    principal -= MAX_LOAN_ROUND_UNIT_WON;
+    guard += 1;
+  }
+  principal = Math.max(0, principal);
+
+  return {
+    targetAnnualDebtServiceWon,
+    availableAnnualWon,
+    availableMonthlyWon: availableAnnualWon / 12,
+    maxPrincipalWon: principal,
+    maxMonthlyWon: principal > 0 ? annualFor(principal) / 12 : 0,
+    alreadyOverTarget: false,
+  };
+}
+
 export function computeDsrSnapshot(args: {
   annualIncomeManwon: number;
   existingMonthlyWon: number;

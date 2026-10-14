@@ -12,6 +12,8 @@ import {
   bulletDsrBasisLabels,
   bulletDsrBasisOrder,
   computeDsrSnapshotFromLoans,
+  computeMaxNewLoanPrincipal,
+  effectiveStressAddPercent,
   equalPrincipalDsrBasisHints,
   equalPrincipalDsrBasisLabels,
   monthlyPaymentForDsr,
@@ -26,6 +28,7 @@ import {
   type StressRateKind,
 } from "@/lib/dsr-calculations";
 import { formatNumber, removeCommas, repaymentTypeLabels, type RepaymentType } from "@/lib/loan-calculations";
+import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { MoneyValue, ResultRow, SubTextValue } from "@/components/calculator/calculator-result-rows";
 import { CalculatorResultExportButtons } from "@/components/calculator/calculator-result-export-buttons";
 import {
@@ -142,6 +145,7 @@ export function DsrCalculator() {
   const [dsrMode, setDsrMode] = React.useState<"general" | "stress">("general");
   const [stressPresetId, setStressPresetId] = React.useState<StressDsrPresetId>("metro_mortgage");
   const [stressCustomPercent, setStressCustomPercent] = React.useState("1.5");
+  const [targetDsrDisplay, setTargetDsrDisplay] = React.useState("40");
   const [hasCalculated, setHasCalculated] = React.useState(false);
 
   const hasEqualPrincipalLoan = loans.some((l) => l.inputMode === "details" && l.repaymentType === "equal-principal");
@@ -190,9 +194,95 @@ export function DsrCalculator() {
   const stressInputsValid =
     dsrMode !== "stress" || (Number.isFinite(nominalStressPercent) && !Number.isNaN(nominalStressPercent));
 
+  const targetDsrPercent = React.useMemo(() => {
+    const v = parseFloat(targetDsrDisplay);
+    return Number.isFinite(v) && v > 0 && v <= 100 ? v : NaN;
+  }, [targetDsrDisplay]);
+
+  /** 역산 대상: 「대출 조건」으로 입력한 첫 신규 대출. 대출금은 비워도 금리·기간만 있으면 됩니다. */
+  const maxLoan = React.useMemo(() => {
+    const manwon = parseInt(removeCommas(annualIncomeManwonDisplay), 10);
+    if (!(manwon > 0) || Number.isNaN(targetDsrPercent) || !stressInputsValid) return null;
+
+    const targetRow = loans.find(
+      (l) => l.loanKind === "new" && l.inputMode === "details" && l.repaymentType !== "graduated",
+    );
+    if (!targetRow) return null;
+
+    const contractRate = parseFloat(targetRow.rate);
+    if (!Number.isFinite(contractRate) || contractRate <= 0) return null;
+
+    const termMonths =
+      parseMonthsDisplay(targetRow.remainingTermDisplay) || parseMonthsDisplay(targetRow.totalTermDisplay);
+    if (termMonths <= 0) return null;
+    const graceMonths = parseMonthsDisplay(targetRow.graceDisplay);
+
+    const stressAdd =
+      dsrMode === "stress" && Number.isFinite(nominalStressPercent)
+        ? effectiveStressAddPercent(nominalStressPercent, targetRow.stressRateKind)
+        : 0;
+    const dsrRatePercent = contractRate + stressAdd;
+
+    const otherLoans = loans
+      .filter((l) => l.id !== targetRow.id)
+      .map(parseLoanRow)
+      .filter((l): l is DsrLoanInput => l != null);
+    const otherSnapshot = computeDsrSnapshotFromLoans({
+      annualIncomeManwon: manwon,
+      loans: otherLoans,
+      equalPrincipalDsrBasis,
+      bulletDsrBasis,
+      stress:
+        dsrMode === "stress" && Number.isFinite(nominalStressPercent)
+          ? { nominalStressPercent: nominalStressPercent as number }
+          : null,
+    });
+
+    const result = computeMaxNewLoanPrincipal({
+      annualIncomeWon: manwon * 10_000,
+      targetDsrPercent,
+      otherAnnualDebtServiceWon: otherSnapshot.annualDebtServiceWon,
+      annualRatePercent: dsrRatePercent,
+      termMonths,
+      graceMonths,
+      repaymentType: targetRow.repaymentType,
+      equalPrincipalBasis: equalPrincipalDsrBasis,
+      bulletBasis: bulletDsrBasis,
+    });
+    if (!result) return null;
+
+    const rateText = `${dsrRatePercent % 1 === 0 ? dsrRatePercent : dsrRatePercent.toFixed(2)}%`;
+    const assumption = [
+      repaymentTypeLabels[targetRow.repaymentType],
+      `${stressAdd > 0 ? "DSR 산정 금리" : "금리"} ${rateText}${stressAdd > 0 ? ` (스트레스 +${stressAdd % 1 === 0 ? stressAdd : stressAdd.toFixed(2)}%p 포함)` : ""}`,
+      `${termMonths}개월`,
+      graceMonths > 0 ? `거치 ${graceMonths}개월` : null,
+    ]
+      .filter(Boolean)
+      .join(" · ");
+
+    return {
+      ...result,
+      targetDsrPercent,
+      otherAnnualDebtServiceWon: otherSnapshot.annualDebtServiceWon,
+      assumption,
+    };
+  }, [
+    annualIncomeManwonDisplay,
+    loans,
+    targetDsrPercent,
+    dsrMode,
+    nominalStressPercent,
+    stressInputsValid,
+    equalPrincipalDsrBasis,
+    bulletDsrBasis,
+  ]);
+
+  const hasDsrLoans = parsedLoans.length > 0;
+
   const canSubmit =
     parseInt(removeCommas(annualIncomeManwonDisplay), 10) > 0 &&
-    parsedLoans.length > 0 &&
+    (hasDsrLoans || maxLoan != null) &&
     stressInputsValid;
 
   const updateLoan = (id: string, patch: Partial<LoanRowState>) => {
@@ -217,7 +307,7 @@ export function DsrCalculator() {
     setLoans((prev) => (prev.length <= 1 ? prev : prev.filter((row) => row.id !== id)));
   };
 
-  const dsrDisplay = snapshot.dsrPercent != null ? snapshot.dsrPercent.toFixed(2) : "—";
+  const dsrDisplay = snapshot.dsrPercent != null && hasDsrLoans ? snapshot.dsrPercent.toFixed(2) : "—";
   const withinBankCap = snapshot.dsrPercent != null && snapshot.dsrPercent <= 40;
   const showZeroResult = !hasCalculated || !canSubmit;
 
@@ -237,10 +327,16 @@ export function DsrCalculator() {
         stressAddPercent: 0,
         isStressDsr: false,
       }
-    : snapshot;
+    : hasDsrLoans
+      ? snapshot
+      : { ...snapshot, dsrPercent: null };
 
   const displayDsr = showZeroResult ? "0.00" : dsrDisplay;
-  const displayWithinBankCap = showZeroResult ? true : withinBankCap;
+  const displayWithinBankCap = showZeroResult || !hasDsrLoans ? true : withinBankCap;
+  const showMaxLoanResult = !showZeroResult && maxLoan != null;
+  const maxLoanUnavailableHint = Number.isNaN(targetDsrPercent)
+    ? "목표 DSR을 1~100% 사이로 입력하세요."
+    : "신규 대출을 「대출 조건」으로 입력하고 금리를 넣으면 최대 대출 가능액을 계산합니다. 대출금은 비워 두어도 됩니다.";
   const showSingleNewRate = !showZeroResult && displaySnapshot.loanResults.filter((l) => l.isNew && l.inputMode === "details").length === 1;
 
   const dsrModeLabel =
@@ -256,8 +352,17 @@ export function DsrCalculator() {
       snapshot: displaySnapshot,
       dsrModeLabel,
       withinBankCap: displayWithinBankCap,
+      maxLoan: showMaxLoanResult && maxLoan
+        ? {
+            targetDsrPercent: maxLoan.targetDsrPercent,
+            maxPrincipalWon: maxLoan.maxPrincipalWon,
+            availableMonthlyWon: maxLoan.availableMonthlyWon,
+            alreadyOverTarget: maxLoan.alreadyOverTarget,
+            assumption: maxLoan.assumption,
+          }
+        : null,
     });
-  }, [displaySnapshot, displayWithinBankCap, dsrModeLabel, showZeroResult]);
+  }, [displaySnapshot, displayWithinBankCap, dsrModeLabel, showZeroResult, showMaxLoanResult, maxLoan]);
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
@@ -433,6 +538,48 @@ export function DsrCalculator() {
             </div>
           ) : null}
 
+          <div className="space-y-2 border-t pt-4">
+            <Label htmlFor="dsr-target">목표 DSR (최대 대출 가능액 역산 기준)</Label>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="bg-muted inline-flex rounded-lg p-0.5" role="group" aria-label="목표 DSR 빠른 선택">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={targetDsrDisplay === "40" ? "default" : "ghost"}
+                  className="h-8 px-3"
+                  onClick={() => setTargetDsrDisplay("40")}
+                  aria-pressed={targetDsrDisplay === "40"}
+                >
+                  40% 은행권
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={targetDsrDisplay === "50" ? "default" : "ghost"}
+                  className="h-8 px-3"
+                  onClick={() => setTargetDsrDisplay("50")}
+                  aria-pressed={targetDsrDisplay === "50"}
+                >
+                  50% 제2금융
+                </Button>
+              </div>
+              <Input
+                id="dsr-target"
+                inputMode="decimal"
+                autoComplete="off"
+                placeholder="직접 입력"
+                value={targetDsrDisplay}
+                onChange={(e) => setTargetDsrDisplay(e.target.value.replace(/[^0-9.]/g, ""))}
+                className="max-w-[100px]"
+              />
+              <span className="text-muted-foreground text-sm">%</span>
+            </div>
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              신규 대출에 금리·기간만 입력해도 이 비율 안에서 받을 수 있는 최대 대출 가능액을 계산합니다. 은행권은 40%,
+              제2금융권은 50%인 경우가 많고, 내 월 상환 여력에 맞춰 30%처럼 직접 낮춰 볼 수도 있습니다.
+            </p>
+          </div>
+
           <Button
             type="button"
             className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-600"
@@ -455,6 +602,48 @@ export function DsrCalculator() {
               <p className="text-muted-foreground text-xs">withustools.com · 참고용</p>
             </div>
           <div
+            className="rounded-lg border border-blue-500/40 bg-blue-500/10 p-4"
+            role="status"
+            aria-live="polite"
+          >
+            <p className="text-muted-foreground text-sm">
+              DSR {Number.isNaN(targetDsrPercent) ? "—" : targetDsrPercent}% 기준 최대 대출 가능액
+            </p>
+            <p className="mt-1 text-3xl font-bold tabular-nums tracking-tight">
+              {showMaxLoanResult && maxLoan ? formatNumber(maxLoan.maxPrincipalWon) : showZeroResult ? "0" : "—"}
+              {showMaxLoanResult || showZeroResult ? <span className="text-lg font-semibold">원</span> : null}
+            </p>
+            {showMaxLoanResult && maxLoan ? (
+              <p className="text-muted-foreground text-xs">{formatAmountKoreanWon(maxLoan.maxPrincipalWon)}</p>
+            ) : null}
+            <p className="text-muted-foreground mt-2 text-sm">
+              {showZeroResult
+                ? "입력 후 계산하기를 누르면 목표 DSR 안에서 받을 수 있는 최대 대출 가능액이 나옵니다."
+                : maxLoan == null
+                  ? maxLoanUnavailableHint
+                  : maxLoan.alreadyOverTarget
+                    ? "다른 대출만으로 이미 목표 DSR을 넘어 신규 대출 여력이 없습니다."
+                    : `가정: ${maxLoan.assumption}`}
+            </p>
+            {showMaxLoanResult && maxLoan && !maxLoan.alreadyOverTarget ? (
+              <dl className="divide-border mt-2 divide-y text-sm">
+                <ResultRow label="연소득 × 목표 DSR (연 상환 한도)">
+                  <MoneyValue amount={Math.round(maxLoan.targetAnnualDebtServiceWon)} />
+                </ResultRow>
+                <ResultRow label="다른 대출 연 상환 (DSR 산정)">
+                  <MoneyValue amount={Math.round(maxLoan.otherAnnualDebtServiceWon)} />
+                </ResultRow>
+                <ResultRow label="신규 대출 월 상환 여력">
+                  <MoneyValue amount={Math.round(maxLoan.availableMonthlyWon)} />
+                </ResultRow>
+              </dl>
+            ) : null}
+            <p className="text-muted-foreground mt-2 text-xs leading-relaxed">
+              DSR만 반영한 값입니다. LTV·주담대 상한·은행 내부 기준·신용에 따라 실제 한도는 더 낮을 수 있습니다.
+            </p>
+          </div>
+
+          <div
             className={`rounded-lg border p-4 ${
               displayWithinBankCap
                 ? "border-emerald-500/40 bg-emerald-500/10"
@@ -463,7 +652,7 @@ export function DsrCalculator() {
             role="status"
             aria-live="polite"
           >
-            <p className="text-muted-foreground text-sm">주담대 한도 기준 DSR</p>
+            <p className="text-muted-foreground text-sm">입력한 대출 기준 DSR</p>
             <p className="text-muted-foreground mt-0.5 text-xs">
               {dsrMode === "stress"
                 ? displaySnapshot.isStressDsr
@@ -474,12 +663,14 @@ export function DsrCalculator() {
             </p>
             <p className="mt-1 text-3xl font-bold tabular-nums tracking-tight">
               {displayDsr}
-              <span className="text-lg font-semibold">%</span>
+              {displayDsr !== "—" ? <span className="text-lg font-semibold">%</span> : null}
             </p>
             <p className="text-muted-foreground mt-2 text-sm">
               {showZeroResult
                 ? "입력 후 한도·DSR 계산하기를 누르면 주담대 한도와 DSR이 나옵니다."
-                : displayWithinBankCap
+                : !hasDsrLoans
+                  ? "신규 대출금을 입력하면 입력한 대출 기준 DSR(%)도 함께 계산됩니다."
+                  : displayWithinBankCap
                   ? "은행권 주담대 한도(DSR 40% 참고) 이내로 보입니다. 제2금융권 등은 별도 기준이 적용될 수 있습니다."
                   : "은행권 주담대 한도(DSR 40% 참고)를 초과하는 수준입니다. 실제 심사·업권별 한도와 다를 수 있습니다."}
             </p>
@@ -839,7 +1030,7 @@ function LoanRowEditor({
 
           <p className="text-muted-foreground text-xs leading-relaxed">
             {row.loanKind === "new"
-              ? "신규: 총액·총 기간만 입력해도 됩니다. 잔액·잔여가 비어 있으면 총액·총 기간으로 계산합니다."
+              ? "신규: 총액·총 기간만 입력해도 됩니다. 잔액·잔여가 비어 있으면 총액·총 기간으로 계산합니다. 최대 대출 가능액만 보려면 대출금은 비우고 금리·기간만 입력하세요."
               : "기존: 현재 잔액과 남은 상환 개월 수를 입력하세요. 거치 기간이 끝났으면 0입니다."}
             {" "}
             만기일시상환은 <strong>잔액</strong>에 대출 원금을 입력하고 상환 방식에서 「만기일시상환」을 선택하세요.

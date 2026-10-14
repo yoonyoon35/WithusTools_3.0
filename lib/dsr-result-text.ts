@@ -31,18 +31,42 @@ export interface DsrResultTextSnapshot {
   isStressDsr: boolean;
 }
 
+export interface DsrResultTextMaxLoan {
+  targetDsrPercent: number;
+  maxPrincipalWon: number;
+  availableMonthlyWon: number;
+  alreadyOverTarget: boolean;
+  assumption: string;
+}
+
 export function formatDsrResultText(args: {
   snapshot: DsrResultTextSnapshot;
   dsrModeLabel: string;
   withinBankCap: boolean;
+  maxLoan?: DsrResultTextMaxLoan | null;
 }): string {
-  const { snapshot, dsrModeLabel, withinBankCap } = args;
-  const lines = [...buildExportTextHeader("DSR 계산기")];
+  const { snapshot, dsrModeLabel, withinBankCap, maxLoan } = args;
+  const lines = [...buildExportTextHeader("DSR·주담대 한도 계산기")];
 
-  lines.push(`[총부채원리금상환비율(DSR)] ${snapshot.dsrPercent != null ? `${snapshot.dsrPercent.toFixed(2)}%` : "—"}`);
-  lines.push(`- 산정 방식: ${dsrModeLabel}`);
-  lines.push(`- 은행권 40% 참고: ${withinBankCap ? "이내" : "초과"}`);
-  lines.push("");
+  if (maxLoan) {
+    lines.push(`[DSR ${maxLoan.targetDsrPercent}% 기준 최대 대출 가능액]`);
+    if (maxLoan.alreadyOverTarget) {
+      lines.push("- 기존 대출만으로 목표 DSR을 이미 넘어 신규 대출 여력이 없습니다.");
+    } else {
+      lines.push(moneyLine("최대 대출 가능액", maxLoan.maxPrincipalWon));
+      lines.push(moneyLine("신규 대출 월 상환 여력", Math.round(maxLoan.availableMonthlyWon)));
+    }
+    lines.push(`- 가정: ${maxLoan.assumption}`);
+    lines.push("- DSR만 반영한 값이며 LTV·주담대 상한·은행 내부 기준에 따라 실제 한도는 더 낮을 수 있습니다.");
+    lines.push("");
+  }
+
+  if (snapshot.dsrPercent != null) {
+    lines.push(`[총부채원리금상환비율(DSR)] ${snapshot.dsrPercent.toFixed(2)}%`);
+    lines.push(`- 산정 방식: ${dsrModeLabel}`);
+    lines.push(`- 은행권 40% 참고: ${withinBankCap ? "이내" : "초과"}`);
+    lines.push("");
+  }
 
   if (snapshot.loanResults.length > 0) {
     lines.push("[대출별 상환]");

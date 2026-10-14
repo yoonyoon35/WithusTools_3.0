@@ -20,9 +20,15 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
   "/dsr-calculator": {
     name: "DSR·주담대 한도 계산기",
     description:
-      "연소득·기존 부채·신규 대출 조건으로 주담대 한도와 DSR(%)을 바로 확인하는 계산기입니다.",
+      "연소득·기존 부채·신규 대출 조건으로 DSR(%)과 목표 DSR 기준 주담대 최대 대출 가능액을 계산하는 계산기입니다.",
     path: "/dsr-calculator",
-    featureList: ["주담대 한도(DSR 40%) 확인", "DSR(%) 산출", "주담대·신용·할부 부채 반영", "만기일시·원금균등 산정 방식 선택"],
+    featureList: [
+      "DSR 40% 기준 최대 대출 가능액 역산",
+      "내 목표 DSR 직접 설정(30%·50% 등)",
+      "DSR(%) 산출",
+      "주담대·신용·할부 부채 반영",
+      "만기일시·원금균등 산정 방식 선택",
+    ],
   },
   "/dti-calculator": {
     name: "DTI 계산기",
