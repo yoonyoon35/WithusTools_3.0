@@ -495,7 +495,7 @@ export function GiftTaxOverviewGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
                   3.5% + 지방교육세 등 → 전용 85㎡ 초과 시{" "}
-                  <strong>약 4.05%</strong>
+                  <strong>약 4.0%</strong>
                 </td>
               </tr>
               <tr>
@@ -727,7 +727,7 @@ export function GiftTaxOverviewGuideBody() {
           아래는 검색·상담 수요가 많은 <strong>1억·3억·6억 원</strong> 구간입니다. 공통 가정:{" "}
           <strong>부모 1인 → 자녀 1인</strong>, 해당 부모의 <strong>10년 내 첫 증여</strong>(공제 5,000만 전액
           사용), <strong>직계 증여</strong>(세대생략할증 없음), 주택 예시는{" "}
-          <strong>1세1주택자→직계비속 증여</strong>로 취득세 <strong>3.5%</strong>(85㎡ 초과 합계 4.05%) 적용.
+          <strong>1세1주택자→직계비속 증여</strong>로 취득세 <strong>3.5%</strong>(85㎡ 초과 합계 4.0%) 적용.
           신고세액공제 3%는 <strong>반영 전</strong> 산출세액입니다.
         </p>
 
@@ -762,9 +762,9 @@ export function GiftTaxOverviewGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">5,000만</td>
                 <td className="border-border border-b px-3 py-2.5">500만</td>
-                <td className="border-border border-b px-3 py-2.5">405만</td>
+                <td className="border-border border-b px-3 py-2.5">400만</td>
                 <td className="border-border border-b px-3 py-2.5">
-                  <strong>905만</strong>
+                  <strong>900만</strong>
                 </td>
               </tr>
               <tr>
@@ -773,9 +773,9 @@ export function GiftTaxOverviewGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">2억 5,000만</td>
                 <td className="border-border border-b px-3 py-2.5">4,000만</td>
-                <td className="border-border border-b px-3 py-2.5">1,215만</td>
+                <td className="border-border border-b px-3 py-2.5">1,200만</td>
                 <td className="border-border border-b px-3 py-2.5">
-                  <strong>5,215만</strong>
+                  <strong>5,200만</strong>
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -784,9 +784,9 @@ export function GiftTaxOverviewGuideBody() {
                 </th>
                 <td className="px-3 py-2.5">5억 5,000만</td>
                 <td className="px-3 py-2.5">1억 500만</td>
-                <td className="px-3 py-2.5">2,430만</td>
+                <td className="px-3 py-2.5">2,400만</td>
                 <td className="px-3 py-2.5">
-                  <strong>1억 2,930만</strong>
+                  <strong>1억 2,900만</strong>
                 </td>
               </tr>
             </tbody>
@@ -799,7 +799,7 @@ export function GiftTaxOverviewGuideBody() {
         <p className="text-muted-foreground text-sm leading-relaxed">
           「1억 증여세」는 가장 많이 검색되는 구간입니다. 공제 5,000만 적용 후 과세표준 5,000만 →{" "}
           <strong>10% = 500만 원</strong>. 기한 내 신고 시 3% 공제로 <strong>약 485만 원</strong>. 주택 등기 시
-          취득세 4.05% = <strong>405만 원</strong>. 현금만 증여하면 취득세 없음.
+          취득세 등 4.0% = <strong>400만 원</strong>. 현금만 증여하면 취득세 없음.
         </p>
 
         <h3 id="guide-gto-scenario-300m" className="text-foreground text-base font-semibold">
@@ -807,7 +807,7 @@ export function GiftTaxOverviewGuideBody() {
         </h3>
         <p className="text-muted-foreground text-sm leading-relaxed">
           과세표준 2억 5,000만 → 1억×10%(1,000만) + 1.5억×20%(3,000만) = <strong>4,000만 원</strong>. 취득세 등
-          4.05% = <strong>1,215만 원</strong>. 합계 <strong>5,215만 원</strong>. 부모·자녀가{" "}
+          4.0% = <strong>1,200만 원</strong>. 합계 <strong>5,200만 원</strong>. 부모·자녀가{" "}
           <strong>각 50% 지분</strong>으로 나눠 받으면 증여자 2명 → 증여세가 <strong>대폭 줄 수 있음</strong>(각
           1.5억·공제 5천·과세 1억 → 각 1,000만, 합 2,000만 수준).
         </p>
@@ -817,7 +817,7 @@ export function GiftTaxOverviewGuideBody() {
         </h3>
         <p className="text-muted-foreground text-sm leading-relaxed">
           과세표준 5억 5,000만 → 1억×10% + 4억×20% + 5천×30% = <strong>1억 500만 원</strong>. 취득세 등{" "}
-          <strong>2,430만 원</strong>. 12% 중과 해당 시 취득세만 <strong>약 8,040만</strong>으로 급증. 증여 후
+          <strong>2,400만 원</strong>. 12% 중과 해당 시 취득세 등(13.4%) <strong>약 8,040만</strong>으로 급증. 증여 후
           자녀가 별도 주택을 매수하면 <strong>2주택 중과</strong>(
           <Link
             href="/guide/second-home-acquisition-tax-surcharge-2026-guide#guide-s2-rates"

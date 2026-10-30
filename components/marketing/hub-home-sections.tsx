@@ -25,7 +25,7 @@ export function HubHeroSection() {
           {siteTagline}
         </h1>
         <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-          대출 이자·DSR·취득세·중개수수료 등 계산기와 가이드를 한곳에서 이용할 수 있습니다. {referenceDisclaimerLine}
+          대출 이자·DSR·LTV부터 취득세·중개수수료, 종합부동산세·양도소득세·종합소득세·상속세까지 계산기 11종과 가이드를 한곳에서 이용할 수 있습니다. {referenceDisclaimerLine}
         </p>
         <div className="mt-6">
           <Link

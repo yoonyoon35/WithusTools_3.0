@@ -5,7 +5,7 @@ export const jeonseLoanTypesComparisonMeta = {
   title: "전세자금대출 종류 및 조건 비교",
   description:
     "버팀목·시중은행 전세자금대출 조건 비교, 보증금·소득·나이별 선택 시나리오, 신청 순서와 자주 놓치는 제한 사항을 정리했습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function JeonseLoanTypesComparisonBody() {
@@ -13,7 +13,7 @@ export function JeonseLoanTypesComparisonBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-jeonse-overview">
         <h2 id="guide-jeonse-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           전세자금대출은 크게 정책 대출(주택도시기금)과 시중은행 대출로 나뉩니다. 소득 조건을 충족하는 경우 정책 대출이 금리 면에서
@@ -38,8 +38,8 @@ export function JeonseLoanTypesComparisonBody() {
           시나리오: 만 29세, 전세 2억 8천, 연소득 4,200만
         </h2>
         <p>
-          수도권 59㎡ 아파트 전세 2억 8천만 원, 무주택 세대주, 순자산 3억 이하라면 청년전용 버팀목 후보입니다. 한도 2억까지
-          가능하므로 <strong>2억은 버팀목, 나머지 8천만 원은 자기자금 또는 시중은행</strong>으로 채우는 그림이 됩니다. 이때
+          수도권 59㎡ 아파트 전세 2억 8천만 원, 무주택 세대주, 순자산 3억 이하라면 청년전용 버팀목 후보입니다. 한도 1억 5,000만 원까지
+          가능하므로 <strong>1억 5,000만 원은 버팀목, 나머지 1억 3,000만 원은 자기자금 또는 시중은행</strong>으로 채우는 그림이 됩니다. 이때
           시중은행분까지 합쳐{" "}
           <Link href="/dsr-calculator" className="text-primary underline-offset-4 hover:underline">
             DSR
@@ -78,8 +78,8 @@ export function JeonseLoanTypesComparisonBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   금리
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 1.9% ~ 3.3%</td>
-                <td className="border-border border-b px-3 py-2.5">연 3.5% ~ 4.5%</td>
+                <td className="border-border border-b px-3 py-2.5">연 1.9% ~ 3.5%(유형·소득별)</td>
+                <td className="border-border border-b px-3 py-2.5">연 4%대 중반 ~ 5%대 후반(은행·보증기관별 상이)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -162,14 +162,14 @@ export function JeonseLoanTypesComparisonBody() {
                 <td className="border-border border-b px-3 py-2.5">제한 없음</td>
                 <td className="border-border border-b px-3 py-2.5">만 19~34세</td>
                 <td className="border-border border-b px-3 py-2.5">혼인 7년 이내</td>
-                <td className="border-border border-b px-3 py-2.5">2세 이하 자녀</td>
+                <td className="border-border border-b px-3 py-2.5">대출 접수일 기준 2년 이내 출산(2023.1.1 이후 출생)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   수도권 한도
                 </th>
                 <td className="border-border border-b px-3 py-2.5">1억 2,000만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2억 원</td>
+                <td className="border-border border-b px-3 py-2.5">1억 5,000만 원(만 25세 미만 단독세대주 1억 2,000만 원)</td>
                 <td className="border-border border-b px-3 py-2.5">2억 5,000만 원</td>
                 <td className="border-border border-b px-3 py-2.5">2억 4,000만 원</td>
               </tr>
@@ -177,10 +177,10 @@ export function JeonseLoanTypesComparisonBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   금리 범위
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 1.9% ~ 3.3%</td>
-                <td className="border-border border-b px-3 py-2.5">연 2.0% ~ 3.1%</td>
+                <td className="border-border border-b px-3 py-2.5">연 2.5% ~ 3.5%</td>
                 <td className="border-border border-b px-3 py-2.5">연 2.2% ~ 3.3%</td>
-                <td className="border-border border-b px-3 py-2.5">별도 고시</td>
+                <td className="border-border border-b px-3 py-2.5">연 1.9% ~ 3.3%</td>
+                <td className="border-border border-b px-3 py-2.5">연 1.3% ~ 4.3%</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -195,7 +195,9 @@ export function JeonseLoanTypesComparisonBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ 2026년 2월 27일 버팀목 금리가 인하되어 일반 버팀목 기준 연 1.9~3.3%가 적용되고 있습니다.
+          ※ 2026년 10월 9일 주택도시기금 안내 기준이며, 금리는 수도권 주택 기준입니다(지방 소재 주택은 0.2%p 인하). 신혼·2자녀
+          이상 가구와 청년전용·신생아 특례의 한도는 2025년 6월 28일 계약분부터 줄어 현재 위 표의 금액입니다(일반 가구 한도는 변동
+          없음). 금리는 국토교통부가 고시하므로 신청 시점에 다시 확인하세요.
         </p>
       </section>
 
@@ -223,25 +225,25 @@ export function JeonseLoanTypesComparisonBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   2,000만 원 이하
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 2.0%</td>
+                <td className="border-border border-b px-3 py-2.5">연 2.2%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   4,000만 원 이하
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 2.3%</td>
+                <td className="border-border border-b px-3 py-2.5">연 2.5%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   6,000만 원 이하
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 2.7%</td>
+                <td className="border-border border-b px-3 py-2.5">연 2.9%</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   7,500만 원 이하(신혼)
                 </th>
-                <td className="px-3 py-2.5">연 3.1%</td>
+                <td className="px-3 py-2.5">연 3.3%</td>
               </tr>
             </tbody>
           </table>
@@ -351,7 +353,7 @@ export function JeonseLoanTypesComparisonBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ 우대금리는 중복 적용 가능하나, 최종 금리가 연 1.0% 미만인 경우 연 1.0%로 적용됩니다.
+          ※ 소득·가구 유형 우대(다자녀·기초수급·한부모 등)는 중복 없이 하나만 적용되고, 전자계약 우대 등 추가 우대는 중복될 수 있습니다. 총 인하 폭은 일반 0.5%p까지(다자녀 0.7%p, 기초수급·한부모 1.0%p)이고, 최종 금리가 연 1.0% 미만이면 연 1.0%로 적용됩니다. 부동산 전자계약 우대는 2026년 12월 31일 신규 접수분까지입니다.
         </p>
       </section>
 
@@ -370,7 +372,7 @@ export function JeonseLoanTypesComparisonBody() {
           신청 가능 은행
         </h2>
         <p>
-          우리은행·신한은행·KB국민은행·NH농협은행·KEB하나은행·대구은행·부산은행
+          KB국민은행·NH농협은행·신한은행·우리은행·하나은행·부산은행·iM뱅크(주택도시기금 수탁은행, 상품별 취급 여부 상이)
         </p>
         <p className="text-muted-foreground text-sm">
           ※ 금리 및 한도는 신청 시점 기준으로 변동될 수 있습니다. 정확한 조건은 주택도시기금(
@@ -394,7 +396,7 @@ export function JeonseLoanTypesComparisonBody() {
           <Link href="/guide/jeonse-guarantee-insurance-guide" className="text-primary underline-offset-4 hover:underline">
             전세보증보험
           </Link>
-          가입 가능 여부도 함께 봐야 합니다. 우대금리는 중복 적용되지만 최종 금리는 연 1.0% 아래로 내려가지 않으므로, “최저
+          가입 가능 여부도 함께 봐야 합니다. 우대금리는 유형별 상한이 있고 최종 금리는 연 1.0% 아래로 내려가지 않으므로, “최저
           1.0%”만 보고 한도·기간을 간과하기 쉽습니다.
         </p>
       </section>

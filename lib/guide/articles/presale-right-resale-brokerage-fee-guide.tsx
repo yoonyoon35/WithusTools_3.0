@@ -5,7 +5,7 @@ export const presaleRightResaleBrokerageFeeGuideMeta = {
   title: "분양권 전매 중개수수료 계산·요율",
   description:
     "2026년 기준 분양권 전매 중개수수료 산정 방식, 거래금액(계약금+중도금+프리미엄) 공식, 금액별 예시·마이너스 프리미엄·전매제한 유의사항. 중개수수료 계산기로 바로 계산할 수 있습니다.",
-  updated: "2026년 9월 14일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function PresaleRightResaleBrokerageFeeGuideBody() {
@@ -13,7 +13,7 @@ export function PresaleRightResaleBrokerageFeeGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-prrb-overview">
         <h2 id="guide-prrb-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           분양권 전매 중개수수료는 일반 아파트 매매와 계산 방식이 다릅니다. 분양권 매매 계약의 거래금액은 거래 당시까지 납입한

@@ -5,7 +5,7 @@ export const brokerageAccidentCompensationGuideMeta = {
   title: "부동산 중개사고 발생 시 보상받는 방법",
   description:
     "2026년 기준 중개사고 유형, 공제·보험·공탁 보상 청구 절차, 손해액 확정 방법을 표로 정리했습니다. 필요 서류, 예방 체크리스트, 분쟁 대응 순서를 참고용으로 확인할 수 있는 가이드입니다. 실제 보상 범위·금액·처리 기간은 사안별 심사 결과에 따라 달라질 수 있습니다.",
-  updated: "2026년 4월 28일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function BrokerageAccidentCompensationGuideBody() {
@@ -13,7 +13,7 @@ export function BrokerageAccidentCompensationGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-bac-date">
         <h2 id="guide-bac-date" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           중개사고는 공인중개사의 고의 또는 과실로 거래 당사자에게 재산상 손해가 발생하는 경우를 말합니다. 공인중개사법 제30조

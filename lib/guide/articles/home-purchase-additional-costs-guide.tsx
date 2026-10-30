@@ -5,7 +5,7 @@ export const homePurchaseAdditionalCostsGuideMeta = {
   title: "주택 구입 시 추가 비용 총정리",
   description:
     "2026년 기준 취득세, 등기비용, 인지세, 중개수수료 등 주택 매수 시 발생하는 부대비용을 표로 정리했습니다. 자금 계획 체크리스트, 총 비용 추산 방법, 취득세·중개수수료 계산기 연결 정보를 참고용으로 확인할 수 있습니다. 실제 비용은 거래 조건·지역에 따라 달라질 수 있습니다.",
-  updated: "2026년 8월 1일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function HomePurchaseAdditionalCostsGuideBody() {
@@ -332,7 +332,7 @@ export function HomePurchaseAdditionalCostsGuideBody() {
         <h2 id="guide-cost-brokerage" className="text-foreground text-xl font-semibold tracking-tight">
           중개수수료 상세
         </h2>
-        <p className="text-muted-foreground text-sm">2026년 4월 기준</p>
+        <p className="text-muted-foreground text-sm">2026년 10월 30일 기준</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">

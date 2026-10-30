@@ -4,8 +4,8 @@ export const firstHomeAcquisitionTaxReliefGuideMeta = {
   slug: "first-home-acquisition-tax-relief-guide",
   title: "생애최초 취득세 감면 조건과 신청 방법",
   description:
-    "2026년 4월 기준 생애최초 감면 조건, 감면 한도, 매매가별 효과, 예외 요건, 신청·사후 관리(추징), 환급 방법을 표로 정리했습니다.",
-  updated: "2026년 9월 9일",
+    "2026년 10월 30일 기준 생애최초 감면 조건, 감면 한도, 매매가별 효과, 예외 요건, 신청·사후 관리(추징), 환급 방법을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function FirstHomeAcquisitionTaxReliefGuideBody() {
@@ -13,7 +13,7 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-fhatr-overview">
         <h2 id="guide-fhatr-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           생애최초 주택 구입 취득세 감면은 본인과 배우자가 생애 처음으로 주택을 구입할 때 취득세를 최대 200만 원 한도 내에서
@@ -163,7 +163,9 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
         </h2>
         <p>
           취득세액이 200만 원 이하이면 전액 면제되고, 취득세액이 200만 원을 초과하면 200만 원만 공제됩니다. 인구감소지역에
-          해당하면 한도가 300만 원으로 확대됩니다.
+          해당하거나 아래 소형 비아파트 요건을 충족하면 한도가 300만 원으로 확대됩니다. 행정안전부의 2026년 지방세제 개편안(입법예고
+          2026.8.27~)에는 주거용 오피스텔 포함과 40세 미만 청년 한도 300만 원 확대가 담겨 있으나 아직 현행 법령이 아니므로,
+          시행 여부는 별도로 확인하세요.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
@@ -186,6 +188,15 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
                   일반 지역 (12억 원 이하)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">취득세 최대 200만 원 감면</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  소형 비아파트
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  전용 60㎡ 이하이고 취득가액 3억 원(수도권 6억 원) 이하인 연립·다세대 등 공동주택(아파트 제외)·도시형 생활주택·다가구 호실은
+                  취득세 최대 300만 원 감면
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -412,7 +423,7 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
           >
             일시적 2주택 취득세 중과 예외
           </Link>
-          요건(종전 주택 3년 내 처분 등)을 충족하면 1주택 일반세율(1~3%)로 신고할 수 있습니다.
+          요건(종전 주택 3년 내 처분, 종전·신규 모두 조정대상지역이면 2026.10.1 이후 취득분부터 2년 내 처분 등)을 충족하면 1주택 일반세율(1~3%)로 신고할 수 있습니다.
         </p>
         <p>
           일시적 2주택으로 1~3% 세율을 적용한 뒤에도, 무주택·생애최초 요건을 충족하면 <strong>생애최초 200만 원 감면을 추가

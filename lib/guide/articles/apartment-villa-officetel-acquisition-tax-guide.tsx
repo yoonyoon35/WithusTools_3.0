@@ -4,8 +4,8 @@ export const apartmentVillaOfficetelAcquisitionTaxGuideMeta = {
   slug: "apartment-villa-officetel-acquisition-tax-guide",
   title: "아파트 vs 빌라 vs 오피스텔 취득세 차이",
   description:
-    "2026년 4월 기준 아파트·빌라·오피스텔의 취득세 체계, 주택 수 포함 기준, 유형별 실납부액과 절세 관점 비교를 표로 정리했습니다.",
-  updated: "2026년 4월 23일",
+    "2026년 10월 30일 기준 아파트·빌라·오피스텔의 취득세 체계, 주택 수 포함 기준, 유형별 실납부액과 절세 관점 비교를 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function ApartmentVillaOfficetelAcquisitionTaxGuideBody() {
@@ -13,7 +13,7 @@ export function ApartmentVillaOfficetelAcquisitionTaxGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-avo-overview">
         <h2 id="guide-avo-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           주택 유형에 따라 취득세율 체계가 다릅니다. 아파트와 빌라는 건축법상 주택으로 분류되어 주택 취득세율이 적용되지만,

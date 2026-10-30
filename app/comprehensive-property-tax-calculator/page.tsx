@@ -6,11 +6,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/comprehensive-property-tax-calculator";
 const pageTitle = "종합부동산세 계산기";
+const metaTitle = "종합부동산세 계산기 - 1주택·다주택 보유세";
 const pageDescription =
   "주택·토지 공시가격으로 재산세·지방교육세·종합부동산세·농어촌특별세를 함께 계산하고 연간 보유세 합계를 확인합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function ComprehensivePropertyTaxCalculatorPage() {

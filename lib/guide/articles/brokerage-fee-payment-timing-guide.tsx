@@ -5,7 +5,7 @@ export const brokerageFeePaymentTimingGuideMeta = {
   title: "중개수수료 납부 시기",
   description:
     "법적 원칙(잔금일), 거래 유형별 일반적인 납부 시기, 분할 납부 등 실무 관행, 취소·해제 시 반환 여부를 표로 정리했습니다.",
-  updated: "2026년 4월 28일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function BrokerageFeePaymentTimingGuideBody() {

@@ -6,11 +6,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/capital-gains-tax-calculator";
 const pageTitle = "양도소득세 계산기";
+const metaTitle = "양도소득세 계산기 - 1주택 비과세·다주택 중과";
 const pageDescription =
   "주택·분양권 양도차익, 1세대 1주택 비과세·고가주택 안분, 장기보유특별공제, 다주택 중과를 반영해 양도소득세·지방소득세를 산출합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function CapitalGainsTaxCalculatorPage() {

@@ -5,7 +5,7 @@ export const prepaymentVsInterest600MillionGuideMeta = {
   title: "6억 대출 후 중도상환 vs 이자납입 비교",
   description:
     "6억 원 주담대에서 중도상환 수수료와 남은 기간 이자를 비교하는 방법, 상환 시점별 손익, 굳이 지금 상환하지 않아도 되는 경우를 정리했습니다.",
-  updated: "2026년 5월 27일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function PrepaymentVsInterest600MillionGuideBody() {
@@ -32,7 +32,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
         </h2>
         <p>
           이 글 전체에서 공통으로 쓰는 조건입니다. 6억 원을 30년(360개월), 금리 연 4%, 원리금균등상환으로 받았고,
-          중도상환 수수료율 1.2%, 면제 기간 3년(36개월)인 상품을 가정합니다. 일부 중도상환 금액은 대출 원금의
+          중도상환 수수료율 0.7%, 면제 기간 3년(36개월)인 상품을 가정합니다. 일부 중도상환 금액은 대출 원금의
           4분의 1인 <strong>1억 5,000만 원</strong>으로 잡았습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
@@ -67,7 +67,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   중도상환 수수료
                 </th>
-                <td className="border-border border-b px-3 py-2.5">1.2%, 면제 기간 3년</td>
+                <td className="border-border border-b px-3 py-2.5">0.7%, 면제 기간 3년</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -85,7 +85,9 @@ export function PrepaymentVsInterest600MillionGuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ 수수료율·면제 기간·일할 방식은 금융기관·상품마다 다릅니다.{" "}
+          ※ 0.7%는 계산을 위한 가정치입니다. 2025년 1월 13일 이후 새로 받은 은행 주담대는 실제 비용 범위 안에서 요율이 정해져
+          대체로 0.5%대~0.9%대이고, 그 전에 받은 대출은 계약 당시 요율(1.2~1.4% 등)이 그대로 적용됩니다. 수수료율·면제
+          기간·일할 방식은 금융기관·상품마다 다릅니다.{" "}
           <Link href="/guide/prepayment-fee-calculation" className="text-primary underline-offset-4 hover:underline">
             중도상환 수수료 계산 방식
           </Link>
@@ -104,7 +106,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
         </p>
         <p>
           실행 1년 차(면제 종료까지 24개월 남음)에 1억 5,000만 원을 상환하면 수수료는 약{" "}
-          <strong>120만 원</strong>입니다(1억 5,000만 × 1.2% × (24 ÷ 36)). 같은 금액을 만기까지 유지하면, 잔여
+          <strong>70만 원</strong>입니다(1억 5,000만 × 0.7% × (24 ÷ 36)). 같은 금액을 만기까지 유지하면, 잔여
           대출기간(약 29년) 동안 해당 원금만큼 추가로 부담하는 이자는 <strong>1억 원을 훌쩍 넘길 수 있습니다</strong>.
           수수료가 남은 기간 이자보다 훨씬 적으므로, 이 시점의 조기 상환은 이자 절감 측면에서 유리한 편입니다.
         </p>
@@ -134,7 +136,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   실행 1년 차(면제 24개월 남음)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">120만 원</td>
+                <td className="border-border border-b px-3 py-2.5">70만 원</td>
                 <td className="border-border border-b px-3 py-2.5">1억 원 이상</td>
                 <td className="border-border border-b px-3 py-2.5">상환 유리</td>
               </tr>
@@ -142,7 +144,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   실행 2년 차(면제 12개월 남음)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">60만 원</td>
+                <td className="border-border border-b px-3 py-2.5">35만 원</td>
                 <td className="border-border border-b px-3 py-2.5">수천만 원대</td>
                 <td className="border-border border-b px-3 py-2.5">상환 유리</td>
               </tr>
@@ -150,7 +152,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   잔여 1~2년·금리 2%대
                 </th>
-                <td className="border-border border-b px-3 py-2.5">15~30만 원</td>
+                <td className="border-border border-b px-3 py-2.5">10~20만 원</td>
                 <td className="border-border border-b px-3 py-2.5">300~450만 원</td>
                 <td className="border-border border-b px-3 py-2.5">차이 축소, 미루어도 됨</td>
               </tr>
@@ -168,7 +170,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
         <p>
           반대로 <strong>잔여 대출기간이 1~2년뿐</strong>이고 금리가 이미 2%대처럼 낮다면 이야기가 달라집니다. 잔여
           24개월 동안 1억 5,000만 원에 붙는 이자가 300~450만 원 수준까지 줄어들 수 있고, 면제 직전이라 수수료도
-          15~30만 원대로 낮아집니다. 절감 이자와 수수료의 차이가 크지 않아, 굳이 지금 상환하지 않아도 되는 경우가
+          10~20만 원대로 낮아집니다. 절감 이자와 수수료의 차이가 크지 않아, 굳이 지금 상환하지 않아도 되는 경우가
           생깁니다. 잔여 6개월 미만·금리 2% 이하처럼 조건이 겹치면 수수료가 절감 이자보다 클 수도 있으니, 면제
           기간 종료를 기다리거나 만기 상환을 검토하는 편이 낫습니다.
         </p>
@@ -203,7 +205,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   중도상환 수수료
                 </th>
-                <td className="border-border border-b px-3 py-2.5">120만 원</td>
+                <td className="border-border border-b px-3 py-2.5">70만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -215,13 +217,13 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   순 절감액(이자 − 수수료)
                 </th>
-                <td className="px-3 py-2.5">약 1,020만 원</td>
+                <td className="px-3 py-2.5">약 1,070만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          수수료 120만 원을 내더라도 24개월간 약 1,140만 원의 이자를 줄일 수 있으므로, 이 시점에서는 조기 상환이
+          수수료 70만 원을 내더라도 24개월간 약 1,140만 원의 이자를 줄일 수 있으므로, 이 시점에서는 조기 상환이
           유리한 편입니다. 다만 이자 절감액은 잔여 원금·상환 방식(원리금균등·원금균등·만기일시)에 따라 달라지므로,
           위 숫자는 대략적인 비교용입니다.
         </p>
@@ -252,17 +254,17 @@ export function PrepaymentVsInterest600MillionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   실행 1년 차(면제 24개월 남음)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">120만 원</td>
+                <td className="border-border border-b px-3 py-2.5">70만 원</td>
                 <td className="border-border border-b px-3 py-2.5">1,140만 원</td>
-                <td className="border-border border-b px-3 py-2.5">1,020만 원</td>
+                <td className="border-border border-b px-3 py-2.5">1,070만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   실행 2년 차(면제 12개월 남음)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">60만 원</td>
+                <td className="border-border border-b px-3 py-2.5">35만 원</td>
                 <td className="border-border border-b px-3 py-2.5">570만 원</td>
-                <td className="border-border border-b px-3 py-2.5">510만 원</td>
+                <td className="border-border border-b px-3 py-2.5">535만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -276,7 +278,7 @@ export function PrepaymentVsInterest600MillionGuideBody() {
           </table>
         </div>
         <p>
-          실행 2년 차에 같은 금액을 상환하면 수수료는 60만 원으로 줄지만, 12개월간 절감되는 이자도 570만 원
+          실행 2년 차에 같은 금액을 상환하면 수수료는 35만 원으로 줄지만, 12개월간 절감되는 이자도 570만 원
           수준으로 함께 줄어듭니다. 여전히 상환이 유리할 수 있지만, 1년 차보다 절감 폭은 작습니다. 실행 3년이
           지나 면제 기간이 끝나면 수수료는 0원이므로, 급하지 않다면 그때 상환하는 것도 한 방법입니다.
         </p>
@@ -300,7 +302,10 @@ export function PrepaymentVsInterest600MillionGuideBody() {
             로 더 낮은 금리를 받을 수 있어, 중도상환 수수료와 신규 대출 비용을 합산해 비교해야 할 때
           </li>
           <li>면제 기간이 3개월 이내로 남아 수수료 없이 상환할 수 있을 때</li>
-          <li>디딤돌 등 기간 한정 면제가 적용되는 상품에서 면제 종료일 전후 타이밍을 맞출 때</li>
+          <li>
+            디딤돌처럼 기간 한정 면제가 적용되는 상품에서 면제 종료일 전후 타이밍을 맞출 때(디딤돌은 2026년 12월 31일까지
+            상환한 원금이 면제 대상이며, 이후 연장 여부는 공지를 확인해야 합니다)
+          </li>
         </ul>
       </section>
 

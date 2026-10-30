@@ -5,7 +5,7 @@ export const gracePeriodExplainedMeta = {
   title: "거치기간이란 무엇인가",
   description:
     "거치기간의 의미와 구조, 월 상환액·총 이자 변화 예시, 적합·부적합 상황, DSR과의 관계를 표로 정리한 안내입니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function GracePeriodExplainedBody() {

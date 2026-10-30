@@ -4,8 +4,8 @@ export const regulatedAreaDesignationEffects2026GuideMeta = {
   slug: "regulated-area-designation-effects-2026-guide",
   title: "규제지역 지정되면 달라지는 것…대출·취득세·양도세 비교",
   description:
-    "2026년 7월 기준 규제지역·조정대상지역 지정 시 달라지는 LTV·스트레스 DSR·2주택 취득세·다주택 양도세·토지거래허가, 주택 수별 영향과 5억·7억 매수 예시를 표로 정리했습니다.",
-  updated: "2026년 7월 21일",
+    "2026년 10월 30일 기준 규제지역·조정대상지역 지정 시 달라지는 LTV·스트레스 DSR·2주택 취득세·다주택 양도세·토지거래허가, 주택 수별 영향과 5억·7억 매수 예시를 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function RegulatedAreaDesignationEffects2026GuideBody() {
@@ -13,7 +13,7 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-rade-intro">
         <h2 id="guide-rade-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           뉴스에서 「규제지역 지정」이 나오면 대출·세금·매매 절차가 한꺼번에 바뀌는 것처럼 느껴지지만, 실제로는{" "}
@@ -139,7 +139,7 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   무주택·첫 매수
                 </th>
-                <td className="border-border border-b px-3 py-2.5">규제지역도 LTV 70% 유지(생애최초 70~80%)</td>
+                <td className="border-border border-b px-3 py-2.5">규제지역 LTV 40%(생애최초는 70%, 수도권·규제지역은 6개월 내 전입 의무)</td>
                 <td className="border-border border-b px-3 py-2.5">1주택 세율 동일(1% 등)</td>
                 <td className="border-border border-b px-3 py-2.5">해당 없음</td>
               </tr>
@@ -147,7 +147,9 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   1주택자·추가 매수
                 </th>
-                <td className="border-border border-b px-3 py-2.5">규제지역 LTV 40%로 축소</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  기존 주택을 6개월 안에 처분하는 조건이면 LTV 40%, 처분하지 않고 추가 구입하는 주담대는 수도권·규제지역에서 금지(0%)
+                </td>
                 <td className="border-border border-b px-3 py-2.5">조정지역이면 2주택 8% 중과</td>
                 <td className="border-border border-b px-3 py-2.5">기존 주택 매도 시 일반 세율</td>
               </tr>
@@ -171,7 +173,8 @@ export function RegulatedAreaDesignationEffects2026GuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ LTV는 2026년 4월 기준 금융당국 가이드라인이며, 은행·상품별로 다를 수 있습니다.
+          ※ LTV는 2026년 10월 30일 기준 금융당국 가이드라인이며, 은행·상품별로 다를 수 있습니다. 수도권·규제지역 주택 구입용 주담대는
+          LTV와 별개로 주택가격 15억 원 이하 6억 원·15억 초과~25억 원 이하 4억 원·25억 원 초과 2억 원의 한도도 적용됩니다.
         </p>
         <p>
           1주택만 갖고 있는데 「규제와 무관하다」고 생각하기 쉽지만, <strong>갈아타기·추가 매수</strong> 순간

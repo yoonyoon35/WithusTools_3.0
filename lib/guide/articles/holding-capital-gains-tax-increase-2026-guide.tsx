@@ -4,8 +4,8 @@ export const holdingCapitalGainsTaxIncrease2026GuideMeta = {
   slug: "holding-capital-gains-tax-increase-2026-guide",
   title: "2026년 부동산 세제개편안 총정리 | 8·3 정부안·종부세·양도세",
   description:
-    "2026년 8월 3일 발표된 부동산 세제개편안 핵심. 종부세 공정비율 70%·80% 단계 인상, 거주 14억·비거주 9억 기본공제, 장특공 거주 중심 전환, 다주택 중과 한시 완화를 정부안·현행·국회 심의 중으로 구분해 정리했습니다.",
-  updated: "2026년 8월 3일",
+    "2026년 8월 3일 발표 후 9월 1일 확정된 부동산 세제개편안 핵심. 종부세 공정비율 70%·80% 단계 인상, 거주 14억·비거주 12억 유지 기본공제, 세부담 상한 150% 유지, 장특공 거주 중심 전환을 정부안·현행·국회 심의 중으로 구분해 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
@@ -13,18 +13,20 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-hcgi-intro">
         <h2 id="guide-hcgi-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 8월 3일 정부안 기준
+          2026년 9월 1일 확정 정부안 기준
         </h2>
         <p>
-          재정경제부는 2026년 8월 3일 세제발전심의위원회에서 <strong>2026년 세제개편안</strong>을 확정·발표했습니다.
+          재정경제부는 2026년 8월 3일 <strong>2026년 세제개편안</strong>을 발표했고, 입법예고와 의견 수렴을 거쳐 9월 1일
+          국무회의에서 정부안을 최종 확정해 국회에 제출했습니다. 이 과정에서 <strong>비거주 1주택 종부세 기본공제는 9억
+          원 축소안이 철회되어 현행 12억 원이 유지</strong>되고, <strong>세부담 상한도 200% 인상안 대신 현행 150%를
+          유지</strong>하는 것으로 수정됐습니다.
           핵심은 「실거주 중심」 과세로, 종부세는 주택 수 기준을 없애고 <strong>가액·거주 여부</strong> 중심으로
           재편하고, 양도세 장기보유특별공제는 보유 공제를 단계적으로 폐지해 <strong>거주 기간 공제</strong>로
           전환합니다.
         </p>
         <p>
-          이 글은 <strong>8월 3일 정부안</strong>과 <strong>현행 세법</strong>을 구분해 정리합니다. 입법예고·국회
-          심의 과정에서 일부 조항(비거주 1주택 차등과세 등)이 수정될 수 있으므로, 최종 법률 공포 전까지는 정부안
-          기준으로 읽어 주세요.
+          이 글은 <strong>9월 1일 확정 정부안</strong>과 <strong>현행 세법</strong>을 구분해 정리합니다. 정부안은 현재
+          정기국회(재정경제기획위원회)에서 심사 중이며 법률로 공포되기 전까지 내용이 바뀔 수 있습니다.
         </p>
       </section>
 
@@ -33,10 +35,10 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
         role="note"
         aria-label="정부안 안내"
       >
-        <p className="text-foreground font-medium">※ 8·3 정부안 · 국회 심의 전</p>
+        <p className="text-foreground font-medium">※ 9월 1일 확정 정부안 · 국회 심사 중</p>
         <p className="mt-2">
-          아래 「정부안」 항목은 2026년 8월 3일 발표 내용입니다. 국회 통과·시행령 확정 전까지 변경될 수 있으며,
-          현행 세법은 별도 표기합니다.
+          아래 「정부안」 항목은 2026년 8월 3일 발표 후 9월 1일 수정·확정된 내용입니다. 국회 통과·시행령 확정 전까지
+          변경될 수 있으며, 현행 세법은 별도 표기합니다.
         </p>
       </aside>
 
@@ -186,15 +188,16 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                   2026년 8월 3일
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  재정경제부 「2026년 세제개편안」 확정·발표 — 종부세·양도세 실거주 중심 재편
+                  재정경제부 「2026년 세제개편안」 발표 — 종부세·양도세 실거주 중심 재편
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  2026년 8~9월
+                  2026년 9월 이후
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  입법예고·국회 제출·심의(비거주 1주택 차등과세 등 수정 논의)
+                  9월 1일 국무회의에서 정부안 확정(비거주 1주택 기본공제 12억 유지·세부담 상한 150% 유지로 수정) → 9월 초
+                  국회 제출, 10월 현재 재정경제기획위원회 심사 중
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -281,7 +284,7 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
         <h2 id="guide-hcgi-status" className="text-foreground text-xl font-semibold tracking-tight">
           정부안 vs 현행 vs 국회 심의
         </h2>
-        <p>8월 3일 정부안은 확정됐지만, <strong>법률로 시행되려면 국회 통과</strong>가 필요합니다.</p>
+        <p>정부안은 9월 1일 확정돼 국회에 제출됐지만, <strong>법률로 시행되려면 국회 통과</strong>가 필요합니다.</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -312,9 +315,9 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  거주 14억·비거주 9억 기본공제 차등
+                  거주 14억·비거주 12억(현행 유지) 기본공제
                 </th>
-                <td className="border-border border-b px-3 py-2.5">정부안 확정(국회에서 수정 논의 중)</td>
+                <td className="border-border border-b px-3 py-2.5">정부안 확정(9월 1일 비거주 9억→12억 수정, 국회 심사 중)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -430,7 +433,17 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                   기본공제(1주택)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  거주 12억→<strong>14억</strong> / 비거주 12억→<strong>9억</strong>(공시가 기준)
+                  거주 12억→<strong>14억</strong> / 비거주 <strong>12억 유지</strong>(공시가 기준). 8월 3일 발표 때는 비거주
+                  9억 축소안이었으나 9월 1일 철회
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  기본공제(부부 공동명의 1주택)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  거주 각 9억(합 18억, 현행 유지) / 비거주 각 6억(합 12억, 당초 각 4억에서 상향 수정). 현행은 거주 여부와
+                  관계없이 합 18억
                 </td>
               </tr>
               <tr>
@@ -455,21 +468,24 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                   세액공제
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  보유공제 폐지 → 거주기간 공제 전환(2028년~), 공제 한도 800만→600만 원
+                  보유공제 폐지 → 거주기간 공제 전환(2027년은 과도기: 보유공제와 거주공제 중 큰 쪽 적용, 2028년~ 거주공제만),
+                  공제 한도 800만→600만 원
                 </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   세부담 상한
                 </th>
-                <td className="px-3 py-2.5">150% → 200%로 인상</td>
+                <td className="px-3 py-2.5">
+                  <strong>150% 유지</strong>(8월 3일 발표 때의 200% 인상안은 9월 1일 철회)
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <h3 className="text-foreground text-base font-semibold">공정시장가액비율 60% → 70% 가정 시(1주택)</h3>
-        <p className="text-muted-foreground text-sm">공시가격 합계 25억 원, 기본공제 12억 원(현행)</p>
+        <p className="text-muted-foreground text-sm">공시가격 합계 25억 원, 기본공제 12억 원(현행·비거주 정부안 동일)</p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -513,8 +529,8 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
           <Link href="/guide/capital-gains-surcharge-revival-2026-guide" className="text-primary underline-offset-4 hover:underline">
             양도세 중과
           </Link>
-          가 이미 재시행된 상태입니다. 이번 개편 논의는 그 위에 <strong>1주택·비거주 보유자 장특공</strong>을 손볼
-          가능성이 거론됩니다.
+          가 이미 재시행된 상태입니다. 이번 정부안은 그 위에 <strong>장기보유특별공제를 2029년부터 거주 기간 중심으로
+          전환</strong>하는 내용을 담고 있습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
@@ -536,13 +552,16 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   보유기간 공제
                 </th>
-                <td className="border-border border-b px-3 py-2.5">3년 이상 보유 시 최대 30%(15년 이상)</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  3년 이상 보유 시 연 4%, 최대 40%(10년 이상). 2년 이상 거주 요건을 못 채우면 일반 공제(연 2%, 최대 30%)만
+                  적용
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   거주기간 공제
                 </th>
-                <td className="border-border border-b px-3 py-2.5">2년 이상 거주 시 최대 40%(10년 이상 거주)</td>
+                <td className="border-border border-b px-3 py-2.5">2년 이상 거주 시 연 4%, 최대 40%(10년 이상 거주)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -561,8 +580,8 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
         </div>
         <p>
           세대 내 1주택이어도 <strong>실제 거주하지 않으면</strong> 거주기간 공제를 받기 어렵고, 보유기간 공제만으로는
-          한도가 낮습니다. 정부가 검토한다고 알려진 것은 이 「빈집·임대용 1주택」에 대한 혜택을 더 줄이는
-          방향입니다.
+          한도가 낮습니다. 정부안(2029년~)은 이 「빈집·임대용 1주택」에 대한 보유 공제 혜택을 없애고 거주 기간
+          중심으로 바꾸는 방향입니다.
         </p>
       </section>
 
@@ -671,8 +690,11 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   1주택·비거주(임대·빈집)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">보유세 일반 적용</td>
-                <td className="border-border border-b px-3 py-2.5">장특공 축소 1순위 검토 대상</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  현행은 실거주와 동일(1세대 1주택 특례는 거주 여부 무관). 정부안은 기본공제 12억 유지, 세액공제는 거주기간
+                  중심으로 전환
+                </td>
+                <td className="border-border border-b px-3 py-2.5">거주 요건 미충족 시 비과세 불가, 2029년부터 장특공 거주 중심 전환</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -696,7 +718,12 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
             정부안은 2027년 이후 단계 적용입니다.
           </li>
           <li>
-            <strong>「정부안 = 곧 시행」</strong> — 8·3 정부안은 국회 통과·공포를 거쳐야 법률이 됩니다.
+            <strong>「비거주 1주택은 종부세 기본공제가 9억으로 줄어든다」</strong> — 8월 3일 발표안이었지만 9월 1일
+            확정 정부안에서 철회돼 12억 원이 유지됩니다. 세부담 상한 200% 인상안도 철회됐습니다.
+          </li>
+          <li>
+            <strong>「정부안 = 곧 시행」</strong> — 9월 1일 확정 정부안도 국회 통과·공포를 거쳐야 법률이 됩니다. 10월
+            현재 재정경제기획위원회 심사 단계이며, 국회 검토보고서는 세율·공정비율 인상의 중첩 부담 등을 지적했습니다.
           </li>
           <li>
             <strong>「공정비율 80%·100% 확정」</strong> — 정부안은 1주택 70%, 3주택·조정지역 80%까지입니다. 100%는
@@ -763,7 +790,7 @@ export function HoldingCapitalGainsTaxIncrease2026GuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ 8·3 정부안은 국회 심의·시행령 확정 과정에서 변경될 수 있습니다. 확정 세액은 홈택스(hometax.go.kr) 또는 관할
+          ※ 정부안은 국회 심사·시행령 확정 과정에서 변경될 수 있습니다. 확정 세액은 홈택스(hometax.go.kr) 또는 관할
           세무과에서 확인할 것을 권장합니다.
         </p>
       </section>

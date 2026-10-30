@@ -8,7 +8,7 @@ import { loanCalculatorDescription, referenceDisclaimerLine } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
-    title: "대출 이자 계산기 - 원리금균등·원금균등·체증식·만기일시·거치식",
+    title: "대출 이자 계산기 - 체증식·거치식·원리금·원금균등",
     description: loanCalculatorDescription,
     path: LOAN_CALCULATOR_PATH,
   });

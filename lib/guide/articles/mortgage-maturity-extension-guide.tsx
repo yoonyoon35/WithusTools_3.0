@@ -4,8 +4,8 @@ export const mortgageMaturityExtensionGuideMeta = {
   slug: "mortgage-maturity-extension-guide",
   title: "주택담보대출 연장(만기 연장) 방법과 주의사항",
   description:
-    "2026년 4월 기준 주담대 만기 연장 절차, 재심사 항목, 다주택자 규제, 예외 조건, 연장·대환 비교와 거절 대응 방법을 표로 정리했습니다.",
-  updated: "2026년 4월 20일",
+    "2026년 10월 30일 기준 주담대 만기 연장 절차, 재심사 항목, 다주택자 규제, 예외 조건, 연장·대환 비교와 거절 대응 방법을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function MortgageMaturityExtensionGuideBody() {
@@ -13,7 +13,7 @@ export function MortgageMaturityExtensionGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-maturity-overview">
         <h2 id="guide-maturity-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           주택담보대출 만기 연장은 기존 대출 계약의 상환 기간을 늘리는 것입니다. 만기가 도래해도 원금을 일시 상환할 여력이 없는 경우
@@ -159,7 +159,13 @@ export function MortgageMaturityExtensionGuideBody() {
         <p className="text-muted-foreground text-sm">2026년 4월 17일 시행</p>
         <p>
           2026년 4월 17일부터 수도권·규제지역 내 아파트를 2채 이상 보유한 다주택자(개인 및 임대사업자)의 주택담보대출 만기 연장이
-          원칙적으로 전면 금지됐습니다.
+          원칙적으로 전면 금지됐습니다(금융위원회 2026년 가계부채 관리방안, 행정지도). 2026년 4월 16일까지 만기가 도래한 대출은
+          종전 규정에 따라 심사했습니다.
+        </p>
+        <p>
+          수도권 규제지역은 2026년 7월 1일부터 화성시 동탄구·용인시 기흥구·구리시가 추가돼 서울 25곳과 경기 15곳을 합해 40곳이
+          됐습니다. 해당 지역 아파트가 담보이고 주택을 2채 이상 보유(소재지 무관)했다면 규제 대상일 수 있으니, 만기 전에 대출
+          은행에 연장 가능 여부와 예외 해당 여부를 확인하세요.
         </p>
       </section>
 
@@ -242,7 +248,16 @@ export function MortgageMaturityExtensionGuideBody() {
                   세입자 거주 중
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  발표일(4월 1일) 기준 유효한 임대차계약이 존재하는 경우 해당 임대차계약 종료일까지 한시적 만기 연장 유예
+                  발표일(4월 1일) 기준 유효한 임대차계약이 존재하는 경우 해당 임대차계약 종료일까지 한시적 만기 연장 유예(4월
+                  16일까지 체결된 묵시적 갱신과 7월 31일까지 종료되는 임대차계약에 대한 계약갱신청구권 행사는 갱신계약 종료일)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  주택 수 제외 대상
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  다주택자 여부를 확인할 때 매도계약이 체결된 주택, 어린이집, 준공 후 미분양주택 등은 보유 주택 수에서 제외
                 </td>
               </tr>
               <tr className="bg-muted/20">

@@ -4,8 +4,8 @@ export const jeonseBrokerageFeeCalculation2026GuideMeta = {
   slug: "jeonse-brokerage-fee-calculation-2026-guide",
   title: "전세 중개수수료 계산법",
   description:
-    "2026년 4월 기준 전세 보증금 구간별 상한요율·한도액, 1인당 수수료 예시, 6억 원 경계, 쌍방 부담·매매와의 비교, VAT·재계약·분쟁 대응을 표로 정리했습니다.",
-  updated: "2026년 5월 11일",
+    "2026년 10월 30일 기준 전세 보증금 구간별 상한요율·한도액, 1인당 수수료 예시, 6억 원 경계, 쌍방 부담·매매와의 비교, VAT·재계약·분쟁 대응을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function JeonseBrokerageFeeCalculation2026GuideBody() {
@@ -13,7 +13,7 @@ export function JeonseBrokerageFeeCalculation2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-jbfc-intro">
         <h2 id="guide-jbfc-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           전세 중개수수료는 전세 보증금에 상한요율을 곱한 금액 이내에서 공인중개사와 협의해 결정합니다. 매매 수수료보다 요율이 낮으며
@@ -496,7 +496,7 @@ export function JeonseBrokerageFeeCalculation2026GuideBody() {
           현금영수증 요청 필수
         </h2>
         <p>
-          전세 수수료도 현금영수증을 발급받으면 연말정산 소득공제(30%)에 활용할 수 있습니다. 현금·계좌이체로 납부하는 경우 공인중개사에게
+          전세 수수료도 현금영수증을 발급받으면 연말정산 소득공제(총급여 25% 초과분의 30%, 연 한도 있음)에 활용할 수 있습니다. 현금·계좌이체로 납부하는 경우 공인중개사에게
           반드시 현금영수증 발급을 요청해야 합니다.
         </p>
       </section>

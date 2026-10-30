@@ -7,11 +7,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/dti-calculator";
 const pageTitle = "DTI 계산기";
+const metaTitle = "DTI 계산기 - 주담대 DTI 60% 기준 확인";
 const pageDescription =
-  "연 소득과 주담대·기타 대출로 DTI(%)를 간이 산출합니다. 주담대는 원리금, 신용·할부 등은 이자만 반영하는 2026년 기준 참고 계산입니다.";
+  "연 소득과 주담대·기타 대출로 DTI(%)를 간이 산출하고 은행 60%·제2금융 50% 한도와 비교합니다. 주담대는 원리금, 신용·할부 등은 이자만 반영하는 2026년 기준 참고 계산입니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function DtiCalculatorPage() {

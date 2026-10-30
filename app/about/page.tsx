@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     title,
     description:
-      "withustools.com을 운영하는 이유, 주택담보대출 등 실제 경험, 콘텐츠 작성 기준 및 문의 방법을 안내합니다.",
+      "withustools.com이 제공하는 대출·부동산·세금 계산기 11종과 가이드, 콘텐츠 작성·수정 기준, 문의 방법을 안내합니다.",
     path: "/about",
   });
 }
@@ -18,28 +18,30 @@ export default function AboutPage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: "홈", href: "/" }, { name: "사이트 소개" }]} />
-      <LegalPageShell title="사이트 소개" updated="2026년 5월 19일">
+      <LegalPageShell title="사이트 소개" updated="2026년 10월 30일">
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">이 사이트는</h2>
           <p>
-            대출과 부동산 정보를 직접 알아보고 진행해 온 개인이 운영하는 사이트입니다. 내 집 마련 전부터 큰 지출을
-            앞두고 금리와 한도를 비교하고 서류를 준비하며 상환 일정까지 맞춰 본 경험이 있습니다.
+            withustools.com은 대출, 부동산 거래, 세금처럼 표와 법령만 보면 헷갈리기 쉬운 계산을 조금 덜 번거롭게 하고
+            싶어서 만든 개인 운영 사이트입니다. 금리와 한도를 비교하고, 거래할 때 드는 비용을 가늠하고, 보유·양도·상속
+            단계의 세금을 어림해 볼 때 필요한 계산기와 가이드 글을 무료로 제공합니다.
           </p>
-          <p>
-            특히 주택담보대출을 직접 진행해 본 경험이 있고, 이후 금리·조건 변화에 따라 갈아타기를 검토하고 실행해 본
-            적도 있습니다. 그 과정에서 DSR·중개수수료·취득세처럼 표만 보면 헷갈리기 쉬운 계산을 조금 덜 번거롭게 하고
-            싶어서 이 사이트를 만들었습니다.
-          </p>
-          <p>
-            대출 이자·DSR·취득세·중개수수료 계산기와 함께, 제가 정리해 둔 가이드 글을 무료로 제공합니다.
-          </p>
+        </section>
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold">제공하는 계산기</h2>
+          <ul className="list-disc space-y-1 pl-5">
+            <li>대출: 대출 이자, DSR, DTI, LTV, 중도상환 수수료 계산기</li>
+            <li>부동산 거래: 취득세, 중개수수료 계산기</li>
+            <li>세금: 종합부동산세, 양도소득세, 종합소득세, 상속세 계산기</li>
+          </ul>
+          <p>각 계산기와 연결된 가이드 글에서 계산 기준과 예시, 확인할 점을 함께 설명합니다.</p>
         </section>
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">글과 계산기는 어떻게 쓰나요</h2>
           <p>
-            가이드와 계산기는 제가 직접 겪은 과정과 확인해 본 내용을 바탕으로 정리합니다. 그와 함께 금융감독원·한국은행
-            등 공공기관이 공개한 자료를 우선적으로 참고하고, 부동산·대출 분야에서 오래 다뤄 온 블로그나 뉴스, 금융기관
-            안내 페이지 등도 함께 살펴보며 내용을 보완합니다.
+            가이드와 계산기는 법령과 금융감독원·한국은행·국세청 등 공공기관이 공개한 자료를 우선적으로 참고해
+            정리합니다. 필요하면 뉴스나 금융기관 안내 페이지도 보조 자료로 살펴봅니다. 아직 확정되지 않은 정부안이나
+            보도 단계의 내용은 확정된 제도와 구분해 표시하고, 확인하지 못한 부분은 단정하지 않습니다.
           </p>
           <p>
             법령이나 제도가 변경되면 관련 가이드를 수정하고, 수정일을 글 상단에 표기합니다. 은행·보험사마다 조건이

@@ -5,7 +5,7 @@ export const incomeTypeLoanLimitDifferenceGuideMeta = {
   title: "소득 유형별 대출 한도 차이",
   description:
     "근로소득·사업소득·프리랜서의 소득 인정 방식과 DSR 기준 대출 한도 차이, 증빙 서류, 한도 개선 전략을 표로 정리했습니다.",
-  updated: "2026년 4월 20일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function IncomeTypeLoanLimitDifferenceGuideBody() {
@@ -97,7 +97,10 @@ export function IncomeTypeLoanLimitDifferenceGuideBody() {
         <h2 id="guide-income-limit-gap" className="text-foreground text-xl font-semibold tracking-tight">
           같은 연소득 5,000만원 기준 대출 한도 차이
         </h2>
-        <p className="text-muted-foreground text-sm">금리 4%, 30년 원리금균등상환, DSR 40% 기준</p>
+        <p className="text-muted-foreground text-sm">
+          금리 4%, 30년 원리금균등상환, DSR 40% 기준(비교를 위한 단순 가정). 2026년 10월 현재 5대 은행 주택담보대출 금리는 연
+          4%대 중반~6%대이고 스트레스 금리가 더해지므로 실제 한도는 이 표보다 작을 수 있습니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">

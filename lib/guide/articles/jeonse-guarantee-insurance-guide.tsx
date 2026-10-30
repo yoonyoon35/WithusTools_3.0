@@ -4,8 +4,8 @@ export const jeonseGuaranteeInsuranceGuideMeta = {
   slug: "jeonse-guarantee-insurance-guide",
   title: "전세보증보험 가입 방법과 필요성",
   description:
-    "2026년 4월 기준 전세보증보험의 필요성, 기관별 비교, 보증료 계산, 가입 요건·절차·거절 사유와 계약 전 체크포인트를 표로 정리했습니다.",
-  updated: "2026년 4월 20일",
+    "2026년 10월 30일 기준 전세보증보험의 필요성, 기관별 비교, 보증료 계산, 가입 요건·절차·거절 사유와 계약 전 체크포인트를 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function JeonseGuaranteeInsuranceGuideBody() {
@@ -13,7 +13,7 @@ export function JeonseGuaranteeInsuranceGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-jeonse-overview">
         <h2 id="guide-jeonse-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           전세보증보험(전세보증금반환보증)은 전세 계약 종료 후 집주인이 보증금을 돌려주지 않을 때 보증기관이 세입자에게 먼저 보증금을
@@ -72,9 +72,9 @@ export function JeonseGuaranteeInsuranceGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   보증료율
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 0.115% ~ 0.154%</td>
-                <td className="border-border border-b px-3 py-2.5">연 최대 0.04%</td>
-                <td className="border-border border-b px-3 py-2.5">연 0.183% ~ 0.208%</td>
+                <td className="border-border border-b px-3 py-2.5">연 0.097% ~ 0.211%(주택 유형·보증금·부채비율별)</td>
+                <td className="border-border border-b px-3 py-2.5">연 0.04% ~ 0.18%(LTV별, 우대가구 0.02%p 인하)</td>
+                <td className="border-border border-b px-3 py-2.5">연 0.229%(아파트) ~ 0.260%(기타 주택)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -126,29 +126,28 @@ export function JeonseGuaranteeInsuranceGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   HF
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 0.04%</td>
+                <td className="border-border border-b px-3 py-2.5">연 0.04%(LTV 70% 이하)</td>
                 <td className="border-border border-b px-3 py-2.5">약 24만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   HUG
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 0.115%</td>
-                <td className="border-border border-b px-3 py-2.5">약 69만 원</td>
+                <td className="border-border border-b px-3 py-2.5">연 0.107%(아파트, 부채비율 70% 이하)</td>
+                <td className="border-border border-b px-3 py-2.5">약 64만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   SGI
                 </th>
-                <td className="px-3 py-2.5">연 0.183%</td>
-                <td className="px-3 py-2.5">약 110만 원</td>
+                <td className="px-3 py-2.5">연 0.229%(아파트)</td>
+                <td className="px-3 py-2.5">약 137만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          HUG는 연소득 5,000만 원 이하 사회초년생에게 60% 할인, 혼인 7년 이내 신혼부부(연소득 6,000만 원 이하)에게 40% 할인 혜택을
-          제공합니다.
+          위 금리는 이용 직전에 기관별로 다시 확인하세요. HUG는 사회초년생·신혼부부 등 대상자에게 보증료 할인을 제공하므로 할인 대상과 비율은 HUG 공고에서 확인해야 합니다. 예시 보증료는 3억 원·2년 계약을 하고 HUG 2억 초과~5억 이하 아파트 요율(2025년 3월 31일 이후 신청분)을 적용했습니다.
         </p>
       </section>
 

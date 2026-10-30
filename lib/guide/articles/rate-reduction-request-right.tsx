@@ -5,7 +5,7 @@ export const rateReductionRequestRightMeta = {
   title: "금리인하요구권이란",
   description:
     "금리인하요구권 신청 사유·절차, 갈아타기와 비교했을 때 의미 있는 경우, 거절 시 대응과 신청 전 확인 사항을 정리했습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function RateReductionRequestRightBody() {

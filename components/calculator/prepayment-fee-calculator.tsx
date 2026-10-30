@@ -189,7 +189,7 @@ function ExemptionModeToggle({
 export function PrepaymentFeeCalculator() {
   const [inputMode, setInputMode] = React.useState<PrepaymentInputMode>("period");
   const [prepaymentDisplay, setPrepaymentDisplay] = React.useState("");
-  const [feeRate, setFeeRate] = React.useState("1.2");
+  const [feeRate, setFeeRate] = React.useState("0.7");
   const [loanTerm, setLoanTerm] = React.useState("30");
   const [loanTermUnit, setLoanTermUnit] = React.useState<TermUnit>("year");
   const [elapsedTerm, setElapsedTerm] = React.useState("1");

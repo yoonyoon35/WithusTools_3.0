@@ -1,0 +1,1550 @@
+제목 : 구조화된 데이터 소개
+url : https://searchadvisor.naver.com/guide/structured-data-intro
+내용 : 
+네이버 검색과 구조화된 데이터
+구조화된 데이터의 의미는 다양한 정보를 담고 있는 콘텐츠를 논리적으로 조직화하여 가공된 데이터를 의미하며 대표적으로 관계형 데이터베이스를 들 수 있습니다. 검색엔진의 입장에서는 웹 문서의 콘텐츠가 조직화된 구조로 이루어져 있다면 이를 해석하는데 큰 도움이 됩니다.
+
+웹 콘텐츠도 구조화된 데이터로 정의해보자는 노력은 인터넷 커뮤니티 및 관련 업체의 노력으로 기초 작업이 꾸준하게 진행되어 왔으며 그 결과는 schema.org 사이트를 통해서 전파되고 있습니다. schema.org에서 정의하는 구조화된 데이터는 2015년 웹 표준 기구인 W3C 내에서 공식적으로 편입되어 웹 표준의 하나로서 지금까지 활발하게 표준화 활동이 진행되고 있습니다.
+
+네이버는 구조화된 데이터를 활용해 콘텐츠 특성에 맞는 검색 결과를 구성하여 제공합니다. 구조화된 데이터는 특정 콘텐츠의 정보를 콘텐츠의 유형에 맞는 세부 속성으로 구조화하여 웹 페이지에 추가한 데이터입니다. 네이버 검색로봇은 이 정보를 자동 수집해 콘텐츠 특성에 맞게 정보를 구성하고 검색 반영에 활용합니다.
+
+❗ 구조화된 데이터를 정상적으로 마크업했을 경우라도 검색결과에 반영된다고 보장하지 않습니다. 페이지내에 콘텐츠에 따라 가장 적합하다고 판단되는 것에 의해 다른 정보가 노출될 수 있습니다.
+
+schema.org
+schema.org가 제시하는 구조화된 데이터는 데이터 타입(type)과 속성(property)으로 구성됩니다. 데이터 타입은 웹 페이지나 콘텐츠의 특성에 따른 속성의 조합이며 하나의 웹 페이지에는 2개 이상의 데이터 타입을 조합하여 구조화된 데이터를 추가할 수 있습니다. schema.org이 정의한 데이터 타입의 목록은 schema.org vocabulary 에서 확인할 수 있습니다.
+
+속성은 웹 페이지 또는 콘텐츠의 세부 정보로, 데이터 타입을 구성하는 요소입니다. 예를 들어 오디오 콘텐츠의 경우에 재생 시간, 재생 횟수 등이 속성에 해당하는 정보로 간주할 수 있습니다.
+
+언어 형식 선택
+schema.org의 구조화된 데이터는 Microdata와 RDFa, JSON-LD의 세 가지 언어 형식을 지원합니다. 네이버에서는 널리 사용하는 Microdata 형식이나 JSON-LD 형식을 사용하는 것을 권장합니다.
+
+다음 코드는 JSON-LD 형식으로 작성한 구조화된 데이터의 예이며 음원 파일에 대한 구조화된 데이터를 담고 있습니다. 다른 언어 형식으로 작성한 예는 schema.org의 데이터 타입별 상세 페이지에서 확인할 수 있습니다.
+
+
+<script type="application/ld+json">
+{ 
+"@context": "http://schema.org",
+"@type": "AudioObject",
+"contentUrl": "http://media.freesound.org/data/0/previews/719__elmomo__12oclock_girona_preview.mp3",
+"description": "Recorded on a terrace of Girona a sunday morning",
+"duration": "T0M15S",
+"encodingFormat": "mp3",
+"name": "12oclock_girona.mp3"
+}
+</script>
+공개된 테스트 도구
+구조화된 데이터가 올바로 적용되었는지 확인하기 위해서는 데이터를 검증하는 작업이 필요합니다. 구조화된 데이터를 검증할 때는 schema.org에서 제공하는 구조화된 데이터 테스팅 도구를 사용하세요.
+
+==================================================================
+
+제목 : 사이트 연관채널
+url : https://searchadvisor.naver.com/guide/structured-data-channel
+내용 : 
+사이트 연관 채널
+사이트와 관련된 네이버 서비스 및 SNS 채널을 구조화된 데이터로 표현하여 검색 로봇에 알릴 수 있습니다.
+
+네이버 검색 엔진은 만족도 높은 검색 결과를 제공하기 위해 사이트-채널과의 연계성을 자동화된 알고리즘으로 분석하여 활용하는 경우가 있습니다.
+
+채널 사이의 링크 구조 및 텍스트 정보 등을 자동으로 추출하여 클러스터링
+인식 가능한 연관 채널 마크업 - 사이트의 루트 페이지에 기입된 구조화 데이터
+이렇게 여러 경로로 수집된 정보는 결과에 노출을 보장하지 않으나, 유저 편의성이 높다고 엔진이 판단하는 경우 등에 따라 일부 표현되는 경우가 있습니다.
+
+중의성이 없이 고유한 이름의 사이트
+정부기관 등 공공 정보로 누구에게나 정답으로 제공할 수 있는 신뢰도가 높은 사이트
+사용자 선호도가 높은 사이트
+현재 분석에 활용되는 연관채널 도메인은 아래와 같습니다. (지원 채널은 사정에 따라 변경될 수 있습니다.)
+
+네이버 서비스
+네이버TV, 블로그, 스마트스토어, 지식iN, 치지직
+웹 채널
+당근, 스레드, 인스타그램, 유튜브, 카카오스토리, 카카오톡 채널, 티스토리, 틱톡, 페이스북, X(트위터)
+image
+
+사이트 연관 채널 마크업
+타입 및 속성
+schema.org에서 정의한 Person 혹은 Organization을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+속성	필수여부	설명
+name	필수	사이트 이름
+url	필수	사이트 URL
+sameAs	필수	사이트와 연관된 채널 URL 목록
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+ "@context": "http://schema.org",
+ "@type": "Person",
+ "name": "My Site Name",
+ "url": "http://www.mysite.com",
+ "sameAs": [
+   "https://www.facebook.com/myfacebook",
+   "http://blog.naver.com/myblog",
+   "http://smartstore.naver.com/mystore"
+ ]
+}
+</script>
+Microdata 형식으로 구현한 예제
+<span itemscope="" itemtype="http://schema.org/Organization">
+<link itemprop="url" href="http://www.mysite.com">
+<a itemprop="sameAs" href="https://www.facebook.com/myfacebook"></a>
+<a itemprop="sameAs" href="http://blog.naver.com/myblog"></a>
+<a itemprop="sameAs" href="http://smartstore.naver.com/mystore"></a>
+</span>
+
+==================================================================
+
+제목 : 채용정보
+url : https://searchadvisor.naver.com/guide/structured-data-job
+내용 : 
+채용정보 검색 소개
+네이버는 구직자들이 검색을 통해 쉽게 채용공고를 찾아볼 수 있도록 국내외 사이트로부터 관련정보를 모아 제공하고 있습니다. 채용정보 목록을 보유한 업체의 제휴 요청을 환영합니다.
+
+네이버 검색에 귀사의 채용정보를 노출하기를 원하시는 경우 다음의 프로세스에 따라 진행하실 수 있습니다.
+
+네이버 제휴제안 작성을 통해 신청해 주세요.
+제휴제안 신청 이후, 사용자들에게 지속적이며 안정적으로 채용정보를 제공하고 있는 사이트의 제휴제안 건에 대해서 담당자를 통한 상세한 협의후 진행할 수 있습니다.
+
+제휴 희망 사이트 : 네이버
+제휴 구분 : 콘텐츠 및 서비스
+협의가 완료된 후 채용정보를 담고 있는 웹페이지는 JSON-LD 형태의 구조화된 데이터로 마크업을 작성해야 합니다.
+
+구조화된 데이터란
+채용 검색을 위한 JSON-LD 형태의 구조화 데이터 명세서는 아래 내용으로 확인해 주세요.
+정확한 데이터 반영을 위해 수집요청 API가 필요합니다.
+
+협의가 완료되어 제휴가 체결된 사이트 및 사용자에 한하여 수집요청 API 연동이 가능합니다.
+수집요청 API를 사용하기 위해서는 서치어드바이저에 사이트 소유확인을 먼저 진행해야 합니다.
+수집요청 API 명세 및 연동 가이드를 참고하여 채용정보가 담겨 있는 웹페이지의 수집요청 API 연동을 시작합니다.
+채용정보 웹페이지는 네이버 검색 로봇이 수집할 수 있어야 합니다.
+
+robots.txt 설정하기 가이드를 참고하여 사이트의 robots.txt에 채용정보 웹페이지에 대하여 수집을 허용해 주세요.
+채용정보는 네이버 웹 검색 영역 및 통합검색의 채용정보(제공 예정) 영역에 중복되어 노출될 수 있습니다. 만약, 개인 정보보호 등의 사유로 웹 검색에 채용정보를 노출하고 싶지 않다면 해당 웹페이지의 로봇 메타 태그에 noindex를 설정해 주시면 됩니다. 자세한 내용은 선호 URL 및 로봇 메타 태그 가이드를 참고하세요.
+통합검색 내의 채용정보 영역은 제휴 기반으로 노출되는 영역이므로, 로봇 메타 태그의 noindex 준수 여부는 협의에 따라 조정될 수 있습니다.
+JSON-LD 형태의 구조화 데이터 명세서
+채용정보를 네이버 검색에 노출하기 위해서는 먼저 채용정보를 담고 있는 웹페이지에 아래와 같이 구조화데이터 의 JSON-LD 형태로 마크업을 작성해야 합니다.
+마크업 작성 후 https://jsonformatter.curiousconcept.com/ 에서 먼저 오류 여부를 확인하실 수 있습니다.
+
+명세서
+{
+  "@context": "http://schema.org",
+  "@type": "JobPosting",
+  "title": "채용제목",
+  "datePosted": "YYYY-MM-DD",
+  "validThrough": "YYYY-MM-DD",
+  "employmentType": "채용형태로 별도 정의된 값 사용",
+  "experienceRequirements": "채용기준으로 별도 정의된 값 사용",
+  "jobLocation": [
+    {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "나머지 주소",
+        "postalCode": "우편번호",
+        "addressLocality": "구(서울, 지방 광역시), 시,군(기타 지역) 정보",
+        "addressRegion": "도 정보(or 서울특별시, 지방 광역시)",
+        "addressCountry": "대한민국"
+      }
+    }
+  ],
+  "jobLocationType": "TELECOMMUTE" // 재택근무인 경우에만 표기 
+  "description": "업무설명으로 권장하는 데이터 형식을 사용",
+  "baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "KRW",
+    "value": {
+      "@type": "QuantitativeValue",
+      "minValue": 1, // minValue, maxvalue 또는 value 하나만 기록
+      "maxValue": 2,
+      "value": 10000, 
+      "unitText": "급여종류이며 별도 정의된 값으로 사용"
+    }
+  },
+  "workHours" : "근무시간으로 별도 정의된 값 사용",
+  "educationRequirements" : "학력으로 별도 정의된 값 사용",
+  "qualifications": "자격증 혹은 필수경력으로 별도 정의된 값 사용",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "회사이름",
+    "sameAs": "회사 홈페이지 URL",
+    "logo" : "회사 로고 URL",
+    "description" : "회사소개"
+    "hiringtype" : "headhunting" // 서치펌 공고인 경우에만 표기 
+  },
+  "identifier": {
+    "@type":"PropertyValue",
+    "propertyID":"Company Number",
+    "value":"사업자 번호"
+  }
+}
+datePosted, validThrough 속성
+각각 채용정보 게시일과 종료일을 명시한 날짜 정보입니다. ISO 8601에서 지정한 표준의 일부를 지원하고 있습니다.
+datePosted에는 공고의 최초 등록일자를, validThrough에는 공고 마감일자를 넣어주세요.
+
+"datePosted": "2020-09-01",
+"validThrough": "2020-09-30"
+날짜 포맷은 아래와 같은 형식을 사용하는 것을 지원하며 'yyyy-MM-dd' 형식을 권장합니다.
+날짜 형식이 아닌 상시모집/채용시마감/null 등의 경우에는 validThrough 값을 표기하지 않으시면 됩니다.
+
+"yyyyMMdd",                    //BASIC_ISO_DATE
+"yyyy-MM-dd",                  //ISO_LOCAL_DATE
+"yyyy-MM-dd'T'HH:mm:ss",       //ISO_LOCAL_DATE_TIME
+"yyyy-MM-dd'T'HH:mm:ss+HH:mm", //ISO_OFFSET_DATE_TIME
+employmentType 속성
+채용형태로서 다음과 같이 한글 또는 영문명 중 한 개 또는 여러 개를 선택해서 지정해야 합니다.
+
+한글명: 정규직, 계약직, 아르바이트, 프리랜서, 인턴, 기타
+영문명: FULL_TIME, CONTRACTOR, PART_TIME, FREE_LANCER, INTERN, OTHER
+영문명으로 지정 시 FULL_TIME은 정규직, CONTRACTOR은 계약직, PART_TIME은 아르바이트, FREE_LANCER는 프리랜서, INTERN은 인턴, 그 외는 모두 기타로 분류됩니다.
+"employmentType": "정규직"
+혹은
+"employmentType": ["정규직", "파견직"]
+experienceRequirements 속성
+채용기준으로 다음과 같은 한글명 중 한 개 또는 여러 개를 선택해서 지정해야 합니다.
+
+한글명: 경력, 경력 n년, 신입, 경력무관
+"experienceRequirements": "경력무관"
+혹은
+"experienceRequirements": ["경력", "신입"]
+jobLocation 속성
+실제 근무하는 근무지의 주소이며, 여러 지점에서 동시 모집하는 경우 여러 개를 지정할 수 있습니다.
+
+근무지가 해외인 경우 "addressCountry"에 ISO alpha2 국가코드로 입력합니다.
+{
+   "jobLocation":[
+      {
+         "@type":"Place",
+         "address":{
+            "@type":"PostalAddress",
+            "postalCode":"우편번호",
+            "streetAddress":"나머지 주소",
+            "addressLocality":"구(서울, 지방 광역시), 시,군(기타 지역) 정보",
+            "addressRegion":"도 정보(or 서울특별시, 지방 광역시)",
+            "addressCountry":"대한민국"
+         }
+      },
+      {
+         "@type":"Place",
+         "address":{
+            "@type":"PostalAddress",
+            "postalCode":"우편번호",
+            "streetAddress":"나머지 주소",
+            "addressLocality":"구(서울, 지방 광역시), 시,군(기타 지역) 정보",
+            "addressRegion":"도 정보(or 서울특별시, 지방 광역시)",
+            "addressCountry":"대한민국"
+         }
+      },
+      {
+         "@type":"Place",
+         "address":{
+            "@type":"PostalAddress",
+            "postalCode":"우편번호",
+            "streetAddress":"나머지 주소",
+            "addressLocality":"상세 지역",
+            "addressRegion":"도 정보(워싱턴 DC, 베이징시)",
+            "addressCountry":"ISO alpha2 국가코드 (US, CN)"
+         }
+      }
+   ]
+}
+jobLocationType 속성
+재택근무인 경우 아래와 같은 형태로 기재해주세요.
+
+"jobLocationType": "TELECOMMUTE" 
+workHours 속성
+근무시간으로 다음과 같은 한글명 중 한 개 또는 여러 개를 선택해서 지정해야 합니다.
+
+한글명: 오전, 오후, 저녁, 새벽, 오전-오후, 오후-저녁, 저녁-새벽, 새벽-오전, 풀타임
+"workHours": "풀타임"
+혹은
+"workHours": ["오전", "풀타임"]
+educationRequirements 속성
+채용기준의 학력정보로 다음과 같은 한글명 중 한 개 또는 여러 개를 선택해서 지정해야 합니다.
+
+한글명: 고졸, 대졸, 초대졸, 석사, 박사, 학력무관
+"educationRequirements": "고졸"
+혹은
+"educationRequirements": ["대졸", "초대졸"]
+description 속성
+채용정보에 대한 세부 정보입니다.
+세부 정보는 가급적 상세 설명과 field:value 형태로 명시하는 것을 권장합니다.
+문단의 끝에는 반드시 new-line (\n 또는 <br /> 태그)를 넣어주시고, 그 외 태그는 반영되지 않으니
+참고 부탁드립니다.
+
+"description" : "
+네이버에서 경력사원을 모집합니다. \n 직종:개발자 \n 근무일수:주5일  
+"
+qualifications 속성
+자격증에 대한 정보로 요구되는 자격증 정보를 한 개 또는 여러 개로 지정합니다. 지정된 한글명은 없으며 필요한 자격증 정보를 자유롭게 기재하면 됩니다.
+
+"qualifications": "정보처리기사",
+혹은
+"qualifications": ["정보처리기사", "정보처리산업기사"]
+baseSalary 속성
+급여와 관련된 정보로 아래와 같은 세부 속성을 참고해서 지정합니다.
+
+currency: 통화의 약자로 원화의 경우 KRW를 기입해 주세요. 통화 약자는 ISO 4217 에서 살펴볼 수 있습니다.
+고정된 급여는 value 속성값을 사용합니다.
+급여의 범위를 지정하고 싶다면 최소급여 정보는 minValue 속성값에, 최대급여 정보는 maxValue 속성값에 기입합니다.
+value, minValue, maxValue 속성값은 Number만 사용 가능하며, 원 단위의 숫자형 값을 넣어주셔야 합니다. 숫자가 아닌 경우 노출되지 않습니다.
+unitText는 급여 지불과 관련된 단위이며 아래 지정된 값 중 한 개를 선택해서 사용합니다.
+영문명 : HOUR, DAY, WEEK, MONTH, YEAR
+한글명 : 시급, 일급, 주급, 월급, 연봉
+"baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "KRW", 
+    "value": {
+      "@type": "QuantitativeValue",
+      "value": 8000, 
+      "unitText": "HOUR"
+    }
+}
+"baseSalary": {
+    "@type": "MonetaryAmount",
+    "currency": "KRW", 
+    "value": {
+      "@type": "QuantitativeValue",
+      "minValue": 40000000,
+      "maxValue": 50000000,
+      "unitText": "YEAR"
+    }
+}
+hiringOrganization 속성
+서치펌(헤드헌팅) 공고인 경우 hiringOrganization에 아래와 같은 형태로 기재해주세요.
+
+ "hiringOrganization": {
+        "hiringtype" : "headhunting" 
+ }      
+마크업 예제
+아래 예제는 가상으로 네이버 검색 부서에서 개발자 채용을 구조화 데이터로 표현한 경우입니다.
+
+최소 사항
+채용정보와 관련된 최소한의 정보에 대한 예제입니다. 아래 속성값이 누락되는 경우 검색에 노출되지 않을 수 있습니다.
+
+{
+   "@context":"http://schema.org",
+   "@type":"JobPosting",
+   "title":"네이버 검색 채용",
+   "datePosted":"2020-08-31",
+   "validThrough":"2020-09-30",
+   "employmentType":[
+      "정규직",
+      "인턴"
+   ],
+   "experienceRequirements":[
+      "경력",
+      "신입"
+   ],
+   "jobLocation":[
+     {
+        "@type":"Place",
+        "address":{
+           "@type":"PostalAddress",
+           "streetAddress":"분당구 불정로 6",
+           "postalCode":"13561",
+           "addressLocality":"성남시",
+           "addressRegion":"경기도",
+           "addressCountry":"대한민국"
+        }
+     }
+   ],
+   "description":"네이버에서 경력사원을 모집합니다. \n 직종:개발자 \n 근무일수:주5일   
+   ",
+   "hiringOrganization":{
+     "@type":"Organization",
+     "name":"네이버",
+     "sameAs":"navercorp.com"
+   },
+   "identifier":{
+      "@type":"PropertyValue",
+      "propertyID":"Company Number",
+      "value":"220-81-62517"
+   }
+}
+권장사항 - 급여, 근무시간 추가
+채용 검색을 위하여 네이버가 권장하는 마크업 정보로서 최소 사항에서 급여와 근무시간을 추가하는 것을 권장합니다.
+
+{
+   "@context":"http://schema.org",
+   "@type":"JobPosting",
+   "title":"네이버 검색 자연어 태깅 아르바이트 채용",
+   "datePosted":"2020-08-31",
+   "validThrough":"2020-09-30",
+   "employmentType":"아르바이트",
+   "experienceRequirements":"무관",
+   "jobLocation":[
+     {
+       "@type":"Place",
+       "address":{
+         "@type":"PostalAddress",
+         "streetAddress":"분당구 불정로 6",
+         "postalCode":"13561",
+         "addressLocality":"성남시",
+         "addressRegion":"경기도",
+         "addressCountry":"대한민국"
+       }
+     }
+   ],
+   "description":"네이버에서 경력사원을 모집합니다. \n 직종:개발자 \n 근무일수:주5일  
+   ",
+   "baseSalary":{
+      "@type":"MonetaryAmount",
+      "currency":"KRW",
+      "value":{
+         "@type":"QuantitativeValue",
+         "value":8000,
+         "unitText":"HOUR"
+      }
+   },
+   "hiringOrganization":{
+      "@type":"Organization",
+      "name":"네이버",
+      "sameAs":"navercorp.com",
+      "logo":"https://logoproject.naver.com/img/img_story_renewal.png",
+      "description":"회사소개"
+   },
+   "identifier":{
+      "@type":"PropertyValue",
+      "propertyID":"Company Number",
+      "value":"220-81-62517"
+   }
+}
+모든 정보 제공
+아래와 같이 모든 정보를 제공하는 경우 네이버 검색에 가장 효과적으로 노출될 수 있습니다.
+
+{
+   "@context":"http://schema.org",
+   "@type":"JobPosting",
+   "title":"네이버 검색 자연어 태깅 아르바이트 채용",
+   "datePosted":"2020-08-31",
+   "validThrough":"2020-09-30",
+   "employmentType":"아르바이트",
+   "experienceRequirements":"무관",
+   "jobLocation":[
+     {
+       "@type":"Place",
+       "address":{
+         "@type":"PostalAddress",
+         "streetAddress":"분당구 불정로 6",
+         "postalCode":"13561",
+         "addressLocality":"성남시",
+         "addressRegion":"경기도",
+         "addressCountry":"대한민국"
+        }
+     }
+   ],
+   "jobLocationType": "TELECOMMUTE"
+   "description":"네이버에서 경력사원을 모집합니다. \n 직종:개발자 \n 근무일수:주5일   
+   ",
+   "baseSalary":{
+      "@type":"MonetaryAmount",
+      "currency":"KRW",
+      "value":{
+         "@type":"QuantitativeValue",
+         "value":8000,
+         "unitText":"HOUR"
+      }
+   },
+   "workHours":"오전 - 오후",
+   "educationRequirements":"초대졸",
+   "qualifications":"워드프로세서 1급",
+   "hiringOrganization":{
+      "@type":"Organization",
+      "name":"네이버",
+      "sameAs":"navercorp.com",
+      "logo":"https://logoproject.naver.com/img/img_story_renewal.png",
+      "description":"회사소개"
+      "hiringtype":"headhunting" 
+   },
+   "identifier":{
+      "@type":"PropertyValue",
+      "propertyID":"Company Number",
+      "value":"220-81-62517"
+   }
+}
+마크업 작성 후 https://jsonformatter.curiousconcept.com/ 에서 먼저 오류 여부를 확인하실 수 있습니다.
+
+==================================================================
+
+제목 : 주소 (Address)
+url : https://searchadvisor.naver.com/guide/structured-data-address
+내용 : 
+주소 (Address)
+검색결과에 표시되는 주소 정보 입니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+주소 (Address) 마크업
+기본 가이드라인
+사이트 공통 주소를 여러 페이지에 동일하게 사용되지 않도록 주의해 주세요.
+각 요소별 적합한 내용을 중복 없이 입력해 주세요.
+최대한 자세하고 명확하게 입력해 주세요.
+타입 및 속성
+schema.org에서 정의한 PostalAdress 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+속성	필수여부	설명
+postalCode	필수아님	숫자 혹은 하이픈(-)으로 구성해 우편번호를 입력해 주세요.
+addressRegion	필수아님	주소 중 가장 큰 지역명을 입력해 주세요.
+addressLocality	필수아님	Region 하위 지역을 입력해 주세요.
+streetAddress	필수	도로명 포함 상세 주소를 입력해 주세요.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NAVER 1784",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "13561",
+    "addressRegion": "경기",
+    "addressLocality": "성남시 분당구",
+    "streetAddress": "정자일로 95"
+  }
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/Organization">
+  <span itemprop="name">NAVER 1784</span>
+  <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+    <span itemprop="postalCode">13561</span>
+    <span itemprop="addressRegion">경기</span>
+    <span itemprop="addressLocality">성남시 분당구</span>
+    <span itemprop="streetAddress">정자일로 95</span>
+  </div>
+</div>
+
+==================================================================
+
+제목 : 사이트 이동 경로 (BreadcrumbList)
+url : https://searchadvisor.naver.com/guide/structured-data-breadcrumb
+내용 : 
+사이트 이동 경로 (BreadcrumbList)
+검색결과에 사이트 이동 경로를 나타 냅니다. 검색 사용자가 웹페이지의 위치를 이해하는데 도움이 될수있습니다.
+image
+
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+사이트 이동 경로 (BreadcrumbList) 마크업
+기본 가이드라인
+해당 페이지의 계층 구조를 키워드로 작성합니다.
+너무 긴 텍스트나 숫자 혹은 특수 문자로만 구성되지 않도록 주의해주세요.
+넓은 범위에서 부터 시작하여 점점 구체적인 내용이 되도록 순서대로 입력해주세요.
+예) 뉴스 > 스포츠 > 축구, 국내도서 > 소설 > 한국소설, 회사소개 > 회사개요 > 핵심가치
+타입 및 속성
+schema.org에서 정의한 BreadcrumbList 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수	"top", "홈" 등 일반적인 단어가 아닌 페이지를 잘 설명하는 텍스트로 입력해 주세요.
+position	필수아님	계층 구조의 번호입니다.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement":
+ [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "item":
+   {
+    "@id": "https://example.com/news.html",
+    "name": "뉴스"
+    }
+  },
+  {
+   "@type": "ListItem",
+  "position": 2,
+  "item":
+   {
+     "@id": "https://example.com/news/sports.html",
+     "name": "스포츠"
+   }
+  }
+ ]
+}
+</script>
+Microdata 형식으로 구현한 예제
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="https://example.com/news.html">
+    <span itemprop="name">뉴스</span></a>
+    <meta itemprop="position" content="1" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" href="https://example.com/news/sports.html">
+    <span itemprop="name">스포츠</span></a>
+    <meta itemprop="position" content="2" />
+  </li>
+</ol>
+
+==================================================================
+
+제목 : 캐러셀 (ListItem)
+url : https://searchadvisor.naver.com/guide/structured-data-carousel
+내용 : 
+캐러셀 (ListItem)
+목록형 데이터를 캐러셀 형태로 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+캐러셀 (ListItem) 마크업
+기본 가이드라인
+예제 1과 같이 item 요소 하위에 {name, image, url}을 작성할 수도 있고, 예제 2와 같이 item 요소 없이 작성할 수도 있습니다.
+1개 페이지에는 1개 listItem 사용을 권장합니다.
+개수가 적은 listItem은 사용하지 않습니다.
+요소 간 중복이 발생하지 않도록 주의해주세요.
+이미지 가이드라인
+썸네일 등이 아닌 원본 이미지를 사용해주세요.
+이미지 간 중복이 발생하지 않도록 해주세요.
+해당 item을 잘 나타내는 이미지를 사용해주세요. 로고, 기본 이미지, 깨진 이미지를 사용하지 마세요.
+타입 및 속성
+schema.org에서 정의한 ListItem 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수아님	각 item의 이름을 입력해 주세요.
+image	필수	해당 item을 나타내는 이미지 입니다. ImageObject 혹은 URL 포맷으로 사용합니다.
+url	필수아님	해당 item의 관련 url을 입력해주세요. URL 포맷으로 사용하고, 상대 경로나 단축 URL이 아닌 절대 경로로 입력해 주세요.
+item	필수아님	item 요소 작성 시 image는 필수로, 이 외 요소들은 선택적으로 입력해 주세요. Thing 하위에 있는 모든 타입으로 작성 가능합니다.
+position	필수아님	목록 번호 입니다. Integer 포맷으로 작성해 주세요.
+JSON-LD 형식으로 구현한 예제 1 ( item 요소 하위에 {name, image, url}을 작성)
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "ItemList",
+  "itemListElement":[
+    {
+      "@type": "ListItem",
+      "item": {
+        "@type": "Organization",
+        "name": "라인",
+        "image": "https://example.com/photos/listitem-1.jpg",
+        "url": "https://example.com/listitem-url-1"
+      },
+      "position": "1"
+    },
+    {
+      "@type": "ListItem",
+      "item": {
+        "@type": "Organization",
+        "name": "네이버 랩스",
+        "image": "https://example.com/photos/listitem-2.jpg",
+        "url": "https://example.com/listitem-url-2"
+      },
+      "position": "2"
+    },
+    {
+      "@type": "ListItem",
+      "item": {
+        "@type": "Organization",
+        "name": "네이버 클라우드",
+        "image": "https://example.com/photos/listitem-3.jpg",
+        "url": "https://example.com/listitem-url-3"
+      },
+      "position": "3"
+    },
+    {
+      "@type": "ListItem",
+      "item": {
+        "@type": "Organization",
+        "name": "네이버 웹툰",
+        "image": "https://example.com/photos/listitem-4.jpg",
+        "url": "https://example.com/listitem-url-4"
+      },
+      "position": "4"
+    },
+    {
+      "@type": "ListItem",
+      "item": {
+        "@type": "Organization",
+        "name": "스노우",
+        "image": "https://example.com/photos/listitem-5.jpg",
+        "url": "https://example.com/listitem-url-5"
+      },
+      "position": "5"
+    },
+    {
+      "@type": "ListItem",
+      "item": {
+        "@type": "Organization",
+        "name": "네이버 파이낸셜",
+        "image": "https://example.com/photos/listitem-6.jpg",
+        "url": "https://example.com/listitem-url-6"
+      },
+      "position": "6"
+    }
+  ]
+}
+</script>
+JSON-LD 형식으로 구현한 예제 2 (item 요소 없이 작성)
+<script type="application/ld+json">
+{
+  "@context":"http://schema.org",
+  "@type":"ItemList",
+  "itemListElement":[
+    {
+      "@type": "ListItem",
+      "name": "라인",
+      "image": "https://example.com/photos/listitem-1.jpg",
+      "url": "https://example.com/listitem-url-1",
+      "position": "1"
+    },
+    {
+      "@type": "ListItem",
+      "name": "네이버 랩스",
+      "image": "https://example.com/photos/listitem-2.jpg",
+      "url": "https://example.com/listitem-url-2",
+      "position": "2"
+    },
+    {
+      "@type": "ListItem",
+      "name": "네이버 클라우드",
+      "image": "https://example.com/photos/listitem-3.jpg",
+      "url": "https://example.com/listitem-url-3",
+      "position": "3"
+    },
+    {
+      "@type": "ListItem",
+      "name": "네이버 웹툰",
+      "image": "https://example.com/photos/listitem-4.jpg",
+      "url": "https://example.com/listitem-url-4",
+      "position": "4"
+    },
+    {
+      "@type": "ListItem",
+      "name": "스노우",
+      "image": "https://example.com/photos/listitem-5.jpg",
+      "url": "https://example.com/listitem-url-5",
+      "position": "5"
+    },
+    {
+      "@type": "ListItem",
+      "name": "네이버 파이낸셜",
+      "image": "https://example.com/photos/listitem-6.jpg",
+      "url": "https://example.com/listitem-url-6",
+      "position": "6"
+    }
+  ]
+}
+</script>
+Microdata 형식으로 구현한 예제 1 (item 요소 하위에 {name, image, url}을 작성)
+<ol itemscope itemtype="https://schema.org/ItemList">
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="item" itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">라인</span>
+      <img itemprop="image" src="https://example.com/photos/listitem-1.jpg"/>
+      <link itemprop="url" href="https://example.com/listitem-url-1" />
+    </span>
+    <meta itemprop="position" content="1" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">네이버 랩스</span>
+      <img itemprop="image" src="https://example.com/photos/listitem-2.jpg"/>
+      <link itemprop="url" href="https://example.com/listitem-url-2" />
+    </a>
+    <meta itemprop="position" content="2" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">네이버 클라우드</span>
+      <img itemprop="image" src="https://example.com/photos/listitem-3.jpg"/>
+      <link itemprop="url" href="https://example.com/listitem-url-3" />
+    </a>
+    <meta itemprop="position" content="3" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">네이버 웹툰</span>
+      <img itemprop="image" src="https://example.com/photos/listitem-4.jpg"/>
+      <link itemprop="url" href="https://example.com/listitem-url-4" />
+    </a>
+    <meta itemprop="position" content="4" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">스노우</span>
+      <img itemprop="image" src="https://example.com/photos/listitem-5.jpg"/>
+      <link itemprop="url" href="https://example.com/listitem-url-5" />
+    </a>
+    <meta itemprop="position" content="5" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <a itemprop="item" itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">네이버 파이낸셜</span>
+      <img itemprop="image" src="https://example.com/photos/listitem-6.jpg"/>
+      <link itemprop="url" href="https://example.com/listitem-url-6" />
+    </a>
+    <meta itemprop="position" content="6" />
+  </li>
+</ol>
+Microdata 형식으로 구현한 예제 2 (item 요소 없이 작성)
+<ol itemscope itemtype="https://schema.org/ItemList">
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">라인</span>
+    <img itemprop="image" src="https://example.com/photos/listitem-1.jpg"/>
+    <link itemprop="url" href="https://example.com/listitem-url-1" />
+    <meta itemprop="position" content="1" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">네이버 랩스</span>
+    <img itemprop="image" src="https://example.com/photos/listitem-2.jpg"/>
+    <link itemprop="url" href="https://example.com/listitem-url-2" />
+    <meta itemprop="position" content="2" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">네이버 클라우드</span>
+    <img itemprop="image" src="https://example.com/photos/listitem-3.jpg"/>
+    <link itemprop="url" href="https://example.com/listitem-url-3" />
+    <meta itemprop="position" content="3" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">네이버 웹툰</span>
+    <img itemprop="image" src="https://example.com/photos/listitem-4.jpg"/>
+    <link itemprop="url" href="https://example.com/listitem-url-4" />
+    <meta itemprop="position" content="4" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">스노우</span>
+    <img itemprop="image" src="https://example.com/photos/listitem-5.jpg"/>
+    <link itemprop="url" href="https://example.com/listitem-url-5" />
+    <meta itemprop="position" content="5" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+    <span itemprop="name">네이버 파이낸셜</span>
+    <img itemprop="image" src="https://example.com/photos/listitem-6.jpg"/>
+    <link itemprop="url" href="https://example.com/listitem-url-6" />
+    <meta itemprop="position" content="6" />
+  </li>
+</ol>
+
+==================================================================
+
+제목 : 평점 (AggregateRating)
+url : https://searchadvisor.naver.com/guide/structured-data-rating
+내용 : 
+평점 (AggregateRating)
+평가 점수 및 평가/리뷰 개수와 같은 평점 정보를 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+평점 (AggregateRating)
+기본 가이드라인
+평가가 여러 개 존재하는 페이지는 AggregateRating 1개에 최종 rating 값을 입력해주세요.
+0보다 같거나 큰 수 (정수 또는 소수) 만 허용됩니다. 음수나 지수, 텍스트 등은 사용할 수 없습니다.
+타입 및 속성
+schema.org에서 정의한 AggregateRating 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+ratingValue	필수	평점을 나타내는 점수 값 입니다.
+bestRating	선택	평가 체계에서 가장 높은 값입니다. ratingValue 값보다 크거나 같아야 합니다.
+ratingCount	* [주1]	위의 평점을 구성하게 된 개별 평점들의 총개수입니다.
+reviewCount	* [주1]	평점과 함께 또는 평점이 없이 입력된 리뷰의 개수입니다
+[주1] 평점 표시시 ratingCount 또는 reviewCount의 둘중의 하나가 반드시 있어야 노출 가능합니다. 둘 다 있는 경우에는 ratingCount 값이 우선 표시됩니다.
+예제
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "bestRating": "5",
+    "reviewCount": "10"
+    "ratingCount": "10"
+  }
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+  <span itemprop="ratingValue">4.5</span>
+  <span itemprop="bestRating">5</span>
+  <span itemprop="reviewCount">11</span>
+  <span itemprop="ratingCount">11</span>
+</div>
+
+==================================================================
+
+제목 : 레시피 (Recipe)
+url : https://searchadvisor.naver.com/guide/structured-data-recipe
+내용 : 
+레시피 (Recipe)
+레시피 정보를 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+레시피 (Recipe)
+기본 가이드라인
+HowTo property 하위에 작성하지 않도록 해주세요.
+이미지 가이드라인
+해당 레시피를 잘 나타내는 완성된 요리 등의 이미지를 사용해주세요.
+썸네일 등이 아닌 원본 이미지를 사용해주세요.
+이미지 간 중복이 발생하지 않도록 해주세요.
+로고, 기본 이미지, 깨진 이미지가 되지 않도록 해주세요.
+타입 및 속성
+schema.org에서 정의한 Recipe 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수아님	레시피 제목입니다.
+image	필수아님	레시피 이미지 입니다.
+recipeYield	필수아님	요리의 양입니다. 숫자 혹은 "숫자단위"를 입력해 주세요. (단위 예: 인분, serving)
+totalTime	필수아님	총 조리 시간 입니다. ISO-8601 duration 형태로 작성해주세요. (예: PT30M)
+recipeIngredient	필수아님	레시피의 재료입니다. 하나씩 개별로 입력해 주세요. 순서 정보 등 메타 데이터는 입력하지 않도록 해주세요.
+recipeInstruction	필수	레시피 단계별 설명입니다. 하나씩 개별로 입력해 주세요. 순서 정보 등 메타 데이터는 입력하지 않도록 해주세요.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "김치찌개 레시피",
+  "image": "https://example.com/photos/recipe_sample.jpg",
+  "recipeYield": "2 servings",
+  "totalTime": "PT30M",
+  "recipeIngredient": [
+    "신김치 1그릇",
+    "식용유 2스푼",
+    "대파 1뿌리",
+    "참치 1캔",
+    "물 500ml",
+    "고추가루 1스푼"
+  ],
+  "recipeInstructions": [
+    {"@type":"HowToStep","text":"냄비에 김치를 넣는다."},
+    {"@type":"HowToStep","text":"김치 위에 식용유를 뿌리고 약불에서 볶는다."},
+    {"@type":"HowToStep","text":"볶은 김치에 참치를 넣고 함께 볶는다."},
+    {"@type":"HowToStep","text":"물을 넣고 끓인다."},
+    {"@type":"HowToStep","text":"끓는 김치찌개에 대파를 넣고 추가로 끓인다."},
+    {"@type":"HowToStep","text":"고추가루를 넣고 끓인 후 마무리한다."},
+  ]
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/Recipe">
+  <span itemprop="name">김치찌개 레시피</span>
+  <img itemprop="image" src="https://example.com/photos/recipe_sample.jpg" />
+  <span itemprop="recipeYield">2 servings</span>
+  <meta itemprop="totalTime" content="PT30M">
+  <span itemprop="recipeIngredient">신김치 1그릇</span>
+  <span itemprop="recipeIngredient">식용유 2스푼</span>
+  <span itemprop="recipeIngredient">대파 1뿌리</span>
+  <span itemprop="recipeIngredient">참치 1캔</span>
+  <span itemprop="recipeIngredient">물 500ml</span>
+  <span itemprop="recipeIngredient">고추가루 1스푼</span>
+  <span itemprop="recipeInstructions">냄비에 김치를 넣는다.</span>
+  <span itemprop="recipeInstructions">김치 위에 식용유를 뿌리고 약불에서 볶는다.</span>
+  <span itemprop="recipeInstructions">볶은 김치에 참치를 넣고 함께 볶는다.</span>
+  <span itemprop="recipeInstructions">물을 넣고 끓인다.</span>
+  <span itemprop="recipeInstructions">끓는 김치찌개에 대파를 넣고 추가로 끓인다.</span>
+  <span itemprop="recipeInstructions">고추가루를 넣고 끓인 후 마무리한다.</span>
+</div>
+
+==================================================================
+
+제목 : 리뷰 (Review)
+url : https://searchadvisor.naver.com/guide/structured-data-review
+내용 : 
+리뷰 (Review)
+리뷰를 텍스트 및 점수로 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+리뷰 (Review)
+기본 가이드라인
+리뷰 대상인 Product 등의 property 하위에 개별 리뷰들을 Review property로 작성합니다.
+1개 페이지에는 리뷰 대상이 1개가 되도록 해주세요.
+ratingValue와 bestRating에 음수나 지수 표기법은 허용하지 않습니다.
+타입 및 속성
+schema.org에서 정의한 Review 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+reviewBody	필수	리뷰 내용입니다. 숫자나 특수 문자로만 구성된 의미없는 리뷰 문구는 제외해 주세요.
+ratingValue	필수아님	평가 점수입니다. 0~5가 기본 값입니다.
+bestRating	필수아님	평가 체계에서 가장 높은 값입니다. 값이 없는 경우 5를 기본 값으로 사용합니다. ratingValue 값보다 큰 값이어야 합니다.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "review": [
+    {
+      "@type": "Review",
+      "reviewBody": "마음에 드는 제품입니다.",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "4"
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewBody": "판매자분이 매우 친절합니다.",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewBody": "생각했던 그대로입니다.",
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": "5",
+        "ratingValue": "3"
+      }
+    }
+  ]
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/Product">
+  <div itemprop="review" itemscope itemtype="https://schema.org/Review">
+      <span itemprop="reviewBody">마음에 드는 제품입니다.</span>
+      <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+        <span itemprop="bestRating">5</span>
+        <span itemprop="ratingValue">4</span>
+      </div>
+  </div>
+  <div itemprop="review" itemscope itemtype="https://schema.org/Review">
+      <span itemprop="reviewBody">판매자분이 매우 친절합니다.</span>
+      <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+        <span itemprop="bestRating">5</span>
+        <span itemprop="ratingValue">5</span>
+      </div>
+  </div>
+  <div itemprop="review" itemscope itemtype="https://schema.org/Review">
+      <span itemprop="reviewBody">생각했던 그대로입니다.</span>
+      <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+        <span itemprop="bestRating">5</span>
+        <span itemprop="ratingValue">3</span>
+      </div>
+  </div>
+</div>
+
+==================================================================
+
+제목 : 식당 (Restaurant)
+url : https://searchadvisor.naver.com/guide/structured-data-restaurant
+내용 : 
+Restaurant
+식당 정보를 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+Restaurant 마크업
+기본 가이드라인
+설명 글 대신 숫자 위주로 간결하게 입력해 주세요.
+타입 및 속성
+Schema.org에서 정의한 Restaurant 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수	식당의 이름을 입력해 주세요.
+openingHours	필수	요일/시간 등 영업 시간 정보를 입력해 주세요. 여러 개로 나누어 입력할 수 있습니다.
+telephone	필수아님	지역 번호를 포함한 전체 전화 번호를 입력해 주세요.
+image	필수아님	식당의 대표 이미지를 입력해 주세요. ImageObject 혹은 URL 포맷으로 사용합니다.
+url	필수아님	식당 웹 페이지 주소를 입력해 주세요. URL 포맷으로 사용하고, 상대 경로나 단축 URL이 아닌 절대 경로로 입력해주세요.
+servesCuisine	필수아님	식당의 메뉴를 입력해 주세요. 여러 개인 경우 하나씩 개별로 입력해 주세요.
+priceRange	필수아님	가격대 정보를 입력해 주세요. 원/달러 같은 통화 정보가 있다면 같이 입력해 주세요.
+description	필수아님	식당의 설명입니다. 너무 길어지지 않게 내용 중심으로 작성해 주세요.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "네이버 식당",
+  "openingHours": [
+    "평일 11:00am - 19:00pm",
+    "주말 12:00pm - 19:00pm"
+  ],
+  "telephone": "(031) 784-1000",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://example.com/photos/restaurant.jpg",
+    "width": "700",
+    "height": "500"
+  },
+  "url": "https://www.navercorp.com",
+  "servesCuisine": [
+    "김치찌개",
+    "된장찌개",
+    "고등어 구이"
+  ],
+  "priceRange": "6,000원 ~ 8,000원",
+  "description": "한식 전문점입니다."
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/Restaurant">
+  <span itemprop="name">네이버 식당</span>
+  <meta itemprop="openingHours" content="평일 11:00am - 19:00pm" />
+  <meta itemprop="openingHours" content="주말 12:00pm - 19:00pm" />
+  <span itemprop="telephone">(031) 784-1000</span>
+  <img itemprop="image" src="https://example.com/photos/restaurant.jpg" />
+  <a itemprop="url" href="https://www.navercorp.com">https://www.navercorp.com</a>
+  <span itemprop="servesCuisine">김치찌개</span>
+  <span itemprop="servesCuisine">된장찌개</span>
+  <span itemprop="servesCuisine">고등어 구이</span>
+  <span itemprop="priceRange">6,000원 ~ 8,000원</span>
+ <span itemprop="description">한식 전문점입니다.</span>
+</div>
+
+==================================================================
+
+제목 : TV 시리즈 (TVSeries)
+url : https://searchadvisor.naver.com/guide/structured-data-tvseries
+내용 : 
+TV Series
+TV 시리즈 프로그램의 정보를 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+TV Series 마크업
+기본 가이드라인
+actor/creator 등에서 입력할 요소가 많은 경우 노출하고 싶은 요소를 먼저 입력해 주세요.
+타입 및 속성
+Schema.org에서 정의한 TV Series 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수	프로그램 이름을 입력해 주세요.
+actor	필수	출연자 이름을 입력해 주세요. 한 명씩 개별로 입력해 주세요.
+creator	필수아님	연출자 이름을 입력해 주세요. 한 명씩 개별로 입력해 주세요.
+genre	필수아님	프로그램의 장르를 입력해 주세요. 예: 코미디, 호러, 드라마
+image	필수아님	프로그램의 대표 이미지입니다. ImageObject 혹은 URL 포맷으로 사용합니다.
+description	필수아님	프로그램의 설명입니다. 너무 길어지지 않게 내용 중심으로 작성해 주세요.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TVSeries",
+  "name": "네이버 드라마",
+  "actor": [
+    {
+      "@type": "Person",
+      "name": "김배우"
+    },
+    {
+      "@type": "Person",
+      "name": "최배우"
+    }
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "김감독"
+  },
+  "genre": "드라마",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://example.com/photos/tvseries.jpg",
+     "width": "700",
+    "height": "500"
+  },
+  "description": "네이버 생활을 그린 드라마입니다."
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/TVSeries">
+ <span itemprop="name">네이버 드라마</span>
+ <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+   <span itemprop="name">김배우</span>
+ </div>
+ <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+   <span itemprop="name">최배우</span>
+ </div>
+ <div  itemprop="creator" itemscope itemtype="https://schema.org/Person">
+   <span itemprop="name">김감독</span>
+ </div>
+ <span itemprop="genre">드라마</span>
+ <img itemprop="image" src="https://example.com/photos/tvseries.jpg"/>
+ <span itemprop="description">네이버 생활을 그린 드라마입니다.</span>
+</div>
+
+==================================================================
+
+제목 : 영화 (Movie)
+url : https://searchadvisor.naver.com/guide/structured-data-movie
+내용 : 
+Movie
+영화 정보를 표기합니다.
+image
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+Movie 마크업
+기본 가이드라인
+actor/director/genre 등에서 입력할 요소가 많은 경우 노출하고 싶은 요소를 먼저 입력해 주세요.
+타입 및 속성
+Schema.org에서 정의한 Movie 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수	영화 이름을 입력해 주세요.
+actor	필수	출연자 이름을 입력해 주세요. 한 명씩 개별로 입력해 주세요.
+director	필수아님	감독 이름을 입력해 주세요. 한 명씩 개별로 입력해 주세요.
+genre	필수아님	영화의 장르를 입력해 주세요. 여러 개인 경우 하나씩 개별로 입력해 주세요. 예: SF, 액션, 로맨스
+image	필수아님	영화의 대표 이미지입니다. ImageObject 혹은 URL 포맷으로 사용합니다.
+description	필수아님	영화에 대한 설명입니다. 너무 길어지지 않게 내용 중심으로 작성해 주세요.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Movie",
+  "name": "네이버 스릴러",
+  "actor": [
+    {
+      "@type": "Person",
+      "name": "김배우"
+    },
+    {
+      "@type": "Person",
+      "name": "최배우"
+    }
+  ],
+  "director": {
+    "@type": "Person",
+    "name": "김감독"
+  },
+  "genre": [
+    "스릴러"
+  ],
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://example.com/photos/movie.jpg",
+     "width": "700",
+    "height": "500"
+  },
+  "description": "네이버 생활을 그린 영화입니다."
+}
+</script>
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/Movie">
+ <span itemprop="name">네이버 스릴러</span>
+ <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+   <span itemprop="name">김배우</span>
+ </div>
+ <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+   <span itemprop="name">최배우</span>
+ </div>
+ <div  itemprop="director" itemscope itemtype="https://schema.org/Person">
+   <span itemprop="name">김감독</span>
+ </div>
+ <span itemprop="genre">스릴러</span>
+ <img itemprop="image" src="https://example.com/photos/movie.jpg"/>
+ <span itemprop="description">네이버 생활을 그린 영화입니다.</span>
+</div>
+
+==================================================================
+
+제목 : 소프트웨어 (Software)
+url : https://searchadvisor.naver.com/guide/structured-data-software
+내용 : 
+Software
+소프트웨어 정보를 표기합니다.
+image
+
+위 이미지는 검색결과에 표시 될수있는 예제 입니다. 실제 검색결과와 모습이 다를 수 있습니다.
+해당 정보는 다른 구조화된 마크업과 같이 웹문서 분석 등에 보조적으로 활용할 수 있으며, 해당 내용이나 형식으로 노출되는 것을 보장하지 않습니다.
+
+Software 마크업
+기본 가이드라인
+PC/모바일/태블릿 등에서 실행하는 소프트웨어의 정보입니다.
+타입 및 속성
+Schema.org에서 정의한 Software Application 을 사용하며 아래와 같은 속성값을 지정해야 합니다.
+
+속성	필수여부	설명
+name	필수	소프트웨어 이름을 입력해 주세요.
+applicationCategory	필수	소프트웨어 카테고리를 입력해 주세요.
+operatingSystem	필수아님	지원하는 운영 체제를 입력해 주세요. (예: Android, iOS) 하나씩 개별로 입력해 주세요. 버전 정보가 있으면 함께 입력해 주세요.
+url	필수아님	소프트웨어 웹페이지 혹은 다운로드 URL을 입력해 주세요. URL 포맷으로 사용하고, 상대 경로나 단축 URL이 아닌 절대 경로로 입력해주세요.
+screenshot	필수아님	스크린샷입니다. ImageObject 혹은 URL 포맷으로 사용합니다.
+description	필수아님	소프트웨어에 대한 설명입니다. 너무 길어지지 않게 내용 중심으로 작성해 주세요.
+JSON-LD 형식으로 구현한 예제
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "네이버 유틸리티",
+  "applicationCategory": "유틸리티",
+  "operatingSystem": [
+    "iOS",
+    "Android"
+  ],
+  "url": "https://example.com/software_url",
+  "screenshot": [
+    {
+      "@type": "ImageObject",
+      "url": "https://example.com/photos/software_1.jpg",
+       "width": "700",
+      "height": "500"
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://example.com/photos/software_2.jpg",
+       "width": "700",
+      "height": "500"
+    }
+  ],
+  "description": "네이버 유틸리티 애플리케이션입니다."
+}
+</script>
+
+Microdata 형식으로 구현한 예제
+<div itemscope itemtype="https://schema.org/Movie">
+ <span itemprop="name">네이버 유틸리티</span>
+ <span itemprop="applicationCategory">유틸리티</span>
+ <span itemprop="operatingSystem">iOS</span>
+ <span itemprop="operatingSystem">Android</span>
+ <link itemprop="url" href="https://example.com/software_url" />
+ <img itemprop="screenshot" src="https://example.com/photos/software_1.jpg"/>
+ <img itemprop="screenshot" src="https://example.com/photos/software_2.jpg"/>
+ <span itemprop="description">네이버 유틸리티 애플리케이션입니다.</span>
+</div>
+
+==================================================================
+
+제목 : 동영상 검색 (Video Search)
+url : https://searchadvisor.naver.com/guide/structured-data-video
+내용 : 
+동영상 검색 데이터 구조화 및 수집 안내
+네이버 동영상 검색은 네이버의 동영상 서비스 뿐만 아니라 수집을 통해 외부 서비스의 동영상도 검색 결과로 제공합니다.
+
+네이버 동영상 검색에 정보를 노출하기 원하신다면 아래의 절차에 따라 적용 및 제휴 제안을 신청해 주시기 바랍니다.
+
+동영상 데이터 개요
+대상 유형 : Video와 Channel 2가지 유형의 데이터가 필요합니다.
+데이터 형식 : JSON-LD 포맷으로 schema.org 에 정의된 Schema에 맞춰 작성해 주시기 바랍니다.
+Video : VideoObject
+Channel : Person
+1. Video와 Channel의 관계
+
+Video 문서: 개별 영상 상세 페이지를 나타내며, 최상위 @type은 VideoObject입니다.
+Channel 문서: 채널 페이지를 나타내며, 최상위 @type은 Person입니다.
+Video 문서의 채널 정보는 creator(Person) 안에 작성합니다. creator.name은 채널 이름, creator.url은 채널 페이지 URL이며 별도 Channel 문서의 name·url과 같은 값을 사용합니다. 채널 ID cid도 두 문서에서 같은 값을 사용합니다.
+채널은 항상 Person으로 작성합니다. 네이버 동영상 검색의 '채널'은 영상을 올리는 단위를 뜻하며, 방송 프로그램·기관·브랜드 채널도 모두 Person으로 작성합니다(TVSeries, Organization, ProfilePage 아님).
+VideoObject
+├─ name  : 영상 제목
+├─ url   : 영상 상세 페이지
+├─ cid   : 채널 ID (Channel 문서의 cid와 동일)
+└─ creator (Person)
+   ├─ name : 채널 이름
+   └─ url  : 채널 페이지 URL
+
+Channel (Person)
+├─ name : 위 creator.name과 동일
+├─ url  : 위 creator.url과 동일
+└─ cid  : 위 VideoObject.cid와 동일
+2. 페이지 구성
+
+영상 상세 페이지에는 최상위 VideoObject 1개, 채널 페이지에는 최상위 Person 1개를 작성합니다.
+같은 페이지에 있는 다른 타입의 JSON-LD(TVSeries, BreadcrumbList 등)는 수집에 사용되지 않습니다.
+한 페이지에 VideoObject를 여러 개 작성하지 마세요. 재생목록·목록 페이지는 수집 대상이 아닙니다.
+@graph로 묶지 말고 단일 객체로 작성하세요.
+3. 작성 시 유의사항
+
+채널 이름·URL은 creator(Person) 객체 안에 작성합니다.
+channelName과 channelUrl을 VideoObject 최상위에 평면 속성으로 추가하지 마세요. 바깥 name은 영상 제목이고, creator.name은 채널 이름, creator.url은 채널 페이지 URL입니다.
+반대로 cid·mobileUrl·mobileChannelUrl은 VideoObject 최상위에 작성하는 네이버 확장 속성입니다. creator 안에 넣지 마세요.
+✅ 올바른 예 — 채널 이름·URL은 creator 객체에, cid는 최상위에
+
+{
+  "@type": "VideoObject",
+  "name": "여름 캠핑 브이로그",
+  "cid": "minsu",
+  "creator": {
+    "@type": "Person",
+    "name": "캠핑하는 민수",
+    "url": "https://example.com/channels/minsu"
+  }
+}
+❌ 잘못된 예 — 채널 정보를 최상위에 작성
+
+{
+  "@type": "VideoObject",
+  "name": "여름 캠핑 브이로그",
+  "channelName": "캠핑하는 민수",
+  "channelUrl": "https://example.com/channels/minsu"
+}
+[검수 시 확인]
+검수 시 확인: creator가 객체인지, creator.@type이 Person인지, 채널 이름과 URL이 각각 creator.name과 creator.url에 있는지 확인합니다.
+
+문서 수집 신청 방법
+본 문서를 참고하시어 데이터를 작성하시고 네이버 제휴제안 작성을 통해 신청해 주시기 바랍니다.
+제휴 희망 영역 : 서비스 콘텐츠 제휴
+세부 영역 : 동영상콘텐츠 제휴
+https://searchadvisor.naver.com/guide/crawl-request-api 문서의 API 명세를 참고하여 신청해 주세요.
+수집 대상이 되는 URL을 Push하면 네이버 수집 로봇이 콘텐츠 데이터를 Pull하는 방식으로 데이터를 수집합니다.
+제출 URL은 아래 3가지 URL이 동일해야 합니다.
+1. 검색 결과에 노출되는 URL
+2. 브라우저로 렌더링되는 URL
+3. 구조화 데이터(schema.org)가 포함된 URL
+만약, 구조화데이터를 모든 사용자에게 노출하고 싶지 않을 경우에는 네이버 수집 로봇이 사용하는 User-Agent 접근 시에만 포함하여 반환하도록 설정하실 수 있습니다.
+데이터 갱신 주기는 빠를수록 좋지만 전체 문서 규모와 운영 상황에 맞춰서 갱신 주기를 조절해 주세요.
+수집요청 API를 사용하기 위해서는 서치어드바이저에 사이트 소유확인을 먼저 진행해야 합니다.
+수집요청 API 명세 및 연동 가이드를 참고하여 웹페이지의 수집요청 API 연동을 시작합니다.
+제휴 신청 및 Schema.org 마크업 개발이 완료 후, 제휴 신청을 하시면 제휴 검토 및 테스트 지원을 해드립니다.
+[수집 신청 흐름]
+
+영상 상세 페이지와 채널 페이지를 준비하고 수집 로봇이 접근할 수 있는지 확인합니다.
+각 페이지에 schema.org 규격의 JSON-LD를 작성합니다.
+검색 결과 노출 URL, 브라우저 렌더링 URL, 구조화 데이터의 URL을 동일하게 맞춥니다.
+사이트 소유 확인 후 수집 요청 API로 대상 URL을 Push합니다.
+수집 후 구조화 데이터가 정상적으로 파싱되는지와 실제 페이지 내용이 일치하는지 검증합니다.
+문서 수집 전환 시 고려사항
+robots.txt 설정하기 가이드를 참고하여 사이트의 robots.txt에 관련 문서 및 썸네일 등 부속 페이지에 대하여 네이버 로봇의 수집을 허용해 주세요.
+유료 영상: offers가 있는 영상은 유료로 보고 검색 결과에서 제외합니다. 가격 값과 상관없이 offers가 있는지만으로 판단하므로 무료 영상에는 offers를 작성하지 마세요. (아래 "유료 영상 예시" 참고)
+로그인 필요 영상 : 색인이 필요할 경우, 사전에 협의가 필요합니다.
+검색 비허용 방법 : 검색 노출이 필요 없는 문서의 경우, 마크업 가이드(선호 URL 및 로봇 메타 태그)를 참고하시어, meta 태그에 noindex를 적용해주시고 재수집 Push 요청을 부탁드립니다.
+데이터 포맷
+JSON-LD에는 아래 표의 'JSON-LD 작성 위치' 열의 이름 그대로 작성하세요. 표에 없는 속성(예: channelName, channelUrl)을 만들어 넣지 마세요.
+
+[네이버 확장] 속성(cid, mobileUrl, mobileChannelUrl, 채널의 adultYn)은 schema.org 표준이 아니어서 schema.org 검증 도구에서 경고가 나올 수 있습니다. 이는 정상이며, 이름을 바꾸거나 다른 속성(identifier, additionalProperty 등)으로 옮기지 말고 표에 적힌 위치에 그대로 작성하세요.
+
+표 읽는 법
+열	의미
+이름	항목의 한글 이름입니다. JSON-LD 키가 아닙니다.
+JSON-LD 작성 위치	문서 최상위부터의 전체 경로입니다. JSON-LD에는 이 열의 이름 그대로 작성하세요. [네이버 확장]은 schema.org 표준이 아닌 네이버 전용 속성입니다.
+형식	값의 타입, 형식, 허용 값입니다.
+필수	필수 / 조건부 / 선택. 조건부 = 설명 열에 적힌 조건에 해당하면 필수입니다.
+설명	값의 의미, 검색 결과 노출 여부, 다른 문서와 같아야 하는 값, 생략했을 때의 처리입니다.
+예시	아래 샘플과 같은 값입니다.
+제휴 신청 시 제출 정보
+아래 정보는 JSON-LD에 작성하지 않고, 제휴 신청 시 출처 단위 고정값으로 별도 전달합니다.
+
+이름	형식	설명	예시
+제공처 이름	문자열	검색 결과 '출처'에 노출	"NAVER"
+제공처 URL	문자열 URL	검색 결과 '출처'에 노출	"https://www.naver.com"
+공식 채널 여부	예 / 아니오	제공처의 채널이 모두 공식(방송사·기관 운영) 채널인지. 제공처 단위로 일괄 지정하며 문서별로 구분하지 않음	예
+Video
+최상위 @type: VideoObject. 필수 → 조건부 → 선택 순으로 정렬했습니다.
+
+이름	JSON-LD 작성 위치	형식	필수	설명	예시
+문서 타입	@type	고정값 VideoObject	필수	영상 상세 페이지를 나타냄	"VideoObject"
+영상 제목	name	문자열	필수	영상 제목만 작성. 사이트명·서비스명 suffix(예: \| NAVER) 금지. 회차가 제목의 일부이면 포함 가능. 검색 결과 제목으로 노출	"여름 캠핑 브이로그 1화"
+영상 설명	description	문자열	필수	영상 페이지에서 사용자가 볼 수 있는 설명과 일치해야 함	"첫 캠핑지에 도착해…"
+영상 URL (PC)	url	문자열 URL	필수	검색 노출·브라우저 렌더링·구조화 데이터 URL과 같아야 함 ('문서 수집 신청 방법' 참고)	"https://example.com/videos/1001"
+대표 썸네일	thumbnailUrl	문자열 URL (문자열 권장, 배열이면 첫 번째 값 사용)	필수	대표 썸네일 이미지 URL. 값이 없으면 페이지의 og:image를 대신 사용	"https://example.com/thumb/1001.jpg"
+업로드 일시	uploadDate	문자열, ISO-8601, 초 + timezone 포함 (YYYY-MM-DDThh:mm:ss+09:00 또는 …Z)	필수	사이트에 영상이 게시된 시각. 검색 결과에 노출	"2026-07-02T09:00:00+09:00"
+재생 시간	duration	문자열, ISO-8601 duration	필수	전체 재생 시간 (시간 단위 H 포함 가능)	"PT29M5S"
+채널 ID	cid [네이버 확장]	문자열	필수	제공처 안에서 채널마다 고유하고 바뀌지 않는 ID (채널 URL 경로의 ID 사용 권장). 해당 Channel 문서의 cid와 같은 값	"minsu"
+채널 정보 타입	creator.@type	고정값 Person	필수	방송사·기관 채널도 Person으로 작성 (Organization 아님)	"Person"
+채널 이름	creator.name	문자열	필수	채널(프로그램) 이름만. Channel 문서의 name과 같은 값. 검색 결과에 '채널'로 노출	"캠핑하는 민수"
+채널 URL (PC)	creator.url	문자열 URL	필수	채널을 보여주는 별도 페이지 URL. Channel 문서의 url과 같은 값	"https://example.com/channels/minsu"
+시청 등급	contentRating	문자열, 허용 값 "12+" / "15+" / "18+"	조건부	시청 연령 제한이 있는 영상은 필수. 생략하면 전체관람가로 처리. "18+"는 성인 콘텐츠로 처리됨(국내 청소년관람불가 등급도 "18+"로 작성). 0/1 같은 flag 값이나 다른 표기는 쓰지 않음	"15+"
+모바일 영상 URL	mobileUrl [네이버 확장]	문자열 URL	선택	별도 모바일 페이지가 있을 때 작성. 생략하면 PC URL로 처리	"https://m.example.com/videos/1001"
+모바일 채널 URL	mobileChannelUrl [네이버 확장]	문자열 URL	선택	별도 모바일 채널 페이지가 있을 때 작성. 생략하면 PC URL로 처리	"https://m.example.com/channels/minsu"
+키워드	keywords	쉼표로 구분한 문자열 또는 문자열 배열	선택	영상을 잘 설명하는 키워드를 중요도 순으로	"캠핑, 브이로그, 텐트"
+영상 가로 크기	width	숫자 (px)	선택	세로형 영상 구분용. 필요 없으면 생략	1920
+영상 세로 크기	height	숫자 (px)	선택	세로형 영상 구분용. 필요 없으면 생략	1080
+카테고리	additionalType	문자열 (자유 값, 정해진 코드 없음)	선택	영상 분류 카테고리. 채널 문서의 카테고리와 같은 체계 권장	"travel"
+유료 정보	offers (@type: Offer, price, priceCurrency, availability)	객체 또는 객체 배열	조건부	유료 영상에만 작성. offers가 있으면 유료 영상으로 보고 검색 결과에서 제외합니다. 가격·availability 값과 상관없이 offers가 있는지만으로 판단하므로 무료 영상에는 작성하지 마세요(0원 offer 포함). 단건·이용권처럼 offer가 여러 개면 배열로 작성	아래 "유료 영상 예시"
+조회수	interactionStatistic[].userInteractionCount (interactionType.@type = http://schema.org/WatchAction)	숫자. interactionType은 반드시 객체({"@type": …})로 작성 (문자열 IRI 형태 사용 금지)	선택	랭킹 참고	1000
+좋아요 수	interactionStatistic[].userInteractionCount (interactionType.@type = http://schema.org/LikeAction)	숫자. interactionType은 객체로 작성	선택	랭킹 참고	100
+댓글 수	interactionStatistic[].userInteractionCount (interactionType.@type = http://schema.org/CommentAction)	숫자. interactionType은 객체로 작성	선택	랭킹 참고	10
+샘플
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "VideoObject",
+  "name": "여름 캠핑 브이로그 1화",
+  "description": "첫 캠핑지에 도착해 텐트를 치는 과정을 담았습니다.",
+  "url": "https://example.com/videos/1001",
+  "mobileUrl": "https://m.example.com/videos/1001",
+  "thumbnailUrl": "https://example.com/thumb/1001.jpg",
+  "uploadDate": "2026-07-02T09:00:00+09:00",
+  "duration": "PT29M5S",
+  "contentRating": "15+",
+  "cid": "minsu",
+  "mobileChannelUrl": "https://m.example.com/channels/minsu",
+  "creator": {
+    "@type": "Person",
+    "name": "캠핑하는 민수",
+    "url": "https://example.com/channels/minsu"
+  },
+  "keywords": "캠핑, 브이로그, 텐트",
+  "width": 1920,
+  "height": 1080,
+  "additionalType": "travel",
+  "interactionStatistic": [
+    { "@type": "InteractionCounter", "interactionType": { "@type": "http://schema.org/WatchAction" }, "userInteractionCount": 1000 },
+    { "@type": "InteractionCounter", "interactionType": { "@type": "http://schema.org/LikeAction" }, "userInteractionCount": 100 },
+    { "@type": "InteractionCounter", "interactionType": { "@type": "http://schema.org/CommentAction" }, "userInteractionCount": 10 }
+  ]
+}
+</script>
+유료 영상 예시
+위 Video 샘플에 offers만 추가 — 이 영상은 검색 결과에서 제외됩니다
+
+{
+  "offers": [
+    { "@type": "Offer", "price": "2200", "priceCurrency": "KRW", "availability": "https://schema.org/InStock" },
+    { "@type": "Offer", "price": "9900", "priceCurrency": "KRW", "availability": "https://schema.org/InStock" }
+  ]
+}
+Channel
+최상위 @type: Person. 필수 → 조건부 → 선택 순으로 정렬했습니다.
+
+이름	JSON-LD 작성 위치	형식	필수	설명	예시
+문서 타입	@type	고정값 Person	필수	방송 프로그램·기관·브랜드 채널도 반드시 Person (TVSeries, Organization, ProfilePage 아님)	"Person"
+채널 이름	name	문자열	필수	채널 이름만 (사이트명·서비스명 suffix 금지). Video의 creator.name과 같은 값	"캠핑하는 민수"
+채널 URL (PC)	url	문자열 URL	필수	채널 페이지 URL. Video의 creator.url과 같은 값	"https://example.com/channels/minsu"
+채널 ID	cid [네이버 확장]	문자열	필수	제공처 안에서 채널마다 고유하고 바뀌지 않는 ID. Video의 cid와 같은 값	"minsu"
+채널 설명	description	문자열	필수	채널 소개	"주말마다 전국 캠핑장을…"
+채널 생성일	mainEntityOfPage.dateCreated (mainEntityOfPage.@type = CreativeWork)	문자열, ISO-8601, 초 + timezone 필수 (YYYY-MM-DDThh:mm:ss+09:00 또는 …Z)	필수	채널 생성 시각. 초나 timezone이 빠지면 날짜가 인식되지 않음	"2025-11-20T15:30:00+09:00"
+채널 정보 수정일	mainEntityOfPage.dateModified	문자열, ISO-8601, 초 + timezone 필수	필수	채널 정보 수정 시각. 형식 조건은 생성일과 같음	"2026-07-06T10:55:00+09:00"
+성인 채널 여부	adultYn [네이버 확장] (최상위)	문자열, "1"(성인) / "0"(비성인)	조건부	성인 채널은 "1" 필수. 생략하면 비성인으로 처리. identifier(PropertyValue) 안에 쓰면 인식되지 않음	"0"
+키워드	keywords	쉼표로 구분한 문자열 또는 문자열 배열	선택	채널을 잘 설명하는 키워드를 중요도 순으로	"캠핑, 브이로그, 여행"
+카테고리	additionalType	문자열 (자유 값, 정해진 코드 없음)	선택	채널 분류 카테고리. 검색 결과의 채널 장르로 사용	"travel"
+구독자 수	interactionStatistic[].userInteractionCount (interactionType.@type = http://schema.org/FollowAction)	숫자. interactionType은 객체로 작성	선택	채널 구독자 수	1000
+샘플
+채널 페이지는 <meta property="og:image" content="…"> 도 함께 작성합니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "캠핑하는 민수",
+  "url": "https://example.com/channels/minsu",
+  "cid": "minsu",
+  "description": "주말마다 전국 캠핑장을 다니는 캠핑 채널입니다.",
+  "mainEntityOfPage": {
+    "@type": "CreativeWork",
+    "dateCreated": "2025-11-20T15:30:00+09:00",
+    "dateModified": "2026-07-06T10:55:00+09:00"
+  },
+  "adultYn": "0",
+  "keywords": "캠핑, 브이로그, 여행",
+  "additionalType": "travel",
+  "interactionStatistic": [
+    { "@type": "InteractionCounter", "interactionType": { "@type": "http://schema.org/FollowAction" }, "userInteractionCount": 1000 }
+  ]
+}
+</script>
+작성한 마크업은 JSON 문법 검사(https://jsonformatter.curiousconcept.com/)와 schema.org 검증(https://validator.schema.org/)으로 확인할 수 있습니다. schema.org 검증에서 [네이버 확장] 속성에 대한 경고는 정상입니다.
+자주하는 실수
+❌ 잘못된 작성	✅ 올바른 작성
+creator를 Organization(방송사)으로 작성	creator는 채널을 뜻함 → Person + 채널(프로그램) 이름·URL. 방송사 정보는 publisher에 작성
+URL 혼용 (url은 https, og:url·canonical은 http)	노출·렌더링·구조화 데이터 URL을 하나로 통일
+VideoObject 최상위에 channelName, channelUrl	creator: { "@type": "Person", "name": …, "url": … }
+채널 name에 캠핑하는 민수 \| 네이버TV	채널 이름만: 캠핑하는 민수
+채널 문서 @type이 TVSeries	"@type": "Person"
+채널 문서 최상위에 createDate/modifyDate, 형식 2025-11-20 15:30	mainEntityOfPage.dateCreated / dateModified, 2025-11-20T15:30:00+09:00 (초·timezone 포함)
+수집 신청 전 검증 체크리스트
+☐ JSON 문법이 유효하고 @context가 https://schema.org/인지 확인합니다.
+☐ 페이지마다 최상위 VideoObject(영상 상세 페이지) 또는 Person(채널 페이지)이 1개인지 확인합니다.
+☐ 영상 제목은 VideoObject.name, 채널 이름은 creator.name에 작성했는지 확인합니다.
+☐ creator가 객체이고 creator.@type이 Person인지 확인합니다.
+☐ channelName, channelUrl, creatorName 등 표에 없는 속성을 임의로 추가하지 않았는지 확인합니다.
+☐ creator.name·creator.url과 별도 Channel 문서의 name·url이 일치하는지 확인합니다.
+☐ cid가 Video 문서와 Channel 문서에서 같은 값인지 확인합니다.
+☐ 날짜가 초와 timezone까지 포함한 ISO-8601(예: 2026-07-02T09:00:00+09:00)인지 확인합니다.
+☐ 무료 영상에 offers가 없는지 확인합니다.
+☐ 채널 페이지에 og:image가 있는지 확인합니다.
+☐ JSON-LD의 값이 실제 페이지에서 사용자에게 보이는 내용과 일치하는지 확인합니다.
+☐ 검색 결과 노출 URL, 브라우저 렌더링 URL, 구조화 데이터의 URL이 동일한지 확인합니다.
+☐ 수집을 원하지 않는 문서의 noindex와 로봇 접근 정책을 확인합니다.
+☐ 수집 요청 후 구조화 데이터가 정상적으로 파싱되는지 확인합니다.
+
+==================================================================

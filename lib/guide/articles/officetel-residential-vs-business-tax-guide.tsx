@@ -5,7 +5,7 @@ export const officetelResidentialVsBusinessTaxGuideMeta = {
   title: "오피스텔 취득세: 주거용 vs 업무용 차이",
   description:
     "오피스텔 주거·업무용 판정 기준, 취득세·주택 수·재산세에 미치는 차이, 매수 전 확인 순서와 판정 착오 시 리스크를 정리했습니다.",
-  updated: "2026년 4월 27일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function OfficetelResidentialVsBusinessTaxGuideBody() {
@@ -13,7 +13,7 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-orb-overview">
         <h2 id="guide-orb-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           오피스텔은 건축법상 업무시설이지만 실제 사용 방식에 따라 주거용과 업무용으로 구분됩니다. 업무용이면 4.6%, 주거용으로
@@ -22,6 +22,10 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
             취득세 계산기
           </Link>
           로 금액을 확인한 뒤, <strong>왜 주거·업무 판정이 갈리는지</strong>를 이 글에서 정리합니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 2026년 8월 발표된 지방세제 개편안(입법예고 2026.8.27~)에는 주거용 오피스텔을 생애최초 취득세 감면 대상에 포함하는
+          내용이 있습니다. 확정·시행 전에는 현행 기준(주택 요건 충족 시에만 해당)으로 판단하고, 시행 여부는 별도로 확인하세요.
         </p>
       </section>
 

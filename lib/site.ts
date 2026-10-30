@@ -1,7 +1,7 @@
 export const SITE_DOMAIN = "withustools.com" as const;
 export const SITE_URL = `https://${SITE_DOMAIN}` as const;
 export const SITE_NAME = "WithusTools" as const;
-export const siteTagline = "대출·부동산 계산 도구" as const;
+export const siteTagline = "대출·부동산·세금 계산 도구" as const;
 
 /**
  * Facebook 공유 등 외부 서비스는 localhost URL을 받지 못해 링크 입력란이 비는 경우가 많습니다.
@@ -17,17 +17,17 @@ export function getPublicSharePageUrl(): string {
   return `${base}${window.location.pathname}${window.location.search}`;
 }
 
-export const defaultTitle = `${SITE_NAME} - ${siteTagline}`;
+export const defaultTitle = `대출·부동산·세금 계산기 모음 - ${SITE_DOMAIN}`;
 
 /** SNS 공유 등 본문 요약 */
-export const defaultShareText = "대출·부동산 계산, 미리 확인해 보세요.";
+export const defaultShareText = "대출·부동산·세금 계산, 미리 확인해 보세요.";
 
 /** 푸터·히어로 등에 쓰는 참고 안내 한 줄 */
 export const referenceDisclaimerLine =
   "본 서비스는 표준 계산식 기반 참고용이며, 실제 조건은 금융기관에 문의하시기 바랍니다.";
 
 export const defaultDescription =
-  `${SITE_NAME}(${SITE_DOMAIN})에서 대출 이자·DSR·취득세·중개수수료·중도상환 수수료 계산기와 가이드를 무료로 이용하세요. 주택담보대출, 부동산 거래, 세금 납부 전 예상 비용을 참고용으로 미리 확인할 수 있습니다.`;
+  `${SITE_NAME}(${SITE_DOMAIN})에서 대출 이자·DSR·LTV 등 대출 계산기부터 취득세·중개수수료, 종합부동산세·양도소득세·종합소득세·상속세 계산기까지 11종과 가이드를 무료로 이용하세요. 주택담보대출, 부동산 거래, 세금 납부 전 예상 비용을 참고용으로 미리 확인할 수 있습니다.`;
 
 export const loanCalculatorTitle = `대출 이자 계산기 - ${SITE_DOMAIN}`;
 

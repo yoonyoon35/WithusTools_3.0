@@ -430,7 +430,8 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
           일시적 2주택 특례
         </h2>
         <p>
-          이사 등 실수요 목적으로 신규 주택을 취득해 일시적으로 2주택이 된 경우, 종전 주택을 3년 이내 처분하면 신규 주택에 1주택
+          이사 등 실수요 목적으로 신규 주택을 취득해 일시적으로 2주택이 된 경우, 종전 주택을 3년 이내(종전·신규 주택이 모두
+          조정대상지역이면 2026년 10월 1일 이후 취득분부터 2년 이내) 처분하면 신규 주택에 1주택
           일반세율(1~3%)이 적용됩니다. 기한 내 처분하지 못하면 중과세율(8%)과의 차액이 추징됩니다. 요건·유의사항은{" "}
           <Link
             href="/guide/temporary-two-home-acquisition-tax-exception-guide"

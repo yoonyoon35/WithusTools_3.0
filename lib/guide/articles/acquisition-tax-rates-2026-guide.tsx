@@ -761,7 +761,7 @@ export function AcquisitionTaxRates2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   일시적 2주택
                 </th>
-                <td className="border-border border-b px-3 py-2.5">기존 주택 3년 내 처분 시 1~3% 적용</td>
+                <td className="border-border border-b px-3 py-2.5">기존 주택 3년 내(조정↔조정은 2년 내) 처분 시 1~3% 적용</td>
                 <td className="border-border border-b px-3 py-2.5">상시</td>
               </tr>
               <tr className="bg-muted/20">

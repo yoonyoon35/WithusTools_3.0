@@ -6,11 +6,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/comprehensive-income-tax-calculator";
 const pageTitle = "종합소득세 계산기";
+const metaTitle = "종합소득세 계산기 - 경비율·중간예납";
 const pageDescription =
   "종합소득세 세율·경비율·중간예납으로 산출세액, 추계 사업소득, 납부·환급세액, 중간예납세액을 계산합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function ComprehensiveIncomeTaxCalculatorPage() {

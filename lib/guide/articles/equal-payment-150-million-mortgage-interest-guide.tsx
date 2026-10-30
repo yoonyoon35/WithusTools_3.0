@@ -5,7 +5,7 @@ export const equalPayment150MillionMortgageInterestGuideMeta = {
   title: "원리금균등상환 주택담보대출 1억 5천만원 이자 계산 방식",
   description:
     "1억 5천만 원 원리금균등 상환의 월·총 이자 구조, 금리·기간 선택 시 DSR과의 관계, 계산기로 확인할 때와 이 글에서 볼 내용을 구분해 정리했습니다.",
-  updated: "2026년 5월 15일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function EqualPayment150MillionMortgageInterestGuideBody() {
@@ -526,7 +526,7 @@ export function EqualPayment150MillionMortgageInterestGuideBody() {
           </table>
         </div>
         <p>
-          중도상환 수수료(통상 잔여 원금의 0.6~1.4%)와 이자 절감액을 비교해 중도상환 시기를 결정하는 것이 중요합니다.
+          중도상환 수수료(상환액 × 요율 × 잔여 면제기간 비율로 계산하며, 최근 계약은 0.5~0.9%대·예전 계약은 1%를 넘기도 합니다)와 이자 절감액을 비교해 중도상환 시기를 결정하는 것이 중요합니다.
         </p>
       </section>
 

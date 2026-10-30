@@ -4,8 +4,8 @@ export const onlineDirectTradePlatformPrecautions2026GuideMeta = {
   slug: "online-direct-trade-platform-precautions-2026-guide",
   title: "온라인 직거래 플랫폼 이용 시 주의사항",
   description:
-    "2026년 5월 7일 국회 통과 부동산거래신고법 개정. 직거래 플랫폼 소유자 확인 의무·500만원 이하 과태료(공포 후 1년 시행), 허위매물·필수정보 표시 의무, 당근마켓 등 이용 시 확인 순서를 정리했습니다.",
-  updated: "2026년 5월 7일",
+    "2026년 6월 16일 공포된 부동산거래신고법 개정. 직거래 플랫폼 소유자 확인 의무·500만원 이하 과태료(2027년 6월 17일 시행), 허위매물·필수정보 표시 의무(2026년 12월 17일 시행), 당근마켓 등 이용 시 확인 순서를 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function OnlineDirectTradePlatformPrecautions2026GuideBody() {
@@ -13,7 +13,7 @@ export function OnlineDirectTradePlatformPrecautions2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-odtp-intro">
         <h2 id="guide-odtp-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           당근마켓 등 직거래 플랫폼을 통한 부동산 거래 건수는 2022년 7,094건에서 2024년 5만 9,451건으로 3년 만에 급증했습니다.
@@ -311,11 +311,12 @@ export function OnlineDirectTradePlatformPrecautions2026GuideBody() {
           직거래 플랫폼 규제 현황
         </h2>
         <p>
-          2026년 5월 7일 국회 본회의를 통과한 <strong>부동산거래신고법</strong> 개정안에 따라, 플랫폼 운영사업자는
-          게시자 신원·매물 소유자 관계 <strong>확인 의무</strong>가 생깁니다. 위반 시 <strong>500만원 이하
-          과태료</strong>입니다. 공포 후 <strong>1년</strong> 뒤 시행(시스템 구축 기간)이며, 허위매물·부당 광고 금지는
-          공포 후 6개월 뒤 적용됩니다. 시행 전까지도 플랫폼이 허위 매물에 대한 법적 배상 책임을 지지 않으므로, 피해
-          예방은 이용자가 직접 확인해야 합니다.
+          2026년 5월 7일 국회 본회의를 통과한 <strong>부동산거래신고법</strong> 개정안은 2026년 6월 16일 공포(법률 제21815호)됐습니다.
+          이에 따라 플랫폼 운영사업자는 게시자 신원·매물 소유자 관계 <strong>확인 의무</strong>와 이용자 안내 의무를 지며, 위반 시{" "}
+          <strong>500만원 이하 과태료</strong>입니다. 이 플랫폼 의무는 공포 후 <strong>1년</strong>이 지난 2027년 6월 17일부터
+          시행(시스템 구축 기간)되고, 허위매물·부당 표시·광고 금지와 필수정보 명시 의무는 공포 후 6개월이 지난 2026년 12월 17일부터
+          적용됩니다. 시행 전까지는 플랫폼의 법적 확인 의무가 없으므로, 소유자 확인과 등기부 대조 같은 피해 예방은 이용자가 직접
+          해야 합니다.
         </p>
       </section>
 

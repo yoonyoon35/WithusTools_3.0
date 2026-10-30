@@ -5,7 +5,7 @@ export const acquisitionTaxReliefPrograms2026GuideMeta = {
   title: "취득세 세액공제·감면 제도 총정리",
   description:
     "2026년 기준 생애최초, 출산·양육, 인구감소지역, 세컨드홈, 미분양, 일시적 2주택 등 취득세 감면·공제 제도를 표로 정리했습니다. 적용 요건, 신청 절차, 추징 유의사항과 세액공제 한도를 참고용으로 확인하세요. 실제 신고·심사 결과는 개별 사안마다 달라질 수 있습니다.",
-  updated: "2026년 5월 5일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function AcquisitionTaxReliefPrograms2026GuideBody() {
@@ -13,7 +13,7 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-atrp-overview">
         <h2 id="guide-atrp-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           주택 취득세는 조건에 따라 감면받을 수 있는 제도가 여러 가지 있습니다. 2026년 1월 1일부터 지방세법과
@@ -24,6 +24,11 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
           제도는 크게 <strong>세액 감면</strong>(산출 취득세에서 일정 금액·비율 공제)과{" "}
           <strong>중과 면제</strong>(2주택 8% 등 중과세율 대신 1~3% 적용)로 나뉩니다. 생애최초·출산·양육·미분양은
           전자, 세컨드홈·일시적 2주택은 후자에 해당합니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 행정안전부가 2026년 8월 발표한 지방세제 개편안(입법예고 2026.8.27~)에는 생애최초 감면 대상에 주거용 오피스텔을
+          포함하고 40세 미만 청년의 감면 한도를 200만 원에서 300만 원으로 늘리는 내용이 담겨 있습니다. 이 글의 표는 현행 법령
+          기준이므로, 개편안이 확정·시행되는 시점에 맞춰 다시 확인하세요.
         </p>
       </section>
 
@@ -217,7 +222,7 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   1주택 + 조정지역 이사(신규 취득)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">일시적 2주택(종전 주택 3년 내 처분)</td>
+                <td className="border-border border-b px-3 py-2.5">일시적 2주택(종전 주택 3년 내 처분, 조정↔조정은 2년)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -617,7 +622,7 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
         </h2>
         <p>
           1주택자가 이사 등 실수요로 신규 주택을 취득해 2주택이 된 경우, 종전 주택을 <strong>3년 이내</strong>{" "}
-          처분하면 신규 주택에 1주택 일반세율(1~3%)이 적용됩니다. 실질 절세 효과는 주로{" "}
+          (종전·신규 주택이 모두 조정대상지역이면 2026년 10월 1일 이후 취득분부터 <strong>2년 이내</strong>) 처분하면 신규 주택에 1주택 일반세율(1~3%)이 적용됩니다. 실질 절세 효과는 주로{" "}
           <strong>신규 주택이 조정대상지역</strong>일 때(8% 중과 회피) 큽니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
@@ -640,7 +645,9 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   처분 기한
                 </th>
-                <td className="border-border border-b px-3 py-2.5">신규 주택 취득일로부터 3년</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  신규 주택 취득일로부터 3년(종전·신규 모두 조정대상지역이면 2026.10.1 이후 취득분부터 2년)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -856,7 +863,7 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  종전 주택 3년 내 미처분
+                  종전 주택 기한(3년 또는 2년) 내 미처분
                 </th>
                 <td className="border-border border-b px-3 py-2.5">일시적 2주택(해당 중과세율과 차액 추징)</td>
               </tr>

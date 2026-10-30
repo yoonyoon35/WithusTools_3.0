@@ -4,8 +4,8 @@ export const brokerageFeeVatSeparateGuideMeta = {
   slug: "brokerage-fee-vat-separate-guide",
   title: "중개수수료 부가세(VAT) 별도인가",
   description:
-    "2026년 6월 기준 중개수수료 부가세 별도·포함 여부, 일반·간이과세자 차이, 매매·전세 실납부 예시, 계약서 기재 방법과 확인 절차를 표로 정리했습니다.",
-  updated: "2026년 6월 1일",
+    "2026년 10월 30일 기준 중개수수료 부가세 별도·포함 여부, 일반·간이과세자 차이, 매매·전세 실납부 예시, 계약서 기재 방법과 확인 절차를 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function BrokerageFeeVatSeparateGuideBody() {
@@ -13,7 +13,7 @@ export function BrokerageFeeVatSeparateGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-bfvs-intro">
         <h2 id="guide-bfvs-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 6월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           중개수수료 상한요율은 <strong>공급가(수수료 본액)</strong>에 적용됩니다. 공인중개사가{" "}
@@ -51,24 +51,17 @@ export function BrokerageFeeVatSeparateGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  일반과세자
+                  일반과세자(직전 연도 공급대가 1억 400만 원 이상)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">수수료의 10% 별도</td>
                 <td className="border-border border-b px-3 py-2.5">200만 원 → 실납 220만 원</td>
               </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  간이과세자(연매출 4,800만 원 미만)
-                </th>
-                <td className="border-border border-b px-3 py-2.5">10% 청구 불가</td>
-                <td className="border-border border-b px-3 py-2.5">수수료 금액 그대로</td>
-              </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  간이과세자(연매출 4,800만 원 이상)
+                  간이과세자(직전 연도 공급대가 1억 400만 원 미만)
                 </th>
-                <td className="px-3 py-2.5">약 4% 수준만 가능</td>
-                <td className="px-3 py-2.5">10% 요구 시 확인 필요</td>
+                <td className="px-3 py-2.5">실제 납부세액은 공급대가의 약 4%(중개업 부가가치율 40%). 의뢰인 부담분은 약정 사항</td>
+                <td className="px-3 py-2.5">실무상 4% 수준, 10% 요구 시 근거 확인</td>
               </tr>
             </tbody>
           </table>
@@ -243,7 +236,7 @@ export function BrokerageFeeVatSeparateGuideBody() {
         <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>중개사무소에 <strong>사업자등록증</strong> 사본 요청 — 일반·간이과세 구분 확인</li>
           <li>국세청 <strong>홈택스</strong> 사업자등록번호 조회</li>
-          <li>간이과세자에게 10%를 요구받으면 거절하거나 관할 세무서에 문의</li>
+          <li>간이과세자에게 10%를 요구받으면 근거를 묻고, 계약서에 금액을 명시하거나 관할 세무서에 문의</li>
         </ul>
         <p>
           소득공제용 현금영수증은 <strong>실제 납부한 합계(수수료+부가세)</strong>로 발급받아야 합니다. 자세한 처리는{" "}
@@ -322,8 +315,8 @@ export function BrokerageFeeVatSeparateGuideBody() {
             청구하는 구조입니다.
           </li>
           <li>
-            <strong>「간이과세라 VAT 없다」</strong> — 맞을 수도 있지만, 연매출 4,800만 원 이상 간이과세자는 낮은
-            요율만 가능합니다. 10%는 확인이 필요합니다.
+            <strong>「간이과세라 VAT 없다」</strong> — 간이과세자도 부가세는 납부합니다(공급대가의 약 4%). 의뢰인에게
+            부가세 상당액을 받을 수 있는지는 약정 사항이며, 법정 중개보수(상한)는 부가세를 뺀 금액 기준입니다.
           </li>
           <li>
             <strong>「매도·매수 합쳐 한 번만 내면 된다」</strong> — 쌍방 각각 부담이 원칙이라, VAT도 1인당 따로

@@ -4,8 +4,8 @@ export const loanRefinancingGuideMeta = {
   slug: "loan-refinancing-guide",
   title: "대출 갈아타기(대환대출) 방법과 비용",
   description:
-    "2026년 4월 기준 대환대출 개요, 갈아타기 가능 대출, 주담대 조건·절차·비용, 손익 계산 예시와 유의사항을 표로 정리했습니다.",
-  updated: "2026년 4월 14일",
+    "2026년 10월 30일 기준 대환대출 개요, 갈아타기 가능 대출, 주담대 조건·절차·비용, 손익 계산 예시와 유의사항을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function LoanRefinancingGuideBody() {
@@ -13,7 +13,7 @@ export function LoanRefinancingGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-refi-overview">
         <h2 id="guide-refi-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           대환대출은 기존 대출을 더 낮은 금리나 유리한 조건의 새로운 대출로 전환하는 것입니다. 2024년 1월부터 주택담보대출
@@ -108,7 +108,9 @@ export function LoanRefinancingGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   한도
                 </th>
-                <td className="border-border border-b px-3 py-2.5">최대 10억 원 이하 대출에 한해 적용</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  10억 원 이하 대출에 한해 적용. 기존 대출 잔액을 넘겨 증액할 수 없고, 만기도 기존 약정 만기 이내로만 가능
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -256,29 +258,40 @@ export function LoanRefinancingGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   중도상환 수수료
                 </th>
-                <td className="border-border border-b px-3 py-2.5">잔여 원금의 0.6~1.4%</td>
-                <td className="border-border border-b px-3 py-2.5">대출 실행 후 3년 이내 상환 시</td>
+                <td className="border-border border-b px-3 py-2.5">상환액 × 요율 × (3년 − 경과기간) ÷ 3년</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  대출 실행 후 3년 이내 상환 시. 최근 계약은 요율이 0.5~0.9%대로 낮아졌고 예전 계약은 1%를 넘을 수 있으며, 매년 원금의
+                  10%까지는 면제하는 곳도 있어 약정서 확인이 필요합니다
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  근저당 설정비
+                  근저당 설정·말소 비용
                 </th>
-                <td className="border-border border-b px-3 py-2.5">대출금의 0.1~0.2%</td>
-                <td className="border-border border-b px-3 py-2.5">신규 근저당 설정 시</td>
+                <td className="border-border border-b px-3 py-2.5">건당 수만 원 안팎(말소)</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  신규 근저당 설정 비용(등록면허세·법무사 비용 등)은 은행이 부담하는 것이 일반적이고, 기존 대출의 근저당 말소 비용은
+                  고객이 부담합니다
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   인지세
                 </th>
-                <td className="border-border border-b px-3 py-2.5">5만~35만 원</td>
-                <td className="border-border border-b px-3 py-2.5">대출 금액에 따라 차등</td>
+                <td className="border-border border-b px-3 py-2.5">0원~17.5만 원</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  대출 5,000만 원 이하 면제, 5,000만 원 초과~1억 원 이하 3.5만 원, 1억 원 초과~10억 원 이하 7.5만 원, 10억 원 초과
+                  17.5만 원(전체 인지세의 50%를 고객이 부담)
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  담보 감정 평가비
+                  국민주택채권 매입비·감정 평가비
                 </th>
-                <td className="px-3 py-2.5">10만~30만 원</td>
-                <td className="px-3 py-2.5">금융기관별 상이</td>
+                <td className="px-3 py-2.5">설정 금액·할인율에 따라 변동</td>
+                <td className="px-3 py-2.5">
+                  국민주택채권 매입 할인비용은 고객이 부담하고, 담보 감정 평가비는 은행이 부담하는 것이 일반적입니다(금융기관별 확인)
+                </td>
               </tr>
             </tbody>
           </table>
@@ -322,7 +335,8 @@ export function LoanRefinancingGuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          예시: 잔여 원금 2억 원, 금리 1%p 인하, 잔여 기간 20년, 갈아타기 비용 300만 원
+          예시: 잔여 원금 2억 원, 연 5% → 4%로 1%p 인하, 잔여 기간 20년 원리금균등상환, 갈아타기 비용 300만 원(원금이 줄어드는 효과를
+          반영한 계산입니다)
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[22rem] border-collapse text-left text-sm">
@@ -350,7 +364,7 @@ export function LoanRefinancingGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   20년 총 절감액
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 4,000만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 2,590만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -362,7 +376,7 @@ export function LoanRefinancingGuideBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   순 절감액
                 </th>
-                <td className="px-3 py-2.5">약 3,700만 원</td>
+                <td className="px-3 py-2.5">약 2,290만 원</td>
               </tr>
             </tbody>
           </table>
@@ -390,7 +404,9 @@ export function LoanRefinancingGuideBody() {
         <p>
           갈아타기 시 신규 대출 심사를 받으므로 현재 <abbr title="총부채원리금상환비율">DSR</abbr> 기준을 충족해야 합니다. 기존 대출
           실행 시점보다 규제가 강화된 경우 한도가 줄어들 수 있습니다. 또한 갈아타기 후 일시적으로 신용점수가 하락할 수 있으나 단기적인
-          영향에 그치는 경우가 많습니다.
+          영향에 그치는 경우가 많습니다. 현재 DSR 한도(은행 40%)를 이미 넘은 차주는 대환용 신규 대출을 받을 수 없고, 수도권·규제지역에서
+          주택을 2채 이상 보유한 경우에는 해당 주택을 담보로 한 갈아타기가 막혀 있는 은행이 있습니다. 2026년 7월부터는 은행이 법적
+          비용을 가산금리로 고객에게 전가할 수 없게 되어 금리 비교 시 가산금리와 부대비용을 함께 확인하는 것이 좋습니다.
         </p>
         <p className="text-muted-foreground text-sm">
           ※ 갈아타기 가능 여부와 조건은 금융기관별로 다르며, 정확한 비용은 대출 신청 금융기관에서 확인해야 합니다.

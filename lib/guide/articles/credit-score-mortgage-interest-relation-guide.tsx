@@ -5,8 +5,8 @@ export const creditScoreMortgageInterestRelationGuideMeta = {
   slug: "credit-score-mortgage-interest-relation-guide",
   title: "신용점수와 대출이자와의 관계",
   description:
-    "2026년 4월 기준 대출금리 구조, 신용점수 구간별 금리·이자 영향, 금리 결정 요인, 절감 전략·점수 확인 방법과 공시 활용 안내입니다.",
-  updated: "2026년 5월 15일",
+    "2026년 10월 30일 기준 대출금리 구조, 신용점수 구간별 금리·이자 영향, 금리 결정 요인, 절감 전략·점수 확인 방법과 공시 활용 안내입니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function CreditScoreMortgageInterestRelationGuideBody() {
@@ -14,7 +14,7 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-csmir-intro">
         <h2 id="guide-csmir-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           신용점수는 대출 금리를 결정하는 핵심 변수 중 하나입니다. 전국은행연합회 소비자포털에서는 신용점수별 주택담보대출 금리를 비교 공시하고 있으며, 대출금리는 기준금리에 가산금리를 더하고 우대금리를 차감하는 구조로 결정됩니다.
@@ -31,13 +31,21 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
         <p>
           가산금리는 업무원가·법적비용·위험프리미엄·기대이익률로 구성되며, 신용점수별 예상 손실률이 위험프리미엄에 반영되어 신용점수가 낮을수록 가산금리가 높아집니다.
         </p>
+        <p>
+          2026년 7월 1일부터 개정 은행법령에 따라 은행은 지급준비금·예금자보험료·서민금융진흥원 출연금과 교육세율 인상분을 대출금리에
+          반영할 수 없고, 보증부대출은 보증기금 출연금의 50% 이상을 반영할 수 없습니다(7월 1일 이후 신규·갱신 계약 적용). 다만 목표
+          이익률 등 나머지 가산금리 항목은 은행이 정하므로 신용점수와 은행별 가산금리 차이는 여전히 남아 있습니다.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-csmir-tiers">
         <h2 id="guide-csmir-tiers" className="text-foreground text-xl font-semibold tracking-tight">
           신용점수 구간별 주담대 금리 영향
         </h2>
-        <p className="text-muted-foreground text-sm">2026년 4월 기준 시중은행 기준</p>
+        <p className="text-muted-foreground text-sm">
+          2026년 10월 30일 기준. 신용점수 구간별 실제 금리는 은행연합회 소비자포털과 금융감독원 금융상품한눈에 공시에서 확인할 수
+          있습니다(5대 은행 주담대 금리 범위는 10월 말 기준 변동형 연 4.38~6.38%, 5년 고정형 연 4.57~6.51%).
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -136,33 +144,33 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
                   951점 이상
                 </th>
-                <td className="border-border border-b px-3 py-2.5">4.0%</td>
-                <td className="border-border border-b px-3 py-2.5">약 143만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 2억 1,480만 원</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  850점 수준
-                </th>
                 <td className="border-border border-b px-3 py-2.5">4.5%</td>
                 <td className="border-border border-b px-3 py-2.5">약 152만 원</td>
                 <td className="border-border border-b px-3 py-2.5">약 2억 4,720만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  750점 수준
+                  850점 수준
                 </th>
                 <td className="border-border border-b px-3 py-2.5">5.0%</td>
                 <td className="border-border border-b px-3 py-2.5">약 161만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 2억 7,960만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 2억 7,980만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
+                  750점 수준
+                </th>
+                <td className="border-border border-b px-3 py-2.5">5.5%</td>
+                <td className="border-border border-b px-3 py-2.5">약 170만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 3억 1,320만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium whitespace-nowrap">
                   700점 미만
                 </th>
-                <td className="px-3 py-2.5">5.5%</td>
-                <td className="px-3 py-2.5">약 170만 원</td>
-                <td className="px-3 py-2.5">약 3억 1,200만 원</td>
+                <td className="px-3 py-2.5">6.0%</td>
+                <td className="px-3 py-2.5">약 180만 원</td>
+                <td className="px-3 py-2.5">약 3억 4,750만 원</td>
               </tr>
             </tbody>
           </table>

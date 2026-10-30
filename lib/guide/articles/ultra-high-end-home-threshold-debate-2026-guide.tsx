@@ -4,8 +4,8 @@ export const ultraHighEndHomeThresholdDebate2026GuideMeta = {
   slug: "ultra-high-end-home-threshold-debate-2026-guide",
   title: "초고가 주택 기준, 30억? 43억? 50억? | 보유세 과세선 논쟁",
   description:
-    "2026년 8월 3일 정부안 기준 초고가 주택 과세. 시세 30·43·50억 논쟁과 정부안 가액 구간별 세율 인상(시가 40억+), 거주 14억·비거주 9억 기본공제, 시세-공시 환산을 정리했습니다.",
-  updated: "2026년 8월 3일",
+    "2026년 9월 1일 확정 정부안 기준 초고가 주택 과세. 시세 30·43·50억 논쟁과 정부안 가액 구간별 세율 인상(시가 40억+), 거주 14억·비거주 12억 유지 기본공제, 시세-공시 환산을 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function UltraHighEndHomeThresholdDebate2026GuideBody() {
@@ -13,7 +13,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-uheh-intro">
         <h2 id="guide-uheh-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 8월 3일 정부안 기준
+          2026년 9월 1일 확정 정부안 기준
         </h2>
         <p>
           7월 논의 때 거론됐던 시세 30·43·50억 <strong>단일 과세선</strong>은 8·3 정부안에 그대로 담기지
@@ -39,10 +39,10 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
         role="note"
         aria-label="정부안 안내"
       >
-        <p className="text-foreground font-medium">※ 8·3 정부안 · 국회 심의 전</p>
+        <p className="text-foreground font-medium">※ 9월 1일 확정 정부안 · 국회 심사 중</p>
         <p className="mt-2">
           정부안은 30·50억 등 <strong>단일 기준선</strong> 대신 <strong>가액 구간별 세율 인상</strong>을 택했습니다.
-          국회 심의에서 조정될 수 있습니다.
+          국회 심사에서 조정될 수 있습니다.
         </p>
       </aside>
 
@@ -395,7 +395,8 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
                   2026년 8월 3일
                 </th>
                 <td className="px-3 py-2.5">
-                  세제개편안 확정·발표 — 가액 구간별 세율 인상, 거주 14억·비거주 9억 기본공제, 공정비율 70%·80%
+                  세제개편안 발표 — 가액 구간별 세율 인상, 거주 14억·비거주 9억 기본공제(9월 1일 비거주 12억 유지로 수정),
+                  공정비율 70%·80%
                 </td>
               </tr>
             </tbody>
@@ -492,7 +493,7 @@ export function UltraHighEndHomeThresholdDebate2026GuideBody() {
         </div>
         <p className="text-muted-foreground text-sm">
           ※ 초고가 기준·세율·시행일은 정부 발표 및 국회 심의 결과에 따라 달라집니다. 정확한 세액은
-          홈택스(hometax.go.kr)·관할 지자체 고지에서 확인하세요. 8·3 정부안은 국회 심의 전입니다.
+          홈택스(hometax.go.kr)·관할 지자체 고지에서 확인하세요. 9월 1일 확정 정부안은 국회 심사 중입니다.
         </p>
       </section>
 

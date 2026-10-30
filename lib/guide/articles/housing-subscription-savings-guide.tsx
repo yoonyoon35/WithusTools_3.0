@@ -5,7 +5,7 @@ export const housingSubscriptionSavingsGuideMeta = {
   title: "주택청약종합저축 완전 정리",
   description:
     "주택청약종합저축 가입 시점·납입 전략, 1순위 요건과 가점의 관계, 해지 시 잃는 것과 청약 전에 확인할 순서를 정리했습니다.",
-  updated: "2026년 4월 20일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function HousingSubscriptionSavingsGuideBody() {
@@ -13,7 +13,7 @@ export function HousingSubscriptionSavingsGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-hss-overview">
         <h2 id="guide-hss-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           주택청약종합저축은 국민주택과 민영주택 모두 청약할 수 있는 만능 청약통장입니다. 1인 1계좌만 보유 가능하며, 연령에 관계없이
@@ -90,21 +90,20 @@ export function HousingSubscriptionSavingsGuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  납입분 세액공제(안내상 소득공제)
+                  납입분 소득공제
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  연간 납입액의 40%를 기준으로 세액에서 공제(환급)를 받는 구조입니다. 금융기관 안내에서는 “소득공제”로 통칭하는
-                  경우가 많습니다.
+                  총급여 7,000만 원 이하인 무주택 세대의 세대주(또는 그 배우자)가 납입한 금액의 40%를 근로소득금액에서 공제합니다.
+                  공제 대상 납입액은 연 300만 원까지이므로 최대 공제액은 120만 원이며, 실제 절세액은 적용 세율에 따라 달라집니다.
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  연간 세액공제 상한
+                  연간 공제 한도·적용 기한
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  조세특례제한법 등에 따른 <strong>연간 적용 한도</strong>가 정해져 있습니다. 2024년 11월 개정으로 그 한도가
-                  연 <strong>240만 원에서 300만 원</strong>으로 확대되었습니다(실제 공제액은 납입액·세율·소득 구간에 따라 달라질 수
-                  있음).
+                  조세특례제한법상 공제 대상 납입액은 연 <strong>300만 원</strong>까지입니다(과거 240만 원에서 확대). 이 공제는
+                  2028년 12월 31일까지 납입한 금액에 적용되며, 무주택확인서를 제출한 과세기간 이후 납입분부터 공제받을 수 있습니다.
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -117,8 +116,9 @@ export function HousingSubscriptionSavingsGuideBody() {
           </table>
         </div>
         <p>
-          2024년 11월부터 월 납입 인정액이 기존 10만 원에서 25만 원으로 상향되었습니다. 세액공제 연간 상한 확대는 위 표의「연간
-          세액공제 상한」행을 참고하세요.
+          2024년 11월부터 월 납입 인정액이 기존 10만 원에서 25만 원으로 상향되었습니다(약정납입일이 2024년 10월 31일 이전인
+          회차는 10만 원까지만 인정). 기본금리는 2024년 9월 23일 이후 위 표의 연 2.3~3.1%가 유지되고 있으며, 정부 기금 운용
+          계획에 따라 바뀔 수 있습니다.
         </p>
       </section>
 
@@ -186,6 +186,10 @@ export function HousingSubscriptionSavingsGuideBody() {
             </tbody>
           </table>
         </div>
+        <p className="text-muted-foreground text-sm">
+          ※ 투기과열지구·청약과열지역에서 공급되는 주택은 지역 구분과 관계없이 가입 후 2년이 지나고 24회차 이상 납입해야 1순위가
+          됩니다. 규제지역은 수시로 바뀌므로 청약하려는 단지의 입주자모집공고문에서 해당 여부를 확인하세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-hss-deposit">
@@ -360,8 +364,9 @@ export function HousingSubscriptionSavingsGuideBody() {
         </h2>
         <p>
           주택청약종합저축에 자격 요건을 충족하는 청년에게 우대금리와 비과세 혜택을 추가한 상품이 청년주택드림 청약통장입니다. 만
-          19세 이상 34세 이하, 연소득 5,000만 원 이하 무주택자가 가입할 수 있으며 2년 이상 10년 이내 가입 시 연 4.5%의 우대금리가
-          적용됩니다.
+          19세 이상 34세 이하, 연소득 5,000만 원 이하 무주택자가 가입할 수 있으며 가입 후 2년 이상 지나면 납입 원금 5,000만 원
+          한도로 최대 10년간 연 4.5%의 우대금리(일반 청약통장보다 1.7%p 높음)가 무주택 기간에 한해 적용되고, 이자소득 비과세
+          요건도 별도로 있습니다. 가입 연령과 소득 기준은 운영기관 공고에서 다시 확인하세요.
         </p>
       </section>
 
@@ -370,7 +375,7 @@ export function HousingSubscriptionSavingsGuideBody() {
           미성년자 가입 시 주의사항
         </h2>
         <p>
-          미성년자는 연령에 관계없이 가입 가능하나, 19세 이전 납입 기간은 최대 5년, 납입금액은 최대 600만 원까지만 인정됩니다. 청약
+          미성년자는 연령에 관계없이 가입 가능하나, 19세 이전 납입은 최대 5년(60회차)까지만 인정됩니다. 청약
           가점 산정 시 가입 기간은 만 19세부터 기산되므로 일찍 가입할수록 유리합니다.
         </p>
       </section>

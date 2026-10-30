@@ -5,7 +5,7 @@ export const brokerageFeeRates2026GuideMeta = {
   title: "2026년 부동산 중개수수료 요율표 완전 정리",
   description:
     "2026년 기준 매매·전세·월세 환산·오피스텔 중개수수료 상한요율과 유형별 비교표를 정리했습니다. VAT 포함 여부, 절약 방법, 중개수수료 계산기로 예상 금액을 확인할 수 있습니다. 관할 고시·협의 금액·부가세는 개별 확인이 필요한 참고 자료이며 계약 전 비교용으로 활용하세요.",
-  updated: "2026년 9월 9일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function BrokerageFeeRates2026GuideBody() {
@@ -13,7 +13,7 @@ export function BrokerageFeeRates2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-bfr-overview">
         <h2 id="guide-bfr-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           부동산 중개수수료(중개보수)는 공인중개사법 시행규칙 제20조에 근거하며, 거래금액에 상한요율을 곱한 금액 이내에서 의뢰인과
@@ -243,7 +243,8 @@ export function BrokerageFeeRates2026GuideBody() {
         </h3>
         <p>
           주거용 오피스텔(전용면적 85㎡ 이하, 일정 설비를 갖춘 경우)은 매매 0.5%, 임대차 0.4% 상한이 적용됩니다. 업무용(비주거용)
-          오피스텔은 거래금액의 0.9% 이내에서 협의합니다.
+          오피스텔은 거래금액의 0.9% 이내에서 협의합니다. 2026년 8월 28일 시행된 공인중개사법 시행규칙 개정으로 주거용 오피스텔도
+          상한요율 이내에서 의뢰인과 공인중개사가 협의해 정한다는 문구가 명확해졌으며, 요율 수치 자체는 바뀌지 않았습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[28rem] border-collapse text-left text-sm">

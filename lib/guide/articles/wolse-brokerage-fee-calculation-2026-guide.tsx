@@ -4,8 +4,8 @@ export const wolseBrokerageFeeCalculation2026GuideMeta = {
   slug: "wolse-brokerage-fee-calculation-2026-guide",
   title: "월세 중개수수료 계산법",
   description:
-    "2026년 4월 기준 월세 환산 거래금액(보증금+월세×100 또는 ×70), 전세와 동일한 상한요율표 적용, 조건별 1인당 수수료·전세 대비·VAT·흔한 실수·오피스텔 요율을 표로 정리했습니다.",
-  updated: "2026년 5월 11일",
+    "2026년 10월 30일 기준 월세 환산 거래금액(보증금+월세×100 또는 ×70), 전세와 동일한 상한요율표 적용, 조건별 1인당 수수료·전세 대비·VAT·흔한 실수·오피스텔 요율을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function WolseBrokerageFeeCalculation2026GuideBody() {
@@ -13,7 +13,7 @@ export function WolseBrokerageFeeCalculation2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-wbfc-intro">
         <h2 id="guide-wbfc-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           월세 중개수수료는 전세와 달리 보증금과 월세를 합산한 환산 거래금액을 기준으로 계산합니다. 환산 방식이 다소 복잡해 실제
@@ -535,7 +535,7 @@ export function WolseBrokerageFeeCalculation2026GuideBody() {
         </h2>
         <p>
           월세 계약 시에도 계약서 특약란에 수수료 금액과 VAT 포함 여부를 명시해야 합니다. 현금·계좌이체로 납부하는 경우 현금영수증을
-          발급받으면 연말정산 소득공제(30%)에 활용할 수 있습니다.
+          발급받으면 연말정산 소득공제(총급여 25% 초과분의 30%, 연 한도 있음)에 활용할 수 있습니다.
         </p>
       </section>
 

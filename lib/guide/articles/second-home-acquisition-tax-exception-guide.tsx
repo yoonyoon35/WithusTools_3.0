@@ -721,7 +721,7 @@ export function SecondHomeAcquisitionTaxExceptionGuideBody() {
                   종전 주택 처분
                 </th>
                 <td className="border-border border-b px-3 py-2.5">필수 아님</td>
-                <td className="border-border border-b px-3 py-2.5">3년 이내 처분 필요</td>
+                <td className="border-border border-b px-3 py-2.5">3년 이내(조정↔조정은 2년 이내) 처분 필요</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">

@@ -4,8 +4,8 @@ export const firstTimeHomebuyerBenefits2026Meta = {
   slug: "first-time-homebuyer-benefits-2026",
   title: "생애최초 주택 구입자 혜택 정리",
   description:
-    "2026년 4월 기준 생애최초 주택 구입자 대상 대출·취득세·청약 혜택과 필수 확인사항을 표 중심으로 정리했습니다.",
-  updated: "2026년 9월 9일",
+    "2026년 10월 30일 기준 생애최초 주택 구입자 대상 대출·취득세·청약 혜택과 필수 확인사항을 표 중심으로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function FirstTimeHomebuyerBenefits2026Body() {
@@ -13,7 +13,7 @@ export function FirstTimeHomebuyerBenefits2026Body() {
     <>
       <section className="space-y-3" aria-labelledby="guide-first-home-overview">
         <h2 id="guide-first-home-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           생애최초 주택 구입자는 대출·세금·청약 세 가지 영역에서 일반 무주택자보다 완화된 조건을 적용받습니다.
@@ -101,6 +101,12 @@ export function FirstTimeHomebuyerBenefits2026Body() {
         </div>
         <p className="text-muted-foreground text-sm">
           단, LTV 완화와 별개로 DSR 40% 규제가 동시에 적용되므로 소득이 부족하면 최대 한도를 받지 못할 수 있습니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 위 표는 정책대출(디딤돌·보금자리론) 기준이며 2026년 10월 현재 한국주택금융공사·마이홈포털 안내와 같습니다. 시중은행
+          주택담보대출은 별도 규제를 받습니다. 수도권·규제지역에서 주택 구입용 주담대의 최대 한도는 주택가격 15억 원 이하 6억 원,
+          15억 초과~25억 원 이하 4억 원, 25억 원 초과 2억 원이고, 생애최초는 LTV 70%가 적용되며 6개월 안에 전입해야 합니다.
+          규제지역에서 일반 무주택자의 LTV는 40%입니다. 은행별 자체 한도가 더 낮을 수도 있습니다.
         </p>
       </section>
 

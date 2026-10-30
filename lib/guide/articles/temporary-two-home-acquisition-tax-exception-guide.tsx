@@ -4,8 +4,8 @@ export const temporaryTwoHomeAcquisitionTaxExceptionGuideMeta = {
   slug: "temporary-two-home-acquisition-tax-exception-guide",
   title: "일시적 2주택 취득세 중과 예외 조건",
   description:
-    "2026년 기준 일시적 2주택 특례 적용 전제(조정·비조정), 인정 사유·처분 범위, 3년 기한, 세컨드홈과의 차이, 일반·중과 세액 예시, 추징·신고 방법, 생애최초 중복 여부와 취득 전 체크리스트를 표로 정리했습니다.",
-  updated: "2026년 6월 25일",
+    "2026년 기준 일시적 2주택 특례 적용 전제(조정·비조정), 인정 사유·처분 범위, 처분 기한(3년·조정↔조정 2년), 세컨드홈과의 차이, 일반·중과 세액 예시, 추징·신고 방법, 생애최초 중복 여부와 취득 전 체크리스트를 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
@@ -13,11 +13,12 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-t2h-overview">
         <h2 id="guide-t2h-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 6월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
-          1주택자가 이사·학업·취업 등으로 새 주택을 취득해 일시적으로 2주택이 된 경우, 종전 주택을 3년 이내 처분하면 신규
-          주택에 1주택 일반세율(1~3%)이 적용됩니다.
+          1주택자가 이사·학업·취업 등으로 새 주택을 취득해 일시적으로 2주택이 된 경우, 종전 주택을 3년 이내(종전·신규 주택이
+          모두 조정대상지역이면 2026년 10월 1일 이후 취득분부터 2년 이내) 처분하면 신규 주택에 1주택 일반세율(1~3%)이
+          적용됩니다.
         </p>
         <p>
           이 특례의 <strong>실질적 절세 효과</strong>는 주로{" "}
@@ -46,7 +47,7 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
           </li>
           <li>
             <a href="#guide-t2h-three-year" className="text-primary underline-offset-4 hover:underline">
-              처분 기한 3년
+              처분 기한 3년·2년
             </a>
           </li>
           <li>
@@ -134,7 +135,9 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   처분 기한
                 </th>
-                <td className="border-border border-b px-3 py-2.5">신규 주택 취득일로부터 3년 이내</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  신규 주택 취득일로부터 3년 이내(종전·신규 모두 조정대상지역이면 2년 이내)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -215,18 +218,20 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
         <p>
           <strong>처분</strong>은 종전 주택의 소유권을 이전하는 것을 말하며, 매매·증여·상속 등으로 세대 밖으로
           이전되면 처분으로 볼 수 있습니다. 매매의 경우 보통 <strong>잔금 지급과 소유권 이전등기</strong>가 완료된
-          시점을 처분 완료로 봅니다. 처분 기한(3년) 계산은 신규 주택 취득일 기준이므로, 종전 주택 매각 일정을
+          시점을 처분 완료로 봅니다. 처분 기한(3년 또는 2년) 계산은 신규 주택 취득일 기준이므로, 종전 주택 매각 일정을
           취득일부터 역산해 계획하는 것이 안전합니다.
         </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-t2h-three-year">
         <h2 id="guide-t2h-three-year" className="text-foreground text-xl font-semibold tracking-tight">
-          처분 기한 3년 적용 기준
+          처분 기한 3년·2년 적용 기준
         </h2>
         <p>
-          종전 주택과 신규 주택 모두 조정대상지역에 있는 경우에도 처분 기한이 3년으로 통일되어 적용됩니다. 2023년 2월 시행령 개정으로
-          조정대상지역 여부에 관계없이 3년으로 처분 기한이 단일화됐습니다.
+          처분 기한은 기본 3년이지만, <strong>종전 주택과 신규 주택이 모두 조정대상지역</strong>에 있으면 2년으로 짧아집니다.
+          2023년 2월 시행령 개정으로 3년으로 단일화됐던 기한이 2026년 10월 1일 시행된 지방세법 시행령 개정(제28조의5)으로
+          다시 갈라졌습니다. 2026년 10월 1일 이후 납세의무가 성립하는 취득부터 적용되며, 2026년 8월 26일 이전에 매매계약을
+          체결하고 계약금을 지급한 사실이 확인되면 종전처럼 3년이 적용됩니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
@@ -248,7 +253,7 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   종전·신규 주택 모두 조정대상지역
                 </th>
-                <td className="border-border border-b px-3 py-2.5">3년</td>
+                <td className="border-border border-b px-3 py-2.5">2년(2026.10.1 이후 취득분, 8.26 이전 계약금 지급분은 3년)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -439,7 +444,7 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
                   종전 주택 처분
                 </th>
                 <td className="border-border border-b px-3 py-2.5">필수 아님</td>
-                <td className="border-border border-b px-3 py-2.5">3년 이내 처분 필요</td>
+                <td className="border-border border-b px-3 py-2.5">3년 이내(조정↔조정은 2년 이내) 처분 필요</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -587,7 +592,7 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  처분 기한(3년) 경과 후 종전 주택 보유
+                  처분 기한(3년 또는 2년) 경과 후 종전 주택 보유
                 </th>
                 <td className="border-border border-b px-3 py-2.5">기한 내 처분 요건 미충족</td>
               </tr>
@@ -670,7 +675,7 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  처분 기한 3년 계산(신규 주택 잔금·등기일 기준)
+                  처분 기한(3년, 조정↔조정은 2년) 계산(신규 주택 잔금·등기일 기준)
                 </th>
                 <td className="px-3 py-2.5">□</td>
               </tr>

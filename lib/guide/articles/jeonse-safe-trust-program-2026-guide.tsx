@@ -4,8 +4,8 @@ export const jeonseSafeTrustProgram2026GuideMeta = {
   slug: "jeonse-safe-trust-program-2026-guide",
   title: "전세 안심신탁사업이란? 전세보증보험과 차이 (2026 추진)",
   description:
-    "2026년 8월 20일 국토부 발표 전월세 안심신탁 구조, HUG 3자 계약·연 4%대 수익률·시세 20억 이하 우선, 9월 공고·10월 모집 일정, 전세보증보험과의 차이와 계약 전 확인 순서를 정리했습니다.",
-  updated: "2026년 8월 20일",
+    "전월세 안심신탁 구조, HUG 3자 계약·연 4%대 수익률·시세 20억 이하 우선, 10월 29일 기준 모집공고 대기 상태와 1차 모집 일정(신청 10~12월·입주 12월~), 전세보증보험과의 차이와 계약 전 확인 순서를 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function JeonseSafeTrustProgram2026GuideBody() {
@@ -13,7 +13,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-jstp-intro">
         <h2 id="guide-jstp-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 8월 20일 기준 · 결론부터
+          2026년 10월 29일 기준 · 결론부터
         </h2>
         <p>
           국토교통부는 2026년 8월 20일 <strong>전월세 안심신탁</strong> 사업을 공식 발표했습니다. 임차인이 낸
@@ -22,9 +22,12 @@ export function JeonseSafeTrustProgram2026GuideBody() {
           것이 핵심입니다.
         </p>
         <p>
-          <strong>9월 말 사업 공고 → 10월 참여자 모집 → 11월 3자 계약 → 12월 입주</strong> 순으로 진행됩니다. 시세{" "}
-          <strong>20억 원 이하</strong> 주택 우선, 임대인·임차인 <strong>자발적 참여</strong>입니다. 세부 수수료·약정서는
-          9월 공고에서 확인합니다. 당장 계약한다면{" "}
+          당초 계획은 9월 말 사업 공고였지만, <strong>10월 29일 현재 공식 모집공고는 아직 나오지 않았고 HUG가
+          「조만간 공고」를 예고한 상태</strong>입니다. 9월 22일에는 사업 상담·신청을 지원하는 HUG 전월세 안심신탁센터가
+          출범했습니다. HUG 안내 기준 1차 모집 일정은 <strong>신청 10~12월 → 3자 계약 11월~ → 입주 12월~2027년 2월</strong>
+          이며, 실제 일정은 공사 사정에 따라 바뀔 수 있습니다. 시세 <strong>20억 원 이하</strong> 주택 우선, 임대인·임차인{" "}
+          <strong>자발적 참여</strong>(법적 참여 의무 없음)입니다. 세부 수수료·약정서·월 수익률은 모집공고에서 확인합니다.
+          당장 계약한다면{" "}
           <Link href="/guide/jeonse-guarantee-insurance-guide" className="text-primary underline-offset-4 hover:underline">
             전세보증보험
           </Link>
@@ -155,7 +158,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   비용
                 </th>
-                <td className="border-border border-b px-3 py-2.5">세부 수수료는 9월 공고 예정</td>
+                <td className="border-border border-b px-3 py-2.5">세부 수수료는 모집공고에서 확인(공고 대기 중)</td>
                 <td className="border-border border-b px-3 py-2.5">
                   보증료(연 0.1~0.3%대 등) —{" "}
                   <Link href="/guide/jeonse-guarantee-insurance-guide#guide-jeonse-org-compare" className="text-primary underline-offset-4 hover:underline">
@@ -167,7 +170,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   적용 시점
                 </th>
-                <td className="border-border border-b px-3 py-2.5">9월 공고·10월 모집(추진 중)</td>
+                <td className="border-border border-b px-3 py-2.5">모집공고 대기 중(HUG 안내: 신청 10~12월, 입주 12월~)</td>
                 <td className="border-border border-b px-3 py-2.5">지금 가입 가능</td>
               </tr>
               <tr className="bg-muted/20">
@@ -187,14 +190,16 @@ export function JeonseSafeTrustProgram2026GuideBody() {
           적용 대상
         </h2>
         <p>
-          8·20 발표 기준 <strong>시세 20억 원 이하</strong> 주택을 우선 대상으로 하며, 아파트·빌라·단독 등 주택 유형·
-          지역 제한 없이 <strong>임대인·임차인이 자발적으로 신청</strong>합니다. 보증금 전액을 HUG에 예치해야 하며,
-          일부만 맡기는 방식은 허용되지 않습니다.
+          HUG 안내 기준 <strong>시세 20억 원 이하</strong> 주택을 우선 대상으로 하며, 아파트·빌라·단독 등 주택 유형·
+          지역 제한 없이 <strong>임대인·임차인이 자발적으로 신청</strong>합니다. 소득·연령·자산 제한이 없고 법인·개인과
+          임대사업자 등록 여부도 따지지 않습니다. 보증금 전액을 HUG에 예치해야 하며, 일부만 맡기는 방식은 허용되지
+          않습니다. 다만 위반건축물이거나 압류 등으로 임차인의 주거 안정을 해칠 수 있는 주택, 시세 대비 전세금이
+          과도한 주택은 참여가 제한될 수 있습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              적용 범위 — 2026년 8월 20일 발표 기준
+              적용 범위 — HUG 안내(2026년 10월) 기준
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -212,7 +217,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
                   등록임대사업자
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  초기 핵심 대상. 임대보증금보증 가입과 연계·선택 가능성
+                  참여 가능(등록 여부는 필수 조건 아님). 임대인은 임대보증금보증 보증료 면제 혜택을 받는 것으로 안내됨
                 </td>
               </tr>
               <tr>
@@ -220,7 +225,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
                   비등록 민간 임대인
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  소득·자산 제한 없이 자발적 참여 가능(8·20 발표)
+                  소득·자산 제한 없이 자발적 참여 가능. 임차인을 아직 못 구했어도 신청 가능(HUG 매칭 지원)
                 </td>
               </tr>
               <tr>
@@ -247,7 +252,8 @@ export function JeonseSafeTrustProgram2026GuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          ※ 강제 가입인지, 임대인·임차인이 선택하는지는 아직 정해지지 않았습니다. 시행령·고시 확정 후 갱신이 필요합니다.
+          ※ 참여는 임대인·임차인의 자발적 신청이며 법적 참여 의무는 없습니다. 예탁 기간은 임대차 기간(최소 2년)에
+          연동되고, 계약이 갱신되면 변경 약정으로 연장됩니다.
         </p>
       </section>
 
@@ -319,10 +325,24 @@ export function JeonseSafeTrustProgram2026GuideBody() {
           법적 근거·추진 일정
         </h2>
         <p>
-          8·13 주택 공급대책 후속으로 HUG가 전월세 안심신탁을 운영합니다.{" "}
-          <strong>9월 말 사업 공고 → 10월 모집 → 11월 3자 계약 → 12월 입주</strong> 일정이며, LH 매입임대{" "}
-          <strong>500가구</strong>도 시범 적용됩니다.
+          8·13 주택 공급대책 후속으로 HUG가 전월세 안심신탁을 운영합니다. 당초 <strong>9월 말 사업 공고</strong>가
+          예정돼 있었으나 10월 29일 현재 공식 모집공고는 나오지 않았습니다. HUG 안내 기준 1차 모집 일정은 아래와
+          같으며, 공고 이후 달라질 수 있습니다. LH 매입임대 <strong>500가구</strong>도 시범 적용됩니다.
         </p>
+        <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
+          <li>
+            <strong>모집공고</strong> — 9월 말 예정이었으나 지연, HUG가 조만간 공고 예고(10월 29일 기준)
+          </li>
+          <li>
+            <strong>신청·모집</strong> — 10월~12월(임대인 신청, 희망 시 HUG가 임차인 매칭 지원)
+          </li>
+          <li>
+            <strong>3자 계약</strong> — 11월부터 임대인·임차인·HUG 3자 계약 체결
+          </li>
+          <li>
+            <strong>입주</strong> — 12월~2027년 2월(1회차 모집은 이 기간 입주 가능한 건이 대상)
+          </li>
+        </ul>
         <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>
             <strong>운영 주체</strong> — HUG 산하 전월세안정화기구(별도 설치 검토)
@@ -341,7 +361,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
           지금 전세 계약할 때 확인 순서
         </h2>
         <p>
-          안심신탁 <strong>모집 전</strong>입니다. 당장 전세를 구한다면 아래 순서가 실무에 더 직접적입니다.
+          안심신탁은 아직 <strong>공식 모집공고 전</strong>입니다(10월 29일 기준). 당장 전세를 구한다면 아래 순서가 실무에 더 직접적입니다.
         </p>
         <ol className="text-muted-foreground list-decimal space-y-2 pl-5 text-sm leading-relaxed">
           <li>
@@ -382,7 +402,7 @@ export function JeonseSafeTrustProgram2026GuideBody() {
           아직 정해지지 않은 것
         </h2>
         <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
-          <li>전세 계약 전체에 <strong>의무 적용</strong>할지, 임대인·임차인 <strong>선택제</strong>로 둘지</li>
+          <li>모집공고 <strong>정확한 게시 일정</strong>과 2회차 이후 모집(반기별 공고 예고) 시기</li>
           <li>신탁 <strong>수수료</strong>와 보증금 <strong>운용 수익률</strong>(임대인 참여율의 핵심)</li>
           <li>운용 손실·지연 반환 시 <strong>책임 주체</strong></li>
           <li>일반 개인 간 전세·오피스텔·다가구 등 <strong>적용 제외 범위</strong></li>
@@ -399,8 +419,8 @@ export function JeonseSafeTrustProgram2026GuideBody() {
         aria-label="참고 안내"
       >
         <p>
-          본 글은 <strong>2026년 7월 정부 발표·입법예고 기준 참고용</strong>이며, 안심신탁은 아직 전국 전세에 일괄 적용되지
-          않습니다. 계약·가입 판단은 HUG·전월세안정화기구 공식 안내와{" "}
+          본 글은 <strong>2026년 10월 29일 기준 국토교통부·HUG 안내를 정리한 참고용</strong>이며, 안심신탁은 아직 전국
+          전세에 일괄 적용되지 않습니다. 계약·가입 판단은 HUG·전월세안정화기구 공식 안내와{" "}
           <Link href="/guide/jeonse-guarantee-insurance-guide" className="text-primary font-medium underline-offset-4 hover:underline">
             전세보증보험 가이드
           </Link>

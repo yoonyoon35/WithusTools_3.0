@@ -5,7 +5,7 @@ export const equalPaymentVsEqualPrincipalMeta = {
   title: "원리금균등상환 vs 원금균등상환 비교",
   description:
     "원리금균등·원금균등의 구조 차이, DSR·중도상환과의 관계, 연봉·여유자금별 선택 시나리오와 흔한 실수를 정리한 상환 방식 선택 가이드입니다.",
-  updated: "2026년 4월 13일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function EqualPaymentVsEqualPrincipalBody() {

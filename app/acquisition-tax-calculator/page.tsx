@@ -6,11 +6,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/acquisition-tax-calculator";
 const pageTitle = "취득세 계산기";
+const metaTitle = "취득세 계산기 - 주택·농지·상속·증여";
 const pageDescription =
-  "주택, 주택 외(토지·건물 등), 농지 자산 구분과 취득 유형에 따라 취득세·지방교육세·농어촌특별세를 계산합니다. 하단 가이드에서 신축·분양 아파트 금액별 예시도 확인할 수 있습니다.";
+  "주택, 주택 외(토지·건물 등), 농지 자산 구분과 매매·상속·증여·원시취득 등 취득 유형에 따라 취득세·지방교육세·농어촌특별세를 계산합니다. 하단 가이드에서 신축·분양 아파트 금액별 예시도 확인할 수 있습니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function AcquisitionTaxCalculatorPage() {

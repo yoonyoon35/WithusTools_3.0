@@ -4,8 +4,8 @@ export const comprehensivePropertyTaxFairnessDebate2026GuideMeta = {
   slug: "comprehensive-property-tax-fairness-debate-2026-guide",
   title: "30억 1채 vs 10억 3채, 종부세 왜 다른가 | 주택 수 과세 형평성",
   description:
-    "2026년 8월 3일 정부안 기준 같은 30억이라도 초고가 1주택과 10억 3주택의 종부세가 갈리는 이유(기본공제·재산세 공정·중과세율·세액공제·세부담상한), 주택 수→가액 과세 전환, 「똘똘한 한 채」와 세제개편 방향을 표로 정리했습니다.",
-  updated: "2026년 8월 3일",
+    "2026년 9월 1일 확정 정부안 기준 같은 30억이라도 초고가 1주택과 10억 3주택의 종부세가 갈리는 이유(기본공제·재산세 공정·중과세율·세액공제·세부담상한), 주택 수→가액 과세 전환, 「똘똘한 한 채」와 세제개편 방향을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
@@ -13,7 +13,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-cptfd-intro">
         <h2 id="guide-cptfd-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 8월 3일 정부안 기준
+          2026년 9월 1일 확정 정부안 기준
         </h2>
         <p>
           「공시가격 <strong>30억 원 아파트 한 채</strong>」와 「<strong>공시 10억 원 아파트 세 채</strong>」는 재산
@@ -21,8 +21,8 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
           <strong>10억 3채(다주택)</strong> 쪽이 더 많이 냅니다. 같은 30억인데 왜 세금이 갈릴까요?
         </p>
         <p>
-          답은 종부세가 <strong>재산 총액</strong>이 아니라 <strong>주택 수·기본공제·중과세율·실거주 여부</strong>를
-          함께 보고 매겨지기 때문입니다. 이 구조가 「주택 수 기준 과세가 공정한가」라는 <strong>형평성 논쟁</strong>의
+          답은 종부세가 <strong>재산 총액</strong>이 아니라 <strong>주택 수·기본공제·중과세율·세액공제</strong>를
+          함께 보고 매겨지기 때문입니다(정부안은 여기에 거주 여부를 더합니다). 이 구조가 「주택 수 기준 과세가 공정한가」라는 <strong>형평성 논쟁</strong>의
           핵심입니다. 이 글은 두 사례의 세금 차이가 생기는 이유와 양쪽 주장, 정부·OECD가 언급한 방향까지 정리합니다.{" "}
           <Link
             href="/comprehensive-property-tax-calculator"
@@ -202,8 +202,8 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          공제·재산세 공정·세율 세 가지는 다주택에 불리하고, 고령자·장기보유 세액공제는 실거주 1주택에만 열려
-          있습니다. 그래서 같은 30억이라도 <strong>1주택이 유리</strong>한 구조가 됩니다.{" "}
+          공제·재산세 공정·세율 세 가지는 다주택에 불리하고, 고령자·장기보유 세액공제는 1세대 1주택자에게만 열려
+          있습니다(정부안은 2027~2028년 보유공제를 거주공제로 전환). 그래서 같은 30억이라도 <strong>1주택이 유리</strong>한 구조가 됩니다.{" "}
           <Link
             href="/guide/property-tax-vs-comprehensive-property-tax-fair-ratio-guide"
             className="text-primary underline-offset-4 hover:underline"
@@ -390,8 +390,9 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
           8·3 정부안과 형평성 논쟁
         </h2>
         <p>
-          8·3 정부안은 형평성 논쟁의 핵심인 <strong>주택 수 → 가액·거주 중심</strong> 과세 전환을 담았습니다. 국회
-          심의 전이지만 방향은 확정됐습니다.
+          정부안(8월 3일 발표, 9월 1일 확정)은 형평성 논쟁의 핵심인 <strong>주택 수 → 가액·거주 중심</strong> 과세 전환을
+          담았습니다. 현재 국회 재정경제기획위원회에서 심사 중이며, 세율 인상과 공정비율 인상이 겹치는 부담 등이
+          검토보고서에서 지적됐습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
@@ -414,7 +415,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
                   정부(8·3 세제개편안)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  주택 수 기준 폐지·가액 중심 일원화, 1주택 고가도 다주택 수준 세율, 거주 14억·비거주 9억 차등
+                  주택 수 기준 폐지·가액 중심 일원화(2028년~), 거주 1주택 기본공제 14억·비거주 1주택 12억 유지(9월 1일 비거주 9억 축소안 철회), 세부담 상한 150% 유지
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -436,7 +437,7 @@ export function ComprehensivePropertyTaxFairnessDebate2026GuideBody() {
           >
             2026년 부동산 세제개편안 총정리
           </Link>
-          에서 다룹니다. 개편안이 확정되면 본문 수치를 갱신할 예정입니다.
+          에서 다룹니다. 국회 심사 결과에 따라 본문 수치를 갱신할 예정입니다.
         </p>
       </section>
 

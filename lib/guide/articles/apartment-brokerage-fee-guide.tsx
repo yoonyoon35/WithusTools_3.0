@@ -4,8 +4,8 @@ export const apartmentBrokerageFeeGuideMeta = {
   slug: "apartment-brokerage-fee-guide",
   title: "아파트 매매 중개수수료·아파트매매 수수료 계산",
   description:
-    "2026년 4월 기준 아파트 매매·아파트매매 중개수수료 상한요율표, 7억·8억·9억·10억·12억 매매가별 예시, 0.4%·0.5% 구간 경계, 부가세·지급 시기와 흔한 실수를 표로 정리했습니다.",
-  updated: "2026년 7월 2일",
+    "2026년 10월 30일 기준 아파트 매매·아파트매매 중개수수료 상한요율표, 7억·8억·9억·10억·12억 매매가별 예시, 0.4%·0.5% 구간 경계, 부가세·지급 시기와 흔한 실수를 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function ApartmentBrokerageFeeGuideBody() {
@@ -13,7 +13,7 @@ export function ApartmentBrokerageFeeGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-abf-intro">
         <h2 id="guide-abf-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           아파트 매매 중개수수료(아파트매매 중개수수료)는 거래금액에 상한요율을 곱한 금액 이내에서 공인중개사와 협의해 결정합니다.

@@ -89,10 +89,10 @@ export function Apartment1000MillionBrokerageFeeGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  9억(0.4% 구간)
+                  9억(0.5% 구간 시작)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">0.4%</td>
-                <td className="border-border border-b px-3 py-2.5">360만 원</td>
+                <td className="border-border border-b px-3 py-2.5">0.5%</td>
+                <td className="border-border border-b px-3 py-2.5">450만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -112,7 +112,7 @@ export function Apartment1000MillionBrokerageFeeGuideBody() {
           </table>
         </div>
         <p>
-          8억 9,999만(360만) vs 9억(450만)처럼 9억 경계에서 1인당 90만 원이 한 번에 늘어납니다.{" "}
+          8억 9,999만 원(약 360만 원, 0.4%) vs 9억 원(450만 원, 0.5%)처럼 9억 원 경계에서 1인당 약 90만 원이 한 번에 늘어납니다.{" "}
           <Link href="/guide/apartment-brokerage-fee-guide" className="text-primary underline-offset-4 hover:underline">
             아파트 매매 중개수수료
           </Link>

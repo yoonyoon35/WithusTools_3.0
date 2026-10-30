@@ -4,8 +4,8 @@ export const acquisitionTaxDeadlineAndPenaltyGuideMeta = {
   slug: "acquisition-tax-deadline-and-penalty-guide",
   title: "취득세 납부 기한과 가산세",
   description:
-    "2026년 4월 기준 취득세 신고·납부 기한, 가산세 유형과 세율, 지연별 부담 비교, 중가산세, 납부 방법을 표와 예시로 정리했습니다.",
-  updated: "2026년 5월 5일",
+    "2026년 10월 30일 기준 취득세 신고·납부 기한, 가산세 유형과 세율, 지연별 부담 비교, 중가산세, 납부 방법을 표와 예시로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function AcquisitionTaxDeadlineAndPenaltyGuideBody() {
@@ -13,7 +13,7 @@ export function AcquisitionTaxDeadlineAndPenaltyGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-atdp-overview">
         <h2 id="guide-atdp-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           취득세는 부동산을 취득한 날로부터 정해진 기한 내에 신고·납부해야 합니다. 취득세 과세물건을 취득한 날로부터 60일 이내에

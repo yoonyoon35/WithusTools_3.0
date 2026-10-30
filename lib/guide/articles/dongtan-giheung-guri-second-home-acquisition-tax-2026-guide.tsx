@@ -69,7 +69,7 @@ export function DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   일시적 2주택 특례 충족
                 </th>
-                <td className="px-3 py-2.5">1~3% 일반(종전 주택 3년 내 처분 등)</td>
+                <td className="px-3 py-2.5">1~3% 일반(종전 주택 3년 내, 조정↔조정은 2년 내 처분 등)</td>
               </tr>
             </tbody>
           </table>
@@ -370,7 +370,10 @@ export function DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody() {
         <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>취득 전 1주택자였을 것</li>
           <li>이사·취업·학업 등 인정 사유에 해당할 것</li>
-          <li>종전 주택을 취득일부터 <strong>3년 이내</strong> 처분할 것</li>
+          <li>
+            종전 주택을 취득일부터 <strong>3년 이내</strong> 처분할 것(종전 주택도 조정대상지역이면 2026년 10월 1일 이후 취득분부터{" "}
+            <strong>2년 이내</strong>, 단 2026년 8월 26일 이전에 계약금을 지급한 계약은 3년)
+          </li>
           <li>처분 후 위택스 등에 신고·환급(또는 추징) 절차를 밟을 것</li>
         </ul>
         <p className="text-muted-foreground text-sm">

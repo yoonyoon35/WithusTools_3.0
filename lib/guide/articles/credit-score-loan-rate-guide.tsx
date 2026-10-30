@@ -6,7 +6,7 @@ export const creditScoreLoanRateGuideMeta = {
   title: "신용점수 관리 방법과 대출 금리의 관계",
   description:
     "신용점수가 대출 금리·한도에 미치는 방식, 구간별 차이, 대출 3~6개월 전부터 할 수 있는 관리와 점수만으로는 닿지 않는 영역을 정리했습니다.",
-  updated: "2026년 4월 14일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function CreditScoreLoanRateGuideBody() {
@@ -38,7 +38,10 @@ export function CreditScoreLoanRateGuideBody() {
         <h2 id="guide-credit-tiers" className="text-foreground text-xl font-semibold tracking-tight">
           신용점수 구간별 대출 금리 영향
         </h2>
-        <p className="text-muted-foreground text-sm">2026년 4월 시중은행 기준</p>
+        <p className="text-muted-foreground text-sm">
+          2026년 10월 5대 은행 공시 기준(금융감독원 금융상품한눈에, 직전월 신규취급 평균금리). 같은 구간이라도 은행·상품별 차이가
+          큽니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -63,19 +66,11 @@ export function CreditScoreLoanRateGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  951점 ~ 1,000점
+                  901점 ~ 1,000점
                 </th>
-                <td className="border-border border-b px-3 py-2.5">1등급</td>
-                <td className="border-border border-b px-3 py-2.5">최우대금리 적용</td>
-                <td className="border-border border-b px-3 py-2.5">연 4.29% ~ 4.89%</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
-                  901점 ~ 950점
-                </th>
-                <td className="border-border border-b px-3 py-2.5">2등급</td>
-                <td className="border-border border-b px-3 py-2.5">우대금리 일부 적용</td>
-                <td className="border-border border-b px-3 py-2.5">연 4.5% ~ 5.5%</td>
+                <td className="border-border border-b px-3 py-2.5">1~2등급</td>
+                <td className="border-border border-b px-3 py-2.5">최우대·우대금리 적용 가능</td>
+                <td className="border-border border-b px-3 py-2.5">연 5.3% ~ 5.9%(900점 초과 평균)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
@@ -83,7 +78,7 @@ export function CreditScoreLoanRateGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">3~4등급</td>
                 <td className="border-border border-b px-3 py-2.5">기본금리 적용</td>
-                <td className="border-border border-b px-3 py-2.5">연 5% 이상</td>
+                <td className="border-border border-b px-3 py-2.5">연 5.7% ~ 6.3%대</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
@@ -91,7 +86,7 @@ export function CreditScoreLoanRateGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">5~6등급</td>
                 <td className="border-border border-b px-3 py-2.5">가산금리 부과</td>
-                <td className="border-border border-b px-3 py-2.5">연 6% 이상</td>
+                <td className="border-border border-b px-3 py-2.5">연 6%대 중반 안팎(은행·상품별 편차 큼)</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium whitespace-nowrap">
@@ -329,30 +324,30 @@ export function CreditScoreLoanRateGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   951점 이상
                 </th>
-                <td className="border-border border-b px-3 py-2.5">4.0%</td>
-                <td className="border-border border-b px-3 py-2.5">약 95만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 1억 4,400만 원</td>
+                <td className="border-border border-b px-3 py-2.5">4.5%</td>
+                <td className="border-border border-b px-3 py-2.5">약 101만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1억 6,400만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   850점 수준
                 </th>
-                <td className="border-border border-b px-3 py-2.5">4.5%</td>
-                <td className="border-border border-b px-3 py-2.5">약 101만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 1억 6,400만 원</td>
+                <td className="border-border border-b px-3 py-2.5">5.0%</td>
+                <td className="border-border border-b px-3 py-2.5">약 107만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1억 8,600만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   750점 수준
                 </th>
-                <td className="px-3 py-2.5">5.0%</td>
-                <td className="px-3 py-2.5">약 107만 원</td>
-                <td className="px-3 py-2.5">약 1억 8,600만 원</td>
+                <td className="px-3 py-2.5">5.5%</td>
+                <td className="px-3 py-2.5">약 114만 원</td>
+                <td className="px-3 py-2.5">약 2억 900만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>신용점수 100점 차이가 30년 기준 총 이자 약 2,000만 원 차이로 이어질 수 있습니다.</p>
+        <p>신용점수 100점 차이가 30년 기준 총 이자 약 2,000만 원 이상 차이로 이어질 수 있습니다(위 표는 가정한 금리 예시이며 실제 적용 금리는 은행·상품별로 다릅니다).</p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-credit-check">

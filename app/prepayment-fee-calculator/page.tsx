@@ -7,11 +7,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/prepayment-fee-calculator";
 const pageTitle = "중도상환 수수료 계산기";
+const metaTitle = "중도상환 수수료 계산기 - 디딤돌·보금자리론·은행";
 const pageDescription =
-  "중도상환 원금, 수수료율, 대출기간, 경과 기간을 입력해 중도상환 수수료를 계산합니다. 면제 기간 경과 여부도 함께 확인할 수 있습니다.";
+  "중도상환 원금, 수수료율, 대출기간, 경과 기간을 입력해 중도상환 수수료를 계산합니다. 면제 기간 경과 여부도 함께 확인할 수 있고, 디딤돌·보금자리론·시중은행별 수수료율 기준표도 볼 수 있습니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function PrepaymentFeeCalculatorPage() {

@@ -5,7 +5,7 @@ export const variableVsFixedRate2026Meta = {
   title: "변동금리 vs 고정금리 선택 기준",
   description:
     "변동·고정·혼합 금리의 차이, 소득 안정성·상환 기간에 따른 선택 기준, 금리 변동 시 월 상환 영향과 흔한 판단 실수를 정리했습니다.",
-  updated: "2026년 4월 13일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function VariableVsFixedRate2026Body() {
@@ -13,7 +13,7 @@ export function VariableVsFixedRate2026Body() {
     <>
       <section className="space-y-3" aria-labelledby="guide-rate-type-overview">
         <h2 id="guide-rate-type-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           변동금리는 시장금리(COFIX 등)에 연동되어 대출 기간 중 금리가 변동되며, 고정금리는 대출 실행 시점의 금리가 만기까지
@@ -113,16 +113,22 @@ export function VariableVsFixedRate2026Body() {
 
       <section className="space-y-4" aria-labelledby="guide-rate-type-current-level">
         <h2 id="guide-rate-type-current-level" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 현재 금리 수준
+          2026년 10월 현재 금리 수준
         </h2>
         <p>
-          한국은행은 2026년 4월 기준금리를 2.50%로 동결했습니다. 중동전쟁에 따른 물가 상방압력과 성장 하방압력이 동시에 확대되며
-          금융·외환시장 변동성이 커진 상황입니다.
+          한국은행은 2026년 7월과 8월 기준금리를 연속 인상한 뒤, 10월 22일 금융통화위원회에서 연 3.00%로 동결했습니다.
+          금통위는 향후 물가·경기·금융안정 상황을 점검해 추가 인상 시기와 속도를 결정하겠다는 입장을 유지했습니다. 변동금리
+          기준이 되는 신규취급액 기준 코픽스(9월)는 3.43%로 전월보다 0.25%p 올랐습니다.
+        </p>
+        <p>
+          금리가 오르는 구간에서는 변동형의 초기 금리 이점이 줄고 변동형과 고정형의 격차도 좁아집니다. 10월 말 기준 5대 은행
+          상단 금리 차이는 0.13%p 수준입니다. 다만 앞으로의 금리 방향은 단정할 수 없으므로, 상환 계획과 소득 여유를 먼저 따져
+          보세요.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[30rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              2026년 4월 금리 유형별 현재 수준
+              2026년 10월 말 금리 유형별 수준
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -139,29 +145,33 @@ export function VariableVsFixedRate2026Body() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   한국은행 기준금리
                 </th>
-                <td className="border-border border-b px-3 py-2.5">2.50%(동결)</td>
+                <td className="border-border border-b px-3 py-2.5">연 3.00%(10월 22일 동결)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  시중은행 변동금리
+                  신규취급액 기준 코픽스(9월)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 4.44% ~ 5.26%</td>
+                <td className="border-border border-b px-3 py-2.5">연 3.43%(전월 3.18%)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  시중은행 고정금리(상단)
+                  5대 은행 변동형(6개월 기준)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 7.01%</td>
+                <td className="border-border border-b px-3 py-2.5">연 4.38% ~ 6.38%</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  혼합형 고정금리(5년)
+                  5대 은행 고정형(혼합형, 5년 고정)
                 </th>
-                <td className="px-3 py-2.5">연 4.42% ~ 7.02%</td>
+                <td className="px-3 py-2.5">연 4.57% ~ 6.51%</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p className="text-muted-foreground text-sm">
+          ※ 5대 은행(KB국민·신한·하나·우리·NH농협)의 2026년 10월 29일 보도 기준 금리 범위이며, 실제 적용 금리는 신용·담보·우대
+          조건에 따라 달라집니다. 한국은행·은행연합회 공시와 각 은행 안내를 확인하세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-rate-type-selection">
@@ -270,16 +280,28 @@ export function VariableVsFixedRate2026Body() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">약 170만 원</td>
               </tr>
-              <tr className="bg-muted/20">
-                <th scope="row" className="px-3 py-2.5 font-medium">
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   6.0%
                 </th>
-                <td className="px-3 py-2.5">약 180만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 180만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  6.5%
+                </th>
+                <td className="border-border border-b px-3 py-2.5">약 190만 원</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  7.0%
+                </th>
+                <td className="px-3 py-2.5">약 200만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p>변동금리 대출은 금리가 1%p 상승할 때마다 월 상환액이 약 17~18만 원 증가합니다.</p>
+        <p>변동금리 대출은 금리가 1%p 상승할 때마다 월 상환액이 약 18~20만 원 증가합니다.</p>
       </section>
 
       <section className="space-y-3" aria-labelledby="guide-rate-type-mistakes">

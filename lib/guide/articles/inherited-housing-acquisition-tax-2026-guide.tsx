@@ -4,8 +4,8 @@ export const inheritedHousingAcquisitionTax2026GuideMeta = {
   slug: "inherited-housing-acquisition-tax-2026-guide",
   title: "상속 주택 취득세 계산 방법",
   description:
-    "2026년 4월 기준 상속 취득세율·과세표준, 매매와의 비교, 공시가격별 예시·공유지분 계산, 주택 수 포함, 추가 취득 시 세율, 납부 기한·가산세, 신고 방법을 표로 정리했습니다.",
-  updated: "2026년 9월 9일",
+    "2026년 10월 30일 기준 상속 취득세율·과세표준, 매매와의 비교, 공시가격별 예시·공유지분 계산, 주택 수 포함, 추가 취득 시 세율, 납부 기한·가산세, 신고 방법을 표로 정리했습니다.",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function InheritedHousingAcquisitionTax2026GuideBody() {
@@ -13,7 +13,7 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-inh-overview">
         <h2 id="guide-inh-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 4월 기준
+          2026년 10월 30일 기준
         </h2>
         <p>
           상속으로 주택을 취득하는 경우 일반 매매와 다른 취득세율이 적용됩니다. 상속 취득세율은 2.8%가 기본이며, 과세표준은
@@ -57,7 +57,7 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   지방교육세
                 </th>
-                <td className="border-border border-b px-3 py-2.5">취득세의 10%(0.28%)</td>
+                <td className="border-border border-b px-3 py-2.5">(2.8% − 2%) × 20% = 0.16%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -141,7 +141,7 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
             취득세 = 시가표준액(공시가격) × 2.8%
           </p>
           <p className="bg-muted/30 rounded-md border border-border px-3 py-2 font-mono text-sm">
-            지방교육세 = 취득세 × 10%
+            지방교육세 = 시가표준액 × 0.16%
           </p>
           <p className="bg-muted/30 rounded-md border border-border px-3 py-2 font-mono text-sm">
             농어촌특별세 = 시가표준액 × 0.2%(전용 85㎡ 초과 시)
@@ -181,48 +181,48 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
                   1억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">280만 원</td>
-                <td className="border-border border-b px-3 py-2.5">28만 원</td>
-                <td className="border-border border-b px-3 py-2.5">308만 원</td>
+                <td className="border-border border-b px-3 py-2.5">16만 원</td>
+                <td className="border-border border-b px-3 py-2.5">296만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   2억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">560만 원</td>
-                <td className="border-border border-b px-3 py-2.5">56만 원</td>
-                <td className="border-border border-b px-3 py-2.5">616만 원</td>
+                <td className="border-border border-b px-3 py-2.5">32만 원</td>
+                <td className="border-border border-b px-3 py-2.5">592만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   3억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">840만 원</td>
-                <td className="border-border border-b px-3 py-2.5">84만 원</td>
-                <td className="border-border border-b px-3 py-2.5">924만 원</td>
+                <td className="border-border border-b px-3 py-2.5">48만 원</td>
+                <td className="border-border border-b px-3 py-2.5">888만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   5억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">1,400만 원</td>
-                <td className="border-border border-b px-3 py-2.5">140만 원</td>
-                <td className="border-border border-b px-3 py-2.5">1,540만 원</td>
+                <td className="border-border border-b px-3 py-2.5">80만 원</td>
+                <td className="border-border border-b px-3 py-2.5">1,480만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   7억 원
                 </th>
                 <td className="border-border border-b px-3 py-2.5">1,960만 원</td>
-                <td className="border-border border-b px-3 py-2.5">196만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2,156만 원</td>
+                <td className="border-border border-b px-3 py-2.5">112만 원</td>
+                <td className="border-border border-b px-3 py-2.5">2,072만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   10억 원
                 </th>
                 <td className="px-3 py-2.5">2,800만 원</td>
-                <td className="px-3 py-2.5">280만 원</td>
-                <td className="px-3 py-2.5">3,080만 원</td>
+                <td className="px-3 py-2.5">160만 원</td>
+                <td className="px-3 py-2.5">2,960만 원</td>
               </tr>
             </tbody>
           </table>
@@ -294,8 +294,8 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
                 <td className="border-border border-b px-3 py-2.5">50%</td>
                 <td className="border-border border-b px-3 py-2.5">3억 원</td>
                 <td className="border-border border-b px-3 py-2.5">840만 원</td>
-                <td className="border-border border-b px-3 py-2.5">84만 원</td>
-                <td className="border-border border-b px-3 py-2.5">924만 원</td>
+                <td className="border-border border-b px-3 py-2.5">48만 원</td>
+                <td className="border-border border-b px-3 py-2.5">888만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -304,8 +304,8 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
                 <td className="border-border border-b px-3 py-2.5">25%</td>
                 <td className="border-border border-b px-3 py-2.5">1억 5,000만 원</td>
                 <td className="border-border border-b px-3 py-2.5">420만 원</td>
-                <td className="border-border border-b px-3 py-2.5">42만 원</td>
-                <td className="border-border border-b px-3 py-2.5">462만 원</td>
+                <td className="border-border border-b px-3 py-2.5">24만 원</td>
+                <td className="border-border border-b px-3 py-2.5">444만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -314,8 +314,8 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
                 <td className="border-border border-b px-3 py-2.5">25%</td>
                 <td className="border-border border-b px-3 py-2.5">1억 5,000만 원</td>
                 <td className="border-border border-b px-3 py-2.5">420만 원</td>
-                <td className="border-border border-b px-3 py-2.5">42만 원</td>
-                <td className="border-border border-b px-3 py-2.5">462만 원</td>
+                <td className="border-border border-b px-3 py-2.5">24만 원</td>
+                <td className="border-border border-b px-3 py-2.5">444만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -324,8 +324,8 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
                 <td className="px-3 py-2.5">100%</td>
                 <td className="px-3 py-2.5">6억 원</td>
                 <td className="px-3 py-2.5">1,680만 원</td>
-                <td className="px-3 py-2.5">168만 원</td>
-                <td className="px-3 py-2.5">1,848만 원</td>
+                <td className="px-3 py-2.5">96만 원</td>
+                <td className="px-3 py-2.5">1,776만 원</td>
               </tr>
             </tbody>
           </table>

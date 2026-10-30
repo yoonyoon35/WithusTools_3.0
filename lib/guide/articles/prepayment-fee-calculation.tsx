@@ -5,7 +5,7 @@ export const prepaymentFeeCalculationMeta = {
   title: "중도상환 수수료 계산 방식",
   description:
     "중도상환 수수료 계산 공식, 이자 절감액 비교, 갈아타기·만기 대기 중 선택 기준을 정리했습니다. 대출 조건별 중도상환 시 손익을 판단하는 방법을 표와 예시로 설명한 참고 가이드입니다. 금융기관별 약관·수수료율·우대 조건은 개별 확인이 필요하며 실제 절감액은 달라질 수 있습니다.",
-  updated: "2026년 4월 13일",
+  updated: "2026년 10월 30일",
 } as const;
 
 export function PrepaymentFeeCalculationBody() {
@@ -49,7 +49,12 @@ export function PrepaymentFeeCalculationBody() {
           계산 예시
         </h2>
         <p className="text-muted-foreground text-sm">
-          대출 원금 2억 원, 수수료율 1.2%, 대출기간 30년(360개월), 대출 실행 후 1년(12개월) 시점에 5,000만 원 중도상환 가정
+          대출 원금 2억 원, 수수료율 0.7%, 대출기간 30년(360개월), 대출 실행 후 1년(12개월) 시점에 5,000만 원 중도상환 가정
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 0.7%는 계산을 보여 주기 위한 가정치입니다. 2025년 1월 13일 이후 은행권에서 새로 받은 주택담보대출은 실제 비용 범위
+          안에서 요율이 정해져 대체로 0.5%대~0.9%대이고, 그 전에 받은 대출은 계약 당시 요율(고정형 1.4%·변동형 1.2% 등)이
+          그대로 적용됩니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
@@ -77,7 +82,7 @@ export function PrepaymentFeeCalculationBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   수수료율
                 </th>
-                <td className="border-border border-b px-3 py-2.5">1.2%</td>
+                <td className="border-border border-b px-3 py-2.5">0.7%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -107,13 +112,13 @@ export function PrepaymentFeeCalculationBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   수수료
                 </th>
-                <td className="px-3 py-2.5">5,000만 원 × 1.2% × (24 ÷ 36) = 약 40만 원</td>
+                <td className="px-3 py-2.5">5,000만 원 × 0.7% × (24 ÷ 36) = 약 23만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          상환 시점이 늦을수록 잔여기간이 줄어 수수료도 감소합니다. 같은 조건에서 2년 시점에 상환하면 수수료는 약 20만 원으로
+          상환 시점이 늦을수록 잔여기간이 줄어 수수료도 감소합니다. 같은 조건에서 2년 시점에 상환하면 수수료는 약 12만 원으로
           줄어듭니다.
         </p>
       </section>
@@ -145,28 +150,41 @@ export function PrepaymentFeeCalculationBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   시중은행 주담대
                 </th>
-                <td className="border-border border-b px-3 py-2.5">0.6% ~ 1.4%</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  2025년 1월 13일 이후 신규: 대체로 0.5%대~0.9%대(은행·금리 유형별 공시), 그 전 계약: 고정 1.4%·변동 1.2% 등
+                </td>
                 <td className="border-border border-b px-3 py-2.5">3년</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   인터넷전문은행
                 </th>
-                <td className="border-border border-b px-3 py-2.5">0% ~ 0.7%</td>
-                <td className="border-border border-b px-3 py-2.5">1년 ~ 3년</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  0% ~ 0.6%대(카카오뱅크는 주담대 중도상환 수수료 면제, 그 외는 은행별 공시 확인)
+                </td>
+                <td className="border-border border-b px-3 py-2.5">3년 이내(카카오뱅크는 면제)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   저축은행
                 </th>
-                <td className="border-border border-b px-3 py-2.5">1.0% ~ 2.0%</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  금융회사별 공시 확인(2025년 1월 이후 신규분은 실비용 기준으로 산정)
+                </td>
                 <td className="border-border border-b px-3 py-2.5">3년</td>
               </tr>
               <tr className="bg-muted/20">
-                <th scope="row" className="px-3 py-2.5 font-medium">
-                  정책 모기지(디딤돌·보금자리론)
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  디딤돌대출
                 </th>
-                <td className="px-3 py-2.5">1.2% ~ 1.5%</td>
+                <td className="border-border border-b px-3 py-2.5">0.6% 한도 (2026년 12월 31일까지 상환분은 면제)</td>
+                <td className="border-border border-b px-3 py-2.5">3년</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  보금자리론
+                </th>
+                <td className="px-3 py-2.5">0.5% 한도 (2025년 4월 이후 신청분)</td>
                 <td className="px-3 py-2.5">3년</td>
               </tr>
             </tbody>
@@ -208,7 +226,16 @@ export function PrepaymentFeeCalculationBody() {
                   디딤돌대출 중도상환
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  2024년 8월 ~ 2026년 12월 31일까지 수수료 면제
+                  2024년 8월 12일 ~ 2026년 12월 31일까지 상환한 원금은 수수료 면제 (이후에는 3년 이내 상환분에 0.6% 한도로
+                  부과)
+                </td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  보금자리론 중도상환
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  사회적배려층·다자녀(3자녀 이상) 우대금리 대상자, 전세사기피해자는 면제 (2025년 4월 1일 이후 신청분 기준)
                 </td>
               </tr>
               <tr>
@@ -261,7 +288,7 @@ export function PrepaymentFeeCalculationBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   중도상환 수수료
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 40만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 23만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -273,7 +300,7 @@ export function PrepaymentFeeCalculationBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   순 절감액
                 </th>
-                <td className="px-3 py-2.5">약 340만 원</td>
+                <td className="px-3 py-2.5">약 357만 원</td>
               </tr>
             </tbody>
           </table>
