@@ -6,6 +6,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "kakao-emergency-loan-interest-guide",
     "equal-payment-vs-equal-principal",
     "grace-period-explained",
+    "graduated-repayment-interest-guide",
     "variable-vs-fixed-rate-2026",
     "prepayment-fee-calculation",
     "loan-refinancing-guide",
@@ -52,6 +53,13 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "second-home-acquisition-tax-surcharge-2026-guide",
     "local-education-rural-special-tax-acquisition-2026-guide",
     "acquisition-tax-deadline-and-penalty-guide",
+  ],
+  "/farmland-acquisition-tax-calculator": [
+    "acquisition-tax-rates-2026-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+    "gift-tax-overview-guide",
+    "inheritance-tax-overview-guide",
   ],
   "/brokerage-fee-calculator": [
     "auction-vs-brokered-sale-cost-guide",
@@ -120,7 +128,8 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
     "/capital-gains-tax-calculator",
     "/comprehensive-property-tax-calculator",
   ],
-  "/acquisition-tax-calculator": ["/inheritance-tax-calculator"],
+  "/acquisition-tax-calculator": ["/farmland-acquisition-tax-calculator", "/inheritance-tax-calculator"],
+  "/farmland-acquisition-tax-calculator": ["/acquisition-tax-calculator", "/inheritance-tax-calculator"],
   "/capital-gains-tax-calculator": ["/inheritance-tax-calculator"],
   "/comprehensive-income-tax-calculator": [
     "/capital-gains-tax-calculator",

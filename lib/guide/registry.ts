@@ -35,6 +35,10 @@ import {
   sellerFinancingPrivateMortgage2026GuideMeta,
 } from "@/lib/guide/articles/seller-financing-private-mortgage-2026-guide";
 import { GracePeriodExplainedBody, gracePeriodExplainedMeta } from "@/lib/guide/articles/grace-period-explained";
+import {
+  GraduatedRepaymentInterestGuideBody,
+  graduatedRepaymentInterestGuideMeta,
+} from "@/lib/guide/articles/graduated-repayment-interest-guide";
 import { LoanRefinancingGuideBody, loanRefinancingGuideMeta } from "@/lib/guide/articles/loan-refinancing-guide";
 import {
   CreditScoreLoanRateGuideBody,
@@ -860,6 +864,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...interimPrepaymentIncomeTaxGuideMeta,
     Body: InterimPrepaymentIncomeTaxGuideBody,
+  },
+  {
+    ...graduatedRepaymentInterestGuideMeta,
+    Body: GraduatedRepaymentInterestGuideBody,
   },
 ];
 

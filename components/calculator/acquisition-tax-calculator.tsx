@@ -1,6 +1,10 @@
 "use client";
 
-import { AcquisitionTaxCalculatorReference } from "@/components/calculator/reference";
+import {
+  AcquisitionTaxCalculatorReference,
+  FarmlandAcquisitionTaxCalculatorReference,
+} from "@/components/calculator/reference";
+import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -164,8 +168,16 @@ function ResultTaxWithRate({ amount, rate }: { amount: number; rate: number }) {
   );
 }
 
-export function AcquisitionTaxCalculator() {
-  const [propertyCategory, setPropertyCategory] = React.useState<PropertyCategory>("house");
+type AcquisitionTaxCalculatorProps = {
+  /** `farmland`: 농지 전용 페이지용. 자산 구분을 농지로 고정하고 농지 기준표를 보여 줍니다. */
+  variant?: "general" | "farmland";
+};
+
+export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTaxCalculatorProps) {
+  const isFarmlandVariant = variant === "farmland";
+  const [propertyCategory, setPropertyCategory] = React.useState<PropertyCategory>(
+    isFarmlandVariant ? "farmland" : "house",
+  );
   const [nonHouseDetailType, setNonHouseDetailType] = React.useState<NonHouseDetailType>("general");
   const [acquisitionType, setAcquisitionType] = React.useState<AcquisitionType>("paid");
   const [farmlandSaleType, setFarmlandSaleType] = React.useState<FarmlandSaleType>("new");
@@ -342,21 +354,35 @@ export function AcquisitionTaxCalculator() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-      <Card id="acquisition-tax-calculator" className="scroll-mt-24">
+      <Card id={isFarmlandVariant ? "farmland-acquisition-tax-calculator" : "acquisition-tax-calculator"} className="scroll-mt-24">
         <CardContent className="space-y-4 pt-6">
-          <div className="space-y-2">
-            <Label htmlFor="propertyCategory">자산 구분</Label>
-            <select
-              id="propertyCategory"
-              className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
-              value={propertyCategory}
-              onChange={(e) => setPropertyCategory(e.target.value as PropertyCategory)}
-            >
-              <option value="house">주택</option>
-              <option value="non-house">주택 외 (토지, 건물 등)</option>
-              <option value="farmland">농지</option>
-            </select>
-          </div>
+          {isFarmlandVariant ? null : (
+            <div className="space-y-2">
+              <Label htmlFor="propertyCategory">자산 구분</Label>
+              <select
+                id="propertyCategory"
+                className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
+                value={propertyCategory}
+                onChange={(e) => setPropertyCategory(e.target.value as PropertyCategory)}
+              >
+                <option value="house">주택</option>
+                <option value="non-house">주택 외 (토지, 건물 등)</option>
+                <option value="farmland">농지</option>
+              </select>
+              {isFarmlandCategory ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  자경 감면 요건·농지취득자격증명·신고 기한까지 한 번에 보려면{" "}
+                  <Link
+                    href="/farmland-acquisition-tax-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    농지 취득세 계산기
+                  </Link>
+                  를 이용하세요.
+                </p>
+              ) : null}
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="acquisitionType">취득유형</Label>
@@ -405,6 +431,13 @@ export function AcquisitionTaxCalculator() {
                 <option value="new">신규</option>
                 <option value="self-cultivation">2년 이상 자경</option>
               </select>
+              {farmlandSaleType === "self-cultivation" ? (
+                <p className="rounded-md border border-amber-800/25 bg-amber-50 px-3 py-2 text-xs leading-relaxed text-amber-950 dark:border-amber-700/40 dark:bg-amber-950/30 dark:text-amber-50">
+                  자경농민 취득세 50% 경감은 현행법상 2026년 12월 31일까지입니다(정부가 2029년 12월 31일까지 연장하는
+                  개정안을 국회에 제출했으나 확정 전). 자경 요건 충족 여부는 계산기가 확인하지 않으며, 요건을 어기면
+                  경감세액이 추징됩니다.
+                </p>
+              ) : null}
             </div>
           ) : null}
 
@@ -426,7 +459,7 @@ export function AcquisitionTaxCalculator() {
             <Input
               id="acquisitionPrice"
               inputMode="numeric"
-              placeholder="예: 600,000,000"
+              placeholder={isFarmlandCategory ? "예: 100,000,000" : "예: 600,000,000"}
               value={priceDisplay}
               disabled={usesOfficialValueOnly}
               onChange={(e) => onMoneyInputChange(e.target.value, setPriceDisplay)}
@@ -443,14 +476,14 @@ export function AcquisitionTaxCalculator() {
             <Input
               id="officialValue"
               inputMode="numeric"
-              placeholder="예: 550,000,000"
+              placeholder={isFarmlandCategory ? "예: 80,000,000" : "예: 550,000,000"}
               value={officialValueDisplay}
               onChange={(e) => onMoneyInputChange(e.target.value, setOfficialValueDisplay)}
             />
             <p className="text-muted-foreground text-xs">
               {usesOfficialValueOnly
-                ? `${isGiftType ? "증여" : isInheritanceType ? "상속" : "원시"}는 해당 금액을 과세표준으로 사용합니다.`
-                : "두 값 중 큰 금액을 과세표준으로 사용합니다."}
+                ? `${isGiftType ? "증여" : isInheritanceType ? "상속" : "원시"}는 해당 금액을 과세표준으로 사용합니다.${isFarmlandCategory ? " 농지의 시가표준액은 개별공시지가 × 면적으로 어림할 수 있습니다." : ""}`
+                : `두 값 중 큰 금액을 과세표준으로 사용합니다.${isFarmlandCategory ? " 농지의 시가표준액은 개별공시지가 × 면적으로 어림할 수 있습니다." : ""}`}
             </p>
           </div>
 
@@ -617,7 +650,7 @@ export function AcquisitionTaxCalculator() {
         </CardContent>
       </Card>
 
-      <AcquisitionTaxCalculatorReference />
+      {isFarmlandVariant ? <FarmlandAcquisitionTaxCalculatorReference /> : <AcquisitionTaxCalculatorReference />}
     </div>
   );
 }

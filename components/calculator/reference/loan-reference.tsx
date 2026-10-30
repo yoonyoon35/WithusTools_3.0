@@ -23,7 +23,7 @@ const formulaRows = [
   [
     repaymentTypeLabels.graduated,
     "월 이자 = 잔액 × (연이율 ÷ 12)",
-    "같은 해 월 상환액 동일, 매년 체증률만큼 증가",
+    "첫 달 상환액에서 매월 정액 증가(또는 매년 정률 증가 선택)",
     "거치기간 중에는 이자만 납부",
   ],
   [
@@ -43,6 +43,10 @@ const graceExampleRows = [
 
 const includedRows = [
   ["원금·연이율·상환기간", "월 상환액·총 이자·상환 일정표"],
+  [
+    "상환표(상환 일정표)",
+    "원리금균등·원금균등·체증식·만기일시 상환표를 회차별 원금·이자·월 상환액·잔액으로 제공하고 Excel·Word·PDF로 저장",
+  ],
   ["상환 방식", "원리금균등·원금균등·체증식·만기일시"],
   ["거치기간", "원리금균등·원금균등·체증식(만기일시 제외)"],
   ["비교 모드", "두 상환 방식의 월 상환·총 이자·그래프 대조"],
@@ -121,7 +125,7 @@ const productRows = [
 ] as const;
 
 const notes = [
-  "원리금균등·원금균등·체증식·만기일시를 선택해 월 상환액·총 이자·상환 일정표를 확인할 수 있습니다.",
+  "원리금균등·원금균등·체증식·만기일시를 선택해 월 상환액·총 이자를 확인하고, 방식별 상환표(회차별 상환 일정표)를 Excel·Word·PDF로 저장할 수 있습니다.",
   "카카오 비상금대출 등 마이너스통장은 사용액 일할(연이율÷365)입니다. 한 달 내내 같은 금액을 쓸 때는 만기일시(연이율÷12)로 월 이자를 어림할 수 있습니다.",
   "비교 모드를 켜면 두 상환 방식의 월 상환·총 이자·그래프를 한 화면에서 대조할 수 있습니다.",
   "거치기간은 원금 상환을 미루고 이자만 납부하는 구조로, 총 이자가 늘고 거치 종료 후 상환액이 커질 수 있습니다.",
@@ -191,19 +195,19 @@ export function LoanCalculatorReference() {
           minWidth="min-w-[960px]"
         />
         <p className="text-muted-foreground mt-3 text-xs leading-relaxed">
-          <Link href="/?type=equal-payment#calculator" className="text-primary underline-offset-4 hover:underline">
+          <Link href="/loan-calculator?type=equal-payment#calculator" className="text-primary underline-offset-4 hover:underline">
             원리금균등
           </Link>
           ·
-          <Link href="/?type=equal-principal#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
+          <Link href="/loan-calculator?type=equal-principal#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
             원금균등
           </Link>
           ·
-          <Link href="/?type=graduated#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
+          <Link href="/loan-calculator?type=graduated#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
             체증식
           </Link>
           ·
-          <Link href="/?type=bullet#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
+          <Link href="/loan-calculator?type=bullet#calculator" className="text-primary ml-1 underline-offset-4 hover:underline">
             만기일시
           </Link>
           로 바로 계산할 수 있습니다.

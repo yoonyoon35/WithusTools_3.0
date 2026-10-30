@@ -73,6 +73,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "equal-payment-150-million-mortgage-interest-guide",
       "kakao-emergency-loan-interest-guide",
       "grace-period-explained",
+      "graduated-repayment-interest-guide",
       "variable-vs-fixed-rate-2026",
       "prepayment-fee-calculation",
       "600-million-prepayment-vs-interest-guide",
@@ -127,7 +128,7 @@ export const guideTopics: readonly GuideTopic[] = [
     label: "취득세",
     description: "세율·감면·중과, 지방교육세·농어촌특별세, 납부 기한",
     pillarSlug: "acquisition-tax-rates-2026-guide",
-    calculatorHrefs: ["/acquisition-tax-calculator"],
+    calculatorHrefs: ["/acquisition-tax-calculator", "/farmland-acquisition-tax-calculator"],
     slugs: [
       "acquisition-tax-rates-2026-guide",
       "new-construction-apartment-acquisition-tax-guide",

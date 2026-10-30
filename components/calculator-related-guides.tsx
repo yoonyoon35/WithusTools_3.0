@@ -4,7 +4,7 @@ import {
   getCalculatorRelatedCalculatorHrefs,
   getCalculatorRelatedGuides,
 } from "@/lib/calculator-guides";
-import { calculatorTools } from "@/lib/calculators";
+import { getCalculatorToolTitle } from "@/lib/calculators";
 import { getGuideTopicForSlug, getGuideTopicPath } from "@/lib/guide/topics";
 
 type CalculatorRelatedGuidesProps = {
@@ -12,7 +12,7 @@ type CalculatorRelatedGuidesProps = {
 };
 
 function getCalculatorTitle(href: string): string {
-  return calculatorTools.find((tool) => tool.href === href)?.title ?? href;
+  return getCalculatorToolTitle(href) ?? href;
 }
 
 export function CalculatorRelatedGuides({ path }: CalculatorRelatedGuidesProps) {

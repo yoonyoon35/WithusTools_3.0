@@ -48,6 +48,18 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
     path: "/acquisition-tax-calculator",
     featureList: ["취득세 산출", "농지 취득세", "지방교육세·농어촌특별세(농특세) 반영", "주택 수·조정지역 조건"],
   },
+  "/farmland-acquisition-tax-calculator": {
+    name: "농지 취득세 계산기",
+    description:
+      "농지 매매·상속·증여·원시취득별 취득세와 농어촌특별세·지방교육세를 계산하고, 2년 이상 자경 감면 요건과 농지취득자격증명, 신고 기한을 안내하는 계산기입니다.",
+    path: "/farmland-acquisition-tax-calculator",
+    featureList: [
+      "농지 매매 취득세(일반 3%·자경 1.5%)",
+      "농지 상속·영농상속 취득세",
+      "농지 증여·원시취득 취득세",
+      "농어촌특별세·지방교육세 합산",
+    ],
+  },
   "/brokerage-fee-calculator": {
     name: "중개수수료 계산기",
     description: "매매·전세·월세 거래 유형별 중개수수료 상한액을 계산하는 계산기입니다.",

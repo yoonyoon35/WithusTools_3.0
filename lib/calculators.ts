@@ -4,6 +4,8 @@ export type CalculatorTool = {
   description: string;
   /** 허브에서 강조 표시할 대표 계산기 */
   featured?: boolean;
+  /** 카드 안에 보조 링크로만 노출하는 하위 계산기(계산기 개수에는 포함하지 않음) */
+  subLinks?: readonly { href: string; title: string; label: string }[];
 };
 
 export const calculatorTools: readonly CalculatorTool[] = [
@@ -32,6 +34,9 @@ export const calculatorTools: readonly CalculatorTool[] = [
     href: "/acquisition-tax-calculator",
     title: "취득세 계산기",
     description: "주택·주택 외 자산 구분과 취득 유형별 취득세·부가세를 계산합니다.",
+    subLinks: [
+      { href: "/farmland-acquisition-tax-calculator", title: "농지 취득세 계산기", label: "농지 취득세 바로가기" },
+    ],
   },
   {
     href: "/brokerage-fee-calculator",
@@ -66,3 +71,13 @@ export const calculatorTools: readonly CalculatorTool[] = [
 ] as const;
 
 export const LOAN_CALCULATOR_PATH = "/loan-calculator" as const;
+
+/** 계산기 제목 조회(보조 링크 계산기 포함) */
+export function getCalculatorToolTitle(href: string): string | undefined {
+  for (const tool of calculatorTools) {
+    if (tool.href === href) return tool.title;
+    const sub = tool.subLinks?.find((link) => link.href === href);
+    if (sub) return sub.title;
+  }
+  return undefined;
+}

@@ -18,6 +18,7 @@ const calculators = [
   { path: "/dti-calculator", title: "DTI 계산기", desc: "주담대 원리금·기타 대출 이자로 DTI(%) 간이 산출." },
   { path: "/ltv-calculator", title: "LTV 계산기", desc: "담보 가격·규제지역·주택 보유 조건으로 LTV(%)와 대출 가능액." },
   { path: "/acquisition-tax-calculator", title: "취득세 계산기", desc: "주택·주택 외 자산, 취득 유형별 취득세·지방교육세·농특세." },
+  { path: "/farmland-acquisition-tax-calculator", title: "농지 취득세 계산기", desc: "농지 매매·상속·증여·원시취득별 취득세·농특세·지방교육세, 2년 이상 자경 감면 요건과 농지취득자격증명·신고 기한 안내." },
   { path: "/brokerage-fee-calculator", title: "중개수수료 계산기", desc: "매매·전세·월세 거래 유형별 중개수수료 상한액." },
   { path: "/prepayment-fee-calculator", title: "중도상환 수수료 계산기", desc: "중도상환 수수료·면제 기간 참고 계산." },
   {

@@ -12,6 +12,12 @@ export function SiteFooter() {
           <Link href="/acquisition-tax-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             취득세 계산기
           </Link>
+          <Link
+            href="/farmland-acquisition-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            농지 취득세 계산기
+          </Link>
           <Link href="/brokerage-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             중개수수료 계산기
           </Link>

@@ -56,20 +56,40 @@ export function CalculatorGridSection() {
         </p>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {calculatorTools.map((tool) => (
-            <li key={tool.href}>
+            <li
+              key={tool.href}
+              className={`hover:border-primary/40 hover:bg-muted/40 group relative flex h-full flex-col rounded-xl border p-5 transition-colors ${
+                tool.featured ? "border-primary/30 bg-primary/5 ring-primary/20 ring-1" : "border-border bg-card"
+              }`}
+            >
               <Link
                 href={tool.href}
-                className={`hover:border-primary/40 hover:bg-muted/40 group flex h-full flex-col rounded-xl border p-5 transition-colors ${
-                  tool.featured ? "border-primary/30 bg-primary/5 ring-primary/20 ring-1" : "border-border bg-card"
-                }`}
+                className="group-hover:text-primary text-base font-semibold after:absolute after:inset-0 after:rounded-xl after:content-['']"
               >
-                <span className="group-hover:text-primary text-base font-semibold">{tool.title}</span>
-                <span className="text-muted-foreground mt-2 flex-1 text-sm leading-relaxed">{tool.description}</span>
-                <span className="text-primary mt-4 inline-flex items-center gap-1 text-sm font-medium">
+                {tool.title}
+              </Link>
+              <span className="text-muted-foreground mt-2 flex-1 text-sm leading-relaxed">{tool.description}</span>
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+                <span className="text-primary inline-flex items-center gap-1 text-sm font-medium" aria-hidden>
                   계산하기
                   <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
                 </span>
-              </Link>
+                {tool.subLinks ? (
+                  <ul className="relative z-10 flex flex-wrap gap-2">
+                    {tool.subLinks.map((sub) => (
+                      <li key={sub.href}>
+                        <Link
+                          href={sub.href}
+                          className="border-border bg-background hover:border-primary/40 hover:text-primary inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-medium transition-colors"
+                        >
+                          {sub.label}
+                          <ArrowRight className="size-3" aria-hidden />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
             </li>
           ))}
         </ul>

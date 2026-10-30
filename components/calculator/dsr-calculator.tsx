@@ -1,6 +1,7 @@
 "use client";
 
 import { DsrCalculatorReference } from "@/components/calculator/reference";
+import { GraduatedInputGuide } from "@/components/calculator/graduated-input-guide";
 import * as React from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -913,11 +914,7 @@ function LoanRowEditor({
           <option value="graduated">{repaymentTypeLabels.graduated}</option>
           <option value="bullet">{repaymentTypeLabels.bullet}</option>
         </select>
-        {row.repaymentType === "graduated" ? (
-          <p className="text-muted-foreground text-xs leading-relaxed">
-            체증식은 DSR 계산기에서 「월 상환 직접」만 지원합니다. 통장·상환 스케줄의 이번 달 납입액을 입력하세요.
-          </p>
-        ) : null}
+        {row.repaymentType === "graduated" ? <GraduatedInputGuide metric="DSR" /> : null}
       </div>
 
       <div className="bg-muted inline-flex rounded-lg p-0.5" role="group" aria-label="입력 방식">

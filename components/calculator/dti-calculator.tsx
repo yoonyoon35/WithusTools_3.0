@@ -1,6 +1,7 @@
 "use client";
 
 import { DtiCalculatorReference } from "@/components/calculator/reference";
+import { GraduatedInputGuide } from "@/components/calculator/graduated-input-guide";
 import * as React from "react";
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -328,6 +329,7 @@ function LoanRowEditor({
             <option value="graduated">{repaymentTypeLabels.graduated}</option>
             <option value="bullet">{repaymentTypeLabels.bullet}</option>
           </select>
+          {row.repaymentType === "graduated" ? <GraduatedInputGuide metric="DTI" /> : null}
         </div>
       ) : null}
 

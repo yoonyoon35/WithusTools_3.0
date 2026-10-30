@@ -6,6 +6,7 @@ export { CalculatorReferenceTable } from "./calculator-reference-table";
 export { AcquisitionTaxCalculatorReference } from "./acquisition-tax-reference";
 export { BrokerageFeeCalculatorReference } from "./brokerage-fee-reference";
 export { CapitalGainsTaxCalculatorReference } from "./capital-gains-tax-reference";
+export { FarmlandAcquisitionTaxCalculatorReference } from "./farmland-acquisition-tax-reference";
 export { ComprehensivePropertyTaxCalculatorReference } from "./comprehensive-property-tax-reference";
 export { DsrCalculatorReference } from "./dsr-reference";
 export { DtiCalculatorReference } from "./dti-reference";

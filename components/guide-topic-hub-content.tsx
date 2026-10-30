@@ -3,12 +3,12 @@ import { ArrowRight, Calculator } from "lucide-react";
 import { BreadcrumbNav } from "@/components/breadcrumb-nav";
 import { GuideArticleCard } from "@/components/guide-article-card";
 import { GuideTopicArticleSections } from "@/components/guide-topic-article-sections";
-import { calculatorTools } from "@/lib/calculators";
+import { getCalculatorToolTitle } from "@/lib/calculators";
 import { getGuideArticle } from "@/lib/guide/registry";
 import { getGuideTopicPath, guideTopics, type GuideTopic } from "@/lib/guide/topics";
 
 function getCalculatorTitle(href: string): string {
-  return calculatorTools.find((tool) => tool.href === href)?.title ?? href;
+  return getCalculatorToolTitle(href) ?? href;
 }
 
 export function GuideTopicHubContent({ topic }: { topic: GuideTopic }) {

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
@@ -11,12 +12,16 @@ import { Label } from "@/components/ui/label";
 import type { ScheduleExportData } from "@/lib/download-schedule";
 import {
   DEFAULT_GRADUATED_ANNUAL_INCREASE_PERCENT,
+  findMaxGraduatedIncreasePercent,
   formatNumber,
+  getGraduatedFixedFirstPaymentRange,
+  isGraduatedScheduleValid,
   removeCommas,
   repaymentTypeLabels,
   runCalculation,
   type CalculationOptions,
   type CalculationResult,
+  type GraduatedMode,
   type RepaymentType,
 } from "@/lib/loan-calculations";
 
@@ -41,6 +46,13 @@ function addCommas(value: string): string {
   return new Intl.NumberFormat("ko-KR").format(parseInt(numValue, 10));
 }
 
+const scheduleTableNames: Record<RepaymentType, string> = {
+  "equal-payment": "원리금균등",
+  "equal-principal": "원금균등",
+  graduated: "체증식",
+  bullet: "만기일시",
+};
+
 function parseRepaymentType(v: string | null): RepaymentType | null {
   if (v === "equal-payment" || v === "equal-principal" || v === "graduated" || v === "bullet") return v;
   return null;
@@ -53,7 +65,9 @@ function buildSearchParams(args: {
   period: number;
   unit: "year" | "month";
   type: RepaymentType;
+  graduatedMode: GraduatedMode;
   graduatedRate: number;
+  graduatedFirstPayment: number | null;
   compare: boolean;
   compareType: RepaymentType | "";
 }) {
@@ -65,7 +79,12 @@ function buildSearchParams(args: {
   p.set("unit", args.unit);
   p.set("type", args.type);
   if (args.type === "graduated" || args.compareType === "graduated") {
-    p.set("graduatedRate", String(args.graduatedRate));
+    p.set("graduatedMode", args.graduatedMode);
+    if (args.graduatedMode === "percent") {
+      p.set("graduatedRate", String(args.graduatedRate));
+    } else if (args.graduatedFirstPayment != null) {
+      p.set("graduatedFirst", String(Math.round(args.graduatedFirstPayment)));
+    }
   }
   if (args.compare && args.compareType) {
     p.set("compare", "1");
@@ -82,6 +101,8 @@ function hydrateFromSearchParams(searchParams: URLSearchParams, setters: {
   setPeriodUnit: (v: "year" | "month") => void;
   setRepaymentType: (v: RepaymentType) => void;
   setGraduatedIncreaseRate: (v: string) => void;
+  setGraduatedMode: (v: GraduatedMode) => void;
+  setGraduatedFirstPayment: (v: string) => void;
   setCompareMode: (v: boolean) => void;
   setCompareType: (v: RepaymentType | "") => void;
 }) {
@@ -94,6 +115,8 @@ function hydrateFromSearchParams(searchParams: URLSearchParams, setters: {
   const compare = searchParams.get("compare");
   const compareT = searchParams.get("compareType");
   const graduatedRate = searchParams.get("graduatedRate");
+  const graduatedModeParam = searchParams.get("graduatedMode");
+  const graduatedFirst = searchParams.get("graduatedFirst");
 
   if (amount) setters.setLoanAmountDisplay(addCommas(amount.replace(/\D/g, "")));
   if (rate != null && rate !== "") setters.setInterestRate(rate);
@@ -103,6 +126,15 @@ function hydrateFromSearchParams(searchParams: URLSearchParams, setters: {
   const pt = parseRepaymentType(type);
   if (pt) setters.setRepaymentType(pt);
   if (graduatedRate != null && graduatedRate !== "") setters.setGraduatedIncreaseRate(graduatedRate);
+  // 예전 링크(graduatedRate만 있는 URL)는 정률 방식으로 해석합니다.
+  if (graduatedModeParam === "fixed" || graduatedModeParam === "percent") {
+    setters.setGraduatedMode(graduatedModeParam);
+  } else if (graduatedRate != null && graduatedRate !== "") {
+    setters.setGraduatedMode("percent");
+  }
+  if (graduatedFirst != null && graduatedFirst !== "") {
+    setters.setGraduatedFirstPayment(addCommas(graduatedFirst.replace(/\D/g, "")));
+  }
   setters.setCompareMode(compare === "1" || compare === "true");
   const ct = parseRepaymentType(compareT);
   setters.setCompareType(ct ?? "");
@@ -121,6 +153,9 @@ export function LoanCalculator() {
   const [graduatedIncreaseRate, setGraduatedIncreaseRate] = React.useState(
     String(DEFAULT_GRADUATED_ANNUAL_INCREASE_PERCENT),
   );
+  const [graduatedMode, setGraduatedMode] = React.useState<GraduatedMode>("fixed");
+  const [graduatedFirstPayment, setGraduatedFirstPayment] = React.useState("");
+  const [graduatedNote, setGraduatedNote] = React.useState<string | null>(null);
   const [compareMode, setCompareMode] = React.useState(false);
   const [compareType, setCompareType] = React.useState<RepaymentType | "">("");
 
@@ -141,6 +176,8 @@ export function LoanCalculator() {
         setPeriodUnit,
         setRepaymentType,
         setGraduatedIncreaseRate,
+        setGraduatedMode,
+        setGraduatedFirstPayment,
         setCompareMode,
         setCompareType,
       });
@@ -151,6 +188,9 @@ export function LoanCalculator() {
   }, []);
 
   const graceDisabled = repaymentType === "bullet";
+
+  // 계산한 결과가 있으면 그 상환 방식, 없으면 현재 선택한 방식의 상환표 이름을 보여 줍니다.
+  const scheduleTableTitle = `${scheduleTableNames[exportData?.repaymentType ?? repaymentType]} 상환표 (상환 일정표)`;
 
   React.useEffect(() => {
     if (graceDisabled) {
@@ -211,14 +251,48 @@ export function LoanCalculator() {
       return;
     }
 
+    const usesGraduatedType = repaymentType === "graduated" || (compareMode && compareType === "graduated");
+
     const parsedGraduatedRate = parseFloat(graduatedIncreaseRate);
-    if (Number.isNaN(parsedGraduatedRate) || parsedGraduatedRate < 0 || parsedGraduatedRate > 20) {
+    if (
+      usesGraduatedType &&
+      graduatedMode === "percent" &&
+      (Number.isNaN(parsedGraduatedRate) || parsedGraduatedRate < 0 || parsedGraduatedRate > 20)
+    ) {
       window.alert("체증률을 올바르게 입력해주세요 (0-20%).");
       return;
     }
 
+    let parsedFirstPayment: number | null = null;
+    if (usesGraduatedType && graduatedMode === "fixed") {
+      const firstText = removeCommas(graduatedFirstPayment).trim();
+      if (firstText !== "") {
+        const range = getGraduatedFixedFirstPaymentRange(loanAmount, rate, loanPeriodMonths - graceMonths);
+        const value = parseFloat(firstText);
+        if (Number.isNaN(value) || value <= 0) {
+          window.alert("첫 달 상환액을 올바르게 입력해주세요.");
+          return;
+        }
+        if (value < Math.floor(range.min)) {
+          window.alert(
+            `첫 달 상환액은 첫 달 이자(약 ${formatNumber(range.min)}원)보다 작을 수 없습니다. 이보다 작으면 원금이 줄지 않습니다.`,
+          );
+          return;
+        }
+        if (value > Math.ceil(range.max)) {
+          window.alert(
+            `첫 달 상환액이 원리금균등 월 상환액(약 ${formatNumber(range.max)}원)보다 크면 매월 늘어나는 체증식이 될 수 없습니다. 더 작은 금액을 입력해주세요.`,
+          );
+          return;
+        }
+        parsedFirstPayment = value;
+      }
+    }
+
     const calcOptions: CalculationOptions = {
-      graduatedAnnualIncreasePercent: parsedGraduatedRate,
+      graduatedMode,
+      graduatedAnnualIncreasePercent: Number.isNaN(parsedGraduatedRate) ? undefined : parsedGraduatedRate,
+      graduatedFirstPayment: parsedFirstPayment ?? undefined,
     };
 
     const primary = runCalculation(
@@ -233,6 +307,40 @@ export function LoanCalculator() {
     let second: CalculationResult | null = null;
     if (compareMode && compareType && compareType !== repaymentType) {
       second = runCalculation(compareType, loanAmount, rate, loanPeriodMonths, finalGraceYears, calcOptions);
+    }
+
+    const graduatedResult = repaymentType === "graduated" ? primary : compareType === "graduated" ? second : null;
+    if (graduatedResult && graduatedMode === "percent") {
+      if (!isGraduatedScheduleValid(graduatedResult, graceMonths)) {
+        const maxRate = findMaxGraduatedIncreasePercent(
+          loanAmount,
+          rate,
+          loanPeriodMonths,
+          graceMonths,
+          Math.min(20, parsedGraduatedRate),
+        );
+        window.alert(
+          `체증률 ${parsedGraduatedRate}%는 이 대출 기간에서 계산할 수 없습니다. 기간이 길수록 체증률을 낮춰야 하며, 현재 조건에서는 약 ${maxRate}% 이하로 입력해주세요.`,
+        );
+        return;
+      }
+    }
+
+    if (graduatedResult && graduatedMode === "fixed") {
+      const start = graduatedResult.schedule[graceMonths];
+      const next = graduatedResult.schedule[graceMonths + 1];
+      const last = graduatedResult.schedule[graduatedResult.schedule.length - 1];
+      const increment = start && next ? next.payment - start.payment : 0;
+      const firstText = parsedFirstPayment == null ? "자동 추정한 첫 달 상환액" : "입력한 첫 달 상환액";
+      setGraduatedNote(
+        `${firstText} ${formatNumber(start?.payment ?? 0)}원에서 시작해 매월 약 ${formatNumber(increment)}원씩 늘어나 마지막 달 ${formatNumber(last?.payment ?? 0)}원이 됩니다.${
+          parsedFirstPayment == null
+            ? " 실제 상품의 첫 달 상환액을 알면 입력해 보세요."
+            : ""
+        }`,
+      );
+    } else {
+      setGraduatedNote(null);
     }
 
     setResult(primary);
@@ -260,7 +368,9 @@ export function LoanCalculator() {
       period: periodVal,
       unit: periodUnit,
       type: repaymentType,
+      graduatedMode,
       graduatedRate: parsedGraduatedRate,
+      graduatedFirstPayment: parsedFirstPayment,
       compare: Boolean(compareMode && second),
       compareType: compareMode && second ? (compareType as RepaymentType) : "",
     });
@@ -279,6 +389,8 @@ export function LoanCalculator() {
     compareMode,
     compareType,
     graduatedIncreaseRate,
+    graduatedMode,
+    graduatedFirstPayment,
     graceDisabled,
     pathname,
     router,
@@ -450,20 +562,52 @@ export function LoanCalculator() {
           </div>
 
           {repaymentType === "graduated" ? (
-            <div className="space-y-2">
-              <Label htmlFor="graduatedIncreaseRate">체증률 (연 %)</Label>
-              <Input
-                id="graduatedIncreaseRate"
-                type="number"
-                min={0}
-                max={20}
-                step="0.1"
-                placeholder="예: 5"
-                value={graduatedIncreaseRate}
-                onChange={(e) => setGraduatedIncreaseRate(e.target.value)}
-                aria-describedby="hint-graduated"
-              />
-              <GraduatedRepaymentGuide id="hint-graduated" />
+            <div className="space-y-3">
+              <div className="space-y-2">
+                <Label htmlFor="graduatedMode">체증 방식</Label>
+                <select
+                  id="graduatedMode"
+                  className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
+                  value={graduatedMode}
+                  onChange={(e) => setGraduatedMode(e.target.value as GraduatedMode)}
+                >
+                  <option value="fixed">매월 정액 증가 (보금자리론 방식)</option>
+                  <option value="percent">매년 정률 증가 (계단식)</option>
+                </select>
+              </div>
+              {graduatedMode === "fixed" ? (
+                <div className="space-y-2">
+                  <Label htmlFor="graduatedFirstPayment">첫 달 상환액 (원, 선택)</Label>
+                  <Input
+                    id="graduatedFirstPayment"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="비우면 자동 추정"
+                    value={graduatedFirstPayment}
+                    onChange={(e) => {
+                      const num = e.target.value.replace(/[^0-9]/g, "");
+                      setGraduatedFirstPayment(num ? addCommas(num) : "");
+                    }}
+                    aria-describedby="hint-graduated"
+                  />
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <Label htmlFor="graduatedIncreaseRate">체증률 (연 %)</Label>
+                  <Input
+                    id="graduatedIncreaseRate"
+                    type="number"
+                    min={0}
+                    max={20}
+                    step="0.1"
+                    placeholder="예: 5"
+                    value={graduatedIncreaseRate}
+                    onChange={(e) => setGraduatedIncreaseRate(e.target.value)}
+                    aria-describedby="hint-graduated"
+                  />
+                </div>
+              )}
+              <GraduatedRepaymentGuide id="hint-graduated" mode={graduatedMode} />
             </div>
           ) : null}
 
@@ -563,7 +707,10 @@ export function LoanCalculator() {
                   월상환액은 상환원금과 이자의 합입니다. 원리금균등상환은 월상환액이 일정하고, 원금균등상환은 초기에 높고 점차 줄어듭니다.
                 </p>
               ) : null}
-              {repaymentType === "graduated" ? <GraduatedRepaymentGuide compact /> : null}
+              {repaymentType === "graduated" && graduatedNote ? (
+                <p className="text-foreground font-medium">{graduatedNote}</p>
+              ) : null}
+              {repaymentType === "graduated" ? <GraduatedRepaymentGuide compact mode={graduatedMode} /> : null}
               {!result.schedule.length ? (
                 <p>아직 계산 전입니다. 입력값을 채우고 계산하기를 누르면 결과와 차트가 갱신됩니다.</p>
               ) : null}
@@ -574,16 +721,19 @@ export function LoanCalculator() {
 
       <Card className="lg:col-span-2">
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <CardTitle className="text-lg">상환 일정표</CardTitle>
+          <CardTitle className="text-lg">
+            {scheduleTableTitle}
+            <span className="text-muted-foreground ml-2 text-sm font-normal">회차별 원금·이자·잔액</span>
+          </CardTitle>
           <ScheduleDownloadButtons data={exportData} />
         </CardHeader>
         <CardContent>
           <div
             className="max-h-[min(25.5rem,55vh)] overflow-auto rounded-md border"
             role="region"
-            aria-label="상환 일정표. 약 10회차까지 보이며 나머지는 세로 스크롤로 확인할 수 있습니다."
+            aria-label={`${scheduleTableTitle}. 약 10회차까지 보이며 나머지는 세로 스크롤로 확인할 수 있습니다.`}
           >
-            <table className="w-full min-w-[520px] border-collapse text-sm" role="table" aria-label="상환 일정표">
+            <table className="w-full min-w-[520px] border-collapse text-sm" role="table" aria-label={scheduleTableTitle}>
               <thead className="bg-card sticky top-0 z-[1] shadow-[0_1px_0_0_var(--border)]">
                 <tr className="bg-muted/50 border-b">
                   <th scope="col" className="bg-muted/50 p-2 text-left font-medium backdrop-blur-sm">
@@ -632,7 +782,15 @@ export function LoanCalculator() {
   );
 }
 
-function GraduatedRepaymentGuide({ id, compact = false }: { id?: string; compact?: boolean }) {
+function GraduatedRepaymentGuide({
+  id,
+  compact = false,
+  mode,
+}: {
+  id?: string;
+  compact?: boolean;
+  mode: GraduatedMode;
+}) {
   return (
     <div
       id={id}
@@ -644,11 +802,36 @@ function GraduatedRepaymentGuide({ id, compact = false }: { id?: string; compact
     >
       {!compact ? <p className="text-foreground font-medium">체증식 계산 방식 (본 계산기 기준)</p> : null}
       <ul className="list-disc space-y-1 pl-4">
-        <li>
-          같은 해 12개월은 월 상환액이 같고, 매년 체증률만큼 증가하는 계단식입니다. 매월 조금씩 복리로 오르는 방식은 아닙니다.
-        </li>
+        {mode === "fixed" ? (
+          <>
+            <li>
+              첫 달 상환액에서 시작해 매월 같은 금액씩 늘어나며 만기에 잔액이 0이 되도록 증가액을 계산합니다. 한국주택금융공사 보금자리론
+              설명서의 &quot;매월 일정금액씩 증가&quot; 방식입니다.
+            </li>
+            <li>
+              첫 달 상환액은 상품 상환 예정표 값을 넣으면 가장 정확합니다. 비우면 보금자리론 설명서 예시(1억 원·연 3%·10년)의 비율로 추정하므로,
+              다른 조건에서는 실제 상환표와 차이가 날 수 있습니다.
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              같은 해 12개월은 월 상환액이 같고, 매년 체증률만큼 증가하는 계단식입니다. 매월 정액으로 늘리는 보금자리론 방식과는 다릅니다.
+            </li>
+            <li>체증률이 높고 대출 기간이 길면 계산되지 않을 수 있습니다.</li>
+          </>
+        )}
         <li>월 상환액은 상환 시작 첫 달 기준입니다. 이후 회차는 상환 일정표에서 확인하세요.</li>
-        <li>은행·타 계산기마다 체증 정의가 다를 수 있어 참고용으로 활용해 주세요.</li>
+        <li>
+          은행·상품마다 체증 방식이 달라 실제 상환 예정표와 차이가 날 수 있으니 참고용으로 활용해 주세요. 자세한 구조와 입력법은{" "}
+          <Link
+            href="/guide/graduated-repayment-interest-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            체증식 대출 이자 계산 방법
+          </Link>
+          {" "}가이드를 참고하세요.
+        </li>
       </ul>
     </div>
   );

@@ -310,7 +310,11 @@ export function EqualPaymentVsEqualPrincipalBody() {
           </li>
           <li>
             <strong>은행 기본값(원리금균등)을 그대로 수용</strong> — 상품·기관마다 허용 방식이 다릅니다. 신청 전 비교 모드로
-            차이를 확인하세요.
+            차이를 확인하세요. 초기 부담을 더 낮추는 체증식은{" "}
+            <Link href="/guide/graduated-repayment-interest-guide" className="text-primary underline-offset-4 hover:underline">
+              체증식 대출 이자 계산 방법
+            </Link>
+            에서 설명합니다.
           </li>
           <li>
             <strong>중도상환 계획 없이 “이자 적은 쪽”만 고름</strong> — 실제로 중도상환을 못 하면 원금균등의 이점이 줄어듭니다.

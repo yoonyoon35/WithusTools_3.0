@@ -10,6 +10,7 @@ const staticPages: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
   { url: `${SITE_URL}/loan-calculator`, changeFrequency: "weekly", priority: 0.95 },
   { url: `${SITE_URL}/acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.85 },
+  { url: `${SITE_URL}/farmland-acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.8 },
   { url: `${SITE_URL}/brokerage-fee-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/dsr-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/dti-calculator`, changeFrequency: "weekly", priority: 0.85 },
