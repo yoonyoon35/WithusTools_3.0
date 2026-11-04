@@ -373,10 +373,10 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
           단계에서는 보통 매입하지 않습니다. 시가표준액은 등기 접수 시점 기준이므로, 잔금 전 공시가격을 미리 확인해
           두는 것이 좋습니다.{" "}
           <Link
-            href="/guide/new-apartment-600-million-acquisition-tax-guide"
+            href="/guide/new-construction-apartment-acquisition-tax-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
-            6억 신축 분양 아파트 취득세 계산
+            신축 분양 아파트 취득세 계산
           </Link>
           가이드에서 잔금일 취득세·채권 등 자금을 함께 점검할 수 있습니다.
         </p>
@@ -756,10 +756,10 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
           </li>
           <li>
             <Link
-              href="/guide/new-apartment-600-million-acquisition-tax-guide"
+              href="/guide/new-construction-apartment-acquisition-tax-guide"
               className="text-primary font-medium underline-offset-4 hover:underline"
             >
-              6억 신축 분양 아파트 취득세 계산
+              신축 분양 아파트 취득세 계산
             </Link>
             — 잔금일 자금(취득세·채권)
           </li>

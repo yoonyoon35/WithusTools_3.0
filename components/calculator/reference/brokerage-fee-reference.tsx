@@ -32,7 +32,7 @@ const leaseExampleRows = [
 ] as const;
 
 const includedRows = [
-  ["부동산 종류", "주택·오피스텔·주택·오피스텔 외"],
+  ["부동산 종류", "주택·오피스텔·주택·오피스텔 외(상가·토지·건물 등 비주거)"],
   ["거래 유형", "매매·교환·임대차(전·월세)"],
   ["전·월세 환산", "보증금+월세 환산 거래금액 산정"],
   ["서울시 요율표", "2021.12.30(주택)·2015.1.6(오피스텔·기타) 고시 반영"],
@@ -189,11 +189,11 @@ export function BrokerageFeeCalculatorReference() {
             </tbody>
           </table>
         </div>
-        <p className="text-muted-foreground mt-4 text-xs font-medium">4. 주택·오피스텔 외 (토지, 상가 등)</p>
+        <p className="text-muted-foreground mt-4 text-xs font-medium">4. 주택·오피스텔 외 — 상가·토지·건물 등 비주거 부동산</p>
         <CalculatorReferenceTable
-          caption="주택·오피스텔 외 상한 요율"
+          caption="상가·토지·건물 등 비주거(주택·오피스텔 외) 상한 요율"
           headers={["거래 유형", "상한 요율"]}
-          rows={[["매매·교환·임대차 등", "거래금액의 0.9% (9/1,000)"]]}
+          rows={[["매매·교환·임대차 등", "거래금액의 0.9% (9/1,000) 이내에서 협의"]]}
           minWidth="min-w-[560px]"
           lastColumnRight
         />

@@ -16,7 +16,6 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "kb-mortgage-300-million-limit-2026-guide",
     "seller-financing-private-mortgage-2026-guide",
     "real-estate-balloon-effect-2026-guide",
-    "dsr-calculation-method",
     "dsr-40-mortgage-limit",
     "stress-dsr-explained",
     "ltv-dti-dsr-comparison",
@@ -45,8 +44,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
   ],
   "/acquisition-tax-calculator": [
     "auction-home-purchase-guide",
-    "auction-500-million-total-cost-guide",
-    "auction-700-million-total-cost-guide",
+    "auction-vs-brokered-sale-cost-guide",
     "acquisition-tax-rates-2026-guide",
     "new-construction-apartment-acquisition-tax-guide",
     "first-home-acquisition-tax-relief-guide",
@@ -78,9 +76,7 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
   ],
   "/comprehensive-property-tax-calculator": [
     "comprehensive-property-tax-overview-guide",
-    "comprehensive-property-tax-fair-ratio-calculation-2026-guide",
-    "comprehensive-property-tax-fairness-debate-2026-guide",
-    "ultra-high-end-home-threshold-debate-2026-guide",
+    "holding-capital-gains-tax-increase-2026-guide",
     "one-household-one-home-comprehensive-property-tax-amount-guide",
     "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
   ],

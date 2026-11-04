@@ -453,7 +453,7 @@ export function GraduatedRepaymentInterestGuideBody() {
           </Link>
           는 체증식을 직접 계산하지 않습니다. 체증식 대출은 상환 방식에서 「월 상환 직접」을 고르고 상환 예정표의 해당 시점 월 납입액을 넣어
           주세요. DSR 기본 개념은{" "}
-          <Link href="/guide/dsr-calculation-method" className={linkClass}>
+          <Link href="/guide/dsr-40-mortgage-limit" className={linkClass}>
             DSR 계산 방법 가이드
           </Link>
           에서 볼 수 있습니다.

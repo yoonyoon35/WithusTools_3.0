@@ -4,8 +4,8 @@ export const prepaymentFeeCalculationMeta = {
   slug: "prepayment-fee-calculation",
   title: "중도상환 수수료 계산 방식",
   description:
-    "중도상환 수수료 계산 공식, 이자 절감액 비교, 갈아타기·만기 대기 중 선택 기준을 정리했습니다. 대출 조건별 중도상환 시 손익을 판단하는 방법을 표와 예시로 설명한 참고 가이드입니다. 금융기관별 약관·수수료율·우대 조건은 개별 확인이 필요하며 실제 절감액은 달라질 수 있습니다.",
-  updated: "2026년 10월 30일",
+    "중도상환 수수료 계산 공식, 디딤돌대출 수수료 면제(2026년 12월 31일까지 상환분), 이자 절감액 비교, 갈아타기·만기 대기 중 선택 기준을 정리했습니다. 대출 조건별 중도상환 시 손익을 판단하는 방법을 표와 예시로 설명한 참고 가이드입니다. 금융기관별 약관·수수료율·우대 조건은 개별 확인이 필요하며 실제 절감액은 달라질 수 있습니다.",
+  updated: "2026년 11월 4일",
 } as const;
 
 export function PrepaymentFeeCalculationBody() {
@@ -255,6 +255,83 @@ export function PrepaymentFeeCalculationBody() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-prepayment-didimdol">
+        <h2 id="guide-prepayment-didimdol" className="text-foreground text-xl font-semibold tracking-tight">
+          디딤돌대출 중도상환수수료 면제, 2026년 12월 31일까지 (2026년 11월 4일 기준)
+        </h2>
+        <p>
+          디딤돌대출은 원래 실행일부터 3년 이내에 갚은 원금에 수수료가 붙지만, <strong>2024년 8월 12일부터 2026년 12월 31일까지
+          중도상환된 원금</strong>에는 수수료가 면제됩니다. 면제 여부는 대출을 받은 날이 아니라 <strong>원금을 실제로 갚은 날(상환
+          처리일)</strong>로 판단합니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              디딤돌대출 중도상환수수료 정리
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  상환일
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  수수료
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  2026년 12월 31일까지
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  면제(0원). 일부 상환도 상환한 원금만큼 면제
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  2027년 1월 1일 이후, 실행 후 3년 이내
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  상환 원금 × 0.6% × (3년 − 경과일수) ÷ 3년
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  실행 후 3년 경과
+                </th>
+                <td className="px-3 py-2.5">언제 갚아도 수수료 없음</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          예를 들어 실행 1년이 지난 시점에 1억 원을 갚는다면 2026년 12월 31일까지는 0원이고, 2027년 1월 이후에는 1억 원 × 0.6% × (2년 ÷
+          3년)으로 약 40만 원이 됩니다. 금리 인하나 갈아타기를 고민하는 경우, 이 한시 면제가 끝나기 전에 상환하면 수수료를 아낄 수 있습니다.
+        </p>
+        <ul className="list-disc space-y-1 pl-5">
+          <li>
+            <strong>연장 여부는 아직 확정되지 않았습니다.</strong> 2026년 11월 4일 기준 공식 안내(마이홈포털 디딤돌 상품 안내)는 면제 기간을
+            2026년 12월 31일까지로 표시합니다. 2027년 이후 상환은 연장 공지를 다시 확인하세요.
+          </li>
+          <li>
+            신청일이 아니라 <strong>상환 처리일</strong>이 기준입니다. 연말에는 은행 처리 가능 시간이 있으니 마지막 주에 몰아서 하지 말고
+            여유 있게 처리하세요.
+          </li>
+          <li>
+            대출계약을 철회한 경우에도 수수료가 면제됩니다. 보금자리론은 이 한시 면제 대상이 아니며, 사회적배려층·3자녀 이상 다자녀가구·
+            전세사기피해자 등 조건에 해당할 때만 면제됩니다(수수료 한도 0.5%).
+          </li>
+          <li>
+            <Link href="/prepayment-fee-calculator" className="text-primary underline-offset-4 hover:underline">
+              중도상환 수수료 계산기
+            </Link>
+            에서 디딤돌 조건(수수료율 0.6%, 면제 기간 3년)으로 면제 종료 후 예상 수수료를 계산해 볼 수 있습니다. 면제 기간 안에 상환하면
+            계산 결과와 관계없이 0원입니다.
+          </li>
+        </ul>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-prepayment-interest-saving">

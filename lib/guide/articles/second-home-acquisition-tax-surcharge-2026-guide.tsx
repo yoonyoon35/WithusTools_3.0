@@ -205,7 +205,7 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
           </a>{" "}
           공식 고시에서 확인해야 합니다.{" "}
           <Link
-            href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
             동탄·기흥·구리 2주택 취득세

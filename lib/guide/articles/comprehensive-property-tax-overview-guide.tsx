@@ -436,7 +436,7 @@ export function ComprehensivePropertyTaxOverviewGuideBody() {
           <strong>80%</strong>까지 단계 인상합니다. <strong>현재 법령상 60%가 그대로</strong> 적용 중입니다. 시나리오별
           금액은{" "}
           <Link
-            href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+            href="/guide/property-tax-vs-comprehensive-property-tax-fair-ratio-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             종부세 공정시장가액비율 계산 예시
@@ -994,7 +994,7 @@ export function ComprehensivePropertyTaxOverviewGuideBody() {
           </li>
           <li>
             <Link
-              href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+              href="/guide/property-tax-vs-comprehensive-property-tax-fair-ratio-guide"
               className="text-primary font-medium underline-offset-4 hover:underline"
             >
               종부세 공정시장가액비율 인상 시 세액 예시

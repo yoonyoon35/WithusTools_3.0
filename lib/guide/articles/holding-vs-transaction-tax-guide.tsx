@@ -624,7 +624,7 @@ export function HoldingVsTransactionTaxGuideBody() {
                 </th>
                 <td className="px-3 py-2.5">
                   <Link
-                    href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+                    href="/guide/property-tax-vs-comprehensive-property-tax-fair-ratio-guide"
                     className="text-primary underline-offset-4 hover:underline"
                   >
                     공정시장가액비율 계산

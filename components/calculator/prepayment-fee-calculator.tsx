@@ -537,6 +537,11 @@ export function PrepaymentFeeCalculator() {
             계산하기
           </Button>
 
+          <p className="border-border bg-muted/30 text-muted-foreground rounded-md border px-3 py-2.5 text-xs leading-relaxed">
+            디딤돌대출은 2024년 8월 12일~2026년 12월 31일에 상환(처리)한 원금의 중도상환수수료가 면제됩니다. 이 기간 안에 갚으면 아래
+            계산 결과와 관계없이 0원이며, 2027년 이후 상환분은 면제 연장 여부를 확인하세요(2026년 11월 4일 기준).
+          </p>
+
           <p className="text-muted-foreground text-xs leading-relaxed">
             {referenceDisclaimerLine} 실제 수수료율·면제 조건·계산 방식은 금융기관 및 대출 상품에 따라 상이합니다.
           </p>

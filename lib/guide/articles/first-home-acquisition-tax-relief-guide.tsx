@@ -553,7 +553,7 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
                   오피스텔
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  취득 시점 공부상 업무시설이면 주택 수 제외인 경우가 많으나, 주거용 판정·용도 변경 이력은 별도 확인
+                  재산세가 건축물분(업무용)이면 주택 수에서 제외되는 경우가 많으나, 2020.8.12 이후 취득해 주택분 재산세가 과세되면 포함될 수 있어 별도 확인
                 </td>
               </tr>
               <tr>
@@ -581,8 +581,8 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
             2026년 취득세율 가이드
           </Link>
           ,{" "}
-          <Link href="/guide/apartment-villa-officetel-acquisition-tax-guide" className="text-primary underline-offset-4 hover:underline">
-            아파트 vs 빌라 vs 오피스텔
+          <Link href="/guide/officetel-residential-vs-business-tax-guide" className="text-primary underline-offset-4 hover:underline">
+            오피스텔 취득세·주택 수 기준
           </Link>
           가이드를 참고하세요.
         </p>

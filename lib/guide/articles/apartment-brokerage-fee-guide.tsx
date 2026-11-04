@@ -4,8 +4,8 @@ export const apartmentBrokerageFeeGuideMeta = {
   slug: "apartment-brokerage-fee-guide",
   title: "아파트 매매 중개수수료·아파트매매 수수료 계산",
   description:
-    "2026년 10월 30일 기준 아파트 매매·아파트매매 중개수수료 상한요율표, 7억·8억·9억·10억·12억 매매가별 예시, 0.4%·0.5% 구간 경계, 부가세·지급 시기와 흔한 실수를 표로 정리했습니다.",
-  updated: "2026년 10월 30일",
+    "2026년 11월 4일 기준 아파트 매매·아파트매매 중개수수료 상한요율표, 7억·8억·9억·10억·12억 매매가별 예시, 10억 아파트 수수료(1인당 500만 원), 0.4%·0.5% 구간 경계, 부가세·지급 시기와 흔한 실수를 표로 정리했습니다.",
+  updated: "2026년 11월 4일",
 } as const;
 
 export function ApartmentBrokerageFeeGuideBody() {
@@ -13,7 +13,7 @@ export function ApartmentBrokerageFeeGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-abf-intro">
         <h2 id="guide-abf-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 10월 30일 기준
+          2026년 11월 4일 기준
         </h2>
         <p>
           아파트 매매 중개수수료(아파트매매 중개수수료)는 거래금액에 상한요율을 곱한 금액 이내에서 공인중개사와 협의해 결정합니다.
@@ -257,8 +257,88 @@ export function ApartmentBrokerageFeeGuideBody() {
           </table>
         </div>
         <p>
-          9억 원짜리 아파트와 10억 원짜리 아파트의 수수료 차이가 140만 원에 달하므로, 계약 전에 내 거래 금액이 어느 구간에 해당하는지
-          반드시 확인해야 합니다.
+          8억 9,000만 원(356만 원)과 10억 원(500만 원)의 1인당 수수료 차이는 약 144만 원입니다. 계약 전에 내 거래 금액이 어느
+          구간에 해당하는지 반드시 확인해야 합니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-abf-1000">
+        <h2 id="guide-abf-1000" className="text-foreground text-xl font-semibold tracking-tight">
+          10억 아파트 매매 중개수수료는 얼마인가
+        </h2>
+        <p>
+          10억 원은 9억 원 이상~12억 원 미만 구간이라 상한요율 <strong>0.5%</strong>가 적용됩니다. 매도인·매수인 각각{" "}
+          <strong>500만 원</strong>, 쌍방 합계 <strong>1,000만 원</strong>이 상한이고, 일반과세자 중개사라면 부가세 10%가 더해져 1인당
+          550만 원(쌍방 1,100만 원)을 낼 수 있습니다.{" "}
+          <Link href="/brokerage-fee-calculator" className="text-primary underline-offset-4 hover:underline">
+            중개수수료 계산기
+          </Link>
+          에 10억을 입력하면 바로 확인할 수 있습니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              9억~12억 구간 1인당 수수료 비교(상한요율 기준)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  매매가
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  요율
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  1인당
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  쌍방 합계
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  9억 원
+                </th>
+                <td className="border-border border-b px-3 py-2.5">0.5%</td>
+                <td className="border-border border-b px-3 py-2.5">450만 원</td>
+                <td className="border-border border-b px-3 py-2.5">900만 원</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  10억 원
+                </th>
+                <td className="border-border border-b px-3 py-2.5">0.5%</td>
+                <td className="border-border border-b px-3 py-2.5">500만 원</td>
+                <td className="border-border border-b px-3 py-2.5">1,000만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  11억 원
+                </th>
+                <td className="border-border border-b px-3 py-2.5">0.5%</td>
+                <td className="border-border border-b px-3 py-2.5">550만 원</td>
+                <td className="border-border border-b px-3 py-2.5">1,100만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  12억 원
+                </th>
+                <td className="px-3 py-2.5">0.6%</td>
+                <td className="px-3 py-2.5">720만 원</td>
+                <td className="px-3 py-2.5">1,440만 원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          9억 원 이상 구간 안에서는 1억 원 오를 때마다 1인당 50만 원씩 늘지만, 12억 원 경계에서는 11억 9,999만 원(약 600만 원)과
+          12억 원(720만 원)이 약 120만 원 차이 납니다. 중개수수료를 현금영수증으로 결제하면 연말정산 공제에 합산될 수 있으니{" "}
+          <Link href="/guide/brokerage-fee-income-deduction-guide" className="text-primary underline-offset-4 hover:underline">
+            중개수수료 소득공제
+          </Link>
+          도 확인하세요.
         </p>
       </section>
 
@@ -392,10 +472,6 @@ export function ApartmentBrokerageFeeGuideBody() {
         aria-label="중개수수료 계산기 이동"
       >
         <p>
-          <Link href="/guide/apartment-1000-million-brokerage-fee-guide" className="text-primary font-medium underline-offset-4 hover:underline">
-            10억 아파트 매매 중개수수료
-          </Link>
-          {" · "}
           <Link href="/guide/presale-right-resale-brokerage-fee-guide" className="text-primary font-medium underline-offset-4 hover:underline">
             분양권 전매 중개수수료
           </Link>

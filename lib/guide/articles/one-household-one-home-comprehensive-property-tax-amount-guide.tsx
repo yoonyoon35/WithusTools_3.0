@@ -680,7 +680,7 @@ export function OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody() {
           </Link>
           ·{" "}
           <Link
-            href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+            href="/guide/property-tax-vs-comprehensive-property-tax-fair-ratio-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             공정시장가액비율 시나리오
@@ -1009,7 +1009,7 @@ export function OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody() {
           </li>
           <li>
             <Link
-              href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+              href="/guide/property-tax-vs-comprehensive-property-tax-fair-ratio-guide"
               className="text-primary font-medium underline-offset-4 hover:underline"
             >
               종부세 공정시장가액비율 인상 시 세액 예시

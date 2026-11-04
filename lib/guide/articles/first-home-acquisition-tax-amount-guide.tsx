@@ -57,7 +57,7 @@ export function FirstHomeAcquisitionTaxAmountGuideBody() {
             2026년 취득세율
           </Link>
           ·{" "}
-          <Link href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide" className="text-primary underline-offset-4 hover:underline">
+          <Link href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide" className="text-primary underline-offset-4 hover:underline">
             동탄·기흥·구리 2주택 취득세
           </Link>
           를 참고하세요.

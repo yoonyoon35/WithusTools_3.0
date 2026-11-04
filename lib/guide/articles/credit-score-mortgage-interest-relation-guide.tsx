@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export const creditScoreMortgageInterestRelationGuideMeta = {
   slug: "credit-score-mortgage-interest-relation-guide",
-  title: "신용점수와 대출이자와의 관계",
+  title: "신용점수와 대출이자, 점수 관리 방법",
   description:
-    "2026년 10월 30일 기준 대출금리 구조, 신용점수 구간별 금리·이자 영향, 금리 결정 요인, 절감 전략·점수 확인 방법과 공시 활용 안내입니다.",
-  updated: "2026년 10월 30일",
+    "2026년 10월 30일 기준 대출금리 구조, 신용점수 구간별 금리·이자 영향, 점수 구성 요소와 대출 3~6개월 전 관리 방법, 절감 전략·점수 확인 방법과 공시 활용 안내입니다.",
+  updated: "2026년 11월 4일",
 } as const;
 
 export function CreditScoreMortgageInterestRelationGuideBody() {
@@ -18,6 +18,10 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
         </h2>
         <p>
           신용점수는 대출 금리를 결정하는 핵심 변수 중 하나입니다. 전국은행연합회 소비자포털에서는 신용점수별 주택담보대출 금리를 비교 공시하고 있으며, 대출금리는 기준금리에 가산금리를 더하고 우대금리를 차감하는 구조로 결정됩니다.
+        </p>
+        <p>
+          다만 디딤돌·보금자리론·버팀목 같은 정책 상품은 금리가 소득·만기·우대 조건 등으로 정해지므로 신용점수에 따른 금리 차이는 거의
+          없습니다(대출 자격 심사에서 연체 이력 등은 별도로 봅니다).
         </p>
       </section>
 
@@ -176,6 +180,161 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
           </table>
         </div>
         <p>신용점수 구간에 따라 30년 총 이자 차이가 최대 약 1억 원에 달할 수 있습니다.</p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-csmir-factors">
+        <h2 id="guide-csmir-factors" className="text-foreground text-xl font-semibold tracking-tight">
+          신용점수를 구성하는 주요 요소
+        </h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              요소별 영향과 세부 내용
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  요소
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  영향
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  세부 내용
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  상환 이력
+                </th>
+                <td className="border-border border-b px-3 py-2.5">매우 큼</td>
+                <td className="border-border border-b px-3 py-2.5">연체 이력이 가장 큰 감점 요인</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  부채 수준
+                </th>
+                <td className="border-border border-b px-3 py-2.5">큼</td>
+                <td className="border-border border-b px-3 py-2.5">총 대출 잔액과 한도 대비 사용 비율</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  신용 거래 기간
+                </th>
+                <td className="border-border border-b px-3 py-2.5">중간</td>
+                <td className="border-border border-b px-3 py-2.5">오래된 신용 거래일수록 유리</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  신용 거래 다양성
+                </th>
+                <td className="border-border border-b px-3 py-2.5">중간</td>
+                <td className="border-border border-b px-3 py-2.5">카드·대출·할부 등 다양한 거래 이력(고금리 거래 비중은 불리)</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  최근 신규 대출 조회
+                </th>
+                <td className="px-3 py-2.5">작음</td>
+                <td className="px-3 py-2.5">단기간 다수 조회·신청 시 일시적 하락</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-csmir-manage">
+        <h2 id="guide-csmir-manage" className="text-foreground text-xl font-semibold tracking-tight">
+          대출 3~6개월 전부터 하는 점수 관리
+        </h2>
+        <p>
+          연체 이력은 회복에 오래 걸리므로 연체·체납을 먼저 없애고, 불필요한 카드론·현금서비스를 정리합니다. 한도 조회는 꼭 필요한
+          2~3곳으로 줄이고, 대출 신청 직전에는 새 카드 발급이나 신규 대출 조회를 자제합니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[32rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              점수를 올리는 방법과 떨어뜨리는 행동
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  구분
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  내용
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  영향
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  올리는 방법
+                </th>
+                <td className="border-border border-b px-3 py-2.5">연체·체납 즉시 해소</td>
+                <td className="border-border border-b px-3 py-2.5">매우 큼</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  올리는 방법
+                </th>
+                <td className="border-border border-b px-3 py-2.5">카드값·대출 이자 자동납부 설정</td>
+                <td className="border-border border-b px-3 py-2.5">큼(꾸준히 쌓일수록 유리)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  올리는 방법
+                </th>
+                <td className="border-border border-b px-3 py-2.5">통신·공공요금 납부 이력 등록</td>
+                <td className="border-border border-b px-3 py-2.5">중간(단기 개선에 도움)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  올리는 방법
+                </th>
+                <td className="border-border border-b px-3 py-2.5">불필요한 마이너스통장 한도 축소·소액 신용대출 정리</td>
+                <td className="border-border border-b px-3 py-2.5">중간</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  떨어뜨리는 행동
+                </th>
+                <td className="border-border border-b px-3 py-2.5">연체(단 하루라도)</td>
+                <td className="border-border border-b px-3 py-2.5">매우 큼, 회복에 오래 걸림</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  떨어뜨리는 행동
+                </th>
+                <td className="border-border border-b px-3 py-2.5">카드 현금서비스·카드론 사용</td>
+                <td className="border-border border-b px-3 py-2.5">큼, 고금리 부채로 인식</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  떨어뜨리는 행동
+                </th>
+                <td className="border-border border-b px-3 py-2.5">단기간 다수 대출 신청, 마이너스통장 한도 증액</td>
+                <td className="border-border border-b px-3 py-2.5">중간, 단기 하락 후 회복</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  떨어뜨리는 행동
+                </th>
+                <td className="px-3 py-2.5">저축은행·캐피탈 등 2금융권 대출 이용</td>
+                <td className="px-3 py-2.5">중간, 이용 이력 반영</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm leading-relaxed">
+          통신·공공요금 납부 이력은 자동으로 반영되지 않고 올크레딧(KCB)이나 나이스지키미(NICE)에서 직접 등록 신청해야 합니다. 개선
+          효과의 크기와 반영 시점은 개인별로 다릅니다.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-csmir-path">
@@ -348,7 +507,7 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
           중요합니다.
         </p>
         <h3 className="text-foreground text-base font-semibold tracking-tight">
-          신용점수 20점 상승으로 금리 0.2%p 인하 시 이자 절감 효과
+          금리 0.2%p 인하(예: 5.0% → 4.8%) 시 이자 절감 효과
         </h3>
         <p className="text-muted-foreground text-sm">대출 원금 3억 원, 30년 원리금균등상환 기준</p>
         <div className="overflow-x-auto rounded-lg border border-border">
@@ -371,19 +530,19 @@ export function CreditScoreMortgageInterestRelationGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   월 상환액 절감
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 3만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 3만 6,000원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   연간 이자 절감
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 36만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 44만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   30년 총 이자 절감
                 </th>
-                <td className="px-3 py-2.5">약 1,080만 원</td>
+                <td className="px-3 py-2.5">약 1,310만 원</td>
               </tr>
             </tbody>
           </table>

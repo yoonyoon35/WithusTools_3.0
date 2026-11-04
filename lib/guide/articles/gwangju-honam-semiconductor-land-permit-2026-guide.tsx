@@ -390,7 +390,7 @@ export function GwangjuHonamSemiconductorLandPermit2026GuideBody() {
           광주권 실거주 매수자는 LTV는 수도권 규제지역보다 유리할 수 있지만,{" "}
           <strong>토지·단독주택·상업용 토지 거래까지 허가</strong>가 걸립니다. 동탄 쪽 규제는{" "}
           <Link
-            href="/guide/dongtan-giheung-guri-gap-investment-land-permit-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             동탄·기흥·구리 갭투자·토허 가이드
@@ -681,7 +681,7 @@ export function GwangjuHonamSemiconductorLandPermit2026GuideBody() {
         </p>
         <p>
           <Link
-            href="/guide/dongtan-giheung-guri-gap-investment-land-permit-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
             → 수도권 동탄·기흥·구리 토허·갭투자 규제는 해당 가이드를 참고하세요.

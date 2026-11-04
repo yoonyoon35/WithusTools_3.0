@@ -334,7 +334,7 @@ export function KakaoEmergencyLoanInterestGuideBody() {
         </p>
         <p>
           주담대·신용대출을 추가로 받을 계획이면 쓰지 않는 비상금 한도를 줄이거나 해지하는 편이 유리한 경우가 있습니다.{" "}
-          <Link href="/guide/dsr-calculation-method" className="text-primary underline-offset-4 hover:underline">
+          <Link href="/guide/dsr-40-mortgage-limit" className="text-primary underline-offset-4 hover:underline">
             DSR 계산 방법
           </Link>
           과{" "}

@@ -22,7 +22,6 @@ import {
 } from "@/lib/guide/articles/annual-salary-mortgage-limit-dsr";
 import { LtvDtiDsrComparisonBody, ltvDtiDsrComparisonMeta } from "@/lib/guide/articles/ltv-dti-dsr-comparison";
 import { StressDsrExplainedBody, stressDsrExplainedMeta } from "@/lib/guide/articles/stress-dsr-explained";
-import { DsrCalculationMethodBody, dsrCalculationMethodMeta } from "@/lib/guide/articles/dsr-calculation-method";
 import { JeonseLoanTypesComparisonBody, jeonseLoanTypesComparisonMeta } from "@/lib/guide/articles/jeonse-loan-types-comparison";
 import { RateReductionRequestRightBody, rateReductionRequestRightMeta } from "@/lib/guide/articles/rate-reduction-request-right";
 import { CreditLoanVsMortgageLoanBody, creditLoanVsMortgageLoanMeta } from "@/lib/guide/articles/credit-loan-vs-mortgage-loan";
@@ -40,10 +39,6 @@ import {
   graduatedRepaymentInterestGuideMeta,
 } from "@/lib/guide/articles/graduated-repayment-interest-guide";
 import { LoanRefinancingGuideBody, loanRefinancingGuideMeta } from "@/lib/guide/articles/loan-refinancing-guide";
-import {
-  CreditScoreLoanRateGuideBody,
-  creditScoreLoanRateGuideMeta,
-} from "@/lib/guide/articles/credit-score-loan-rate-guide";
 import {
   HousingSubscriptionSavingsGuideBody,
   housingSubscriptionSavingsGuideMeta,
@@ -125,21 +120,9 @@ import {
   localEducationRuralSpecialTaxAcquisition2026GuideMeta,
 } from "@/lib/guide/articles/local-education-rural-special-tax-acquisition-2026-guide";
 import {
-  ApartmentVillaOfficetelAcquisitionTaxGuideBody,
-  apartmentVillaOfficetelAcquisitionTaxGuideMeta,
-} from "@/lib/guide/articles/apartment-villa-officetel-acquisition-tax-guide";
-import {
   OfficetelResidentialVsBusinessTaxGuideBody,
   officetelResidentialVsBusinessTaxGuideMeta,
 } from "@/lib/guide/articles/officetel-residential-vs-business-tax-guide";
-import {
-  Auction500MillionTotalCostGuideBody,
-  auction500MillionTotalCostGuideMeta,
-} from "@/lib/guide/articles/auction-500-million-total-cost-guide";
-import {
-  Auction700MillionTotalCostGuideBody,
-  auction700MillionTotalCostGuideMeta,
-} from "@/lib/guide/articles/auction-700-million-total-cost-guide";
 import {
   AuctionHomePurchaseGuideBody,
   auctionHomePurchaseGuideMeta,
@@ -261,18 +244,6 @@ import {
   comprehensivePropertyTaxOverviewGuideMeta,
 } from "@/lib/guide/articles/comprehensive-property-tax-overview-guide";
 import {
-  ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
-  comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
-} from "@/lib/guide/articles/comprehensive-property-tax-fair-ratio-calculation-2026-guide";
-import {
-  ComprehensivePropertyTaxFairnessDebate2026GuideBody,
-  comprehensivePropertyTaxFairnessDebate2026GuideMeta,
-} from "@/lib/guide/articles/comprehensive-property-tax-fairness-debate-2026-guide";
-import {
-  UltraHighEndHomeThresholdDebate2026GuideBody,
-  ultraHighEndHomeThresholdDebate2026GuideMeta,
-} from "@/lib/guide/articles/ultra-high-end-home-threshold-debate-2026-guide";
-import {
   HoldingCapitalGainsTaxIncrease2026GuideBody,
   holdingCapitalGainsTaxIncrease2026GuideMeta,
 } from "@/lib/guide/articles/holding-capital-gains-tax-increase-2026-guide";
@@ -321,14 +292,6 @@ import {
   dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta,
 } from "@/lib/guide/articles/dongtan-giheung-guri-regulated-area-ltv-2026-guide";
 import {
-  DongtanGiheungGuriGapInvestmentLandPermit2026GuideBody,
-  dongtanGiheungGuriGapInvestmentLandPermit2026GuideMeta,
-} from "@/lib/guide/articles/dongtan-giheung-guri-gap-investment-land-permit-2026-guide";
-import {
-  DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody,
-  dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
-} from "@/lib/guide/articles/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide";
-import {
   GwangjuHonamSemiconductorLandPermit2026GuideBody,
   gwangjuHonamSemiconductorLandPermit2026GuideMeta,
 } from "@/lib/guide/articles/gwangju-honam-semiconductor-land-permit-2026-guide";
@@ -337,33 +300,9 @@ import {
   brokerageFeeVatSeparateGuideMeta,
 } from "@/lib/guide/articles/brokerage-fee-vat-separate-guide";
 import {
-  NewApartment600MillionAcquisitionTaxGuideBody,
-  newApartment600MillionAcquisitionTaxGuideMeta,
-} from "@/lib/guide/articles/new-apartment-600-million-acquisition-tax-guide";
-import {
-  NewApartment700MillionAcquisitionTaxGuideBody,
-  newApartment700MillionAcquisitionTaxGuideMeta,
-} from "@/lib/guide/articles/new-apartment-700-million-acquisition-tax-guide";
-import {
-  NewApartment800MillionAcquisitionTaxGuideBody,
-  newApartment800MillionAcquisitionTaxGuideMeta,
-} from "@/lib/guide/articles/new-apartment-800-million-acquisition-tax-guide";
-import {
-  NewApartment900MillionAcquisitionTaxGuideBody,
-  newApartment900MillionAcquisitionTaxGuideMeta,
-} from "@/lib/guide/articles/new-apartment-900-million-acquisition-tax-guide";
-import {
-  NewApartment1200MillionAcquisitionTaxGuideBody,
-  newApartment1200MillionAcquisitionTaxGuideMeta,
-} from "@/lib/guide/articles/new-apartment-1200-million-acquisition-tax-guide";
-import {
   NewConstructionApartmentAcquisitionTaxGuideBody,
   newConstructionApartmentAcquisitionTaxGuideMeta,
 } from "@/lib/guide/articles/new-construction-apartment-acquisition-tax-guide";
-import {
-  Apartment1000MillionBrokerageFeeGuideBody,
-  apartment1000MillionBrokerageFeeGuideMeta,
-} from "@/lib/guide/articles/apartment-1000-million-brokerage-fee-guide";
 import {
   NewbornSpecialLoan2026GuideBody,
   newbornSpecialLoan2026GuideMeta,
@@ -466,10 +405,6 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: StressDsrExplainedBody,
   },
   {
-    ...dsrCalculationMethodMeta,
-    Body: DsrCalculationMethodBody,
-  },
-  {
     ...jeonseLoanTypesComparisonMeta,
     Body: JeonseLoanTypesComparisonBody,
   },
@@ -496,10 +431,6 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...loanRefinancingGuideMeta,
     Body: LoanRefinancingGuideBody,
-  },
-  {
-    ...creditScoreLoanRateGuideMeta,
-    Body: CreditScoreLoanRateGuideBody,
   },
   {
     ...housingSubscriptionSavingsGuideMeta,
@@ -544,14 +475,6 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...auctionVsBrokeredSaleCostGuideMeta,
     Body: AuctionVsBrokeredSaleCostGuideBody,
-  },
-  {
-    ...auction500MillionTotalCostGuideMeta,
-    Body: Auction500MillionTotalCostGuideBody,
-  },
-  {
-    ...auction700MillionTotalCostGuideMeta,
-    Body: Auction700MillionTotalCostGuideBody,
   },
   {
     ...acquisitionTaxRates2026GuideMeta,
@@ -600,10 +523,6 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...localEducationRuralSpecialTaxAcquisition2026GuideMeta,
     Body: LocalEducationRuralSpecialTaxAcquisition2026GuideBody,
-  },
-  {
-    ...apartmentVillaOfficetelAcquisitionTaxGuideMeta,
-    Body: ApartmentVillaOfficetelAcquisitionTaxGuideBody,
   },
   {
     ...officetelResidentialVsBusinessTaxGuideMeta,
@@ -734,18 +653,6 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody,
   },
   {
-    ...comprehensivePropertyTaxFairRatioCalculation2026GuideMeta,
-    Body: ComprehensivePropertyTaxFairRatioCalculation2026GuideBody,
-  },
-  {
-    ...comprehensivePropertyTaxFairnessDebate2026GuideMeta,
-    Body: ComprehensivePropertyTaxFairnessDebate2026GuideBody,
-  },
-  {
-    ...ultraHighEndHomeThresholdDebate2026GuideMeta,
-    Body: UltraHighEndHomeThresholdDebate2026GuideBody,
-  },
-  {
     ...regulatedAreaDesignationEffects2026GuideMeta,
     Body: RegulatedAreaDesignationEffects2026GuideBody,
   },
@@ -770,32 +677,8 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: NationalHousingBondPurchaseCriteriaGuideBody,
   },
   {
-    ...newApartment600MillionAcquisitionTaxGuideMeta,
-    Body: NewApartment600MillionAcquisitionTaxGuideBody,
-  },
-  {
     ...newConstructionApartmentAcquisitionTaxGuideMeta,
     Body: NewConstructionApartmentAcquisitionTaxGuideBody,
-  },
-  {
-    ...newApartment700MillionAcquisitionTaxGuideMeta,
-    Body: NewApartment700MillionAcquisitionTaxGuideBody,
-  },
-  {
-    ...newApartment800MillionAcquisitionTaxGuideMeta,
-    Body: NewApartment800MillionAcquisitionTaxGuideBody,
-  },
-  {
-    ...newApartment900MillionAcquisitionTaxGuideMeta,
-    Body: NewApartment900MillionAcquisitionTaxGuideBody,
-  },
-  {
-    ...newApartment1200MillionAcquisitionTaxGuideMeta,
-    Body: NewApartment1200MillionAcquisitionTaxGuideBody,
-  },
-  {
-    ...apartment1000MillionBrokerageFeeGuideMeta,
-    Body: Apartment1000MillionBrokerageFeeGuideBody,
   },
   {
     ...brokerageFeeVatSeparateGuideMeta,
@@ -810,16 +693,8 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: DongtanGiheungGuriRegulatedAreaLtv2026GuideBody,
   },
   {
-    ...dongtanGiheungGuriGapInvestmentLandPermit2026GuideMeta,
-    Body: DongtanGiheungGuriGapInvestmentLandPermit2026GuideBody,
-  },
-  {
     ...gwangjuHonamSemiconductorLandPermit2026GuideMeta,
     Body: GwangjuHonamSemiconductorLandPermit2026GuideBody,
-  },
-  {
-    ...dongtanGiheungGuriSecondHomeAcquisitionTax2026GuideMeta,
-    Body: DongtanGiheungGuriSecondHomeAcquisitionTax2026GuideBody,
   },
   {
     ...newbornSpecialLoan2026GuideMeta,

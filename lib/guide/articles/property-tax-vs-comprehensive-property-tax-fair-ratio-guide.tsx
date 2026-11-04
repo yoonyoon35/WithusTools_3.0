@@ -2,18 +2,69 @@ import Link from "next/link";
 
 export const propertyTaxVsComprehensivePropertyTaxFairRatioGuideMeta = {
   slug: "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
-  title: "재산세 공정 45% vs 종부세 공정 60%… 왜 세금이 두 번 나오나",
+  title: "재산세 공정 45% vs 종부세 공정 60%… 공정비율 인상 시 세금 계산",
   description:
-    "2026년 기준 재산세·종부세 공정시장가액비율(45%·60%) 차이, 과세표준·기본공제, 7월·12월 이중 고지 이유, 공제할 재산세(시행령 제4조의2) 산식과 공시 20억·1세대1주택·2주택 비교 예시를 표로 정리했습니다.",
-  updated: "2026년 8월 3일",
+    "재산세·종부세 공정시장가액비율(1세대 1주택 재산세 43~45%·종부세 60%) 차이, 7월·12월 이중 고지 이유, 공제할 재산세 산식, 공시 20억 사례와 8·3 정부안 종부세 공정비율 70%·80% 인상 시 연간 보유세 변화를 표로 정리했습니다.",
+  updated: "2026년 11월 4일",
 } as const;
+
+type TableRow = readonly [string, ...string[]];
+
+function InfoTable({
+  caption,
+  heads,
+  rows,
+  minWidth = "32rem",
+}: {
+  caption: string;
+  heads: readonly string[];
+  rows: readonly TableRow[];
+  minWidth?: string;
+}) {
+  return (
+    <div className="overflow-x-auto rounded-lg border border-border">
+      <table className="w-full border-collapse text-left text-sm" style={{ minWidth }}>
+        <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+          {caption}
+        </caption>
+        <thead>
+          <tr className="bg-muted/40">
+            {heads.map((h) => (
+              <th key={h} scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            const last = i === rows.length - 1;
+            const border = last ? "" : "border-border border-b";
+            return (
+              <tr key={row[0]} className={last ? "bg-muted/20" : undefined}>
+                <th scope="row" className={`${border} px-3 py-2.5 font-medium`}>
+                  {row[0]}
+                </th>
+                {row.slice(1).map((cell, j) => (
+                  <td key={j} className={`${border} px-3 py-2.5`}>
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
   return (
     <>
       <section className="space-y-3" aria-labelledby="guide-ptvcpt-intro">
         <h2 id="guide-ptvcpt-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           같은 공시가격인데 7월에 재산세·지방교육세, 12월에 종부세·농특세가 또 나오면 「한 집에 세금을 두 번
@@ -26,7 +77,8 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
             종합부동산세 계산기
           </Link>
           로 합계를 확인한 뒤, 이 글에서는 <strong>두 비율이 어디에 쓰이는지·공제가 얼마나 빠지는지</strong>를
-          숫자로 풀어 씁니다.
+          숫자로 풀어 씁니다. 종부세 공정비율을 70%·80%로 올리는 8·3 정부안은 아직 국회 심사 중이므로(11월 2일
+          조세소위 심사 시작), 인상 시 세금 변화는 「현행 세율·공제에 비율만 바꾼 가정」으로 계산했습니다.
         </p>
       </section>
 
@@ -64,6 +116,11 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
           <li>
             <a href="#guide-ptvcpt-sixty-cpt" className="text-primary underline-offset-4 hover:underline">
               종부세 60%와 기본공제
+            </a>
+          </li>
+          <li>
+            <a href="#guide-ptvcpt-scenario" className="text-primary underline-offset-4 hover:underline">
+              공정비율 70%·80% 인상 시 세금
             </a>
           </li>
           <li>
@@ -205,12 +262,12 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   1세대 1주택
                 </th>
-                <td className="border-border border-b px-3 py-2.5">45%</td>
+                <td className="border-border border-b px-3 py-2.5">43~45%(시가표준액 3억 이하 43%, 6억 이하 44%, 6억 초과 45%)</td>
                 <td className="border-border border-b px-3 py-2.5">60%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  2주택·비거주 1주택 등
+                  2주택 이상 등 그 밖의 주택
                 </th>
                 <td className="border-border border-b px-3 py-2.5">60%</td>
                 <td className="border-border border-b px-3 py-2.5">60%</td>
@@ -226,8 +283,9 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
           </table>
         </div>
         <p className="text-muted-foreground text-sm">
-          1세대 1주택만 재산세 공정이 45%로 낮습니다. 종부세 공정 60%는 주택 보유자 대부분에게 동일하게 적용됩니다(토지
-          종부세는 100%).
+          1세대 1주택만 재산세 공정이 43~45%로 낮습니다(거주 여부와 무관하게 1세대 1주택이면 동일). 이 글의 예시 주택은
+          모두 공시 6억 초과라 45%를 씁니다. 종부세 공정 60%는 주택 보유자 대부분에게 동일하게 적용됩니다(토지 종부세는
+          100%).
         </p>
       </section>
 
@@ -284,13 +342,14 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
           재산세 45% — 1세대 1주택만 낮은 이유
         </h2>
         <p>
-          1세대 1주택 재산세는 공시가격×45%가 과세표준입니다. 공시 9억 이하면 과세표준×0.05% 단일세율이 적용되어
-          재산세 부담이 매우 작고, 9억을 넘으면 누진세율(0.1%~0.4%)로 전환됩니다.
+          1세대 1주택 재산세는 공시가격×43~45%가 과세표준입니다. 공시 9억 이하 1주택에는 일반 누진세율(0.1%~0.4%)보다
+          0.05%p 낮은 특례세율(0.05%~0.35%)이 추가로 적용되어 부담이 더 작고, 9억을 넘으면 일반 누진세율이 그대로
+          적용됩니다. 이 글의 20억 예시는 특례세율 대상이 아닙니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              1세대 1주택 vs 2주택 — 재산세만(공시 20억)
+              공시 20억 1채 vs 10억 2채 — 재산세만
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -322,14 +381,14 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
                   2주택
                 </th>
                 <td className="px-3 py-2.5">60%</td>
-                <td className="px-3 py-2.5">12억 원</td>
-                <td className="px-3 py-2.5">500.4만 원</td>
+                <td className="px-3 py-2.5">6억 원(주택별, 2채)</td>
+                <td className="px-3 py-2.5">424.8만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          같은 20억이어도 2주택은 재산세 과세표준이 12억으로 잡혀 7월 납부만 144만 원 더 큽니다. 종부세 공정은
+          같은 합계 20억이어도 2주택(10억×2채)은 재산세 공정이 60%라 7월 납부만 약 68만 원 더 큽니다. 재산세는 주택별로 따로 과세되므로 10억 주택 각각에 누진세율을 적용해 더합니다. 종부세 공정은
           둘 다 60%지만, 기본공제(12억 vs 9억) 차이도 겹칩니다.
         </p>
       </section>
@@ -348,15 +407,71 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
 공시 20억·2주택 → (20억−9억)×60% = 6.6억`}
         </p>
         <p>
-          8·3 정부안은 종부세 공정시장가액비율을 1주택 <strong>70%</strong>, 3주택·조정지역 <strong>80%</strong>까지
-          단계 인상합니다. 재산세 공정 45%와는 별개입니다.{" "}
+          8·3 정부안은 종부세 공정시장가액비율을 2027년 <strong>70%</strong>, 2028년 3주택 이상·조정대상지역
+          <strong> 80%</strong>까지 단계 인상합니다(국회 심사 중). 재산세 공정비율과는 별개입니다. 인상 시 세금 변화는
+          아래 시나리오 절에서 계산합니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-ptvcpt-scenario">
+        <h2 id="guide-ptvcpt-scenario" className="text-foreground text-xl font-semibold tracking-tight">
+          종부세 공정비율이 70%·80%로 오르면 — 연간 보유세 변화
+        </h2>
+        <p>
+          아래 표는 <strong>현행 세율·기본공제(1주택 12억, 그 외 9억)와 재산세 공정비율을 그대로 두고 종부세 공정비율만</strong>{" "}
+          바꾼 가정입니다. 70%는 2027년 정부안(전체), 80%는 2028년 정부안(3주택 이상·조정대상지역)에 해당합니다.
+          정부안은 거주 1주택 기본공제를 14억으로 올리고 2028년 세율표도 일원화하므로, 실제 부담은 이 표와 다를 수
+          있습니다. 1주택 세액공제·세부담 상한은 반영하지 않았습니다.
+        </p>
+        <InfoTable
+          caption="1세대 1주택 연간 보유세(재산세+지방교육세+종부세+농특세, 단위: 만 원)"
+          heads={["공시가격", "현행 60%", "70%", "80%"]}
+          minWidth="30rem"
+          rows={[
+            ["12억", "184", "184", "184"],
+            ["14억", "273", "281", "288"],
+            ["18억", "466", "503", "541"],
+            ["20억", "584", "634", "698"],
+            ["25억", "944", "1,072", "1,200"],
+            ["30억", "1,347", "1,546", "1,788"],
+          ]}
+        />
+        <p className="text-muted-foreground text-sm">
+          공시 12억 이하 1주택은 종부세가 없어 비율이 올라도 재산세만 냅니다(12억 행은 재산세·지방교육세 합계).
+        </p>
+        <InfoTable
+          caption="다주택 연간 보유세(공시가격 합계를 같은 가격의 주택으로 나눈 경우, 단위: 만 원)"
+          heads={["공시 합계(주택 수)", "현행 60%", "70%", "80%"]}
+          minWidth="32rem"
+          rows={[
+            ["15억(7.5억×2채)", "408", "441", "474"],
+            ["18억(9억×2채)", "593", "654", "736"],
+            ["20억(10억×2채)", "739", "839", "939"],
+            ["24억(12억×2채)", "1,073", "1,210", "1,346"],
+            ["30억(10억×3채)", "1,570", "2,014", "2,457"],
+          ]}
+        />
+        <p className="text-muted-foreground text-sm">
+          재산세는 주택별로 각각 계산하고, 종부세는 합산 과세표준(기본공제 9억)으로 계산했습니다. 3주택 이상은 과세표준
+          12억 초과분에 중과세율이 적용됩니다.
+        </p>
+        <pre className="bg-muted/30 text-foreground overflow-x-auto rounded-md border border-border p-3 font-mono text-xs leading-relaxed whitespace-pre sm:text-sm">
+          {`[공시 20억·1세대 1주택 — 종부세 공정비율별(재산세 356.4만 동일)]
+60%: (20억−12억)×60% = 4.8억 → 276만 − 공제 86.4만 = 189.6만 → 농특세 포함 227.5만 → 연간 583.9만
+70%: (20억−12억)×70% = 5.6억 → 332만 − 공제 100.8만 = 231.2만 → 농특세 포함 277.4만 → 연간 633.8만
+80%: (20억−12억)×80% = 6.4억 → 400만 − 공제 115.2만 = 284.8만 → 농특세 포함 341.8만 → 연간 698.2만`}
+        </pre>
+        <p>
+          비율이 오르면 과세표준이 커져 종부세가 늘지만, <strong>공제할 재산세도 함께 커져</strong>(공제 표준세액에 종부세
+          공정비율이 곱해짐) 일부 상쇄됩니다. 20억 1주택은 60%→70%에서 연간 약 50만 원, 80%까지 오르면 약 114만 원
+          늘어나는 계산입니다. 가격이 높고 주택 수가 많을수록 증가 폭이 커지는 점은 {" "}
           <Link
-            href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+            href="/guide/holding-capital-gains-tax-increase-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
-            종부세 공정 인상 시나리오
+            8·3 세제개편안 총정리
           </Link>
-          를 참고하세요.
+          의 「30억 1채 vs 10억 3채」 논쟁과 맞닿아 있습니다.
         </p>
       </section>
 
@@ -520,13 +635,13 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
           2주택 — 재산·종부 공정 모두 60%인 경우
         </h2>
         <p>
-          2주택은 재산세·종부세 공정이 둘 다 60%입니다. 그래도 과세표준 산식이 다르고, 기본공제 9억만
+          2주택(공시 10억짜리 2채 가정)은 재산세·종부세 공정이 둘 다 60%입니다. 그래도 과세표준 산식이 다르고, 기본공제 9억만
           종부세에 적용됩니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              공시 20억·1세대1주택 vs 2주택
+              공시 20억 1채(1세대 1주택) vs 10억 2채(2주택)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -547,7 +662,7 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
                   재산세 과세표준
                 </th>
                 <td className="border-border border-b px-3 py-2.5">20억×45%=9억</td>
-                <td className="border-border border-b px-3 py-2.5">20억×60%=12억</td>
+                <td className="border-border border-b px-3 py-2.5">10억×60%=6억(주택별 각각)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -568,7 +683,7 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
                   7월
                 </th>
                 <td className="border-border border-b px-3 py-2.5">356.4만 원</td>
-                <td className="border-border border-b px-3 py-2.5">500.4만 원</td>
+                <td className="border-border border-b px-3 py-2.5">424.8만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -582,7 +697,7 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
                   연간
                 </th>
                 <td className="px-3 py-2.5">583.9만 원</td>
-                <td className="px-3 py-2.5">814.3만 원</td>
+                <td className="px-3 py-2.5">738.7만 원</td>
               </tr>
             </tbody>
           </table>
@@ -647,7 +762,7 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   「1세대1주택이면 종부세 공정도 45%」
                 </th>
-                <td className="border-border border-b px-3 py-2.5">재산세만 45%, 종부세는 60%</td>
+                <td className="border-border border-b px-3 py-2.5">재산세만 43~45%, 종부세는 60%</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -752,10 +867,10 @@ export function PropertyTaxVsComprehensivePropertyTaxFairRatioGuideBody() {
           </li>
           <li>
             <Link
-              href="/guide/comprehensive-property-tax-fair-ratio-calculation-2026-guide"
+              href="/guide/holding-capital-gains-tax-increase-2026-guide"
               className="text-primary font-medium underline-offset-4 hover:underline"
             >
-              종부세 공정시장가액비율 인상 시나리오
+              2026 부동산 세제개편안 총정리(8·3 정부안)
             </Link>
           </li>
         </ul>

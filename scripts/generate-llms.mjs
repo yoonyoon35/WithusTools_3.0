@@ -29,7 +29,6 @@ const calculators = [
 ];
 
 const featuredGuides = [
-  "dsr-calculation-method",
   "dsr-40-mortgage-limit",
   "acquisition-tax-rates-2026-guide",
   "brokerage-fee-rates-2026-guide",

@@ -213,7 +213,7 @@ export function BrokerageFeeCalculator() {
             >
               <option value="house">주택 (주택 부지·분양권 등 포함)</option>
               <option value="officetel">오피스텔</option>
-              <option value="other">주택·오피스텔 외 (토지, 상가 등)</option>
+              <option value="other">주택·오피스텔 외 (토지, 상가, 건물 등)</option>
             </select>
           </div>
 

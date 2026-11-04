@@ -347,14 +347,14 @@ export function RealEstateBalloonEffect2026GuideBody() {
           </Link>
           , 2주택 취득세는{" "}
           <Link
-            href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             취득세 가이드
           </Link>
           , 갭투자·토허는{" "}
           <Link
-            href="/guide/dongtan-giheung-guri-gap-investment-land-permit-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             갭투자·토허 가이드
@@ -534,7 +534,7 @@ export function RealEstateBalloonEffect2026GuideBody() {
           <strong>실수요보다 투기·갭투자</strong> 비중이 크다는 지적도 있습니다. 진입 장벽이 낮은 저가 아파트·
           전세가율이 높은 단지를 겨냥한 매수가 늘었다는 해석입니다. 갭투자·토허·전세대출 규제는{" "}
           <Link
-            href="/guide/dongtan-giheung-guri-gap-investment-land-permit-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary underline-offset-4 hover:underline"
           >
             갭투자·토허 가이드
@@ -704,7 +704,7 @@ export function RealEstateBalloonEffect2026GuideBody() {
         </p>
         <p>
           <Link
-            href="/guide/dongtan-giheung-guri-second-home-acquisition-tax-2026-guide"
+            href="/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
             → 동탄·기흥·구리 2주택 취득세 8% 예시는 취득세 가이드에서 확인할 수 있습니다.

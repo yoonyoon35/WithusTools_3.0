@@ -572,12 +572,8 @@ export function AuctionHomePurchaseGuideBody() {
                   낙찰가별 비용
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  <Link href="/guide/auction-500-million-total-cost-guide" className="text-primary underline-offset-4 hover:underline">
-                    5억 낙찰
-                  </Link>
-                  ,{" "}
-                  <Link href="/guide/auction-700-million-total-cost-guide" className="text-primary underline-offset-4 hover:underline">
-                    7억 낙찰
+                  <Link href="/guide/auction-vs-brokered-sale-cost-guide" className="text-primary underline-offset-4 hover:underline">
+                    5억·7억 낙찰 비용
                   </Link>
                 </td>
               </tr>

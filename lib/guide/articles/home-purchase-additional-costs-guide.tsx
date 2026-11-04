@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const homePurchaseAdditionalCostsGuideMeta = {
   slug: "home-purchase-additional-costs-guide",
-  title: "주택 구입 시 추가 비용 총정리",
+  title: "주택 구입 시 추가 비용 총정리 (취득세·등기비용·법무사 비용)",
   description:
-    "2026년 기준 취득세, 등기비용, 인지세, 중개수수료 등 주택 매수 시 발생하는 부대비용을 표로 정리했습니다. 자금 계획 체크리스트, 총 비용 추산 방법, 취득세·중개수수료 계산기 연결 정보를 참고용으로 확인할 수 있습니다. 실제 비용은 거래 조건·지역에 따라 달라질 수 있습니다.",
-  updated: "2026년 10월 30일",
+    "2026년 기준 취득세, 등기비용(법무사 비용 포함), 인지세, 중개수수료 등 주택 매수 시 발생하는 부대비용을 표로 정리했습니다. 매매 소유권이전등기에는 별도 등록면허세가 없고 근저당 설정에만 붙는다는 점, 자금 계획 체크리스트, 취득세·중개수수료 계산기 연결 정보를 참고용으로 확인할 수 있습니다. 실제 비용은 거래 조건·지역에 따라 달라질 수 있습니다.",
+  updated: "2026년 11월 4일",
 } as const;
 
 export function HomePurchaseAdditionalCostsGuideBody() {
@@ -68,7 +68,7 @@ export function HomePurchaseAdditionalCostsGuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  등기수수료(법무사비)
+                  등기비용(법무사 보수)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">50만 원 ~ 150만 원</td>
                 <td className="border-border border-b px-3 py-2.5">약 80만 원</td>
@@ -215,9 +215,24 @@ export function HomePurchaseAdditionalCostsGuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-cost-registration">
         <h2 id="guide-cost-registration" className="text-foreground text-xl font-semibold tracking-tight">
-          등기비용 상세
+          등기비용·법무사 비용 상세
         </h2>
-        <p>주택 소유권 이전등기와 근저당권 설정등기 시 비용이 발생합니다.</p>
+        <p>
+          흔히 「등취득세」라고 부르는 것은 취득세와 등기비용을 합친 개념입니다. 주택 매매에서는{" "}
+          <strong>소유권 이전등기에 별도 등록면허세가 붙지 않고</strong>, 취득세 신고·납부에 포함됩니다. 등기 단계에서 따로 드는 돈은
+          대출 근저당권 설정 등록면허세, 국민주택채권 할인 손실, 등기신청수수료, 법무사에게 맡길 때의 보수입니다.
+        </p>
+        <p>
+          취득세·지방교육세·농어촌특별세는{" "}
+          <Link href="/acquisition-tax-calculator" className="text-primary underline-offset-4 hover:underline">
+            취득세 계산기
+          </Link>
+          에서, 중개수수료는{" "}
+          <Link href="/brokerage-fee-calculator" className="text-primary underline-offset-4 hover:underline">
+            중개수수료 계산기
+          </Link>
+          에서 계산할 수 있습니다. 아래 표의 등기 비용은 계산기에 포함되지 않으니 별도로 더해 자금 계획을 세우세요.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -236,15 +251,25 @@ export function HomePurchaseAdditionalCostsGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  소유권 이전등기 등록면허세
+                  매매 소유권 이전등기
                 </th>
-                <td className="border-border border-b px-3 py-2.5">매매가의 0.2%</td>
+                <td className="border-border border-b px-3 py-2.5">별도 등록면허세 없음(취득세 신고·납부에 포함)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   근저당권 설정 등록면허세
                 </th>
-                <td className="border-border border-b px-3 py-2.5">채권최고액의 0.2%</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  채권최고액의 0.2% + 지방교육세(등록면허세의 20%) = 합계 0.24%
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  등기신청수수료
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  부동산 1개당 서면 18,000원·전자표준양식 15,000원·전자신청 10,000원(2025.8.1부터)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -275,7 +300,11 @@ export function HomePurchaseAdditionalCostsGuideBody() {
             </tbody>
           </table>
         </div>
-        <p>등기는 법무사에게 위임하는 것이 일반적이며, 은행 대출 시 은행 지정 법무사가 배정되는 경우가 많습니다.</p>
+        <p>
+          등기는 법무사에게 위임하는 것이 일반적이며, 은행 대출 시 은행 지정 법무사가 배정되는 경우가 많습니다. 법무사 비용은 보수와
+          실비(교통·증명서 발급 등), 부가가치세가 합쳐져 견적마다 차이가 나므로, 가능하면 두세 곳의 견적서를 받아 항목별로 비교하세요.
+          직접 등기(셀프등기)를 하면 보수는 줄지만 서류 준비와 채권 매입을 스스로 처리해야 합니다.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-cost-stamp-tax">

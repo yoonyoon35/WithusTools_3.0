@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const auctionVsBrokeredSaleCostGuideMeta = {
   slug: "auction-vs-brokered-sale-cost-guide",
-  title: "경매 vs 일반 매매 — 비용·일정 비교",
+  title: "경매 낙찰가 5억·7억 비용, 일반 매매와 비교",
   description:
-    "2026년 7월 기준 같은 가격(5억·7억)일 때 경매 낙찰과 일반 중개 매매의 중개수수료·취득세·등기비·잔금 일정·리스크를 표로 비교했습니다. 순 절감액과 주의할 비용도 정리했습니다.",
-  updated: "2026년 7월 13일",
+    "2026년 11월 기준 경매 낙찰가 5억·7억 주택의 취득세·등기비·입찰 보증금·잔금 대출 가정 시 필요 자기자금을 정리하고, 같은 가격 일반 중개 매매와 중개수수료·잔금 일정·리스크를 표로 비교했습니다.",
+  updated: "2026년 11월 4일",
 } as const;
 
 export function AuctionVsBrokeredSaleCostGuideBody() {
@@ -13,7 +13,7 @@ export function AuctionVsBrokeredSaleCostGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-avb-intro">
         <h2 id="guide-avb-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 4일 기준
         </h2>
         <p>
           같은 주택을 같은 가격에 산다고 가정하면, <strong>취득세·등기비는 경매와 일반 매매가 동일</strong>합니다. 차이는
@@ -82,7 +82,7 @@ export function AuctionVsBrokeredSaleCostGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   잔금 준비 기간
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 7~10일</td>
+                <td className="border-border border-b px-3 py-2.5">낙찰 후 약 4~6주(매각허가 확정 후 1개월 이내 법원 지정 기한)</td>
                 <td className="border-border border-b px-3 py-2.5">수주~수개월</td>
               </tr>
               <tr className="bg-muted/20">
@@ -96,11 +96,7 @@ export function AuctionVsBrokeredSaleCostGuideBody() {
           </table>
         </div>
         <p>
-          5억 기준 <strong>중개수수료만 약 200만 원</strong> 절감됩니다. 상세는{" "}
-          <Link href="/guide/auction-500-million-total-cost-guide" className="text-primary underline-offset-4 hover:underline">
-            5억 낙찰 비용
-          </Link>
-          을 참고하세요.
+          5억 기준 <strong>중개수수료만 약 200만 원</strong> 절감됩니다. 취득세 산출과 자금 계획은 아래에서 이어집니다.
         </p>
       </section>
 
@@ -169,6 +165,163 @@ export function AuctionVsBrokeredSaleCostGuideBody() {
           </Link>
           로 매매가별 상한을 확인할 수 있습니다.
         </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-avb-tax">
+        <h2 id="guide-avb-tax" className="text-foreground text-xl font-semibold tracking-tight">
+          낙찰가 5억·7억 취득세 산출
+        </h2>
+        <p className="text-muted-foreground text-sm">
+          무주택·1주택, 조정대상지역 중과·2주택 해당 없음 가정. 경매든 일반 매매든 취득가액이 같으면 세액도 같고, 취득 시점은
+          대금을 모두 낸 날(잔금·등기)로 잡습니다.
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              낙찰가별 취득세·지방교육세
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  낙찰가
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  취득세율
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  취득세
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  지방교육세
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  합계(85㎡ 이하)
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  합계(85㎡ 초과)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  5억 원
+                </th>
+                <td className="border-border border-b px-3 py-2.5">1%</td>
+                <td className="border-border border-b px-3 py-2.5">500만 원</td>
+                <td className="border-border border-b px-3 py-2.5">50만 원</td>
+                <td className="border-border border-b px-3 py-2.5">550만 원</td>
+                <td className="border-border border-b px-3 py-2.5">650만 원</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  7억 원
+                </th>
+                <td className="px-3 py-2.5">약 1.67%</td>
+                <td className="px-3 py-2.5">약 1,167만 원</td>
+                <td className="px-3 py-2.5">약 117만 원</td>
+                <td className="px-3 py-2.5">약 1,283만 원</td>
+                <td className="px-3 py-2.5">약 1,423만 원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          85㎡ 초과 열은 농어촌특별세 0.2%를 더한 값입니다. 6억 초과~9억 이하 비례세율과 생애최초 감면은{" "}
+          <Link href="/guide/new-construction-apartment-acquisition-tax-guide" className="text-primary underline-offset-4 hover:underline">
+            신축 아파트 취득세
+          </Link>
+          ·
+          <Link href="/guide/first-home-acquisition-tax-relief-guide" className="text-primary underline-offset-4 hover:underline">
+            생애최초 취득세 감면
+          </Link>
+          을 참고하세요.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-avb-funds">
+        <h2 id="guide-avb-funds" className="text-foreground text-xl font-semibold tracking-tight">
+          낙찰가 5억·7억 입찰·잔금 자금 계획(대출 LTV 70% 가정)
+        </h2>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              경매 낙찰 총 자금 계획
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  항목
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  낙찰가 5억
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  낙찰가 7억
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  입찰 보증금(낙찰가의 10%로 단순화)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">5,000만 원</td>
+                <td className="border-border border-b px-3 py-2.5">7,000만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  경락잔금대출(LTV 70%)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">3억 5,000만 원</td>
+                <td className="border-border border-b px-3 py-2.5">4억 9,000만 원(6억 한도 이내)</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  잔금일 추가 자기자금(낙찰가 − 보증금 − 대출)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">1억 원</td>
+                <td className="border-border border-b px-3 py-2.5">1억 4,000만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  자기자금 합계(보증금 + 잔금 추가분)
+                </th>
+                <td className="border-border border-b px-3 py-2.5">1억 5,000만 원</td>
+                <td className="border-border border-b px-3 py-2.5">2억 1,000만 원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  취득세·등기·인지세 등 부대비용
+                </th>
+                <td className="border-border border-b px-3 py-2.5">약 635~665만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1,390~1,450만 원</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  입찰 전 확보 권장 자기자금
+                </th>
+                <td className="px-3 py-2.5">약 1억 5,640~5,670만 원</td>
+                <td className="px-3 py-2.5">약 2억 2,390~2,450만 원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
+          <li>
+            입찰보증금은 원칙적으로 <strong>최저매각가격의 10%</strong>이고, 낙찰되면 매각대금에 충당됩니다. 위 표는 계산을
+            단순화하려고 낙찰가의 10%로 놓았으며, 자기자금 합계는 어느 쪽이든 크게 달라지지 않습니다. 재매각 물건은 보증금이
+            20~30%로 올라갑니다.
+          </li>
+          <li>
+            LTV 70%는 가정입니다. 규제지역·DSR·6억 한도에 따라 대출액이 줄면 자기자금이 그만큼 늘어납니다.{" "}
+            <Link href="/guide/auction-winning-bid-mortgage-loan-guide" className="text-primary underline-offset-4 hover:underline">
+              경매 낙찰 후 주담대
+            </Link>
+            를 참고하세요.
+          </li>
+          <li>이사·수리·명도 비용은 포함하지 않았습니다.</li>
+        </ul>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-avb-hidden">

@@ -316,7 +316,7 @@ export function RateReductionRequestRightBody() {
         <p>
           거절 사유를 문자·서면으로 받아 두세요. “이미 최저 구간”인지, “개선 폭 부족”인지에 따라 다음 행동이 달라집니다. 소득·
           신용이 더 좋아진 뒤 재신청하거나, 다른 은행 한도 조회 후 갈아타기를 검토하면 됩니다.{" "}
-          <Link href="/guide/credit-score-loan-rate-guide" className="text-primary underline-offset-4 hover:underline">
+          <Link href="/guide/credit-score-mortgage-interest-relation-guide" className="text-primary underline-offset-4 hover:underline">
             신용점수와 금리
           </Link>
           관리를 병행하면 재신청 때 도움이 됩니다.
