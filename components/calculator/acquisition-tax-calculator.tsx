@@ -19,7 +19,7 @@ type HouseCount = "1" | "2" | "3" | "4+";
 type AcquisitionType = "paid" | "gift" | "inheritance" | "original";
 type PropertyCategory = "house" | "non-house" | "farmland";
 type FarmlandSaleType = "new" | "self-cultivation";
-type NonHouseDetailType = "general" | "office-business" | "office-residential";
+type NonHouseDetailType = "general" | "officetel";
 
 /** 생애최초 등 확대 감면(한도 300만 원) vs 일반 감면(한도 200만 원) — 행정 해석·개정 시 조정 */
 type LifetimeFirstReliefTier = "general" | "extended";
@@ -105,10 +105,7 @@ function calculateRuralSpecialTaxRate(houseCount: HouseCount, isAdjustedArea: bo
   return 0.01;
 }
 
-function getNonHouseRates(
-  type: AcquisitionType,
-  _detailType: NonHouseDetailType,
-): { acquisition: number; rural: number; education: number } {
+function getNonHouseRates(type: AcquisitionType): { acquisition: number; rural: number; education: number } {
   if (type === "paid") return { acquisition: 0.04, rural: 0.002, education: 0.004 };
   if (type === "gift") return { acquisition: 0.035, rural: 0.002, education: 0.003 };
   return { acquisition: 0.028, rural: 0.002, education: 0.0016 };
@@ -277,24 +274,11 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
         isPaidType ? calculateRuralSpecialTaxRate(houseCount, isAdjustedArea, isOver85) : isOver85 ? 0.002 : 0,
       );
     } else if (isNonHouseCategory) {
-      if (nonHouseDetailType === "office-residential") {
-        acquisitionTaxRate = clampRate(
-          isPaidType
-            ? calculateAcquisitionTaxRate(taxableBase, "1", false)
-            : getNonPaidAcquisitionTaxRate(acquisitionType),
-        );
-        ruralSpecialTaxRate = clampRate(
-          isPaidType ? calculateRuralSpecialTaxRate("1", false, isOver85) : isOver85 ? 0.002 : 0,
-        );
-        if (!isPaidType) {
-          localEducationTaxRate = clampRate(getHouseNonPaidLocalEducationTaxRate(acquisitionType));
-        }
-      } else {
-        const rates = getNonHouseRates(acquisitionType, nonHouseDetailType);
-        acquisitionTaxRate = rates.acquisition;
-        ruralSpecialTaxRate = rates.rural;
-        localEducationTaxRate = rates.education;
-      }
+      // 오피스텔은 세법상 주택이 아니므로 주거용·업무용 구분 없이 주택 외 세율을 적용합니다.
+      const rates = getNonHouseRates(acquisitionType);
+      acquisitionTaxRate = rates.acquisition;
+      ruralSpecialTaxRate = rates.rural;
+      localEducationTaxRate = rates.education;
     } else {
       const rates = getFarmlandRates(acquisitionType, farmlandSaleType, applyFarmingInheritanceRelief);
       if (!rates) {
@@ -320,8 +304,7 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
       lifetimeFirstReliefDeduction = applied.deductionWon;
     }
 
-    const usesHousePaidLocalEducationRule =
-      (isHouseCategory || (isNonHouseCategory && nonHouseDetailType === "office-residential")) && isPaidType;
+    const usesHousePaidLocalEducationRule = isHouseCategory && isPaidType;
 
     let localEducationTax: number;
     if (usesHousePaidLocalEducationRule) {
@@ -409,12 +392,11 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
                 onChange={(e) => setNonHouseDetailType(e.target.value as NonHouseDetailType)}
               >
                 <option value="general">일반 주택 외 자산</option>
-                <option value="office-business">업무용 오피스텔 (4%)</option>
-                <option value="office-residential">주거용 오피스텔 (주택 세율)</option>
+                <option value="officetel">오피스텔</option>
               </select>
               <p className="text-muted-foreground text-xs">
-                업무용은 주택 외 4% 기준, 주거용은 1주택 구간세율을 적용합니다. 주택 수·조정지역 등은 자산 구분을 주택으로
-                선택해 세부 조건을 입력하세요.
+                오피스텔은 세법상 주택이 아니어서 주거용이든 업무용이든 취득세 4%(지방교육세·농특세 포함 4.6%)이며 다주택
+                중과도 적용되지 않습니다. 이후 주택 취득 시 오피스텔이 주택 수에 포함되는지는 가이드에서 확인하세요.
               </p>
             </div>
           ) : null}

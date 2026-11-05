@@ -254,22 +254,19 @@ export function getGeneralLongTermDeductionRate(holdingYears: number): number {
   return Math.min(0.06 + (holdingYears - 3) * 0.02, 0.3);
 }
 
-/** 표2 보유: (보유연수−2)×4%, 최대 40% */
+/** 표2 보유: 보유연수×4%(3년 12% ~ 10년 이상 40%) — 소득세법 §95② 표2 */
 export function getOneHomeHoldingDeductionRate(holdingYears: number): number {
   if (holdingYears < 3) return 0;
-  return Math.min((holdingYears - 2) * 0.04, 0.4);
+  return Math.min(holdingYears * 0.04, 0.4);
 }
 
-/** 표2 거주: (거주연수−2)×4%, 최대 40% */
+/**
+ * 표2 거주: 거주연수×4%(2년 8% ~ 10년 이상 40%) — 소득세법 §95② 표2.
+ * 거주 2년 이상 3년 미만은 보유기간 3년 이상인 경우에 한정(호출부에서 보유 3년 이상 확인).
+ */
 export function getOneHomeResidenceDeductionRate(residenceYears: number): number {
   if (residenceYears < 2) return 0;
-  return Math.min((residenceYears - 2) * 0.04, 0.4);
-}
-
-/** 입주권 표2: 보유·거주 각 (연수−2)×2%p, 항목별 최대 24% */
-export function getOccupancyRightsTable2ComponentRate(years: number): number {
-  if (years < 3) return 0;
-  return Math.min((years - 2) * 0.02, 0.24);
+  return Math.min(residenceYears * 0.04, 0.4);
 }
 
 interface OccupancyGainSplit {
@@ -424,6 +421,8 @@ function shouldApplyMultiHomeSurcharge(
   if (!input.isRegulatedArea || input.houseCount === "1") return false;
   // 주택분양권 양도는 §104 전용 60/70% 단일세율. 다주택 중과(§104⑦)는 「주택」 양도에 해당.
   if (input.assetType === "presale") return false;
+  // 조합원입주권 양도에는 §104⑦ 다주택 중과가 적용되지 않음(주택 수에는 포함되나 중과 대상은 '주택' 양도)
+  if (input.assetType === "occupancy-right") return false;
   if (!isHousingLike(input.assetType)) return false;
   if (input.isMultiHomeSurchargeExemptPeriod && input.holdingPeriod.meetsMinimumYears(2)) return false;
   return true;
@@ -551,8 +550,10 @@ function resolveLongTermDeduction(
     input.residencePeriod.meetsMinimumYears(2);
 
   if (useTable2) {
+    // 장특공은 보유 3년 이상 자산에만 적용(거주 2~3년 8%도 보유 3년 이상 한정)
     const holdingRate = getOneHomeHoldingDeductionRate(input.holdingYears);
-    const residenceRate = getOneHomeResidenceDeductionRate(input.residenceYears);
+    const residenceRate =
+      input.holdingYears >= 3 ? getOneHomeResidenceDeductionRate(input.residenceYears) : 0;
     const totalRate = Math.min(holdingRate + residenceRate, 0.8);
     return {
       longTermDeductionRate: totalRate,
@@ -849,23 +850,35 @@ function computeOccupancyRightsTax(input: CapitalGainsTaxInput): CapitalGainsTax
     warnings.push(
       "승계조합원(관리처분인가일 이후 취득) 입주권은 장기보유특별공제가 적용되지 않습니다.",
     );
-  } else if (taxableFormer > 0 && isOneHome && meetsResidenceToApproval) {
-    holdingDeductionRate = getOccupancyRightsTable2ComponentRate(
-      occPeriods.formerHousingHoldingYears,
-    );
-    residenceDeductionRate = getOccupancyRightsTable2ComponentRate(
-      occPeriods.formerHousingHoldingYears,
-    );
-    longTermDeductionRate = Math.min(holdingDeductionRate + residenceDeductionRate, 0.48);
-    longTermDeductionTable = "table2";
-    longTermDeductionAmount = Math.round(taxableFormer * longTermDeductionRate);
-    warnings.push(
-      "장기보유특별공제는 관리처분인가 전 종전주택분 양도차익에만 적용됩니다(소득세법 §95②).",
-    );
   } else if (taxableFormer > 0) {
-    warnings.push(
-      "1세대 1주택·거주 2년 미만이거나 승계조합원인 경우 종전주택분에 표2 장특공이 적용되지 않을 수 있습니다.",
-    );
+    const formerYears = occPeriods.formerHousingHoldingYears;
+    if (formerYears < 3) {
+      warnings.push(
+        "종전주택 취득일부터 관리처분인가일까지 보유기간이 3년 미만이면 장기보유특별공제가 적용되지 않습니다.",
+      );
+    } else if (isOneHome && meetsResidenceToApproval) {
+      // 표2: 보유 연 4%(최대 40%) + 거주 연 4%(최대 40%), 기간은 취득일~관리처분인가일(시행령 §166⑤)
+      holdingDeductionRate = getOneHomeHoldingDeductionRate(formerYears);
+      residenceDeductionRate = getOneHomeResidenceDeductionRate(
+        occPeriods.formerHousingResidenceYears,
+      );
+      longTermDeductionRate = Math.min(holdingDeductionRate + residenceDeductionRate, 0.8);
+      longTermDeductionTable = "table2";
+      longTermDeductionAmount = Math.round(taxableFormer * longTermDeductionRate);
+      warnings.push(
+        "장기보유특별공제는 관리처분인가 전 종전주택분 양도차익에만 적용됩니다(소득세법 §95②).",
+      );
+    } else {
+      // 1세대 1주택 요건(거주 2년 등) 미충족 원조합원: 표1(3년 6% ~ 연 2%p, 최대 30%)
+      const generalRate = getGeneralLongTermDeductionRate(formerYears);
+      holdingDeductionRate = generalRate;
+      longTermDeductionRate = generalRate;
+      longTermDeductionTable = generalRate > 0 ? "table1" : "none";
+      longTermDeductionAmount = Math.round(taxableFormer * generalRate);
+      warnings.push(
+        "1세대 1주택·거주 2년 요건을 갖추지 못한 원조합원은 종전주택분에 표1(일반) 장기보유특별공제가 적용됩니다(소득세법 §95②).",
+      );
+    }
   }
 
   if (split.occupancyRightsGain > 0) {
@@ -883,9 +896,9 @@ function computeOccupancyRightsTax(input: CapitalGainsTaxInput): CapitalGainsTax
   const totalPayableTax = outputTax + localIncomeTax;
   const deferrable = calcInstallmentDeferrable(totalPayableTax);
 
-  if (occPeriods.isMultiHomeSurchargeExemptPeriod && input.houseCount !== "1" && input.isRegulatedArea) {
+  if (input.houseCount !== "1") {
     warnings.push(
-      "2026년 5월 9일까지 양도·보유 2년 이상 주택은 다주택 중과가 배제됩니다(시행령 §167의3).",
+      "조합원입주권을 양도할 때는 다주택 중과(§104⑦)가 적용되지 않습니다. 다만 입주권이 있는 세대가 조정대상지역 주택을 양도하면 주택 수에 포함되어 중과될 수 있습니다.",
     );
   }
 

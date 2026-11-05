@@ -4,7 +4,7 @@ export const housingSubscriptionSavingsGuideMeta = {
   slug: "housing-subscription-savings-guide",
   title: "주택청약종합저축 완전 정리",
   description:
-    "주택청약종합저축 가입 시점·납입 전략, 1순위 요건과 가점의 관계, 해지 시 잃는 것과 청약 전에 확인할 순서를 정리했습니다.",
+    "청약통장은 1순위 자격에 납입 기간과 예치금이 필요해 내집마련 1~2년 전부터 시작하는 편이 유리합니다. 1순위 조건, 지역별 예치금, 가점 산정, 해지 시 불이익, 납입 전략을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

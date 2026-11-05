@@ -4,7 +4,7 @@ export const mortgageMaturityExtensionGuideMeta = {
   slug: "mortgage-maturity-extension-guide",
   title: "주택담보대출 연장(만기 연장) 방법과 주의사항",
   description:
-    "2026년 10월 30일 기준 주담대 만기 연장 절차, 재심사 항목, 다주택자 규제, 예외 조건, 연장·대환 비교와 거절 대응 방법을 표로 정리했습니다.",
+    "주담대 만기 연장은 재심사를 거치고, 다주택자는 연장 자체가 제한될 수 있습니다. 연장 절차와 심사 항목, 규제 대상 자가진단·예외 조건, 대환대출과 비교, 거절 시 대응 방법을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

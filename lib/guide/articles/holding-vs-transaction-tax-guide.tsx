@@ -4,7 +4,7 @@ export const holdingVsTransactionTaxGuideMeta = {
   slug: "holding-vs-transaction-tax-guide",
   title: "보유세 vs 거래세, 무슨 차이인가",
   description:
-    "2026년 기준 보유세(재산세·종부세)와 거래세(취득세·양도세) 개념·부과 시점·과세표준·국세·지방세 구분, 집 사고·보유·팔 때 세금 흐름과 자주 하는 오해를 표로 정리했습니다.",
+    "보유세는 집을 갖고 있는 동안 내는 재산세·종부세이고, 거래세는 사고팔 때 내는 취득세·양도세입니다. 부과 시점·과세표준·국세와 지방세 구분, 한 채의 세금 흐름 예시, 7월·12월 이중 고지와 자주 하는 오해를 다룹니다.",
   updated: "2026년 7월 8일",
 } as const;
 
@@ -585,7 +585,7 @@ export function HoldingVsTransactionTaxGuideBody() {
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
                   <Link
-                    href="/guide/first-home-acquisition-tax-amount-guide"
+                    href="/guide/acquisition-tax-rates-2026-guide"
                     className="text-primary underline-offset-4 hover:underline"
                   >
                     1주택 취득세 금액

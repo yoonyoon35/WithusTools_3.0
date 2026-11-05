@@ -4,8 +4,8 @@ export const acquisitionTaxReliefPrograms2026GuideMeta = {
   slug: "acquisition-tax-relief-programs-2026-guide",
   title: "취득세 세액공제·감면 제도 총정리",
   description:
-    "2026년 기준 생애최초, 출산·양육, 인구감소지역, 세컨드홈, 미분양, 일시적 2주택 등 취득세 감면·공제 제도를 표로 정리했습니다. 적용 요건, 신청 절차, 추징 유의사항과 세액공제 한도를 참고용으로 확인하세요. 실제 신고·심사 결과는 개별 사안마다 달라질 수 있습니다.",
-  updated: "2026년 10월 30일",
+    "2026년 주택 취득세 감면은 생애최초, 출산·양육, 인구감소지역, 세컨드홈, 지방 미분양, 일시적 2주택 특례 순으로 비교하면 됩니다. 한눈에 비교표, 제도 선택 가이드, 신청 방법, 중복 적용 여부, 추징 주의사항을 다룹니다. (2026년 11월 5일 기준)",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function AcquisitionTaxReliefPrograms2026GuideBody() {
@@ -13,7 +13,7 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-atrp-overview">
         <h2 id="guide-atrp-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 10월 30일 기준
+          2026년 11월 5일 기준
         </h2>
         <p>
           주택 취득세는 조건에 따라 감면받을 수 있는 제도가 여러 가지 있습니다. 2026년 1월 1일부터 지방세법과
@@ -285,15 +285,17 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  실거주 요건
+                  거주 목적
                 </th>
-                <td className="border-border border-b px-3 py-2.5">취득일로부터 3개월 이내 전입·상시 거주</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  본인이 거주할 목적으로 유상 취득(2026.1.1부터 3개월 내 전입 의무 추징 조항 삭제)
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   추징 요건
                 </th>
-                <td className="px-3 py-2.5">3년 미만 매각·증여·임대 시 추징</td>
+                <td className="px-3 py-2.5">취득일부터 3년 이내 매각·증여·임대 등 다른 용도 사용 시 추징</td>
               </tr>
             </tbody>
           </table>
@@ -653,7 +655,7 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   7억·조정지역 예시
                 </th>
-                <td className="border-border border-b px-3 py-2.5">특례 약 1,284만 원 vs 중과 약 5,880만 원</td>
+                <td className="border-border border-b px-3 py-2.5">특례 약 1,283만 원 vs 중과 약 5,880만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -845,21 +847,11 @@ export function AcquisitionTaxReliefPrograms2026GuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  3개월 이내 전입·상시 거주 미이행
+                  취득일부터 3년 이내 매각·증여·임대 등 다른 용도 사용
                 </th>
-                <td className="border-border border-b px-3 py-2.5">생애최초·출산·양육</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  3년 미만 매각·증여·임대
-                </th>
-                <td className="border-border border-b px-3 py-2.5">생애최초·출산·양육</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  취득 후 3개월 이내 1가구 1주택 미달성
-                </th>
-                <td className="border-border border-b px-3 py-2.5">생애최초</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  생애최초·출산·양육(2026.1.1 이후 취득분. 이전 취득분은 3개월 내 전입·상시 거주 등 종전 규정)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">

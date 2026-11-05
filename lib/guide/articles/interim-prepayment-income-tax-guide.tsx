@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const interimPrepaymentIncomeTaxGuideMeta = {
   slug: "interim-prepayment-income-tax-guide",
-  title: "종합소득세 중간예납 | 기준액의 1/2, 분납, 추계액 신고",
+  title: "종합소득세 중간예납 — 기준액 1/2 계산과 분납",
   description:
-    "납부 제외, 중간예납기준액과 1/2 계산, 2026년 11월 30일 납부, 1천만 원 초과 분납, 상반기 추계액 식과 기본세율표를 계산에 쓸 수 있게 정리했습니다.",
+    "종합소득세 중간예납은 지난해 납부세액(중간예납기준액)의 1/2을 11월 30일까지 내는 제도로, 2026년 납부기한은 11월 30일입니다. 납부 제외 대상, 고지세액, 1천만 원 초과 분납, 상반기 소득을 추계해 신고하는 방법을 다룹니다.",
   updated: "2026년 9월 23일",
 } as const;
 

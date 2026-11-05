@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const propertyTaxVsComprehensivePropertyTaxFairRatioGuideMeta = {
   slug: "property-tax-vs-comprehensive-property-tax-fair-ratio-guide",
-  title: "재산세 공정 45% vs 종부세 공정 60%… 공정비율 인상 시 세금 계산",
+  title: "재산세 공정 45% vs 종부세 공정 60% — 세금 계산 비교",
   description:
-    "재산세·종부세 공정시장가액비율(1세대 1주택 재산세 43~45%·종부세 60%) 차이, 7월·12월 이중 고지 이유, 공제할 재산세 산식, 공시 20억 사례와 8·3 정부안 종부세 공정비율 70%·80% 인상 시 연간 보유세 변화를 표로 정리했습니다.",
+    "재산세와 종부세는 같은 집에 따로 고지되고, 1세대 1주택 공정시장가액비율은 재산세 43~45%, 종부세 60%로 다릅니다. 이중 고지 이유와 공제할 재산세 산식, 공시 20억 사례에서 8·3 정부안(종부세 70%·80%) 적용 시 보유세 변화를 다룹니다.",
   updated: "2026년 11월 4일",
 } as const;
 

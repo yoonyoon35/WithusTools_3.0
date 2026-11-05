@@ -4,7 +4,7 @@ export const jeonseGuaranteeInsuranceGuideMeta = {
   slug: "jeonse-guarantee-insurance-guide",
   title: "전세보증보험 가입 방법과 필요성",
   description:
-    "2026년 10월 30일 기준 전세보증보험의 필요성, 기관별 비교, 보증료 계산, 가입 요건·절차·거절 사유와 계약 전 체크포인트를 표로 정리했습니다.",
+    "전세보증보험은 집주인이 보증금을 돌려주지 않을 때 보증기관이 먼저 지급하는 제도로, 전세사기 이후 사실상 필수가 됐습니다. 3개 기관 비교, 보증료 계산식, 가입 요건·절차·거절 사유와 계약 전 확인 사항을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

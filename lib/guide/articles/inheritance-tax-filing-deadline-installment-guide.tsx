@@ -4,8 +4,8 @@ export const inheritanceTaxFilingDeadlineInstallmentGuideMeta = {
   slug: "inheritance-tax-filing-deadline-installment-guide",
   title: "상속세 신고 기한·분납·홈택스 — 6개월 안에 할 일",
   description:
-    "2026년 7월 기준 상속세 신고·납부 기한(6·9개월), 신고세액공제 3%, 분납·연부연납, 무신고 가산세, 홈택스 절차, 취득세 기한과의 차이를 표로 정리했습니다.",
-  updated: "2026년 7월 7일",
+    "상속세는 상속개시일이 속한 달의 말일부터 6개월 안에(해외 거주 9개월) 신고·납부하고, 기한 내 신고하면 3% 세액공제를 받습니다. 분납·연부연납, 무신고 가산세, 홈택스 절차, 취득세 기한과의 차이를 함께 봅니다. (2026년 11월 기준)",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
@@ -13,7 +13,7 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-itfdi-intro">
         <h2 id="guide-itfdi-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           상속이 개시되면(피상속인 사망) 상속인은 <strong>상속세 신고·납부 기한</strong>을 먼저 확인해야 합니다. 세액이
@@ -103,7 +103,7 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
                   연장(9개월)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  상속인·수유자 등이 외국에 거주하거나, 상속재산 대부분이 국외에 있는 경우 등(법령상 사유)
+                  피상속인 또는 상속인이 외국에 주소를 둔 경우(제67조④)
                 </td>
               </tr>
               <tr className="bg-muted/20">
@@ -125,15 +125,16 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
           신고세액공제 3%
         </h2>
         <p>
-          법정신고기한 내 <strong>자진신고</strong>하면 산출세액(세대생략 할증 반영 후, 다른 세액공제 차감 전)의{" "}
-          <strong>3%</strong>를 추가로 공제합니다(제69조). 무신고·기한 후 신고·과소신고에는 적용되지 않습니다.
+          법정신고기한 내 <strong>자진신고</strong>하면 산출세액에 세대생략 할증을 더하고 증여세액공제 등 다른
+          공제·감면세액을 뺀 금액의 <strong>3%</strong>를 추가로 공제합니다(제69조). 기한 내 신고하지 않은 무신고·기한
+          후 신고에는 적용되지 않습니다.
         </p>
         <p className="font-mono text-sm">
           신고세액공제 = (산출세액 + 할증 − 증여세액공제 등) × 3%
         </p>
         <p className="text-muted-foreground text-sm">
           <Link
-            href="/guide/inheritance-tax-apartment-price-scenarios-guide#guide-itaps-1500m"
+            href="/guide/inheritance-tax-overview-guide#guide-ito-example-1500m"
             className="text-primary underline-offset-4 hover:underline"
           >
             15억 원 예시
@@ -149,7 +150,7 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              분납(제70조②) 요약
+              분납(제70조②)·연부연납(제71조) 요약
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -166,26 +167,31 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium whitespace-nowrap">
                   분납 가능
                 </th>
-                <td className="border-border border-b px-3 py-2.5">납부세액이 1,000만 원을 초과할 때</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  납부세액이 1,000만 원을 초과할 때, 납부기한 후 <strong>2개월 이내</strong>에 나눠 납부(무이자). 신고서
+                  분납란에 적으면 신청 완료
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   2천만 이하
                 </th>
-                <td className="border-border border-b px-3 py-2.5">1,000만 초과분 전액을 2년 등 분납</td>
+                <td className="border-border border-b px-3 py-2.5">1,000만 원 초과분을 분납 가능</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   2천만 초과
                 </th>
-                <td className="border-border border-b px-3 py-2.5">납부세액의 50% 이내 범위에서 2·5·10년 분납 신청</td>
+                <td className="border-border border-b px-3 py-2.5">납부세액의 50% 이하를 분납 가능</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium whitespace-nowrap">
                   연부연납
                 </th>
                 <td className="px-3 py-2.5">
-                  납부곤란 등 요건 충족 시 이자만 내고 세액 연기(별도 신청·심사, 제71조)
+                  납부세액 2천만 원 초과 + 납세담보 제공 + 신고기한 내 신청 시 허가일부터 최대 10년(일반 상속재산,
+                  가업상속 등은 더 길게). 매회 분할세액이 1,000만 원을 넘어야 하고 가산금(이자)이 붙으며, 허가받으면
+                  분납은 못 씁니다
                 </td>
               </tr>
             </tbody>
@@ -199,7 +205,7 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
         </h2>
         <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>
-            <strong className="text-foreground">무신고·과소신고</strong>: 신고세액공제 3% 미적용 + 가산세(국세기본법)
+            <strong className="text-foreground">무신고·과소신고</strong>: 가산세(국세기본법). 무신고·기한 후 신고는 신고세액공제 3%도 받지 못합니다
           </li>
           <li>
             <strong className="text-foreground">납부지연</strong>: 미납분에 납부지연가산세(일할 계산)
@@ -294,14 +300,6 @@ export function InheritanceTaxFilingDeadlineInstallmentGuideBody() {
           <li>
             <Link href="/guide/inheritance-tax-overview-guide" className="text-primary underline-offset-4 hover:underline">
               상속세 개요
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/guide/inheritance-tax-apartment-price-scenarios-guide"
-              className="text-primary underline-offset-4 hover:underline"
-            >
-              7·10·15억 상속세 예시
             </Link>
           </li>
         </ul>

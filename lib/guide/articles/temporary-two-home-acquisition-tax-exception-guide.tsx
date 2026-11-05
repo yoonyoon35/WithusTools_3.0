@@ -4,7 +4,7 @@ export const temporaryTwoHomeAcquisitionTaxExceptionGuideMeta = {
   slug: "temporary-two-home-acquisition-tax-exception-guide",
   title: "일시적 2주택 취득세 중과 예외 조건",
   description:
-    "2026년 기준 일시적 2주택 특례 적용 전제(조정·비조정), 인정 사유·처분 범위, 처분 기한(3년·조정↔조정 2년), 세컨드홈과의 차이, 일반·중과 세액 예시, 추징·신고 방법, 생애최초 중복 여부와 취득 전 체크리스트를 표로 정리했습니다.",
+    "일시적 2주택은 종전 주택을 3년 안에 처분하면 중과 대신 1주택 세율을 적용받고, 종전·신규 주택이 모두 조정대상지역이면 처분 기한이 2년입니다. 인정 사유와 처분 범위, 세액 예시, 추징·신고 방법을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 
@@ -319,9 +319,9 @@ export function TemporaryTwoHomeAcquisitionTaxExceptionGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   7억 원
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 1,284만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1,283만 원</td>
                 <td className="border-border border-b px-3 py-2.5">약 5,880만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 4,596만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 4,597만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">

@@ -2,11 +2,64 @@ import Link from "next/link";
 
 export const equalPaymentVsEqualPrincipalMeta = {
   slug: "equal-payment-vs-equal-principal",
-  title: "원리금균등상환 vs 원금균등상환 비교",
+  title: "원리금균등상환 vs 원금균등상환 비교, 1억 5천·2억 원 이자 예시",
   description:
-    "원리금균등·원금균등의 구조 차이, DSR·중도상환과의 관계, 연봉·여유자금별 선택 시나리오와 흔한 실수를 정리한 상환 방식 선택 가이드입니다.",
-  updated: "2026년 10월 30일",
+    "1억 5천만 원을 연 4%·30년으로 빌리면 첫 달 상환액은 원리금균등 71.6만 원, 원금균등 91.7만 원이고 총 이자는 약 1억 780만 원과 9,025만 원입니다. 금리·기간별 월 상환액, 중도상환 효과, DSR 필요 연소득과 선택 기준을 비교합니다.",
+  updated: "2026년 11월 5일",
 } as const;
+
+type TableRow = readonly [string, ...string[]];
+
+function InfoTable({
+  caption,
+  heads,
+  rows,
+  minWidth = "32rem",
+}: {
+  caption: string;
+  heads: readonly string[];
+  rows: readonly TableRow[];
+  minWidth?: string;
+}) {
+  return (
+    <div className="overflow-x-auto rounded-lg border border-border">
+      <table className="w-full border-collapse text-left text-sm" style={{ minWidth }}>
+        <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+          {caption}
+        </caption>
+        <thead>
+          <tr className="bg-muted/40">
+            {heads.map((h) => (
+              <th key={h} scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            const last = i === rows.length - 1;
+            const border = last ? "" : "border-border border-b";
+            return (
+              <tr key={row[0]} className={last ? "bg-muted/20" : undefined}>
+                <th scope="row" className={`${border} px-3 py-2.5 font-medium`}>
+                  {row[0]}
+                </th>
+                {row.slice(1).map((cell, j) => (
+                  <td key={j} className={`${border} px-3 py-2.5`}>
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const linkClass = "text-primary underline-offset-4 hover:underline";
 
 export function EqualPaymentVsEqualPrincipalBody() {
   return (
@@ -138,35 +191,197 @@ export function EqualPaymentVsEqualPrincipalBody() {
                   120회차 월 상환액
                 </th>
                 <td className="border-border border-b px-3 py-2.5">약 95만 5천 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 100만 6천 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 100만 2천 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   240회차 월 상환액
                 </th>
                 <td className="border-border border-b px-3 py-2.5">약 95만 5천 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 78만 9천 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 78만 원</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   총 상환액
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 3억 4,400만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 3억 2,100만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 3억 4,370만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 3억 2,030만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   총 이자액
                 </th>
-                <td className="px-3 py-2.5">약 1억 4,400만 원</td>
-                <td className="px-3 py-2.5">약 1억 2,100만 원</td>
+                <td className="px-3 py-2.5">약 1억 4,370만 원</td>
+                <td className="px-3 py-2.5">약 1억 2,030만 원</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          같은 조건에서 원금균등상환의 총 이자 부담이 약 2,300만 원 적습니다. 단, 초기 월 상환액은 원금균등상환이 약 27만 원 더
+          같은 조건에서 원금균등상환의 총 이자 부담이 약 2,340만 원 적습니다. 단, 초기 월 상환액은 원금균등상환이 약 27만 원 더
           높습니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-equal-150-intro">
+        <h2 id="guide-equal-150-intro" className="text-foreground text-xl font-semibold tracking-tight">
+          1억 5천만 원 대출 예시 — 금리·기간별 월 상환액
+        </h2>
+        <p>
+          1억 5천만 원 규모에서 금리와 기간 선택이 월 부담과 총 이자에 어떻게 연결되는지 표로 정리했습니다. 숫자는{" "}
+          <Link href="/loan-calculator" className={linkClass}>
+            대출 이자 계산기
+          </Link>
+          에 같은 조건을 넣어 확인할 수 있습니다. 원리금균등 월 상환액은 아래 식으로 구합니다.
+        </p>
+        <pre className="bg-muted/30 text-foreground overflow-x-auto rounded-md border border-border p-3 font-mono text-xs leading-relaxed whitespace-pre sm:text-sm">
+          {`월 상환액 = 대출원금 × [월 이자율 × (1 + 월 이자율)^상환 개월 수]
+                    ÷ [(1 + 월 이자율)^상환 개월 수 - 1]
+
+월 이자율 = 연 금리 ÷ 12`}
+        </pre>
+        <InfoTable
+          caption="1억 5천만 원 원리금균등 월 상환액(단위: 만 원, 약)"
+          heads={["금리", "10년(120개월)", "20년(240개월)", "30년(360개월)"]}
+          minWidth="34rem"
+          rows={[
+            ["3.0%", "144.8", "83.2", "63.2"],
+            ["3.5%", "148.3", "87.0", "67.4"],
+            ["4.0%", "151.9", "90.9", "71.6"],
+            ["4.5%", "155.5", "94.9", "76.0"],
+            ["5.0%", "159.1", "99.0", "80.5"],
+            ["5.5%", "162.8", "103.2", "85.2"],
+            ["6.0%", "166.5", "107.5", "89.9"],
+          ]}
+        />
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-equal-150-total-interest">
+        <h2 id="guide-equal-150-total-interest" className="text-foreground text-xl font-semibold tracking-tight">
+          1억 5천만 원 총 이자 — 금리별·기간별
+        </h2>
+        <InfoTable
+          caption="30년 원리금균등, 금리별 총부담(약)"
+          heads={["금리", "월 상환액", "총 상환액", "총 이자액", "이자/원금"]}
+          minWidth="40rem"
+          rows={[
+            ["3.0%", "63.2만 원", "2억 2,767만 원", "7,767만 원", "51.8%"],
+            ["3.5%", "67.4만 원", "2억 4,248만 원", "9,248만 원", "61.7%"],
+            ["4.0%", "71.6만 원", "2억 5,780만 원", "1억 780만 원", "71.9%"],
+            ["4.5%", "76.0만 원", "2억 7,361만 원", "1억 2,361만 원", "82.4%"],
+            ["5.0%", "80.5만 원", "2억 8,988만 원", "1억 3,988만 원", "93.3%"],
+          ]}
+        />
+        <p>금리가 1%p 오르면 30년 총 이자가 약 3,000만 원 이상 늘어납니다(3%→4% 약 3,010만 원, 4%→5% 약 3,210만 원).</p>
+        <InfoTable
+          caption="금리 4% 고정, 상환 기간별 총 이자(약)"
+          heads={["상환 기간", "월 상환액", "총 이자액", "30년 대비 이자 절감"]}
+          minWidth="36rem"
+          rows={[
+            ["10년", "151.9만 원", "3,224만 원", "7,556만 원"],
+            ["15년", "111.0만 원", "4,972만 원", "5,808만 원"],
+            ["20년", "90.9만 원", "6,815만 원", "3,965만 원"],
+            ["25년", "79.2만 원", "8,753만 원", "2,027만 원"],
+            ["30년", "71.6만 원", "1억 780만 원", "기준"],
+          ]}
+        />
+        <p>
+          30년에서 20년으로 줄이면 월 상환액이 약 19만 원 늘고 총 이자가 약 3,965만 원 줄어듭니다. 기간을 줄일수록 월
+          부담이 커져 DSR 한도에 더 빨리 닿습니다.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-equal-150-schedule">
+        <h2 id="guide-equal-150-schedule" className="text-foreground text-xl font-semibold tracking-tight">
+          1억 5천만 원 원리금균등 — 월별 원금·이자 변화와 원금균등 비교
+        </h2>
+        <InfoTable
+          caption="원금 1억 5천만 원, 금리 4%, 30년 원리금균등 회차별 구성(약)"
+          heads={["회차", "월 상환액", "이자", "원금", "잔여 원금"]}
+          minWidth="38rem"
+          rows={[
+            ["1회차", "71.6만 원", "50.0만 원", "21.6만 원", "1억 4,978만 원"],
+            ["12회차", "71.6만 원", "49.2만 원", "22.4만 원", "1억 4,736만 원"],
+            ["60회차(5년)", "71.6만 원", "45.3만 원", "26.3만 원", "1억 3,567만 원"],
+            ["120회차(10년)", "71.6만 원", "39.5만 원", "32.1만 원", "1억 1,818만 원"],
+            ["180회차(15년)", "71.6만 원", "32.4만 원", "39.2만 원", "9,681만 원"],
+            ["240회차(20년)", "71.6만 원", "23.7만 원", "47.9만 원", "7,073만 원"],
+            ["300회차(25년)", "71.6만 원", "13.2만 원", "58.5만 원", "3,888만 원"],
+            ["360회차(30년)", "71.6만 원", "0.2만 원", "71.4만 원", "0원"],
+          ]}
+        />
+        <p>
+          첫 달에는 월 상환액의 약 70%가 이자이고, 10년 차에도 절반이 넘는 55%, 20년 차에야 약 33%로 내려갑니다. 대출
+          기간의 절반이 지나도 잔여 원금이 절반 가까이(10년 차 1억 1,818만 원) 남는 구조입니다.
+        </p>
+        <InfoTable
+          caption="1억 5천만 원, 금리 4%, 30년 — 원리금균등 vs 원금균등"
+          heads={["항목", "원리금균등", "원금균등"]}
+          minWidth="30rem"
+          rows={[
+            ["1회차 월 상환액", "71.6만 원", "91.7만 원"],
+            ["120회차 월 상환액", "71.6만 원", "75.1만 원"],
+            ["240회차 월 상환액", "71.6만 원", "58.5만 원"],
+            ["360회차 월 상환액", "71.6만 원", "41.8만 원"],
+            ["총 이자액", "약 1억 780만 원", "약 9,025만 원"],
+          ]}
+        />
+        <p>원금균등은 총 이자가 약 1,755만 원 적지만 첫 달 상환액이 약 20만 원 더 많습니다.</p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-equal-150-grace-prepay">
+        <h2 id="guide-equal-150-grace-prepay" className="text-foreground text-xl font-semibold tracking-tight">
+          1억 5천만 원 — 거치기간과 중도상환 효과
+        </h2>
+        <InfoTable
+          caption="금리 4%, 전체 30년 안에서 거치기간(이자만 납부)을 둘 때(약)"
+          heads={["거치기간", "거치 중 월 납부", "거치 후 월 상환", "총 이자액"]}
+          minWidth="36rem"
+          rows={[
+            ["없음", "—", "71.6만 원", "1억 780만 원"],
+            ["1년", "50만 원(이자만)", "72.9만 원", "1억 968만 원"],
+            ["2년", "50만 원(이자만)", "74.3만 원", "1억 1,159만 원"],
+            ["3년", "50만 원(이자만)", "75.8만 원", "1억 1,353만 원"],
+          ]}
+        />
+        <p>
+          거치기간 1년당 총 이자가 약 190만 원 늘고 거치 종료 후 월 상환액도 올라갑니다. 거치기간은 전체 대출 기간(30년)
+          안에 포함하는 것으로 계산했습니다.
+        </p>
+        <InfoTable
+          caption="금리 4%, 30년 원리금균등, 5년 후 5,000만 원 중도상환(약)"
+          heads={["항목", "중도상환 없음", "상환 후 월 상환액 줄이기", "상환 후 월 상환액 유지(기간 단축)"]}
+          minWidth="44rem"
+          rows={[
+            ["5년 후 잔여 원금", "1억 3,567만 원", "8,567만 원", "8,567만 원"],
+            ["이후 월 상환액", "71.6만 원", "45.2만 원", "71.6만 원"],
+            ["남은 기간", "25년(300개월)", "25년", "약 12년 9개월(153개월)"],
+            ["남은 기간 총 이자", "약 7,917만 원", "약 4,999만 원", "약 2,382만 원"],
+            ["이자 절감액", "—", "약 2,918만 원", "약 5,535만 원"],
+          ]}
+        />
+        <p>
+          같은 5,000만 원을 갚아도 월 상환액을 줄이는 것보다 <strong>월 상환액을 유지해 기간을 줄이는 쪽</strong>의 이자 절감이
+          큽니다. 중도상환 수수료(상환액 × 요율 × 잔여 면제기간 비율, 최근 계약은 0.5~0.9%대·예전 계약은 1%를 넘기도 함)와
+          절감 이자를 비교해 시기를 정하세요.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-equal-150-dsr">
+        <h2 id="guide-equal-150-dsr" className="text-foreground text-xl font-semibold tracking-tight">
+          1억 5천만 원 대출에 필요한 연소득(DSR 40%)
+        </h2>
+        <p>
+          금리 4%·30년 원리금균등·기타 부채 없음이면 월 상환액 71.6만 원 × 12개월 ÷ 40% = 약 <strong>2,148만 원</strong>의
+          연소득이 필요합니다. 수도권·규제지역 주택담보대출에는 스트레스 금리 3.0%p 가산이 적용될 수 있어, 심사 금리를
+          7%로 보면 월 상환액 99.8만 원, 필요 연소득 약 2,994만 원으로 커집니다. 기존 부채가 있으면 필요 소득이 더 높아집니다.{" "}
+          <Link href="/guide/dsr-40-mortgage-limit" className={linkClass}>
+            DSR 계산 방법과 40% 한도 산정
+          </Link>
+          에서 계산 구조를 볼 수 있습니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 위 수치는 고정금리 기준 참고값이며, 실제 월 상환액은 금융기관별 계산 방식·금리 유형·상환 방식에 따라 다를 수 있습니다.
         </p>
       </section>
 

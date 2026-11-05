@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const comprehensiveIncomeTaxPenaltyGuideMeta = {
   slug: "comprehensive-income-tax-penalty-guide",
-  title: "종합소득세 가산세 | 무신고·과소신고·납부지연·기장·계산서",
+  title: "종합소득세 가산세 — 무신고·과소신고·납부지연 요율",
   description:
-    "무신고, 과소신고, 납부지연, 장부 불성실, 계산서·지급명세서·현금영수증 등 가산세 요율을 표로 정리했습니다.",
+    "종합소득세를 신고하지 않거나 적게 신고하거나 늦게 내면 무신고·과소신고·납부지연 가산세가 붙고, 장부를 안 쓰거나 계산서·지급명세서를 안 내면 별도 가산세가 있습니다. 가산세별 요율을 표로 봅니다.",
   updated: "2026년 9월 23일",
 } as const;
 

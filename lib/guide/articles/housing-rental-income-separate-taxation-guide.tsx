@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const housingRentalIncomeSeparateTaxationGuideMeta = {
   slug: "housing-rental-income-separate-taxation-guide",
-  title: "주택임대소득 종합과세·분리과세 | 2천만 원 이하, 필요경비·공제·14%",
+  title: "주택임대소득 과세 — 2천만 원 이하 분리과세와 종합과세",
   description:
-    "수입금액 2천만 원 이하 선택, 등록·미등록 필요경비율과 공제금액, 14% 세율, 세액감면, 사후관리, 계산 사례를 식으로 정리했습니다.",
+    "주택임대 수입금액이 2천만 원 이하면 종합과세와 분리과세 중 선택할 수 있고, 분리과세 세율은 14%입니다. 등록·미등록 필요경비율과 공제금액, 두 방식을 함께 둘 때 계산, 계산 사례, 주택 수 계산을 다룹니다.",
   updated: "2026년 9월 23일",
 } as const;
 

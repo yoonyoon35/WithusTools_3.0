@@ -4,7 +4,7 @@ export const jeonseBrokerageFeeCalculation2026GuideMeta = {
   slug: "jeonse-brokerage-fee-calculation-2026-guide",
   title: "전세 중개수수료 계산법",
   description:
-    "2026년 10월 30일 기준 전세 보증금 구간별 상한요율·한도액, 1인당 수수료 예시, 6억 원 경계, 쌍방 부담·매매와의 비교, VAT·재계약·분쟁 대응을 표로 정리했습니다.",
+    "전세 중개수수료는 보증금 구간별 상한요율로 계산하며 보증금 6억 원 경계에서 요율이 달라집니다. 상한요율·한도액, 1인당 수수료 예시, 쌍방 부담 원칙, 매매와 비교, VAT·재계약·분쟁 대응을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

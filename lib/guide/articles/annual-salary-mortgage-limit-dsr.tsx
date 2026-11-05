@@ -5,7 +5,7 @@ export const annualSalaryMortgageLimitDsrMeta = {
   slug: "annual-salary-mortgage-limit-dsr",
   title: "연봉별 주택담보대출 한도 기준",
   description:
-    "연봉별 DSR 40% 월 상환 한도와 기존 부채·금리·LTV를 반영한 시나리오를 표로 정리했습니다. 실제 매수 가능 금액 추산 방법, 대출 신청 전 체크리스트, DSR 계산 개념을 참고용으로 확인할 수 있는 가이드입니다. 실제 한도는 금융기관 심사 결과에 따라 달라질 수 있습니다.",
+    "연봉 5,500만 원에 신용대출 월 40만 원이 있으면 DSR 40% 기준으로 주담대에 쓸 수 있는 월 상환액은 약 143만 원, 대출 가능액은 약 2억 5,000만 원(금리 4%·30년)입니다. 연봉별 한도 추산과 DSR·LTV 중 먼저 걸리는 규제를 다룹니다.",
   updated: "2026년 8월 1일",
 } as const;
 

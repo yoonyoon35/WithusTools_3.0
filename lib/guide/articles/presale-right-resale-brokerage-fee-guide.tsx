@@ -4,7 +4,7 @@ export const presaleRightResaleBrokerageFeeGuideMeta = {
   slug: "presale-right-resale-brokerage-fee-guide",
   title: "분양권 전매 중개수수료 계산·요율",
   description:
-    "2026년 기준 분양권 전매 중개수수료 산정 방식, 거래금액(계약금+중도금+프리미엄) 공식, 금액별 예시·마이너스 프리미엄·전매제한 유의사항. 중개수수료 계산기로 바로 계산할 수 있습니다.",
+    "분양권 전매 중개수수료는 계약금+중도금+프리미엄을 합친 금액을 거래금액으로 보고 계산합니다. 금액별 예시, 프리미엄 포함 여부, 마이너스 프리미엄 처리, 옵션·발코니 확장비 포함 여부, 중도금 대출 승계와 전매제한 확인을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

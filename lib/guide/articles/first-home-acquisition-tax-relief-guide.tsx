@@ -4,8 +4,8 @@ export const firstHomeAcquisitionTaxReliefGuideMeta = {
   slug: "first-home-acquisition-tax-relief-guide",
   title: "생애최초 취득세 감면 조건과 신청 방법",
   description:
-    "2026년 10월 30일 기준 생애최초 감면 조건, 감면 한도, 매매가별 효과, 예외 요건, 신청·사후 관리(추징), 환급 방법을 표로 정리했습니다.",
-  updated: "2026년 10월 30일",
+    "생애최초 취득세 감면은 12억 원 이하 주택에 최대 200만 원(인구감소지역·소형 비아파트는 300만 원)이며, 2026년부터 추징 요건이 취득일부터 3년 이내 매각·증여·임대로 바뀌었습니다. 조건, 무주택 예외, 신청 서류, 환급·경정청구를 다룹니다. (2026년 11월 5일 기준)",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function FirstHomeAcquisitionTaxReliefGuideBody() {
@@ -13,7 +13,7 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-fhatr-overview">
         <h2 id="guide-fhatr-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 10월 30일 기준
+          2026년 11월 기준
         </h2>
         <p>
           생애최초 주택 구입 취득세 감면은 본인과 배우자가 생애 처음으로 주택을 구입할 때 취득세를 최대 200만 원 한도 내에서
@@ -46,11 +46,6 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
           <li>
             <a href="#guide-fhatr-childbirth" className="text-primary underline-offset-4 hover:underline">
               출산·양육 감면과 선택
-            </a>
-          </li>
-          <li>
-            <a href="#guide-fhatr-replace" className="text-primary underline-offset-4 hover:underline">
-              1주택 교체·일시적 2주택
             </a>
           </li>
           <li>
@@ -120,7 +115,9 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   대상자
                 </th>
-                <td className="border-border border-b px-3 py-2.5">본인과 배우자 모두 과거 주택 소유 이력 없음</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  취득일 현재 본인과 배우자 모두 주택을 소유한 사실 없음(미성년자 제외)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -144,13 +141,25 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   취득 방법
                 </th>
-                <td className="border-border border-b px-3 py-2.5">유상취득 (매매)</td>
+                <td className="border-border border-b px-3 py-2.5">유상취득(매매). 부담부증여·증여·상속은 제외</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  거주 목적
+                </th>
+                <td className="border-border border-b px-3 py-2.5">본인이 거주할 목적으로 취득</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  사후 거주
+                  사후 관리
                 </th>
-                <td className="px-3 py-2.5">취득 후 3개월 이내 전입·1가구 1주택, 3년 상시 거주(미이행 시 추징)</td>
+                <td className="px-3 py-2.5">
+                  취득일부터 3년 이내 매각·증여·임대 등 다른 용도 사용 시 추징(2026.1.1부터 「3개월 내 전입」 추징 조항 삭제,{" "}
+                  <a href="#guide-fhatr-recapture" className="text-primary underline-offset-4 hover:underline">
+                    추징 조건
+                  </a>
+                  )
+                </td>
               </tr>
             </tbody>
           </table>
@@ -335,8 +344,8 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
                 </th>
                 <td className="px-3 py-2.5">약 1,167만 원</td>
                 <td className="px-3 py-2.5">220만 원</td>
-                <td className="px-3 py-2.5">약 1,284만 원</td>
-                <td className="px-3 py-2.5">약 1,064만 원</td>
+                <td className="px-3 py-2.5">약 1,283만 원</td>
+                <td className="px-3 py-2.5">약 1,063만 원</td>
               </tr>
             </tbody>
           </table>
@@ -411,38 +420,14 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
         </p>
       </section>
 
-      <section className="space-y-3" aria-labelledby="guide-fhatr-replace">
-        <h2 id="guide-fhatr-replace" className="text-foreground text-xl font-semibold tracking-tight">
-          1주택 교체·일시적 2주택과 병행
-        </h2>
-        <p>
-          기존 주택을 팔기 전 새 주택을 먼저 취득하면 취득 시점에 2주택으로 보아 중과세율(8% 등)이 적용될 수 있습니다. 이 경우{" "}
-          <Link
-            href="/guide/temporary-two-home-acquisition-tax-exception-guide"
-            className="text-primary underline-offset-4 hover:underline"
-          >
-            일시적 2주택 취득세 중과 예외
-          </Link>
-          요건(종전 주택 3년 내 처분, 종전·신규 모두 조정대상지역이면 2026.10.1 이후 취득분부터 2년 내 처분 등)을 충족하면 1주택 일반세율(1~3%)로 신고할 수 있습니다.
-        </p>
-        <p>
-          일시적 2주택으로 1~3% 세율을 적용한 뒤에도, 무주택·생애최초 요건을 충족하면 <strong>생애최초 200만 원 감면을 추가
-          신청</strong>할 수 있습니다. 두 제도는 중복 적용 가능합니다. 1주택 교체 시 세율 구조는{" "}
-          <Link
-            href="/guide/first-home-acquisition-tax-amount-guide"
-            className="text-primary underline-offset-4 hover:underline"
-          >
-            1주택자 취득세 얼마나 나올까
-          </Link>
-          가이드도 참고하세요.
-        </p>
-      </section>
-
       <section className="space-y-4" aria-labelledby="guide-fhatr-exception">
         <h2 id="guide-fhatr-exception" className="text-foreground text-xl font-semibold tracking-tight">
           무주택으로 간주되는 예외 경우
         </h2>
-        <p>과거 주택을 소유했더라도 아래 경우에는 무주택으로 간주해 감면을 적용받을 수 있습니다.</p>
+        <p>
+          주택을 소유했거나 소유했던 이력이 있어도 아래 경우에는 「주택을 소유한 사실이 없는 경우」로 보아 감면을 적용받을
+          수 있습니다(지방세특례제한법 제36조의3 제3항).
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -461,46 +446,59 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  노후 단독주택
+                  노후 단독주택(사용 승인 후 20년 이상)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">사용 승인 후 20년 이상 경과된 단독주택 소유·처분</td>
+                <td className="border-border border-b px-3 py-2.5" rowSpan={3}>
+                  도시지역이 아닌 지역(또는 수도권 외 면 지역)에 있는 아래 주택을 소유한 사람이 그 소재지역에 거주하다가 다른
+                  지역으로 이주한 경우. 해당 주택을 감면 대상 주택 취득일 전에 처분했거나 취득일부터 3개월 이내에 처분해야 함
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  소형 단독주택
+                  소형 단독주택(85㎡ 이하)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">전용 85㎡ 이하 단독주택 소유·처분</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  상속 주택
+                  상속으로 취득한 주택
                 </th>
-                <td className="border-border border-b px-3 py-2.5">상속으로 취득한 주택 소유·처분</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  상속 공유지분
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  상속으로 주택(부속토지 포함) 공유지분을 소유했다가 그 지분을 모두 처분한 경우
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   초소형 주택
                 </th>
-                <td className="border-border border-b px-3 py-2.5">전용 20㎡ 이하 주택 1채 소유·처분</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  전용 20㎡ 이하 주택을 소유하고 있거나 처분한 경우(20㎡ 이하 주택을 둘 이상 소유했거나 소유 중이면 제외)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   저가 주택
                 </th>
-                <td className="border-border border-b px-3 py-2.5">시가표준액 100만 원 이하 주택 소유·처분</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  취득일 현재 시가표준액 100만 원 이하 주택을 소유하고 있거나 처분한 경우
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   전세사기피해주택
                 </th>
-                <td className="px-3 py-2.5">전세사기피해주택 소유·처분</td>
+                <td className="px-3 py-2.5">전세사기피해주택을 소유하고 있거나 처분한 경우</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          단, 위 예외에 해당하더라도 감면 대상 주택 취득일 전 또는 취득일로부터 3개월 이내에 처분한 경우에 한정합니다. 예외
-          무주택 해당 시 등기·매매계약서 등 <strong>처분 증빙</strong>을 추가로 제출해야 할 수 있습니다.
+          도시지역 밖·면 지역 단독주택·상속주택 예외는 감면 대상 주택 취득일 전 또는 취득일부터 3개월 이내에 처분해야
+          합니다. 예외 무주택에 해당하면 등기·매매계약서 등 <strong>처분 증빙</strong>을 추가로 제출해야 할 수 있습니다.
         </p>
         <p className="text-muted-foreground text-sm">
           <strong>부모 증여</strong>로 받은 공유 지분은 위 「상속 주택」 무주택 예외와 <strong>구분</strong>됩니다. 지분을
@@ -599,8 +597,19 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
         <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
           <li>본인 또는 배우자에게 주택 소유 이력이 있고, 위 무주택 예외에 해당하지 않는 경우</li>
           <li>취득가액(과세표준) 12억 원 초과</li>
-          <li>취득 시점 세대 기준 2주택 이상 보유(일시적 2주택·세컨드홈 등 별도 특례 미적용 시)</li>
-          <li>증여·상속 등 무상 취득(매매·유상취득만 해당)</li>
+          <li>
+            취득일 현재 기존 주택을 보유 중인 경우(교체 취득·일시적 2주택 포함) — 기존 주택이 있으면 「주택을 소유한 사실이
+            없는 경우」가 아니므로 생애최초 감면 대상이 아닙니다. 이 경우 중과 여부는{" "}
+            <Link
+              href="/guide/temporary-two-home-acquisition-tax-exception-guide"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              일시적 2주택 취득세 중과 예외
+            </Link>
+            에서 따로 판단합니다.
+          </li>
+          <li>증여·상속·부담부증여 등 무상 취득(매매·유상취득만 해당), 취득자가 미성년자인 경우</li>
+          <li>본인이 거주할 목적이 아닌 투자·임대 목적 취득</li>
         </ul>
       </section>
 
@@ -736,7 +745,11 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
         <h2 id="guide-fhatr-recapture" className="text-foreground text-xl font-semibold tracking-tight">
           사후 관리 요건 (추징 조건)
         </h2>
-        <p>감면을 받은 후 아래 조건을 지키지 않으면 감면받은 취득세와 가산세·이자가 추징됩니다.</p>
+        <p>
+          2026년 1월 1일 개정(지방세특례제한법 제36조의3 제4항)으로 추징 요건이 단순해졌습니다. 감면받은 뒤{" "}
+          <strong>취득일부터 3년 이내</strong>에 아래 사유가 생기면 감면받은 취득세가 추징됩니다. 종전의 「3개월 내 전입·상시
+          거주」「3개월 내 주택 추가 취득」 추징 조항은 삭제됐습니다.
+        </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -755,35 +768,36 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  전입 미이행
+                  매각
+                </th>
+                <td className="border-border border-b px-3 py-2.5">취득일부터 3년 이내 매각</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  증여
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  취득일로부터 3개월 이내 전입신고 및 상시 거주 시작 미이행
+                  취득일부터 3년 이내 증여(배우자에게 지분을 매각·증여하는 경우는 제외)
                 </td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  가구 1주택 미달성
-                </th>
-                <td className="border-border border-b px-3 py-2.5">취득일로부터 3개월 이내 1가구 1주택 미달성</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  조기 매각·증여
-                </th>
-                <td className="border-border border-b px-3 py-2.5">상시 거주 3년 미만 상태에서 매각·증여</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  임대 전환
+                  다른 용도 사용
                 </th>
-                <td className="px-3 py-2.5">상시 거주 3년 미만 상태에서 임대 목적 사용</td>
+                <td className="px-3 py-2.5">취득일부터 3년 이내 전세·월세 등 임대를 포함한 다른 용도로 사용</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          세입자가 있는 주택을 매수한 경우 임대차계약 종료 후 1년 이내 전입하면 추징 대상에서 제외됩니다.
+          임대인 지위를 승계한 주택으로 기존 임차인이 계속 거주하고 취득일 기준 남은 임대차기간이 1년 이내이면, 3년을 취득일이
+          아니라 <strong>임대차기간 만료일</strong>부터 셉니다. 추징 사유가 생기면 그날부터 60일 이내에 감면받은 세액을
+          신고·납부해야 합니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          개정 규정은 2026년 1월 1일 이후 취득(납세의무 성립)분부터 적용되며, 2025년 12월 31일 이전 취득분은 종전 규정(취득 후
+          3개월 내 전입·상시 거주 시작, 3개월 내 주택 추가 취득 금지, 상시 거주 3년 미만 상태의 매각·증여·임대 시 추징)이
+          적용됩니다. 종전 취득분의 사유 발생 시점별 적용은 관할 구청 세무과에서 확인하세요.
         </p>
       </section>
 
@@ -815,7 +829,7 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   신청 기한
                 </th>
-                <td className="border-border border-b px-3 py-2.5">취득세 납부일로부터 5년 이내</td>
+                <td className="border-border border-b px-3 py-2.5">법정신고기한(취득일부터 60일)이 지난 날부터 5년 이내</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -861,14 +875,6 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
               className="text-primary font-medium underline-offset-4 hover:underline"
             >
               취득세 세액공제·감면 제도 총정리
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/guide/first-home-acquisition-tax-amount-guide"
-              className="text-primary font-medium underline-offset-4 hover:underline"
-            >
-              1주택자 취득세 얼마나 나올까
             </Link>
           </li>
           <li>

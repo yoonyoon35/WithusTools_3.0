@@ -4,7 +4,7 @@ export const tenantDeathLeaseInheritanceGuideMeta = {
   slug: "tenant-death-lease-inheritance-guide",
   title: "임차인·임대인 사망 시 전월세 계약·보증금·상속",
   description:
-    "계약 만료 전 임차인·임대인 사망 시 임대차 존속, 보증금·월세 처리, 세입자·상속인 각각 확인할 절차, 민법 법정상속분, 상속세 신고와 전입·확정일자·보증보험 유의사항을 정리했습니다.",
+    "임차인이나 임대인이 사망해도 임대차 계약은 상속인에게 이어집니다. 보증금·월세 처리, 세입자와 상속인이 각각 확인할 절차, 법정상속분, 상속세 신고와 전입·확정일자·보증보험 유의사항을 다룹니다. (2026년 9월 기준)",
   updated: "2026년 9월 14일",
 } as const;
 

@@ -4,7 +4,7 @@ export const wolseBrokerageFeeCalculation2026GuideMeta = {
   slug: "wolse-brokerage-fee-calculation-2026-guide",
   title: "월세 중개수수료 계산법",
   description:
-    "2026년 10월 30일 기준 월세 환산 거래금액(보증금+월세×100 또는 ×70), 전세와 동일한 상한요율표 적용, 조건별 1인당 수수료·전세 대비·VAT·흔한 실수·오피스텔 요율을 표로 정리했습니다.",
+    "월세 중개수수료는 보증금+월세×100(5,000만 원 미만이면 ×70)으로 거래금액을 환산한 뒤 전세와 같은 상한요율표를 적용합니다. 조건별 1인당 수수료 예시, 전세 전환 비교, VAT, 자주 하는 계산 실수, 오피스텔 월세 요율을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const inheritanceTaxFuneralExpenseDeductionGuideMeta = {
   slug: "inheritance-tax-funeral-expense-deduction-guide",
-  title: "상속세 장례비 공제 | 1,500만 한도·세금 절감 계산",
+  title: "상속세 장례비 공제 — 1,500만 원 한도와 절세 계산",
   description:
-    "2026년 7월 기준 상속세 장례비 공제. 일반 장례비 500~1,000만·봉안·자연장지 500만(합계 1,500만), 과세가액 차감 위치, 세율별 절감액, 병원비·형제 분담·중복 주의, 신고 서류를 표로 정리했습니다.",
+    "상속세 장례비 공제는 일반 장례비 500~1,000만 원에 봉안·자연장지 비용 최대 500만 원을 더해 합계 1,500만 원까지입니다. 과세가액에서 차감되는 위치, 세율별 절감액, 병원비 구분, 형제 분담·중복 주의, 신고 서류를 다룹니다. (2026년 7월 기준)",
   updated: "2026년 7월 15일",
 } as const;
 
@@ -741,14 +741,6 @@ export function InheritanceTaxFuneralExpenseDeductionGuideBody() {
               className="text-primary underline-offset-4 hover:underline"
             >
               상속세 신고·분납 기한
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/guide/inheritance-tax-apartment-price-scenarios-guide"
-              className="text-primary underline-offset-4 hover:underline"
-            >
-              7·10·15억 아파트 상속세 예시
             </Link>
           </li>
         </ul>

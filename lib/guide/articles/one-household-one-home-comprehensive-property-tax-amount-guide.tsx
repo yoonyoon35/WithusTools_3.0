@@ -4,7 +4,7 @@ export const oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta = {
   slug: "one-household-one-home-comprehensive-property-tax-amount-guide",
   title: "1세대 1주택 종부세 얼마나 나올까… 공시가격·12억 공제 구간별",
   description:
-    "2026년 기준 1세대 1주택 보유세 구조, 12억 기본공제·9억 재산세 단일세율, 공시가격 10억·13억·15억·20억·25억 연간·7월·12월 납부액, 세액공제(연령·보유기간) 전후 비교와 계산기 연결을 표로 정리했습니다.",
+    "1세대 1주택 종부세는 공시가격 12억 원 초과분부터 붙고, 12억 원 이하는 재산세·지방교육세만 냅니다. 9억→10억 재산세가 뛰는 구간, 공시가격 10억·13억·15억·20억·25억의 연간·7월·12월 납부액, 연령·보유기간 세액공제 전후 비교를 다룹니다.",
   updated: "2026년 7월 2일",
 } as const;
 

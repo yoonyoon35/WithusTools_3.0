@@ -5,7 +5,7 @@ export const localEducationRuralSpecialTaxAcquisition2026GuideMeta = {
   slug: "local-education-rural-special-tax-acquisition-2026-guide",
   title: "지방교육세·농어촌특별세 계산법",
   description:
-    "취득세에 붙는 지방교육세·농어촌특별세 계산법을 정리했습니다. 주택 매매는 취득세의 10%, 다주택 중과는 0.4%, 상속·증여는 (취득세율-2%)×20%이며, 전용 85㎡ 이하 주택은 농특세가 없습니다. 2026년 10월 기준.",
+    "주택 매매의 지방교육세는 취득세의 10%이고, 전용 85㎡ 이하 주택은 농어촌특별세가 없습니다. 다주택 중과 0.4%, 상속·증여 (취득세율-2%)×20% 계산법과 실제 납부액 예시를 다룹니다. (2026년 10월 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

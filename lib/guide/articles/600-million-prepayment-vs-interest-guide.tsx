@@ -4,7 +4,7 @@ export const prepaymentVsInterest600MillionGuideMeta = {
   slug: "600-million-prepayment-vs-interest-guide",
   title: "6억 대출 후 중도상환 vs 이자납입 비교",
   description:
-    "6억 원 주담대에서 중도상환 수수료와 남은 기간 이자를 비교하는 방법, 상환 시점별 손익, 굳이 지금 상환하지 않아도 되는 경우를 정리했습니다.",
+    "6억 원 주담대(연 4%·30년, 수수료율 0.7%, 면제 3년)를 가정해 1억 5,000만 원을 먼저 갚을 때 수수료와 남는 이자를 비교합니다. 수수료가 이자 절감보다 작아지는 시점과 굳이 지금 갚지 않아도 되는 경우를 다룹니다.",
   updated: "2026년 10월 30일",
 } as const;
 

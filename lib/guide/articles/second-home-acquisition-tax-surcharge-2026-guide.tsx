@@ -4,7 +4,7 @@ export const secondHomeAcquisitionTaxSurcharge2026GuideMeta = {
   slug: "second-home-acquisition-tax-surcharge-2026-guide",
   title: "2주택자 취득세 중과 기준",
   description:
-    "2026년 7월 기준 조정·비조정 지역 2주택 취득세율, 매매가별 납부액 비교, 조정대상지역·취득 시점 판단, 저가주택 중과 제외, 주택 수 산정, 증여·일시적 2주택·법인 세율과 자가진단 체크리스트를 표로 정리했습니다.",
+    "2주택자 취득세는 조정대상지역이면 8%, 비조정지역이면 1~3%입니다. 매매가별 납부액 비교, 취득 시점 기준 조정대상지역 판단, 저가주택 중과 제외, 주택 수 산정, 증여·법인 세율과 자가진단 체크리스트를 다룹니다. (2026년 7월 기준)",
   updated: "2026년 7월 21일",
 } as const;
 
@@ -120,9 +120,9 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   7억 원
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 1,284만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1,283만 원</td>
                 <td className="border-border border-b px-3 py-2.5">5,880만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 4,596만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 4,597만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">

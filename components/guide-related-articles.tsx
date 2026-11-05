@@ -15,7 +15,7 @@ export function GuideRelatedArticles({ slug }: { slug: string }) {
         관련 가이드
       </h2>
       <p className="text-muted-foreground mt-1 text-sm">
-        「{topic.label}」 주제의 다른 글입니다.
+        이 글을 읽은 뒤 이어서 궁금해지는 내용 순서로 모았습니다.
       </p>
       <ul className="mt-4 space-y-3">
         {related.map((article) => (

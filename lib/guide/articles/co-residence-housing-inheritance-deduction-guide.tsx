@@ -4,7 +4,7 @@ export const coResidenceHousingInheritanceDeductionGuideMeta = {
   slug: "co-residence-housing-inheritance-deduction-guide",
   title: "동거주택 상속공제 6억 — 요건·한도·1세대1주택",
   description:
-    "2026년 7월 기준 상속세법 제23조의2 동거주택 상속공제(100%·한도 6억), 10년 동거·무주택·1주택 요건, 배우자·일괄공제와의 관계, 안 되는 경우를 표로 정리했습니다.",
+    "동거주택 상속공제는 요건을 갖추면 주택가액의 100%, 최대 6억 원을 공제합니다. 10년 동거·무주택·1세대 1주택 요건, 일괄공제·배우자공제와의 관계, 공제가 안 되는 경우와 계산 예시를 다룹니다. (2026년 7월 기준)",
   updated: "2026년 7월 7일",
 } as const;
 
@@ -167,7 +167,7 @@ export function CoResidenceHousingInheritanceDeductionGuideBody() {
         <p className="text-muted-foreground text-sm">
           과세가액 7억·배우자+자녀만으로 이미 면세인 경우(
           <Link
-            href="/guide/inheritance-tax-apartment-price-scenarios-guide"
+            href="/guide/inheritance-tax-overview-guide#guide-ito-example-700m"
             className="text-primary underline-offset-4 hover:underline"
           >
             7억 예시
@@ -227,14 +227,6 @@ export function CoResidenceHousingInheritanceDeductionGuideBody() {
           <li>
             <Link href="/guide/inheritance-tax-overview-guide" className="text-primary underline-offset-4 hover:underline">
               상속세 개요
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/guide/inheritance-tax-apartment-price-scenarios-guide"
-              className="text-primary underline-offset-4 hover:underline"
-            >
-              7·10·15억 상속세 예시
             </Link>
           </li>
           <li>

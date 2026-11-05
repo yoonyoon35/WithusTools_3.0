@@ -4,7 +4,7 @@ export const dsr40MortgageLimitMeta = {
   slug: "dsr-40-mortgage-limit",
   title: "DSR 계산 방법과 40% 주택담보대출 한도 산정",
   description:
-    "DSR 계산식과 포함 대출 범위, 소득 유형별 산정 방식, DSR 40% 한도 산정 단계, LTV·스트레스 DSR과의 관계, 연소득·기존 부채별 시나리오와 한도 산출 시 흔한 실수를 정리했습니다.",
+    "DSR 40%는 연간 원리금 상환액이 연소득의 40%를 넘을 수 없다는 규제입니다. 포함 대출 범위와 소득 유형별 산정 방식, 한도 산출 4단계, LTV·스트레스 DSR과의 관계, 흔한 오해를 계산 예시로 다룹니다.",
   updated: "2026년 11월 4일",
 } as const;
 

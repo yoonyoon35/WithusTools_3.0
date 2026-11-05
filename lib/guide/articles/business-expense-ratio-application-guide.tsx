@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const businessExpenseRatioApplicationGuideMeta = {
   slug: "business-expense-ratio-application-guide",
-  title: "경비율 적용방법 | 기준·단순경비율, 배율, 주요경비, 추계 소득금액",
+  title: "경비율 적용방법 — 기준·단순경비율 차이와 계산",
   description:
-    "단순·기준경비율 식, 2025년 귀속 배율, 업종별 기준금액, 자가·장애인 조정, 주요경비 범위를 계산식과 수치 예시로 정리했습니다.",
+    "장부가 없으면 수입금액에서 경비율로 소득금액을 추계하며, 단순경비율과 기준경비율 중 무엇을 쓰는지는 업종·수입금액으로 갈립니다. 추계 소득금액 식, 2025년 귀속 배율, 기준수입금액, 자가·장애인 조정, 주요경비 범위와 계산 예시, 추계신고의 불이익을 다룹니다.",
   updated: "2026년 9월 23일",
 } as const;
 

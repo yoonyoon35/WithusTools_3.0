@@ -4,7 +4,7 @@ export const newConstructionApartmentAcquisitionTaxGuideMeta = {
   slug: "new-construction-apartment-acquisition-tax-guide",
   title: "신축 아파트 취득세 계산, 분양가 6억~12억 총정리",
   description:
-    "2026년 기준 신축·분양 아파트 취득세 납부 시점과 6억·7억·8억·9억·12억 분양가별 취득세·지방교육세·농특세 표, 전용면적·생애최초 감면·2주택 중과 비교, 6억·9억 경계 구간을 한 번에 정리했습니다. 취득세 계산기로 본인 조건을 바로 확인할 수 있습니다.",
+    "신축·분양 아파트 취득세는 분양가별로 얼마인지 6억·7억·8억·9억·12억 표로 보여 줍니다. 납부 시점, 전용 85㎡ 초과 차이, 생애최초 감면, 조정지역 2주택 중과, 6억·9억 경계를 다루며 취득세 계산기로 본인 조건을 바로 확인할 수 있습니다.",
   updated: "2026년 11월 4일",
 } as const;
 

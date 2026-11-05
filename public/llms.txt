@@ -1,6 +1,6 @@
 # WithusTools
 
-> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 96편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.
+> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 92편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.
 
 표준 계산식과 공공 자료 기반 참고용 콘텐츠입니다. 실제 심사·신고 결과는 금융기관·관할 지자체에서 확인해야 합니다.
 
@@ -18,18 +18,18 @@
 
 ## 가이드 허브
 
-- [대출·금융 가이드](https://withustools.com/guide): DSR·상환·취득세·중개수수료·보유세 주제별 96편.
+- [대출·금융 가이드](https://withustools.com/guide): DSR·상환·취득세·중개수수료·보유세 주제별 92편.
 - [사이트 소개](https://withustools.com/about): 운영 배경·콘텐츠 작성 기준·문의.
 
 ## 자주 찾는 가이드
 
-- [DSR 계산 방법과 40% 주택담보대출 한도 산정](https://withustools.com/guide/dsr-40-mortgage-limit): DSR 계산식과 포함 대출 범위, 소득 유형별 산정 방식, DSR 40% 한도 산정 단계, LTV·스트레스 DSR과의 관계, 연소득·기존 부채별 시나리오와 한도 산출 시 흔한 실수를 정리했습니다.
-- [2026년 취득세율 완전 정리](https://withustools.com/guide/acquisition-tax-rates-2026-guide): 2026년 기준 취득가액·취득 시점, 1주택 구간별 세율, 지방교육세·농특세, 주택 수·지역별 중과, 2주택 비조정 vs 조정 비교, 3주택·저가주택·분양 시점, 2026 감면·특례 요약과 관련 가이드 링크를 표로 정리했습니다.
-- [2026년 부동산 중개수수료 요율표 완전 정리](https://withustools.com/guide/brokerage-fee-rates-2026-guide): 2026년 기준 매매·전세·월세 환산·오피스텔 중개수수료 상한요율과 유형별 비교표를 정리했습니다. VAT 포함 여부, 절약 방법, 중개수수료 계산기로 예상 금액을 확인할 수 있습니다. 관할 고시·협의 금액·부가세는 개별 확인이 필요한 참고 자료이며 계약 전 비교용으로 활용하세요.
-- [원리금균등상환 vs 원금균등상환 비교](https://withustools.com/guide/equal-payment-vs-equal-principal): 원리금균등·원금균등의 구조 차이, DSR·중도상환과의 관계, 연봉·여유자금별 선택 시나리오와 흔한 실수를 정리한 상환 방식 선택 가이드입니다.
-- [생애최초 주택 구입자 혜택 정리](https://withustools.com/guide/first-time-homebuyer-benefits-2026): 2026년 10월 30일 기준 생애최초 주택 구입자 대상 대출·취득세·청약 혜택과 필수 확인사항을 표 중심으로 정리했습니다.
-- [종합부동산세란? 재산세·지방교육세·종부세·농특세 한 번에 정리](https://withustools.com/guide/comprehensive-property-tax-overview-guide): 2026년 기준 보유세 4종(재산세·지방교육세·종합부동산세·농어촌특별세) 구조, 6월 1일 과세 기준·7월·12월 납부, 공정시장가액비율·기본공제, 취득세·양도세와의 차이, 1세대 1주택 공시가격별 연간 보유세 예시를 표로 정리했습니다.
-- [LTV·DTI·DSR 차이 한눈에 정리](https://withustools.com/guide/ltv-dti-dsr-comparison): LTV·DTI·DSR의 차이, 실제 한도를 가르는 규제 판단, 연봉·담보·기존 부채가 겹칠 때 시나리오와 흔한 오해를 정리했습니다.
+- [DSR 계산 방법과 40% 주택담보대출 한도 산정](https://withustools.com/guide/dsr-40-mortgage-limit): DSR 40%는 연간 원리금 상환액이 연소득의 40%를 넘을 수 없다는 규제입니다. 포함 대출 범위와 소득 유형별 산정 방식, 한도 산출 4단계, LTV·스트레스 DSR과의 관계, 흔한 오해를 계산 예시로 다룹니다.
+- [2026년 취득세율 완전 정리](https://withustools.com/guide/acquisition-tax-rates-2026-guide): 1주택 취득세는 6억 원 이하 1%, 9억 원 초과 3%이고 그 사이는 구간별로 계산합니다. 1억~15억 원 매매가별 납부액과 지방교육세·농특세, 주택 수·지역별 중과, 생애최초 감면 후 금액을 표로 확인하세요.
+- [2026년 부동산 중개수수료 요율표 완전 정리](https://withustools.com/guide/brokerage-fee-rates-2026-guide): 중개수수료는 거래 유형(매매·전세·월세)과 금액 구간별 상한요율을 넘을 수 없고, 상가·주택 외 임대차는 협의(최대 0.9%)로 정합니다. 유형별 비교표와 계산 공식, 부담 주체, VAT 적용, 지역별 차이, 절약 방법과 초과 청구 시 대처를 다룹니다.
+- [원리금균등상환 vs 원금균등상환 비교, 1억 5천·2억 원 이자 예시](https://withustools.com/guide/equal-payment-vs-equal-principal): 1억 5천만 원을 연 4%·30년으로 빌리면 첫 달 상환액은 원리금균등 71.6만 원, 원금균등 91.7만 원이고 총 이자는 약 1억 780만 원과 9,025만 원입니다. 금리·기간별 월 상환액, 중도상환 효과, DSR 필요 연소득과 선택 기준을 비교합니다.
+- [생애최초 주택 구입자 혜택 정리](https://withustools.com/guide/first-time-homebuyer-benefits-2026): 생애최초 구입자는 대출(LTV 70%·6개월 내 전입), 취득세 감면, 청약 특별공급을 일반 무주택자보다 완화된 조건으로 받습니다. 세 혜택을 한눈에 비교하고 세부 요건은 항목별 가이드로 연결합니다. (2026년 11월 5일 기준)
+- [종합부동산세란? 재산세·지방교육세·종부세·농특세 한 번에 정리](https://withustools.com/guide/comprehensive-property-tax-overview-guide): 보유세는 6월 1일 공시가격 기준으로 재산세·지방교육세(7월)와 종합부동산세·농어촌특별세(12월)로 나눠 냅니다. 4종 구조, 재산세 공정시장가액비율 45% vs 종부세 60%, 기본공제와 과세표준, 공제할 재산세, 1세대 1주택 공시가격별 연간 보유세 예시를 다룹니다.
+- [LTV·DTI·DSR 차이 한눈에 정리](https://withustools.com/guide/ltv-dti-dsr-comparison): 주담대 한도는 LTV·DTI·DSR 중 가장 낮은 금액으로 정해지고, 요즘은 DTI는 통과해도 DSR에서 막히는 경우가 많습니다. 세 규제의 계산식과 차이, 어느 규제가 먼저 걸리는지 판단하는 법을 다룹니다.
 
 ## Optional
 

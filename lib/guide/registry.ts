@@ -76,10 +76,6 @@ import {
   acquisitionTaxRates2026GuideMeta,
 } from "@/lib/guide/articles/acquisition-tax-rates-2026-guide";
 import {
-  FirstHomeAcquisitionTaxAmountGuideBody,
-  firstHomeAcquisitionTaxAmountGuideMeta,
-} from "@/lib/guide/articles/first-home-acquisition-tax-amount-guide";
-import {
   TemporaryTwoHomeAcquisitionTaxExceptionGuideBody,
   temporaryTwoHomeAcquisitionTaxExceptionGuideMeta,
 } from "@/lib/guide/articles/temporary-two-home-acquisition-tax-exception-guide";
@@ -95,10 +91,6 @@ import {
   InheritanceTaxFuneralExpenseDeductionGuideBody,
   inheritanceTaxFuneralExpenseDeductionGuideMeta,
 } from "@/lib/guide/articles/inheritance-tax-funeral-expense-deduction-guide";
-import {
-  InheritanceTaxApartmentPriceScenariosGuideBody,
-  inheritanceTaxApartmentPriceScenariosGuideMeta,
-} from "@/lib/guide/articles/inheritance-tax-apartment-price-scenarios-guide";
 import {
   InheritanceTaxFilingDeadlineInstallmentGuideBody,
   inheritanceTaxFilingDeadlineInstallmentGuideMeta,
@@ -228,10 +220,6 @@ import {
   occupancyRightCapitalGainsTaxGuideMeta,
 } from "@/lib/guide/articles/occupancy-right-capital-gains-tax-guide";
 import {
-  MokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideBody,
-  mokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideMeta,
-} from "@/lib/guide/articles/mokdong-redevelopment-occupancy-right-capital-gains-tax-guide";
-import {
   OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody,
   oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta,
 } from "@/lib/guide/articles/one-household-one-home-comprehensive-property-tax-amount-guide";
@@ -263,10 +251,6 @@ import {
   RegulatedAreaDesignationEffects2026GuideBody,
   regulatedAreaDesignationEffects2026GuideMeta,
 } from "@/lib/guide/articles/regulated-area-designation-effects-2026-guide";
-import {
-  EqualPayment150MillionMortgageInterestGuideBody,
-  equalPayment150MillionMortgageInterestGuideMeta,
-} from "@/lib/guide/articles/equal-payment-150-million-mortgage-interest-guide";
 import {
   CreditScoreMortgageInterestRelationGuideBody,
   creditScoreMortgageInterestRelationGuideMeta,
@@ -481,10 +465,6 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: AcquisitionTaxRates2026GuideBody,
   },
   {
-    ...firstHomeAcquisitionTaxAmountGuideMeta,
-    Body: FirstHomeAcquisitionTaxAmountGuideBody,
-  },
-  {
     ...temporaryTwoHomeAcquisitionTaxExceptionGuideMeta,
     Body: TemporaryTwoHomeAcquisitionTaxExceptionGuideBody,
   },
@@ -503,10 +483,6 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...giftTaxOverviewGuideMeta,
     Body: GiftTaxOverviewGuideBody,
-  },
-  {
-    ...inheritanceTaxApartmentPriceScenariosGuideMeta,
-    Body: InheritanceTaxApartmentPriceScenariosGuideBody,
   },
   {
     ...inheritanceTaxFilingDeadlineInstallmentGuideMeta,
@@ -621,10 +597,6 @@ export const guideArticles: readonly GuideArticle[] = [
     Body: OccupancyRightCapitalGainsTaxGuideBody,
   },
   {
-    ...mokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideMeta,
-    Body: MokdongRedevelopmentOccupancyRightCapitalGainsTaxGuideBody,
-  },
-  {
     ...holdingCapitalGainsTaxIncrease2026GuideMeta,
     Body: HoldingCapitalGainsTaxIncrease2026GuideBody,
   },
@@ -655,10 +627,6 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...regulatedAreaDesignationEffects2026GuideMeta,
     Body: RegulatedAreaDesignationEffects2026GuideBody,
-  },
-  {
-    ...equalPayment150MillionMortgageInterestGuideMeta,
-    Body: EqualPayment150MillionMortgageInterestGuideBody,
   },
   {
     ...creditScoreMortgageInterestRelationGuideMeta,

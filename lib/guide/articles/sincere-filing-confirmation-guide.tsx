@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const sincereFilingConfirmationGuideMeta = {
   slug: "sincere-filing-confirmation-guide",
-  title: "성실신고확인 | 수입금액 15억·7.5억·5억, 세액공제, 미제출 가산세",
+  title: "성실신고확인 대상과 혜택 — 수입금액 기준·세액공제·가산세",
   description:
-    "2018년 귀속 이후 업종별 수입금액, 6월 30일 기한, 의료비·교육비·월세 공제율, 확인비용 60%와 한도 120만 원, 추징 요건, 미제출 가산세 식을 정리했습니다.",
+    "일정 규모 이상 사업자는 6월 30일까지 성실신고확인서를 내야 하고, 내면 의료비·교육비·월세 세액공제를 받을 수 있습니다. 대상 수입금액(업종별 15억·7.5억·5억), 확인비용 60%(한도 120만 원), 추징 요건, 미제출 가산세를 다룹니다.",
   updated: "2026년 9월 23일",
 } as const;
 

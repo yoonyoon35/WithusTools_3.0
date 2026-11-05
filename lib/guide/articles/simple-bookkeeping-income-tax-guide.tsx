@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const simpleBookkeepingIncomeTaxGuideMeta = {
   slug: "simple-bookkeeping-income-tax-guide",
-  title: "간편장부 | 대상 수입금액·결손금 15년·작성·총수입과 필요경비",
+  title: "간편장부 대상과 작성법 — 결손금 15년 공제까지",
   description:
-    "업종별 수입금액, 전문직 제외, 결손금 15년 공제, 계정과목, 부가가치세 구분, 재고, 3만 원 증빙, 보존 기간, 신고 첨부 서식을 계산에 쓸 수 있게 정리했습니다.",
+    "간편장부는 소규모 사업자가 수입과 비용을 간단히 적는 장부로, 기장하면 소득금액이 달라지고 결손금은 15년간 이월 공제됩니다. 대상 수입금액, 전문직 제외, 기장 여부에 따른 차이, 신고 순서, 증빙(3만 원)과 보존 기간을 다룹니다.",
   updated: "2026년 9월 23일",
 } as const;
 

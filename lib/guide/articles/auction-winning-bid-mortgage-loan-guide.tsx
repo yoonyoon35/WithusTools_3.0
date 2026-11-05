@@ -4,7 +4,7 @@ export const auctionWinningBidMortgageLoanGuideMeta = {
   slug: "auction-winning-bid-mortgage-loan-guide",
   title: "경매 낙찰 후 주담대(경락잔금대출) 조건 정리",
   description:
-    "2026년 7월 기준 경매 낙찰 후 경락잔금대출 가능 여부, 6억 한도·실거주 의무·다주택자 제한, LTV·DSR 적용, 입찰 전 자금 계획과 낙찰 후 일정을 표로 정리했습니다.",
+    "경락잔금대출은 2025년 6·27 대책 이후 경매도 대출 규제 대상이라 입찰 전에 한도와 실거주 의무부터 확인해야 합니다. 차주별 대출 가능 여부, LTV·DSR 적용, 자금 계획 예시와 대출 거절 사유를 다룹니다. (2026년 7월 기준)",
   updated: "2026년 7월 13일",
 } as const;
 

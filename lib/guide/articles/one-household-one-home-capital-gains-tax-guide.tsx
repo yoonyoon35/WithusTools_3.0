@@ -4,8 +4,8 @@ export const oneHouseholdOneHomeCapitalGainsTaxGuideMeta = {
   slug: "one-household-one-home-capital-gains-tax-guide",
   title: "1세대 1주택 양도소득세 비과세·12억 고가주택·장기보유특별공제",
   description:
-    "2026년 기준 1세대 1주택 비과세 요건(2년 보유·거주·12억), 고가주택 안분 계산, 장기보유특별공제 표1·표2(최대 80%)를 국세청·소득세법 기준으로 정리했습니다.",
-  updated: "2026년 7월 4일",
+    "1세대 1주택 비과세는 2년 보유(2017.8.3 이후 조정대상지역 취득 주택은 2년 거주 포함) 요건을 갖춰야 하고, 12억 원을 넘는 고가주택은 초과분에만 과세합니다. 고가주택 안분 계산과 장기보유특별공제 표1·표2(최대 80%)를 다룹니다.",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function OneHouseholdOneHomeCapitalGainsTaxGuideBody() {
@@ -183,14 +183,16 @@ export function OneHouseholdOneHomeCapitalGainsTaxGuideBody() {
                   보유 공제
                 </th>
                 <td className="border-border border-b px-3 py-2.5">3년 6% → 연 2%p, 최대 30%</td>
-                <td className="border-border border-b px-3 py-2.5">(보유−2)×4%, 최대 40%</td>
+                <td className="border-border border-b px-3 py-2.5">보유 연수×4%(3년 12% → 10년 이상 40%)</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   거주 공제
                 </th>
                 <td className="border-border border-b px-3 py-2.5">없음</td>
-                <td className="border-border border-b px-3 py-2.5">(거주−2)×4%, 최대 40%</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  거주 연수×4%(2년 8% → 10년 이상 40%, 2년 이상 3년 미만은 보유 3년 이상일 때만)
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
@@ -284,11 +286,14 @@ export function OneHouseholdOneHomeCapitalGainsTaxGuideBody() {
         <ol className="text-muted-foreground list-decimal space-y-2 pl-5 text-sm leading-relaxed">
           <li>과세 비율 = (15억−12억)÷15억 = 20% → 과세대상 차익 = 5.5억×20% = <strong>1.1억</strong></li>
           <li>
-            표2 장특공: 보유 (10−2)×4%=32%, 거주 32% → 합 64% → 공제 7,040만 → 양도소득금액{" "}
-            <strong>3,960만</strong>
+            표2 장특공: 보유 10년×4%=40%, 거주 10년×4%=40% → 합 80% → 공제 8,800만 → 양도소득금액{" "}
+            <strong>2,200만</strong>
           </li>
-          <li>과세표준 = 3,960만 − 250만(기본공제) = <strong>3,710만</strong></li>
-          <li>기본 누진세율 적용 후 지방소득세 10% 가산</li>
+          <li>과세표준 = 2,200만 − 250만(기본공제) = <strong>1,950만</strong></li>
+          <li>
+            기본 누진세율(1,400만 초과 5,000만 이하 15%, 누진공제 126만) = 1,950만 × 15% − 126만 ={" "}
+            <strong>166만 5천 원</strong> + 지방소득세 10%(16만 6,500원) = 약 <strong>183만 원</strong>
+          </li>
         </ol>
         <p>
           <Link

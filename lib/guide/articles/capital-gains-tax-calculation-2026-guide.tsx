@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const capitalGainsTaxCalculation2026GuideMeta = {
   slug: "capital-gains-tax-calculation-2026-guide",
-  title: "2026년 양도소득세 계산 예시 | 1주택·다주택·분양권·입주권·토지",
+  title: "2026년 양도소득세 계산 예시 (1주택·다주택·분양권)",
   description:
-    "2026년 기준 양도차익·장기보유특별공제·기본공제·다주택 중과·분양권 60%·입주권·비사업용 토지를 반영한 양도소득세 금액별·상황별 계산 예시와 계산기 활용법을 정리했습니다.",
-  updated: "2026년 7월 4일",
+    "1세대 1주택 전액 비과세부터 조정지역 2주택(2026.5.10 이후 양도), 분양권 15억 전매, 조합원입주권, 비사업용 토지까지 7가지 사례로 양도소득세를 계산해 봅니다. 양도차익·장기보유특별공제·기본공제 순서와 계산기 활용 팁을 담았습니다.",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function CapitalGainsTaxCalculation2026GuideBody() {
@@ -83,15 +83,15 @@ export function CapitalGainsTaxCalculation2026GuideBody() {
                   계산
                 </th>
                 <td className="border-border border-b px-3 py-2.5 text-sm leading-relaxed">
-                  차익 5.5억 → 과세 20%(3억÷15억) = 1.1억 → 표2 장특공(보유24%+거주24%=48%) 5,280만 →
-                  양도소득금액 5,720만 → 기본공제 250만 → 과세표준 5,470만 → 누진세율 15% 구간
+                  차익 5.5억 → 과세 20%(3억÷15억) = 1.1억 → 표2 장특공(보유 8년×4%=32% + 거주 8년×4%=32% = 64%) 7,040만 →
+                  양도소득금액 3,960만 → 기본공제 250만 → 과세표준 3,710만 → 누진세율 15% 구간
                 </td>
               </tr>
               <tr>
                 <th scope="row" className="px-3 py-2.5 font-medium bg-muted/30">
                   참고 세액
                 </th>
-                <td className="px-3 py-2.5">산출세액 약 736만 + 지방소득세 → 합계 약 810만 원대(참고)</td>
+                <td className="px-3 py-2.5">산출세액 약 430만 5천 원 + 지방소득세 약 43만 원 → 합계 약 474만 원(참고)</td>
               </tr>
             </tbody>
           </table>

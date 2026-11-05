@@ -4,7 +4,7 @@ export const incomeTypeLoanLimitDifferenceGuideMeta = {
   slug: "income-type-loan-limit-difference-guide",
   title: "소득 유형별 대출 한도 차이",
   description:
-    "근로소득·사업소득·프리랜서의 소득 인정 방식과 DSR 기준 대출 한도 차이, 증빙 서류, 한도 개선 전략을 표로 정리했습니다.",
+    "같은 연소득 5,000만 원이라도 근로·사업·프리랜서 소득은 인정 방식이 달라 대출 한도가 갈립니다. 소득 유형별 인정 비교와 한도 차이, 증빙 서류, 배우자 소득 합산과 한도 개선 방법을 봅니다.",
   updated: "2026년 10월 30일",
 } as const;
 

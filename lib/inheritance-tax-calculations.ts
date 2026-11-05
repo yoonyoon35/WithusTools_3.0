@@ -457,7 +457,7 @@ export function computeInheritanceTax(input: InheritanceTaxInput): InheritanceTa
       payableTax: 0,
       installmentEligible: false,
       installmentDeferrableAmount: 0,
-      filingDeadlineNote: "상속개시일이 속하는 달의 말일부터 6개월 이내(외국 거주 등은 9개월) 신고·납부",
+      filingDeadlineNote: "상속개시일이 속하는 달의 말일부터 6개월 이내(피상속인 또는 상속인이 외국에 주소를 둔 경우 9개월) 신고·납부",
       warnings,
     };
   }
@@ -544,7 +544,7 @@ export function computeInheritanceTax(input: InheritanceTaxInput): InheritanceTa
     payableTax,
     installmentEligible: payableTax > INSTALLMENT_THRESHOLD,
     installmentDeferrableAmount,
-    filingDeadlineNote: "상속개시일이 속하는 달의 말일부터 6개월 이내(외국 거주 등은 9개월) 신고·납부",
+    filingDeadlineNote: "상속개시일이 속하는 달의 말일부터 6개월 이내(피상속인 또는 상속인이 외국에 주소를 둔 경우 9개월) 신고·납부",
     warnings,
   };
 }

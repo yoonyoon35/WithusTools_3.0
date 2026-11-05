@@ -1,3 +1,4 @@
+import { guideFollowUpSlugs } from "@/lib/guide/related";
 import { getGuideArticle, type GuideArticle } from "@/lib/guide/registry";
 
 export type GuideScenarioGroup = {
@@ -49,14 +50,22 @@ export const guideTopics: readonly GuideTopic[] = [
       "credit-loan-vs-mortgage-loan",
       "car-installment-dsr-mortgage-limit-impact-guide",
       "income-type-loan-limit-difference-guide",
-      "multi-homeowner-loan-regulations-guide",
+      "kb-mortgage-300-million-limit-2026-guide",
+      "seller-financing-private-mortgage-2026-guide",
+    ],
+  },
+  {
+    id: "regulated-area",
+    label: "규제지역·토지거래허가",
+    description: "규제지역·조정대상지역 지정 영향, 다주택자 대출 규제, 풍선효과, 토지거래허가·실거주 의무",
+    pillarSlug: "regulated-area-designation-effects-2026-guide",
+    calculatorHrefs: ["/ltv-calculator", "/acquisition-tax-calculator", "/capital-gains-tax-calculator"],
+    slugs: [
       "regulated-area-designation-effects-2026-guide",
+      "multi-homeowner-loan-regulations-guide",
       "real-estate-balloon-effect-2026-guide",
       "dongtan-giheung-guri-regulated-area-ltv-2026-guide",
       "gwangju-honam-semiconductor-land-permit-2026-guide",
-      "mortgage-rate-status-2026",
-      "kb-mortgage-300-million-limit-2026-guide",
-      "seller-financing-private-mortgage-2026-guide",
     ],
   },
   {
@@ -67,11 +76,11 @@ export const guideTopics: readonly GuideTopic[] = [
     calculatorHrefs: ["/loan-calculator", "/prepayment-fee-calculator"],
     slugs: [
       "equal-payment-vs-equal-principal",
-      "equal-payment-150-million-mortgage-interest-guide",
       "kakao-emergency-loan-interest-guide",
       "grace-period-explained",
       "graduated-repayment-interest-guide",
       "variable-vs-fixed-rate-2026",
+      "mortgage-rate-status-2026",
       "prepayment-fee-calculation",
       "600-million-prepayment-vs-interest-guide",
       "loan-refinancing-guide",
@@ -95,7 +104,6 @@ export const guideTopics: readonly GuideTopic[] = [
       "jeonse-guarantee-insurance-guide",
       "jeonse-safe-trust-program-2026-guide",
       "mortgage-loan-application-documents",
-      "seller-financing-private-mortgage-2026-guide",
       "home-purchase-additional-costs-guide",
       "national-housing-bond-purchase-criteria-guide",
     ],
@@ -121,14 +129,12 @@ export const guideTopics: readonly GuideTopic[] = [
     slugs: [
       "acquisition-tax-rates-2026-guide",
       "new-construction-apartment-acquisition-tax-guide",
-      "first-home-acquisition-tax-amount-guide",
       "first-home-acquisition-tax-relief-guide",
       "acquisition-tax-relief-programs-2026-guide",
       "second-home-acquisition-tax-surcharge-2026-guide",
       "second-home-acquisition-tax-exception-guide",
       "temporary-two-home-acquisition-tax-exception-guide",
       "inherited-housing-acquisition-tax-2026-guide",
-      "gift-tax-overview-guide",
       "local-education-rural-special-tax-acquisition-2026-guide",
       "officetel-residential-vs-business-tax-guide",
       "acquisition-tax-deadline-and-penalty-guide",
@@ -147,17 +153,6 @@ export const guideTopics: readonly GuideTopic[] = [
       "presale-right-capital-gains-tax-guide",
       "occupancy-right-capital-gains-tax-guide",
       "capital-gains-surcharge-revival-2026-guide",
-      "two-vs-three-home-holding-cost-2026-guide",
-      "non-resident-one-home-tax-checklist-2026-guide",
-      "holding-vs-transaction-tax-guide",
-    ],
-    scenarioGroups: [
-      {
-        id: "occupancy-right-regional-scenarios",
-        label: "입주권 지역·시나리오",
-        description: "재건축·재개발 입주권 양도를 지역·금액별로 풀어 쓴 계산 예시입니다.",
-        slugs: ["mokdong-redevelopment-occupancy-right-capital-gains-tax-guide"],
-      },
     ],
   },
   {
@@ -185,7 +180,6 @@ export const guideTopics: readonly GuideTopic[] = [
     slugs: [
       "inheritance-tax-overview-guide",
       "gift-tax-overview-guide",
-      "inheritance-tax-apartment-price-scenarios-guide",
       "inheritance-tax-filing-deadline-installment-guide",
       "inheritance-tax-funeral-expense-deduction-guide",
       "co-residence-housing-inheritance-deduction-guide",
@@ -229,8 +223,6 @@ export const guideTopics: readonly GuideTopic[] = [
       "direct-deal-vs-brokered-deal-guide",
       "online-direct-trade-platform-precautions-2026-guide",
       "lease-contract-without-broker-guide",
-      "tenant-death-lease-inheritance-guide",
-      "seller-financing-private-mortgage-2026-guide",
       "brokerage-accident-compensation-guide",
     ],
   },
@@ -298,11 +290,23 @@ export function getRelatedGuideArticles(slug: string, limit = 5): GuideArticle[]
   if (index === -1) return [];
 
   const relatedSlugs: string[] = [];
-  for (let offset = 1; offset < allSlugs.length && relatedSlugs.length < limit; offset++) {
-    const candidate = allSlugs[(index + offset) % allSlugs.length]!;
-    if (candidate !== slug) {
+  const pushRelated = (candidate: string) => {
+    if (
+      candidate !== slug &&
+      !relatedSlugs.includes(candidate) &&
+      relatedSlugs.length < limit &&
+      getGuideArticle(candidate)
+    ) {
       relatedSlugs.push(candidate);
     }
+  };
+
+  // 1) 수동으로 지정한 후속 질문 순서(다른 주제 글 포함)
+  for (const candidate of guideFollowUpSlugs[slug] ?? []) pushRelated(candidate);
+
+  // 2) 부족하면 같은 주제의 인접 글로 채움
+  for (let offset = 1; offset < allSlugs.length; offset++) {
+    pushRelated(allSlugs[(index + offset) % allSlugs.length]!);
   }
 
   return relatedSlugs

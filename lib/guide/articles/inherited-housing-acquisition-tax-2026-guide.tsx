@@ -4,7 +4,7 @@ export const inheritedHousingAcquisitionTax2026GuideMeta = {
   slug: "inherited-housing-acquisition-tax-2026-guide",
   title: "상속 주택 취득세 계산 방법",
   description:
-    "2026년 10월 30일 기준 상속 취득세율·과세표준, 매매와의 비교, 공시가격별 예시·공유지분 계산, 주택 수 포함, 추가 취득 시 세율, 납부 기한·가산세, 신고 방법을 표로 정리했습니다.",
+    "상속으로 주택을 취득하면 매매와 세율·과세표준이 달라집니다. 공시가격별 예시와 공유지분 계산, 상속 주택의 주택 수 포함 여부, 추가 취득 시 세율, 납부 기한·가산세와 신고 방법을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 

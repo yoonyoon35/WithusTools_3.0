@@ -5,7 +5,7 @@ export const creditScoreMortgageInterestRelationGuideMeta = {
   slug: "credit-score-mortgage-interest-relation-guide",
   title: "신용점수와 대출이자, 점수 관리 방법",
   description:
-    "2026년 10월 30일 기준 대출금리 구조, 신용점수 구간별 금리·이자 영향, 점수 구성 요소와 대출 3~6개월 전 관리 방법, 절감 전략·점수 확인 방법과 공시 활용 안내입니다.",
+    "신용점수는 주담대 금리 구간을 가르고, 같은 대출이라도 점수 차이가 총 이자 차이로 이어집니다. 대출금리 결정 구조, 점수 구성 요소, 대출 3~6개월 전부터 하는 점수 관리, 금리 비교 공시 확인법을 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 11월 4일",
 } as const;
 

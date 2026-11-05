@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const comprehensiveIncomeTaxOverviewGuideMeta = {
   slug: "comprehensive-income-tax-overview-guide",
-  title: "종합소득세 계산 구조 | 소득 합산·과세표준·세율·세액공제·기납부세액",
+  title: "종합소득세 계산 구조 — 합산·과세표준·세율·세액공제",
   description:
-    "신고 대상, 소득별 합산, 2025년 귀속 기한, 세액 순서, 세율표, 환급·기납부, 전자신고·납부 경로를 계산에 쓸 수 있게 정리했습니다.",
+    "종합소득세는 소득 종류별로 합산한 금액에서 공제를 빼고 세율표를 적용해 산출세액을 구한 뒤, 미리 낸 세금을 빼 납부·환급액을 정합니다. 신고 대상, 2025년 귀속 신고기한·제출서류, 공제 항목, 외국납부세액공제 한도, 신고·납부 방법을 다룹니다.",
   updated: "2026년 9월 23일",
 } as const;
 

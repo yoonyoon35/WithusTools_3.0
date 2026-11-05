@@ -4,7 +4,7 @@ export const carInstallmentDsrMortgageLimitImpactGuideMeta = {
   slug: "car-installment-dsr-mortgage-limit-impact-guide",
   title: "주담대 차량 할부 한도·DSR 영향",
   description:
-    "주담대 차량 할부 한도가 DSR 40%와 주택담보대출 승인에 미치는 영향, 연봉별 체감 차이, 할부 전·후 실행 순서. DSR 계산기로 한도 변화를 바로 확인할 수 있습니다.",
+    "자동차 할부는 원리금이 DSR에 그대로 반영돼 주택담보대출 한도를 줄입니다. 연봉 6,000만 원 예시로 보는 영향, LTV와 동시에 적용되는 이유, 할부 전·후 실행 순서를 다루며, DSR 계산기로 한도 변화를 바로 확인할 수 있습니다.",
   updated: "2026년 7월 2일",
 } as const;
 

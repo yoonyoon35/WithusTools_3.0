@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const giftTaxOverviewGuideMeta = {
   slug: "gift-tax-overview-guide",
-  title: "증여세란? 부동산·주택 증여 과세표준·공제·누진세율·취득세·신고 한 번에",
+  title: "증여세란? 부동산 증여 공제·세율·취득세·신고 방법",
   description:
-    "2026년 9월 기준 상속세 및 증여세법·국세청 안내를 바탕으로 증여세 과세가액·관계별 10년 공제·누진세율·세대생략할증·신고·분납을 정리했습니다. 주택 증여 시 취득세·국민주택채권·1·3·6억 원 계산 예시와 수증자의 생애최초·청약 영향까지 표로 비교했습니다.",
+    "증여세는 받은 사람이 내며 관계별로 10년간 합산해 공제하고 누진세율을 적용합니다. 주택 증여 시 취득세·국민주택채권, 1·3·6억 원 계산 예시, 이후 상속과의 관계, 수증자의 매수·청약·대출 영향을 다룹니다. (2026년 9월 기준)",
   updated: "2026년 9월 15일",
 } as const;
 
@@ -703,7 +703,8 @@ export function GiftTaxOverviewGuideBody() {
                   분납
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  납부세액 <strong>1,000만 원 초과</strong> 시 2년 분납 등(요건·이자 별도)
+                  납부세액 <strong>1,000만 원 초과</strong> 시 납부기한 후 2개월 이내 분납(2천만 원 초과 시 연부연납
+                  최대 5년·담보·가산금 별도)
                 </td>
               </tr>
               <tr>

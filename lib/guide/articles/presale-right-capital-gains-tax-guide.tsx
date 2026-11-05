@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export const presaleRightCapitalGainsTaxGuideMeta = {
   slug: "presale-right-capital-gains-tax-guide",
-  title: "분양권 양도소득세 계산 | 60%·70% 세율·다주택·장특공",
+  title: "분양권 양도소득세 계산 — 60%·70% 세율과 주택 수",
   description:
-    "2026년 기준 주택분양권·조합원입주권 개념, 분양권 거래와 일반 매매 차이, 양도세 60%·70% 단일세율, 1세1주택 비과세 미적용, 주택 수·계산 예시를 정리했습니다.",
+    "분양권을 팔면 보유 기간에 따라 1년 미만 70%, 1년 이상 60% 단일세율이 적용되고 1세대 1주택 비과세는 받을 수 없습니다. 주택분양권·조합원입주권 개념, 일반 매매와의 차이, 주택 수 영향, 15억 전매(3주택·조정지역) 계산 예시를 다룹니다.",
   updated: "2026년 9월 14일",
 } as const;
 

@@ -4,6 +4,7 @@ import {
   GuideAuthorByline,
   GuideUpdatedTime,
 } from "@/components/guide-meta-footer";
+import { GuideCalculatorCta, GuideCalculatorInlineLinks } from "@/components/guide-calculator-cta";
 import { GuideRelatedArticles } from "@/components/guide-related-articles";
 import { BreadcrumbNav } from "@/components/breadcrumb-nav";
 import { parseKoreanDateLabel } from "@/lib/dates";
@@ -42,8 +43,10 @@ export function GuideArticleShell({
           </h1>
           <GuideAuthorByline />
           <GuideUpdatedTime label={updated} iso={updatedIso} />
+          <GuideCalculatorInlineLinks slug={slug} />
         </header>
         <GuideArticleBodyWithMidAd>{children}</GuideArticleBodyWithMidAd>
+        <GuideCalculatorCta slug={slug} />
         <GuideRelatedArticles slug={slug} />
         <GuideAuthoritativeSources />
       </article>

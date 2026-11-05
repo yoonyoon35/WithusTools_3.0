@@ -4,9 +4,60 @@ export const acquisitionTaxRates2026GuideMeta = {
   slug: "acquisition-tax-rates-2026-guide",
   title: "2026년 취득세율 완전 정리",
   description:
-    "2026년 기준 취득가액·취득 시점, 1주택 구간별 세율, 지방교육세·농특세, 주택 수·지역별 중과, 2주택 비조정 vs 조정 비교, 3주택·저가주택·분양 시점, 2026 감면·특례 요약과 관련 가이드 링크를 표로 정리했습니다.",
-  updated: "2026년 9월 14일",
+    "1주택 취득세는 6억 원 이하 1%, 9억 원 초과 3%이고 그 사이는 구간별로 계산합니다. 1억~15억 원 매매가별 납부액과 지방교육세·농특세, 주택 수·지역별 중과, 생애최초 감면 후 금액을 표로 확인하세요.",
+  updated: "2026년 11월 5일",
 } as const;
+
+type TableRow = readonly [string, ...string[]];
+
+function InfoTable({
+  caption,
+  heads,
+  rows,
+  minWidth = "32rem",
+}: {
+  caption: string;
+  heads: readonly string[];
+  rows: readonly TableRow[];
+  minWidth?: string;
+}) {
+  return (
+    <div className="overflow-x-auto rounded-lg border border-border">
+      <table className="w-full border-collapse text-left text-sm" style={{ minWidth }}>
+        <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+          {caption}
+        </caption>
+        <thead>
+          <tr className="bg-muted/40">
+            {heads.map((h) => (
+              <th key={h} scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            const last = i === rows.length - 1;
+            const border = last ? "" : "border-border border-b";
+            return (
+              <tr key={row[0]} className={last ? "bg-muted/20" : undefined}>
+                <th scope="row" className={`${border} px-3 py-2.5 font-medium`}>
+                  {row[0]}
+                </th>
+                {row.slice(1).map((cell, j) => (
+                  <td key={j} className={`${border} px-3 py-2.5`}>
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export function AcquisitionTaxRates2026GuideBody() {
   return (
@@ -56,6 +107,16 @@ export function AcquisitionTaxRates2026GuideBody() {
           <li>
             <a href="#guide-at-payment-examples" className="text-primary underline-offset-4 hover:underline">
               1주택 납부액 예시
+            </a>
+          </li>
+          <li>
+            <a href="#guide-at-six-eok" className="text-primary underline-offset-4 hover:underline">
+              6억·9억 전후 세율 구간
+            </a>
+          </li>
+          <li>
+            <a href="#guide-at-replace" className="text-primary underline-offset-4 hover:underline">
+              1주택 교체(매도 후 매수)
             </a>
           </li>
           <li>
@@ -217,7 +278,7 @@ export function AcquisitionTaxRates2026GuideBody() {
         </p>
         <p className="text-muted-foreground text-sm">
           예) 취득가액 7억 원 → (7 × 2/3 - 3) / 100 ≈ 1.67% → 취득세 약 1,167만 원, 지방교육세 약 117만 원, 합계 약
-          1,284만 원(전용 85㎡ 이하·농특세 제외)
+          1,283만 원(전용 85㎡ 이하·농특세 제외)
         </p>
       </section>
 
@@ -385,82 +446,99 @@ export function AcquisitionTaxRates2026GuideBody() {
           취득세 실제 납부액 예시(1주택)
         </h2>
         <p className="text-muted-foreground text-sm">
-          전용면적 85㎡ 이하, 1주택 취득 기준. 85㎡는 건축물대장상 전용면적이며 공급면적과 다릅니다.
+          전용면적 85㎡ 이하, 1주택 취득 기준. 85㎡는 건축물대장상 전용면적이며 공급면적과 다릅니다.{" "}
+          <Link href="/acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
+            취득세 계산기
+          </Link>
+          에 같은 매매가를 넣어 확인할 수 있습니다.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-border">
-          <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
-            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              매매가별 취득세·지방교육세·합계
-            </caption>
-            <thead>
-              <tr className="bg-muted/40">
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  매매가
-                </th>
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  취득세율
-                </th>
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  취득세
-                </th>
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  지방교육세
-                </th>
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  합계
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  3억 원
-                </th>
-                <td className="border-border border-b px-3 py-2.5">1%</td>
-                <td className="border-border border-b px-3 py-2.5">300만 원</td>
-                <td className="border-border border-b px-3 py-2.5">30만 원</td>
-                <td className="border-border border-b px-3 py-2.5">330만 원</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  5억 원
-                </th>
-                <td className="border-border border-b px-3 py-2.5">1%</td>
-                <td className="border-border border-b px-3 py-2.5">500만 원</td>
-                <td className="border-border border-b px-3 py-2.5">50만 원</td>
-                <td className="border-border border-b px-3 py-2.5">550만 원</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  7억 원
-                </th>
-                <td className="border-border border-b px-3 py-2.5">약 1.67%</td>
-                <td className="border-border border-b px-3 py-2.5">약 1,167만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 117만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 1,284만 원</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  9억 원
-                </th>
-                <td className="border-border border-b px-3 py-2.5">3%</td>
-                <td className="border-border border-b px-3 py-2.5">2,700만 원</td>
-                <td className="border-border border-b px-3 py-2.5">270만 원</td>
-                <td className="border-border border-b px-3 py-2.5">2,970만 원</td>
-              </tr>
-              <tr className="bg-muted/20">
-                <th scope="row" className="px-3 py-2.5 font-medium">
-                  12억 원
-                </th>
-                <td className="px-3 py-2.5">3%</td>
-                <td className="px-3 py-2.5">3,600만 원</td>
-                <td className="px-3 py-2.5">360만 원</td>
-                <td className="px-3 py-2.5">3,960만 원</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>전용 85㎡ 초과 주택은 농어촌특별세 0.2%가 추가됩니다.</p>
+        <InfoTable
+          caption="매매가별 취득세·지방교육세·합계(농특세 제외)"
+          heads={["매매가", "취득세율", "취득세", "지방교육세", "합계"]}
+          minWidth="38rem"
+          rows={[
+            ["1억 원", "1%", "100만 원", "10만 원", "110만 원"],
+            ["2억 원", "1%", "200만 원", "20만 원", "220만 원"],
+            ["3억 원", "1%", "300만 원", "30만 원", "330만 원"],
+            ["4억 원", "1%", "400만 원", "40만 원", "440만 원"],
+            ["5억 원", "1%", "500만 원", "50만 원", "550만 원"],
+            ["6억 원", "1%", "600만 원", "60만 원", "660만 원"],
+            ["7억 원", "약 1.67%", "약 1,167만 원", "약 117만 원", "약 1,283만 원"],
+            ["7억 5천만 원", "2%", "1,500만 원", "150만 원", "1,650만 원"],
+            ["8억 원", "약 2.33%", "약 1,867만 원", "약 187만 원", "약 2,053만 원"],
+            ["9억 원", "3%", "2,700만 원", "270만 원", "2,970만 원"],
+            ["10억 원", "3%", "3,000만 원", "300만 원", "3,300만 원"],
+            ["12억 원", "3%", "3,600만 원", "360만 원", "3,960만 원"],
+            ["15억 원", "3%", "4,500만 원", "450만 원", "4,950만 원"],
+          ]}
+        />
+        <p>전용 85㎡ 초과 주택은 농어촌특별세 0.2%(취득가액 기준)가 추가됩니다.</p>
+        <InfoTable
+          caption="면적별 합계 비교(1주택, 취득세·지방교육세 + 농특세)"
+          heads={["매매가", "85㎡ 이하 합계", "85㎡ 초과 농특세", "85㎡ 초과 합계"]}
+          minWidth="36rem"
+          rows={[
+            ["5억 원", "550만 원", "100만 원", "650만 원"],
+            ["7억 원", "약 1,283만 원", "140만 원", "약 1,423만 원"],
+            ["9억 원", "2,970만 원", "180만 원", "3,150만 원"],
+            ["12억 원", "3,960만 원", "240만 원", "4,200만 원"],
+          ]}
+        />
+        <p>
+          무주택 생애최초 구입자가 감면(취득세 200만 원 한도, 지방교육세 연동)을 신청하면 3억 원 주택은 합계 330만 원에서
+          110만 원, 9억 원 주택은 2,970만 원에서 2,750만 원이 됩니다(전용 85㎡ 이하). 1억·2억 원대는 전액 면제됩니다. 농특세는
+          감면되지 않습니다. 요건·금액은{" "}
+          <Link href="/guide/first-home-acquisition-tax-relief-guide" className="text-primary font-medium underline-offset-4 hover:underline">
+            생애최초 취득세 감면
+          </Link>
+          에서 확인하세요.
+        </p>
+      </section>
+
+      <section className="space-y-4" aria-labelledby="guide-at-six-eok">
+        <h2 id="guide-at-six-eok" className="text-foreground text-xl font-semibold tracking-tight">
+          6억·9억 원 전후 세율 구간 주의
+        </h2>
+        <p>
+          6억 원까지는 1%로 같지만, 6억 원을 넘으면 가격이 오를수록 세율이 비례해 올라가고 9억 원을 넘으면 3%로 고정됩니다.
+          세율이 금액 전체에 적용되므로 6억 원 부근에서는 가격이 조금만 올라도 세금 증가폭이 큽니다.
+        </p>
+        <InfoTable
+          caption="6억·9억 전후 1주택 세액(전용 85㎡ 이하, 취득세+지방교육세)"
+          heads={["매매가", "취득세율", "취득세", "합계"]}
+          minWidth="32rem"
+          rows={[
+            ["6억 원", "1%", "600만 원", "660만 원"],
+            ["6억 1천만 원", "약 1.07%", "약 651만 원", "약 716만 원"],
+            ["6억 5천만 원", "약 1.33%", "약 867만 원", "약 953만 원"],
+            ["8억 9천만 원", "약 2.93%", "약 2,611만 원", "약 2,872만 원"],
+            ["9억 원", "3%", "2,700만 원", "2,970만 원"],
+            ["9억 1천만 원", "3%", "2,730만 원", "3,003만 원"],
+          ]}
+        />
+        <p>
+          6억 원에서 6억 1천만 원으로 1천만 원만 올라도 합계가 약 56만 원 늘어납니다(1% 구간에서는 1천만 원당 11만 원). 6억·9억
+          원 부근 매물은 협의 가격에 따라 세금 차이가 생길 수 있으니 취득가액(실거래가와 기준시가 중 큰 금액)을 먼저 확인하세요.
+        </p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="guide-at-replace">
+        <h2 id="guide-at-replace" className="text-foreground text-xl font-semibold tracking-tight">
+          1주택 교체: 기존 집 팔고 새 집 살 때
+        </h2>
+        <p>
+          취득세는 <strong>새 집을 살 때</strong> 납부합니다. 기존 주택 처분 시점과 관계없이 취득 시점의 세대 전체 보유 주택
+          수로 1주택·2주택이 갈립니다. 배우자 등 세대원이 보유한 주택도 합산되므로 사전 확인이 필요합니다. 매도 전에 새 집을
+          먼저 취득하면 2주택 중과(조정대상지역 8%)가 적용될 수 있어{" "}
+          <Link href="/guide/temporary-two-home-acquisition-tax-exception-guide" className="text-primary font-medium underline-offset-4 hover:underline">
+            일시적 2주택 예외
+          </Link>{" "}
+          요건을 미리 확인하는 것이 중요합니다. 이 표의 1~3% 구간은 1주택·무주택 매수 기준이며, 2주택 이상은 아래{" "}
+          <a href="#guide-at-by-count" className="text-primary font-medium underline-offset-4 hover:underline">
+            주택 수·지역별 세율
+          </a>
+          을 보세요.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-at-two-home-compare">
@@ -512,9 +590,9 @@ export function AcquisitionTaxRates2026GuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   7억 원
                 </th>
-                <td className="border-border border-b px-3 py-2.5">약 1,284만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 1,283만 원</td>
                 <td className="border-border border-b px-3 py-2.5">5,880만 원</td>
-                <td className="border-border border-b px-3 py-2.5">약 4,596만 원</td>
+                <td className="border-border border-b px-3 py-2.5">약 4,597만 원</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">

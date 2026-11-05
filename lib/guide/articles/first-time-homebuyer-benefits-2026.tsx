@@ -4,8 +4,8 @@ export const firstTimeHomebuyerBenefits2026Meta = {
   slug: "first-time-homebuyer-benefits-2026",
   title: "생애최초 주택 구입자 혜택 정리",
   description:
-    "2026년 10월 30일 기준 생애최초 주택 구입자 대상 대출·취득세·청약 혜택과 필수 확인사항을 표 중심으로 정리했습니다.",
-  updated: "2026년 10월 30일",
+    "생애최초 구입자는 대출(LTV 70%·6개월 내 전입), 취득세 감면, 청약 특별공급을 일반 무주택자보다 완화된 조건으로 받습니다. 세 혜택을 한눈에 비교하고 세부 요건은 항목별 가이드로 연결합니다. (2026년 11월 5일 기준)",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function FirstTimeHomebuyerBenefits2026Body() {
@@ -13,7 +13,7 @@ export function FirstTimeHomebuyerBenefits2026Body() {
     <>
       <section className="space-y-3" aria-labelledby="guide-first-home-overview">
         <h2 id="guide-first-home-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 10월 30일 기준
+          2026년 11월 5일 기준
         </h2>
         <p>
           생애최초 주택 구입자는 대출·세금·청약 세 가지 영역에서 일반 무주택자보다 완화된 조건을 적용받습니다.
@@ -25,8 +25,9 @@ export function FirstTimeHomebuyerBenefits2026Body() {
           적용 대상 기본 요건
         </h2>
         <p>
-          본인과 배우자 모두 과거 주택 소유 이력이 없어야 하며, 분양권·입주권 보유 이력도 포함됩니다. 세대원 중 부모가 주택을
-          보유한 경우 세대 분리 이후 요건 충족 여부를 별도로 확인해야 합니다.
+          본인과 배우자 모두 과거 주택 소유 이력이 없어야 하며, 분양권·입주권 보유 이력이 포함되는지는 제도마다 달라 별도
+          확인이 필요합니다. 세대원 중 부모가 주택을 보유한 경우 대출·청약은 세대 기준, 취득세 감면은 본인·배우자 기준이라
+          결과가 다를 수 있습니다.
         </p>
         <p className="text-muted-foreground text-sm">
           디딤돌·버팀목 등 기금 대출은 접수일 기준 세대원 전원 무주택이 원칙입니다. 다만{" "}
@@ -115,48 +116,21 @@ export function FirstTimeHomebuyerBenefits2026Body() {
           ② 취득세 감면
         </h2>
         <p>
-          12억 원 이하 주택 구입 시 취득세를 200만 원 한도 내에서 감면받을 수 있으며, 이 혜택은 2028년 말까지 연장
-          적용됩니다. 감면은 자동 적용되지 않으며 취득세 납부 시 별도 신청이 필요합니다.
+          본인과 배우자가 주택을 소유한 사실이 없고 본인이 거주할 목적으로 12억 원 이하 주택을 매매로 취득하면 취득세를 최대
+          200만 원(인구감소지역·소형 비아파트는 300만 원) 감면받습니다. 소득 제한은 없고 2028년 12월 31일까지 적용됩니다.
+          감면은 자동 적용되지 않으며 취득세 신고(취득일부터 60일 이내) 때 신청해야 합니다. 취득일부터 3년 이내에 매각·증여·
+          임대 등으로 용도를 바꾸면 감면액이 추징됩니다.
         </p>
-        <div className="overflow-x-auto rounded-lg border border-border">
-          <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
-            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              취득세 감면 주의사항
-            </caption>
-            <thead>
-              <tr className="bg-muted/40">
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  주의사항
-                </th>
-                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
-                  내용
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  실거주 의무
-                </th>
-                <td className="border-border border-b px-3 py-2.5">취득 후 3년 이상 실거주</td>
-              </tr>
-              <tr>
-                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  추징 요건
-                </th>
-                <td className="border-border border-b px-3 py-2.5">
-                  3년 내 매각·증여·임대 전환 시 감면액 추징
-                </td>
-              </tr>
-              <tr className="bg-muted/20">
-                <th scope="row" className="px-3 py-2.5 font-medium">
-                  신청 기한
-                </th>
-                <td className="px-3 py-2.5">취득세 납부 기한 내 신청</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p>
+          한도별 감면 효과, 무주택 예외, 신청 서류, 추징·환급은{" "}
+          <Link
+            href="/guide/first-home-acquisition-tax-relief-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            생애최초 취득세 감면 조건과 신청 방법
+          </Link>
+          에서 자세히 다룹니다.
+        </p>
       </section>
 
       <section className="space-y-3" aria-labelledby="guide-first-home-special-supply">

@@ -4,7 +4,7 @@ export const leaseContractWithoutBrokerGuideMeta = {
   slug: "lease-contract-without-broker-guide",
   title: "공인중개사 없이 계약서 작성하는 방법",
   description:
-    "직접 작성 전 확인 서류, 필수 기재사항, 표준양식 다운로드, 전입·확정일자, 전월세 신고, 보증금 보호 조치를 표로 정리했습니다.",
+    "중개사 없이도 표준임대차계약서로 직접 계약할 수 있지만 전입신고·확정일자·전월세 신고와 보증금 보호 조치는 직접 챙겨야 합니다. 계약 전 확인 서류, 필수 기재사항, 단계별 절차, 상가 권리금과 복비의 구분을 다룹니다.",
   updated: "2026년 9월 9일",
 } as const;
 

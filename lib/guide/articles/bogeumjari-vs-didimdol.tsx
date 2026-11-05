@@ -4,7 +4,7 @@ export const bogeumjariVsDidimdolMeta = {
   slug: "bogeumjari-vs-didimdol",
   title: "보금자리론 vs 디딤돌대출 비교",
   description:
-    "보금자리론·디딤돌대출 조건 비교, 무주택 세대주·부모 65세 1주택 예외, 주택가·소득·한도별 시나리오와 신청 전 흔한 실수를 정리했습니다.",
+    "보금자리론과 디딤돌대출은 조건표만 보면 비슷하지만 주택 가격·소득·필요 대출액에 따라 유리한 쪽이 갈립니다. 무주택 세대주·부모 연령 예외, LTV 기준, 상황별 선택 시나리오와 신청 전 흔한 실수를 비교합니다.",
   updated: "2026년 7월 8일",
 } as const;
 

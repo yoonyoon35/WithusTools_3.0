@@ -4,7 +4,7 @@ export const rateReductionRequestRightMeta = {
   slug: "rate-reduction-request-right",
   title: "금리인하요구권이란",
   description:
-    "금리인하요구권 신청 사유·절차, 갈아타기와 비교했을 때 의미 있는 경우, 거절 시 대응과 신청 전 확인 사항을 정리했습니다.",
+    "금리인하요구권은 승진·소득 증가나 신용점수 상승처럼 신용 상태가 좋아졌을 때 대출 금리를 낮춰 달라고 요구하는 법적 권리입니다. 신청 사유와 절차, 제외 대상, 갈아타기와 비교, 거절 시 대응을 다룹니다.",
   updated: "2026년 10월 30일",
 } as const;
 

@@ -4,7 +4,7 @@ export const capitalGainsSurchargeRevival2026GuideMeta = {
   slug: "capital-gains-surcharge-revival-2026-guide",
   title: "부동산 양도세 중과 4년 만에 부활",
   description:
-    "2026년 5월 기준 조정대상지역 다주택자 양도세 중과 유예 종료, 세율·장기보유특별공제·보완책·제외 대상·주택 수 산정·대응 전략을 표로 정리했습니다.",
+    "조정대상지역 다주택자 양도세 중과가 2026년 5월 10일부터 4년 만에 다시 시행됐습니다. 중과세율과 장기보유특별공제 배제, 계약금 지급 확인 시 중과 배제 등 보완책, 제외 대상, 주택 수 산정, 대응 전략을 다룹니다. (2026년 5월 기준)",
   updated: "2026년 7월 4일",
 } as const;
 

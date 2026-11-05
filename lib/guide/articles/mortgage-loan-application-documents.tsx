@@ -4,7 +4,7 @@ export const mortgageLoanApplicationDocumentsMeta = {
   slug: "mortgage-loan-application-documents",
   title: "주택담보대출 신청 절차 및 필요 서류",
   description:
-    "주담대 신청 절차·필수 서류, 잔금일 역산 준비 일정, 소득 유형별 제출물, 심사 지연·반려 흔한 원인과 대응 방법을 정리했습니다.",
+    "주담대는 신청부터 실행까지 통상 1~2주가 걸려 잔금일 최소 3주 전에 서류 준비를 시작하는 것이 안전합니다. 필수 서류, 소득 유형별 제출물, 잔금일 역산 일정과 심사 지연·반려의 흔한 원인을 다룹니다.",
   updated: "2026년 8월 1일",
 } as const;
 

@@ -85,7 +85,7 @@ export function ComprehensivePropertyTaxCalculatorReference() {
     <CalculatorReferenceCard
       title="종합부동산세 산정 참고"
       summary="보유 부동산의 재산세(지방세)를 먼저 산출한 뒤 종합부동산세(국세)에서 공제할 재산세액을 차감합니다. 아래는 본 계산기 산식과 세율 구조를 요약한 참고용입니다."
-      footer="기준표는 국세청 세액계산 흐름도·종합부동산세 신고서 별지를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 과세기준일(6월 1일)·신고 요건은 관할 세무서에서 확인해야 합니다."
+      footer="법령 근거: 지방세법 표준세율, 종합부동산세법 시행령 제4조의2(공제할 재산세액), 국세청 세액계산 흐름도·종합부동산세 신고서 별지3호 부표. 기준표는 국세청 세액계산 흐름도·종합부동산세 신고서 별지를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 과세기준일(6월 1일)·신고 요건은 관할 세무서에서 확인해야 합니다."
     >
       <CalculatorReferenceSection number={1} title="본 계산기 산출 공식·순서">
         <CalculatorReferenceTable

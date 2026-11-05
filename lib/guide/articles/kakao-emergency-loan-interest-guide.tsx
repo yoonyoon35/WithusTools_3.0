@@ -4,7 +4,7 @@ export const kakaoEmergencyLoanInterestGuideMeta = {
   slug: "kakao-emergency-loan-interest-guide",
   title: "카카오 비상금대출 이자 계산 방식",
   description:
-    "카카오뱅크 비상금대출(마이너스통장) 이자 계산식, 사용액·일수별 예시, 한도만 열어둔 경우, 계산기로 어림할 때와 실제 일할 이자의 차이를 정리했습니다.",
+    "카카오뱅크 비상금대출(마이너스통장)은 쓴 금액에 대해 쓴 일수만큼만 이자를 냅니다. 이자 계산식, 사용액·일수별 예시, 당일 인출·상환, 한도만 열어둔 경우, 계산기로 어림할 때와 실제 일할 이자의 차이를 다룹니다. (2026년 9월 19일 기준)",
   updated: "2026년 9월 19일",
 } as const;
 

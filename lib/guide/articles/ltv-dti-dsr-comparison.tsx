@@ -4,7 +4,7 @@ export const ltvDtiDsrComparisonMeta = {
   slug: "ltv-dti-dsr-comparison",
   title: "LTV·DTI·DSR 차이 한눈에 정리",
   description:
-    "LTV·DTI·DSR의 차이, 실제 한도를 가르는 규제 판단, 연봉·담보·기존 부채가 겹칠 때 시나리오와 흔한 오해를 정리했습니다.",
+    "주담대 한도는 LTV·DTI·DSR 중 가장 낮은 금액으로 정해지고, 요즘은 DTI는 통과해도 DSR에서 막히는 경우가 많습니다. 세 규제의 계산식과 차이, 어느 규제가 먼저 걸리는지 판단하는 법을 다룹니다.",
   updated: "2026년 7월 21일",
 } as const;
 

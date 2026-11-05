@@ -85,7 +85,7 @@ export function InheritanceTaxCalculatorReference() {
     <CalculatorReferenceCard
       title="상속세 산정 참고"
       summary="과세가액 → 상속공제 → 과세표준 → 산출세액 → 납부세액 순으로 계산합니다. 아래는 본 계산기 산식과 국세청 세액계산 흐름도를 요약한 참고용입니다."
-      footer="기준표는 국세청 상속세 신고서 산출 순서를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 최종 신고는 홈택스·세무사 확인을 권장합니다."
+      footer="법령 근거: 상속세 및 증여세법(시행 2025.10.1.) 제13조·제18~24조·제25~28조·제27조·제69조, 국세청 「상속세 개요」·세액계산흐름도. 기준표는 국세청 상속세 신고서 산출 순서를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 최종 신고는 홈택스·세무사 확인을 권장합니다."
     >
       <CalculatorReferenceSection
         number={1}
@@ -334,15 +334,17 @@ export function InheritanceTaxCalculatorReference() {
           <ol className="text-muted-foreground mt-2 list-decimal space-y-1 pl-4">
             <li>
               <strong className="text-foreground">신고기한</strong>: 상속개시일이 속하는 달의 말일부터 6개월
-              이내(외국 거주·재산 국외 등은 9개월). 기한 내 신고 시 신고세액공제 3% 적용.
+              이내(피상속인 또는 상속인이 외국에 주소를 둔 경우 9개월). 기한 내 신고 시 신고세액공제 3% 적용.
             </li>
             <li>
               <strong className="text-foreground">분납</strong>: 납부세액 {formatNumber(INSTALLMENT_THRESHOLD)}원
-              초과 시 2년(또는 5년·10년) 분납 가능(제70조). 2천만 이하 초과분 전액, 그 이상은 50% 범위 내.
+              초과 시 납부기한 후 2개월 이내에 나눠 낼 수 있습니다(제70조). 2천만 이하는 1천만 초과분, 2천만 초과는 50%
+              이하.
             </li>
             <li>
-              <strong className="text-foreground">연부연납·물납</strong>: 납부곤란 등 일정 요건 시 이자만 내고
-              세액을 연기하거나, 부동산 등으로 납부할 수 있습니다(별도 신청·심사).
+              <strong className="text-foreground">연부연납·물납</strong>: 납부세액 2천만 원 초과 시 납세담보를 내고
+              최대 10년(가업상속 등은 더 길게) 나눠 낼 수 있으며 가산금(이자)이 붙습니다(제71조). 금융재산 등으로 납부하기
+              어려우면 요건 충족 시 부동산 등으로 납부하는 물납도 신청할 수 있습니다(별도 신청·심사).
             </li>
             <li>
               재산가액은 원칙적으로 <strong>상속개시일 현재 시가</strong>입니다. 본 계산기는 시가를 직접

@@ -4,7 +4,7 @@ export const jeonseRenewalBrokerageFeeGuideMeta = {
   slug: "jeonse-renewal-brokerage-fee-guide",
   title: "전세 재계약 시 중개수수료 내야 하나",
   description:
-    "합의 재계약·묵시적 갱신·계약갱신청구권별 수수료·계약서 필요 여부, 유의사항, 중도 해지 시 부담, 신고·확정일자 체크리스트를 표로 정리했습니다.",
+    "전세 재계약 때 중개수수료가 드는지는 재계약 유형에 따라 달라집니다. 합의 재계약·묵시적 갱신·계약갱신청구권별 수수료 발생 여부와 계약서 필요 여부, 중도 해지 시 부담 주체, 신고·확정일자 체크리스트를 다룹니다.",
   updated: "2026년 9월 9일",
 } as const;
 

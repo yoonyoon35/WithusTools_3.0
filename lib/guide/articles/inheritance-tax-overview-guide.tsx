@@ -4,8 +4,8 @@ export const inheritanceTaxOverviewGuideMeta = {
   slug: "inheritance-tax-overview-guide",
   title: "상속세란? 과세가액·상속공제·누진세율·신고·납부 한 번에 정리",
   description:
-    "2026년 7월 기준 국세청 상속세 세액계산흐름도·상속세법을 바탕으로 과세가액·일괄공제·배우자공제·금융재산·동거주택공제·감정평가 수수료·누진세율·세대생략할증·신고세액공제·분납을 표와 7억·15억 원 계산 예시로 정리했습니다.",
-  updated: "2026년 7월 7일",
+    "상속세는 과세가액에서 상속공제를 빼고 누진세율을 적용하며, 일괄공제 5억·배우자공제 최저 5억 덕분에 10억 원 안팎은 세금이 없을 수 있습니다. 7억·10억·15억 원 아파트 계산 예시, 세대생략 할증, 신고세액공제 3%, 분납·연부연납을 다룹니다. (2026년 11월 기준)",
+  updated: "2026년 11월 5일",
 } as const;
 
 export function InheritanceTaxOverviewGuideBody() {
@@ -13,7 +13,7 @@ export function InheritanceTaxOverviewGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-ito-overview">
         <h2 id="guide-ito-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           피상속인(돌아가신 분)의 재산이 상속인에게 이전되면, 그 재산가액에 따라{" "}
@@ -34,6 +34,10 @@ export function InheritanceTaxOverviewGuideBody() {
             상속 주택 취득세 가이드
           </Link>
           에서 다룹니다.
+        </p>
+        <p className="text-muted-foreground text-sm">
+          ※ 2026년 11월 5일 현재 일괄공제 5억 원·배우자공제 최저 5억 원 등 상속공제와 세율은 바뀌지 않았습니다. 공제 상향 법안이
+          국회에 발의되어 있으나 아직 통과되지 않았으므로, 이 글의 계산은 현행 법 기준입니다.
         </p>
       </section>
 
@@ -80,7 +84,7 @@ export function InheritanceTaxOverviewGuideBody() {
           </li>
           <li>
             <a href="#guide-ito-example" className="text-primary underline-offset-4 hover:underline">
-              계산 예시(7억·15억)
+              계산 예시(7억·10억·15억)
             </a>
           </li>
           <li>
@@ -279,8 +283,9 @@ export function InheritanceTaxOverviewGuideBody() {
             )
           </li>
           <li>
-            <strong className="text-foreground">장례비</strong>: 시행령상 한도(통상 500~1,500만 원) 내에서 인정.
-            실제 지출과 증빙에 따라 달라집니다.
+            <strong className="text-foreground">장례비</strong>: 장례에 직접 쓴 비용은 증빙이 없어도 500만 원, 증빙이
+            있으면 최대 1,000만 원까지 인정하고, 봉안시설·자연장지 비용은 증빙 시 최대 500만 원을 더해 합계 최대 1,500만
+            원입니다(시행령 제9조). 공과금·채무는 실제 금액을 차감합니다.
           </li>
         </ul>
       </section>
@@ -296,7 +301,7 @@ export function InheritanceTaxOverviewGuideBody() {
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              주요 상속공제(상속세법 제18~23조의2)
+              주요 상속공제(상속세 및 증여세법 제18~23조의2)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -337,7 +342,9 @@ export function InheritanceTaxOverviewGuideBody() {
                 <td className="border-border border-b px-3 py-2.5">
                   min(실제상속, 법정분, 30억), 최소 5억
                 </td>
-                <td className="border-border border-b px-3 py-2.5">민법 법정상속분 기준</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  민법 법정상속분 기준. 신고기한 다음 날부터 9개월 안에 분할해야 함(최소 5억 원은 분할 여부와 무관)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -353,7 +360,9 @@ export function InheritanceTaxOverviewGuideBody() {
                   동거주택
                 </th>
                 <td className="border-border border-b px-3 py-2.5">상속주택 100%, 한도 6억</td>
-                <td className="border-border border-b px-3 py-2.5">10년 동거·무주택 등 요건</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  10년 이상 동거(미성년 기간 제외)·1세대 1주택, 상속개시일 현재 무주택인 직계비속
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="px-3 py-2.5 font-medium whitespace-nowrap">
@@ -373,7 +382,9 @@ export function InheritanceTaxOverviewGuideBody() {
         </h2>
         <p>
           상속공제를 모두 적용한 뒤 남은 금액에서 <strong>감정평가 수수료</strong>를 추가로 빼면 과세표준이 됩니다.
-          수수료는 상속공제 항목이 아니므로, 공제 후 금액과 과세표준 사이에 별도로 표시하는 것이 맞습니다.
+          수수료는 상속공제 항목이 아니므로, 공제 후 금액과 과세표준 사이에 별도로 표시하는 것이 맞습니다. 상속세 납부
+          목적으로 평가한 감정평가 수수료만 인정되고 한도는 500만 원이며, 평가가액으로 신고해야 하고 지급 증빙을 신고서와
+          함께 제출해야 합니다(시행령 제20조의3).
         </p>
         <p className="font-mono text-sm">
           과세표준 = 과세가액 − 상속공제 합계 − 감정평가 수수료
@@ -458,8 +469,8 @@ export function InheritanceTaxOverviewGuideBody() {
           계산 예시
         </h2>
         <p>
-          배우자+자녀가 있는 일반 가정을 기준으로, <strong>7억 원(면세)</strong>과 <strong>15억 원(납부)</strong> 두
-          가지를 비교합니다.{" "}
+          배우자+자녀 2명이 있는 일반 가정을 기준으로, <strong>7억 원(면세)</strong>·<strong>10억 원(면세)</strong>·
+          <strong>15억 원(납부)</strong> 세 가지를 비교합니다.{" "}
           <Link
             href="/inheritance-tax-calculator"
             className="text-primary underline-offset-4 hover:underline"
@@ -468,13 +479,73 @@ export function InheritanceTaxOverviewGuideBody() {
           </Link>
           와 동일한 순서입니다.
         </p>
+        <div className="overflow-x-auto rounded-lg border border-border">
+          <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+            <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
+              총상속재산별 상속세 비교(배우자+자녀 2명, 장례비·공과금·채무 3,000만 원)
+            </caption>
+            <thead>
+              <tr className="bg-muted/40">
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  총상속재산
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  과세가액
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  상속공제(반영)
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  과세표준
+                </th>
+                <th scope="col" className="border-border border-b px-3 py-2.5 font-semibold">
+                  납부 상속세
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  7억 원
+                </th>
+                <td className="border-border border-b px-3 py-2.5">6.7억 원</td>
+                <td className="border-border border-b px-3 py-2.5">6.7억 원(과세가액 한도)</td>
+                <td className="border-border border-b px-3 py-2.5">0</td>
+                <td className="border-border border-b px-3 py-2.5">0원</td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  10억 원
+                </th>
+                <td className="border-border border-b px-3 py-2.5">9.7억 원</td>
+                <td className="border-border border-b px-3 py-2.5">9.7억 원(과세가액 한도)</td>
+                <td className="border-border border-b px-3 py-2.5">0</td>
+                <td className="border-border border-b px-3 py-2.5">0원</td>
+              </tr>
+              <tr className="bg-muted/20">
+                <th scope="row" className="px-3 py-2.5 font-medium">
+                  15억 원
+                </th>
+                <td className="px-3 py-2.5">15억 원</td>
+                <td className="px-3 py-2.5">10.6억 원</td>
+                <td className="px-3 py-2.5">4.39억 원</td>
+                <td className="px-3 py-2.5">약 7,547만 원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          배우자공제(최저 5억 원)와 일괄공제(5억 원)만 합쳐도 10억 원이라, 과세가액이 그 부근 이하이면 7억·10억 원 아파트는
+          상속세가 없는 경우가 많습니다. 15억 원부터 과세표준이 생기고 20% 구간 세율이 적용됩니다. 상속 취득세는 별도로
+          발생할 수 있습니다.
+        </p>
 
         <div className="space-y-4" aria-labelledby="guide-ito-example-700m">
           <h3 id="guide-ito-example-700m" className="text-foreground text-lg font-semibold tracking-tight">
             예시 1 — 7억 원: 상속세 없음
           </h3>
           <p className="text-muted-foreground text-sm">
-            총상속재산 7억(아파트 위주), 장례비 3,000만, 금융재산 5,000만, 배우자+자녀 2명, 사전증여·감정평가
+            총상속재산 7억(아파트 위주), 장례비·공과금·채무 합계 3,000만, 금융재산 5,000만, 배우자+자녀 2명, 사전증여·감정평가
             수수료 없음을 가정합니다.
           </p>
           <ol className="text-muted-foreground list-decimal space-y-2 pl-5 text-sm leading-relaxed">
@@ -531,12 +602,58 @@ export function InheritanceTaxOverviewGuideBody() {
           </p>
         </div>
 
-        <div className="space-y-4" aria-labelledby="guide-ito-example-1500m">
-          <h3 id="guide-ito-example-1500m" className="text-foreground text-lg font-semibold tracking-tight">
-            예시 2 — 15억 원: 약 7,546만 원
+        <div className="space-y-4" aria-labelledby="guide-ito-example-1000m">
+          <h3 id="guide-ito-example-1000m" className="text-foreground text-lg font-semibold tracking-tight">
+            예시 2 — 10억 원: 상속세 없음
           </h3>
           <p className="text-muted-foreground text-sm">
-            총상속재산 15억, 장례비 3,000만, 사전증여 3,000만, 금융재산 3억, 감정평가 100만, 배우자+자녀 2명, 법정기한
+            총상속재산 10억(아파트 위주), 장례비·공과금·채무 합계 3,000만, 금융재산 5,000만, 배우자+자녀 2명, 사전증여·감정평가
+            수수료 없음을 가정합니다.
+          </p>
+          <ol className="text-muted-foreground list-decimal space-y-2 pl-5 text-sm leading-relaxed">
+            <li>
+              <strong className="text-foreground">과세가액</strong> = 10억 − 3,000만 ={" "}
+              <strong className="text-foreground">9억 7,000만</strong>
+            </li>
+            <li>
+              <strong className="text-foreground">상속공제(한도 전)</strong>: 일괄 5억 + 배우자 최소 5억 + 금융
+              2,000만 = 10억 2,000만 → 과세가액 9억 7,000만보다 큼
+            </li>
+            <li>
+              <strong className="text-foreground">상속공제(실제 반영)</strong>: 과세가액을 넘을 수 없으므로{" "}
+              <strong className="text-foreground">9억 7,000만</strong>까지만 공제
+            </li>
+            <li>
+              <strong className="text-foreground">과세표준</strong> = 0원 →{" "}
+              <strong className="text-foreground">상속세 없음</strong>
+            </li>
+          </ol>
+          <p className="text-muted-foreground text-sm">
+            이 가정에서는 과세가액이 10억 2,000만 원을 넘어야, 즉 총상속재산이 약 10억 5,000만 원을 넘어야 과세표준이
+            생깁니다. 시세가 10억이어도 상속세는 0원일 수 있지만, 상속 취득세와 이후 보유세(
+            <Link
+              href="/guide/inherited-housing-acquisition-tax-2026-guide"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              상속 주택 취득세
+            </Link>
+            ·
+            <Link
+              href="/guide/one-household-one-home-comprehensive-property-tax-amount-guide"
+              className="text-primary underline-offset-4 hover:underline"
+            >
+              종부세
+            </Link>
+            )는 별도입니다.
+          </p>
+        </div>
+
+        <div className="space-y-4" aria-labelledby="guide-ito-example-1500m">
+          <h3 id="guide-ito-example-1500m" className="text-foreground text-lg font-semibold tracking-tight">
+            예시 3 — 15억 원: 약 7,547만 원
+          </h3>
+          <p className="text-muted-foreground text-sm">
+            총상속재산 15억, 장례비·공과금·채무 합계 3,000만, 사전증여 3,000만, 금융재산 3억, 감정평가 100만, 배우자+자녀 2명, 법정기한
             내 신고를 가정합니다.
           </p>
         <ol className="text-muted-foreground list-decimal space-y-2 pl-5 text-sm leading-relaxed">
@@ -600,6 +717,36 @@ export function InheritanceTaxOverviewGuideBody() {
           </table>
         </div>
         </div>
+
+        <div className="space-y-3" aria-labelledby="guide-ito-example-diff">
+          <h3 id="guide-ito-example-diff" className="text-foreground text-lg font-semibold tracking-tight">
+            금액이 달라지는 경우
+          </h3>
+          <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
+            <li>
+              <strong className="text-foreground">배우자 없음·자녀만</strong>: 배우자공제가 없어 일괄공제 5억 원이 중심이
+              됩니다. 위 7억 원 가정(금융재산 5,000만 원)이라도 과세가액 6억 7,000만 − 공제 5억 2,000만(일괄 5억 + 금융
+              2,000만) = 과세표준 1억 5,000만 원이 남아, 산출세액 2,000만 원·신고세액공제 후 약 1,940만 원이 됩니다.
+            </li>
+            <li>
+              <strong className="text-foreground">사전증여·다른 부동산</strong>: 과세가액이 커지고 상속공제 종합한도도
+              달라집니다.
+            </li>
+            <li>
+              <strong className="text-foreground">동거주택공제</strong>: 요건을 충족하면 주택가액을 추가로 공제합니다(
+              <Link
+                href="/guide/co-residence-housing-inheritance-deduction-guide"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                동거주택 상속공제
+              </Link>
+              ).
+            </li>
+            <li>
+              <strong className="text-foreground">복수 상속인</strong>: 세액 안분·대습상속 등으로 개인별 금액이 달라집니다.
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-ito-filing">
@@ -627,7 +774,8 @@ export function InheritanceTaxOverviewGuideBody() {
                   신고·납부 기한
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  상속개시일이 속하는 달의 말일부터 <strong>6개월 이내</strong>(외국 거주 등은 9개월)
+                  상속개시일이 속하는 달의 말일부터 <strong>6개월 이내</strong>(피상속인 또는 상속인이 외국에 주소를
+                  둔 경우 9개월)
                 </td>
               </tr>
               <tr>
@@ -635,7 +783,7 @@ export function InheritanceTaxOverviewGuideBody() {
                   신고세액공제
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  기한 내 자진신고 시 산출세액(할증 반영 후)의 3% 공제
+                  기한 내 신고 시 (산출세액 + 할증 − 증여세액공제 등)의 3% 공제(제69조)
                 </td>
               </tr>
               <tr>
@@ -643,7 +791,17 @@ export function InheritanceTaxOverviewGuideBody() {
                   분납
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
-                  납부세액 1천만 초과 시 2·5·10년 분납 가능(제70조). 2천만 이하 초과분 전액, 그 이상 50% 범위
+                  납부세액 1천만 원 초과 시 납부기한 후 <strong>2개월 이내</strong>에 나눠 납부(제70조). 2천만 원 이하는
+                  1천만 원 초과분, 2천만 원 초과는 세액의 50% 이하. 신고서 분납란에 적으면 신청 완료
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
+                  연부연납
+                </th>
+                <td className="border-border border-b px-3 py-2.5">
+                  납부세액 2천만 원 초과 + 납세담보 제공 시 허가일부터 최대 10년(가업상속 등은 더 길게). 매회 분할세액이
+                  1천만 원을 넘어야 하고 가산금(이자)이 붙으며, 허가받으면 분납은 불가(제71조)
                 </td>
               </tr>
               <tr className="bg-muted/20">

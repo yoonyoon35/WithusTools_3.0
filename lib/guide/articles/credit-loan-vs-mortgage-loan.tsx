@@ -4,7 +4,7 @@ export const creditLoanVsMortgageLoanMeta = {
   slug: "credit-loan-vs-mortgage-loan",
   title: "신용대출 vs 주택담보대출 차이",
   description:
-    "2026년 10월 30일 기준 신용대출과 주택담보대출의 금리·한도·규제·용도 차이, 한도 산정 방식과 신용점수별 금리를 표로 정리했습니다.",
+    "신용대출은 담보 없이 신용만으로, 주담대는 주택을 담보로 받기 때문에 금리와 한도 산정 방식이 크게 다릅니다. 금리 차이의 이유, 용도별 선택, 신용점수별 금리와 DSR 적용 차이를 비교합니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",
 } as const;
 
