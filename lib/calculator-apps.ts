@@ -72,6 +72,18 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
     path: "/prepayment-fee-calculator",
     featureList: ["중도상환 수수료 산출", "면제 기간 반영", "잔여·경과 기간 입력"],
   },
+  "/national-housing-bond-calculator": {
+    name: "국민주택채권 계산기",
+    description:
+      "시가표준액·지역·등기 유형별 국민주택채권 매입금액을 계산하고, 즉시매도 시 할인율별 실제 부담액을 비교하는 계산기입니다.",
+    path: "/national-housing-bond-calculator",
+    featureList: [
+      "소유권 이전(유상)·상속·증여 매입금액",
+      "근저당 설정 매입금액(상한 10억 원)",
+      "서울·광역시/그 밖의 지역 구간별 매입률",
+      "할인율별 즉시매도 실부담",
+    ],
+  },
   "/comprehensive-property-tax-calculator": {
     name: "종합부동산세 계산기",
     description: "공시가격·주택 수 기준 재산세·종부세·농특세와 연간 보유세 합계를 산출하는 계산기입니다.",

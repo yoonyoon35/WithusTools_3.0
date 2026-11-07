@@ -8,7 +8,7 @@ const path = "/dsr-calculator";
 const pageTitle = "DSR·주담대 한도 계산기";
 const metaTitle = "주담대 DSR 계산기 - 연소득별 대출 한도";
 const pageDescription =
-  "연소득과 대출 조건을 입력하면 DSR 40% 기준 주담대 최대 대출 가능액과 DSR(%)을 바로 확인합니다. 목표 DSR을 내 기준으로 바꿔 한도를 역산할 수도 있는 무료 DSR 계산기입니다.";
+  "연소득과 기존 대출을 입력하면 DSR(%)과 40% 기준 주담대 최대 대출 가능액을 바로 계산합니다. 목표 DSR을 바꿔 한도를 역산하거나 체증식 상환 조건도 입력할 수 있습니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({ title: metaTitle, description: pageDescription, path });

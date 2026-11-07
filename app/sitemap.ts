@@ -16,6 +16,7 @@ const staticPages: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/dti-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/ltv-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/prepayment-fee-calculator`, changeFrequency: "weekly", priority: 0.85 },
+  { url: `${SITE_URL}/national-housing-bond-calculator`, changeFrequency: "weekly", priority: 0.85 },
   {
     url: `${SITE_URL}/comprehensive-property-tax-calculator`,
     changeFrequency: "weekly",

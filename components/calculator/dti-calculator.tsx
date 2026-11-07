@@ -20,15 +20,18 @@ import {
   bulletDtiBasisLabels,
   bulletDtiBasisOrder,
   computeDtiSnapshotFromLoans,
-  dtiInclusionRows,
+  defaultDtiLimitConditions,
+  dtiHousingTypeLabels,
   dtiLoanCategoryLabels,
-  dtiReferenceRows,
-  dtiSectorLabels,
+  dtiRegionLabels,
+  dtiRegionOrder,
   monthlyPaymentForDtiMortgage,
   type BulletDtiBasis,
+  type DtiHousingType,
+  type DtiLimitConditions,
   type DtiLoanCategory,
   type DtiLoanInput,
-  type DtiSector,
+  type DtiRegion,
 } from "@/lib/dti-calculations";
 import { formatDtiResultText } from "@/lib/dti-result-text";
 import { formatNumber, removeCommas, repaymentTypeLabels, type RepaymentType } from "@/lib/loan-calculations";
@@ -463,7 +466,8 @@ export function DtiCalculator() {
   const loansBaseId = React.useId();
   const nextLoanSeqRef = React.useRef(1);
   const [annualIncomeManwonDisplay, setAnnualIncomeManwonDisplay] = React.useState("");
-  const [sector, setSector] = React.useState<DtiSector>("bank");
+  const [limitConditions, setLimitConditions] = React.useState<DtiLimitConditions>(defaultDtiLimitConditions);
+  const needsHousingType = limitConditions.region === "adjusted" || limitConditions.region === "metro";
   const [loans, setLoans] = React.useState<LoanRowState[]>(() => [createLoanRow(`${loansBaseId}-0`, "new")]);
   const [equalPrincipalBasis, setEqualPrincipalBasis] =
     React.useState<EqualPrincipalDsrBasis>("first-month");
@@ -485,19 +489,20 @@ export function DtiCalculator() {
     const parsedLoans = loans.map(parseLoanRow).filter((l): l is DtiLoanInput => l != null);
     return computeDtiSnapshotFromLoans({
       annualIncomeManwon,
-      sector,
+      limitConditions,
       loans: parsedLoans,
       equalPrincipalBasis,
       bulletBasis,
     });
-  }, [annualIncomeManwon, bulletBasis, canSubmit, equalPrincipalBasis, hasCalculated, loans, sector]);
+  }, [annualIncomeManwon, bulletBasis, canSubmit, equalPrincipalBasis, hasCalculated, limitConditions, loans]);
 
   const showZeroResult = !hasCalculated || !snapshot;
   const displaySnapshot = showZeroResult
-    ? computeDtiSnapshotFromLoans({ annualIncomeManwon: 0, sector, loans: [] })
+    ? computeDtiSnapshotFromLoans({ annualIncomeManwon: 0, limitConditions, loans: [] })
     : snapshot!;
   const displayDti = showZeroResult ? "0.00" : (displaySnapshot.dtiPercent?.toFixed(2) ?? "—");
-  const displayWithinCap = showZeroResult ? true : displaySnapshot.withinCap;
+  const displayWithinCap = showZeroResult ? true : displaySnapshot.withinCap !== false;
+  const displayHasCap = displaySnapshot.capPercent != null;
 
   const exportText = React.useMemo(() => {
     if (!snapshot || showZeroResult) return "";
@@ -523,25 +528,80 @@ export function DtiCalculator() {
             />
           </div>
 
-          <div className="space-y-2">
-            <span id="dti-sector-label" className="text-sm font-medium">
-              심사 구분
-            </span>
-            <div className="bg-muted inline-flex rounded-lg p-0.5" role="group" aria-labelledby="dti-sector-label">
-              {(Object.keys(dtiSectorLabels) as DtiSector[]).map((key) => (
-                <Button
-                  key={key}
-                  type="button"
-                  size="sm"
-                  variant={sector === key ? "default" : "ghost"}
-                  className="h-8 px-3"
-                  onClick={() => setSector(key)}
-                  aria-pressed={sector === key}
-                >
-                  {dtiSectorLabels[key]} ({key === "bank" ? "60%" : "50%"})
-                </Button>
-              ))}
+          <div className="space-y-3 rounded-lg border p-4">
+            <p className="text-sm font-medium">적용 한도 조건 (은행 신규 주택담보대출)</p>
+
+            <div className="space-y-2">
+              <Label htmlFor="dti-region">담보 주택 소재지</Label>
+              <select
+                id="dti-region"
+                className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
+                value={limitConditions.region}
+                onChange={(e) => setLimitConditions((prev) => ({ ...prev, region: e.target.value as DtiRegion }))}
+              >
+                {dtiRegionOrder.map((key) => (
+                  <option key={key} value={key}>
+                    {dtiRegionLabels[key]}
+                  </option>
+                ))}
+              </select>
             </div>
+
+            {needsHousingType ? (
+              <div className="space-y-2">
+                <span id="dti-housing-label" className="text-sm font-medium">
+                  주택 유형
+                </span>
+                <div className="bg-muted inline-flex rounded-lg p-0.5" role="group" aria-labelledby="dti-housing-label">
+                  {(Object.keys(dtiHousingTypeLabels) as DtiHousingType[]).map((key) => (
+                    <Button
+                      key={key}
+                      type="button"
+                      size="sm"
+                      variant={limitConditions.housingType === key ? "default" : "ghost"}
+                      className="h-8 px-3"
+                      onClick={() => setLimitConditions((prev) => ({ ...prev, housingType: key }))}
+                      aria-pressed={limitConditions.housingType === key}
+                    >
+                      {dtiHousingTypeLabels[key]}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            <div className="space-y-2">
+              <label className="flex items-start gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  className="mt-1"
+                  checked={limitConditions.firstHomeOrPractical}
+                  disabled={limitConditions.livingFundMultiHome}
+                  onChange={(e) => setLimitConditions((prev) => ({ ...prev, firstHomeOrPractical: e.target.checked }))}
+                />
+                <span>생애최초 주택구매자 또는 규제지역 서민·실수요자(주택구입 목적 대출, 60% 이내)</span>
+              </label>
+              <label className="flex items-start gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  className="mt-1"
+                  checked={limitConditions.livingFundMultiHome}
+                  onChange={(e) =>
+                    setLimitConditions((prev) => ({
+                      ...prev,
+                      livingFundMultiHome: e.target.checked,
+                      firstHomeOrPractical: e.target.checked ? false : prev.firstHomeOrPractical,
+                    }))
+                  }
+                />
+                <span>2주택 이상 세대의 생활안정자금 대출(한도 −10%p)</span>
+              </label>
+            </div>
+
+            <p className="text-muted-foreground text-xs leading-relaxed">
+              지역 지정 현황은 국토교통부 발표로 확인하세요. 소액대출(전 금융기관 합산 1억 원 이내) 등은 DTI가 적용되지
+              않을 수 있습니다.
+            </p>
           </div>
 
           <div className="space-y-3 border-t pt-4">
@@ -646,7 +706,7 @@ export function DtiCalculator() {
             >
               <p className="text-muted-foreground text-sm">총부채상환비율(DTI)</p>
               <p className="text-muted-foreground mt-0.5 text-xs">
-                {dtiSectorLabels[sector]} 참고 한도 {displaySnapshot.capPercent}%
+                {displayHasCap ? `적용 한도 ${displaySnapshot.capPercent}%` : "DTI 비율 한도 없음"} · {displaySnapshot.limitBasis}
               </p>
               <p className="mt-1 text-3xl font-bold tabular-nums tracking-tight">
                 {displayDti}
@@ -655,9 +715,11 @@ export function DtiCalculator() {
               <p className="text-muted-foreground mt-2 text-sm">
                 {showZeroResult
                   ? "연 소득과 대출을 입력한 뒤 계산하기를 누르면 결과가 갱신됩니다."
-                  : displayWithinCap
-                    ? `${displaySnapshot.capPercent}% 참고 한도 이내로 보입니다. DSR·LTV 등 다른 규제도 함께 확인하세요.`
-                    : `${displaySnapshot.capPercent}% 참고 한도를 초과하는 수준입니다. 실제 심사·업권별 기준과 다를 수 있습니다.`}
+                  : !displayHasCap
+                    ? "선택한 조건에는 DTI 비율 한도가 정해져 있지 않습니다. DSR·LTV 등 다른 규제는 별도로 확인하세요."
+                    : displayWithinCap
+                      ? `적용 한도 ${displaySnapshot.capPercent}% 이내로 보입니다. DSR·LTV 등 다른 규제도 함께 확인하세요.`
+                      : `적용 한도 ${displaySnapshot.capPercent}%를 초과하는 수준입니다. 실제 심사 기준과 다를 수 있습니다.`}
               </p>
             </div>
 

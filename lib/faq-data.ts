@@ -90,9 +90,14 @@ export const dtiCalculatorFaqItems = [
       "DTI(%) = (주담대 연간 원리금 + 기타 대출 연간 이자) ÷ 연소득 × 100입니다. 주담대는 원금과 이자가 모두 포함되고, 신용·할부 등은 보통 이자만 포함됩니다.",
   },
   {
-    question: "DTI 60%는 항상 대출 가능한가요?",
+    question: "DTI 한도는 몇 %인가요?",
     answer:
-      "아닙니다. 은행권 참고 한도는 60%이지만, 실무에서는 DSR 40%·LTV·스트레스 DSR 등 다른 규제가 먼저 적용될 수 있습니다.",
+      "은행 신규 주택담보대출 기준으로 투기지역·투기과열지구는 40%, 조정대상지역 아파트는 50%, 그 밖의 수도권 아파트는 60%입니다. 생애최초 주택구매자와 규제지역 서민·실수요자의 주택구입 대출은 60% 이내로 적용할 수 있고, 수도권 밖 비규제지역은 DTI 비율이 정해져 있지 않습니다(은행업감독규정 별표 6). 지역 지정은 바뀔 수 있으니 국토교통부 발표를 확인하세요.",
+  },
+  {
+    question: "DTI 한도 안이면 항상 대출이 가능한가요?",
+    answer:
+      "아닙니다. DTI 한도를 통과해도 DSR 40%·LTV·스트레스 DSR 등 다른 규제가 먼저 적용될 수 있습니다. 전 금융기관 합산 1억 원 이내 소액대출처럼 DTI 적용이 배제되는 경우도 있습니다.",
   },
   {
     question: "DSR 계산기와 무엇이 다른가요?",
@@ -357,6 +362,34 @@ export const guideIndexFaqItems = [
   },
 ] as const satisfies readonly FaqItem[];
 
+export const housingBondCalculatorFaqItems = [
+  {
+    question: "국민주택채권 매입금액은 어떻게 계산하나요?",
+    answer:
+      "소유권 이전·상속·증여 등기는 등기 접수일의 시가표준액에 등기 유형·부동산 종류·지역·금액 구간별 매입률(1,000분율)을 곱해 정합니다. 구간은 ‘이상 ~ 미만’이고, 1만 원 미만 단수는 5천 원 이상이면 1만 원으로 올리고 5천 원 미만이면 버립니다. 예를 들어 서울 주택 시가표준액 2억 원은 23/1,000을 적용해 460만 원입니다.",
+  },
+  {
+    question: "채권 매입금액을 다 내야 하나요, 실제 부담은 얼마인가요?",
+    answer:
+      "채권을 만기까지 보유할 의무는 없어서 대부분 은행에서 매입 즉시 되팝니다. 이때 매입금액과 매도 대금의 차이인 할인 손실만 실제 비용이 됩니다. 할인율은 매일 바뀌므로 이 계산기에서는 입력한 할인율 또는 5·7·10% 가정값으로 비교해 보여 줍니다.",
+  },
+  {
+    question: "매매가와 시가표준액이 다르면 어느 쪽을 기준으로 하나요?",
+    answer:
+      "시가표준액입니다. 아파트 등 공동주택은 공동주택가격, 토지는 개별공시지가 등 지방세 시가표준액을 등기 접수일 기준으로 씁니다. 시가표준액이 공시되지 않은 신규 분양 공동주택은 취득가격(분양가)을 기준으로 합니다.",
+  },
+  {
+    question: "상속·증여 등기에도 국민주택채권을 매입하나요?",
+    answer:
+      "매입합니다. 상속·증여 등 무상 취득은 유상 취득과 다른 표를 쓰며, 시가표준액 1천만 원 이상부터 대상입니다. 서울·광역시 기준 1천만~5천만 원 미만 18/1,000, 5천만~1억 5천만 원 미만 28/1,000, 1억 5천만 원 이상 42/1,000입니다(그 밖의 지역은 14·25·39/1,000).",
+  },
+  {
+    question: "대출을 받아 근저당을 설정하면 채권을 더 사야 하나요?",
+    answer:
+      "근저당 설정금액(채권최고액)이 2천만 원 이상이면 설정금액의 10/1,000을 매입하며, 매입금액은 10억 원이 상한입니다. 소유권 이전과 근저당을 함께 등기할 때 합산하는 방식은 법무사 견적서로 확인해야 합니다. 중소기업의 부동산담보대출 등 일부는 매입 대상에서 제외됩니다.",
+  },
+] as const satisfies readonly FaqItem[];
+
 export const calculatorFaqByPath: Record<string, readonly FaqItem[]> = {
   "/loan-calculator": loanCalculatorFaqItems,
   "/dsr-calculator": dsrCalculatorFaqItems,
@@ -365,6 +398,7 @@ export const calculatorFaqByPath: Record<string, readonly FaqItem[]> = {
   "/acquisition-tax-calculator": acquisitionTaxCalculatorFaqItems,
   "/brokerage-fee-calculator": brokerageFeeCalculatorFaqItems,
   "/prepayment-fee-calculator": prepaymentFeeCalculatorFaqItems,
+  "/national-housing-bond-calculator": housingBondCalculatorFaqItems,
   "/comprehensive-property-tax-calculator": comprehensivePropertyTaxCalculatorFaqItems,
   "/capital-gains-tax-calculator": capitalGainsTaxCalculatorFaqItems,
   "/comprehensive-income-tax-calculator": comprehensiveIncomeTaxCalculatorFaqItems,

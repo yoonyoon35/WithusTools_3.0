@@ -33,6 +33,9 @@ export function SiteFooter() {
           <Link href="/prepayment-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             중도상환 수수료 계산기
           </Link>
+          <Link href="/national-housing-bond-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
+            국민주택채권 계산기
+          </Link>
           <Link
             href="/comprehensive-property-tax-calculator"
             className="hover:text-foreground underline-offset-4 hover:underline"

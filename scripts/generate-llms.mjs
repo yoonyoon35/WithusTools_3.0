@@ -21,6 +21,7 @@ const calculators = [
   { path: "/farmland-acquisition-tax-calculator", title: "농지 취득세 계산기", desc: "농지 매매·상속·증여·원시취득별 취득세·농특세·지방교육세, 2년 이상 자경 감면 요건과 농지취득자격증명·신고 기한 안내." },
   { path: "/brokerage-fee-calculator", title: "중개수수료 계산기", desc: "매매·전세·월세 거래 유형별 중개수수료 상한액." },
   { path: "/prepayment-fee-calculator", title: "중도상환 수수료 계산기", desc: "중도상환 수수료·면제 기간 참고 계산." },
+  { path: "/national-housing-bond-calculator", title: "국민주택채권 계산기", desc: "시가표준액·지역별 국민주택채권 매입금액(이전·상속·증여·근저당)과 할인율별 즉시매도 실부담." },
   {
     path: "/comprehensive-property-tax-calculator",
     title: "종합부동산세 계산기",

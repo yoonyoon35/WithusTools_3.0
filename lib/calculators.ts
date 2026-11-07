@@ -49,6 +49,11 @@ export const calculatorTools: readonly CalculatorTool[] = [
     description: "대출 중도상환 시 예상 수수료와 이자 절감 효과를 비교합니다.",
   },
   {
+    href: "/national-housing-bond-calculator",
+    title: "국민주택채권 계산기",
+    description: "시가표준액·지역별 국민주택채권 매입금액과 즉시매도 시 할인율별 실제 부담액을 계산합니다.",
+  },
+  {
     href: "/comprehensive-property-tax-calculator",
     title: "종합부동산세 계산기",
     description: "공시가격·주택 수 기준 재산세·지방교육세·종부세·농특세와 연간 보유세 합계를 산출합니다.",

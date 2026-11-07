@@ -9,6 +9,7 @@ import {
   bulletDtiBasisHints,
   bulletDtiBasisLabels,
   bulletDtiBasisOrder,
+  dtiExemptionRows,
   dtiInclusionRows,
   dtiReferenceRows,
 } from "@/lib/dti-calculations";
@@ -22,7 +23,7 @@ const formulaRows = [
   ["DTI(%)", "(주담대 연간 원리금 + 기타 대출 연간 이자) ÷ 연소득 × 100"],
   ["① 주담대", "연간 원금 + 이자(원리금). 만기일시는 min(잔여기간, 10년)으로 원금 환산 + 전액 이자"],
   ["② 기타 대출", "연간 이자만(잔액 × 연이율, 또는 월 이자 직접 × 12)"],
-  ["③ 한도 비교", "업권별 참고 한도(은행 60%·제2금융 50%)와 산출 DTI(%) 비교"],
+  ["③ 한도 비교", "지역·주택 유형·대출 목적에 따른 적용 한도(40·50·60%, 해당 없음)와 산출 DTI(%) 비교"],
 ] as const;
 
 const exampleRows = [
@@ -39,7 +40,7 @@ const includedRows = [
   ["기타 대출", "연간 이자만(잔액×금리 또는 월 이자·월 상환 직접×12)"],
   ["만기일시 산정", "10년 원금균등+전액 이자 등 DTI 기준 선택"],
   ["원금균등 산정", "첫 회차×12 등 DSR 계산기와 동일 방식"],
-  ["업권별 한도", "은행 60%·제2금융 50% 참고 비교"],
+  ["지역별 한도", "은행 신규 주담대 기준 지역·주택 유형·대출 목적별 DTI 한도 비교"],
 ] as const;
 
 const excludedRows = [
@@ -52,6 +53,8 @@ const excludedRows = [
 ] as const;
 
 const sectorLimitRows = dtiReferenceRows.map((row) => [row.condition, row.cap, row.note ?? ""]);
+
+const exemptionRows = dtiExemptionRows.map((row) => [row[0], row[1]]);
 
 const inclusionRows = dtiInclusionRows.map((row) => [row.item, row.dti, row.dsr]);
 
@@ -77,7 +80,7 @@ export function DtiCalculatorReference() {
     <CalculatorReferenceCard
       title="DTI 산정 참고"
       summary="DTI(%) = (주담대 연간 원리금 + 기타 대출 연간 이자) ÷ 연소득 × 100. 아래는 본 계산기 산출 순서와 일반적인 기준을 요약한 참고용입니다."
-      footer="기준표는 가이드·정책 공지를 바탕으로 사용자가 빠르게 대조할 수 있도록 정리한 참고용입니다. 소득 인정·부채 재산정·만기일시 환산 방식은 금융기관 심사와 다를 수 있습니다."
+      footer="법령 근거: 은행업감독규정 별표 6 제3장 3호(주택담보대출 총부채상환비율), 은행업감독업무시행세칙 별표 18(산정 방법). 소득 인정·부채 재산정·만기일시 환산 방식은 금융기관 심사와 다를 수 있습니다. 위 기준은 은행에 적용되는 규정이며 상호금융·저축은행 등 다른 업권은 별도 규정을 확인해야 합니다."
     >
       <CalculatorReferenceSection
         number={1}
@@ -95,11 +98,12 @@ export function DtiCalculatorReference() {
       <CalculatorReferenceSection
         number={2}
         title="계산 예시 (참고)"
-        subtitle="은행권 · 연소득 8,000만 · 만기일시 주담대 10년 규정 · 기존 신용 이자만"
+        subtitle="연소득 8,000만 · 만기일시 주담대 10년 규정 · 기존 신용 이자만"
         footnote={
           <>
             동일 조건(3억·4%·만기일시)에서 DSR 5년 규정은 연 7,200만 원, DTI 10년 규정은 연 4,200만 원으로 DTI가 더 낮게
-            산출됩니다. DTI 60%를 통과해도 DSR 40%에서 먼저 한도가 줄어드는 경우가 많습니다.
+            산출됩니다. 이 예시의 55.5%는 그 밖의 수도권 아파트 한도(60%)는 넘지 않지만 조정대상지역(50%)이나
+            투기과열지구(40%)에서는 한도를 넘습니다. DTI를 통과해도 DSR 40%에서 먼저 한도가 줄어드는 경우가 많습니다.
           </>
         }
       >
@@ -125,11 +129,19 @@ export function DtiCalculatorReference() {
 
 
       <CalculatorReferenceSection number={4} title="법령·세율·요율 기준표">
-        <p className="text-muted-foreground text-xs font-medium">업권별 DTI 한도 (참고)</p>
+        <p className="text-muted-foreground text-xs font-medium">지역·대상별 DTI 한도 (은행 신규 주택담보대출)</p>
         <CalculatorReferenceTable
-          caption="업권별 DTI 한도"
+          caption="지역·대상별 DTI 한도"
           headers={["구분", "한도", "비고"]}
           rows={sectorLimitRows}
+          minWidth="min-w-[560px]"
+        />
+
+        <p className="text-muted-foreground mt-4 text-xs font-medium">DTI 적용을 배제할 수 있는 경우</p>
+        <CalculatorReferenceTable
+          caption="DTI 적용 배제 가능 대출"
+          headers={["구분", "내용"]}
+          rows={exemptionRows}
           minWidth="min-w-[560px]"
         />
 
@@ -163,7 +175,7 @@ export function DtiCalculatorReference() {
         <p className="text-muted-foreground mt-4 text-xs font-medium">흔한 오해</p>
         <ul className="text-muted-foreground list-disc space-y-2 pl-5 text-sm leading-relaxed">
           <li>
-            「DTI 60% 통과 = 대출 가능」으로만 판단하는 경우가 많습니다. 은행권 주담대는{" "}
+            「DTI 한도 통과 = 대출 가능」으로만 판단하는 경우가 많습니다. 은행권 주담대는{" "}
             <Link href="/guide/dsr-40-mortgage-limit" className="text-primary underline-offset-4 hover:underline">
               DSR 40%
             </Link>

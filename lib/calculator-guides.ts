@@ -82,6 +82,13 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "rate-reduction-request-right",
     "mortgage-maturity-extension-guide",
   ],
+  "/national-housing-bond-calculator": [
+    "national-housing-bond-purchase-criteria-guide",
+    "home-purchase-additional-costs-guide",
+    "new-construction-apartment-acquisition-tax-guide",
+    "inherited-housing-acquisition-tax-2026-guide",
+    "mortgage-loan-application-documents",
+  ],
   "/comprehensive-property-tax-calculator": [
     "comprehensive-property-tax-overview-guide",
     "holding-capital-gains-tax-increase-2026-guide",
@@ -130,12 +137,17 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
   "/dti-calculator": ["/dsr-calculator", "/ltv-calculator", "/loan-calculator"],
   "/ltv-calculator": ["/dsr-calculator", "/dti-calculator", "/loan-calculator"],
   "/prepayment-fee-calculator": ["/loan-calculator"],
+  "/national-housing-bond-calculator": ["/acquisition-tax-calculator", "/brokerage-fee-calculator"],
   "/inheritance-tax-calculator": [
     "/acquisition-tax-calculator",
     "/capital-gains-tax-calculator",
     "/comprehensive-property-tax-calculator",
   ],
-  "/acquisition-tax-calculator": ["/farmland-acquisition-tax-calculator", "/inheritance-tax-calculator"],
+  "/acquisition-tax-calculator": [
+    "/farmland-acquisition-tax-calculator",
+    "/inheritance-tax-calculator",
+    "/national-housing-bond-calculator",
+  ],
   "/farmland-acquisition-tax-calculator": ["/acquisition-tax-calculator", "/inheritance-tax-calculator"],
   "/capital-gains-tax-calculator": ["/inheritance-tax-calculator"],
   "/comprehensive-income-tax-calculator": [

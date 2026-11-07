@@ -7,9 +7,9 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/dti-calculator";
 const pageTitle = "DTI 계산기";
-const metaTitle = "DTI 계산기 - 주담대·체증식 DTI 60% 기준 비교";
+const metaTitle = "DTI 계산기 - 지역별 DTI 한도(40·50·60%) 비교";
 const pageDescription =
-  "연 소득과 주담대·기타 대출로 DTI(%)를 간이 산출하고 은행 60%·제2금융 50% 한도와 비교합니다. 주담대는 원리금, 신용·할부 등은 이자만 반영하는 2026년 기준 참고 계산입니다.";
+  "연 소득과 주담대·기타 대출로 DTI(%)를 산출하고 지역별 한도(투기과열 40%·조정대상 50%·수도권 60%)와 비교합니다. 체증식 주담대는 월 상환액을 직접 입력할 수 있고, 신용·할부 대출은 이자만 반영합니다. (2026년 기준)";
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({ title: metaTitle, description: pageDescription, path });
@@ -22,8 +22,8 @@ export default function DtiCalculatorPage() {
       title={pageTitle}
       intro={
         <>
-          DTI(총부채상환비율)는 (주담대 연간 원리금 + 기타 대출 연간 이자) ÷ 연소득 × 100으로 계산합니다. 은행권 참고
-          한도 60%·제2금융 50%와 비교할 수 있습니다. 2023년 이후 은행권 주담대는 실무상{" "}
+          DTI(총부채상환비율)는 (주담대 연간 원리금 + 기타 대출 연간 이자) ÷ 연소득 × 100으로 계산합니다. 집이 있는
+          지역과 주택 유형에 따라 한도가 40%·50%·60%로 달라집니다. 2023년 이후 은행권 주담대는 실무상{" "}
           <Link href="/dsr-calculator" className="text-primary underline-offset-4 hover:underline">
             DSR 40%
           </Link>

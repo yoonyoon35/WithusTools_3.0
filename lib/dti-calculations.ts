@@ -104,19 +104,30 @@ export function monthlyPaymentForDtiMortgage(
   );
 }
 
-/** 은행권 DTI 한도(%). 2026년 6월 기준 가이드·금융당국 안내와 동일하게 60% 적용. */
-export const DTI_BANK_CAP_PERCENT = 60;
+/**
+ * 은행 신규 주택담보대출 DTI 한도 — 은행업감독규정 별표 6 제3장 3호(총부채상환비율).
+ * 가목: 투기지역·투기과열지구 40%, 조정대상지역(아파트) 50%, 그 밖의 수도권(아파트) 60%.
+ * 다목: 생애최초주택구매자·규제지역 서민·실수요자의 주택구입 목적 대출은 60% 이내.
+ * 마목: 2주택 이상 세대의 생활안정자금 대출은 가목 비율에서 10%p 차감(여신심사위원회 승인 시 제외 가능).
+ */
+export type DtiRegion = "speculative" | "adjusted" | "metro" | "other";
 
-/** 제2금융권(저축은행·카드·캐피탈 등) DTI 한도(%). 상품별 상이하나 참고값 50%. */
-export const DTI_NON_BANK_CAP_PERCENT = 50;
-
-export type DtiSector = "bank" | "non-bank";
+export type DtiHousingType = "apartment" | "other";
 
 export type DtiLoanCategory = "mortgage" | "other";
 
-export const dtiSectorLabels: Record<DtiSector, string> = {
-  bank: "은행권",
-  "non-bank": "제2금융권",
+export const dtiRegionOrder: readonly DtiRegion[] = ["speculative", "adjusted", "metro", "other"] as const;
+
+export const dtiRegionLabels: Record<DtiRegion, string> = {
+  speculative: "투기지역·투기과열지구",
+  adjusted: "조정대상지역",
+  metro: "그 밖의 수도권(위 지역 제외)",
+  other: "수도권 밖 비규제지역",
+};
+
+export const dtiHousingTypeLabels: Record<DtiHousingType, string> = {
+  apartment: "아파트(주상복합 포함)",
+  other: "아파트 외 주택",
 };
 
 export const dtiLoanCategoryLabels: Record<DtiLoanCategory, string> = {
@@ -124,8 +135,66 @@ export const dtiLoanCategoryLabels: Record<DtiLoanCategory, string> = {
   other: "기타 대출(이자만)",
 };
 
-export function dtiCapPercentForSector(sector: DtiSector): number {
-  return sector === "bank" ? DTI_BANK_CAP_PERCENT : DTI_NON_BANK_CAP_PERCENT;
+export interface DtiLimitConditions {
+  region: DtiRegion;
+  housingType: DtiHousingType;
+  /** 생애최초주택구매자 또는 규제지역 서민·실수요자의 주택구입 목적 대출 */
+  firstHomeOrPractical: boolean;
+  /** 2주택 이상 세대의 생활안정자금 목적 대출 */
+  livingFundMultiHome: boolean;
+}
+
+export interface DtiLimitResolution {
+  /** 적용 한도(%). DTI 비율이 정해지지 않은 경우 null */
+  capPercent: number | null;
+  /** 적용 근거 한 줄 설명 */
+  basis: string;
+}
+
+export const defaultDtiLimitConditions: DtiLimitConditions = {
+  region: "speculative",
+  housingType: "apartment",
+  firstHomeOrPractical: false,
+  livingFundMultiHome: false,
+};
+
+export function resolveDtiLimit(conditions: DtiLimitConditions): DtiLimitResolution {
+  const { region, housingType } = conditions;
+  const isApartment = housingType === "apartment";
+
+  let cap: number | null = null;
+  let basis: string;
+
+  if (region === "speculative") {
+    cap = 40;
+    basis = "투기지역·투기과열지구 40%(주택 전체)";
+  } else if (region === "adjusted") {
+    if (isApartment) {
+      cap = 50;
+      basis = "조정대상지역 아파트 50%";
+    } else {
+      basis = "조정대상지역 아파트 외 주택은 DTI 비율 미지정";
+    }
+  } else if (region === "metro") {
+    if (isApartment) {
+      cap = 60;
+      basis = "그 밖의 수도권 아파트 60%";
+    } else {
+      basis = "그 밖의 수도권 아파트 외 주택은 DTI 비율 미지정";
+    }
+  } else {
+    basis = "수도권 밖 비규제지역은 DTI 비율 미지정";
+  }
+
+  if (cap != null && conditions.livingFundMultiHome) {
+    cap -= 10;
+    basis += " − 10%p(2주택 이상 세대 생활안정자금)";
+  } else if (cap != null && conditions.firstHomeOrPractical && cap < 60) {
+    cap = 60;
+    basis = "생애최초·서민실수요 주택구입 대출 60% 이내";
+  }
+
+  return { capPercent: cap, basis };
 }
 
 export interface DtiLoanInput extends DsrLoanInput {
@@ -254,14 +323,14 @@ function computeLoanResult(
 
 export function computeDtiSnapshotFromLoans(args: {
   annualIncomeManwon: number;
-  sector: DtiSector;
+  limitConditions: DtiLimitConditions;
   loans: DtiLoanInput[];
   equalPrincipalBasis?: EqualPrincipalDsrBasis;
   bulletBasis?: BulletDtiBasis;
 }) {
   const equalPrincipalBasis = args.equalPrincipalBasis ?? "first-month";
   const bulletBasis = args.bulletBasis ?? "regulatory-10y-principal";
-  const capPercent = dtiCapPercentForSector(args.sector);
+  const { capPercent, basis: limitBasis } = resolveDtiLimit(args.limitConditions);
   const annualIncomeWon = args.annualIncomeManwon * 10_000;
 
   const loanResults = args.loans
@@ -283,11 +352,13 @@ export function computeDtiSnapshotFromLoans(args: {
 
   const dtiPercent =
     annualIncomeWon > 0 ? (annualDtiServiceWon / annualIncomeWon) * 100 : null;
-  const withinCap = dtiPercent != null ? dtiPercent <= capPercent + 1e-9 : true;
+  const withinCap: boolean | null =
+    capPercent == null ? null : dtiPercent != null ? dtiPercent <= capPercent + 1e-9 : true;
 
   return {
-    sector: args.sector,
+    limitConditions: args.limitConditions,
     capPercent,
+    limitBasis,
     annualIncomeWon,
     loanResults,
     mortgageAnnual,
@@ -306,9 +377,22 @@ export function computeDtiSnapshotFromLoans(args: {
 }
 
 export const dtiReferenceRows = [
-  { condition: "은행권(일반)", cap: "60%", note: "주담대·가계대출 등" },
-  { condition: "제2금융권(참고)", cap: "50%", note: "저축은행·카드·캐피탈 등" },
-  { condition: "정책금융(디딤돌·보금자리 등)", cap: "60%", note: "DSR 대신 DTI 적용 사례" },
+  { condition: "투기지역·투기과열지구", cap: "40%", note: "주택 전체" },
+  { condition: "조정대상지역", cap: "50%", note: "해당 지역 아파트(주상복합 포함) 담보대출만" },
+  { condition: "그 밖의 수도권", cap: "60%", note: "아파트(주상복합 포함) 담보대출만, 위 지역 제외" },
+  { condition: "수도권 밖 비규제지역", cap: "비율 없음", note: "DTI 비율 미지정(DSR은 별도 적용)" },
+  { condition: "생애최초·규제지역 서민·실수요자", cap: "60% 이내", note: "주택구입 목적 주담대에 한해 달리 적용 가능" },
+  { condition: "2주택 이상 세대 생활안정자금", cap: "위 비율 −10%p", note: "여신심사위원회 승인 시 차감하지 않을 수 있음" },
+  { condition: "정책금융(디딤돌·보금자리 등)", cap: "60%", note: "은행업감독규정과 별개인 상품 기준(생애최초·실수요자 요건 등)" },
+] as const;
+
+export const dtiExemptionRows = [
+  ["소액대출", "전 금융기관 합산 1억 원 이내. 단, 같은 집(단일물건) 누적 대출이 1억 원을 넘으면 적용"],
+  ["불가피한 채무 인수", "상속, 채권보전을 위한 경매 참가 등"],
+  ["분양·재건축·재개발 관련", "분양 주택 중도금대출, 재건축·재개발 이주비대출, 추가분담금 중도금대출"],
+  ["상환부담 경감 조건 변경", "원금·이자 감면, 금리·만기·상환방법·거치기간 조정(상환방법은 10년 이상 분할상환 전환에 한함)"],
+  ["규제지역 밖 사업장 잔금대출", "분양 주택·재건축·재개발 주택 잔금대출"],
+  ["긴급 생활안정자금", "1억 5천만 원 한도, 목적 입증·약정 및 여신심사위원회 승인 필요"],
 ] as const;
 
 export const dtiInclusionRows = [

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata({
     title,
     description:
-      "withustools.com이 제공하는 대출·부동산·세금 계산기 11종과 가이드, 콘텐츠 작성·수정 기준, 문의 방법을 안내합니다.",
+      "withustools.com이 제공하는 대출·부동산·세금 계산기 12종과 가이드, 콘텐츠 작성·수정 기준, 문의 방법을 안내합니다.",
     path: "/about",
   });
 }

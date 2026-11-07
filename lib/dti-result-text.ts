@@ -4,7 +4,6 @@ import {
 } from "@/lib/calculator-result-export";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import type { DtiLoanResult } from "@/lib/dti-calculations";
-import { dtiSectorLabels } from "@/lib/dti-calculations";
 import { formatNumber } from "@/lib/loan-calculations";
 
 function moneyLine(label: string, amount: number): string {
@@ -19,9 +18,9 @@ function formatContribution(annualDtiWon: number, annualIncomeWon: number): stri
 
 export interface DtiResultTextSnapshot {
   dtiPercent: number | null;
-  capPercent: number;
-  withinCap: boolean;
-  sector: "bank" | "non-bank";
+  capPercent: number | null;
+  limitBasis: string;
+  withinCap: boolean | null;
   annualIncomeWon: number;
   loanResults: DtiLoanResult[];
   mortgageAnnual: number;
@@ -39,8 +38,14 @@ export function formatDtiResultText(args: { snapshot: DtiResultTextSnapshot }): 
   lines.push(
     `[총부채상환비율(DTI)] ${snapshot.dtiPercent != null ? `${snapshot.dtiPercent.toFixed(2)}%` : "—"}`,
   );
-  lines.push(`- 심사 구분: ${dtiSectorLabels[snapshot.sector]} (참고 한도 ${snapshot.capPercent}%)`);
-  lines.push(`- 한도 대비: ${snapshot.withinCap ? "이내" : "초과"}`);
+  lines.push(
+    snapshot.capPercent == null
+      ? `- 적용 한도: DTI 비율 없음 (${snapshot.limitBasis})`
+      : `- 적용 한도: ${snapshot.capPercent}% (${snapshot.limitBasis})`,
+  );
+  lines.push(
+    `- 한도 대비: ${snapshot.withinCap == null ? "해당 없음(DSR 별도 확인)" : snapshot.withinCap ? "이내" : "초과"}`,
+  );
   lines.push("");
 
   if (snapshot.loanResults.length > 0) {

@@ -167,6 +167,13 @@ export function SiteHeader() {
                   <Link
                     role="menuitem"
                     className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
+                    href="/national-housing-bond-calculator"
+                  >
+                    국민주택채권 계산기
+                  </Link>
+                  <Link
+                    role="menuitem"
+                    className="hover:bg-muted hover:text-foreground block px-3 py-2 text-sm"
                     href="/comprehensive-property-tax-calculator"
                   >
                     종합부동산세 계산기

@@ -5,7 +5,7 @@ export const ltvDtiDsrComparisonMeta = {
   title: "LTV·DTI·DSR 차이 한눈에 정리",
   description:
     "주담대 한도는 LTV·DTI·DSR 중 가장 낮은 금액으로 정해지고, 요즘은 DTI는 통과해도 DSR에서 막히는 경우가 많습니다. 세 규제의 계산식과 차이, 어느 규제가 먼저 걸리는지 판단하는 법을 다룹니다.",
-  updated: "2026년 7월 21일",
+  updated: "2026년 11월 7일",
 } as const;
 
 export function LtvDtiDsrComparisonBody() {
@@ -24,7 +24,9 @@ export function LtvDtiDsrComparisonBody() {
         </h2>
         <p>
           담보가 비싼 수도권 아파트·규제지역·다주택이면 LTV가 먼저 낮아집니다. 반면 저가 주택·기존 신용·할부가 많으면 DSR이
-          먼저 걸립니다. DTI는 DSR보다 느슨한 편이라, 요즘은 “DTI는 통과했는데 DSR에서 막힌다”는 경우가 훨씬 많습니다.
+          먼저 걸립니다. DTI는 신용대출 원금을 빼고 계산하고 수도권 밖 비규제지역에는 비율 자체가 없어, “DTI는 통과했는데
+          DSR에서 막힌다”는 경우가 많습니다. 다만 투기과열지구처럼 DTI 한도가 40%인 곳에서 기존 대출이 없다면 DTI와
+          DSR이 거의 같아집니다.
         </p>
       </section>
 
@@ -83,7 +85,9 @@ export function LtvDtiDsrComparisonBody() {
                   규제 한도(은행권)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">70%(비규제·무주택, 생애최초 80%)</td>
-                <td className="border-border border-b px-3 py-2.5">60%</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  지역별 40·50·60%(투기과열 40%, 조정대상 아파트 50%, 그 밖의 수도권 아파트 60%, 수도권 밖 비규제지역은 없음)
+                </td>
                 <td className="border-border border-b px-3 py-2.5">40%</td>
               </tr>
               <tr className="bg-muted/20">
@@ -205,7 +209,7 @@ export function LtvDtiDsrComparisonBody() {
           계산 예시
         </h2>
         <p className="text-muted-foreground text-sm">
-          주택 감정가 5억 원, 연봉 5,000만 원, 기존 신용대출 월 상환 30만 원 가정
+          주택 감정가 5억 원, 연봉 5,000만 원, 기존 신용대출 월 상환 30만 원, 수도권 비규제지역 아파트(LTV 70%·DTI 60%) 가정
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
@@ -235,7 +239,7 @@ export function LtvDtiDsrComparisonBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  DTI 60%
+                  DTI 60%(수도권 비규제 아파트)
                 </th>
                 <td className="border-border border-b px-3 py-2.5">
                   연소득 5,000만 원 × 60% = 3,000만 원(연간 상환 가능액)
@@ -254,7 +258,10 @@ export function LtvDtiDsrComparisonBody() {
             </tbody>
           </table>
         </div>
-        <p>세 규제를 모두 적용하면 실제 한도는 가장 낮은 약 2억 8,700만 원이 됩니다.</p>
+        <p>
+          세 규제를 모두 적용하면 실제 한도는 가장 낮은 약 2억 8,700만 원이 됩니다. 같은 집이 투기과열지구나
+          조정대상지역에 있다면 LTV와 DTI(투기과열 40%, 조정대상 아파트 50%) 한도가 모두 낮아집니다.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-ltv-regional">

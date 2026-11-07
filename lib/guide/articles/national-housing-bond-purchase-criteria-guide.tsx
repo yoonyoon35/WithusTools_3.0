@@ -4,8 +4,8 @@ export const nationalHousingBondPurchaseCriteriaGuideMeta = {
   slug: "national-housing-bond-purchase-criteria-guide",
   title: "국민주택채권 매입 비용 — 시가표준액 기준 요율과 계산 예시",
   description:
-    "주택 소유권 이전등기 때 국민주택채권은 시가표준액 기준 요율로 매입하고, 실제 부담은 채권을 할인 매도한 차액입니다. 현금·대출·근저당만 재설정 구분, 근저당 설정 기준, 면제 대상, 잔금 전 체크리스트를 다룹니다. (2026년 6월 기준)",
-  updated: "2026년 6월 1일",
+    "주택 소유권 이전등기 때 국민주택채권은 시가표준액 기준 요율로 매입하고, 실제 부담은 채권을 할인 매도한 차액입니다. 현금·대출·근저당만 재설정 구분, 근저당 설정 기준, 면제 대상, 잔금 전 체크리스트를 다룹니다. (2026년 11월 기준)",
+  updated: "2026년 11월 7일",
 } as const;
 
 export function NationalHousingBondPurchaseCriteriaGuideBody() {
@@ -13,13 +13,20 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-nhb-overview">
         <h2 id="guide-nhb-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 6월 기준
+          2026년 11월 기준
         </h2>
         <p>
           아파트·주택을 매수해 소유권 이전등기를 하려면, 일정 금액의 <strong>국민주택채권</strong>을 의무적으로 매입해야
           합니다. 매매가가 아니라 <strong>시가표준액(공시가격)</strong>에 지역별 요율을 곱해 산출하며, 대부분은 매입 직후
           할인 매도해 실제 부담은 채권 액면의 일부(할인 손실)로 정리됩니다. 이 글은 <strong>주택</strong> 소유권
-          이전·보존등기를 중심으로 정리했습니다.
+          이전등기를 중심으로 정리했고, 토지·오피스텔·상속·증여는{" "}
+          <Link
+            href="/national-housing-bond-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            국민주택채권 계산기
+          </Link>
+          에서 바로 계산할 수 있습니다. 근거는 주택도시기금법 제8조와 같은 법 시행령 제8조제2항 [별표]입니다.
         </p>
       </section>
 
@@ -88,7 +95,9 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
         </h2>
         <p>
           채권 매입액은 <strong>실제 매매가가 아니라 등기 당시 시가표준액</strong>을 기준으로 합니다. 시가표준액은
-          보통 국토교통부 <strong>공시가격</strong>과 연동되며, 등기 접수 전 법무사·관할 등기소에서 최종 확인합니다.
+          보통 국토교통부 <strong>공시가격</strong>과 연동되며, 등기 접수 전 법무사·관할 등기소에서 최종 확인합니다. 공유 지분을
+          등기하면 지분율을 곱한 시가표준액을, 공동주택은 세대당 시가표준액을 기준으로 하고, 시가표준액이 공시되지 않은
+          신규 분양 공동주택은 취득가격(분양가)을 기준으로 합니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
@@ -161,9 +170,11 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  신축 주택 최초 보존등기
+                  신축 건축물 소유권 보존등기
                 </th>
-                <td className="border-border border-b px-3 py-2.5">소유권 보존등기 명의자</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  매입 대상 아님(건축물의 보존등기는 제외, 건축허가 신청 때 건축주가 매입)
+                </td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
@@ -175,7 +186,7 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   상속·증여 등 무상 취득
                 </th>
-                <td className="px-3 py-2.5">등기 신청인(상속인·수증자 등) — 요율은 유상 취득과 동일</td>
+                <td className="px-3 py-2.5">등기 신청인(상속인·수증자 등) — 유상 취득과 다른 별도 요율표 적용</td>
               </tr>
             </tbody>
           </table>
@@ -216,14 +227,16 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   대출+이전·근저당 동시
                 </th>
-                <td className="border-border border-b px-3 py-2.5">이전·근저당 산출액 중 큰 금액 1회 매입</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  이전(시가표준액×요율)과 근저당(채권최고액×1%)을 각각 산출. 같은 날 등기할 때의 합산 방식은 법무사에 확인
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   근저당만 재설정(대환·갈아타기)
                 </th>
                 <td className="px-3 py-2.5">
-                  소유권 이전 없이 저당만 변경 시 채권최고액×1%(2,000만 이상) 기준. 이전등기와 당일 아니면 별도 산출
+                  소유권 이전 없이 저당만 설정하면 채권최고액×1%(2,000만 원 이상, 매입금액 상한 10억 원) 기준
                 </td>
               </tr>
             </tbody>
@@ -233,11 +246,12 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
 
       <section className="space-y-4" aria-labelledby="guide-nhb-rates">
         <h2 id="guide-nhb-rates" className="text-foreground text-xl font-semibold tracking-tight">
-          주택 매입 요율(소유권 이전·보존등기)
+          주택 매입 요율(소유권 이전등기·유상 취득)
         </h2>
         <p className="text-muted-foreground text-sm">
-          시가표준액 구간별. <strong>서울·광역시</strong>(부산·대구·광주·대전·울산)와{" "}
-          <strong>기타 지역</strong>(경기·인천·세종·지방 등) 요율이 다릅니다. 시가표준액 2,000만 원 이하는 매입 불요입니다.
+          시가표준액 구간별(이상 ~ 미만). 법령은 <strong>특별시·광역시</strong>(서울과 부산·대구·인천·광주·대전·울산)와{" "}
+          <strong>그 밖의 지역</strong>(경기·세종·지방 등)으로 요율을 나눕니다. 시가표준액 2,000만 원 미만은 매입
+          불요입니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
@@ -260,49 +274,49 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  2,000만 원 이하
+                  2,000만 원 미만
                 </th>
                 <td className="border-border border-b px-3 py-2.5">매입 불요</td>
                 <td className="border-border border-b px-3 py-2.5">매입 불요</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  2,000만 원 초과 ~ 5,000만 원 이하
+                  2,000만 원 이상 ~ 5,000만 원 미만
                 </th>
                 <td className="border-border border-b px-3 py-2.5">1.3%</td>
                 <td className="border-border border-b px-3 py-2.5">1.3%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  5,000만 원 초과 ~ 1억 원 이하
+                  5,000만 원 이상 ~ 1억 원 미만
                 </th>
                 <td className="border-border border-b px-3 py-2.5">1.9%</td>
                 <td className="border-border border-b px-3 py-2.5">1.4%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  1억 원 초과 ~ 1억 6,000만 원 이하
+                  1억 원 이상 ~ 1억 6,000만 원 미만
                 </th>
                 <td className="border-border border-b px-3 py-2.5">2.1%</td>
                 <td className="border-border border-b px-3 py-2.5">1.6%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  1억 6,000만 원 초과 ~ 2억 6,000만 원 이하
+                  1억 6,000만 원 이상 ~ 2억 6,000만 원 미만
                 </th>
                 <td className="border-border border-b px-3 py-2.5">2.3%</td>
                 <td className="border-border border-b px-3 py-2.5">1.8%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  2억 6,000만 원 초과 ~ 6억 원 이하
+                  2억 6,000만 원 이상 ~ 6억 원 미만
                 </th>
                 <td className="border-border border-b px-3 py-2.5">2.6%</td>
                 <td className="border-border border-b px-3 py-2.5">2.1%</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  6억 원 초과
+                  6억 원 이상
                 </th>
                 <td className="px-3 py-2.5">3.1%</td>
                 <td className="px-3 py-2.5">2.6%</td>
@@ -310,7 +324,18 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
             </tbody>
           </table>
         </div>
-        <p>매입액은 만 원 단위로 반올림하는 것이 일반적입니다.</p>
+        <p>
+          1만 원 미만 단수는 5천 원 이상이면 1만 원으로 올리고 5천 원 미만이면 버립니다. 토지는 시가표준액 500만 원
+          이상, 주택·토지 외 부동산(오피스텔·상가 등)은 1,000만 원 이상부터 별도 요율로 매입하며, 상속·증여 등 무상
+          취득도 표가 따로 있습니다. 이 구간들은{" "}
+          <Link
+            href="/national-housing-bond-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            국민주택채권 계산기
+          </Link>
+          에 모두 반영했습니다.
+        </p>
       </section>
 
       <section className="space-y-4" aria-labelledby="guide-nhb-mortgage">
@@ -359,8 +384,10 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
           </table>
         </div>
         <p>
-          소유권 이전등기와 근저당 설정등기를 같은 날 하면, 각각 산출한 매입액 중 <strong>더 큰 금액</strong>을 기준으로
-          한 번 매입하는 방식이 적용됩니다(중복 매입 방지 규정).
+          소유권 이전등기와 근저당 설정등기를 같은 날 하면 두 금액을 어떻게 합산하는지(각각 매입인지, 한쪽만 매입인지)는
+          이 글에서 확정하지 않습니다. 법령 표에는 이전과 저당권 설정이 각각 별도 항목으로 규정돼 있으니, 법무사
+          견적서에 채권 매입액이 어떻게 적혀 있는지 확인하세요. 중소기업의 부동산담보대출, 농어업인의 영농자금 대출 등은
+          매입 대상에서 제외됩니다.
         </p>
       </section>
 
@@ -369,7 +396,7 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
           신축·분양 주택과 채권 매입 시점
         </h2>
         <p>
-          분양 아파트는 잔금·소유권 이전등기(또는 신축 최초 보존등기) 시점에 채권 매입 의무가 생깁니다. 계약금·중도금
+          분양 아파트는 잔금·소유권 이전등기 시점에 채권 매입 의무가 생깁니다(건축물의 보존등기는 매입 대상에서 제외). 계약금·중도금
           단계에서는 보통 매입하지 않습니다. 시가표준액은 등기 접수 시점 기준이므로, 잔금 전 공시가격을 미리 확인해
           두는 것이 좋습니다.{" "}
           <Link
@@ -392,7 +419,7 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
 
         <div className="space-y-3">
           <h3 className="text-foreground text-base font-semibold">예시 1 — 서울 아파트, 시가표준액 5억 원</h3>
-          <p>2억 6,000만 원 초과 ~ 6억 원 이하 구간 → 요율 2.6%</p>
+          <p>2억 6,000만 원 이상 ~ 6억 원 미만 구간 → 요율 2.6%</p>
           <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
               <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -434,7 +461,7 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
 
         <div className="space-y-3">
           <h3 className="text-foreground text-base font-semibold">예시 2 — 경기도 아파트, 시가표준액 3억 원</h3>
-          <p>기타 지역, 2억 6,000만 원 초과 ~ 6억 원 이하 → 요율 2.1%</p>
+          <p>기타 지역, 2억 6,000만 원 이상 ~ 6억 원 미만 → 요율 2.1%</p>
           <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
               <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -477,7 +504,10 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
 
         <div className="space-y-3">
           <h3 className="text-foreground text-base font-semibold">예시 4 — 대출 3억 원, 채권최고액 3억 3,000만 원</h3>
-          <p>소유권 이전(공시 3억·기타 2.1%=630만)과 근저당(3.3억×1%=330만)을 비교하면, 이전등기 쪽 금액이 더 큽니다.</p>
+          <p>
+            소유권 이전(공시 3억·기타 2.1%=630만)과 근저당(3.3억×1%=330만)을 각각 산출한 값입니다. 같은 날 등기할 때 실제로
+            얼마를 매입하는지는 법무사 견적서로 확인하세요.
+          </p>
           <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
               <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
@@ -508,9 +538,9 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
                 </tr>
                 <tr className="bg-muted/20">
                   <th scope="row" className="px-3 py-2.5 font-medium">
-                    실제 매입 기준(큰 금액)
+                    각각 매입하는 경우 합계
                   </th>
-                  <td className="px-3 py-2.5">630만 원</td>
+                  <td className="px-3 py-2.5">960만 원</td>
                 </tr>
               </tbody>
             </table>
@@ -564,7 +594,7 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  시가표준액 2,000만 원 이하 주택
+                  시가표준액 2,000만 원 미만 주택
                 </th>
                 <td className="border-border border-b px-3 py-2.5">매입 불요</td>
               </tr>
@@ -572,13 +602,19 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
                   상속·증여 등기
                 </th>
-                <td className="border-border border-b px-3 py-2.5">매입 의무 있음. 요율은 유상 취득과 동일(시가표준액 기준)</td>
+                <td className="border-border border-b px-3 py-2.5">
+                  매입 의무 있음. 시가표준액 1,000만 원 이상부터 무상 취득 전용 요율표 적용(서울·광역시 1.8·2.8·4.2%, 그 밖의
+                  지역 1.4·2.5·3.9%)
+                </td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
                   오피스텔·상가 등 비주택
                 </th>
-                <td className="px-3 py-2.5">별도 요율·기준 적용. 이 글의 주택 표와 다를 수 있음</td>
+                <td className="px-3 py-2.5">
+                  주택 및 토지 외 부동산 표 적용(서울·광역시 1.0·1.6·2.0%, 그 밖의 지역 0.8·1.4·1.8%). 신탁·신탁종료에 따른
+                  이전은 매입 제외
+                </td>
               </tr>
             </tbody>
           </table>
@@ -775,6 +811,15 @@ export function NationalHousingBondPurchaseCriteriaGuideBody() {
             <Link href="/acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
               취득세 계산기
             </Link>
+          </li>
+          <li>
+            <Link
+              href="/national-housing-bond-calculator"
+              className="text-primary font-medium underline-offset-4 hover:underline"
+            >
+              국민주택채권 계산기
+            </Link>
+            — 시가표준액·지역별 매입금액과 할인율별 실부담
           </li>
         </ul>
       </aside>

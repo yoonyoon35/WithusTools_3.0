@@ -10,6 +10,7 @@ export { FarmlandAcquisitionTaxCalculatorReference } from "./farmland-acquisitio
 export { ComprehensivePropertyTaxCalculatorReference } from "./comprehensive-property-tax-reference";
 export { DsrCalculatorReference } from "./dsr-reference";
 export { DtiCalculatorReference } from "./dti-reference";
+export { HousingBondCalculatorReference } from "./housing-bond-reference";
 export { InheritanceTaxCalculatorReference } from "./inheritance-tax-reference";
 export { ComprehensiveIncomeTaxCalculatorReference } from "./comprehensive-income-tax-reference";
 export { LoanCalculatorReference } from "./loan-reference";

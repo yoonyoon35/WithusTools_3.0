@@ -93,7 +93,7 @@ export const guideTopics: readonly GuideTopic[] = [
     label: "주택·전세 대출",
     description: "주택담보·전세자금, 청약, 내집마련, 부대비용",
     pillarSlug: "first-time-homebuyer-benefits-2026",
-    calculatorHrefs: ["/loan-calculator"],
+    calculatorHrefs: ["/loan-calculator", "/national-housing-bond-calculator"],
     slugs: [
       "bogeumjari-vs-didimdol",
       "first-time-homebuyer-benefits-2026",
