@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const acquisitionTaxDeadlineAndPenaltyGuideMeta = {
   slug: "acquisition-tax-deadline-and-penalty-guide",
-  title: "취득세 납부 기한과 가산세",
+  title: "취득세 납부 기한과 가산세 — 계산 예시와 연장 가능 여부",
   description:
     "취득세는 취득일부터 60일 안에 신고·납부해야 하고, 늦으면 가산세가 붙습니다. 가산세 종류와 세율, 지연 기간별 부담 비교, 미신고 후 매각 시 중가산세, 납부 방법을 예시와 함께 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",

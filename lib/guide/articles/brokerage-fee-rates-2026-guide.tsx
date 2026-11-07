@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const brokerageFeeRates2026GuideMeta = {
   slug: "brokerage-fee-rates-2026-guide",
-  title: "2026년 부동산 중개수수료 요율표 완전 정리",
+  title: "2026년 중개수수료 요율표 — 거래 유형별 상한과 계산 공식",
   description:
     "중개수수료는 거래 유형(매매·전세·월세)과 금액 구간별 상한요율을 넘을 수 없고, 상가·주택 외 임대차는 협의(최대 0.9%)로 정합니다. 유형별 비교표와 계산 공식, 부담 주체, VAT 적용, 지역별 차이, 절약 방법과 초과 청구 시 대처를 다룹니다.",
   updated: "2026년 10월 30일",

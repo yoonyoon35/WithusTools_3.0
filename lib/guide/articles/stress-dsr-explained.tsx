@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const stressDsrExplainedMeta = {
   slug: "stress-dsr-explained",
-  title: "스트레스 DSR이란 무엇인가",
+  title: "스트레스 DSR이란? 단계별 시행과 한도 변화 예시",
   description:
     "스트레스 DSR은 한도를 계산할 때만 가산금리를 더하는 제도로 실제 대출 금리는 그대로입니다. 2025년 7월 3단계 시행 현황, 10·15 대책의 가산금리 하한 3.0%p, 대출 유형별 적용 비율과 한도 변화 예시를 담았습니다. (2026년 7월 기준)",
   updated: "2026년 7월 21일",

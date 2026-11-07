@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const firstTimeHomebuyerBenefits2026Meta = {
   slug: "first-time-homebuyer-benefits-2026",
-  title: "생애최초 주택 구입자 혜택 정리",
+  title: "생애최초 주택 구입자 혜택 — 대출·취득세 감면·청약 특별공급",
   description:
     "생애최초 구입자는 대출(LTV 70%·6개월 내 전입), 취득세 감면, 청약 특별공급을 일반 무주택자보다 완화된 조건으로 받습니다. 세 혜택을 한눈에 비교하고 세부 요건은 항목별 가이드로 연결합니다. (2026년 11월 5일 기준)",
   updated: "2026년 11월 5일",

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const brokerageFeePaymentTimingGuideMeta = {
   slug: "brokerage-fee-payment-timing-guide",
-  title: "중개수수료 납부 시기",
+  title: "중개수수료 언제 내나? 납부 시기와 계약 해제 시 반환",
   description:
     "중개수수료는 법적으로 거래대금 잔금일에 지급하는 것이 원칙입니다. 거래 유형별 일반적인 납부 시기와 분할 납부 같은 실무 관행, 계약 취소·해제 시 반환 여부, 현금영수증·세금계산서 발급을 다룹니다.",
   updated: "2026년 10월 30일",

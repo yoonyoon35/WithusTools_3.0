@@ -17,7 +17,7 @@ return ( <> 6억 원 규모 주택담보대출에서 일부 또는 전액을 조
 
 ---
 
-# 취득세 납부 기한과 가산세
+# 취득세 납부 기한과 가산세 — 계산 예시와 연장 가능 여부
 
 URL: https://withustools.com/guide/acquisition-tax-deadline-and-penalty-guide
 
@@ -30,7 +30,7 @@ return ( <> ## 2026년 10월 30일 기준 취득세는 부동산을 취득한 �
 
 ---
 
-# 2026년 취득세율 완전 정리
+# 2026년 취득세율표 — 주택 수·금액별 세율과 납부액
 
 URL: https://withustools.com/guide/acquisition-tax-rates-2026-guide
 
@@ -43,7 +43,7 @@ return ( <> ## 2026년 7월 기준 취득세는 주택 매수 시 1회 부과되
 
 ---
 
-# 취득세 세액공제·감면 제도 총정리
+# 2026년 취득세 감면 제도 — 생애최초·출산·세컨드홈·미분양
 
 URL: https://withustools.com/guide/acquisition-tax-relief-programs-2026-guide
 
@@ -147,7 +147,7 @@ return ( <> ## 2026년 10월 30일 기준 중개사고는 공인중개사의 고
 
 ---
 
-# 중개수수료 소득공제 방법
+# 중개수수료 소득공제 — 현금영수증 발급과 절세 효과
 
 URL: https://withustools.com/guide/brokerage-fee-income-deduction-guide
 
@@ -160,7 +160,7 @@ return ( <> ## 2026년 10월 30일 기준 중개수수료에는 별도의 소득
 
 ---
 
-# 중개수수료 납부 시기
+# 중개수수료 언제 내나? 납부 시기와 계약 해제 시 반환
 
 URL: https://withustools.com/guide/brokerage-fee-payment-timing-guide
 
@@ -173,7 +173,7 @@ return ( <> 중개수수료 납부 시기는 법으로 정해진 원칙이 있�
 
 ---
 
-# 2026년 부동산 중개수수료 요율표 완전 정리
+# 2026년 중개수수료 요율표 — 거래 유형별 상한과 계산 공식
 
 URL: https://withustools.com/guide/brokerage-fee-rates-2026-guide
 
@@ -251,7 +251,7 @@ return ( <> ## 2026년 7월 기준 부동산을 매도(양도) 해 이익이 생
 
 ---
 
-# 주담대 차량 할부 한도·DSR 영향
+# 자동차 할부가 주담대 한도·DSR에 미치는 영향
 
 URL: https://withustools.com/guide/car-installment-dsr-mortgage-limit-impact-guide
 
@@ -355,7 +355,7 @@ return ( <> 부동산 직거래는 공인중개사 없이 매도인과 매수인
 
 ---
 
-# 동탄·기흥·구리 규제지역 총정리, 대출·취득세·토지거래허가
+# 동탄·기흥·구리 규제지역 — 대출·취득세·토지거래허가
 
 URL: https://withustools.com/guide/dongtan-giheung-guri-regulated-area-ltv-2026-guide
 
@@ -407,7 +407,7 @@ return ( <> ## 2026년 11월 기준 생애최초 주택 구입 취득세 감면�
 
 ---
 
-# 생애최초 주택 구입자 혜택 정리
+# 생애최초 주택 구입자 혜택 — 대출·취득세 감면·청약 특별공급
 
 URL: https://withustools.com/guide/first-time-homebuyer-benefits-2026
 
@@ -433,7 +433,7 @@ return ( <> ## 2026년 9월 기준 부모가 자녀에게 주택·현금·지분
 
 ---
 
-# 거치기간이란 무엇인가
+# 거치기간이란? 월 상환액 변화와 총 이자 차이 예시
 
 URL: https://withustools.com/guide/grace-period-explained
 
@@ -498,7 +498,7 @@ return ( <> ## 2026년 7월 기준 부동산 세금을 처음 접하면 「보�
 
 ---
 
-# 주택 구입 시 추가 비용 총정리 (취득세·등기비용·법무사 비용)
+# 주택 구입 부대비용 — 취득세·등기·법무사·중개수수료
 
 URL: https://withustools.com/guide/home-purchase-additional-costs-guide
 
@@ -524,7 +524,7 @@ return ( <> ## 2천만 원 이하이면 선택 주택임대소득 총수입금�
 
 ---
 
-# 주택청약종합저축 완전 정리
+# 주택청약종합저축 가입 조건·1순위·예치금·가점
 
 URL: https://withustools.com/guide/housing-subscription-savings-guide
 
@@ -537,7 +537,7 @@ return ( <> ## 2026년 10월 30일 기준 주택청약종합저축은 국민주�
 
 ---
 
-# 소득 유형별 대출 한도 차이
+# 소득 유형별 대출 한도 — 근로·사업·프리랜서 비교
 
 URL: https://withustools.com/guide/income-type-loan-limit-difference-guide
 
@@ -615,7 +615,7 @@ return ( <> ## 상반기 소득세를 11월에 냄 소득세 중간예납은 내
 
 ---
 
-# 전세 중개수수료 계산법
+# 전세 중개수수료 계산법 — 상한요율표와 보증금별 예시
 
 URL: https://withustools.com/guide/jeonse-brokerage-fee-calculation-2026-guide
 
@@ -654,7 +654,7 @@ return ( <> ## 2026년 10월 30일 기준 전세자금대출은 크게 정책 �
 
 ---
 
-# 전세 재계약 시 중개수수료 내야 하나
+# 전세 재계약 중개수수료 — 합의·묵시적 갱신·갱신청구권별
 
 URL: https://withustools.com/guide/jeonse-renewal-brokerage-fee-guide
 
@@ -719,7 +719,7 @@ return ( <> 공인중개사 없이 임대인과 임차인이 직접 계약서를
 
 ---
 
-# 임대차 재계약·연장 시 전월세 신고·확정일자
+# 전월세 재계약·연장 신고 방법 — 대상·기한·확정일자
 
 URL: https://withustools.com/guide/lease-renewal-report-confirmed-date-guide
 
@@ -823,7 +823,7 @@ return ( <> ## 2026년 7월 기준 2026년 7월 초 KB국민은행 주담대 고
 
 ---
 
-# 다주택자 대출 규제 정리
+# 다주택자 대출 규제 — LTV·만기 연장·취득세·양도세 중과
 
 URL: https://withustools.com/guide/multi-homeowner-loan-regulations-guide
 
@@ -836,7 +836,7 @@ return ( <> ## 2026년 7월 기준 다주택자는 무주택자·1주택자보�
 
 ---
 
-# 주택 취득 시 국민주택채권 매입 기준
+# 국민주택채권 매입 비용 — 시가표준액 기준 요율과 계산 예시
 
 URL: https://withustools.com/guide/national-housing-bond-purchase-criteria-guide
 
@@ -849,7 +849,7 @@ return ( <> ## 2026년 6월 기준 아파트·주택을 매수해 소유권 이�
 
 ---
 
-# 신축 아파트 취득세 계산, 분양가 6억~12억 총정리
+# 신축 아파트 취득세 계산 — 분양가 6억~12억 금액별
 
 URL: https://withustools.com/guide/new-construction-apartment-acquisition-tax-guide
 
@@ -875,7 +875,7 @@ return ( <> ## 2026년 7월 기준 신생아 특례 대출은 출산 가구의 �
 
 ---
 
-# 살지 않는 1주택, 세금 어떻게 달라지나
+# 비거주 1주택 세금 — 종부세·양도세·장특공 달라지는 점
 
 URL: https://withustools.com/guide/non-resident-one-home-tax-checklist-2026-guide
 
@@ -927,7 +927,7 @@ return ( <> ## 2026년 7월 기준 1세대가 1주택 만 보유한 채 매도�
 
 ---
 
-# 1세대 1주택 종부세 얼마나 나올까… 공시가격·12억 공제 구간별
+# 1세대 1주택 종부세 얼마나 나올까 — 공시가격·12억 공제 구간별
 
 URL: https://withustools.com/guide/one-household-one-home-comprehensive-property-tax-amount-guide
 
@@ -953,7 +953,7 @@ return ( <> ## 2026년 10월 30일 기준 당근마켓 등 직거래 플랫폼�
 
 ---
 
-# 중도상환 수수료 계산 방식
+# 중도상환 수수료 계산 방식 — 계산식·면제 조건·예시
 
 URL: https://withustools.com/guide/prepayment-fee-calculation
 
@@ -992,7 +992,7 @@ return ( <> ## 2026년 10월 30일 기준 분양권 전매 중개수수료는 �
 
 ---
 
-# 민영주택 청약 자격·재당첨 제한 총정리
+# 민영주택 청약 자격 — 무주택 판정·재당첨 제한·가점제
 
 URL: https://withustools.com/guide/private-housing-subscription-eligibility-2026-guide
 
@@ -1018,7 +1018,7 @@ return ( <> ## 2026년 11월 기준 같은 공시가격인데 7월에 재산세�
 
 ---
 
-# 금리인하요구권이란
+# 금리인하요구권이란? 신청 사유·절차와 거절 시 대처
 
 URL: https://withustools.com/guide/rate-reduction-request-right
 
@@ -1031,7 +1031,7 @@ return ( <> 금리인하요구권은 대출받은 시점보다 신용 상태 및
 
 ---
 
-# 부동산 풍선효과란…규제지역과 인접 비규제지역 수요 이동
+# 부동산 풍선효과란? 규제지역과 인접 지역 수요 이동
 
 URL: https://withustools.com/guide/real-estate-balloon-effect-2026-guide
 
@@ -1044,7 +1044,7 @@ return ( <> ## 2026년 7월 기준 부동산 시장에서 풍선효과 는 한 �
 
 ---
 
-# 규제지역 지정되면 달라지는 것…대출·취득세·양도세 비교
+# 규제지역 지정 시 달라지는 것 — 대출·취득세·양도세 비교
 
 URL: https://withustools.com/guide/regulated-area-designation-effects-2026-guide
 
@@ -1057,7 +1057,7 @@ return ( <> ## 2026년 10월 30일 기준 뉴스에서 「규제지역 지정」
 
 ---
 
-# 세컨드홈 취득세 특례
+# 세컨드홈 취득세 특례 — 대상 지역·조건과 계산 예시
 
 URL: https://withustools.com/guide/second-home-acquisition-tax-exception-guide
 
@@ -1122,7 +1122,7 @@ return ( <> ## 일정 규모 이상 사업자의 확인 성실신고확인은 �
 
 ---
 
-# 스트레스 DSR이란 무엇인가
+# 스트레스 DSR이란? 단계별 시행과 한도 변화 예시
 
 URL: https://withustools.com/guide/stress-dsr-explained
 
@@ -1161,7 +1161,7 @@ return ( <> ## 2026년 9월 기준 전·월세 계약 당사자인 임차인(세
 
 ---
 
-# 2주택 vs 3주택, 몇 채까지 버틸 수 있나
+# 2주택 vs 3주택 보유세·양도세 — 몇 채까지 버틸까
 
 URL: https://withustools.com/guide/two-vs-three-home-holding-cost-2026-guide
 
@@ -1187,7 +1187,7 @@ return ( <> ## 2026년 10월 30일 기준 변동금리는 시장금리(COFIX 등
 
 ---
 
-# 월세 중개수수료 계산법
+# 월세 중개수수료 계산법 — 환산 거래금액과 상한요율 예시
 
 URL: https://withustools.com/guide/wolse-brokerage-fee-calculation-2026-guide
 

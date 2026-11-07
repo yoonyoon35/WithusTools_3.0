@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const privateHousingSubscriptionEligibility2026GuideMeta = {
   slug: "private-housing-subscription-eligibility-2026-guide",
-  title: "민영주택 청약 자격·재당첨 제한 총정리",
+  title: "민영주택 청약 자격 — 무주택 판정·재당첨 제한·가점제",
   description:
     "민영주택 청약은 입주자모집공고일 기준으로 자격·가점·재당첨 여부가 갈려 1순위 통장만으로는 부족합니다. 무주택·세대원 판정, 재당첨 제한, 가점제·추첨제 비율, 당첨 후 전매·실거주 의무를 청약 전 확인 순서로 봅니다. (2026년 7월 기준)",
   updated: "2026년 9월 9일",

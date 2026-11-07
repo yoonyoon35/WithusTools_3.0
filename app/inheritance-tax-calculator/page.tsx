@@ -6,11 +6,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/inheritance-tax-calculator";
 const pageTitle = "상속세 계산기";
+const metaTitle = "상속세 계산기 - 일괄공제·배우자공제·금융재산공제 반영";
 const pageDescription =
   "국세청 상속세 세액계산 흐름도 기준으로 과세가액·일괄공제·배우자공제·금융재산공제·동거주택공제·세대생략할증·신고세액공제를 반영해 예상 상속세를 산출합니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function InheritanceTaxCalculatorPage() {

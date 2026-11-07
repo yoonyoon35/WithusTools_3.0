@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const regulatedAreaDesignationEffects2026GuideMeta = {
   slug: "regulated-area-designation-effects-2026-guide",
-  title: "규제지역 지정되면 달라지는 것…대출·취득세·양도세 비교",
+  title: "규제지역 지정 시 달라지는 것 — 대출·취득세·양도세 비교",
   description:
     "규제지역으로 지정되면 LTV·스트레스 DSR은 물론 2주택 취득세, 다주택 양도세 중과, 토지거래허가까지 한꺼번에 달라집니다. 세 가지 지정의 차이, 주택 수별 영향, 지정 시점별 적용 기준, 5억·7억 매수 예시와 체크리스트를 다룹니다. (2026년 10월 30일 기준)",
   updated: "2026년 10월 30일",

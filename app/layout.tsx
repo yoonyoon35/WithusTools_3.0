@@ -10,7 +10,7 @@ import { SiteHeader } from "@/components/site-header";
 // import { AdfitLeaderboard728 } from "@/components/adfit-leaderboard-728";
 // import { AdfitPcSkyscraperRail } from "@/components/adfit-pc-skyscraper-rail";
 import { authorAboutUrl, authorDisplayName } from "@/lib/publisher";
-import { defaultDescription, defaultTitle, ogImagePath, SITE_DOMAIN, SITE_NAME, SITE_URL } from "@/lib/site";
+import { defaultDescription, defaultTitle, ogImagePath, SITE_NAME, SITE_URL } from "@/lib/site";
 // import { kakaoAdfitBaScriptSrc } from "@/lib/site";
 
 const googleAdsenseClient = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT?.trim();
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: defaultTitle,
-    template: `%s | ${SITE_DOMAIN}`,
+    template: "%s",
   },
   description: defaultDescription,
   keywords: [

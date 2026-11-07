@@ -3,7 +3,7 @@ import { LegalPageShell } from "@/components/legal-page-shell";
 import { createPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = "이용약관";
+  const title = "이용약관 | withustools.com";
   return createPageMetadata({
     title,
     description: "withustools.com 이용약관",

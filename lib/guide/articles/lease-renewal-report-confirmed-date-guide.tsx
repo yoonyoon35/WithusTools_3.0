@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const leaseRenewalReportConfirmedDateGuideMeta = {
   slug: "lease-renewal-report-confirmed-date-guide",
-  title: "임대차 재계약·연장 시 전월세 신고·확정일자",
+  title: "전월세 재계약·연장 신고 방법 — 대상·기한·확정일자",
   description:
     "재계약이나 연장 때 전월세 신고와 확정일자가 필요한지는 계약 유형과 변경 내용에 따라 갈립니다. 묵시적 갱신·계약갱신청구권·합의 재계약·단기 연장별 기준, 보증금·월세·임대인 변경 시 재신고 여부와 체크리스트를 다룹니다.",
   updated: "2026년 9월 17일",

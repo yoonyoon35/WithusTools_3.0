@@ -3,7 +3,7 @@ import { LegalPageShell } from "@/components/legal-page-shell";
 import { createPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = "오픈소스 고지";
+  const title = "오픈소스 고지 | withustools.com";
   return createPageMetadata({
     title,
     description: "withustools.com 서비스에 사용된 오픈소스 라이선스 및 제3자 리소스 출처 안내",

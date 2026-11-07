@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const secondHomeAcquisitionTaxExceptionGuideMeta = {
   slug: "second-home-acquisition-tax-exception-guide",
-  title: "세컨드홈 취득세 특례",
+  title: "세컨드홈 취득세 특례 — 대상 지역·조건과 계산 예시",
   description:
     "세컨드홈 특례는 무주택자·1주택자가 인구감소지역에서 주택을 추가로 살 때 2주택 중과(8%) 대신 1주택 일반세율(1~3%)을 적용받는 제도입니다. 적용 조건과 2026년 변경 사항, 일시적 2주택 특례와의 차이, 신청 방법을 다룹니다. (2026년 6월 기준)",
   updated: "2026년 6월 1일",

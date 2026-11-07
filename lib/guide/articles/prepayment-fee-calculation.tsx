@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const prepaymentFeeCalculationMeta = {
   slug: "prepayment-fee-calculation",
-  title: "중도상환 수수료 계산 방식",
+  title: "중도상환 수수료 계산 방식 — 계산식·면제 조건·예시",
   description:
     "중도상환 수수료는 중도상환 원금 × 수수료율 × (잔여기간 ÷ 대출기간)으로 계산합니다. 디딤돌대출은 2026년 12월 31일까지 상환분의 수수료가 면제됩니다. 수수료 대비 이자 절감액 비교와 갈아타기·만기 대기 중 선택 기준을 예시로 다룹니다. (2026년 11월 4일 기준)",
   updated: "2026년 11월 4일",

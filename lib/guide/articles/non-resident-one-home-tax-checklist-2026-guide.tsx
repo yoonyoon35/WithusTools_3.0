@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export const nonResidentOneHomeTaxChecklist2026GuideMeta = {
   slug: "non-resident-one-home-tax-checklist-2026-guide",
-  title: "살지 않는 1주택, 세금 어떻게 달라지나",
+  title: "비거주 1주택 세금 — 종부세·양도세·장특공 달라지는 점",
   description:
     "확정 정부안에서도 비거주 1주택의 종부세 기본공제는 12억 원으로 유지되고 거주 1주택은 14억 원입니다. 현행 보유세는 거주 여부와 무관하고 양도세·장특공은 거주 요건에서 갈립니다. 공시 15억·20억 예시와 체크리스트를 다룹니다. (2026년 9월 1일 기준)",
   updated: "2026년 10월 30일",

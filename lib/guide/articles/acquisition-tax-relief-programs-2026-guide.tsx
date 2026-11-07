@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const acquisitionTaxReliefPrograms2026GuideMeta = {
   slug: "acquisition-tax-relief-programs-2026-guide",
-  title: "취득세 세액공제·감면 제도 총정리",
+  title: "2026년 취득세 감면 제도 — 생애최초·출산·세컨드홈·미분양",
   description:
     "2026년 주택 취득세 감면은 생애최초, 출산·양육, 인구감소지역, 세컨드홈, 지방 미분양, 일시적 2주택 특례 순으로 비교하면 됩니다. 한눈에 비교표, 제도 선택 가이드, 신청 방법, 중복 적용 여부, 추징 주의사항을 다룹니다. (2026년 11월 5일 기준)",
   updated: "2026년 11월 5일",

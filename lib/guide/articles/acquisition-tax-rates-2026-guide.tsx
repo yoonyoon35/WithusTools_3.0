@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const acquisitionTaxRates2026GuideMeta = {
   slug: "acquisition-tax-rates-2026-guide",
-  title: "2026년 취득세율 완전 정리",
+  title: "2026년 취득세율표 — 주택 수·금액별 세율과 납부액",
   description:
     "1주택 취득세는 6억 원 이하 1%, 9억 원 초과 3%이고 그 사이는 구간별로 계산합니다. 1억~15억 원 매매가별 납부액과 지방교육세·농특세, 주택 수·지역별 중과, 생애최초 감면 후 금액을 표로 확인하세요.",
   updated: "2026년 11월 5일",

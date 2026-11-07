@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const nationalHousingBondPurchaseCriteriaGuideMeta = {
   slug: "national-housing-bond-purchase-criteria-guide",
-  title: "주택 취득 시 국민주택채권 매입 기준",
+  title: "국민주택채권 매입 비용 — 시가표준액 기준 요율과 계산 예시",
   description:
     "주택 소유권 이전등기 때 국민주택채권은 시가표준액 기준 요율로 매입하고, 실제 부담은 채권을 할인 매도한 차액입니다. 현금·대출·근저당만 재설정 구분, 근저당 설정 기준, 면제 대상, 잔금 전 체크리스트를 다룹니다. (2026년 6월 기준)",
   updated: "2026년 6월 1일",

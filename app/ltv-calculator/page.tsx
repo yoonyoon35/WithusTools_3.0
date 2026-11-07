@@ -7,11 +7,12 @@ import { createPageMetadata } from "@/lib/metadata";
 
 const path = "/ltv-calculator";
 const pageTitle = "LTV 계산기";
+const metaTitle = "LTV 계산기 - 지역·생애최초별 대출 가능액";
 const pageDescription =
   "담보 주택 가격·지역·주택 보유·생애최초 조건으로 LTV(%)와 대출 가능액을 간이 산출합니다. 선순위 설정액과 대출 희망액을 반영할 수 있습니다.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({ title: pageTitle, description: pageDescription, path });
+  return createPageMetadata({ title: metaTitle, description: pageDescription, path });
 }
 
 export default function LtvCalculatorPage() {

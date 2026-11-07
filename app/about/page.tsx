@@ -5,7 +5,7 @@ import { GuideAuthoritativeSources } from "@/components/guide-meta-footer";
 import { createPageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = "사이트 소개";
+  const title = "사이트 소개 | withustools.com";
   return createPageMetadata({
     title,
     description:

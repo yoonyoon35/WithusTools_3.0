@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const realEstateBalloonEffect2026GuideMeta = {
   slug: "real-estate-balloon-effect-2026-guide",
-  title: "부동산 풍선효과란…규제지역과 인접 비규제지역 수요 이동",
+  title: "부동산 풍선효과란? 규제지역과 인접 지역 수요 이동",
   description:
     "풍선효과는 규제지역 수요가 인접 비규제지역으로 옮겨 거래와 가격이 오르는 현상입니다. 10·15 대책 이후 동탄·기흥·구리와 6월 30일 이후 남양주·병점·평택 사례, 매수 전 LTV·취득세·대출 확인점을 다룹니다. (2026년 7월 기준)",
   updated: "2026년 7월 7일",

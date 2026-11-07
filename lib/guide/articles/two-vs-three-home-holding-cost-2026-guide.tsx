@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const twoVsThreeHomeHoldingCost2026GuideMeta = {
   slug: "two-vs-three-home-holding-cost-2026-guide",
-  title: "2주택 vs 3주택, 몇 채까지 버틸 수 있나",
+  title: "2주택 vs 3주택 보유세·양도세 — 몇 채까지 버틸까",
   description:
     "2주택과 3주택 이상은 재산세 규칙은 같지만 과세표준 12억 원을 넘으면 종부세는 3주택이 더 무겁고, 양도세 중과는 +20%p와 +30%p입니다. 공시 23억·33억 연간 부담 비교와 3채를 2채로 줄이는 기준을 다룹니다. (2026년 8월 3일 정부안 기준)",
   updated: "2026년 8월 3일",

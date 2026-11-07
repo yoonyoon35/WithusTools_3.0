@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const dongtanGiheungGuriRegulatedAreaLtv2026GuideMeta = {
   slug: "dongtan-giheung-guri-regulated-area-ltv-2026-guide",
-  title: "동탄·기흥·구리 규제지역 총정리, 대출·취득세·토지거래허가",
+  title: "동탄·기흥·구리 규제지역 — 대출·취득세·토지거래허가",
   description:
     "동탄구·기흥구·구리시는 2026년 7월 1일 규제지역이 되어 LTV 40%·한도 6억·6개월 내 전입 의무와 취득세 2주택 8%·3주택 12%가 적용됩니다. 7월 5일부터는 아파트 매매에 토지거래허가(2년 실거주)도 필요합니다.",
   updated: "2026년 11월 4일",

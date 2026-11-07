@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const homePurchaseAdditionalCostsGuideMeta = {
   slug: "home-purchase-additional-costs-guide",
-  title: "주택 구입 시 추가 비용 총정리 (취득세·등기비용·법무사 비용)",
+  title: "주택 구입 부대비용 — 취득세·등기·법무사·중개수수료",
   description:
     "집을 살 때는 집값 외에 취득세·등기비용(법무사 비용 포함)·인지세·중개수수료가 따로 듭니다. 항목별 기준, 매매가별 총 부대비용 예시, 잔금일 전 자금 계획 체크리스트를 다루며, 매매 소유권이전등기에는 별도 등록면허세가 없다는 점도 짚습니다.",
   updated: "2026년 11월 4일",

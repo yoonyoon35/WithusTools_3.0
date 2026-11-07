@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const gracePeriodExplainedMeta = {
   slug: "grace-period-explained",
-  title: "거치기간이란 무엇인가",
+  title: "거치기간이란? 월 상환액 변화와 총 이자 차이 예시",
   description:
     "거치기간은 원금 없이 이자만 내는 기간으로, 30년 대출에 2년을 두면 처음 2년은 이자만 내고 나머지 28년 동안 원금과 이자를 함께 갚습니다. 월 상환액·총 이자 변화, 적합한 경우와 그렇지 않은 경우, DSR과의 관계를 표로 봅니다.",
   updated: "2026년 10월 30일",
