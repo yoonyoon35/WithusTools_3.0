@@ -4,8 +4,8 @@ export const coResidenceHousingInheritanceDeductionGuideMeta = {
   slug: "co-residence-housing-inheritance-deduction-guide",
   title: "동거주택 상속공제 6억 — 요건·한도·1세대1주택",
   description:
-    "동거주택 상속공제는 요건을 갖추면 주택가액의 100%, 최대 6억 원을 공제합니다. 10년 동거·무주택·1세대 1주택 요건, 일괄공제·배우자공제와의 관계, 공제가 안 되는 경우와 계산 예시를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 7일",
+    "동거주택 상속공제는 요건을 갖추면 주택가액의 100%, 최대 6억 원을 공제합니다. 10년 동거·무주택·1세대 1주택 요건, 일괄공제·배우자공제와의 관계, 공제가 안 되는 경우와 계산 예시를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function CoResidenceHousingInheritanceDeductionGuideBody() {
@@ -13,7 +13,7 @@ export function CoResidenceHousingInheritanceDeductionGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-crhid-intro">
         <h2 id="guide-crhid-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           부모와 <strong>오래 같이 살던 집</strong>을 상속받는 경우, 요건을 충족하면{" "}

@@ -4,8 +4,8 @@ export const secondHomeAcquisitionTaxSurcharge2026GuideMeta = {
   slug: "second-home-acquisition-tax-surcharge-2026-guide",
   title: "2주택자 취득세 중과 기준",
   description:
-    "2주택자 취득세는 조정대상지역이면 8%, 비조정지역이면 1~3%입니다. 매매가별 납부액 비교, 취득 시점 기준 조정대상지역 판단, 저가주택 중과 제외, 주택 수 산정, 증여·법인 세율과 자가진단 체크리스트를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 21일",
+    "2주택자 취득세는 조정대상지역이면 8%, 비조정지역이면 1~3%입니다. 매매가별 납부액 비교, 취득 시점 기준 조정대상지역 판단, 저가주택 중과 제외, 주택 수 산정, 증여·법인 세율과 자가진단 체크리스트를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
@@ -13,7 +13,7 @@ export function SecondHomeAcquisitionTaxSurcharge2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-s2-overview">
         <h2 id="guide-s2-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           1주택자가 주택을 추가로 취득해 2주택자가 되는 경우, 취득하는 주택의 소재지가 조정대상지역인지 여부에 따라 취득세율이 크게

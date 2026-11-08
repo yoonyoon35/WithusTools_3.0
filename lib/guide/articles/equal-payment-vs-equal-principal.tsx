@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const equalPaymentVsEqualPrincipalMeta = {
   slug: "equal-payment-vs-equal-principal",
-  title: "원리금균등상환 vs 원금균등상환 비교, 1억 5천·2억 원 이자 예시",
+  title: "원리금균등상환 vs 원금균등상환 비교와 이자 차이",
   description:
     "1억 5천만 원을 연 4%·30년으로 빌리면 첫 달 상환액은 원리금균등 71.6만 원, 원금균등 91.7만 원이고 총 이자는 약 1억 780만 원과 9,025만 원입니다. 금리·기간별 월 상환액, 중도상환 효과, DSR 필요 연소득과 선택 기준을 비교합니다.",
   updated: "2026년 11월 5일",

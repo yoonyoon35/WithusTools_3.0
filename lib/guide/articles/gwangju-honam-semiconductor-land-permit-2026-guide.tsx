@@ -5,7 +5,7 @@ export const gwangjuHonamSemiconductorLandPermit2026GuideMeta = {
   title: "광주·나주·장성·화순 토지거래허가 — 허가·실거주 요건",
   description:
     "광주 군공항 인근 호남 반도체 클러스터 지역은 2026년 7월 14일부터 토지거래허가구역입니다(7월 9일 지정). 대상 범위 364.19㎢, 용도지역별 허가 면적 기준, 주택 2년 실거주·5년 실이용 의무, 동탄과 다른 점, 허가 절차를 다룹니다.",
-  updated: "2026년 7월 15일",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function GwangjuHonamSemiconductorLandPermit2026GuideBody() {

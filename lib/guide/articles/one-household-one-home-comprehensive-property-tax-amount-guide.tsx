@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const oneHouseholdOneHomeComprehensivePropertyTaxAmountGuideMeta = {
   slug: "one-household-one-home-comprehensive-property-tax-amount-guide",
-  title: "1세대 1주택 종부세 얼마나 나올까 — 공시가격·12억 공제 구간별",
+  title: "1세대 1주택 종부세 — 공시가격·12억 공제 구간",
   description:
-    "1세대 1주택 종부세는 공시가격 12억 원 초과분부터 붙고, 12억 원 이하는 재산세·지방교육세만 냅니다. 9억→10억 재산세가 뛰는 구간, 공시가격 10억·13억·15억·20억·25억의 연간·7월·12월 납부액, 연령·보유기간 세액공제 전후 비교를 다룹니다.",
-  updated: "2026년 7월 2일",
+    "1세대 1주택 종부세는 공시가격 12억 원 초과분부터 붙고, 12억 원 이하는 재산세·지방교육세만 냅니다. 9억→10억 재산세가 뛰는 구간, 공시가격 10억·13억·15억·20억·25억의 연간·7월·12월 납부액, 연령·보유기간 세액공제 전후 비교를 다룹니다. 2026년분 현행 기준이며 2027년 이후 세제개편안은 국회 심의 중입니다.",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody() {
@@ -13,11 +13,20 @@ export function OneHouseholdOneHomeComprehensivePropertyTaxAmountGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-ohohcpt-intro">
         <h2 id="guide-ohohcpt-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           1세대 1주택이라도 공시가격이 12억 원을 넘으면 종합부동산세(종부세) 대상이 됩니다. 12억 이하라면 재산세·
-          지방교육세만 내고, 그 이상부터 12월에 종부세·농어촌특별세가 추가됩니다.{" "}
+          지방교육세만 내고, 그 이상부터 12월에 종부세·농어촌특별세가 추가됩니다. 아래 금액은{" "}
+          <strong>2026년분 현행법(기본공제 12억 원)</strong> 기준입니다. 2027년 이후 공정시장가액비율·실거주 공제
+          14억 원 등은{" "}
+          <Link
+            href="/guide/holding-capital-gains-tax-increase-2026-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            2026년 부동산 세제개편안
+          </Link>
+          이 국회를 통과해야 달라지며, 2026년 11월 현재는 심의 중입니다.{" "}
           <Link
             href="/comprehensive-property-tax-calculator"
             className="text-primary underline-offset-4 hover:underline"

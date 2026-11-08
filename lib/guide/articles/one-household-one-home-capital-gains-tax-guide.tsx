@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const oneHouseholdOneHomeCapitalGainsTaxGuideMeta = {
   slug: "one-household-one-home-capital-gains-tax-guide",
-  title: "1세대 1주택 양도소득세 비과세·12억 고가주택·장기보유특별공제",
+  title: "1세대 1주택 양도세 비과세와 12억 고가주택",
   description:
     "1세대 1주택 비과세는 2년 보유(2017.8.3 이후 조정대상지역 취득 주택은 2년 거주 포함) 요건을 갖춰야 하고, 12억 원을 넘는 고가주택은 초과분에만 과세합니다. 고가주택 안분 계산과 장기보유특별공제 표1·표2(최대 80%)를 다룹니다.",
   updated: "2026년 11월 5일",

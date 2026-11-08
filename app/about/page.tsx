@@ -1,15 +1,58 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
 import { LegalPageShell } from "@/components/legal-page-shell";
 import { GuideAuthoritativeSources } from "@/components/guide-meta-footer";
 import { createPageMetadata } from "@/lib/metadata";
+import { getCalculatorToolTitle } from "@/lib/calculators";
+
+const aboutCalculatorGroups = [
+  {
+    label: "대출",
+    hrefs: [
+      "/loan-calculator",
+      "/dsr-calculator",
+      "/dti-calculator",
+      "/ltv-calculator",
+      "/prepayment-fee-calculator",
+    ],
+  },
+  {
+    label: "부동산 거래",
+    hrefs: [
+      "/acquisition-tax-calculator",
+      "/farmland-acquisition-tax-calculator",
+      "/brokerage-fee-calculator",
+      "/national-housing-bond-calculator",
+    ],
+  },
+  {
+    label: "세금",
+    hrefs: [
+      "/comprehensive-property-tax-calculator",
+      "/capital-gains-tax-calculator",
+      "/comprehensive-income-tax-calculator",
+      "/inheritance-tax-calculator",
+    ],
+  },
+] as const;
+
+function CalculatorName({ href }: { href: string }) {
+  const title = getCalculatorToolTitle(href) ?? href;
+  const label = title.replace(/ 계산기$/, "");
+  return (
+    <Link href={href} className="text-foreground underline underline-offset-4 hover:opacity-80">
+      {label}
+    </Link>
+  );
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "사이트 소개 | withustools.com";
   return createPageMetadata({
     title,
     description:
-      "withustools.com이 제공하는 대출·부동산·세금 계산기 12종과 가이드, 콘텐츠 작성·수정 기준, 문의 방법을 안내합니다.",
+      "withustools.com이 제공하는 대출·부동산·세금 계산기와 가이드, 콘텐츠 작성·수정 기준, 문의 방법을 안내합니다.",
     path: "/about",
   });
 }
@@ -18,21 +61,30 @@ export default function AboutPage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: "홈", href: "/" }, { name: "사이트 소개" }]} />
-      <LegalPageShell title="사이트 소개" updated="2026년 10월 30일">
+      <LegalPageShell title="사이트 소개" updated="2026년 11월 8일">
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">이 사이트는</h2>
           <p>
             withustools.com은 대출, 부동산 거래, 세금처럼 표와 법령만 보면 헷갈리기 쉬운 계산을 조금 덜 번거롭게 하고
             싶어서 만든 개인 운영 사이트입니다. 금리와 한도를 비교하고, 거래할 때 드는 비용을 가늠하고, 보유·양도·상속
-            단계의 세금을 어림해 볼 때 필요한 계산기와 가이드 글을 무료로 제공합니다.
+            단계의 세금을 어림해 볼 때 필요한 계산기와 가이드 글을 무료로 제공합니다. 콘텐츠 작성 주체는 WithusTools입니다.
           </p>
         </section>
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">제공하는 계산기</h2>
           <ul className="list-disc space-y-1 pl-5">
-            <li>대출: 대출 이자, DSR, DTI, LTV, 중도상환 수수료 계산기</li>
-            <li>부동산 거래: 취득세, 중개수수료 계산기</li>
-            <li>세금: 종합부동산세, 양도소득세, 종합소득세, 상속세 계산기</li>
+            {aboutCalculatorGroups.map((group) => (
+              <li key={group.label}>
+                {group.label}:{" "}
+                {group.hrefs.map((href, index) => (
+                  <span key={href}>
+                    {index > 0 ? ", " : ""}
+                    <CalculatorName href={href} />
+                  </span>
+                ))}{" "}
+                계산기
+              </li>
+            ))}
           </ul>
           <p>각 계산기와 연결된 가이드 글에서 계산 기준과 예시, 확인할 점을 함께 설명합니다.</p>
         </section>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const officetelResidentialVsBusinessTaxGuideMeta = {
   slug: "officetel-residential-vs-business-tax-guide",
-  title: "오피스텔 취득세 4.6%와 주택 수 포함 기준, 아파트·빌라와 비교",
+  title: "오피스텔 취득세 4.6%와 주택 수 포함 기준",
   description:
     "오피스텔은 주거용이든 업무용이든 취득세 4%(합계 4.6%)로 아파트·빌라(1~3%)보다 높습니다. 납부액 비교, 이후 주택 취득 시 주택 수에 포함되는 기준(재산세 주택분·2020.8.12·시가표준액 1억), 다주택 중과 영향, 부가세 환급과 용도 전환 주의점을 다룹니다.",
   updated: "2026년 11월 4일",

@@ -1,3 +1,4 @@
+import { ogImageForPath } from "@/lib/og";
 import { ogImagePath, SITE_URL } from "@/lib/site";
 
 function kakaoJavaScriptKey(): string | undefined {
@@ -37,7 +38,13 @@ export function sendKakaoFeedShare(options: {
   const Kakao = window.Kakao!;
 
   const base = SITE_URL.replace(/\/$/, "");
-  const imageUrl = `${base}${ogImagePath.startsWith("/") ? ogImagePath : `/${ogImagePath}`}`;
+  let imagePath = ogImagePath;
+  try {
+    imagePath = ogImageForPath(new URL(options.pageUrl).pathname);
+  } catch {
+    imagePath = ogImagePath;
+  }
+  const imageUrl = `${base}${imagePath.startsWith("/") ? imagePath : `/${imagePath}`}`;
 
   try {
     Kakao.Share.sendDefault({

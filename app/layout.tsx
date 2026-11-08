@@ -10,7 +10,16 @@ import { SiteHeader } from "@/components/site-header";
 // import { AdfitLeaderboard728 } from "@/components/adfit-leaderboard-728";
 // import { AdfitPcSkyscraperRail } from "@/components/adfit-pc-skyscraper-rail";
 import { authorAboutUrl, authorDisplayName } from "@/lib/publisher";
-import { defaultDescription, defaultTitle, ogImagePath, SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  defaultDescription,
+  defaultTitle,
+  ogImageAlt,
+  ogImageHeight,
+  ogImagePath,
+  ogImageWidth,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 // import { kakaoAdfitBaScriptSrc } from "@/lib/site";
 
 const googleAdsenseClient = process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT?.trim();
@@ -68,10 +77,10 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: defaultTitle,
     description: defaultDescription,
-    images: [{ url: ogImagePath, width: 180, height: 180, alt: SITE_NAME }],
+    images: [{ url: ogImagePath, width: ogImageWidth, height: ogImageHeight, alt: ogImageAlt }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: defaultTitle,
     description: defaultDescription,
     images: [ogImagePath],

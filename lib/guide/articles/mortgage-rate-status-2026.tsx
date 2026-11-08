@@ -5,8 +5,8 @@ export const mortgageRateStatus2026Meta = {
   slug: "mortgage-rate-status-2026",
   title: "2026년 주택담보대출 금리 현황",
   description:
-    "2026년 7월 초 KB국민은행 고시 기준 주담대 혼합·변동형 금리는 연 4.07~5.97% 수준이었습니다. 정책 모기지 금리, 금리 유형별 월 상환 영향, 규제 변화와 지금 신청하는 사람의 선택 기준을 봅니다.",
-  updated: "2026년 7월 21일",
+    "2026년 11월 초 5대 은행 고정형 주담대는 연 4.46~6.44%, KB 혼합형은 연 5.00~6.40% 수준입니다. 변동형은 코픽스 상승으로 따로 움직입니다. 정책 모기지와 지금 신청할 때 볼 점을 정리합니다.",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function MortgageRateStatus2026Body() {
@@ -14,12 +14,14 @@ export function MortgageRateStatus2026Body() {
     <>
       <section className="space-y-3" aria-labelledby="guide-2026-overview">
         <h2 id="guide-2026-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
-          2026년 7월 초 KB국민은행 주담대 고시(기준일 7월 2일) 기준, 혼합·변동형 상품의 적용 금리(우대 전·후 범위)는 대체로{" "}
-          <strong>연 4.07% ~ 5.97%</strong> 수준입니다. 아래 수치는 <strong>그 시점의 시장 스냅샷</strong>이며, 실제 적용
-          금리는 신용·담보·우대·가산 조건에 따라 달라집니다.{" "}
+          2026년 11월 6일 전후 5대 시중은행(KB국민·신한·하나·우리·NH농협) 고정형(혼합형) 주담대 금리는 대체로{" "}
+          <strong>연 4.46% ~ 6.44%</strong>입니다. KB국민은행 혼합형은 연 5.00% ~ 6.40%, 변동형(금융채)은 연 4.91% ~
+          6.31% 수준입니다. 고정형은 금융채 금리 하락으로 9월 말보다 하단이 낮아졌고, 변동형은 9월 신규 코픽스 상승으로
+          따로 움직입니다. 아래 수치는 <strong>그 시점의 시장 스냅샷</strong>이며, 실제 적용 금리는 신용·담보·우대·가산
+          조건에 따라 달라집니다.{" "}
           <Link href="/guide/kb-mortgage-300-million-limit-2026-guide" className="text-primary underline-offset-4 hover:underline">
             KB 3억 한도
           </Link>
@@ -49,7 +51,7 @@ export function MortgageRateStatus2026Body() {
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              2026년 7월 기준 시중은행 주담대 금리(KB 고시 참고)
+              2026년 11월 초 시중은행 주담대 금리(5대 은행·KB 고시 참고)
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -64,21 +66,21 @@ export function MortgageRateStatus2026Body() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  변동·혼합(금융채 연동, 우대 반영)
+                  고정·혼합형(5대 은행, 11월 6일)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 4.07% ~ 5.97%</td>
+                <td className="border-border border-b px-3 py-2.5">연 4.46% ~ 6.44%</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  5년 고정 후 변동(상단)
+                  KB 혼합형 / 변동형(금융채)
                 </th>
-                <td className="border-border border-b px-3 py-2.5">연 6.49% 내외</td>
+                <td className="border-border border-b px-3 py-2.5">연 5.00% ~ 6.40% / 연 4.91% ~ 6.31%</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  평균 주담대 금리(2026년 5월 신규취급, 한국은행)
+                  평균 주담대 금리(2026년 9월 신규취급, 한국은행)
                 </th>
-                <td className="px-3 py-2.5">연 4.32% 전후(참고)</td>
+                <td className="px-3 py-2.5">연 4.88%(2012년 4월 이후 최고)</td>
               </tr>
             </tbody>
           </table>
@@ -87,7 +89,7 @@ export function MortgageRateStatus2026Body() {
 
       <section className="space-y-4" aria-labelledby="guide-policy-mortgage-rate">
         <h2 id="guide-policy-mortgage-rate" className="text-foreground text-xl font-semibold tracking-tight">
-          정책 모기지 금리(2026년 7월 기준)
+          정책 모기지 금리(2026년 11월 기준)
         </h2>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[26rem] border-collapse text-left text-sm">

@@ -27,7 +27,7 @@ export const referenceDisclaimerLine =
   "본 서비스는 표준 계산식 기반 참고용이며, 실제 조건은 금융기관에 문의하시기 바랍니다.";
 
 export const defaultDescription =
-  `${SITE_NAME}(${SITE_DOMAIN})에서 대출 이자·DSR·LTV 등 대출 계산기부터 취득세·중개수수료, 종합부동산세·양도소득세·종합소득세·상속세 계산기까지 12종과 가이드를 무료로 이용하세요. 주택담보대출, 부동산 거래, 세금 납부 전 예상 비용을 참고용으로 미리 확인할 수 있습니다.`;
+  `${SITE_NAME}(${SITE_DOMAIN})에서 대출 이자·DSR·LTV·취득세·중개수수료·양도세 계산기와 가이드를 무료로 이용하세요. 주택 구입·부동산 거래·세금 납부 전 예상 비용을 참고용으로 확인할 수 있습니다.`;
 
 export const loanCalculatorTitle = `대출 이자 계산기 - ${SITE_DOMAIN}`;
 
@@ -36,7 +36,11 @@ export const loanCalculatorDescription =
 
 export const loanCalculatorShareText = "대출 받기 전 미리 이자 계산해 보세요.";
 
-export const ogImagePath = "/favicon/apple-touch-icon.png";
+/** 기본 Open Graph·Twitter·카카오 공유 이미지 (1200×630). 파비콘은 icons에서 별도 지정. */
+export const ogImagePath = "/og/default.png";
+export const ogImageWidth = 1200;
+export const ogImageHeight = 630;
+export const ogImageAlt = `${SITE_NAME} - ${siteTagline}`;
 
 /** 카카오 애드핏 PC 세로형(160×600) 광고단위 */
 export const kakaoAdfitPcSkyscraperUnit = "DAN-BNkWYYZ7sfTPst4Y" as const;

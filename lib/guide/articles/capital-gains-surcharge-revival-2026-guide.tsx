@@ -4,8 +4,8 @@ export const capitalGainsSurchargeRevival2026GuideMeta = {
   slug: "capital-gains-surcharge-revival-2026-guide",
   title: "부동산 양도세 중과 4년 만에 부활",
   description:
-    "조정대상지역 다주택자 양도세 중과가 2026년 5월 10일부터 4년 만에 다시 시행됐습니다. 중과세율과 장기보유특별공제 배제, 계약금 지급 확인 시 중과 배제 등 보완책, 제외 대상, 주택 수 산정, 대응 전략을 다룹니다. (2026년 5월 기준)",
-  updated: "2026년 7월 4일",
+    "조정대상지역 다주택자 양도세 중과가 2026년 5월 10일부터 다시 시행 중이며 11월에도 유지됩니다. 중과세율과 장기보유특별공제 배제, 계약금 확인 시 중과 배제, 제외 대상과 주택 수 산정을 다룹니다. 장특공 거주 전환 정부안은 별도 세제개편안 글에서 봅니다.",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function CapitalGainsSurchargeRevival2026GuideBody() {
@@ -13,12 +13,20 @@ export function CapitalGainsSurchargeRevival2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-cgsr-intro">
         <h2 id="guide-cgsr-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 5월 기준
+          2026년 11월 기준
         </h2>
         <p>
           2026년 5월 9일을 끝으로 조정대상지역 다주택자에 대한 양도소득세 중과 유예 조치가 예정대로 종료됐습니다. 2022년 5월
           10일부터 시행된 유예 조치가 4년 만에 끝나면서, 2026년 5월 10일부터 다주택자의 조정대상지역 내 주택 양도에 중과세율이
-          다시 적용됩니다.
+          다시 적용됩니다. 이 중과 골격은 2026년 11월에도 그대로입니다. 장기보유특별공제를 거주 기간 중심으로 바꾸는 내용은
+          아직 정부안·국회 심의 단계이며{" "}
+          <Link
+            href="/guide/holding-capital-gains-tax-increase-2026-guide"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            2026년 부동산 세제개편안
+          </Link>
+          에서 현행과 구분해 정리했습니다.
         </p>
       </section>
 

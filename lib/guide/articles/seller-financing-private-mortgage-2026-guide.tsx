@@ -4,8 +4,8 @@ export const sellerFinancingPrivateMortgage2026GuideMeta = {
   slug: "seller-financing-private-mortgage-2026-guide",
   title: "셀러 파이낸싱(집주인 대출)이란? 등기·잔금·체크리스트",
   description:
-    "셀러 파이낸싱은 매도인이 잔금 일부를 빌려주고 보통 2순위 근저당을 잡는 거래 구조로, 편한 잔금이 아니라 추가 채무와 등기입니다. 6·27 대책 이후 늘어난 배경, 은행 대출과 비교, 등기·잔금 순서와 확인 체크리스트를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 22일",
+    "셀러 파이낸싱은 매도인이 잔금 일부를 빌려주고 보통 2순위 근저당을 잡는 거래 구조로, 편한 잔금이 아니라 추가 채무와 등기입니다. 6·27 대책 이후 늘어난 배경, 은행 대출과 비교, 등기·잔금 순서와 확인 체크리스트를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function SellerFinancingPrivateMortgage2026GuideBody() {
@@ -13,7 +13,7 @@ export function SellerFinancingPrivateMortgage2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-sfpm-intro">
         <h2 id="guide-sfpm-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준 · 결론부터
+          2026년 11월 기준 · 결론부터
         </h2>
         <p>
           <strong>셀러 파이낸싱(집주인 대출)</strong>은 매도인이 매수인에게 <strong>잔금 일부를 빌려주고</strong>, 통상{" "}

@@ -27,6 +27,35 @@ const calculators = [
     title: "종합부동산세 계산기",
     desc: "재산세·종부세·농특세와 연간 보유세 합계.",
   },
+  {
+    path: "/capital-gains-tax-calculator",
+    title: "양도소득세 계산기",
+    desc: "양도차익·1세대1주택 비과세·장기보유특별공제·다주택 중과, 양도세·지방소득세.",
+  },
+  {
+    path: "/comprehensive-income-tax-calculator",
+    title: "종합소득세 계산기",
+    desc: "국세청 세율·경비율·중간예납으로 산출세액과 납부·환급세액.",
+  },
+  {
+    path: "/inheritance-tax-calculator",
+    title: "상속세 계산기",
+    desc: "과세가액·일괄공제·배우자공제·금융재산공제·동거주택공제·신고세액공제 반영 예상 세액.",
+  },
+];
+
+const topicHubs = [
+  { id: "dsr-limit", title: "DSR·대출 한도 가이드", desc: "DSR 산정, 스트레스 DSR, LTV·DTI, 신용등급과 한도." },
+  { id: "regulated-area", title: "규제지역·토지거래허가 가이드", desc: "규제지역 지정 영향, 다주택 대출, 토지거래허가·실거주." },
+  { id: "repayment-rate", title: "상환·금리 가이드", desc: "원리금균등·원금균등, 거치, 고정·변동, 중도상환." },
+  { id: "housing-loan", title: "주택·전세 대출 가이드", desc: "주담대·전세자금, 청약, 부대비용." },
+  { id: "auction", title: "부동산 경매 가이드", desc: "경매 절차·비용·대출." },
+  { id: "acquisition-tax", title: "취득세 가이드", desc: "세율·감면·중과, 지방교육세·농특세." },
+  { id: "capital-gains-tax", title: "양도소득세 가이드", desc: "1주택 비과세, 장특공, 다주택 중과." },
+  { id: "holding-tax", title: "보유세·종부세 가이드", desc: "재산세·종부세, 공시가격·기본공제." },
+  { id: "inheritance-tax", title: "상속세 가이드", desc: "과세가액·상속공제·누진세율·신고." },
+  { id: "comprehensive-income-tax", title: "종합소득세 가이드", desc: "세율·경비율·간편장부·중간예납." },
+  { id: "brokerage", title: "중개수수료·거래 가이드", desc: "요율, 전·월세, 직거래, 분양권·재계약." },
 ];
 
 const featuredGuides = [
@@ -78,7 +107,7 @@ const articles = articleFiles
 const llmsLines = [
   "# WithusTools",
   "",
-  `> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세 계산기와 2026년 기준 가이드 ${articles.length}편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.`,
+  `> WithusTools(withustools.com)는 대출 이자·DSR·LTV·DTI·취득세·중개수수료·종부세·양도세·종소세·상속세 계산기와 2026년 기준 가이드 ${articles.length}편을 무료 제공하는 한국어 부동산·금융 참고 사이트입니다.`,
   "",
   "표준 계산식과 공공 자료 기반 참고용 콘텐츠입니다. 실제 심사·신고 결과는 금융기관·관할 지자체에서 확인해야 합니다.",
   "",
@@ -90,7 +119,10 @@ const llmsLines = [
   "",
   "## 가이드 허브",
   "",
-  `- [대출·금융 가이드](${siteUrl}/guide): DSR·상환·취득세·중개수수료·보유세 주제별 ${articles.length}편.`,
+  `- [대출·금융 가이드](${siteUrl}/guide): DSR·상환·취득세·중개수수료·보유세·양도세·종소세·상속세 주제별 ${articles.length}편.`,
+  ...topicHubs.map(
+    (hub) => `- [${hub.title}](${siteUrl}/guide/topics/${hub.id}): ${hub.desc}`,
+  ),
   `- [사이트 소개](${siteUrl}/about): 운영 배경·콘텐츠 작성 기준·문의.`,
   "",
   "## 자주 찾는 가이드",

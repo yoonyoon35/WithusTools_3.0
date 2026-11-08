@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const longTermJeonse20YearMaturity2026GuideMeta = {
   slug: "long-term-jeonse-20-year-maturity-2026-guide",
-  title: "장기전세 20년 만기 대응 가이드: 계약연장·분양전환 선택과 비용",
+  title: "장기전세 20년 만기 — 계약연장·분양전환과 비용",
   description:
     "서울시 장기전세주택(시프트)은 20년 만기를 앞두고 있어 입주민이 선택할 수 있는 길을 비용·절차별로 비교합니다. 퇴거·재계약·이주 등 선택지 4가지, 계약연장·분양전환 논란 요약, 만기 전 체크리스트를 다룹니다. (2026년 8월 26일 기준)",
   updated: "2026년 8월 26일",

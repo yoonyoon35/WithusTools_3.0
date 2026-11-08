@@ -4,8 +4,8 @@ export const inheritanceTaxFuneralExpenseDeductionGuideMeta = {
   slug: "inheritance-tax-funeral-expense-deduction-guide",
   title: "상속세 장례비 공제 — 1,500만 원 한도와 절세 계산",
   description:
-    "상속세 장례비 공제는 일반 장례비 500~1,000만 원에 봉안·자연장지 비용 최대 500만 원을 더해 합계 1,500만 원까지입니다. 과세가액에서 차감되는 위치, 세율별 절감액, 병원비 구분, 형제 분담·중복 주의, 신고 서류를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 15일",
+    "상속세 장례비 공제는 일반 장례비 500~1,000만 원에 봉안·자연장지 비용 최대 500만 원을 더해 합계 1,500만 원까지입니다. 과세가액에서 차감되는 위치, 세율별 절감액, 병원비 구분, 형제 분담·중복 주의, 신고 서류를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function InheritanceTaxFuneralExpenseDeductionGuideBody() {
@@ -13,7 +13,7 @@ export function InheritanceTaxFuneralExpenseDeductionGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-itfed-intro">
         <h2 id="guide-itfed-intro" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           「장례비 3,000만 원 냈는데 상속세에서 3,000만 원 빼주나?」 — 장례 후 상속세 신고를 준비할 때 가장 많이

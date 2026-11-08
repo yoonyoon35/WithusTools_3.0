@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { SITE_DOMAIN, SITE_URL, ogImagePath } from "@/lib/site";
+import { ogImageAltForPath, ogImageForPath } from "@/lib/og";
+import { SITE_DOMAIN, SITE_URL, ogImageHeight, ogImageWidth } from "@/lib/site";
 
 type CreatePageMetadataInput = {
   title: string;
@@ -22,7 +23,15 @@ function socialTitle(title: string, path: string): string {
 export function createPageMetadata({ title, description, path }: CreatePageMetadataInput): Metadata {
   const url = pageUrl(path);
   const shareTitle = socialTitle(title, path);
-  const images = [{ url: ogImagePath, width: 180, height: 180, alt: SITE_DOMAIN }];
+  const image = ogImageForPath(path);
+  const images = [
+    {
+      url: image,
+      width: ogImageWidth,
+      height: ogImageHeight,
+      alt: ogImageAltForPath(path, shareTitle),
+    },
+  ];
   const isHome = path === "/" || path === "";
 
   return {
@@ -38,10 +47,10 @@ export function createPageMetadata({ title, description, path }: CreatePageMetad
       images,
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: shareTitle,
       description,
-      images: [ogImagePath],
+      images: [image],
     },
   };
 }

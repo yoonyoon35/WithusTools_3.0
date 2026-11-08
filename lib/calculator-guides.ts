@@ -159,7 +159,11 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
 
 /** 가이드 CTA에서 특정 글에만 노출할 계산기(키: 계산기 경로, 값: 허용 글 슬러그) */
 const guideCalculatorRestrictions: Record<string, readonly string[]> = {
-  "/farmland-acquisition-tax-calculator": ["acquisition-tax-rates-2026-guide"],
+  "/farmland-acquisition-tax-calculator": [
+    "acquisition-tax-rates-2026-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+  ],
 };
 
 /**

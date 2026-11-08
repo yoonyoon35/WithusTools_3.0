@@ -4,8 +4,8 @@ export const auctionHomePurchaseGuideMeta = {
   slug: "auction-home-purchase-guide",
   title: "경매로 집 사는 방법 — 절차·비용·주의점",
   description:
-    "경매·공매로 집을 사면 단계마다 필요한 자금과 기간이 달라 일반 매매와 비용 구조가 다릅니다. 법원경매와 공매 비교, 단계별 절차·자금, 일반 매매와의 비용·일정 비교, 입찰 전후 체크리스트를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 13일",
+    "경매·공매로 집을 사면 단계마다 필요한 자금과 기간이 달라 일반 매매와 비용 구조가 다릅니다. 법원경매와 공매 비교, 단계별 절차·자금, 일반 매매와의 비용·일정 비교, 입찰 전후 체크리스트를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function AuctionHomePurchaseGuideBody() {
@@ -13,7 +13,7 @@ export function AuctionHomePurchaseGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-ahp-overview">
         <h2 id="guide-ahp-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           부동산 경매는 채무자·국가·공공기관 소유 주택 등이 법원·공매 플랫폼을 통해 공개 입찰로 매각되는 방식입니다. 일반 매매보다

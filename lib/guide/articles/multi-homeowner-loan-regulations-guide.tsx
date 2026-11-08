@@ -4,8 +4,8 @@ export const multiHomeownerLoanRegulationsGuideMeta = {
   slug: "multi-homeowner-loan-regulations-guide",
   title: "다주택자 대출 규제 — LTV·만기 연장·취득세·양도세 중과",
   description:
-    "다주택자는 주택 수에 따라 LTV·만기 연장·취득세·양도세·종부세 규제가 한꺼번에 달라집니다. 주택 수 산정 기준과 규제지역 현황, 놓치기 쉬운 핵심 일정, 현실적인 선택지를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 21일",
+    "다주택자는 주택 수에 따라 LTV·만기 연장·취득세·양도세·종부세 규제가 한꺼번에 달라집니다. 주택 수 산정 기준과 규제지역 현황, 놓치기 쉬운 핵심 일정, 현실적인 선택지를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function MultiHomeownerLoanRegulationsGuideBody() {
@@ -13,7 +13,7 @@ export function MultiHomeownerLoanRegulationsGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-multi-overview">
         <h2 id="guide-multi-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           다주택자는 무주택자·1주택자보다 대출·세금·청약 전반에 걸쳐 강화된 규제를 적용받습니다. 2025년 6월과 10월 부동산 대책 이후

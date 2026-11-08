@@ -4,8 +4,8 @@ export const newbornSpecialLoan2026GuideMeta = {
   slug: "newborn-special-loan-2026-guide",
   title: "신생아 특례 대출 조건 정리",
   description:
-    "신생아 특례 대출은 디딤돌(구입·대환)과 버팀목(전세) 두 가지로, 일반 상품과 소득·한도·금리가 다릅니다. 공통 자격 요건, 특례금리, 일반 디딤돌·버팀목과 비교, 상황별 시나리오와 신청 전 체크리스트를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 3일",
+    "신생아 특례 대출은 디딤돌(구입·대환)과 버팀목(전세) 두 가지로, 일반 상품과 소득·한도·금리가 다릅니다. 공통 자격 요건, 특례금리, 일반 디딤돌·버팀목과 비교, 상황별 시나리오와 신청 전 체크리스트를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function NewbornSpecialLoan2026GuideBody() {
@@ -13,7 +13,7 @@ export function NewbornSpecialLoan2026GuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-nsl-overview">
         <h2 id="guide-nsl-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           신생아 특례 대출은 출산 가구의 주거비 부담을 줄이기 위해 주택도시기금이 운영하는{" "}

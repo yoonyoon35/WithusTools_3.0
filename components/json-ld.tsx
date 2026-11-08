@@ -4,7 +4,6 @@ import {
   buildFAQPageSchema,
   buildItemListSchema,
   buildOrganizationSchema,
-  buildPersonSchema,
   buildWebApplicationSchema,
   buildWebSiteSchema,
   type BreadcrumbItem,
@@ -13,7 +12,7 @@ import {
 import type { FaqItem } from "@/lib/faq-data";
 import { getGuideArticle } from "@/lib/guide/registry";
 import { getAllTopicArticleSlugs, getGuideTopicPath, type GuideTopic } from "@/lib/guide/topics";
-import { publisherOrganization, siteAuthorPerson } from "@/lib/publisher";
+import { publisherOrganization } from "@/lib/publisher";
 import {
   defaultDescription,
   loanCalculatorDescription,
@@ -41,7 +40,6 @@ export function MultiJsonLd({ graphs }: { graphs: Record<string, unknown>[] }) {
 }
 
 const organizationId = `${SITE_URL}#organization`;
-export const personId = `${siteAuthorPerson.url}#person`;
 
 const baseGraph = [
   buildOrganizationSchema({
@@ -50,13 +48,6 @@ const baseGraph = [
     url: publisherOrganization.url,
     logoUrl: publisherOrganization.logoUrl,
     email: publisherOrganization.email,
-  }),
-  buildPersonSchema({
-    id: personId,
-    name: siteAuthorPerson.name,
-    url: siteAuthorPerson.url,
-    email: siteAuthorPerson.email,
-    organizationId,
   }),
   buildWebSiteSchema({
     name: SITE_NAME,
@@ -67,7 +58,7 @@ const baseGraph = [
   }),
 ];
 
-/** layout 전역: Organization · Person · WebSite */
+/** layout 전역: Organization · WebSite */
 export function SiteJsonLd() {
   return <MultiJsonLd graphs={baseGraph} />;
 }
@@ -160,7 +151,7 @@ export function GuideArticleJsonLd({
           dateModifiedIso,
           datePublishedIso: dateModifiedIso,
           url: SITE_URL,
-          authorId: personId,
+          authorId: organizationId,
           publisherId: organizationId,
         }),
         buildBreadcrumbListSchema({ url: SITE_URL, items: breadcrumbs }),

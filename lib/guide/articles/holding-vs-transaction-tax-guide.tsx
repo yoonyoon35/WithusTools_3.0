@@ -5,7 +5,7 @@ export const holdingVsTransactionTaxGuideMeta = {
   title: "보유세 vs 거래세, 무슨 차이인가",
   description:
     "보유세는 집을 갖고 있는 동안 내는 재산세·종부세이고, 거래세는 사고팔 때 내는 취득세·양도세입니다. 부과 시점·과세표준·국세와 지방세 구분, 한 채의 세금 흐름 예시, 7월·12월 이중 고지와 자주 하는 오해를 다룹니다.",
-  updated: "2026년 7월 8일",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function HoldingVsTransactionTaxGuideBody() {
@@ -13,7 +13,7 @@ export function HoldingVsTransactionTaxGuideBody() {
     <>
       <section className="space-y-3" aria-labelledby="guide-hvtt-overview">
         <h2 id="guide-hvtt-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           부동산 세금을 처음 접하면 「보유세」「거래세」「취득세」「양도세」「종부세」가 한꺼번에 나와 헷갈리기

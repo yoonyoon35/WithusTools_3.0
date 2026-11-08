@@ -4,8 +4,8 @@ export const auctionWinningBidMortgageLoanGuideMeta = {
   slug: "auction-winning-bid-mortgage-loan-guide",
   title: "경매 낙찰 후 주담대(경락잔금대출) 조건 정리",
   description:
-    "경락잔금대출은 2025년 6·27 대책 이후 경매도 대출 규제 대상이라 입찰 전에 한도와 실거주 의무부터 확인해야 합니다. 차주별 대출 가능 여부, LTV·DSR 적용, 자금 계획 예시와 대출 거절 사유를 다룹니다. (2026년 7월 기준)",
-  updated: "2026년 7월 13일",
+    "경락잔금대출은 2025년 6·27 대책 이후 경매도 대출 규제 대상이라 입찰 전에 한도와 실거주 의무부터 확인해야 합니다. 차주별 대출 가능 여부, LTV·DSR 적용, 자금 계획 예시와 대출 거절 사유를 다룹니다. (2026년 11월 8일 기준)",
+  updated: "2026년 11월 8일",
 } as const;
 
 export function AuctionWinningBidMortgageLoanGuideBody() {
@@ -31,7 +31,7 @@ export function AuctionWinningBidMortgageLoanGuideBody() {
 
       <section className="space-y-3" aria-labelledby="guide-auction-overview">
         <h2 id="guide-auction-overview" className="text-foreground text-xl font-semibold tracking-tight">
-          2026년 7월 기준
+          2026년 11월 기준
         </h2>
         <p>
           2025년 6·27 부동산 대책 이후 경매 낙찰 후 주담대도 일반 매매와 동일하게 <strong>수도권·규제지역 6억 원 한도</strong>,{" "}
