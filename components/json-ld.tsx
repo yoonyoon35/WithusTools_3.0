@@ -11,11 +11,15 @@ import {
 } from "@/lib/schema-builders";
 import type { FaqItem } from "@/lib/faq-data";
 import { getGuideArticle } from "@/lib/guide/registry";
+import { getGuideTopicFaqItems } from "@/lib/guide/topic-faq";
 import { getAllTopicArticleSlugs, getGuideTopicPath, type GuideTopic } from "@/lib/guide/topics";
+import { ogImageAltForPath, ogImageForPath } from "@/lib/og";
 import { publisherOrganization } from "@/lib/publisher";
 import {
   defaultDescription,
   loanCalculatorDescription,
+  ogImageHeight,
+  ogImageWidth,
   SITE_DOMAIN,
   SITE_NAME,
   SITE_URL,
@@ -153,6 +157,10 @@ export function GuideArticleJsonLd({
           url: SITE_URL,
           authorId: organizationId,
           publisherId: organizationId,
+          imageUrl: `${SITE_URL}${ogImageForPath(path)}`,
+          imageWidth: ogImageWidth,
+          imageHeight: ogImageHeight,
+          imageAlt: ogImageAltForPath(path, title),
         }),
         buildBreadcrumbListSchema({ url: SITE_URL, items: breadcrumbs }),
       ]}
@@ -179,6 +187,7 @@ export function GuideTopicHubJsonLd({ topic }: { topic: GuideTopic }) {
       name: article.title,
       url: `${SITE_URL}/guide/${article.slug}`,
     }));
+  const faqItems = getGuideTopicFaqItems(topic.id);
 
   return (
     <MultiJsonLd
@@ -189,6 +198,7 @@ export function GuideTopicHubJsonLd({ topic }: { topic: GuideTopic }) {
           url: `${SITE_URL}${path}`,
           items: listItems,
         }),
+        ...(faqItems.length > 0 ? [buildFAQPageSchema({ url: SITE_URL, items: faqItems })] : []),
         buildBreadcrumbListSchema({ url: SITE_URL, items: breadcrumbs }),
       ]}
     />

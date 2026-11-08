@@ -1088,3 +1088,10 @@ Phase 4 daechulija.com 301 완료
         - S-4 IndexNow는 Cloudflare Crawler Hints로 처리(코드 키 파일 없음). 구글은 IndexNow 미지원 → 서치콘솔 홈 색인 요청
         - C-1: 소개 페이지에 농지 취득세·국민주택채권 목록·링크 추가. 6~7월 가이드 18편 수정일 11/8. 주담대 금리 11월 스냅샷, 1주택 종부세·양도세 중과는 현행/세제개편안 구분. 농지 계산기 CTA 3편
         - 남은 작업: keywords 메타 제거, 배포 후 사이트맵·홈 색인 재확인, 12월 말 디딤돌 면제·자경 농지 감면
+
+1803 - SEO 후속(keywords 메타 제거, Article OG 이미지, 주제 허브 FAQPage). 리포트 파일은 수정하지 않음
+        - keywords 메타: layout에서 제거(검색엔진 미사용·네이버 감점 요인)
+        - Article JSON-LD: OG 이미지(ImageObject url·width·height·caption) 추가
+        - FAQPage: 가이드 92편이 아니라 주제 허브 11개만. 허브 화면에 FAQ 3문항 + JSON-LD(보이는 질문·답과 동일). 대표 가이드 URL에는 미적용
+        - Organization sameAs: 팔로워 없는 X·방문자 없는 네이버 블로그·배포용 GitHub는 효과 없어 미적용
+        - 남은 작업: 배포 후 사이트맵·홈 색인 재확인, 12월 말 디딤돌 면제·자경 농지 감면

@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, Calculator } from "lucide-react";
 import { BreadcrumbNav } from "@/components/breadcrumb-nav";
+import { FaqSection } from "@/components/faq-section";
 import { GuideArticleCard } from "@/components/guide-article-card";
 import { GuideTopicArticleSections } from "@/components/guide-topic-article-sections";
 import { getCalculatorToolTitle } from "@/lib/calculators";
 import { getGuideArticle } from "@/lib/guide/registry";
+import { getGuideTopicFaqItems } from "@/lib/guide/topic-faq";
 import { getGuideTopicPath, guideTopics, type GuideTopic } from "@/lib/guide/topics";
 
 function getCalculatorTitle(href: string): string {
@@ -14,6 +16,7 @@ function getCalculatorTitle(href: string): string {
 export function GuideTopicHubContent({ topic }: { topic: GuideTopic }) {
   const pillar = getGuideArticle(topic.pillarSlug);
   const pageTitle = `${topic.label} 가이드`;
+  const faqItems = getGuideTopicFaqItems(topic.id);
 
   const breadcrumbs = [
     { name: "홈", href: "/" },
@@ -84,6 +87,17 @@ export function GuideTopicHubContent({ topic }: { topic: GuideTopic }) {
       <div className="mt-10">
         <GuideTopicArticleSections topic={topic} articlesTitle={`${topic.label} 글 목록`} />
       </div>
+
+      {faqItems.length > 0 ? (
+        <section id="faq" className="scroll-mt-24 mt-14 border-t pt-12" aria-labelledby="topic-faq-title">
+          <h2 id="topic-faq-title" className="text-2xl font-bold tracking-tight sm:text-3xl">
+            자주 묻는 질문
+          </h2>
+          <div className="mt-8">
+            <FaqSection items={faqItems} />
+          </div>
+        </section>
+      ) : null}
 
       <p className="mt-10">
         <Link href="/guide" className="text-primary inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline">

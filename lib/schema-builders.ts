@@ -19,6 +19,10 @@ export type ArticleSchemaInput = {
   updatedLabel: string;
   datePublishedIso?: string;
   dateModifiedIso?: string;
+  imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
 };
 
 export function buildWebSiteSchema(input: {
@@ -107,6 +111,17 @@ export function buildArticleSchema(input: ArticleSchemaInput & { url: string; au
     inLanguage: "ko-KR",
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
+    ...(input.imageUrl
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: input.imageUrl,
+            ...(input.imageWidth ? { width: input.imageWidth } : {}),
+            ...(input.imageHeight ? { height: input.imageHeight } : {}),
+            ...(input.imageAlt ? { caption: input.imageAlt } : {}),
+          },
+        }
+      : {}),
     author: { "@id": input.authorId },
     publisher: { "@id": input.publisherId },
   };
