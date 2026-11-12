@@ -1115,3 +1115,9 @@ Phase 4 daechulija.com 301 완료
         - v1 미포함: 분양권 입주권·구세율·전매제한, 상속 1가구1주택 특례 0.8%, 은행별 비상금 페이지
         - 공통: calculator-apps·calculators·sitemap·og·generate-og·footer·about·topics·calculator-guides 반영, tsc 통과
         - 남은 작업: 배포 후 사이트맵·색인, 스핀오프 우선순위 재평가, 특례·입주권 등은 수요 보고 v2
+
+1815 - 1in200m 검사 후속(첫 화면 용량·글자 대비). 의견함·매니페스트·공유 추적은 미착수
+        - 광고: adsbygoogle.js를 첫 로딩에서 빼고, 스크롤·클릭·키 입력 또는 로드 후 4초에 로드(components/deferred-adsense.tsx)
+        - 글꼴: Noto Sans KR 400·500·700 → 400·700. font-medium은 400으로 보이고, 제목(semibold)은 700 유지
+        - 글자색: 밝은 화면 보조 글자 --muted-foreground oklch(0.556) → 0.45(#555). 흰 배경 약 7.5:1, 흐린 패널 약 6.8:1
+        - 확인: 홈 390px에서 제목·대출 이자 계산기 버튼 표시. 초기 HTML에는 광고 스크립트 없음, 지연 후 로드 확인

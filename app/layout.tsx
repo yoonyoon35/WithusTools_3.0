@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { DeferredAdSense } from "@/components/deferred-adsense";
 import { KakaoSdkLoader } from "@/components/kakao-sdk-loader";
 import { SiteJsonLd } from "@/components/json-ld";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -27,7 +28,7 @@ const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
 
 const notoSans = Noto_Sans_KR({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "700"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -97,15 +98,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className={`${notoSans.variable} font-sans antialiased`}>
-        {googleAdsenseClient ? (
-          <Script
-            id="google-adsense"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${googleAdsenseClient}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        ) : null}
+        {googleAdsenseClient ? <DeferredAdSense client={googleAdsenseClient} /> : null}
         {googleAnalyticsId ? (
           <>
             <Script
