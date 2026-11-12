@@ -14,6 +14,13 @@ export const calculatorTools: readonly CalculatorTool[] = [
     title: "대출 이자 계산기",
     description: "원리금균등·원금균등·만기일시상환 방식별 월 납입액과 총 이자를 비교합니다. 비상금대출·마이너스통장 월 이자 어림에도 쓸 수 있습니다.",
     featured: true,
+    subLinks: [
+      {
+        href: "/emergency-loan-interest-calculator",
+        title: "비상금대출 이자 계산기",
+        label: "비상금·마통 일할 이자 바로가기",
+      },
+    ],
   },
   {
     href: "/dsr-calculator",
@@ -35,13 +42,40 @@ export const calculatorTools: readonly CalculatorTool[] = [
     title: "취득세 계산기",
     description: "주택·주택 외 자산 구분과 취득 유형별 취득세·부가세를 계산합니다.",
     subLinks: [
+      {
+        href: "/first-home-acquisition-tax-calculator",
+        title: "생애최초 취득세 감면 계산기",
+        label: "생애최초 감면 바로가기",
+      },
       { href: "/farmland-acquisition-tax-calculator", title: "농지 취득세 계산기", label: "농지 취득세 바로가기" },
+      {
+        href: "/officetel-acquisition-tax-calculator",
+        title: "오피스텔 취득세 계산기",
+        label: "오피스텔 취득세 바로가기",
+      },
+      {
+        href: "/inherited-housing-acquisition-tax-calculator",
+        title: "상속 주택 취득세 계산기",
+        label: "상속 주택 취득세 바로가기",
+      },
     ],
   },
   {
     href: "/brokerage-fee-calculator",
     title: "중개수수료 계산기",
     description: "매매·전세·월세 거래 유형별 중개수수료 상한액을 계산합니다.",
+    subLinks: [
+      {
+        href: "/jeonse-brokerage-fee-calculator",
+        title: "전세 중개수수료 계산기",
+        label: "전세 중개수수료 바로가기",
+      },
+      {
+        href: "/wolse-brokerage-fee-calculator",
+        title: "월세 중개수수료 계산기",
+        label: "월세 중개수수료 바로가기",
+      },
+    ],
   },
   {
     href: "/prepayment-fee-calculator",
@@ -62,6 +96,13 @@ export const calculatorTools: readonly CalculatorTool[] = [
     href: "/capital-gains-tax-calculator",
     title: "양도소득세 계산기",
     description: "양도차익·1세대1주택 비과세·장기보유특별공제·다주택 중과를 반영해 양도세·지방소득세를 산출합니다.",
+    subLinks: [
+      {
+        href: "/presale-capital-gains-tax-calculator",
+        title: "분양권 양도세 계산기",
+        label: "분양권 양도세 바로가기",
+      },
+    ],
   },
   {
     href: "/comprehensive-income-tax-calculator",

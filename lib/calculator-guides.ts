@@ -14,6 +14,13 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "kakao-emergency-loan-interest-guide",
     "loan-refinancing-guide",
   ],
+  "/emergency-loan-interest-calculator": [
+    "kakao-emergency-loan-interest-guide",
+    "equal-payment-vs-equal-principal",
+    "dsr-40-mortgage-limit",
+    "credit-loan-vs-mortgage-loan",
+    "loan-refinancing-guide",
+  ],
   "/dsr-calculator": [
     "dsr-40-mortgage-limit",
     "stress-dsr-explained",
@@ -51,17 +58,42 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "second-home-acquisition-tax-exception-guide",
     "first-home-acquisition-tax-relief-guide",
     "acquisition-tax-relief-programs-2026-guide",
+    "farmland-acquisition-tax-guide",
     "officetel-residential-vs-business-tax-guide",
     "new-construction-apartment-acquisition-tax-guide",
     "home-purchase-additional-costs-guide",
     "acquisition-tax-deadline-and-penalty-guide",
   ],
   "/farmland-acquisition-tax-calculator": [
-    "acquisition-tax-rates-2026-guide",
+    "farmland-acquisition-tax-guide",
     "local-education-rural-special-tax-acquisition-2026-guide",
     "acquisition-tax-deadline-and-penalty-guide",
     "gift-tax-overview-guide",
     "inheritance-tax-overview-guide",
+    "inherited-housing-acquisition-tax-2026-guide",
+  ],
+  "/first-home-acquisition-tax-calculator": [
+    "first-home-acquisition-tax-relief-guide",
+    "acquisition-tax-relief-programs-2026-guide",
+    "acquisition-tax-rates-2026-guide",
+    "new-construction-apartment-acquisition-tax-guide",
+    "first-time-homebuyer-benefits-2026",
+    "acquisition-tax-deadline-and-penalty-guide",
+  ],
+  "/officetel-acquisition-tax-calculator": [
+    "officetel-residential-vs-business-tax-guide",
+    "acquisition-tax-rates-2026-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+    "home-purchase-additional-costs-guide",
+  ],
+  "/inherited-housing-acquisition-tax-calculator": [
+    "inherited-housing-acquisition-tax-2026-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+    "inheritance-tax-overview-guide",
+    "acquisition-tax-rates-2026-guide",
+    "farmland-acquisition-tax-guide",
   ],
   "/brokerage-fee-calculator": [
     "brokerage-fee-rates-2026-guide",
@@ -74,6 +106,22 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "brokerage-fee-payment-timing-guide",
     "brokerage-fee-income-deduction-guide",
     "auction-vs-brokered-sale-cost-guide",
+  ],
+  "/jeonse-brokerage-fee-calculator": [
+    "jeonse-brokerage-fee-calculation-2026-guide",
+    "jeonse-renewal-brokerage-fee-guide",
+    "brokerage-fee-rates-2026-guide",
+    "wolse-brokerage-fee-calculation-2026-guide",
+    "brokerage-fee-vat-separate-guide",
+    "brokerage-fee-payment-timing-guide",
+  ],
+  "/wolse-brokerage-fee-calculator": [
+    "wolse-brokerage-fee-calculation-2026-guide",
+    "brokerage-fee-rates-2026-guide",
+    "jeonse-brokerage-fee-calculation-2026-guide",
+    "brokerage-fee-vat-separate-guide",
+    "brokerage-fee-payment-timing-guide",
+    "jeonse-renewal-brokerage-fee-guide",
   ],
   "/prepayment-fee-calculator": [
     "prepayment-fee-calculation",
@@ -108,6 +156,14 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
     "non-resident-one-home-tax-checklist-2026-guide",
     "regulated-area-designation-effects-2026-guide",
   ],
+  "/presale-capital-gains-tax-calculator": [
+    "presale-right-capital-gains-tax-guide",
+    "occupancy-right-capital-gains-tax-guide",
+    "capital-gains-tax-overview-guide",
+    "capital-gains-tax-calculation-2026-guide",
+    "capital-gains-surcharge-revival-2026-guide",
+    "presale-right-resale-brokerage-fee-guide",
+  ],
   "/comprehensive-income-tax-calculator": [
     "comprehensive-income-tax-overview-guide",
     "business-expense-ratio-application-guide",
@@ -132,7 +188,8 @@ export const calculatorGuideSlugs: Record<string, readonly string[]> = {
 
 /** 계산기 페이지 하단에 함께 노출할 다른 계산기 */
 export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
-  "/loan-calculator": ["/dsr-calculator"],
+  "/loan-calculator": ["/emergency-loan-interest-calculator", "/dsr-calculator"],
+  "/emergency-loan-interest-calculator": ["/loan-calculator", "/dsr-calculator"],
   "/dsr-calculator": ["/ltv-calculator", "/dti-calculator"],
   "/dti-calculator": ["/dsr-calculator", "/ltv-calculator", "/loan-calculator"],
   "/ltv-calculator": ["/dsr-calculator", "/dti-calculator", "/loan-calculator"],
@@ -140,16 +197,49 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
   "/national-housing-bond-calculator": ["/acquisition-tax-calculator", "/brokerage-fee-calculator"],
   "/inheritance-tax-calculator": [
     "/acquisition-tax-calculator",
+    "/inherited-housing-acquisition-tax-calculator",
     "/capital-gains-tax-calculator",
     "/comprehensive-property-tax-calculator",
   ],
   "/acquisition-tax-calculator": [
+    "/first-home-acquisition-tax-calculator",
     "/farmland-acquisition-tax-calculator",
+    "/officetel-acquisition-tax-calculator",
+    "/inherited-housing-acquisition-tax-calculator",
     "/inheritance-tax-calculator",
     "/national-housing-bond-calculator",
   ],
+  "/first-home-acquisition-tax-calculator": ["/acquisition-tax-calculator", "/ltv-calculator"],
   "/farmland-acquisition-tax-calculator": ["/acquisition-tax-calculator", "/inheritance-tax-calculator"],
-  "/capital-gains-tax-calculator": ["/inheritance-tax-calculator"],
+  "/officetel-acquisition-tax-calculator": [
+    "/acquisition-tax-calculator",
+    "/brokerage-fee-calculator",
+  ],
+  "/inherited-housing-acquisition-tax-calculator": [
+    "/acquisition-tax-calculator",
+    "/inheritance-tax-calculator",
+  ],
+  "/brokerage-fee-calculator": [
+    "/jeonse-brokerage-fee-calculator",
+    "/wolse-brokerage-fee-calculator",
+    "/acquisition-tax-calculator",
+  ],
+  "/jeonse-brokerage-fee-calculator": [
+    "/brokerage-fee-calculator",
+    "/wolse-brokerage-fee-calculator",
+  ],
+  "/wolse-brokerage-fee-calculator": [
+    "/brokerage-fee-calculator",
+    "/jeonse-brokerage-fee-calculator",
+  ],
+  "/capital-gains-tax-calculator": [
+    "/presale-capital-gains-tax-calculator",
+    "/inheritance-tax-calculator",
+  ],
+  "/presale-capital-gains-tax-calculator": [
+    "/capital-gains-tax-calculator",
+    "/brokerage-fee-calculator",
+  ],
   "/comprehensive-income-tax-calculator": [
     "/capital-gains-tax-calculator",
     "/comprehensive-property-tax-calculator",
@@ -160,9 +250,66 @@ export const calculatorRelatedCalculators: Record<string, readonly string[]> = {
 /** 가이드 CTA에서 특정 글에만 노출할 계산기(키: 계산기 경로, 값: 허용 글 슬러그) */
 const guideCalculatorRestrictions: Record<string, readonly string[]> = {
   "/farmland-acquisition-tax-calculator": [
+    "farmland-acquisition-tax-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+    "gift-tax-overview-guide",
+    "inheritance-tax-overview-guide",
+    "inherited-housing-acquisition-tax-2026-guide",
+  ],
+  "/first-home-acquisition-tax-calculator": [
+    "first-home-acquisition-tax-relief-guide",
+    "acquisition-tax-relief-programs-2026-guide",
+    "acquisition-tax-rates-2026-guide",
+    "new-construction-apartment-acquisition-tax-guide",
+    "first-time-homebuyer-benefits-2026",
+    "acquisition-tax-deadline-and-penalty-guide",
+  ],
+  "/officetel-acquisition-tax-calculator": [
+    "officetel-residential-vs-business-tax-guide",
     "acquisition-tax-rates-2026-guide",
     "local-education-rural-special-tax-acquisition-2026-guide",
     "acquisition-tax-deadline-and-penalty-guide",
+    "home-purchase-additional-costs-guide",
+  ],
+  "/inherited-housing-acquisition-tax-calculator": [
+    "inherited-housing-acquisition-tax-2026-guide",
+    "local-education-rural-special-tax-acquisition-2026-guide",
+    "acquisition-tax-deadline-and-penalty-guide",
+    "inheritance-tax-overview-guide",
+    "acquisition-tax-rates-2026-guide",
+    "farmland-acquisition-tax-guide",
+  ],
+  "/jeonse-brokerage-fee-calculator": [
+    "jeonse-brokerage-fee-calculation-2026-guide",
+    "jeonse-renewal-brokerage-fee-guide",
+    "brokerage-fee-rates-2026-guide",
+    "wolse-brokerage-fee-calculation-2026-guide",
+    "brokerage-fee-vat-separate-guide",
+    "brokerage-fee-payment-timing-guide",
+  ],
+  "/wolse-brokerage-fee-calculator": [
+    "wolse-brokerage-fee-calculation-2026-guide",
+    "brokerage-fee-rates-2026-guide",
+    "jeonse-brokerage-fee-calculation-2026-guide",
+    "brokerage-fee-vat-separate-guide",
+    "brokerage-fee-payment-timing-guide",
+    "jeonse-renewal-brokerage-fee-guide",
+  ],
+  "/presale-capital-gains-tax-calculator": [
+    "presale-right-capital-gains-tax-guide",
+    "occupancy-right-capital-gains-tax-guide",
+    "capital-gains-tax-overview-guide",
+    "capital-gains-tax-calculation-2026-guide",
+    "capital-gains-surcharge-revival-2026-guide",
+    "presale-right-resale-brokerage-fee-guide",
+  ],
+  "/emergency-loan-interest-calculator": [
+    "kakao-emergency-loan-interest-guide",
+    "equal-payment-vs-equal-principal",
+    "dsr-40-mortgage-limit",
+    "credit-loan-vs-mortgage-loan",
+    "loan-refinancing-guide",
   ],
 };
 

@@ -19,10 +19,13 @@ export function PresaleRightCapitalGainsTaxGuideBody() {
           <strong>주택분양권(분양권)</strong>을 전매·양도할 때는 일반 주택과 세율·공제 규칙이 다릅니다. 국세청
           「양도소득세 개요」·소득세법 제104조를 바탕으로 60%·70% 단일세율, 주택 수 산정, 계산 예시를
           정리했습니다.{" "}
-          <Link href="/capital-gains-tax-calculator" className="text-primary underline-offset-4 hover:underline">
-            양도소득세 계산기
+          <Link
+            href="/presale-capital-gains-tax-calculator"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            분양권 양도세 계산기
           </Link>
-          에서 자산 구분을 「분양권」으로 선택해 시뮬레이션할 수 있습니다.
+          에서 바로 시뮬레이션할 수 있습니다.
         </p>
       </section>
 
@@ -497,10 +500,18 @@ export function PresaleRightCapitalGainsTaxGuideBody() {
         </p>
         <p>
           <Link
+            href="/presale-capital-gains-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            → 분양권 양도세 계산기
+          </Link>
+        </p>
+        <p>
+          <Link
             href="/capital-gains-tax-calculator"
             className="text-primary font-medium underline-offset-4 hover:underline"
           >
-            → 양도소득세 계산기
+            → 양도소득세 계산기(주택·입주권)
           </Link>
         </p>
       </aside>

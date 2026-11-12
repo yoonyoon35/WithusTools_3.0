@@ -22,14 +22,34 @@ export default function AcquisitionTaxCalculatorPage() {
       title={pageTitle}
       intro={
         <>
-          농지 취득세와 농어촌특별세(농특세)도 계산합니다. 농지만 따로 계산하며 자경 감면 요건과 농지취득자격증명까지
-          보려면{" "}
+          생애최초 감면액만 따로 보려면{" "}
+          <Link
+            href="/first-home-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            생애최초 취득세 감면 계산기
+          </Link>
+          를, 농지만 따로 계산하려면{" "}
           <Link href="/farmland-acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             농지 취득세 계산기
           </Link>
-          를 이용하세요. 자산 구분(주택, 주택 외, 농지)과 취득 유형별 기준을 하단
-          기준표·가이드로 함께 제공합니다. 신축·분양 아파트 등 금액별 예시는 관련 가이드에서 이어서 볼 수 있습니다. 계산
-          결과는 참고용이며 실제 신고 세액은 관할 지자체 및 세무전문가 확인이 필요합니다.
+          를, 오피스텔만 따로 계산하려면{" "}
+          <Link
+            href="/officetel-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            오피스텔 취득세 계산기
+          </Link>
+          를, 상속 주택만 따로 계산하려면{" "}
+          <Link
+            href="/inherited-housing-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            상속 주택 취득세 계산기
+          </Link>
+          를 이용하세요. 자산 구분(주택, 주택 외, 농지)과 취득 유형별 기준을 하단 기준표·가이드로 함께 제공합니다. 신축·분양
+          아파트 등 금액별 예시는 관련 가이드에서 이어서 볼 수 있습니다. 계산 결과는 참고용이며 실제 신고 세액은 관할
+          지자체 및 세무전문가 확인이 필요합니다.
         </>
       }
       faqItems={acquisitionTaxCalculatorFaqItems}

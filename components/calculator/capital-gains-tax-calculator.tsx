@@ -1,6 +1,10 @@
 "use client";
 
-import { CapitalGainsTaxCalculatorReference } from "@/components/calculator/reference";
+import {
+  CapitalGainsTaxCalculatorReference,
+  PresaleCapitalGainsTaxCalculatorReference,
+} from "@/components/calculator/reference";
+import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -69,8 +73,16 @@ function todayIsoDate(): string {
   return `${y}-${m}-${d}`;
 }
 
-export function CapitalGainsTaxCalculator() {
-  const [assetType, setAssetType] = React.useState<AssetType>("housing");
+type CapitalGainsTaxCalculatorProps = {
+  /**
+   * `presale`: 분양권 전용 — 자산 구분 고정, 60%/70% 세율 UI 단순화.
+   */
+  variant?: "general" | "presale";
+};
+
+export function CapitalGainsTaxCalculator({ variant = "general" }: CapitalGainsTaxCalculatorProps) {
+  const isPresaleVariant = variant === "presale";
+  const [assetType, setAssetType] = React.useState<AssetType>(isPresaleVariant ? "presale" : "housing");
   const [transferPriceDisplay, setTransferPriceDisplay] = React.useState("");
   const [acquisitionCostDisplay, setAcquisitionCostDisplay] = React.useState("");
   const [necessaryExpensesDisplay, setNecessaryExpensesDisplay] = React.useState("");
@@ -79,16 +91,25 @@ export function CapitalGainsTaxCalculator() {
   const [residenceStartDate, setResidenceStartDate] = React.useState("");
   const [houseCount, setHouseCount] = React.useState<HouseCount>("1");
   const [isRegulatedArea, setIsRegulatedArea] = React.useState(false);
-  const [isOneHouseholdOneHome, setIsOneHouseholdOneHome] = React.useState(true);
+  const [isOneHouseholdOneHome, setIsOneHouseholdOneHome] = React.useState(!isPresaleVariant);
   const [isRegistered, setIsRegistered] = React.useState(true);
   const [managementApprovalDate, setManagementApprovalDate] = React.useState("");
   const [memberRightsValueDisplay, setMemberRightsValueDisplay] = React.useState("");
   const [result, setResult] = React.useState<CapitalGainsTaxResult | null>(null);
 
+  React.useEffect(() => {
+    if (!isPresaleVariant) return;
+    setAssetType("presale");
+    setIsOneHouseholdOneHome(false);
+    setIsRegistered(true);
+  }, [isPresaleVariant]);
+
   const showOneHomeInputs =
-    assetType === "housing" || assetType === "presale" || assetType === "occupancy-right";
+    !isPresaleVariant &&
+    (assetType === "housing" || assetType === "presale" || assetType === "occupancy-right");
   const showResidenceInputs = showOneHomeInputs && isOneHouseholdOneHome;
   const showOccupancyInputs = assetType === "occupancy-right";
+  const showHouseCountInputs = !isPresaleVariant;
 
   const holdingPreview = React.useMemo(
     () => (acquisitionDate && transferDate ? calcHoldingPeriodFromDates(acquisitionDate, transferDate) : null),
@@ -151,26 +172,63 @@ export function CapitalGainsTaxCalculator() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-      <Card id="capital-gains-tax-calculator" className="scroll-mt-24">
+      <Card
+        id={isPresaleVariant ? "presale-capital-gains-tax-calculator" : "capital-gains-tax-calculator"}
+        className="scroll-mt-24"
+      >
         <CardHeader>
           <CardTitle className="text-lg">입력</CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
-          <div className="space-y-2">
-            <Label htmlFor="cgt-asset-type">자산 구분</Label>
-            <select
-              id="cgt-asset-type"
-              className="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-              value={assetType}
-              onChange={(e) => setAssetType(e.target.value as AssetType)}
-            >
-              <option value="housing">주택(주택부수토지 포함)</option>
-              <option value="presale">분양권(주택분양권)</option>
-              <option value="occupancy-right">조합원입주권</option>
-              <option value="non-housing">주택 외 부동산(상가·토지 등)</option>
-              <option value="non-business-land">비사업용 토지</option>
-            </select>
-          </div>
+          {isPresaleVariant ? (
+            <p className="text-muted-foreground rounded-md border bg-muted/30 px-3 py-2 text-xs leading-relaxed">
+              주택분양권 양도는 보유 1년 미만 <strong className="text-foreground">70%</strong>, 1년 이상{" "}
+              <strong className="text-foreground">60%</strong> 전용세율입니다. 장특공·1세대1주택 비과세·다주택 중과는
+              적용되지 않습니다. 세율·주택 수 안내는{" "}
+              <Link
+                href="/guide/presale-right-capital-gains-tax-guide"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                분양권 양도소득세 가이드
+              </Link>
+              를, 주택·입주권은{" "}
+              <Link
+                href="/capital-gains-tax-calculator"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                양도소득세 계산기
+              </Link>
+              를 이용하세요.
+            </p>
+          ) : (
+            <div className="space-y-2">
+              <Label htmlFor="cgt-asset-type">자산 구분</Label>
+              <select
+                id="cgt-asset-type"
+                className="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                value={assetType}
+                onChange={(e) => setAssetType(e.target.value as AssetType)}
+              >
+                <option value="housing">주택(주택부수토지 포함)</option>
+                <option value="presale">분양권(주택분양권)</option>
+                <option value="occupancy-right">조합원입주권</option>
+                <option value="non-housing">주택 외 부동산(상가·토지 등)</option>
+                <option value="non-business-land">비사업용 토지</option>
+              </select>
+              {assetType === "presale" ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  분양권만 따로 계산하려면{" "}
+                  <Link
+                    href="/presale-capital-gains-tax-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    분양권 양도세 계산기
+                  </Link>
+                  를 이용하세요.
+                </p>
+              ) : null}
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="cgt-transfer-price">양도가액(실지거래가, 원)</Label>
@@ -304,11 +362,15 @@ export function CapitalGainsTaxCalculator() {
                 <p className="text-foreground text-xs font-medium">입력 날짜 기준 자동 산출</p>
                 <p className="text-muted-foreground text-xs leading-relaxed">
                   보유: <strong className="text-foreground">{holdingPreview.label}</strong>
-                  {holdingPreview.meetsMinimumYears(2)
-                    ? " · 2년 이상 보유"
-                    : holdingPreview.isLessThanYears(1)
-                      ? " · 1년 미만(단기세율)"
-                      : " · 1~2년(단기세율)"}
+                  {assetType === "presale"
+                    ? holdingPreview.isLessThanYears(1)
+                      ? " · 분양권 세율 70%"
+                      : " · 분양권 세율 60%"
+                    : holdingPreview.meetsMinimumYears(2)
+                      ? " · 2년 이상 보유"
+                      : holdingPreview.isLessThanYears(1)
+                        ? " · 1년 미만(단기세율)"
+                        : " · 1~2년(단기세율)"}
                 </p>
                 {formerHousingPreview && showOccupancyInputs && (
                   <p className="text-muted-foreground text-xs leading-relaxed">
@@ -351,58 +413,62 @@ export function CapitalGainsTaxCalculator() {
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="cgt-house-count">양도일 현재 세대 주택 수</Label>
-            <select
-              id="cgt-house-count"
-              className="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-              value={houseCount}
-              onChange={(e) => setHouseCount(e.target.value as HouseCount)}
-            >
-              <option value="1">1주택</option>
-              <option value="2">2주택</option>
-              <option value="3+">3주택 이상</option>
-            </select>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="cgt-regulated-area"
-                checked={isRegulatedArea}
-                onCheckedChange={(v) => setIsRegulatedArea(v === true)}
-              />
-              <Label htmlFor="cgt-regulated-area" className="cursor-pointer font-normal">
-                조정대상지역 소재
-              </Label>
+          {showHouseCountInputs ? (
+            <div className="space-y-2">
+              <Label htmlFor="cgt-house-count">양도일 현재 세대 주택 수</Label>
+              <select
+                id="cgt-house-count"
+                className="border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                value={houseCount}
+                onChange={(e) => setHouseCount(e.target.value as HouseCount)}
+              >
+                <option value="1">1주택</option>
+                <option value="2">2주택</option>
+                <option value="3+">3주택 이상</option>
+              </select>
             </div>
+          ) : null}
 
-            {showOneHomeInputs && houseCount === "1" && (
+          {isPresaleVariant ? null : (
+            <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Checkbox
-                  id="cgt-one-home"
-                  checked={isOneHouseholdOneHome}
-                  onCheckedChange={(v) => setIsOneHouseholdOneHome(v === true)}
+                  id="cgt-regulated-area"
+                  checked={isRegulatedArea}
+                  onCheckedChange={(v) => setIsRegulatedArea(v === true)}
                 />
-                <Label htmlFor="cgt-one-home" className="cursor-pointer font-normal">
-                  1세대 1주택 해당
+                <Label htmlFor="cgt-regulated-area" className="cursor-pointer font-normal">
+                  조정대상지역 소재
                 </Label>
               </div>
-            )}
 
-            {assetType !== "presale" && assetType !== "occupancy-right" && (
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  id="cgt-registered"
-                  checked={isRegistered}
-                  onCheckedChange={(v) => setIsRegistered(v === true)}
-                />
-                <Label htmlFor="cgt-registered" className="cursor-pointer font-normal">
-                  취득·양도 모두 등기 완료
-                </Label>
-              </div>
-            )}
-          </div>
+              {showOneHomeInputs && houseCount === "1" && (
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="cgt-one-home"
+                    checked={isOneHouseholdOneHome}
+                    onCheckedChange={(v) => setIsOneHouseholdOneHome(v === true)}
+                  />
+                  <Label htmlFor="cgt-one-home" className="cursor-pointer font-normal">
+                    1세대 1주택 해당
+                  </Label>
+                </div>
+              )}
+
+              {assetType !== "presale" && assetType !== "occupancy-right" && (
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="cgt-registered"
+                    checked={isRegistered}
+                    onCheckedChange={(v) => setIsRegistered(v === true)}
+                  />
+                  <Label htmlFor="cgt-registered" className="cursor-pointer font-normal">
+                    취득·양도 모두 등기 완료
+                  </Label>
+                </div>
+              )}
+            </div>
+          )}
 
           <Button type="button" className="w-full" onClick={performCalculation} disabled={!hasRequiredInput}>
             계산하기
@@ -578,7 +644,11 @@ export function CapitalGainsTaxCalculator() {
         </CardContent>
       </Card>
 
-      <CapitalGainsTaxCalculatorReference />
+      {isPresaleVariant ? (
+        <PresaleCapitalGainsTaxCalculatorReference />
+      ) : (
+        <CapitalGainsTaxCalculatorReference />
+      )}
     </div>
   );
 }

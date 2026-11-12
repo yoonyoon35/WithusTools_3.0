@@ -73,7 +73,7 @@ export const guideTopics: readonly GuideTopic[] = [
     label: "상환·금리",
     description: "원리금균등·원금균등, 거치기간, 고정·변동 금리, 중도상환, 비상금대출 이자",
     pillarSlug: "equal-payment-vs-equal-principal",
-    calculatorHrefs: ["/loan-calculator", "/prepayment-fee-calculator"],
+    calculatorHrefs: ["/loan-calculator", "/emergency-loan-interest-calculator", "/prepayment-fee-calculator"],
     slugs: [
       "equal-payment-vs-equal-principal",
       "kakao-emergency-loan-interest-guide",
@@ -125,7 +125,13 @@ export const guideTopics: readonly GuideTopic[] = [
     label: "취득세",
     description: "세율·감면·중과, 지방교육세·농어촌특별세, 납부 기한",
     pillarSlug: "acquisition-tax-rates-2026-guide",
-    calculatorHrefs: ["/acquisition-tax-calculator", "/farmland-acquisition-tax-calculator"],
+    calculatorHrefs: [
+      "/acquisition-tax-calculator",
+      "/first-home-acquisition-tax-calculator",
+      "/farmland-acquisition-tax-calculator",
+      "/officetel-acquisition-tax-calculator",
+      "/inherited-housing-acquisition-tax-calculator",
+    ],
     slugs: [
       "acquisition-tax-rates-2026-guide",
       "new-construction-apartment-acquisition-tax-guide",
@@ -135,6 +141,7 @@ export const guideTopics: readonly GuideTopic[] = [
       "second-home-acquisition-tax-exception-guide",
       "temporary-two-home-acquisition-tax-exception-guide",
       "inherited-housing-acquisition-tax-2026-guide",
+      "farmland-acquisition-tax-guide",
       "local-education-rural-special-tax-acquisition-2026-guide",
       "officetel-residential-vs-business-tax-guide",
       "acquisition-tax-deadline-and-penalty-guide",
@@ -145,7 +152,7 @@ export const guideTopics: readonly GuideTopic[] = [
     label: "양도소득세",
     description: "양도차익·1세대1주택 비과세·장기보유특별공제·다주택 중과·신고",
     pillarSlug: "capital-gains-tax-overview-guide",
-    calculatorHrefs: ["/capital-gains-tax-calculator"],
+    calculatorHrefs: ["/capital-gains-tax-calculator", "/presale-capital-gains-tax-calculator"],
     slugs: [
       "capital-gains-tax-overview-guide",
       "one-household-one-home-capital-gains-tax-guide",
@@ -207,7 +214,11 @@ export const guideTopics: readonly GuideTopic[] = [
     label: "중개수수료·거래",
     description: "중개수수료 요율, 전·월세, 직거래, 분양권·재계약",
     pillarSlug: "brokerage-fee-rates-2026-guide",
-    calculatorHrefs: ["/brokerage-fee-calculator"],
+    calculatorHrefs: [
+      "/brokerage-fee-calculator",
+      "/jeonse-brokerage-fee-calculator",
+      "/wolse-brokerage-fee-calculator",
+    ],
     slugs: [
       "brokerage-fee-rates-2026-guide",
       "brokerage-fee-vat-separate-guide",

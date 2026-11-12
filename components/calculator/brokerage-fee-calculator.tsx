@@ -1,6 +1,11 @@
 "use client";
 
-import { BrokerageFeeCalculatorReference } from "@/components/calculator/reference";
+import {
+  BrokerageFeeCalculatorReference,
+  JeonseBrokerageFeeCalculatorReference,
+  WolseBrokerageFeeCalculatorReference,
+} from "@/components/calculator/reference";
+import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,9 +15,11 @@ import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
 
 type PropertyKind = "house" | "officetel" | "other";
+/** 내부 요율용: 매매 vs 임대차 */
 type DealKind = "sale" | "lease";
+/** UI 거래 유형: 사용자가 고르기 쉬운 매매·전세·월세 */
+type TransactionType = "sale" | "jeonse" | "wolse";
 type OfficetelKind = "residentialSmall" | "other";
-type HouseAmountMode = "direct" | "depositMonthly";
 
 interface BracketResult {
   rate: number;
@@ -46,6 +53,10 @@ function applyCap(raw: number, cap: number | null): number {
   return Math.min(raw, cap);
 }
 
+function transactionToDealKind(transactionType: TransactionType): DealKind {
+  return transactionType === "sale" ? "sale" : "lease";
+}
+
 /** 주택 매매·교환 — 서울시 고시 요율 (2021.12.30 기준) */
 function maxFeeHouseSale(amount: number): BracketResult {
   let rate: number;
@@ -74,7 +85,7 @@ function maxFeeHouseSale(amount: number): BracketResult {
   return { rate, cap, rawFee, maxFee };
 }
 
-/** 주택 임대차 등 — 서울시 고시 요율 */
+/** 주택 전세·월세(임대차) — 서울시 고시 요율 */
 function maxFeeHouseLease(amount: number): BracketResult {
   let rate: number;
   let cap: number | null;
@@ -135,11 +146,23 @@ function ResultAmountBlock({ amount, className }: { amount: number; className?: 
   );
 }
 
-export function BrokerageFeeCalculator() {
+type BrokerageFeeCalculatorProps = {
+  /**
+   * `jeonse`: 전세 전용 — 주택·전세로 고정, 보증금만 입력.
+   * `wolse`: 월세 전용 — 주택·월세로 고정, 보증금+월세 환산 입력.
+   */
+  variant?: "general" | "jeonse" | "wolse";
+};
+
+export function BrokerageFeeCalculator({ variant = "general" }: BrokerageFeeCalculatorProps) {
+  const isJeonseVariant = variant === "jeonse";
+  const isWolseVariant = variant === "wolse";
+  const isSpinoffVariant = isJeonseVariant || isWolseVariant;
   const [propertyKind, setPropertyKind] = React.useState<PropertyKind>("house");
-  const [dealKind, setDealKind] = React.useState<DealKind>("sale");
+  const [transactionType, setTransactionType] = React.useState<TransactionType>(
+    isJeonseVariant ? "jeonse" : isWolseVariant ? "wolse" : "sale",
+  );
   const [officetelKind, setOfficetelKind] = React.useState<OfficetelKind>("residentialSmall");
-  const [houseAmountMode, setHouseAmountMode] = React.useState<HouseAmountMode>("direct");
   const [amountDisplay, setAmountDisplay] = React.useState("");
   const [depositDisplay, setDepositDisplay] = React.useState("");
   const [monthlyDisplay, setMonthlyDisplay] = React.useState("");
@@ -149,10 +172,25 @@ export function BrokerageFeeCalculator() {
     label: string;
   } | null>(null);
 
+  React.useEffect(() => {
+    if (isJeonseVariant) {
+      setPropertyKind("house");
+      setTransactionType("jeonse");
+      return;
+    }
+    if (isWolseVariant) {
+      setPropertyKind("house");
+      setTransactionType("wolse");
+    }
+  }, [isJeonseVariant, isWolseVariant]);
+
   const isHouse = propertyKind === "house";
   const isOfficetel = propertyKind === "officetel";
   const showDealKind = isHouse || isOfficetel;
-  const showHouseLeaseInputs = isHouse && dealKind === "lease";
+  const dealKind = transactionToDealKind(transactionType);
+  const isJeonse = transactionType === "jeonse";
+  const isWolse = transactionType === "wolse";
+  const isSale = transactionType === "sale";
 
   const onMoneyInputChange = (raw: string, setter: (value: string) => void) => {
     const num = raw.replace(/[^0-9]/g, "");
@@ -163,21 +201,33 @@ export function BrokerageFeeCalculator() {
     let transactionAmount = 0;
     let label = "거래금액";
 
-    if (isHouse && dealKind === "lease" && houseAmountMode === "depositMonthly") {
+    if (isWolse && (isHouse || isOfficetel)) {
       const deposit = parseFloat(removeCommas(depositDisplay)) || 0;
       const monthly = parseFloat(removeCommas(monthlyDisplay)) || 0;
       if (deposit <= 0 && monthly <= 0) {
         window.alert("보증금 또는 월세를 입력해주세요.");
         return;
       }
+      if (monthly <= 0) {
+        window.alert("월세 거래는 월세를 입력해주세요. 월세가 없으면 전세를 선택하세요.");
+        return;
+      }
       transactionAmount = computeLeaseTransactionAmount(deposit, monthly);
       label = "환산 거래금액(보증금+월세 환산)";
+    } else if (isJeonse && (isHouse || isOfficetel)) {
+      transactionAmount = parseFloat(removeCommas(amountDisplay)) || 0;
+      if (transactionAmount <= 0) {
+        window.alert("전세 보증금을 올바르게 입력해주세요.");
+        return;
+      }
+      label = "전세 보증금";
     } else {
       transactionAmount = parseFloat(removeCommas(amountDisplay)) || 0;
       if (transactionAmount <= 0) {
         window.alert("거래금액을 올바르게 입력해주세요.");
         return;
       }
+      label = "거래금액";
     }
 
     let bracket: BracketResult;
@@ -193,46 +243,125 @@ export function BrokerageFeeCalculator() {
     setResult({ transactionAmount, bracket, label });
   };
 
-  React.useEffect(() => {
-    if (!isHouse || dealKind !== "lease") {
-      setHouseAmountMode("direct");
-    }
-  }, [isHouse, dealKind]);
-
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-      <Card id="brokerage-fee-calculator" className="scroll-mt-24">
+      <Card
+        id={
+          isJeonseVariant
+            ? "jeonse-brokerage-fee-calculator"
+            : isWolseVariant
+              ? "wolse-brokerage-fee-calculator"
+              : "brokerage-fee-calculator"
+        }
+        className="scroll-mt-24"
+      >
         <CardContent className="space-y-4 pt-6">
-          <div className="space-y-2">
-            <Label htmlFor="propertyKind">부동산 구분</Label>
-            <select
-              id="propertyKind"
-              className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
-              value={propertyKind}
-              onChange={(e) => setPropertyKind(e.target.value as PropertyKind)}
-            >
-              <option value="house">주택 (주택 부지·분양권 등 포함)</option>
-              <option value="officetel">오피스텔</option>
-              <option value="other">주택·오피스텔 외 (토지, 상가, 건물 등)</option>
-            </select>
-          </div>
-
-          {showDealKind ? (
+          {isJeonseVariant ? (
+            <p className="text-muted-foreground rounded-md border bg-muted/30 px-3 py-2 text-xs leading-relaxed">
+              주택 전세 보증금 기준으로 서울시 고시 상한 요율을 적용합니다. 매매·월세·오피스텔은{" "}
+              <Link
+                href="/brokerage-fee-calculator"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                중개수수료 계산기
+              </Link>
+              , 월세만 따로 보려면{" "}
+              <Link
+                href="/wolse-brokerage-fee-calculator"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                월세 중개수수료 계산기
+              </Link>
+              를, 요율·예시·재계약은{" "}
+              <Link
+                href="/guide/jeonse-brokerage-fee-calculation-2026-guide"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                전세 중개수수료 가이드
+              </Link>
+              를 참고하세요.
+            </p>
+          ) : isWolseVariant ? (
+            <p className="text-muted-foreground rounded-md border bg-muted/30 px-3 py-2 text-xs leading-relaxed">
+              주택 월세 보증금·월세를 환산한 거래금액에 서울시 고시 상한 요율을 적용합니다. 매매·전세·오피스텔은{" "}
+              <Link
+                href="/brokerage-fee-calculator"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                중개수수료 계산기
+              </Link>
+              , 전세만 따로 보려면{" "}
+              <Link
+                href="/jeonse-brokerage-fee-calculator"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                전세 중개수수료 계산기
+              </Link>
+              를, 환산·예시는{" "}
+              <Link
+                href="/guide/wolse-brokerage-fee-calculation-2026-guide"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                월세 중개수수료 가이드
+              </Link>
+              를 참고하세요.
+            </p>
+          ) : (
             <div className="space-y-2">
-              <Label htmlFor="dealKind">거래 유형</Label>
+              <Label htmlFor="propertyKind">부동산 구분</Label>
               <select
-                id="dealKind"
+                id="propertyKind"
                 className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
-                value={dealKind}
-                onChange={(e) => setDealKind(e.target.value as DealKind)}
+                value={propertyKind}
+                onChange={(e) => setPropertyKind(e.target.value as PropertyKind)}
+              >
+                <option value="house">주택 (아파트·빌라·분양권 등)</option>
+                <option value="officetel">오피스텔</option>
+                <option value="other">상가·토지·건물 등 (주택·오피스텔 외)</option>
+              </select>
+            </div>
+          )}
+
+          {isSpinoffVariant ? null : showDealKind ? (
+            <div className="space-y-2">
+              <Label htmlFor="transactionType">거래 유형</Label>
+              <select
+                id="transactionType"
+                className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
+                value={transactionType}
+                onChange={(e) => setTransactionType(e.target.value as TransactionType)}
               >
                 <option value="sale">매매·교환</option>
-                <option value="lease">임대차 등</option>
+                <option value="jeonse">전세</option>
+                <option value="wolse">월세</option>
               </select>
+              {isHouse && isJeonse ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  전세만 따로 계산하려면{" "}
+                  <Link
+                    href="/jeonse-brokerage-fee-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    전세 중개수수료 계산기
+                  </Link>
+                  를 이용하세요.
+                </p>
+              ) : isHouse && isWolse ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  월세만 따로 계산하려면{" "}
+                  <Link
+                    href="/wolse-brokerage-fee-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    월세 중개수수료 계산기
+                  </Link>
+                  를 이용하세요.
+                </p>
+              ) : null}
             </div>
           ) : null}
 
-          {isOfficetel ? (
+          {isOfficetel && !isSpinoffVariant ? (
             <div className="space-y-2">
               <Label htmlFor="officetelKind">오피스텔 세부</Label>
               <select
@@ -241,76 +370,52 @@ export function BrokerageFeeCalculator() {
                 value={officetelKind}
                 onChange={(e) => setOfficetelKind(e.target.value as OfficetelKind)}
               >
-                <option value="residentialSmall">전용 85㎡ 이하, 주방·화장실·욕실 등 주거 시설</option>
-                <option value="other">그 외 (85㎡ 초과 또는 시설 미비 등)</option>
+                <option value="residentialSmall">전용 85㎡ 이하 · 주방·화장실·욕실 있는 주거형</option>
+                <option value="other">그 외 (85㎡ 초과 또는 주거 시설 미비)</option>
               </select>
             </div>
           ) : null}
 
-          {showHouseLeaseInputs ? (
+          {isWolse && showDealKind ? (
             <div className="space-y-3 rounded-lg border bg-muted/20 p-3">
-              <p className="text-sm font-medium">임대차 거래금액 입력 방식</p>
-              <div className="flex flex-wrap gap-3 text-sm">
-                <label className="flex cursor-pointer items-center gap-2">
-                  <input
-                    type="radio"
-                    name="houseAmountMode"
-                    className="accent-primary"
-                    checked={houseAmountMode === "direct"}
-                    onChange={() => setHouseAmountMode("direct")}
-                  />
-                  거래금액 직접 입력
-                </label>
-                <label className="flex cursor-pointer items-center gap-2">
-                  <input
-                    type="radio"
-                    name="houseAmountMode"
-                    className="accent-primary"
-                    checked={houseAmountMode === "depositMonthly"}
-                    onChange={() => setHouseAmountMode("depositMonthly")}
-                  />
-                  보증금 + 월세 (환산 적용)
-                </label>
+              <p className="text-sm font-medium">월세 보증금·월세 입력</p>
+              <div className="space-y-2">
+                <Label htmlFor="deposit">보증금 (원)</Label>
+                <Input
+                  id="deposit"
+                  inputMode="numeric"
+                  placeholder="예: 50,000,000"
+                  value={depositDisplay}
+                  onChange={(e) => onMoneyInputChange(e.target.value, setDepositDisplay)}
+                />
               </div>
-              {houseAmountMode === "depositMonthly" ? (
-                <>
-                  <div className="space-y-2">
-                    <Label htmlFor="deposit">보증금 (원)</Label>
-                    <Input
-                      id="deposit"
-                      inputMode="numeric"
-                      placeholder="예: 200,000,000"
-                      value={depositDisplay}
-                      onChange={(e) => onMoneyInputChange(e.target.value, setDepositDisplay)}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="monthlyRent">월세 (원)</Label>
-                    <Input
-                      id="monthlyRent"
-                      inputMode="numeric"
-                      placeholder="월세 없으면 0"
-                      value={monthlyDisplay}
-                      onChange={(e) => onMoneyInputChange(e.target.value, setMonthlyDisplay)}
-                    />
-                  </div>
-                  <p className="text-muted-foreground text-xs leading-relaxed">
-                    월세가 있는 경우 거래금액 = 보증금 + (월세 × 100)으로 계산하되, 그 합이 5천만 원 미만이면 보증금 + (월세 × 70)으로
-                    다시 계산합니다.
-                  </p>
-                </>
-              ) : (
-                <div className="space-y-2">
-                  <Label htmlFor="houseLeaseAmount">거래금액 (원)</Label>
-                  <Input
-                    id="houseLeaseAmount"
-                    inputMode="numeric"
-                    placeholder="예: 150,000,000"
-                    value={amountDisplay}
-                    onChange={(e) => onMoneyInputChange(e.target.value, setAmountDisplay)}
-                  />
-                </div>
-              )}
+              <div className="space-y-2">
+                <Label htmlFor="monthlyRent">월세 (원)</Label>
+                <Input
+                  id="monthlyRent"
+                  inputMode="numeric"
+                  placeholder="예: 500,000"
+                  value={monthlyDisplay}
+                  onChange={(e) => onMoneyInputChange(e.target.value, setMonthlyDisplay)}
+                />
+              </div>
+              <p className="text-muted-foreground text-xs leading-relaxed">
+                환산 거래금액 = 보증금 + (월세 × 100). 합이 5천만 원 미만이면 보증금 + (월세 × 70)으로 다시 계산합니다.
+              </p>
+            </div>
+          ) : isJeonse && showDealKind ? (
+            <div className="space-y-2">
+              <Label htmlFor="jeonseDeposit">전세 보증금 (원)</Label>
+              <Input
+                id="jeonseDeposit"
+                inputMode="numeric"
+                placeholder="예: 300,000,000"
+                value={amountDisplay}
+                onChange={(e) => onMoneyInputChange(e.target.value, setAmountDisplay)}
+              />
+              <p className="text-muted-foreground text-xs">
+                전세는 보증금이 곧 거래금액입니다. 월세가 있으면 거래 유형에서 월세를 선택하세요.
+              </p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -323,10 +428,10 @@ export function BrokerageFeeCalculator() {
                 onChange={(e) => onMoneyInputChange(e.target.value, setAmountDisplay)}
               />
               <p className="text-muted-foreground text-xs">
-                {isHouse && dealKind === "sale"
+                {isHouse && isSale
                   ? "분양권은 실제 납입금(대출 포함) + 프리미엄 합산액을 거래금액으로 입력하세요."
-                  : isOfficetel && dealKind === "lease"
-                    ? "오피스텔 임대차는 환산 거래금액을 직접 입력합니다. 월세가 있으면 보증금 + (월세 × 100)으로 계산하고, 합계가 5천만 원 미만이면 보증금 + (월세 × 70)으로 입력하세요."
+                  : propertyKind === "other"
+                    ? "상가·토지·건물 등은 거래금액의 0.9% 이내에서 협의합니다. 여기 결과는 상한(0.9%)입니다."
                     : "합산하여 산정한 금액을 입력하세요."}
               </p>
             </div>
@@ -384,7 +489,13 @@ export function BrokerageFeeCalculator() {
         </CardContent>
       </Card>
 
-      <BrokerageFeeCalculatorReference />
+      {isJeonseVariant ? (
+        <JeonseBrokerageFeeCalculatorReference />
+      ) : isWolseVariant ? (
+        <WolseBrokerageFeeCalculatorReference />
+      ) : (
+        <BrokerageFeeCalculatorReference />
+      )}
     </div>
   );
 }

@@ -902,6 +902,14 @@ export function FirstHomeAcquisitionTaxReliefGuideBody() {
             </Link>
           </li>
           <li>
+            <Link
+              href="/first-home-acquisition-tax-calculator"
+              className="text-primary font-medium underline-offset-4 hover:underline"
+            >
+              생애최초 취득세 감면 계산기
+            </Link>
+          </li>
+          <li>
             <Link href="/acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
               취득세 계산기
             </Link>

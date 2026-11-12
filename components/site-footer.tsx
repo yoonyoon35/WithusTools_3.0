@@ -9,8 +9,20 @@ export function SiteFooter() {
           <Link href="/loan-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             대출 이자 계산기
           </Link>
+          <Link
+            href="/emergency-loan-interest-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            비상금대출 이자 계산기
+          </Link>
           <Link href="/acquisition-tax-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             취득세 계산기
+          </Link>
+          <Link
+            href="/first-home-acquisition-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            생애최초 취득세 감면 계산기
           </Link>
           <Link
             href="/farmland-acquisition-tax-calculator"
@@ -18,8 +30,32 @@ export function SiteFooter() {
           >
             농지 취득세 계산기
           </Link>
+          <Link
+            href="/officetel-acquisition-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            오피스텔 취득세 계산기
+          </Link>
+          <Link
+            href="/inherited-housing-acquisition-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            상속 주택 취득세 계산기
+          </Link>
           <Link href="/brokerage-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             중개수수료 계산기
+          </Link>
+          <Link
+            href="/jeonse-brokerage-fee-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            전세 중개수수료 계산기
+          </Link>
+          <Link
+            href="/wolse-brokerage-fee-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            월세 중개수수료 계산기
           </Link>
           <Link href="/dsr-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
             DSR 계산기
@@ -47,6 +83,12 @@ export function SiteFooter() {
             className="hover:text-foreground underline-offset-4 hover:underline"
           >
             양도소득세 계산기
+          </Link>
+          <Link
+            href="/presale-capital-gains-tax-calculator"
+            className="hover:text-foreground underline-offset-4 hover:underline"
+          >
+            분양권 양도세 계산기
           </Link>
           <Link
             href="/comprehensive-income-tax-calculator"

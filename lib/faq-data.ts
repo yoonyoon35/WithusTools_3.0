@@ -28,7 +28,7 @@ export const loanCalculatorFaqItems = [
   {
     question: "카카오 비상금대출 이자는 이 계산기로 나오나요?",
     answer:
-      "카카오뱅크 비상금대출은 마이너스통장이라 쓴 금액만 일할(연이율÷365)로 붙습니다. 한 달 내내 같은 금액을 쓸 때는 만기일시(이자만)로 월 이자를 어림할 수 있고, 며칠만 쓰거나 당일 상환하면 일할이 더 적습니다. 자세한 공식·예시는 가이드 「카카오 비상금대출 이자 계산 방식」을 참고하세요.",
+      "카카오뱅크 비상금대출은 마이너스통장이라 쓴 금액만 일할(연이율÷365)로 붙습니다. 한 달 내내 같은 금액을 쓸 때는 만기일시(이자만)로 월 이자를 어림할 수 있고, 며칠만 쓰거나 당일 상환하면 일할이 더 적습니다. 일할 전용은 비상금대출 이자 계산기를, 공식·예시는 가이드 「카카오 비상금대출 이자 계산 방식」을 참고하세요.",
   },
   {
     question: "원리금균등 상환표(상환 일정표)는 어디서 볼 수 있나요?",
@@ -39,6 +39,45 @@ export const loanCalculatorFaqItems = [
     question: "체증식상환은 어떻게 계산되고, 총 이자는 더 많이 나오나요?",
     answer:
       "체증식은 초기 월 상환액을 낮게 시작해 시간이 지날수록 늘리는 방식이라 잔액이 오래 남아 총 이자가 원리금균등·원금균등보다 많아집니다. 이 계산기는 기본으로 보금자리론처럼 첫 달 상환액에서 시작해 매월 같은 금액씩 늘리는 정액 증가 방식으로 계산합니다. 상환 예정표의 첫 달 상환액을 입력하면 실제 상환표에 가깝게 맞출 수 있고, 비우면 자동 추정합니다. 매년 일정 비율로 올리는 정률(계단식) 방식도 선택할 수 있으며, 이때는 대출 기간이 길면 체증률을 낮춰야 계산됩니다. 자세한 내용은 가이드 「체증식 대출이란? 월 상환액이 늘어나는 이자 계산 방법」을 참고하세요.",
+  },
+] as const satisfies readonly FaqItem[];
+
+/** 비상금대출·마이너스통장 일할 이자 계산기 FAQ (/emergency-loan-interest-calculator) */
+export const emergencyLoanInterestCalculatorFaqItems = [
+  {
+    question: "비상금대출 이자는 어떻게 계산하나요?",
+    answer:
+      "마이너스통장형 비상금대출은 쓴 금액에만 이자가 붙습니다. 참고 공식은 「일 이자 = 사용금액 × 연 금리 ÷ 365」, 「기간 이자 = 일 이자 × 사용 일수」입니다. 한도만 열고 쓰지 않으면 이자는 0원입니다.",
+  },
+  {
+    question: "카카오·토스·케이뱅크 이자가 다른가요?",
+    answer:
+      "산식은 같은 일할(연이율÷365) 계열이 많고, 차이는 주로 약정 금리·심사·앱 안내입니다. 이 계산기에는 앱에 표시된 본인 약정 금리를 넣으면 됩니다. 이 사이트는 해당 은행과 제휴·공식 관계가 없습니다.",
+  },
+  {
+    question: "대출 이자 계산기와 무엇이 다른가요?",
+    answer:
+      "대출 이자 계산기는 월 단위(연이율÷12)와 원리금·원금균등·만기일시 비교용입니다. 이 페이지는 며칠만 쓰는 비상금·마이너스통장에 맞춰 일할 이자를 계산하고 ÷12 어림과 비교합니다.",
+  },
+  {
+    question: "사용 일수는 어떻게 넣나요?",
+    answer:
+      "기본은 「날짜로 계산」입니다. 사용 시작일(인출일)과 기준일(상환일·오늘 등)을 넣으면 일수를 자동으로 계산하고, 같은 날이면 1일로 봅니다. 「일수 직접 입력」으로 바꿔 날 수만 적을 수도 있습니다.",
+  },
+  {
+    question: "당일 인출 후 바로 갚으면 이자가 없나요?",
+    answer:
+      "아닐 수 있습니다. 하루 중 최고잔액 기준으로 1일치가 잡히는 상품이 많습니다. 이 계산기도 시작일과 기준일이 같으면 1일로 계산합니다. 연 6%·200만 원 1일이면 약 329원 수준입니다. 정확한 잔액 산정은 약관·상품설명서를 따릅니다.",
+  },
+  {
+    question: "한도만 열어두면 DSR에도 안 잡히나요?",
+    answer:
+      "이자는 사용액 기준이지만, DSR 심사에서는 마이너스통장을 한도액 기준 연간 이자로 잡는 경우가 많습니다. 쓰지 않는 한도도 주담대 한도에 영향을 줄 수 있어 DSR 계산기와 함께 확인하는 것이 좋습니다.",
+  },
+  {
+    question: "계산 결과가 앱 청구액과 다를 수 있나요?",
+    answer:
+      "가능합니다. 결산 기간·하루 잔액(최고잔액) 산정·원 단위 절사·반올림·연체이자는 은행마다 다를 수 있습니다. 본 계산기는 참고용이며 확정 이자는 해당 금융기관에서 확인하세요.",
   },
 ] as const satisfies readonly FaqItem[];
 
@@ -136,9 +175,14 @@ export const acquisitionTaxCalculatorFaqItems = [
       "다릅니다. 주택 수·조정지역·취득가액 구간에 따라 세율과 중과가 달라집니다. 본 계산기와 가이드는 2026년 기준 참고값이며, 확정 세액은 관할 지자체·세무전문가 확인이 필요합니다.",
   },
   {
+    question: "생애최초 취득세 감면은 어디서 계산하나요?",
+    answer:
+      "1주택 매매에서 「생애최초 주택 취득세 감면 적용」을 켜면 이 계산기에서도 감면액을 볼 수 있습니다. 감면액만 따로 보려면 생애최초 취득세 감면 계산기를 이용하세요. 요건·신청은 생애최초 취득세 감면 가이드를 참고하세요.",
+  },
+  {
     question: "농지 취득세도 계산할 수 있나요?",
     answer:
-      "자산 구분에서 농지를 선택하면 매매·증여·상속·원시취득별 농지 취득세를 계산합니다. 2년 이상 자경 매매와 영농상속 감면(취득세 0.3%, 농특세 면제)도 선택할 수 있습니다. 자경 감면 요건과 농지취득자격증명까지 함께 보려면 농지 취득세 계산기 페이지를 이용하세요.",
+      "자산 구분에서 농지를 선택하면 매매·증여·상속·원시취득별 농지 취득세를 계산합니다. 2년 이상 자경 매매와 영농상속 감면(취득세 0.3%, 농특세 면제)도 선택할 수 있습니다. 자경 감면 요건과 농지취득자격증명은 농지 취득세 가이드와 농지 취득세 계산기를 이용하세요.",
   },
   {
     question: "지방교육세·농어촌특별세도 포함되나요?",
@@ -152,6 +196,93 @@ export const acquisitionTaxCalculatorFaqItems = [
   },
 ] as const satisfies readonly FaqItem[];
 
+/** 생애최초 취득세 감면 계산기 FAQ (/first-home-acquisition-tax-calculator) */
+export const firstHomeAcquisitionTaxCalculatorFaqItems = [
+  {
+    question: "생애최초 취득세 감면은 얼마인가요?",
+    answer:
+      "산출 취득세에서 한도만큼 공제합니다. 일반은 최대 200만 원, 소형주택·인구감소지역 등은 최대 300만 원입니다. 산출세액이 한도 이하면 취득세가 0원이 될 수 있습니다.",
+  },
+  {
+    question: "이 계산기는 요건을 확인해 주나요?",
+    answer:
+      "아닙니다. 참고용 단순 모델이며 무주택·거주 목적·취득가액 12억 원 이하 등 적격 요건은 확인하지 않습니다. 요건·신청·추징은 생애최초 취득세 감면 가이드와 관할 지자체에서 확인하세요.",
+  },
+  {
+    question: "감면을 끄면 무엇을 볼 수 있나요?",
+    answer:
+      "감면 전 산출 취득세와 그에 따른 지방교육세·합계를 비교할 수 있습니다. 감면을 다시 켜면 감면액과 감면 후 세액이 갱신됩니다.",
+  },
+  {
+    question: "지방교육세·농어촌특별세도 감면되나요?",
+    answer:
+      "이 계산기에서 지방교육세는 감면 후 취득세의 10분의 1로 다시 산출합니다. 농어촌특별세는 전용면적 85㎡ 초과 여부에 따른 별도 세율이며 감면 한도와는 별개입니다.",
+  },
+  {
+    question: "다주택·농지도 계산할 수 있나요?",
+    answer:
+      "이 페이지는 1주택 매매·생애최초 감면에 맞춰져 있습니다. 다주택·농지·오피스텔은 취득세 계산기, 농지 취득세 계산기, 오피스텔 취득세 계산기를 이용하세요.",
+  },
+] as const satisfies readonly FaqItem[];
+
+/** 상속 주택 취득세 계산기 FAQ (/inherited-housing-acquisition-tax-calculator) */
+export const inheritedHousingAcquisitionTaxCalculatorFaqItems = [
+  {
+    question: "상속 주택 취득세는 얼마인가요?",
+    answer:
+      "시가표준액(공시가격)에 취득세 2.8%·지방교육세 0.16%를 적용합니다. 전용 85㎡를 넘으면 농어촌특별세 0.2%가 더해져 합계 3.16%, 이하이면 합계 2.96%입니다. 매매와 달리 주택 수·조정지역 중과는 없습니다.",
+  },
+  {
+    question: "과세표준은 실거래가인가요?",
+    answer:
+      "아닙니다. 상속은 시가표준액(공시가격)이 과세표준입니다. 공유 지분을 상속받으면 해당 지분 해당액만 입력하세요.",
+  },
+  {
+    question: "언제까지 신고·납부하나요?",
+    answer:
+      "상속개시일(사망일)이 속하는 달의 말일부터 6개월 이내입니다. 외국에 주소를 둔 상속인이 있으면 9개월입니다.",
+  },
+  {
+    question: "1가구 1주택 상속 특례(0.8%)도 계산되나요?",
+    answer:
+      "이 계산기는 기본 세율 2.8%만 반영합니다. 특례 요건·한도는 관할 지자체와 상속 주택 취득세 가이드에서 확인하세요.",
+  },
+  {
+    question: "농지·매매도 계산할 수 있나요?",
+    answer:
+      "이 페이지는 주택 상속 전용입니다. 농지 상속은 농지 취득세 계산기, 매매·증여는 취득세 계산기를 이용하세요.",
+  },
+] as const satisfies readonly FaqItem[];
+
+/** 오피스텔 취득세 계산기 FAQ (/officetel-acquisition-tax-calculator) */
+export const officetelAcquisitionTaxCalculatorFaqItems = [
+  {
+    question: "오피스텔 취득세는 얼마인가요?",
+    answer:
+      "오피스텔을 매매로 취득하면 취득세 4%에 농어촌특별세 0.2%, 지방교육세 0.4%가 더해져 합계 4.6%입니다. 과세표준 2억 원이면 약 920만 원입니다. 증여는 합계 4%, 상속·원시취득은 합계 3.16% 수준입니다. 주거용·업무용 구분 없이 같은 세율이 적용됩니다.",
+  },
+  {
+    question: "주거용 오피스텔도 아파트처럼 1~3%인가요?",
+    answer:
+      "아닙니다. 오피스텔은 세법상 주택이 아니어서 아파트·빌라의 주택 세율(1~3%)이나 다주택 중과(8%·12%)가 취득 자체에는 적용되지 않습니다. 매매 기준 합계 4.6%입니다.",
+  },
+  {
+    question: "오피스텔을 사면 나중에 아파트 살 때 주택 수에 들어가나요?",
+    answer:
+      "취득세 중과용 주택 수에는 주거용으로 쓰는 오피스텔이 포함될 수 있습니다. 업무용 유지 여부·실질 주거 여부 등은 과세당국 판단에 따라 달라지므로, 오피스텔 주거용·업무용 세금 가이드와 관할 지자체에서 확인하세요.",
+  },
+  {
+    question: "생애최초 취득세 감면도 받을 수 있나요?",
+    answer:
+      "현행 기준으로 이 계산기는 오피스텔에 생애최초 감면을 적용하지 않습니다. 2026년 지방세제 개편안에 주거용 오피스텔 포함 논의가 있으나, 확정·시행 전에는 현행 기준으로 판단하세요.",
+  },
+  {
+    question: "아파트·농지도 이 페이지에서 계산할 수 있나요?",
+    answer:
+      "이 페이지는 오피스텔 전용입니다. 주택·농지는 취득세 계산기, 생애최초 감면 계산기, 농지 취득세 계산기를 이용하세요.",
+  },
+] as const satisfies readonly FaqItem[];
+
 /** 농지 취득세 계산기 FAQ (/farmland-acquisition-tax-calculator) */
 export const farmlandAcquisitionTaxCalculatorFaqItems = [
   {
@@ -162,7 +293,7 @@ export const farmlandAcquisitionTaxCalculatorFaqItems = [
   {
     question: "2년 이상 자경하면 취득세가 얼마나 줄어드나요?",
     answer:
-      "자경농민이 직접 경작할 목적으로 농지를 취득하면 취득세의 50%를 경감받아 취득세율이 1.5%가 되고, 농어촌특별세는 면제, 지방교육세는 0.1%로 합계 1.6%입니다. 과세표준 1억 원이면 일반 매매(340만 원)보다 180만 원 적은 약 160만 원입니다. 2년 이상 영농 종사, 농지 소재지 인근 거주, 농업 외 소득 기준, 면적 한도 등 요건을 모두 갖춰야 합니다.",
+      "자경농민이 직접 경작할 목적으로 농지를 취득하면 취득세의 50%를 경감받아 취득세율이 1.5%가 되고, 농어촌특별세는 면제, 지방교육세는 0.1%로 합계 1.6%입니다. 과세표준 1억 원이면 일반 매매(340만 원)보다 180만 원 적은 약 160만 원입니다. 2년 이상 영농 종사, 농지 소재지 인근 거주, 농업 외 소득 기준, 면적 한도 등 요건은 농지 취득세 가이드를 참고하세요.",
   },
   {
     question: "자경 농지 취득세 감면은 언제까지 받을 수 있나요?",
@@ -208,14 +339,72 @@ export const brokerageFeeCalculatorFaqItems = [
       "중개수수료에 부가세 10%가 별도로 붙는 것이 일반적입니다. 계약서·영수증에 VAT 포함 여부를 확인하세요.",
   },
   {
-    question: "전세·월세 중개수수료는 어떻게 계산하나요?",
+    question: "거래 유형에서 전세와 월세는 어떻게 다르나요?",
     answer:
-      "전세는 보증금, 월세는 환산보증금(보증금 + 월세×100 등 관할 고시 기준)을 거래금액으로 두고 요율을 적용합니다. 본 계산기에서 유형별 상한액을 참고할 수 있습니다.",
+      "전세는 보증금만 입력하면 되고, 월세는 보증금과 월세를 넣어 환산 거래금액(보증금 + 월세×100, 합 5천만 원 미만이면 ×70)으로 요율을 적용합니다. 둘 다 주택 임대차 상한 요율표를 씁니다.",
+  },
+  {
+    question: "전세·월세만 따로 계산하고 싶어요.",
+    answer:
+      "전세는 전세 중개수수료 계산기, 월세는 월세 중개수수료 계산기에서 바로 볼 수 있습니다. 매매·오피스텔·상가는 이 페이지를 이용하세요.",
   },
   {
     question: "상가·토지·건물(비주거) 중개수수료는 어떻게 계산하나요?",
     answer:
-      "주택·오피스텔이 아닌 상가·토지·건물 등은 지자체 조례의 구간별 요율표가 아니라, 거래금액의 0.9% 이내에서 중개의뢰인과 개업공인중개사가 협의해 정합니다. 계산기에서 부동산 구분을 「주택·오피스텔 외」로 선택하면 상한인 0.9%를 적용한 금액이 나오며, 실제 금액은 협의에 따라 이보다 낮아질 수 있습니다. 부가세(VAT)는 별도입니다.",
+      "주택·오피스텔이 아닌 상가·토지·건물 등은 거래금액의 0.9% 이내에서 중개의뢰인과 개업공인중개사가 협의해 정합니다. 부동산 구분을 「상가·토지·건물 등」으로 선택하면 상한 0.9%가 나오며, 실제 금액은 협의에 따라 더 낮을 수 있습니다. 부가세(VAT)는 별도입니다.",
+  },
+] as const satisfies readonly FaqItem[];
+
+/** 월세 중개수수료 계산기 FAQ (/wolse-brokerage-fee-calculator) */
+export const wolseBrokerageFeeCalculatorFaqItems = [
+  {
+    question: "월세 중개수수료는 어떻게 계산하나요?",
+    answer:
+      "보증금과 월세를 환산한 거래금액에 주택 임대차 상한 요율을 곱합니다. 환산은 보증금 + (월세 × 100)이며, 합이 5천만 원 미만이면 보증금 + (월세 × 70)입니다. 실제 금액은 상한 이내 협의이며 부가세는 별도입니다.",
+  },
+  {
+    question: "보증금만 있고 월세가 없으면요?",
+    answer:
+      "월세가 없으면 전세로 보는 것이 맞습니다. 전세 중개수수료 계산기에서 보증금만 입력하세요.",
+  },
+  {
+    question: "전세와 요율표가 같나요?",
+    answer:
+      "네. 전세·월세 모두 주택 임대차 상한 요율표를 씁니다. 차이는 거래금액을 보증금만 쓰는지, 보증금+월세 환산을 쓰는지입니다.",
+  },
+  {
+    question: "오피스텔 월세도 계산할 수 있나요?",
+    answer:
+      "이 페이지는 주택 월세 전용입니다. 오피스텔·매매는 중개수수료 계산기를 이용하세요.",
+  },
+] as const satisfies readonly FaqItem[];
+
+/** 전세 중개수수료 계산기 FAQ (/jeonse-brokerage-fee-calculator) */
+export const jeonseBrokerageFeeCalculatorFaqItems = [
+  {
+    question: "전세 중개수수료는 얼마인가요?",
+    answer:
+      "전세 보증금에 주택 임대차 상한 요율을 곱한 금액이 법정 상한입니다. 예를 들어 보증금 3억 원이면 요율 0.3%로 상한 90만 원입니다. 실제 금액은 상한 이내에서 협의하며 부가세는 별도입니다.",
+  },
+  {
+    question: "보증금만 입력하면 되나요?",
+    answer:
+      "네. 전세는 보증금이 곧 거래금액입니다. 월세가 있으면 중개수수료 계산기에서 거래 유형을 「월세」로 선택하세요.",
+  },
+  {
+    question: "매매 중개수수료와 뭐가 다른가요?",
+    answer:
+      "전세·월세는 매매보다 요율이 낮은 임대차 요율표를 씁니다. 같은 금액이라도 매매 상한과 전세 상한이 다릅니다.",
+  },
+  {
+    question: "재계약·갱신 때도 중개수수료를 내나요?",
+    answer:
+      "단순 재계약·갱신은 중개 행위가 없으면 수수료가 없을 수 있습니다. 세부는 전세 재계약 중개수수료 가이드와 계약 내용을 확인하세요.",
+  },
+  {
+    question: "오피스텔 전세도 계산할 수 있나요?",
+    answer:
+      "이 페이지는 주택 전세 전용입니다. 월세는 월세 중개수수료 계산기, 오피스텔·매매는 중개수수료 계산기를 이용하세요.",
   },
 ] as const satisfies readonly FaqItem[];
 
@@ -274,7 +463,7 @@ export const capitalGainsTaxCalculatorFaqItems = [
   {
     question: "분양권 양도 시 다주택 중과가 적용되나요?",
     answer:
-      "주택분양권 양도는 보유 1년 미만 70%, 1년 이상 60% 전용세율이 적용됩니다. 조정지역 다주택 중과(+20/30%p)는 주택 양도 시 해당하며, 분양권 양도 자체에는 적용되지 않습니다. 2021.1.1 이후 취득 분양권은 주택 수 산정에는 포함될 수 있습니다.",
+      "주택분양권 양도는 보유 1년 미만 70%, 1년 이상 60% 전용세율이 적용됩니다. 조정지역 다주택 중과(+20/30%p)는 주택 양도 시 해당하며, 분양권 양도 자체에는 적용되지 않습니다. 2021.1.1 이후 취득 분양권은 주택 수 산정에는 포함될 수 있습니다. 분양권만 따로 보려면 분양권 양도세 계산기를 이용하세요.",
   },
   {
     question: "조합원입주권(입주권)은 어떻게 계산하나요?",
@@ -285,6 +474,35 @@ export const capitalGainsTaxCalculatorFaqItems = [
     question: "계산 결과와 홈택스 세액이 다른 이유는?",
     answer:
       "확정신고·다건 양도·감면소득·필요경비 인정 범위·양도시기(잔금 vs 등기) 등이 반영되기 때문입니다. 예정신고 전 홈택스 모의계산·세무사 확인을 권장합니다.",
+  },
+] as const satisfies readonly FaqItem[];
+
+/** 분양권 양도세 계산기 FAQ (/presale-capital-gains-tax-calculator) */
+export const presaleCapitalGainsTaxCalculatorFaqItems = [
+  {
+    question: "분양권 양도세율은 얼마인가요?",
+    answer:
+      "2021.1.1 이후 양도하는 주택분양권은 보유 1년 미만 70%, 1년 이상 60% 전용세율입니다. 기본공제(250만 원) 후 단일세율을 적용하고 지방소득세 10%가 더해집니다.",
+  },
+  {
+    question: "1세대1주택 비과세·장특공도 되나요?",
+    answer:
+      "아닙니다. 분양권 양도에는 1세대1주택 비과세와 장기보유특별공제가 적용되지 않습니다.",
+  },
+  {
+    question: "다주택이면 중과되나요?",
+    answer:
+      "분양권 양도 자체에는 조정지역 다주택 중과(+20/30%p)가 적용되지 않습니다. 다만 2021.1.1 이후 취득 분양권은 이후 주택 취득 시 주택 수에 포함될 수 있습니다.",
+  },
+  {
+    question: "66%·77% 세율은 뭔가요?",
+    answer:
+      "과거 안내와 혼동하기 쉬운 구 세율입니다. 현행 분양권 전용세율은 60%·70%입니다.",
+  },
+  {
+    question: "입주권·주택도 계산할 수 있나요?",
+    answer:
+      "이 페이지는 주택분양권 전용입니다. 조합원입주권·주택은 양도소득세 계산기를 이용하세요.",
   },
 ] as const satisfies readonly FaqItem[];
 
@@ -396,11 +614,15 @@ export const calculatorFaqByPath: Record<string, readonly FaqItem[]> = {
   "/dti-calculator": dtiCalculatorFaqItems,
   "/ltv-calculator": ltvCalculatorFaqItems,
   "/acquisition-tax-calculator": acquisitionTaxCalculatorFaqItems,
+  "/inherited-housing-acquisition-tax-calculator": inheritedHousingAcquisitionTaxCalculatorFaqItems,
   "/brokerage-fee-calculator": brokerageFeeCalculatorFaqItems,
+  "/jeonse-brokerage-fee-calculator": jeonseBrokerageFeeCalculatorFaqItems,
+  "/wolse-brokerage-fee-calculator": wolseBrokerageFeeCalculatorFaqItems,
   "/prepayment-fee-calculator": prepaymentFeeCalculatorFaqItems,
   "/national-housing-bond-calculator": housingBondCalculatorFaqItems,
   "/comprehensive-property-tax-calculator": comprehensivePropertyTaxCalculatorFaqItems,
   "/capital-gains-tax-calculator": capitalGainsTaxCalculatorFaqItems,
+  "/presale-capital-gains-tax-calculator": presaleCapitalGainsTaxCalculatorFaqItems,
   "/comprehensive-income-tax-calculator": comprehensiveIncomeTaxCalculatorFaqItems,
   "/inheritance-tax-calculator": inheritanceTaxCalculatorFaqItems,
 };

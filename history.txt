@@ -1095,3 +1095,23 @@ Phase 4 daechulija.com 301 완료
         - FAQPage: 가이드 92편이 아니라 주제 허브 11개만. 허브 화면에 FAQ 3문항 + JSON-LD(보이는 질문·답과 동일). 대표 가이드 URL에는 미적용
         - Organization sameAs: 팔로워 없는 X·방문자 없는 네이버 블로그·배포용 GitHub는 효과 없어 미적용
         - 남은 작업: 배포 후 사이트맵·홈 색인 재확인, 12월 말 디딤돌 면제·자경 농지 감면
+
+--------------------------------------------------------------------------------------------------------------------
+
+261112
+
+1742 - 검색 의도별 전용 계산기 스핀오프(농지·취득세 variant 패턴). 기존 코어 로직 재사용, 전용 URL·FAQ·기준표·OG·허브 subLinks·가이드 CTA 연결
+        - 신규 계산기 페이지(8)
+          · /emergency-loan-interest-calculator — 비상금대출 이자(일할, 날짜·수동 일수). 카카오·토스 등은 카피만
+          · /first-home-acquisition-tax-calculator — 생애최초 취득세 감면(variant=first-home, 한도 200만/300만)
+          · /officetel-acquisition-tax-calculator — 오피스텔 취득세(variant=officetel, 매매 합계 4.6%)
+          · /jeonse-brokerage-fee-calculator — 전세 중개수수료(variant=jeonse)
+          · /wolse-brokerage-fee-calculator — 월세 중개수수료(variant=wolse)
+          · /presale-capital-gains-tax-calculator — 분양권 양도세(variant=presale, 70%/60%)
+          · /inherited-housing-acquisition-tax-calculator — 상속 주택 취득세(variant=inherited-housing, 2.8%)
+          · /guide/farmland-acquisition-tax-guide — 농지 취득세 가이드(인라인 가이드 분리)
+        - 신규 OG: public/og/{위 계산기 7종}.png
+        - UX: 중개수수료 본 계산기 거래유형을 매매·전세·월세로 분리
+        - v1 미포함: 분양권 입주권·구세율·전매제한, 상속 1가구1주택 특례 0.8%, 은행별 비상금 페이지
+        - 공통: calculator-apps·calculators·sitemap·og·generate-og·footer·about·topics·calculator-guides 반영, tsc 통과
+        - 남은 작업: 배포 후 사이트맵·색인, 스핀오프 우선순위 재평가, 특례·입주권 등은 수요 보고 v2

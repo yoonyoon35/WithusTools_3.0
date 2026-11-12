@@ -8,8 +8,8 @@ import {
 import { brokerageRateLinks } from "@/lib/brokerage-rate-links";
 
 const formulaRows = [
-  ["① 거래금액", "매매·교환: 입력 거래금액 · 임대차: 보증금+월세 환산"],
-  ["② 전·월세 환산", "보증금 + (월세×100), 합 5천만 원 미만이면 보증금 + (월세×70)"],
+  ["① 거래금액", "매매·교환: 입력 거래금액 · 전세: 보증금 · 월세: 보증금+월세 환산"],
+  ["② 월세 환산", "보증금 + (월세×100), 합 5천만 원 미만이면 보증금 + (월세×70)"],
   ["③ 상한요율 적용", "거래금액 구간별 상한요율 × 거래금액"],
   ["④ 한도액", "구간별 한도액이 있으면 min(③, 한도액) = 최대 중개보수"],
 ] as const;
@@ -33,7 +33,7 @@ const leaseExampleRows = [
 
 const includedRows = [
   ["부동산 종류", "주택·오피스텔·주택·오피스텔 외(상가·토지·건물 등 비주거)"],
-  ["거래 유형", "매매·교환·임대차(전·월세)"],
+  ["거래 유형", "매매·교환 · 전세 · 월세"],
   ["전·월세 환산", "보증금+월세 환산 거래금액 산정"],
   ["서울시 요율표", "2021.12.30(주택)·2015.1.6(오피스텔·기타) 고시 반영"],
 ] as const;
@@ -75,8 +75,8 @@ const applicationCriteria = [
 ] as const;
 
 const notes = [
-  "주택·오피스텔·기타 부동산과 매매·임대차 유형을 선택해 거래금액 구간별 최대 중개보수를 확인할 수 있습니다.",
-  "주택 임대차는 보증금과 월세를 입력하면 전·월세 환산 거래금액을 자동 산정합니다.",
+  "주택·오피스텔·기타 부동산과 매매·전세·월세 유형을 선택해 거래금액 구간별 최대 중개보수를 확인할 수 있습니다.",
+  "전세는 보증금을, 월세는 보증금+월세 환산 거래금액을 자동 산정합니다.",
   "본 계산기는 서울특별시 고시 요율표를 기준으로 하며, 다른 지역은 관할 지자체 최신 고시를 확인해야 합니다.",
   "산출액은 법정 상한이며, 실제 지급액은 당사자 협의 범위 내에서 정해집니다.",
   "부가가치세·복합 건축물 안분·분양권 프리미엄 산정 등은 본 화면에 포함되지 않을 수 있습니다.",
@@ -144,7 +144,7 @@ export function BrokerageFeeCalculatorReference() {
           minWidth="min-w-[720px]"
           lastColumnRight
         />
-        <p className="text-muted-foreground mt-4 text-xs font-medium">2. 주택 — 임대차 등 (매매·교환 제외)</p>
+        <p className="text-muted-foreground mt-4 text-xs font-medium">2. 주택 — 전세·월세(임대차)</p>
         <CalculatorReferenceTable
           caption="주택 임대차 상한 요율"
           headers={["거래금액", "상한 요율", "한도액"]}
@@ -178,12 +178,12 @@ export function BrokerageFeeCalculatorReference() {
                 <td className="p-2 text-right">0.5% (5/1,000)</td>
               </tr>
               <tr className="border-b transition-colors duration-150 ease-out hover:bg-primary/10 dark:hover:bg-primary/20">
-                <td className="p-2">임대차 등</td>
+                <td className="p-2">전세·월세</td>
                 <td className="p-2 text-right">0.4% (4/1,000)</td>
               </tr>
               <tr className="transition-colors duration-150 ease-out hover:bg-primary/10 dark:hover:bg-primary/20">
                 <td className="p-2">그 외 (85㎡ 초과 또는 시설 미비 등)</td>
-                <td className="p-2">매매·교환·임대차 등</td>
+                <td className="p-2">매매·전세·월세</td>
                 <td className="p-2 text-right">0.9% (9/1,000)</td>
               </tr>
             </tbody>

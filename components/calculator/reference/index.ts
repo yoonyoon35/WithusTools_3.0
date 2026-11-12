@@ -5,8 +5,15 @@ export { CalculatorReferenceTable } from "./calculator-reference-table";
 
 export { AcquisitionTaxCalculatorReference } from "./acquisition-tax-reference";
 export { BrokerageFeeCalculatorReference } from "./brokerage-fee-reference";
+export { JeonseBrokerageFeeCalculatorReference } from "./jeonse-brokerage-fee-reference";
+export { WolseBrokerageFeeCalculatorReference } from "./wolse-brokerage-fee-reference";
 export { CapitalGainsTaxCalculatorReference } from "./capital-gains-tax-reference";
+export { PresaleCapitalGainsTaxCalculatorReference } from "./presale-capital-gains-tax-reference";
 export { FarmlandAcquisitionTaxCalculatorReference } from "./farmland-acquisition-tax-reference";
+export { FirstHomeAcquisitionTaxCalculatorReference } from "./first-home-acquisition-tax-reference";
+export { OfficetelAcquisitionTaxCalculatorReference } from "./officetel-acquisition-tax-reference";
+export { InheritedHousingAcquisitionTaxCalculatorReference } from "./inherited-housing-acquisition-tax-reference";
+export { EmergencyLoanInterestCalculatorReference } from "./emergency-loan-interest-reference";
 export { ComprehensivePropertyTaxCalculatorReference } from "./comprehensive-property-tax-reference";
 export { DsrCalculatorReference } from "./dsr-reference";
 export { DtiCalculatorReference } from "./dti-reference";

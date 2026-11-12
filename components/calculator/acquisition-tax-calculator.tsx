@@ -3,6 +3,9 @@
 import {
   AcquisitionTaxCalculatorReference,
   FarmlandAcquisitionTaxCalculatorReference,
+  FirstHomeAcquisitionTaxCalculatorReference,
+  InheritedHousingAcquisitionTaxCalculatorReference,
+  OfficetelAcquisitionTaxCalculatorReference,
 } from "@/components/calculator/reference";
 import Link from "next/link";
 import * as React from "react";
@@ -166,17 +169,29 @@ function ResultTaxWithRate({ amount, rate }: { amount: number; rate: number }) {
 }
 
 type AcquisitionTaxCalculatorProps = {
-  /** `farmland`: 농지 전용 페이지용. 자산 구분을 농지로 고정하고 농지 기준표를 보여 줍니다. */
-  variant?: "general" | "farmland";
+  /**
+   * `farmland`: 농지 전용 — 자산 구분을 농지로 고정.
+   * `first-home`: 생애최초 감면 전용 — 주택 1주택 매매·감면 적용을 기본값으로 고정.
+   * `officetel`: 오피스텔 전용 — 주택 외·오피스텔로 고정(주거·업무 동일 세율).
+   * `inherited-housing`: 상속 주택 전용 — 주택·상속 고정, 시가표준액·85㎡만 입력.
+   */
+  variant?: "general" | "farmland" | "first-home" | "officetel" | "inherited-housing";
 };
 
 export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTaxCalculatorProps) {
   const isFarmlandVariant = variant === "farmland";
+  const isFirstHomeVariant = variant === "first-home";
+  const isOfficetelVariant = variant === "officetel";
+  const isInheritedHousingVariant = variant === "inherited-housing";
   const [propertyCategory, setPropertyCategory] = React.useState<PropertyCategory>(
-    isFarmlandVariant ? "farmland" : "house",
+    isFarmlandVariant ? "farmland" : isOfficetelVariant ? "non-house" : "house",
   );
-  const [nonHouseDetailType, setNonHouseDetailType] = React.useState<NonHouseDetailType>("general");
-  const [acquisitionType, setAcquisitionType] = React.useState<AcquisitionType>("paid");
+  const [nonHouseDetailType, setNonHouseDetailType] = React.useState<NonHouseDetailType>(
+    isOfficetelVariant ? "officetel" : "general",
+  );
+  const [acquisitionType, setAcquisitionType] = React.useState<AcquisitionType>(
+    isInheritedHousingVariant ? "inheritance" : "paid",
+  );
   const [farmlandSaleType, setFarmlandSaleType] = React.useState<FarmlandSaleType>("new");
   const [applyFarmingInheritanceRelief, setApplyFarmingInheritanceRelief] = React.useState(false);
   const [priceDisplay, setPriceDisplay] = React.useState("");
@@ -184,7 +199,7 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
   const [houseCount, setHouseCount] = React.useState<HouseCount>("1");
   const [isAdjustedArea, setIsAdjustedArea] = React.useState(false);
   const [isOver85, setIsOver85] = React.useState(false);
-  const [applyLifetimeFirstRelief, setApplyLifetimeFirstRelief] = React.useState(false);
+  const [applyLifetimeFirstRelief, setApplyLifetimeFirstRelief] = React.useState(isFirstHomeVariant);
   const [lifetimeFirstTier, setLifetimeFirstTier] = React.useState<LifetimeFirstReliefTier>("general");
   const [result, setResult] = React.useState<TaxResult | null>(null);
 
@@ -206,11 +221,27 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
   }, [isAdjustedToggleEnabled]);
 
   React.useEffect(() => {
+    if (isFirstHomeVariant) {
+      setPropertyCategory("house");
+      setAcquisitionType("paid");
+      setHouseCount("1");
+      return;
+    }
+    if (isOfficetelVariant) {
+      setPropertyCategory("non-house");
+      setNonHouseDetailType("officetel");
+      return;
+    }
+    if (isInheritedHousingVariant) {
+      setPropertyCategory("house");
+      setAcquisitionType("inheritance");
+      return;
+    }
     if (!showLifetimeFirstInputs) {
       setApplyLifetimeFirstRelief(false);
       setLifetimeFirstTier("general");
     }
-  }, [showLifetimeFirstInputs]);
+  }, [showLifetimeFirstInputs, isFirstHomeVariant, isOfficetelVariant, isInheritedHousingVariant]);
 
   React.useEffect(() => {
     if (isHouseCategory) {
@@ -337,9 +368,22 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
-      <Card id={isFarmlandVariant ? "farmland-acquisition-tax-calculator" : "acquisition-tax-calculator"} className="scroll-mt-24">
+      <Card
+        id={
+          isFarmlandVariant
+            ? "farmland-acquisition-tax-calculator"
+            : isFirstHomeVariant
+              ? "first-home-acquisition-tax-calculator"
+              : isOfficetelVariant
+                ? "officetel-acquisition-tax-calculator"
+                : isInheritedHousingVariant
+                  ? "inherited-housing-acquisition-tax-calculator"
+                  : "acquisition-tax-calculator"
+        }
+        className="scroll-mt-24"
+      >
         <CardContent className="space-y-4 pt-6">
-          {isFarmlandVariant ? null : (
+          {isFarmlandVariant || isFirstHomeVariant || isOfficetelVariant || isInheritedHousingVariant ? null : (
             <div className="space-y-2">
               <Label htmlFor="propertyCategory">자산 구분</Label>
               <select
@@ -354,12 +398,52 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
               </select>
               {isFarmlandCategory ? (
                 <p className="text-muted-foreground text-xs leading-relaxed">
-                  자경 감면 요건·농지취득자격증명·신고 기한까지 한 번에 보려면{" "}
+                  농지만 따로 계산하려면{" "}
                   <Link
                     href="/farmland-acquisition-tax-calculator"
                     className="text-primary font-medium underline-offset-4 hover:underline"
                   >
                     농지 취득세 계산기
+                  </Link>
+                  , 자경·자격증명·기한은{" "}
+                  <Link
+                    href="/guide/farmland-acquisition-tax-guide"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    농지 취득세 가이드
+                  </Link>
+                  를 보세요.
+                </p>
+              ) : isHouseCategory && isPaidType ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  생애최초 감면액만 따로 보려면{" "}
+                  <Link
+                    href="/first-home-acquisition-tax-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    생애최초 취득세 감면 계산기
+                  </Link>
+                  를 이용하세요.
+                </p>
+              ) : isHouseCategory && isInheritanceType ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  상속 주택만 따로 계산하려면{" "}
+                  <Link
+                    href="/inherited-housing-acquisition-tax-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    상속 주택 취득세 계산기
+                  </Link>
+                  를 이용하세요.
+                </p>
+              ) : isNonHouseCategory ? (
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  오피스텔만 따로 계산하려면{" "}
+                  <Link
+                    href="/officetel-acquisition-tax-calculator"
+                    className="text-primary font-medium underline-offset-4 hover:underline"
+                  >
+                    오피스텔 취득세 계산기
                   </Link>
                   를 이용하세요.
                 </p>
@@ -367,22 +451,65 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
             </div>
           )}
 
-          <div className="space-y-2">
-            <Label htmlFor="acquisitionType">취득유형</Label>
-            <select
-              id="acquisitionType"
-              className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
-              value={acquisitionType}
-              onChange={(e) => setAcquisitionType(e.target.value as AcquisitionType)}
-            >
-              <option value="paid">매매</option>
-              {(isHouseCategory || isNonHouseCategory || isFarmlandCategory) ? <option value="gift">증여</option> : null}
-              <option value="inheritance">상속</option>
-              {(isHouseCategory || isNonHouseCategory || isFarmlandCategory) ? <option value="original">원시</option> : null}
-            </select>
-          </div>
+          {isFirstHomeVariant ? (
+            <p className="text-muted-foreground rounded-md border bg-muted/30 px-3 py-2 text-xs leading-relaxed">
+              주택 매매·1주택을 전제로 생애최초 감면을 기본 적용합니다. 감면을 끄면 감면 전 세액과 비교할 수 있습니다. 요건·신청은{" "}
+              <Link
+                href="/guide/first-home-acquisition-tax-relief-guide"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                생애최초 취득세 감면 가이드
+              </Link>
+              를 참고하세요.
+            </p>
+          ) : null}
 
-          {isNonHouseCategory ? (
+          {isOfficetelVariant ? (
+            <p className="text-muted-foreground rounded-md border bg-muted/30 px-3 py-2 text-xs leading-relaxed">
+              오피스텔은 세법상 주택이 아니어서 주거용·업무용 구분 없이 매매 시 취득세 4%(지방교육세·농특세 포함 합계
+              4.6%)이며 다주택 중과도 적용되지 않습니다. 이후 주택 수·양도세·부가세는{" "}
+              <Link
+                href="/guide/officetel-residential-vs-business-tax-guide"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                오피스텔 주거용·업무용 세금 가이드
+              </Link>
+              를 참고하세요.
+            </p>
+          ) : null}
+
+          {isInheritedHousingVariant ? (
+            <p className="text-muted-foreground rounded-md border bg-muted/30 px-3 py-2 text-xs leading-relaxed">
+              상속으로 주택을 취득할 때 취득세율은 2.8%(지방교육세 0.16%, 전용 85㎡ 초과 시 농특세 0.2%)이며, 과세표준은
+              시가표준액(공시가격)입니다. 다주택 중과는 적용되지 않습니다. 기한·주택 수·지분은{" "}
+              <Link
+                href="/guide/inherited-housing-acquisition-tax-2026-guide"
+                className="text-primary font-medium underline-offset-4 hover:underline"
+              >
+                상속 주택 취득세 가이드
+              </Link>
+              를 참고하세요.
+            </p>
+          ) : null}
+
+          {isFirstHomeVariant || isInheritedHousingVariant ? null : (
+            <div className="space-y-2">
+              <Label htmlFor="acquisitionType">취득유형</Label>
+              <select
+                id="acquisitionType"
+                className="border-input bg-background focus-visible:ring-ring h-10 w-full rounded-md border px-3 text-sm shadow-xs outline-none focus-visible:ring-2"
+                value={acquisitionType}
+                onChange={(e) => setAcquisitionType(e.target.value as AcquisitionType)}
+              >
+                <option value="paid">매매</option>
+                {(isHouseCategory || isNonHouseCategory || isFarmlandCategory) ? <option value="gift">증여</option> : null}
+                <option value="inheritance">상속</option>
+                {(isHouseCategory || isNonHouseCategory || isFarmlandCategory) ? <option value="original">원시</option> : null}
+              </select>
+            </div>
+          )}
+
+          {isNonHouseCategory && !isOfficetelVariant ? (
             <div className="space-y-2">
               <Label htmlFor="nonHouseDetailType">주택 외 세부 구분</Label>
               <select
@@ -436,22 +563,24 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
             </div>
           ) : null}
 
-          <div className="space-y-2">
-            <Label htmlFor="acquisitionPrice">취득가액 (원)</Label>
-            <Input
-              id="acquisitionPrice"
-              inputMode="numeric"
-              placeholder={isFarmlandCategory ? "예: 100,000,000" : "예: 600,000,000"}
-              value={priceDisplay}
-              disabled={usesOfficialValueOnly}
-              onChange={(e) => onMoneyInputChange(e.target.value, setPriceDisplay)}
-            />
-            <p className="text-muted-foreground text-xs">
-              {usesOfficialValueOnly
-                ? `${isGiftType ? "증여" : isInheritanceType ? "상속" : "원시"}는 취득가액 입력 없이 시가표준액(또는 시가인정액) 기준으로 계산합니다.`
-                : "실제 취득가액(매매의 경우 계약가 등)을 입력하세요."}
-            </p>
-          </div>
+          {isInheritedHousingVariant ? null : (
+            <div className="space-y-2">
+              <Label htmlFor="acquisitionPrice">취득가액 (원)</Label>
+              <Input
+                id="acquisitionPrice"
+                inputMode="numeric"
+                placeholder={isFarmlandCategory ? "예: 100,000,000" : "예: 600,000,000"}
+                value={priceDisplay}
+                disabled={usesOfficialValueOnly}
+                onChange={(e) => onMoneyInputChange(e.target.value, setPriceDisplay)}
+              />
+              <p className="text-muted-foreground text-xs">
+                {usesOfficialValueOnly
+                  ? `${isGiftType ? "증여" : isInheritanceType ? "상속" : "원시"}는 취득가액 입력 없이 시가표준액(또는 시가인정액) 기준으로 계산합니다.`
+                  : "실제 취득가액(매매의 경우 계약가 등)을 입력하세요."}
+              </p>
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="officialValue">{usesOfficialValueOnly ? "시가표준액 (또는 시가인정액)" : "시가표준액"} (원)</Label>
@@ -469,7 +598,7 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
             </p>
           </div>
 
-          {showHouseInputs ? (
+          {showHouseInputs && !isFirstHomeVariant ? (
             <div className="space-y-2">
               <Label htmlFor="houseCount">취득 후 주택 수</Label>
               <select
@@ -574,6 +703,22 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
         <CardContent>
           {result ? (
             <div className="grid gap-3 sm:grid-cols-1" role="list">
+              {isFirstHomeVariant && result.lifetimeFirstReliefDeduction != null && result.lifetimeFirstReliefDeduction > 0 ? (
+                <div
+                  className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-4"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <p className="text-muted-foreground text-sm">생애최초 감면액 (취득세 공제)</p>
+                  <p className="mt-1 text-3xl font-bold tabular-nums tracking-tight text-emerald-700 dark:text-emerald-400">
+                    −{formatNumber(result.lifetimeFirstReliefDeduction)}
+                    <span className="text-lg font-semibold">원</span>
+                  </p>
+                  <p className="text-muted-foreground mt-2 text-sm">
+                    산출 취득세 {formatNumber(result.acquisitionTaxGross ?? 0)}원에서 한도 내 공제한 참고값입니다.
+                  </p>
+                </div>
+              ) : null}
               <div className="flex flex-col gap-0.5 rounded-lg border p-3" role="listitem">
                 <span className="text-muted-foreground text-sm">과세표준 (입력값 중 큰 금액)</span>
                 <ResultAmountBlock amount={result.taxableBase} className="text-lg font-semibold tabular-nums" />
@@ -632,7 +777,17 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
         </CardContent>
       </Card>
 
-      {isFarmlandVariant ? <FarmlandAcquisitionTaxCalculatorReference /> : <AcquisitionTaxCalculatorReference />}
+      {isFarmlandVariant ? (
+        <FarmlandAcquisitionTaxCalculatorReference />
+      ) : isFirstHomeVariant ? (
+        <FirstHomeAcquisitionTaxCalculatorReference />
+      ) : isOfficetelVariant ? (
+        <OfficetelAcquisitionTaxCalculatorReference />
+      ) : isInheritedHousingVariant ? (
+        <InheritedHousingAcquisitionTaxCalculatorReference />
+      ) : (
+        <AcquisitionTaxCalculatorReference />
+      )}
     </div>
   );
 }

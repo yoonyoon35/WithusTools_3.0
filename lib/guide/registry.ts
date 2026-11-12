@@ -108,6 +108,10 @@ import {
   inheritedHousingAcquisitionTax2026GuideMeta,
 } from "@/lib/guide/articles/inherited-housing-acquisition-tax-2026-guide";
 import {
+  FarmlandAcquisitionTaxGuideBody,
+  farmlandAcquisitionTaxGuideMeta,
+} from "@/lib/guide/articles/farmland-acquisition-tax-guide";
+import {
   LocalEducationRuralSpecialTaxAcquisition2026GuideBody,
   localEducationRuralSpecialTaxAcquisition2026GuideMeta,
 } from "@/lib/guide/articles/local-education-rural-special-tax-acquisition-2026-guide";
@@ -475,6 +479,10 @@ export const guideArticles: readonly GuideArticle[] = [
   {
     ...inheritedHousingAcquisitionTax2026GuideMeta,
     Body: InheritedHousingAcquisitionTax2026GuideBody,
+  },
+  {
+    ...farmlandAcquisitionTaxGuideMeta,
+    Body: FarmlandAcquisitionTaxGuideBody,
   },
   {
     ...inheritanceTaxOverviewGuideMeta,

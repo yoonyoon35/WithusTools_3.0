@@ -4,8 +4,8 @@ export const kakaoEmergencyLoanInterestGuideMeta = {
   slug: "kakao-emergency-loan-interest-guide",
   title: "카카오 비상금대출 이자 계산 방식",
   description:
-    "카카오뱅크 비상금대출(마이너스통장)은 쓴 금액에 대해 쓴 일수만큼만 이자를 냅니다. 이자 계산식, 사용액·일수별 예시, 당일 인출·상환, 한도만 열어둔 경우, 계산기로 어림할 때와 실제 일할 이자의 차이를 다룹니다. (2026년 9월 19일 기준)",
-  updated: "2026년 9월 19일",
+    "카카오뱅크 비상금대출(마이너스통장)은 쓴 금액에 대해 쓴 일수만큼만 이자를 냅니다. 이자 계산식, 사용액·일수별 예시, 당일 인출·상환, 한도만 열어둔 경우, 비상금대출 이자 계산기(날짜·일수)와 대출 이자 계산기 어림의 차이를 다룹니다. (2026년 9월 19일 기준)",
+  updated: "2026년 11월 12일",
 } as const;
 
 export function KakaoEmergencyLoanInterestGuideBody() {
@@ -27,8 +27,14 @@ export function KakaoEmergencyLoanInterestGuideBody() {
           <Link href="/loan-calculator" className="text-primary underline-offset-4 hover:underline">
             대출 이자 계산기
           </Link>
-          의 만기일시(이자만)로 어림할 때 어디가 같고 어디가 다른지를 정리합니다. 확정 금리·한도는 카카오뱅크 앱·상품설명서를
-          따릅니다.
+          의 만기일시(이자만)로 어림할 때와{" "}
+          <Link
+            href="/emergency-loan-interest-calculator"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            비상금대출 이자 계산기
+          </Link>
+          (일할)의 차이를 정리합니다. 확정 금리·한도는 카카오뱅크 앱·상품설명서를 따릅니다.
         </p>
       </section>
 
@@ -266,17 +272,21 @@ export function KakaoEmergencyLoanInterestGuideBody() {
           계산기로 어림하는 법
         </h2>
         <p>
-          본 사이트{" "}
-          <Link href="/loan-calculator" className="text-primary underline-offset-4 hover:underline">
-            대출 이자 계산기
+          며칠만 쓰는 일할 이자는{" "}
+          <Link
+            href="/emergency-loan-interest-calculator"
+            className="text-primary underline-offset-4 hover:underline"
+          >
+            비상금대출 이자 계산기
           </Link>
-          는 월 단위 단리(연이율 ÷ 12)입니다. 카카오 비상금대출처럼 <strong>며칠만 쓰는 일할</strong>을 날짜별로 더하지는 않습니다.
-          다만 한 달 내내 같은 금액을 쓸 계획이면, 아래처럼 넣으면 월 이자 규모를 빠르게 볼 수 있습니다.
+          에서 바로 계산할 수 있습니다. 사용 금액·약정 금리를 넣고,{" "}
+          <strong>사용 시작일·기준일</strong>로 일수를 자동 계산하거나 일수를 직접 입력하면 됩니다. 같은 날이면 1일로
+          봅니다. 토스·케이뱅크 등 마이너스통장형 소액 비상금도 같은 방식으로 어림할 수 있습니다.
         </p>
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
             <caption className="border-b border-border bg-muted/50 px-3 py-2 text-left text-sm font-medium text-foreground">
-              계산기 입력 요령(어림)
+              비상금대출 이자 계산기 입력 요령
             </caption>
             <thead>
               <tr className="bg-muted/40">
@@ -291,34 +301,39 @@ export function KakaoEmergencyLoanInterestGuideBody() {
             <tbody>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  대출 원금
+                  사용 금액
                 </th>
-                <td className="border-border border-b px-3 py-2.5">한도가 아니라 실제로 쓸 금액</td>
+                <td className="border-border border-b px-3 py-2.5">한도가 아니라 실제로 쓴(쓸) 금액</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  금리
+                  연 금리
                 </th>
                 <td className="border-border border-b px-3 py-2.5">앱에 표시된 본인 약정 금리</td>
               </tr>
               <tr>
                 <th scope="row" className="border-border border-b px-3 py-2.5 font-medium">
-                  상환 방식
+                  사용 시작일·기준일
                 </th>
-                <td className="border-border border-b px-3 py-2.5">만기일시(이자만)</td>
+                <td className="border-border border-b px-3 py-2.5">인출일 ~ 상환일·오늘 등. 같은 날이면 1일</td>
               </tr>
               <tr className="bg-muted/20">
                 <th scope="row" className="px-3 py-2.5 font-medium">
-                  기간
+                  일수 직접 입력
                 </th>
-                <td className="px-3 py-2.5">1년 등 약정 기간. 월 이자는 원금×금리÷12</td>
+                <td className="px-3 py-2.5">날짜 대신 날 수만 알 때 선택</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          원리금균등·원금균등으로 넣으면 매월 원금까지 나눠 갚는 숫자로 나와, 비상금대출 실제 청구와 맞지 않습니다. 단기 사용
-          이자는 위 공식으로 일수를 곱하는 편이 맞습니다.
+          본 사이트{" "}
+          <Link href="/loan-calculator" className="text-primary underline-offset-4 hover:underline">
+            대출 이자 계산기
+          </Link>
+          는 월 단위 단리(연이율 ÷ 12)라 카카오 비상금대출처럼 <strong>며칠만 쓰는 일할</strong>을 날짜별로 더하지는
+          않습니다. 한 달 내내 같은 금액을 쓸 계획이면 만기일시(이자만)·원금=사용액·금리=약정금리로 월 이자 규모를
+          어림할 수 있습니다. 원리금균등·원금균등으로 넣으면 비상금대출 실제 청구와 맞지 않습니다.
         </p>
       </section>
 
@@ -415,6 +430,14 @@ export function KakaoEmergencyLoanInterestGuideBody() {
         role="note"
         aria-label="계산기 이동"
       >
+        <p>
+          <Link
+            href="/emergency-loan-interest-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            며칠만 쓰는 일할 이자는 비상금대출 이자 계산기에서 확인할 수 있습니다.
+          </Link>
+        </p>
         <p>
           <Link href="/loan-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
             한 달 내내 쓸 금액의 월 이자는 대출 이자 계산기에서 만기일시로 어림할 수 있습니다.

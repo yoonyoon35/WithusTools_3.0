@@ -1000,7 +1000,14 @@ export function AcquisitionTaxRates2026GuideBody() {
         </p>
         <p>
           다만 2020년 8월 12일 이후 취득한 오피스텔이 재산세 주택분으로 과세되면 이후 주택 취득 시 주택 수에 포함될 수 있습니다
-          (시가표준액 1억 원 이하 등은 제외). 주거용과 업무용의 차이는{" "}
+          (시가표준액 1억 원 이하 등은 제외). 금액별 계산은{" "}
+          <Link
+            href="/officetel-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            오피스텔 취득세 계산기
+          </Link>
+          에서, 주거용·업무용 차이는{" "}
           <Link
             href="/guide/officetel-residential-vs-business-tax-guide"
             className="text-primary font-medium underline-offset-4 hover:underline"

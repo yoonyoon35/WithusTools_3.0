@@ -9,9 +9,15 @@ export const dynamic = "force-static";
 const staticPages: MetadataRoute.Sitemap = [
   { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
   { url: `${SITE_URL}/loan-calculator`, changeFrequency: "weekly", priority: 0.95 },
+  { url: `${SITE_URL}/emergency-loan-interest-calculator`, changeFrequency: "weekly", priority: 0.8 },
   { url: `${SITE_URL}/acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/farmland-acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.8 },
+  { url: `${SITE_URL}/first-home-acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.8 },
+  { url: `${SITE_URL}/officetel-acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.8 },
+  { url: `${SITE_URL}/inherited-housing-acquisition-tax-calculator`, changeFrequency: "weekly", priority: 0.8 },
   { url: `${SITE_URL}/brokerage-fee-calculator`, changeFrequency: "weekly", priority: 0.85 },
+  { url: `${SITE_URL}/jeonse-brokerage-fee-calculator`, changeFrequency: "weekly", priority: 0.8 },
+  { url: `${SITE_URL}/wolse-brokerage-fee-calculator`, changeFrequency: "weekly", priority: 0.8 },
   { url: `${SITE_URL}/dsr-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/dti-calculator`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_URL}/ltv-calculator`, changeFrequency: "weekly", priority: 0.85 },
@@ -26,6 +32,11 @@ const staticPages: MetadataRoute.Sitemap = [
     url: `${SITE_URL}/capital-gains-tax-calculator`,
     changeFrequency: "weekly",
     priority: 0.85,
+  },
+  {
+    url: `${SITE_URL}/presale-capital-gains-tax-calculator`,
+    changeFrequency: "weekly",
+    priority: 0.8,
   },
   {
     url: `${SITE_URL}/comprehensive-income-tax-calculator`,

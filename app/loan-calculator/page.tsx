@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CalculatorPageShell } from "@/components/calculator-page-shell";
 import { LoanCalculatorSection } from "@/components/loan-calculator-section";
 import { loanCalculatorFaqItems } from "@/lib/faq-data";
@@ -22,8 +23,15 @@ export default function LoanCalculatorPage() {
       intro={
         <>
           거치식(거치기간)·체증식·원리금균등·원금균등·만기일시 상환을 한 화면에서 비교합니다. 카카오 비상금대출처럼 쓴 금액만
-          이자가 붙는 마이너스통장은 만기일시로 월 이자를 어림할 수 있습니다. 계산 결과 아래에서 원리금균등 상환표·원금균등 상환표·체증식 상환표·만기일시 상환표(회차별 상환 일정표)를 확인하고 저장할 수 있으며, 하단 기준표로 각 방식의 특징을 볼 수 있습니다.{" "}
-          {referenceDisclaimerLine}
+          이자가 붙는 마이너스통장은 만기일시로 월 이자를 어림할 수 있습니다. 며칠만 쓰는 일할(연이율÷365) 이자는{" "}
+          <Link
+            href="/emergency-loan-interest-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            비상금대출 이자 계산기
+          </Link>
+          를 이용하세요. 계산 결과 아래에서 원리금균등 상환표·원금균등 상환표·체증식 상환표·만기일시 상환표(회차별 상환
+          일정표)를 확인하고 저장할 수 있으며, 하단 기준표로 각 방식의 특징을 볼 수 있습니다. {referenceDisclaimerLine}
         </>
       }
       faqItems={loanCalculatorFaqItems}

@@ -528,11 +528,14 @@ export function JeonseBrokerageFeeCalculation2026GuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="중개수수료 계산기 이동"
+        aria-label="전세 중개수수료 계산기 이동"
       >
         <p>
-          <Link href="/brokerage-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            전세 보증금을 직접 입력하면 중개수수료를 바로 계산해볼 수 있습니다.
+          <Link
+            href="/jeonse-brokerage-fee-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            전세 보증금을 직접 입력하면 전세 중개수수료 계산기에서 바로 확인할 수 있습니다.
           </Link>
         </p>
         <p>

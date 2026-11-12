@@ -11,6 +11,7 @@ const aboutCalculatorGroups = [
     label: "대출",
     hrefs: [
       "/loan-calculator",
+      "/emergency-loan-interest-calculator",
       "/dsr-calculator",
       "/dti-calculator",
       "/ltv-calculator",
@@ -21,8 +22,13 @@ const aboutCalculatorGroups = [
     label: "부동산 거래",
     hrefs: [
       "/acquisition-tax-calculator",
+      "/first-home-acquisition-tax-calculator",
       "/farmland-acquisition-tax-calculator",
+      "/officetel-acquisition-tax-calculator",
+      "/inherited-housing-acquisition-tax-calculator",
       "/brokerage-fee-calculator",
+      "/jeonse-brokerage-fee-calculator",
+      "/wolse-brokerage-fee-calculator",
       "/national-housing-bond-calculator",
     ],
   },
@@ -31,6 +37,7 @@ const aboutCalculatorGroups = [
     hrefs: [
       "/comprehensive-property-tax-calculator",
       "/capital-gains-tax-calculator",
+      "/presale-capital-gains-tax-calculator",
       "/comprehensive-income-tax-calculator",
       "/inheritance-tax-calculator",
     ],

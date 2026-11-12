@@ -78,8 +78,8 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
           주거용과 업무용의 차이는 <strong>취득세율이 아니라 그 이후</strong>에 생깁니다. 나중에 아파트·빌라를 살 때
           오피스텔이 주택 수에 들어가 중과를 부를 수 있는지, 양도세·재산세·종부세·부가가치세가 어떻게 달라지는지가
           핵심입니다.{" "}
-          <Link href="/acquisition-tax-calculator" className={linkClass}>
-            취득세 계산기
+          <Link href="/officetel-acquisition-tax-calculator" className={linkClass}>
+            오피스텔 취득세 계산기
           </Link>
           와{" "}
           <Link href="/guide/acquisition-tax-rates-2026-guide" className={linkClass}>
@@ -291,11 +291,14 @@ export function OfficetelResidentialVsBusinessTaxGuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="취득세 계산기 이동"
+        aria-label="오피스텔 취득세 계산기 이동"
       >
         <p>
-          <Link href="/acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            매매가별 취득세는 취득세 계산기에서 바로 확인할 수 있습니다.
+          <Link
+            href="/officetel-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            매매가별 오피스텔 취득세는 오피스텔 취득세 계산기에서 바로 확인할 수 있습니다.
           </Link>
         </p>
       </aside>

@@ -559,6 +559,18 @@ export function LoanCalculator() {
               <option value="graduated">체증식상환</option>
               <option value="bullet">만기일시상환</option>
             </select>
+            {repaymentType === "bullet" ? (
+              <p className="text-muted-foreground text-xs leading-relaxed">
+                비상금대출처럼 며칠만 쓰는 일할(÷365) 이자는{" "}
+                <Link
+                  href="/emergency-loan-interest-calculator"
+                  className="text-primary font-medium underline-offset-4 hover:underline"
+                >
+                  비상금대출 이자 계산기
+                </Link>
+                를 이용하세요. 만기일시는 한 달 내내 같은 잔액일 때의 월 이자 어림에 가깝습니다.
+              </p>
+            ) : null}
           </div>
 
           {repaymentType === "graduated" ? (

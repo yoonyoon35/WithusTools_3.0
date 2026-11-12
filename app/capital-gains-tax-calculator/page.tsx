@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CalculatorPageShell } from "@/components/calculator-page-shell";
 import { CapitalGainsTaxCalculatorSection } from "@/components/capital-gains-tax-calculator-section";
 import { capitalGainsTaxCalculatorFaqItems } from "@/lib/faq-data";
@@ -22,8 +23,15 @@ export default function CapitalGainsTaxCalculatorPage() {
       intro={
         <>
           집이나 분양권을 팔 때 양도차익에서 비과세·장기보유특별공제·기본공제를 빼고 적용 세율(기본·단기·중과)에 따라
-          양도소득세를 계산합니다. 2026년 5월 10일부터 다시 시행된 조정대상지역 다주택 중과와 한시배제 옵션도
-          반영했습니다. 법령 근거는 아래 기준표에서 확인할 수 있고, 최종 세액은 홈택스·관할 세무서와 대조하세요.
+          양도소득세를 계산합니다. 분양권만 따로 보려면{" "}
+          <Link
+            href="/presale-capital-gains-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            분양권 양도세 계산기
+          </Link>
+          를 이용하세요. 2026년 5월 10일부터 다시 시행된 조정대상지역 다주택 중과와 한시배제 옵션도 반영했습니다. 법령
+          근거는 아래 기준표에서 확인할 수 있고, 최종 세액은 홈택스·관할 세무서와 대조하세요.
         </>
       }
       faqItems={capitalGainsTaxCalculatorFaqItems}

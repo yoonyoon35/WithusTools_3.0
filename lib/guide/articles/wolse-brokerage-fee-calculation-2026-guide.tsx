@@ -556,16 +556,29 @@ export function WolseBrokerageFeeCalculation2026GuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="중개수수료 계산기 이동"
+        aria-label="월세 중개수수료 계산기 이동"
       >
         <p>
-          <Link href="/brokerage-fee-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            보증금과 월세를 직접 입력하면 중개수수료를 바로 계산해볼 수 있습니다.
+          <Link
+            href="/wolse-brokerage-fee-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            보증금과 월세를 직접 입력하면 월세 중개수수료 계산기에서 바로 확인할 수 있습니다.
           </Link>
         </p>
         <p>
           전세 보증금만 있는 경우는{" "}
-          <Link href="/guide/jeonse-brokerage-fee-calculation-2026-guide" className="text-primary font-medium underline-offset-4 hover:underline">
+          <Link
+            href="/jeonse-brokerage-fee-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            전세 중개수수료 계산기
+          </Link>
+          와{" "}
+          <Link
+            href="/guide/jeonse-brokerage-fee-calculation-2026-guide"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
             전세 중개수수료 계산법
           </Link>
           가이드를 참고하세요.

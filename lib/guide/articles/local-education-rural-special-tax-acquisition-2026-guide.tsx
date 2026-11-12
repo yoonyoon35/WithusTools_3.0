@@ -375,6 +375,23 @@ export function LocalEducationRuralSpecialTaxAcquisition2026GuideBody() {
           </Link>
         </p>
         <p>
+          농지 취득세·자경 감면은{" "}
+          <Link
+            href="/guide/farmland-acquisition-tax-guide"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            농지 취득세 가이드
+          </Link>
+          ·{" "}
+          <Link
+            href="/farmland-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            농지 취득세 계산기
+          </Link>
+          를 참고하세요.
+        </p>
+        <p>
           취득세율 전체 표는{" "}
           <Link href="/guide/acquisition-tax-rates-2026-guide" className="text-primary font-medium underline-offset-4 hover:underline">
             2026년 취득세율 완전 정리

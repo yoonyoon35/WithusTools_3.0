@@ -617,11 +617,19 @@ export function InheritedHousingAcquisitionTax2026GuideBody() {
       <aside
         className="bg-muted/40 text-muted-foreground space-y-3 rounded-lg border p-4 text-sm leading-relaxed"
         role="note"
-        aria-label="취득세 계산기 이동"
+        aria-label="상속 주택 취득세 계산기 이동"
       >
         <p>
+          <Link
+            href="/inherited-housing-acquisition-tax-calculator"
+            className="text-primary font-medium underline-offset-4 hover:underline"
+          >
+            시가표준액 기준 상속 주택 취득세는 상속 주택 취득세 계산기에서 바로 확인할 수 있습니다.
+          </Link>
+        </p>
+        <p>
           <Link href="/acquisition-tax-calculator" className="text-primary font-medium underline-offset-4 hover:underline">
-            매매가에 따른 취득세는 취득세 계산기에서 확인할 수 있습니다.
+            매매·증여 취득세는 취득세 계산기에서 확인할 수 있습니다.
           </Link>
         </p>
         <p>

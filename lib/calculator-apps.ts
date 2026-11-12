@@ -17,6 +17,19 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
       "상환 일정표 다운로드",
     ],
   },
+  "/emergency-loan-interest-calculator": {
+    name: "비상금대출 이자 계산기",
+    description:
+      "비상금대출·마이너스통장 이자를 사용 금액×연 금리÷365×일수로 계산하고, 사용 시작일·기준일 또는 일수 직접 입력과 ÷12 월 어림을 비교하는 계산기입니다. 카카오·토스·케이뱅크 등 비공식 참고용입니다.",
+    path: "/emergency-loan-interest-calculator",
+    featureList: [
+      "일할 이자(연이율÷365×일수)",
+      "사용 시작일·기준일로 일수 자동 계산",
+      "일수 직접 입력 선택",
+      "한 달(÷12) 어림 비교",
+      "미사용(한도만 오픈) 0원 이자",
+    ],
+  },
   "/dsr-calculator": {
     name: "DSR·주담대 한도 계산기",
     description:
@@ -51,7 +64,7 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
   "/farmland-acquisition-tax-calculator": {
     name: "농지 취득세 계산기",
     description:
-      "농지 매매·상속·증여·원시취득별 취득세와 농어촌특별세·지방교육세를 계산하고, 2년 이상 자경 감면 요건과 농지취득자격증명, 신고 기한을 안내하는 계산기입니다.",
+      "농지 매매·상속·증여·원시취득별 취득세와 농어촌특별세·지방교육세를 계산하는 계산기입니다. 자경 감면·농지취득자격증명·신고 기한은 농지 취득세 가이드에서 확인할 수 있습니다.",
     path: "/farmland-acquisition-tax-calculator",
     featureList: [
       "농지 매매 취득세(일반 3%·자경 1.5%)",
@@ -60,11 +73,61 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
       "농어촌특별세·지방교육세 합산",
     ],
   },
+  "/first-home-acquisition-tax-calculator": {
+    name: "생애최초 취득세 감면 계산기",
+    description:
+      "1주택 매매 기준 산출 취득세에서 생애최초 감면(일반 200만·확대 300만 원)을 공제한 감면액과 감면 후 세액을 계산하는 계산기입니다. 비공식 참고용입니다.",
+    path: "/first-home-acquisition-tax-calculator",
+    featureList: [
+      "생애최초 감면 기본 적용",
+      "감면 전·감면액·감면 후 비교",
+      "일반 200만·확대 300만 원 한도",
+      "지방교육세·농어촌특별세 합산",
+    ],
+  },
+  "/officetel-acquisition-tax-calculator": {
+    name: "오피스텔 취득세 계산기",
+    description:
+      "오피스텔 매매·증여·상속·원시취득별 취득세와 농어촌특별세·지방교육세를 계산하는 계산기입니다. 주거용·업무용 세율은 같으며, 이후 주택 수·양도세는 오피스텔 주거용·업무용 세금 가이드에서 확인할 수 있습니다.",
+    path: "/officetel-acquisition-tax-calculator",
+    featureList: [
+      "오피스텔 매매 합계 4.6%",
+      "증여·상속·원시취득 세율",
+      "주거용·업무용 동일 세율",
+      "농어촌특별세·지방교육세 합산",
+    ],
+  },
+  "/inherited-housing-acquisition-tax-calculator": {
+    name: "상속 주택 취득세 계산기",
+    description:
+      "상속으로 주택을 취득할 때 시가표준액 기준 취득세 2.8%·지방교육세 0.16%·전용 85㎡ 초과 시 농특세 0.2%를 계산하는 계산기입니다. 납부 기한·주택 수는 상속 주택 취득세 가이드에서 확인할 수 있습니다.",
+    path: "/inherited-housing-acquisition-tax-calculator",
+    featureList: [
+      "상속 주택 취득세 2.8%",
+      "지방교육세 0.16%",
+      "전용 85㎡ 초과 농특세",
+      "시가표준액 과세표준",
+    ],
+  },
   "/brokerage-fee-calculator": {
     name: "중개수수료 계산기",
     description: "매매·전세·월세 거래 유형별 중개수수료 상한액을 계산하는 계산기입니다.",
     path: "/brokerage-fee-calculator",
     featureList: ["매매·전세·월세 요율", "서울시 고시 상한 요율", "VAT 적용 기준 참고"],
+  },
+  "/jeonse-brokerage-fee-calculator": {
+    name: "전세 중개수수료 계산기",
+    description:
+      "주택 전세 보증금 구간별 서울시 고시 상한 요율로 중개수수료 상한액을 계산하는 계산기입니다. 요율표·예시·재계약은 전세 중개수수료 가이드에서 확인할 수 있습니다.",
+    path: "/jeonse-brokerage-fee-calculator",
+    featureList: ["전세 보증금 입력", "임대차 상한 요율·한도액", "서울시 고시 기준", "VAT 별도 안내"],
+  },
+  "/wolse-brokerage-fee-calculator": {
+    name: "월세 중개수수료 계산기",
+    description:
+      "주택 월세 보증금·월세 환산 거래금액에 서울시 고시 상한 요율을 적용해 중개수수료 상한액을 계산하는 계산기입니다. 환산·예시는 월세 중개수수료 가이드에서 확인할 수 있습니다.",
+    path: "/wolse-brokerage-fee-calculator",
+    featureList: ["보증금·월세 환산", "임대차 상한 요율·한도액", "서울시 고시 기준", "VAT 별도 안내"],
   },
   "/prepayment-fee-calculator": {
     name: "중도상환 수수료 계산기",
@@ -95,6 +158,13 @@ export const calculatorWebApplications: Record<string, WebApplicationSchemaInput
     description: "양도차익·장기보유특별공제·다주택 중과를 반영해 양도소득세·지방소득세를 산출하는 계산기입니다.",
     path: "/capital-gains-tax-calculator",
     featureList: ["1세대 1주택 비과세·고가 안분", "장기보유특별공제", "다주택 중과·단기세율 비교"],
+  },
+  "/presale-capital-gains-tax-calculator": {
+    name: "분양권 양도세 계산기",
+    description:
+      "주택분양권 양도 시 보유 1년 미만 70%·1년 이상 60% 전용세율로 양도소득세·지방소득세를 산출하는 계산기입니다. 장특공·1주택 비과세·다주택 중과는 적용되지 않습니다.",
+    path: "/presale-capital-gains-tax-calculator",
+    featureList: ["분양권 전용 60%·70%", "기본공제·지방소득세", "장특공·비과세 미적용 안내"],
   },
   "/comprehensive-income-tax-calculator": {
     name: "종합소득세 계산기",
