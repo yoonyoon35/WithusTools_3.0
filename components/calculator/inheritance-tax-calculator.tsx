@@ -34,6 +34,7 @@ import {
 import { formatInheritanceTaxResultText } from "@/lib/inheritance-tax-result-text";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 
 function addCommas(value: string): string {
   const numValue = removeCommas(value);
@@ -152,6 +153,8 @@ export function InheritanceTaxCalculator() {
   const [timelyFiling, setTimelyFiling] = React.useState(true);
 
   const [result, setResult] = React.useState<InheritanceTaxResult | null>(null);
+
+  useShareResultLine(result ? `예상 상속세 ${formatNumber(result.payableTax)}원` : null);
   const exportRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {

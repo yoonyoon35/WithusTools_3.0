@@ -29,6 +29,7 @@ import {
 } from "@/lib/capital-gains-tax-calculations";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 
 function addCommas(value: string): string {
   const numValue = removeCommas(value);
@@ -96,6 +97,14 @@ export function CapitalGainsTaxCalculator({ variant = "general" }: CapitalGainsT
   const [managementApprovalDate, setManagementApprovalDate] = React.useState("");
   const [memberRightsValueDisplay, setMemberRightsValueDisplay] = React.useState("");
   const [result, setResult] = React.useState<CapitalGainsTaxResult | null>(null);
+
+  useShareResultLine(
+    result
+      ? result.isFullyExempt
+        ? "양도소득세 비과세"
+        : `양도소득세 ${formatNumber(result.totalPayableTax)}원`
+      : null,
+  );
 
   React.useEffect(() => {
     if (!isPresaleVariant) return;

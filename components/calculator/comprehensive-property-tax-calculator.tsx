@@ -35,6 +35,7 @@ import {
 } from "@/lib/comprehensive-property-tax-calculations";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 
 function addCommas(value: string): string {
   const numValue = removeCommas(value);
@@ -111,6 +112,8 @@ export function ComprehensivePropertyTaxCalculator() {
   const [priorYearTaxDisplay, setPriorYearTaxDisplay] = React.useState("");
   const [currentPropertyTaxDisplay, setCurrentPropertyTaxDisplay] = React.useState("");
   const [result, setResult] = React.useState<ComprehensivePropertyTaxResult | null>(null);
+
+  useShareResultLine(result ? `연간 보유세 ${formatNumber(result.totalAnnualHoldingTax)}원` : null);
 
   const showOneHomeInputs = taxpayerType === "individual";
   const showAgeHoldingInputs = showOneHomeInputs && isOneHouseholdOneHome;

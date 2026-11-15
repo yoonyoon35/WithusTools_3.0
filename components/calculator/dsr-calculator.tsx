@@ -29,6 +29,7 @@ import {
   type StressRateKind,
 } from "@/lib/dsr-calculations";
 import { formatNumber, removeCommas, repaymentTypeLabels, type RepaymentType } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { MoneyValue, ResultRow, SubTextValue } from "@/components/calculator/calculator-result-rows";
 import { CalculatorResultExportButtons } from "@/components/calculator/calculator-result-export-buttons";
@@ -339,6 +340,14 @@ export function DsrCalculator() {
     ? "목표 DSR을 1~100% 사이로 입력하세요."
     : "신규 대출을 「대출 조건」으로 입력하고 금리를 넣으면 최대 대출 가능액을 계산합니다. 대출금은 비워 두어도 됩니다.";
   const showSingleNewRate = !showZeroResult && displaySnapshot.loanResults.filter((l) => l.isNew && l.inputMode === "details").length === 1;
+
+  useShareResultLine(
+    showZeroResult || displayDsr === "—"
+      ? null
+      : showMaxLoanResult && maxLoan
+        ? `DSR ${displayDsr}%, 최대 대출 가능액 ${formatNumber(maxLoan.maxPrincipalWon)}원`
+        : `DSR ${displayDsr}%`,
+  );
 
   const dsrModeLabel =
     dsrMode === "stress"

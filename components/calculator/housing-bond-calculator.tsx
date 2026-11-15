@@ -24,7 +24,8 @@ import {
   type BondRegion,
 } from "@/lib/housing-bond-calculations";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
-import { removeCommas } from "@/lib/loan-calculations";
+import { removeCommas, formatNumber } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 
 function addCommas(value: string): string {
   const numValue = removeCommas(value);
@@ -120,6 +121,8 @@ export function HousingBondCalculator() {
     withMortgage,
     mortgageAmountWon,
   ]);
+
+  useShareResultLine(result ? `국민주택채권 매입액 ${formatNumber(result.totalAmount)}원` : null);
 
   const exportText = React.useMemo(() => {
     if (!result) return "";

@@ -7,13 +7,34 @@ import { ChevronDown, Copy } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { sendKakaoFeedShare } from "@/lib/kakao-share";
-import { defaultShareText, defaultTitle, getPublicSharePageUrl, SITE_NAME, siteTagline, SITE_URL } from "@/lib/site";
+import { getShareResultLine } from "@/lib/share-result-line";
+import { trackShare, withShareRef } from "@/lib/share-tracking";
+import { defaultShareText, defaultTitle, getPublicSharePageUrl, SITE_NAME, siteTagline } from "@/lib/site";
 
-function shareUrl() {
-  if (typeof window !== "undefined") return window.location.href;
-  return SITE_URL;
+function sharePageUrl() {
+  return withShareRef(getPublicSharePageUrl());
 }
 
+function shareDescription() {
+  return getShareResultLine() ?? defaultShareText;
+}
+
+function tweetText() {
+  return getShareResultLine() ?? `${defaultTitle} — ${defaultShareText}`;
+}
+
+async function copyLink() {
+  const url = sharePageUrl();
+  const line = getShareResultLine();
+  const text = line ? `${line}\n${url}` : url;
+  trackShare("copy");
+  try {
+    await navigator.clipboard.writeText(text);
+    showCopyToast();
+  } catch {
+    window.prompt("링크를 복사하세요:", text);
+  }
+}
 function showCopyToast() {
   const toast = document.createElement("div");
   toast.textContent = "링크가 클립보드에 복사되었습니다!";
@@ -21,16 +42,6 @@ function showCopyToast() {
     "fixed top-4 right-4 z-[100] rounded-lg bg-blue-600 px-4 py-2 text-sm text-white shadow-lg";
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 2000);
-}
-
-async function copyLink() {
-  const url = shareUrl();
-  try {
-    await navigator.clipboard.writeText(url);
-    showCopyToast();
-  } catch {
-    window.prompt("링크를 복사하세요:", url);
-  }
 }
 
 function FacebookIcon({ className }: { className?: string }) {
@@ -217,11 +228,12 @@ export function SiteHeader() {
               className="size-9 shrink-0 p-0 hover:opacity-90"
               aria-label="카카오톡으로 공유"
               onClick={() => {
-                const pageUrl = getPublicSharePageUrl();
+                const pageUrl = sharePageUrl();
+                trackShare("kakao");
                 const ok = sendKakaoFeedShare({
                   pageUrl,
                   title: defaultTitle,
-                  description: defaultShareText,
+                  description: shareDescription(),
                 });
                 if (!ok) {
                   setKakaoShareFailed(true);
@@ -244,7 +256,8 @@ export function SiteHeader() {
               className="size-9 text-[#1877F2] hover:bg-[#1877F2]/10 dark:text-[#1877F2] dark:hover:bg-[#1877F2]/15"
               aria-label="페이스북에 공유"
               onClick={() => {
-                const pageUrl = getPublicSharePageUrl();
+                const pageUrl = sharePageUrl();
+                trackShare("facebook");
                 openShare(
                   `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
                 );
@@ -258,11 +271,13 @@ export function SiteHeader() {
               size="icon"
               className="size-9 text-foreground hover:bg-muted dark:text-foreground dark:hover:bg-muted"
               aria-label="X(트위터)에 공유"
-              onClick={() =>
+              onClick={() => {
+                const pageUrl = sharePageUrl();
+                trackShare("x");
                 openShare(
-                  `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${defaultTitle} — ${defaultShareText}`)}&url=${encodeURIComponent(shareUrl())}`,
-                )
-              }
+                  `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText())}&url=${encodeURIComponent(pageUrl)}`,
+                );
+              }}
             >
               <XIcon className="size-5" />
             </Button>
@@ -272,11 +287,13 @@ export function SiteHeader() {
               size="icon"
               className="size-9 hover:bg-muted"
               aria-label="네이버 블로그에 공유"
-              onClick={() =>
+              onClick={() => {
+                const pageUrl = sharePageUrl();
+                trackShare("naver");
                 openShare(
-                  `https://share.naver.com/web/shareView.nhn?url=${encodeURIComponent(shareUrl())}&title=${encodeURIComponent(defaultTitle)}`,
-                )
-              }
+                  `https://share.naver.com/web/shareView.nhn?url=${encodeURIComponent(pageUrl)}&title=${encodeURIComponent(getShareResultLine() ?? defaultTitle)}`,
+                );
+              }}
             >
               <NaverBlogIcon className="size-5 rounded-md" />
             </Button>

@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { DeferredAdSense } from "@/components/deferred-adsense";
 import { KakaoSdkLoader } from "@/components/kakao-sdk-loader";
+import { ShareRefCleaner } from "@/components/share-ref-cleaner";
 import { SiteJsonLd } from "@/components/json-ld";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SiteFooter } from "@/components/site-footer";
@@ -129,6 +130,7 @@ export default function RootLayout({
         /> */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <KakaoSdkLoader />
+          <ShareRefCleaner />
           <SiteJsonLd />
           <SiteHeader />
           {/* <AdfitLeaderboard728 /> */}

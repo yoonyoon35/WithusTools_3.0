@@ -28,6 +28,7 @@ import {
 } from "@/lib/comprehensive-income-tax-result-text";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 import * as React from "react";
 
 const selectClass =
@@ -337,6 +338,16 @@ export function ComprehensiveIncomeTaxCalculator() {
       }),
     });
   }
+
+  useShareResultLine(
+    !view
+      ? null
+      : view.kind === "tax"
+        ? `${view.result.nationalNet >= 0 ? "납부할 세액" : "환급할 세액"} ${formatNumber(Math.abs(view.result.nationalNet))}원`
+        : view.kind === "notice"
+          ? `중간예납세액 ${formatNumber(view.result.tax)}원`
+          : `중간예납 추계 산출세액 ${formatNumber(view.result.calculatedTax)}원`,
+  );
 
   const exportText = () => {
     if (!view) return "";

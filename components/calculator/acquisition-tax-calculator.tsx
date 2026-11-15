@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 import { CircleHelp } from "lucide-react";
 
 type HouseCount = "1" | "2" | "3" | "4+";
@@ -202,6 +203,8 @@ export function AcquisitionTaxCalculator({ variant = "general" }: AcquisitionTax
   const [applyLifetimeFirstRelief, setApplyLifetimeFirstRelief] = React.useState(isFirstHomeVariant);
   const [lifetimeFirstTier, setLifetimeFirstTier] = React.useState<LifetimeFirstReliefTier>("general");
   const [result, setResult] = React.useState<TaxResult | null>(null);
+
+  useShareResultLine(result ? `취득세 합계 ${formatNumber(result.totalTax)}원` : null);
 
   const isHouseCategory = propertyCategory === "house";
   const isNonHouseCategory = propertyCategory === "non-house";

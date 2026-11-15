@@ -34,6 +34,7 @@ import {
   type DtiRegion,
 } from "@/lib/dti-calculations";
 import { formatDtiResultText } from "@/lib/dti-result-text";
+import { useShareResultLine } from "@/lib/share-result-line";
 import { formatNumber, removeCommas, repaymentTypeLabels, type RepaymentType } from "@/lib/loan-calculations";
 import {
   equalPrincipalDsrBasisHints,
@@ -503,6 +504,8 @@ export function DtiCalculator() {
   const displayDti = showZeroResult ? "0.00" : (displaySnapshot.dtiPercent?.toFixed(2) ?? "—");
   const displayWithinCap = showZeroResult ? true : displaySnapshot.withinCap !== false;
   const displayHasCap = displaySnapshot.capPercent != null;
+
+  useShareResultLine(showZeroResult || !snapshot || displayDti === "—" ? null : `DTI ${displayDti}%`);
 
   const exportText = React.useMemo(() => {
     if (!snapshot || showZeroResult) return "";

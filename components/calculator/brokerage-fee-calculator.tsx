@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 
 type PropertyKind = "house" | "officetel" | "other";
 /** 내부 요율용: 매매 vs 임대차 */
@@ -171,6 +172,10 @@ export function BrokerageFeeCalculator({ variant = "general" }: BrokerageFeeCalc
     bracket: BracketResult;
     label: string;
   } | null>(null);
+
+  useShareResultLine(
+    result ? `중개수수료 상한 ${formatNumber(Math.round(result.bracket.maxFee))}원` : null,
+  );
 
   React.useEffect(() => {
     if (isJeonseVariant) {

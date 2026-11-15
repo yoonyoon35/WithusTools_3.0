@@ -14,6 +14,7 @@ import {
 } from "@/lib/emergency-loan-interest-calculations";
 import { formatEmergencyLoanInterestResultText } from "@/lib/emergency-loan-interest-result-text";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 import { formatDateInputValue, formatDateLabel } from "@/lib/prepayment-fee-calculations";
 import { referenceDisclaimerLine } from "@/lib/site";
 import * as React from "react";
@@ -131,6 +132,10 @@ export function EmergencyLoanInterestCalculator() {
           days,
         })
       : null;
+
+  useShareResultLine(
+    snapshot ? `${snapshot.days}일 이자 ${formatNumber(snapshot.periodInterestWon)}원` : null,
+  );
 
   const exportText =
     snapshot != null

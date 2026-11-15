@@ -129,3 +129,61 @@
     @apply font-sans;
   }
 }
+
+/* 좁은 화면에서는 가이드 표를 가로로 밀지 않고, 행 제목 아래 칸 이름과 값을 쌓는다. */
+@media (max-width: 639px) {
+  .guide-article-body .overflow-x-auto:has(> table[data-stacked]) {
+    overflow-x: visible;
+  }
+
+  .guide-article-body table[data-stacked] {
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  .guide-article-body table[data-stacked] caption,
+  .guide-article-body table[data-stacked] tbody {
+    display: block;
+  }
+
+  .guide-article-body table[data-stacked] thead {
+    display: none;
+  }
+
+  .guide-article-body table[data-stacked] tr {
+    display: block;
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 0.75rem 0.5rem;
+  }
+
+  .guide-article-body table[data-stacked] tr:last-child {
+    border-bottom: 0;
+  }
+
+  .guide-article-body table[data-stacked] th,
+  .guide-article-body table[data-stacked] td {
+    display: block;
+    width: auto !important;
+    min-width: 0 !important;
+    border: 0 !important;
+    padding: 0.15rem 0;
+    text-align: left !important;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .guide-article-body table[data-stacked] th {
+    font-weight: 600;
+  }
+
+  .guide-article-body table[data-stacked] td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+}

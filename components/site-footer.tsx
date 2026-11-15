@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FooterFeedbackLink } from "@/components/footer-feedback-link";
 import { referenceDisclaimerLine, SITE_DOMAIN } from "@/lib/site";
 
 export function SiteFooter() {
@@ -6,104 +7,8 @@ export function SiteFooter() {
     <footer className="bg-muted/40 border-t py-10" role="contentinfo">
       <div className="text-muted-foreground mx-auto max-w-6xl space-y-3 px-4 text-center text-sm">
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-          <Link href="/loan-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            대출 이자 계산기
-          </Link>
-          <Link
-            href="/emergency-loan-interest-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            비상금대출 이자 계산기
-          </Link>
-          <Link href="/acquisition-tax-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            취득세 계산기
-          </Link>
-          <Link
-            href="/first-home-acquisition-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            생애최초 취득세 감면 계산기
-          </Link>
-          <Link
-            href="/farmland-acquisition-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            농지 취득세 계산기
-          </Link>
-          <Link
-            href="/officetel-acquisition-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            오피스텔 취득세 계산기
-          </Link>
-          <Link
-            href="/inherited-housing-acquisition-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            상속 주택 취득세 계산기
-          </Link>
-          <Link href="/brokerage-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            중개수수료 계산기
-          </Link>
-          <Link
-            href="/jeonse-brokerage-fee-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            전세 중개수수료 계산기
-          </Link>
-          <Link
-            href="/wolse-brokerage-fee-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            월세 중개수수료 계산기
-          </Link>
-          <Link href="/dsr-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            DSR 계산기
-          </Link>
-          <Link href="/dti-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            DTI 계산기
-          </Link>
-          <Link href="/ltv-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            LTV 계산기
-          </Link>
-          <Link href="/prepayment-fee-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            중도상환 수수료 계산기
-          </Link>
-          <Link href="/national-housing-bond-calculator" className="hover:text-foreground underline-offset-4 hover:underline">
-            국민주택채권 계산기
-          </Link>
-          <Link
-            href="/comprehensive-property-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            종합부동산세 계산기
-          </Link>
-          <Link
-            href="/capital-gains-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            양도소득세 계산기
-          </Link>
-          <Link
-            href="/presale-capital-gains-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            분양권 양도세 계산기
-          </Link>
-          <Link
-            href="/comprehensive-income-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            종합소득세 계산기
-          </Link>
-          <Link
-            href="/inheritance-tax-calculator"
-            className="hover:text-foreground underline-offset-4 hover:underline"
-          >
-            상속세 계산기
-          </Link>
-          <Link href="/guide" className="hover:text-foreground underline-offset-4 hover:underline">
-            가이드
+          <Link href="/" className="hover:text-foreground underline-offset-4 hover:underline">
+            홈
           </Link>
           <Link href="/about" className="hover:text-foreground underline-offset-4 hover:underline">
             사이트 소개
@@ -118,6 +23,7 @@ export function SiteFooter() {
             오픈소스 고지
           </Link>
         </div>
+        <FooterFeedbackLink />
         <p>© {new Date().getFullYear()} {SITE_DOMAIN}. All rights reserved.</p>
         <p className="text-xs">{referenceDisclaimerLine}</p>
       </div>

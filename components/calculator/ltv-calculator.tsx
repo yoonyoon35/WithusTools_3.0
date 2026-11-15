@@ -19,6 +19,7 @@ import {
   type LtvRegionType,
 } from "@/lib/ltv-calculations";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 import { MoneyValue, ResultRow } from "@/components/calculator/calculator-result-rows";
 import { CalculatorResultExportButtons } from "@/components/calculator/calculator-result-export-buttons";
 import { formatLtvResultText } from "@/lib/ltv-result-text";
@@ -120,6 +121,12 @@ export function LtvCalculator() {
   ]);
 
   const showZeroResult = !hasCalculated || !snapshot;
+
+  useShareResultLine(
+    !snapshot || showZeroResult
+      ? null
+      : `대출 가능액 ${formatNumber(snapshot.finalMaxLoanWon)}원, 적용 LTV ${snapshot.limit.loanUnavailable ? 0 : snapshot.limit.ltvLimitPercent}%`,
+  );
 
   const appliedBasisItems = React.useMemo(() => {
     if (!snapshot) return [];

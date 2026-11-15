@@ -24,6 +24,7 @@ import {
   type GraduatedMode,
   type RepaymentType,
 } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 
 const PaymentChart = dynamic(
   () => import("./payment-chart").then((m) => ({ default: m.PaymentChart })),
@@ -431,6 +432,12 @@ export function LoanCalculator() {
       totalIntDiff: totalInterest - cInt,
     };
   }, [result, compareResult, loanAmountDisplay, hasCalculated]);
+
+  useShareResultLine(
+    hasCalculated
+      ? `월 상환액 ${formatNumber(summary.monthly)}원, 총 이자 ${formatNumber(summary.totalInt)}원`
+      : null,
+  );
 
   return (
     <div className="grid gap-6 lg:grid-cols-2 lg:items-start">

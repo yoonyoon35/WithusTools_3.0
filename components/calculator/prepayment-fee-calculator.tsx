@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatAmountKoreanWon } from "@/lib/korean-amount";
 import { formatNumber, removeCommas } from "@/lib/loan-calculations";
+import { useShareResultLine } from "@/lib/share-result-line";
 import {
   addMonthsToDate,
   computePrepaymentFee,
@@ -203,6 +204,14 @@ export function PrepaymentFeeCalculator() {
     getDefaultMaturityDateFromStart(getDefaultLoanStartDate(), 360),
   );
   const [result, setResult] = React.useState<PrepaymentFeeResult | null>(null);
+
+  useShareResultLine(
+    result
+      ? result.isExempt
+        ? "중도상환 수수료 면제"
+        : `중도상환 수수료 ${formatNumber(result.feeAmount)}원`
+      : null,
+  );
 
   const onMoneyInputChange = (raw: string, setter: (value: string) => void) => {
     const num = raw.replace(/[^0-9]/g, "");
